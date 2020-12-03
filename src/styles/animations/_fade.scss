@@ -1,0 +1,40 @@
+//
+// @type transition
+// @block fade
+// -----------------------------------------------
+
+.app_a-fade-enter-active,
+.app_a-fade-leave-active {
+  transition: opacity .25s ease-out;
+}
+
+.app_a-fade-enter,
+.app_a-fade-leave-active,
+.app_a-fade-leave-to {
+  opacity: 0;
+}
+
+//
+// @type animation
+// @block fade
+// -----------------------------------------------
+
+@keyframes app_a-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes app_a-fade-out {
+  0% {
+    opacity: 100;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
