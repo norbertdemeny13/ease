@@ -10,10 +10,8 @@
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:ci": "vue-cli-service lint --no-fix",
     "lint:scripts": "vue-cli-service lint",
-    "lint:styles": "stylelint 'src/**/*.+(scss|vue)'"
-  },
-  "gitHooks": {
-    "pre-push": "npm run lint:ci"
+    "lint:styles": "stylelint 'src/**/*.+(scss|vue)'",
+    "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -38,6 +36,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "execa": "latest",
     "jquery": "3.3.1",
     "nanoid": "3.1.12",
     "sass": "^1.26.5",
