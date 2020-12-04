@@ -38,6 +38,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jquery": "3.3.1",
+    "nanoid": "3.1.12",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "stylelint": "13.1.0",

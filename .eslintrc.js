@@ -101,6 +101,7 @@ module.exports = {
       rules: {
         indent: 'off',
         'import/no-default-export': ['off'],
+        'vue/name-property-casing': ['error', 'kebab-case'],
       },
     },
     {
