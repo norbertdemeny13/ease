@@ -29,6 +29,7 @@ module.exports = {
       'error',
       {
         code: 100,
+        template: 200,
         ignoreUrls: true,
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
@@ -102,6 +103,7 @@ module.exports = {
         indent: 'off',
         'import/no-default-export': ['off'],
         'vue/name-property-casing': ['error', 'kebab-case'],
+        'max-len': 'off',
       },
     },
     {

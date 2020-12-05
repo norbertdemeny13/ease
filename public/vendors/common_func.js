@@ -110,13 +110,6 @@
 		$(this).next().toggleClass("show_normal");
 	});
 
-	window.initEase = function() {
-		// Opacity mask
-		$('.opacity-mask').each(function(){
-			$(this).css('background-color', $(this).attr('data-opacity-mask'));
-		});
-	};
-
 	// Scroll to top
 	var pxShow = 800; // height on which the button will show
 	var scrollSpeed = 500; // how slow / fast you want the button to scroll to top.
@@ -262,4 +255,15 @@
             .toggleClass('icon_minus-06 icon_plus');
     }
 
+		window.initEase = function() {
+			// Lazy load
+			var lazyLoadInstance = new LazyLoad({
+		    elements_selector: ".lazy"
+			});
+
+			// Opacity mask
+			$('.opacity-mask').each(function(){
+				$(this).css('background-color', $(this).attr('data-opacity-mask'));
+			});
+		};
 })(window.jQuery);

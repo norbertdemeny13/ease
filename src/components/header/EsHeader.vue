@@ -4,7 +4,7 @@
       <div class="container">
         <div id="logo">
           <router-link to="/">
-            <img src="@/assets/svg/ease-logo-pink.svg" width="162" height="35" alt="Ease Logo">
+            <img src="@/assets/svg/ease-logo_pink.svg" width="162" height="35" alt="Ease Logo">
           </router-link>
         </div>
         <div class="layer" /><!-- Opacity Mask Menu Mobile -->
