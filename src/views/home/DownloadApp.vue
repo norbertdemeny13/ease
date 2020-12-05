@@ -34,12 +34,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import image from '@/assets/svg/how.svg';
 
   export default Vue.extend({
     name: 'es-home-download-app',
-    data: () => ({
-      image,
-    }),
   });
 </script>

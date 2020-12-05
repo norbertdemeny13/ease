@@ -59,12 +59,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import image from '@/assets/svg/how.svg';
 
   export default Vue.extend({
     name: 'es-home-why-us',
-    data: () => ({
-      image,
-    }),
   });
 </script>
