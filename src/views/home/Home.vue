@@ -1,13 +1,12 @@
 <template>
   <main>
-    <div class="hero_single">
+    <div class="hero">
       <div class="opacity-mask">
         <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
             <div class="col-xl-6 col-lg-8 text-center">
-              <h1>Servicii wellness de 5 stele cand si unde doresti</h1>
-              <p>Iti aducem profesionisti cu experienta, atent selectionati, la usa ta</p>
-              <form method="post" action="grid-listing-filterscol.html">
+              <h1 class="mb-8">Servicii wellness de 5 stele cand si unde doresti</h1>
+              <form>
                 <div class="row no-gutters custom-search-input">
                   <div class="col-lg-10">
                     <div class="form-group">
@@ -37,6 +36,7 @@
     <es-how-it-works />
     <es-more-details />
     <es-why-us />
+    <es-reserve-from-app />
   </main>
 </template>
 
@@ -45,6 +45,7 @@
   import DownloadApp from './DownloadApp.vue';
   import HowItWorks from './HowItWorks.vue';
   import MoreDetails from './MoreDetails.vue';
+  import ReserveFromApp from './ReserveFromApp.vue';
   import WhyUs from './WhyUs.vue';
 
   export default Vue.extend({
@@ -54,6 +55,7 @@
       'es-download-app': DownloadApp,
       'es-how-it-works': HowItWorks,
       'es-more-details': MoreDetails,
+      'es-reserve-from-app': ReserveFromApp,
       'es-why-us': WhyUs,
     },
 

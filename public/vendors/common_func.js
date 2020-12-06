@@ -261,6 +261,20 @@
 		    elements_selector: ".lazy"
 			});
 
+			// Footer collapse
+			$(window).resize(function() {
+				console.log('fasz');
+        if($(window).width() <= 768) {
+      		$('footer h3').attr("data-toggle","collapse");
+        } else {
+          $('footer h3').removeAttr("data-toggle","collapse");
+        }
+	    }).resize();
+
+			$('footer h3').on("click", function () {
+				$(this).toggleClass('opened');
+			});
+
 			// Opacity mask
 			$('.opacity-mask').each(function(){
 				$(this).css('background-color', $(this).attr('data-opacity-mask'));

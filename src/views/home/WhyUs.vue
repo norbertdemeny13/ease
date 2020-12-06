@@ -3,7 +3,6 @@
   <div class="why-us-container bg_gray">
     <div class="container margin_30_40">
       <div class="main_title center">
-        <span><em /></span>
         <h2>De ce Ease?</h2>
       </div>
       <div class="row">
@@ -18,8 +17,8 @@
                 class="lazy"
               >
             </figure>
-            <h3>Preturi transparente</h3>
-            <p class="mt-3">Stii exact cat platesti pentru fiecare serviciu, fara taxe ascunse</p>
+            <h3 class="my-3">Preturi transparente</h3>
+            <p>Stii exact cat platesti pentru fiecare serviciu, fara taxe ascunse</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -33,8 +32,8 @@
                 class="lazy"
               >
             </figure>
-            <h3>Experienta personalizata</h3>
-            <p class="mt-3">Alege genul profesionistului, adauga servicii sau solicita mai multi profesionisti pentru rezervarea ta</p>
+            <h3 class="my-3">Experienta personalizata</h3>
+            <p>Alege genul profesionistului, adauga servicii sau solicita mai multi profesionisti pentru rezervarea ta</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -48,8 +47,8 @@
                 class="lazy"
               >
             </figure>
-            <h3>Timpul tau conteaza</h3>
-            <p class="mt-3">Fara timp irosit in trafic, fara sali de asteptare si fara locuri aglomerate. Ease aduce wellness-ul la tine!</p>
+            <h3 class="my-3">Timpul tau conteaza</h3>
+            <p>Fara timp irosit in trafic, fara sali de asteptare si fara locuri aglomerate. Ease aduce wellness-ul la tine!</p>
           </div>
         </div>
       </div>

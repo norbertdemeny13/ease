@@ -2713,7 +2713,7 @@ ul#top_menu li a.login::before {
 }
 
 /*-------- 1.5 Heros/Above the fold  --------*/
-.hero_single {
+.hero {
   background: #faf3cc url(../assets/png/hero@2x.png) center top no-repeat;
   color: #fff;
   height: 620px;
@@ -2721,13 +2721,13 @@ ul#top_menu li a.login::before {
   position: relative;
   margin: 0;
 }
-.hero_single .opacity-mask {
+.hero .opacity-mask {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.hero_single .opacity-mask h1,
-.hero_single .opacity-mask h3 {
+.hero .opacity-mask h1,
+.hero .opacity-mask h3 {
   color: #fff;
   line-height: 1;
   font-size: 42px;
@@ -2736,55 +2736,55 @@ ul#top_menu li a.login::before {
   font-weight: 600;
 }
 @media (max-width: 767px) {
-  .hero_single .opacity-mask h1,
-  .hero_single .opacity-mask h3 {
+  .hero .opacity-mask h1,
+  .hero .opacity-mask h3 {
     font-size: 36px;
     font-size: 2.25rem;
   }
 }
-.hero_single .opacity-mask p {
+.hero .opacity-mask p {
   font-size: 28px;
   font-size: 1.75rem;
   font-weight: 300;
 }
 @media (max-width: 767px) {
-  .hero_single .opacity-mask p {
+  .hero .opacity-mask p {
     font-size: 21px;
     font-size: 1.3125rem;
   }
 }
-.hero_single .search_trends {
+.hero .search_trends {
   color: #555;
 }
-.hero_single .search_trends h5 {
+.hero .search_trends h5 {
   font-size: 14px;
   font-size: 0.875rem;
   display: inline-block;
   color: #555;
 }
-.hero_single .search_trends ul {
+.hero .search_trends ul {
   list-style: none;
   display: inline-block;
   margin: 15px 0 0 0;
   padding: 0;
 }
-.hero_single .search_trends ul li {
+.hero .search_trends ul li {
   display: inline-block;
 }
-.hero_single .search_trends ul li:after {
+.hero .search_trends ul li:after {
   content: ", ";
 }
-.hero_single .search_trends ul li:last-child:after {
+.hero .search_trends ul li:last-child:after {
   content: " ";
 }
-.hero_single .search_trends ul li a {
+.hero .search_trends ul li a {
   color: #555;
 }
-.hero_single .search_trends ul li a:hover {
+.hero .search_trends ul li a:hover {
   text-decoration: underline;
 }
 
-.hero_single.inner_pages {
+.hero.inner_pages {
   height: 620px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -2795,7 +2795,7 @@ ul#top_menu li a.login::before {
   background-size: cover;
   text-align: center;
 }
-.hero_single.inner_pages h1 {
+.hero.inner_pages h1 {
   margin-top: -30px;
 }
 

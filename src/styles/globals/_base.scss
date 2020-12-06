@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 @charset "UTF-8";
 
 /* ------------------------------------------------------------------
@@ -12,6 +14,8 @@
   1.6. Grid
   1.7 Utilities
   1.8 Buttons
+  1.9 Input Group
+  1.10 Text
 
 /* ------------------------------------------- *\
     1. Bootstrap CSS
@@ -3568,6 +3572,10 @@ pre code {
   margin-left: auto !important;
 }
 
+.black {
+  color: #262626;
+}
+
 .text-monospace {
   font-family: sfmono-Regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !important;
 }
@@ -3643,7 +3651,7 @@ pre code {
 }
 
 /*-------------------------------------------*\
-    1.9. Buttons
+    1.8. Buttons
 \*-------------------------------------------*/
 .btn {
   display: inline-block;
@@ -6717,3 +6725,626 @@ input[type="button"].btn-block {
 .btn-pill {
   border-radius: 6.1875rem;
 }
+
+/* ------------------------------------------- *\
+    1.9. Input Group
+\* ------------------------------------------- */
+
+.input-group {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+  width: 100%;
+}
+
+.input-group > .form-control,
+.input-group > .form-control-plaintext,
+.input-group > .custom-select,
+.input-group > .custom-file {
+  position: relative;
+  -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
+}
+
+.input-group > .form-control + .form-control,
+.input-group > .form-control + .custom-select,
+.input-group > .form-control + .custom-file,
+.input-group > .form-control-plaintext + .form-control,
+.input-group > .form-control-plaintext + .custom-select,
+.input-group > .form-control-plaintext + .custom-file,
+.input-group > .custom-select + .form-control,
+.input-group > .custom-select + .custom-select,
+.input-group > .custom-select + .custom-file,
+.input-group > .custom-file + .form-control,
+.input-group > .custom-file + .custom-select,
+.input-group > .custom-file + .custom-file {
+  margin-left: -2px;
+}
+
+.input-group > .form-control:focus,
+.input-group > .custom-select:focus,
+.input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
+  z-index: 3;
+}
+
+.input-group > .custom-file .custom-file-input:focus {
+  z-index: 4;
+}
+
+.input-group > .form-control:not(:last-child),
+.input-group > .custom-select:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group > .form-control:not(:first-child),
+.input-group > .custom-select:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input-group > .custom-file {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.input-group > .custom-file:not(:last-child) .custom-file-label,
+.input-group > .custom-file:not(:last-child) .custom-file-label::after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group > .custom-file:not(:first-child) .custom-file-label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input-group-prepend,
+.input-group-append {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-group-prepend .btn,
+.input-group-append .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group-prepend .btn:focus,
+.input-group-append .btn:focus {
+  z-index: 3;
+}
+
+.input-group-prepend .btn + .btn,
+.input-group-prepend .btn + .input-group-text,
+.input-group-prepend .input-group-text + .input-group-text,
+.input-group-prepend .input-group-text + .btn,
+.input-group-append .btn + .btn,
+.input-group-append .btn + .input-group-text,
+.input-group-append .input-group-text + .input-group-text,
+.input-group-append .input-group-text + .btn {
+  margin-left: -2px;
+}
+
+.input-group-prepend {
+  margin-right: -2px;
+}
+
+.input-group-append {
+  margin-left: -2px;
+}
+
+.input-group-text {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #8c98a4;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 2px solid #ebf0f7;
+  border-radius: 0.3125rem;
+}
+
+.input-group-text input[type="radio"],
+.input-group-text input[type="checkbox"] {
+  margin-top: 0;
+}
+
+.input-group-lg > .form-control:not(textarea),
+.input-group-lg > .custom-select {
+  height: calc(1.5em + 2.25rem + 4px);
+}
+
+.input-group-lg > .form-control,
+.input-group-lg > .custom-select,
+.input-group-lg > .input-group-prepend > .input-group-text,
+.input-group-lg > .input-group-append > .input-group-text,
+.input-group-lg > .input-group-prepend > .btn,
+.input-group-lg > .input-group-append > .btn {
+  padding: 1.125rem 1.125rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+
+.input-group-sm > .form-control:not(textarea),
+.input-group-sm > .custom-select {
+  height: calc(1.5em + 1.25rem + 4px);
+}
+
+.input-group-sm > .form-control,
+.input-group-sm > .custom-select,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
+  padding: 0.625rem 1.125rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+.input-group-lg > .custom-select,
+.input-group-sm > .custom-select {
+  padding-right: 2rem;
+}
+
+.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .input-group-text,
+.input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > .input-group-text,
+.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.custom__input-group > .input-group-append > .btn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.custom__input-group > .form-control:not(:last-child) {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* ------------------------------------------- *\
+    1.10. Text
+\* ------------------------------------------- */
+
+.text-white {
+  color: #fff !important;
+}
+
+.text-primary {
+  color: #297cbb !important;
+}
+
+a.text-primary:hover, a.text-primary:focus {
+  color: #1b527c !important;
+}
+
+.text-secondary {
+  color: #77838f !important;
+}
+
+a.text-secondary:hover, a.text-secondary:focus {
+  color: #545d66 !important;
+}
+
+.text-success {
+  color: #00c9a7 !important;
+}
+
+a.text-success:hover, a.text-success:focus {
+  color: #007d67 !important;
+}
+
+.text-info {
+  color: #00dffc !important;
+}
+
+a.text-info:hover, a.text-info:focus {
+  color: #009bb0 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+a.text-warning:hover, a.text-warning:focus {
+  color: #ba8b00 !important;
+}
+
+.text-danger {
+  color: #de4437 !important;
+}
+
+a.text-danger:hover, a.text-danger:focus {
+  color: #ac281c !important;
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+a.text-light:hover, a.text-light:focus {
+  color: #cbd3da !important;
+}
+
+.text-dark {
+  color: #3b444f !important;
+}
+
+a.text-dark:hover, a.text-dark:focus {
+  color: #1a1e23 !important;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+a.text-white:hover, a.text-white:focus {
+  color: #d9d9d9 !important;
+}
+
+.text-indigo {
+  color: #2d1582 !important;
+}
+
+a.text-indigo:hover, a.text-indigo:focus {
+  color: #160a40 !important;
+}
+
+.text-gray {
+  color: #ebf0f7 !important;
+}
+
+a.text-gray:hover, a.text-gray:focus {
+  color: #b4c7e1 !important;
+}
+
+.text-violet {
+  color: #532184 !important;
+}
+
+a.text-violet:hover, a.text-violet:focus {
+  color: #2d1247 !important;
+}
+
+.text-violet-1 {
+  color: #a864a8 !important;
+}
+
+a.text-violet-1:hover, a.text-violet-1:focus {
+  color: #7b457b !important;
+}
+
+.text-violet-light {
+  color: #6f13cd !important;
+}
+
+a.text-violet-light:hover, a.text-violet-light:focus {
+  color: #490d87 !important;
+}
+
+.text-brown-light {
+  color: #ceac61 !important;
+}
+
+a.text-brown-light:hover, a.text-brown-light:focus {
+  color: #ad8836 !important;
+}
+
+.text-brown {
+  color: #f8bd5b !important;
+}
+
+a.text-brown:hover, a.text-brown:focus {
+  color: #f59f12 !important;
+}
+
+.text-maroon {
+  color: #c72f74 !important;
+}
+
+a.text-maroon:hover, a.text-maroon:focus {
+  color: #892050 !important;
+}
+
+.text-indigo-light {
+  color: #080e7b !important;
+}
+
+a.text-indigo-light:hover, a.text-indigo-light:focus {
+  color: #030633 !important;
+}
+
+.text-red-light-2 {
+  color: #ff3c4e !important;
+}
+
+a.text-red-light-2:hover, a.text-red-light-2:focus {
+  color: #ef0016 !important;
+}
+
+.text-blue-dark-1 {
+  color: #045cff !important;
+}
+
+a.text-blue-dark-1:hover, a.text-blue-dark-1:focus {
+  color: #0040b7 !important;
+}
+
+.text-gray-1 {
+  color: #67747c !important;
+}
+
+a.text-gray-1:hover, a.text-gray-1:focus {
+  color: #444d52 !important;
+}
+
+.text-gray-2 {
+  color: #f7f8f9 !important;
+}
+
+a.text-gray-2:hover, a.text-gray-2:focus {
+  color: #cbd2d8 !important;
+}
+
+.text-gray-3 {
+  color: #3b444f !important;
+}
+
+a.text-gray-3:hover, a.text-gray-3:focus {
+  color: #1a1e23 !important;
+}
+
+.text-gray-4 {
+  color: #eceff3 !important;
+}
+
+a.text-gray-4:hover, a.text-gray-4:focus {
+  color: #bdc8d5 !important;
+}
+
+.text-blue {
+  color: #43c5db !important;
+}
+
+a.text-blue:hover, a.text-blue:focus {
+  color: #229bb0 !important;
+}
+
+.text-blue-1 {
+  color: #297cbb !important;
+}
+
+a.text-blue-1:hover, a.text-blue-1:focus {
+  color: #1b527c !important;
+}
+
+.text-gray-5 {
+  color: #18181b !important;
+}
+
+a.text-gray-5:hover, a.text-gray-5:focus {
+  color: black !important;
+}
+
+.text-gray-6 {
+  color: #18181a !important;
+}
+
+a.text-gray-6:hover, a.text-gray-6:focus {
+  color: black !important;
+}
+
+.text-gray-7 {
+  color: #5c6770 !important;
+}
+
+a.text-gray-7:hover, a.text-gray-7:focus {
+  color: #3a4046 !important;
+}
+
+.text-gray-8 {
+  color: #c5cdd8 !important;
+}
+
+a.text-gray-8:hover, a.text-gray-8:focus {
+  color: #97a6b9 !important;
+}
+
+.text-gray-9 {
+  color: #9fa9b8 !important;
+}
+
+a.text-gray-9:hover, a.text-gray-9:focus {
+  color: #738297 !important;
+}
+
+.text-gray-10 {
+  color: #c1c1c1 !important;
+}
+
+a.text-gray-10:hover, a.text-gray-10:focus {
+  color: #9b9b9b !important;
+}
+
+.text-gray-11 {
+  color: #484848 !important;
+}
+
+a.text-gray-11:hover, a.text-gray-11:focus {
+  color: #222222 !important;
+}
+
+.text-gray-23 {
+  color: #f4f4f4 !important;
+}
+
+a.text-gray-23:hover, a.text-gray-23:focus {
+  color: #cecece !important;
+}
+
+.text-gray-33 {
+  color: #ebf0f7 !important;
+}
+
+a.text-gray-33:hover, a.text-gray-33:focus {
+  color: #b4c7e1 !important;
+}
+
+.text-sea-green {
+  color: #1d508d !important;
+}
+
+a.text-sea-green:hover, a.text-sea-green:focus {
+  color: #102c4e !important;
+}
+
+.text-dark-1 {
+  color: #1e2022 !important;
+}
+
+a.text-dark-1:hover, a.text-dark-1:focus {
+  color: black !important;
+}
+
+.text-navy {
+  color: #0057ff !important;
+}
+
+a.text-navy:hover, a.text-navy:focus {
+  color: #003db3 !important;
+}
+
+.text-pink {
+  color: #ffe5ee !important;
+}
+
+a.text-pink:hover, a.text-pink:focus {
+  color: #ff99bc !important;
+}
+
+.text-dark-2 {
+  color: #1a2b49 !important;
+}
+
+a.text-dark-2:hover, a.text-dark-2:focus {
+  color: #060a11 !important;
+}
+
+.text-yellow-lighter-2 {
+  color: #f7bc5a !important;
+}
+
+a.text-yellow-lighter-2:hover, a.text-yellow-lighter-2:focus {
+  color: #f39e11 !important;
+}
+
+.text-orange {
+  color: #f05700 !important;
+}
+
+a.text-orange:hover, a.text-orange:focus {
+  color: #a43b00 !important;
+}
+
+.text-green {
+  color: #28871c !important;
+}
+
+a.text-green:hover, a.text-green:focus {
+  color: #15480f !important;
+}
+
+.text-pink-1 {
+  color: #ff0045 !important;
+}
+
+a.text-pink-1:hover, a.text-pink-1:focus {
+  color: #b30030 !important;
+}
+
+.text-purple-1 {
+  color: #232753 !important;
+}
+
+a.text-purple-1:hover, a.text-purple-1:focus {
+  color: #0c0e1d !important;
+}
+
+.text-body {
+  color: #3b444f !important;
+}
+
+.text-muted {
+  color: #8c98a4 !important;
+}
+
+.text-black-50 {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+.text-break {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.text-reset {
+  color: inherit !important;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+

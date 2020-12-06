@@ -4,4 +4,53 @@
 
 .why-us-container .box_how {
   min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.why-us-container .box_how img {
+  width: 40px;
+}
+
+.more-details img {
+  height: auto;
+  width: 300px;
+}
+
+.more-details .reverse-order {
+  order: -1;
+}
+
+.download-app-container .row {
+  flex-direction: column;
+}
+
+.reserve-from-app-container .mobile-container {
+  flex-direction: column;
+}
+
+.hero .opacity-mask h1,
+.hero .opacity-mask h3 {
+  color: #262626 !important;
+}
+
+@media (min-width: 767px) {
+  .more-details img {
+    width: 460px;
+  }
+
+  .more-details .reverse-order {
+    order: 2;
+  }
+
+  .download-app-container .row {
+    flex-direction: row;
+  }
+
+  .reserve-from-app-container .mobile-container {
+    flex-direction: row;
+  }
+}
+
