@@ -14,80 +14,6 @@
 		$(this).css('background-image', $(this).attr('data-background'));
 	});
 
-	// Carousel categories home page
-	var owlcat = $('.categories_carousel');
-	owlcat.owlCarousel({
-	    center: false,
-	    stagePadding: 50,
-	    items: 1,
-	    loop: false,
-	    margin: 20,
-	    dots: false,
-	    nav: true,
-	    lazyLoad: true,
-	    navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
-	    responsive: {
-	        0: {
-	            nav: false,
-	            dots: false,
-	            items: 2
-	        },
-	        600: {
-	            nav: false,
-	            dots: false,
-	            items: 2
-	        },
-	        768: {
-	            nav: false,
-	            dots: false,
-	            items: 4
-	        },
-	        1025: {
-	            nav: true,
-	            dots: false,
-	            items: 4
-	        },
-	        1340: {
-	            nav: true,
-	            dots: false,
-	            items: 5
-	        },
-	        1460: {
-	            nav: true,
-	            dots: false,
-	            items: 5
-	        }
-	    }
-	});
-
-	// Carousel home page
-	var owl4 = $('.carousel_4');
-		owl4.owlCarousel({
-			items: 1,
-			loop: false,
-			stagePadding: 50,
-			margin: 20,
-			dots:false,
-            lazyLoad:true,
-			navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
-			nav:false,
-			responsive: {
-			0: {
-				items: 1
-			},
-			560: {
-				items: 1
-			},
-			768: {
-				items: 2
-			},
-			1230: {
-				items: 3,
-				nav: true
-			}
-		}
-		});
-
 	// Sticky nav
 	$(window).on('scroll', function () {
 		if ($(this).scrollTop() > 1) {
@@ -255,29 +181,55 @@
             .toggleClass('icon_minus-06 icon_plus');
     }
 
-		window.initEase = function() {
-			// Lazy load
-			var lazyLoadInstance = new LazyLoad({
-		    elements_selector: ".lazy"
-			});
+	window.initEase = function() {
+		// Lazy load
+		var lazyLoadInstance = new LazyLoad({
+	    elements_selector: ".lazy"
+		});
 
-			// Footer collapse
-			$(window).resize(function() {
-				console.log('fasz');
-        if($(window).width() <= 768) {
-      		$('footer h3').attr("data-toggle","collapse");
-        } else {
-          $('footer h3').removeAttr("data-toggle","collapse");
-        }
-	    }).resize();
+	// Carousel home page
+		$('.owl-carousel').owlCarousel({
+			items: 1,
+			loop: false,
+			stagePadding: 50,
+			margin: 20,
+			dots: false,
+      lazyLoad: true,
+			navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+			nav: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				560: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				1230: {
+					items: 4,
+					nav: true
+				}
+			},
+		});
 
-			$('footer h3').on("click", function () {
-				$(this).toggleClass('opened');
-			});
+		// Footer collapse
+		$(window).resize(function() {
+      if($(window).width() <= 768) {
+    		$('footer h3').attr("data-toggle","collapse");
+      } else {
+        $('footer h3').removeAttr("data-toggle","collapse");
+      }
+    }).resize();
 
-			// Opacity mask
-			$('.opacity-mask').each(function(){
-				$(this).css('background-color', $(this).attr('data-opacity-mask'));
-			});
-		};
+		$('footer h3').on("click", function () {
+			$(this).toggleClass('opened');
+		});
+
+		// Opacity mask
+		$('.opacity-mask').each(function(){
+			$(this).css('background-color', $(this).attr('data-opacity-mask'));
+		});
+	};
 })(window.jQuery);

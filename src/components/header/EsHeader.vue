@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header black_nav clearfix element_to_stick">
+    <header :class="`header black_nav clearfix element_to_stick ${isHomePage ? '' : 'header-in'}`">
       <div class="container">
         <div id="logo">
           <router-link to="/">
@@ -81,6 +81,7 @@
 
     data: () => ({
       isAuthenticated: false,
+      isHomePage: false,
     }),
 
     computed: {
@@ -93,6 +94,12 @@
         return NAVBAR_LINKS
           .filter(item => !item.requiresAuth)
           .map(item => ({ ...item, id: nanoid() }));
+      },
+    },
+
+    watch: {
+      $route(to) {
+        this.isHomePage = to.name === 'Home';
       },
     },
   });

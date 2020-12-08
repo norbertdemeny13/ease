@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="content">
     <div class="hero">
       <div class="opacity-mask">
         <div class="container">
@@ -37,7 +37,7 @@
     <es-more-details />
     <es-why-us />
     <es-reserve-from-app />
-  </main>
+  </div>
 </template>
 
 <script lang="ts">

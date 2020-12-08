@@ -11,9 +11,9 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "chunk.view.home" */ '@/views/home').then(({ Home }) => Home),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "chunk.view.home" */ '@/views/about').then(({ About }) => About),
+    path: '/servicii',
+    name: 'Services',
+    component: () => import(/* webpackChunkName: "chunk.view.services" */ '@/views/services').then(({ Services }) => Services),
   },
 ];
 
@@ -22,4 +22,15 @@ export const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior(to, from) {
+    if (to.path === from.path) {
+      return;
+    }
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  },
 });

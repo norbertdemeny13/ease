@@ -1,11 +1,11 @@
 <template>
   <div>
     <es-header />
-    <div class="content">
+    <main>
       <transition name="app_a-fade" mode="out-in">
         <router-view :key="$route.path" />
       </transition>
-    </div>
+    </main>
     <es-footer />
   </div>
 </template>

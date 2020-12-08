@@ -15,7 +15,7 @@
 }
 
 .more-details img {
-  height: auto;
+  height: 200px;
   width: 300px;
 }
 
@@ -27,6 +27,10 @@
   flex-direction: column;
 }
 
+.reserve-from-app-container {
+  display: none;
+}
+
 .reserve-from-app-container .mobile-container {
   flex-direction: column;
 }
@@ -36,8 +40,23 @@
   color: #262626 !important;
 }
 
+.es_services-list-item {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e7eaf3;
+  border-radius: 0.3125rem;
+}
+
 @media (min-width: 767px) {
   .more-details img {
+    height: auto;
     width: 460px;
   }
 
@@ -47,6 +66,10 @@
 
   .download-app-container .row {
     flex-direction: row;
+  }
+
+  .reserve-from-app-container {
+    display: block;
   }
 
   .reserve-from-app-container .mobile-container {
