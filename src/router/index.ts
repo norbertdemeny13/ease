@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import { RouterView } from '@/components/router-view';
+import { store } from '@/store';
 
 Vue.use(VueRouter);
 
@@ -33,4 +34,11 @@ export const router = new VueRouter({
       behavior: 'smooth',
     });
   },
+});
+
+router.beforeEach(async (to, from, next) => {
+  const { isAuth } = store.getters;
+  if (isAuth) {
+    next();
+  }
 });

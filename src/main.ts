@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Portal from 'portal-vue';
 import App from './App.vue';
 import { router } from './router';
 import { store } from './store';
@@ -7,6 +8,8 @@ import { store } from './store';
 import '@/styles/main.scss';
 
 Vue.config.productionTip = false;
+
+Vue.use(Portal);
 
 new Vue({
   router,

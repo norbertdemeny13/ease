@@ -4,8 +4,19 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-  state: {},
+  state: {
+    isAuth: false,
+  },
   mutations: {},
-  actions: {},
+  getters: {
+    isAuth: state => state.isAuth,
+  },
+  actions: {
+    setToken({ state }, pass) {
+      if (pass === 'qazwsx') {
+        Vue.set(state, 'isAuth', true);
+      }
+    },
+  },
   modules: {},
 });
