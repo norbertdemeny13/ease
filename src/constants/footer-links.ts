@@ -6,7 +6,7 @@ export const FOOTER_LINKS = [
     list: [
       {
         label: 'Intrebari frecvente',
-        to: '/faq',
+        to: '/intrebari-frecvente',
       },
       {
         label: 'Contacteaza-ne',

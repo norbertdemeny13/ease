@@ -14,6 +14,7 @@
     "deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -37,7 +38,6 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "execa": "latest",
-    "jquery": "3.3.1",
     "nanoid": "3.1.12",
     "portal-vue": "2.1.7",
     "sass": "^1.26.5",

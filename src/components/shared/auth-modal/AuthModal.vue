@@ -10,15 +10,21 @@
             <label>Parola</label>
             <input
               id="auth-password"
+              v-model="password"
               type="password"
               class="form-control"
               name="password"
-              v-model="password"
             >
             <i class="icon_lock_alt" />
           </div>
           <div class="text-center">
-            <button type="submit" @click="authenticate()" class="btn_1">Authenticate</button>
+            <button
+              type="submit"
+              class="btn_1"
+              @click="authenticate()"
+            >
+              Authenticate
+            </button>
           </div>
         </div>
       </div>

@@ -10,8 +10,40 @@
   align-items: center;
 }
 
-.why-us-container .box_how img {
-  width: 40px;
+.companies-container .ease-for-company {
+  height: 200px;
+  width: 300px;
+}
+
+.companies-container .box_how {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.companies-container .box_how figure {
+  margin-left: 0;
+}
+
+.companies-container .form-group > i {
+  font-size: 18px;
+  font-size: 1.125rem;
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+.why-us-container .box_how img,
+.companies-container .box_how img {
+  width: 45px;
+  height: 45px;
 }
 
 .more-details img {
@@ -58,6 +90,11 @@
   .more-details img {
     height: auto;
     width: 460px;
+  }
+
+  .companies-container .ease-for-company {
+    height: 360px;
+    width: 390px;
   }
 
   .more-details .reverse-order {

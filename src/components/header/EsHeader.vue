@@ -62,12 +62,13 @@
         </nav>
       </div>
     </header>
-    <es-login-modal @on-login="isAuthenticated = true" />
+    <es-login-modal />
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapGetters } from 'vuex';
   import { nanoid } from 'nanoid';
   import { LoginModal } from '@/components/login-modal';
   import { NAVBAR_LINKS } from '@/constants/navbar-links';
@@ -80,11 +81,13 @@
     },
 
     data: () => ({
-      isAuthenticated: false,
       isHomePage: false,
     }),
 
     computed: {
+      ...mapGetters({
+        isAuthenticated: 'isAuthenticated',
+      }),
       getAuthNavLinks() {
         return NAVBAR_LINKS
           .filter(item => item.requiresAuth)
@@ -101,6 +104,15 @@
       $route(to) {
         this.isHomePage = to.name === 'Home';
       },
+      isAuthenticated(newValue) {
+        if (newValue) {
+          (window as any).$.magnificPopup.close();
+        }
+      },
+    },
+
+    created() {
+      (window as any).initEase();
     },
   });
 </script>

@@ -42,7 +42,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import DownloadApp from './DownloadApp.vue';
+  import { DownloadApp } from '@/components/shared/download-app';
   import HowItWorks from './HowItWorks.vue';
   import MoreDetails from './MoreDetails.vue';
   import ReserveFromApp from './ReserveFromApp.vue';

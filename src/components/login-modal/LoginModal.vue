@@ -11,12 +11,12 @@
         <div class="divider"><span>Sau</span></div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" class="form-control" name="email" id="email">
+          <input type="email" class="form-control" name="email" id="email" v-model="email">
           <i class="icon_mail_alt" />
         </div>
         <div class="form-group">
             <label>Parola</label>
-            <input type="password" class="form-control" name="password" id="password" value="">
+            <input type="password" class="form-control" name="password" id="password" v-model="password">
             <i class="icon_lock_alt" />
         </div>
         <div class="clearfix add_bottom_15">
@@ -29,7 +29,7 @@
           <div class="float-right"><a id="forgot" href="javascript:void(0);">Ai uitat parola??</a></div>
           </div>
           <div class="text-center">
-            <input @click.prevent="$emit('on-login')" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
+            <input @click.prevent="onSubmit()" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
             Inca nu ai cont?
             <router-link
               to="/signup"
@@ -55,8 +55,23 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapActions } from 'vuex';
 
   export default Vue.extend({
     name: 'es-login-modal',
+
+    data: () => ({
+      email: 'robi.kudor@yahoo.com',
+      password: 'Password1!',
+    }),
+
+    methods: {
+      ...mapActions({
+        login: 'login',
+      }),
+      onSubmit() {
+        this.login(this.$data);
+      },
+    },
   });
 </script>

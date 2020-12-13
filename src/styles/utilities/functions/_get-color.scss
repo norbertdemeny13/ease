@@ -1,0 +1,8 @@
+//
+// @type function
+// @name get-color
+// -----------------------------------------------
+
+@function get-color($keys...) {
+  @return get-value($color, $keys...);
+}

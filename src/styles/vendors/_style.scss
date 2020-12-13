@@ -6230,7 +6230,7 @@ a.box_topic.submit h3,
 }
 
 /*-------- 3.9 Accordion --------*/
-.accordion_2 .card {
+.accordion .card {
   border: 0;
   margin-bottom: 5px;
   -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
@@ -6241,24 +6241,24 @@ a.box_topic.submit h3,
   -ms-border-radius: 5px;
   border-radius: 5px;
 }
-.accordion_2 .card .card-header {
+.accordion .card .card-header {
   background-color: #fff;
   border-bottom: 1px solid #ededed;
   padding: 20px;
 }
-.accordion_2 .card-body {
+.accordion .card-body {
   padding: 20px 20px 0 20px;
 }
-.accordion_2 .card-header h5 {
+.accordion .card-header h5 {
   font-size: 16px;
   font-size: 1rem;
   margin: 0;
 }
-.accordion_2 .card-header h5 a {
+.accordion .card-header h5 a {
   display: block;
   color: #999;
 }
-.accordion_2 .card-header h5 a i.indicator {
+.accordion .card-header h5 a i.indicator {
   font-size: 18px;
   font-size: 1.125rem;
   font-weight: normal;

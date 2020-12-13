@@ -13,7 +13,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "@nuxt/types",
     ],
     "paths": {
       "@/*": [
@@ -27,6 +28,7 @@
       "scripthost"
     ]
   },
+
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -34,6 +36,7 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+
   "exclude": [
     "node_modules"
   ]

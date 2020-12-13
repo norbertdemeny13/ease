@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import { RouterView } from '@/components/router-view';
 import { store } from '@/store';
 
 Vue.use(VueRouter);
@@ -13,8 +12,23 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/servicii',
-    name: 'Services',
+    name: 'Servicii',
     component: () => import(/* webpackChunkName: "chunk.view.services" */ '@/views/services').then(({ Services }) => Services),
+  },
+  {
+    path: '/companii',
+    name: 'Companii',
+    component: () => import(/* webpackChunkName: "chunk.view.companies" */ '@/views/companies').then(({ Companies }) => Companies),
+  },
+  {
+    path: '/servicii/:type',
+    name: 'Detalii Servicii',
+    component: () => import(/* webpackChunkName: "chunk.view.service-details" */ '@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
+  },
+  {
+    path: '/intrebari-frecvente',
+    name: 'Intrebari frecvente',
+    component: () => import(/* webpackChunkName: "chunk.view.faq" */ '@/views/faq').then(({ Faq }) => Faq),
   },
 ];
 

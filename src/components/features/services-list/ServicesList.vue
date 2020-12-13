@@ -2,9 +2,9 @@
 <template>
   <div class="es_services-list-container my-4">
     <div v-for="service in services" :key="service.id" class="row">
-      <div class="col-12"><h2 class="title_small">{{ service.title }}</h2></div>
+      <div class="col-12"><h2 class="title_small">{{ service.category }}</h2></div>
       <div v-if="service.description" class="col-12"><p class="text-secondary">{{ service.description }}</p></div>
-        <div v-if="service.hasCarousel" class="col-12 owl-carousel owl-theme categories_carousel_in">
+        <div v-if="service.list.length > 4" class="col-12 owl-carousel owl-theme categories_carousel_in">
           <services-list-item v-for="item in service.list" :key="item.id" :service="item" />
         </div>
         <template v-else>
@@ -29,7 +29,10 @@
     },
 
     props: {
-      services: Array,
+      services: {
+        type: Array,
+        required: true,
+      },
     },
   });
 </script>

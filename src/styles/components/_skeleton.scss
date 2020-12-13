@@ -1,0 +1,118 @@
+//
+// @type component
+// @block skeleton
+// -----------------------------------------------
+
+.es-skeleton {
+  border-radius: 6px;
+  position: relative;
+}
+
+//
+// @modifier border
+// -----------------------------------------------
+
+.es-skeleton--border {
+  border: 1px solid get-color("neutral", 300);
+}
+
+//
+// @modifier padding-xs
+// -----------------------------------------------
+
+.es-skeleton--padding-xs {
+  padding: 8px;
+}
+
+//
+// @modifier padding-sm
+// -----------------------------------------------
+
+.es-skeleton--padding-sm {
+  padding: 16px;
+}
+
+//
+// @modifier padding-md
+// -----------------------------------------------
+
+.es-skeleton--padding-md {
+  padding: 24px;
+}
+
+//
+// @element value
+// -----------------------------------------------
+
+.es-skeleton__animation {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+
+  &::after {
+    animation: tc_a-skeleton-wave 1s ease-in-out infinite;
+    background: linear-gradient(90deg, rgba(#ffffff, .001) 0%, rgba(#ffffff, .5) 33%, rgba(#ffffff, .5) 66%, rgba(#ffffff, .001) 100%);
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+  }
+}
+
+//
+// @element value
+// @modifier light
+// -----------------------------------------------
+
+.es-skeleton__item--light {
+  background-color: mix(get-color("neutral", 900), get-color("neutral", 100), 5%);
+}
+
+//
+// @element value
+// @modifier dark
+// -----------------------------------------------
+
+.es-skeleton__item--dark {
+  background-color: mix(get-color("neutral", 100), get-color("neutral", 300), 5%);
+}
+
+//
+// @element value
+// @modifier circle
+// -----------------------------------------------
+
+.es-skeleton__item--circle {
+  border-radius: 999px;
+}
+
+//
+// @element value
+// @modifier rectangle
+// -----------------------------------------------
+
+.es-skeleton__item--rectangle {
+  border-radius: 4px;
+}
+
+//
+// @type animation
+// @block tc_a-skeleton-wave
+// -----------------------------------------------
+
+@keyframes tc_a-skeleton-wave {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}

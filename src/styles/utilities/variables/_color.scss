@@ -1,0 +1,80 @@
+//
+// @type variable
+// @name color
+// -----------------------------------------------
+
+$color: (
+  /// Brand
+
+  "brand": (
+    "primary": #0f2538,
+    "secondary": #cd202c,
+    "tertiary": #5a5a5a,
+    "accent": #00aff0,
+  ),
+
+  /// Miscellaneous
+
+  "black": #000000,
+  "white": #ffffff,
+
+  /// Primary
+
+  "primary": (
+    100: #ecf4ff,
+    300: #a9cfff,
+    500: #006df6,
+    700: #004eaf,
+    900: #002049,
+  ),
+
+  /// Neutral
+
+  "neutral": (
+    100: #f8f9fa,
+    300: #d0d4da,
+    500: #768191,
+    700: #4a5568,
+    900: #0f2538,
+  ),
+
+  /// Error
+
+  "error": (
+    100: #fbeeee,
+    300: #efb7b7,
+    500: #cd202c,
+    700: #8d1f1f,
+    900: #3a0d0d,
+  ),
+
+  /// Info
+
+  "info": (
+    100: #ecf4ff,
+    300: #a9cfff,
+    500: #006df6,
+    700: #004eaf,
+    900: #002049,
+  ),
+
+  /// Success
+
+  "success": (
+    100: #f1f9f3,
+    300: #c2e5cb,
+    500: #49ab62,
+    700: #347945,
+    900: #15321d,
+  ),
+
+  /// Warning
+
+  "warning": (
+    100: #fff4ec,
+    300: #ffcfa9,
+    500: #f66d00,
+    700: #af4e00,
+    900: #492000,
+  ),
+); // color
