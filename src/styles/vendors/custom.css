@@ -40,6 +40,14 @@
   font-weight: 400 !important;
 }
 
+.faq-container .large-view {
+  display: none;
+}
+
+.faq-container .main_title {
+  display: none;
+}
+
 .why-us-container .box_how img,
 .companies-container .box_how img {
   width: 45px;
@@ -87,6 +95,18 @@
 }
 
 @media (min-width: 767px) {
+  .faq-container .large-view {
+    display: block;
+  }
+
+  .faq-container .main_title {
+    display: block;
+  }
+
+  .faq-container .mobile-view {
+    display: none;
+  }
+
   .more-details img {
     height: auto;
     width: 460px;

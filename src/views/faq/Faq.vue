@@ -1,19 +1,31 @@
 <template>
-  <div class="bg_gray">
+  <div class="faq-container bg_gray">
     <div class="container margin_30_40">
       <div class="main_title center">
         <h2>Intrebari frecvente</h2>
       </div>
 
-      <div class="row">
+      <div class="large-view">
+        <div class="row">
+          <div v-for="c in faq" :key="c.category" class="col-lg-4 col-md-6">
+            <a class="box_topic" href="" @click.prevent="setCategory(c.category)">
+              <span><i :class="c.icon" /></span>
+              <h3>{{ c.title }}</h3>
+            </a>
+          </div>
+        </div>
+        <es-faq-list :list="getFaqList" />
+      </div>
+
+      <div class="row mobile-view">
         <div v-for="c in faq" :key="c.category" class="col-lg-4 col-md-6">
           <a class="box_topic" href="" @click.prevent="setCategory(c.category)">
             <span><i :class="c.icon" /></span>
             <h3>{{ c.title }}</h3>
           </a>
+          <es-faq-list :list="getFaqListByCategory(c.category)" />
         </div>
       </div>
-      <es-faq-list :list="getFaqList" />
     </div>
     <!-- /container -->
   </div>
@@ -48,6 +60,9 @@
     },
 
     methods: {
+      getFaqListByCategory(category: string) {
+        return this.faq.filter(item => item.category === category)[0];
+      },
       setCategory(category: string) {
         this.selectedCategory = category;
       },
