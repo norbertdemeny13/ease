@@ -14,7 +14,7 @@
             </a>
           </div>
         </div>
-        <es-faq-list :list="getFaqList" />
+        <es-faq-list v-if="selectedCategory" :list="getFaqList" />
       </div>
 
       <div class="row mobile-view">
@@ -46,7 +46,7 @@
 
     data: () => ({
       faq: FAQ,
-      selectedCategory: 'rezervari',
+      selectedCategory: '',
     }),
 
     computed: {
