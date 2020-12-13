@@ -23,7 +23,7 @@
             <span><i :class="c.icon" /></span>
             <h3>{{ c.title }}</h3>
           </a>
-          <es-faq-list :list="getFaqListByCategory(c.category)" />
+          <es-faq-list v-if="selectedCategory === c.category" :list="getFaqListByCategory(c.category)" />
         </div>
       </div>
     </div>
