@@ -54,7 +54,6 @@ export const store = new Vuex.Store({
         const { data } = await api.create('/users/office_request', {
           ...user,
         });
-        console.log(data, 'data');
       } finally {
         Vue.set(state, 'isFetching', false);
       }
