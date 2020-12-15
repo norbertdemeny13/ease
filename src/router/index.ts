@@ -6,29 +6,42 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
+    path: '*',
+    name: '404',
+    component: () => import('@/views/not-found').then(
+      ({ NotFound }) => NotFound,
+    ),
+  },
+
+  {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "chunk.view.home" */ '@/views/home').then(({ Home }) => Home),
+    component: () => import('@/views/home').then(({ Home }) => Home),
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: () => import('@/views/contact').then(({ Contact }) => Contact),
   },
   {
     path: '/servicii',
     name: 'Servicii',
-    component: () => import(/* webpackChunkName: "chunk.view.services" */ '@/views/services').then(({ Services }) => Services),
+    component: () => import('@/views/services').then(({ Services }) => Services),
   },
   {
     path: '/companii',
     name: 'Companii',
-    component: () => import(/* webpackChunkName: "chunk.view.companies" */ '@/views/companies').then(({ Companies }) => Companies),
+    component: () => import('@/views/companies').then(({ Companies }) => Companies),
   },
   {
     path: '/servicii/:type',
     name: 'Detalii Servicii',
-    component: () => import(/* webpackChunkName: "chunk.view.service-details" */ '@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
+    component: () => import('@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
   },
   {
     path: '/intrebari-frecvente',
     name: 'Intrebari frecvente',
-    component: () => import(/* webpackChunkName: "chunk.view.faq" */ '@/views/faq').then(({ Faq }) => Faq),
+    component: () => import('@/views/faq').then(({ Faq }) => Faq),
   },
 ];
 
