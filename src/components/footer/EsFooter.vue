@@ -43,15 +43,6 @@
           </figure>
           <figure>
             <img
-              src="@/assets/icons/pinterest-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
-          <figure>
-            <img
               src="@/assets/icons/insta-ease.svg"
               alt=""
               width="35"
@@ -68,22 +59,12 @@
               class="lazy mx-2"
             >
           </figure>
-          <figure>
-            <img
-              src="@/assets/icons/apple-music-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
         </div>
       </div>
       <div class="row">
         <div class="ml-3">
           <ul class="additional_links">
             <li><a href="#">Politica de confidentialitate</a></li>
-            <li><a href="#">Conditii de utilizare</a></li>
             <li><a href="#">Conditii de utilizare</a></li>
           </ul>
         </div>

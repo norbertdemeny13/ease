@@ -2,44 +2,44 @@
 
 export const FOOTER_LINKS = [
   {
-    category: 'Clienti',
+    category: 'Servicii',
     list: [
+      {
+        label: 'Rezerva',
+        to: '/servicii',
+      },
+      {
+        label: 'Abonamente',
+        to: '/abonamente',
+       },
+      {
+        label: 'Carduri Cadou',
+        to: '/carduri-cadou',
+      },
+    ],
+  },
+  {
+    category: 'Suport',
+    list: [
+      {
+        label: 'Contact',
+        to: '/contact',
+      },
       {
         label: 'Intrebari frecvente',
         to: '/intrebari-frecvente',
       },
-      {
-        label: 'Contacteaza-ne',
-        to: '/contact',
-       },
-      {
-        label: 'Presa si noutati',
-        to: '/news',
-      },
     ],
   },
   {
-    category: 'Ease Bussiness',
+    category: 'Profesionisti',
     list: [
       {
-        label: 'Ease la locul de munca',
-        to: '/tbd',
+        label: 'Lucreaza cu Ease',
+        to: '/lucreaza-cu-ease',
       },
       {
-        label: 'Carduri cadou pentru companii',
-        to: '/tbd',
-      },
-    ],
-  },
-  {
-    category: 'Alatura-te noua',
-    list: [
-      {
-        label: 'Lucreaza cu noi',
-        to: '/tbd',
-      },
-      {
-        label: 'Parteneri',
+        label: 'Aplica acum',
         to: '/tbd',
       },
     ],
