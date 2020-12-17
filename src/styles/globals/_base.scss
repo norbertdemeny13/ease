@@ -2,6 +2,30 @@
 
 @charset "UTF-8";
 
+@font-face {
+  font-family: SofiaProRegular;
+  src: url("fonts/SofiaProRegular.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SofiaProMedium;
+  src: url("fonts/SofiaProMedium.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SofiaProSemiBold;
+  src: url("fonts/SofiaProSemiBold.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ------------------------------------------------------------------
 [CSS Table of Contents]
 
@@ -136,7 +160,7 @@ section {
 body {
   background-color: #ffffff;
   color: #3b444f;
-  font-family: "Rubik", helvetica, arial, sans-serif;
+  font-family: "SofiaProRegular", helvetica, arial, sans-serif !important;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -162,12 +186,13 @@ h5,
 h6 {
   margin-bottom: 0.5rem;
   margin-top: 0;
-  font-family: SofiaPro;
+  font-family: SofiaProSemiBold !important;
 }
 
 p {
   margin-bottom: 1rem;
   margin-top: 0;
+  font-family: SofiaProRegular !important;
 }
 
 abbr[title],

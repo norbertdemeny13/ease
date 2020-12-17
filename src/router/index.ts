@@ -36,6 +36,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/servicii/:type',
     name: 'Detalii Servicii',
+    component: () => import('@/views/services-details').then(({ ServicesDetails }) => ServicesDetails),
+  },
+  {
+    path: '/servicii/:type/:id',
+    name: 'Detalii Serviciu',
     component: () => import('@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
   },
   {

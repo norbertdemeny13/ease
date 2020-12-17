@@ -20,7 +20,7 @@
 
           <div :id="item.category" class="collapse" role="tabpanel" data-parent="#accordion_group">
             <div class="card-body">
-              <p>{{ item.answer }}</p>
+              <p v-html="item.answer" />
             </div>
           </div>
         </div>

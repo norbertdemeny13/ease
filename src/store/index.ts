@@ -10,11 +10,19 @@ export const store = new Vuex.Store({
     isAuth: false,
     isFetching: false,
     services: [],
+    servicesByType: [],
+    serviceById: [],
     user: null,
   } as State,
   mutations: {
     setServices(state, data) {
       Vue.set(state, 'services', data);
+    },
+    setServicesByType(state, data) {
+      Vue.set(state, 'servicesByType', data);
+    },
+    setServiceById(state, data) {
+      Vue.set(state, 'serviceById', data);
     },
     setUser(state, data) {
       Vue.set(state, 'user', data);
@@ -23,6 +31,8 @@ export const store = new Vuex.Store({
   getters: {
     isAuth: state => state.isAuth,
     getServices: state => state.services,
+    getServicesByType: state => state.servicesByType,
+    getServiceById: state => state.serviceById,
     isFetching: state => state.isFetching,
     getUser: state => state.user,
     isAuthenticated: ({ user }) => user && (user as any)?.access_token,
@@ -33,6 +43,24 @@ export const store = new Vuex.Store({
       try {
         const { data } = await api.find('/services');
         commit('setServices', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async fetchServicesByType({ state, commit }, type) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/services/${type}`);
+        commit('setServicesByType', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async fetchServiceById({ state, commit }, { type, id }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/service/${type}/${id}`);
+        commit('setServiceById', data);
       } finally {
         Vue.set(state, 'isFetching', false);
       }

@@ -2085,7 +2085,7 @@ hr {
 
 /*General links color*/
 a {
-  color: #e54750;
+  color: #d00078;
   text-decoration: none;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -4151,7 +4151,7 @@ header.black_nav .dropdown.user a:hover {
   z-index: 9;
 }
 .ribbon.off {
-  background-color: #f3723b;
+  background-color: #d00078;
 }
 .ribbon.off::before {
   font-family: 'food';
@@ -4535,7 +4535,7 @@ a.btn_1:focus,
 }
 a.btn_1:hover,
 .btn_1:hover {
-  background-color: #f3723b;
+  background-color: #d00078;
 }
 a.btn_1.full-width,
 .btn_1.full-width {
@@ -4607,8 +4607,8 @@ a.btn_1.plus_icon.medium,
 a.btn_1.gradient,
 .btn_1.gradient {
   background-size: 100%;
-  background-image: -webkit-linear-gradient(right, #f3723b, #e54750);
-  background-image: linear-gradient(to right, #f3723b, #e54750);
+  background-image: -webkit-linear-gradient(right, #d00078, #e54750);
+  background-image: linear-gradient(to right, #d00078, #e54750);
   position: relative;
   z-index: 1;
   -webkit-appearance: none;
@@ -6130,9 +6130,9 @@ a.box_topic i,
 .box_topic i {
   font-size: 60px;
   font-size: 3.75rem;
-  background: #f3723b;
-  background: -webkit-linear-gradient(top, #f3723b, #e54750);
-  background: linear-gradient(to bottom, #f3723b, #e54750);
+  background: #d00078;
+  background: -webkit-linear-gradient(top, #d00078, #d00078);
+  background: linear-gradient(to bottom, #d00078, #d00078);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block;
@@ -6197,7 +6197,7 @@ a.box_topic.submit h3,
 }
 #cookie-bar .cb-enable:hover {
   background: #fff;
-  color: #f3723b;
+  color: #d00078;
 }
 #cookie-bar .cb-disable {
   background: #990000;
@@ -6210,7 +6210,7 @@ a.box_topic.submit h3,
 }
 #cookie-bar .cb-policy:hover {
   background: #fff;
-  color: #f3723b;
+  color: #d00078;
 }
 #cookie-bar.fixed {
   position: fixed;
@@ -6263,7 +6263,7 @@ a.box_topic.submit h3,
   font-size: 1.125rem;
   font-weight: normal;
   float: right;
-  color: #e54750;
+  color: #d00078;
 }
 
 .card {

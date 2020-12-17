@@ -1,15 +1,20 @@
 <!-- eslint-disable -->
 <template>
   <div class="es_services-list-container my-4">
-    <div v-for="service in services" :key="service.id" class="row">
+    <div v-for="service in services" :key="service.category" class="row">
       <div class="col-12"><h2 class="title_small">{{ service.category }}</h2></div>
       <div v-if="service.description" class="col-12"><p class="text-secondary">{{ service.description }}</p></div>
-        <div v-if="service.list.length > 4" class="col-12 owl-carousel owl-theme categories_carousel_in">
-          <services-list-item v-for="item in service.list" :key="item.id" :service="item" />
+        <div v-if="service.categories.length > 4" class="col-12 owl-carousel owl-theme categories_carousel_in">
+          <services-list-item
+            v-for="item in service.categories"
+            :key="item.category"
+            :service="item"
+            :to="`/servicii/${service.category}`"
+          />
         </div>
         <template v-else>
-          <div v-for="item in service.list" :key="item.id" class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
-           <services-list-item :service="item" />
+          <div v-for="item in service.categories" :key="item.category" class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
+           <services-list-item :service="item" :to="`/servicii/${service.category}`" />
          </div>
         </template>
       <!-- /strip grid -->

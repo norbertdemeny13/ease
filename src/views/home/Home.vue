@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
             <div class="col-xl-6 col-lg-8 text-center">
-              <h1 class="mb-8">Servicii wellness de 5 stele cand si unde doresti</h1>
+              <h2 class="mb-8">Servicii wellness de 5 stele cand si unde doresti</h2>
               <form>
                 <div class="row no-gutters custom-search-input">
                   <div class="col-lg-10">
