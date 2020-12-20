@@ -116,10 +116,10 @@
               id="email"
               v-model="email"
               type="email"
-              class="form-control pl-6"
+              class="form-control"
+              placeholder="Email"
               name="email"
             >
-            <i class="icon_mail_alt" />
           </div>
           <div class="form-group">
             <input
@@ -136,10 +136,10 @@
               id="phone"
               v-model="phone"
               type="text"
-              class="form-control pl-6"
+              class="form-control"
+              placeholder="Telefon"
               name="phone"
             >
-            <i class="icon_phone" />
           </div>
           <div class="form-group">
             <textarea
@@ -150,8 +150,8 @@
               name="message"
             />
           </div>
-          <small class="terms text-white">Prin apasarea butonului „Trimite”, sunt de acord ca Ease sau reprezentantii sai sa ma contacteze prin e-mail, telefonic ori prin SMS, la adresa de e-mail sau numarul de telefon specificat, inclusiv pentru campanii de marketing, si ca informatiile mele sa fie folosite conform Politicii de confidentialitate Ease.
-          </small>
+          <span class="terms text-small text-gray">Prin apasarea butonului „Trimite”, sunt de acord ca Ease sau reprezentantii sai sa ma contacteze prin e-mail, telefonic ori prin SMS, la adresa de e-mail sau numarul de telefon specificat, inclusiv pentru campanii de marketing, si ca informatiile mele sa fie folosite conform Politicii de confidentialitate Ease.
+          </span>
           <div class="text-center">
             <button class="btn btn-pill btn-sm btn-pink mt-4 px-5" @click="onSubmit()">Trimite</button>
           </div>

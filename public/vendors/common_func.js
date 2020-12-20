@@ -256,4 +256,16 @@
     });
   };
 
+  window.checkAndAttachMapScript = function (callback) {
+     if (!!window.google) {
+        callback();
+        return true;
+     }
+
+     window.mapApiInitialized = callback;
+     let script = document.createElement('script');
+     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA5XEMMX7tjbtg5I8VDls2kZHel2e7ls60&libraries=places,geometry&callback=mapApiInitialized&openNow=true';
+     document.body.appendChild(script);
+  }
+
 })(window.jQuery);

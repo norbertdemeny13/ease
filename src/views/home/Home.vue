@@ -5,21 +5,14 @@
         <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
             <div class="col-xl-6 col-lg-8 text-center">
-              <h2 class="mb-8">Servicii wellness de 5 stele cand si unde doresti</h2>
+              <h4 class="mb-8">Servicii wellness de 5 stele cand si unde doresti</h4>
               <form>
                 <div class="row no-gutters custom-search-input">
                   <div class="col-lg-10">
-                    <div class="form-group">
-                      <input
-                        id="autocomplete"
-                        class="form-control no_border_r"
-                        type="text"
-                        placeholder="Introdu orasul sau adresa"
-                      >
-                    </div>
+                    <es-address-search />
                   </div>
                   <div class="col-lg-2">
-                    <button class="btn_1 gradient" type="submit">Rezerva</button>
+                    <button class="btn_1" type="button" @click="$router.push('/servicii')">Rezerva</button>
                   </div>
                 </div>
                 <!-- /row -->
@@ -42,6 +35,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { AddressSearch } from '@/components/shared/address-search';
   import { DownloadApp } from '@/components/shared/download-app';
   import HowItWorks from './HowItWorks.vue';
   import MoreDetails from './MoreDetails.vue';
@@ -52,6 +46,7 @@
     name: 'es-home',
 
     components: {
+      'es-address-search': AddressSearch,
       'es-download-app': DownloadApp,
       'es-how-it-works': HowItWorks,
       'es-more-details': MoreDetails,

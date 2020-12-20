@@ -3,7 +3,16 @@
   <div class="reserve-from-app-container">
     <div class="container margin_30_40">
       <div class="row my-4">
-        <div class="col-md-6 col-lg-6 justify-content-center d-flex flex-column">
+        <div class="mobile-container col-md-4 col-lg-4 offset-md-2 offset-lg-2 text-center mt-4 d-flex align-items-center justify-content-center">
+          <img
+            class="m-2"
+            src="@/assets/png/i-phone-x-template.png"
+            alt=""
+            width="200"
+            height="380"
+          >
+        </div>
+        <div class="col-md-4 col-lg-4 justify-content-center d-flex flex-column">
           <h3>Rezerva de pe telefonul tau</h3>
           <p class="text-secondary">Introdu numarul tau de mobil si vei primi linkul aplicatiei.</p>
           <form class="">
@@ -11,7 +20,7 @@
               <div class="input-group">
                 <input type="number" class="form-control" name="email" id="reserve-input" placeholder="Introdu numarul de mobil" aria-label="" aria-describedby="reserve" required>
                 <div class="input-group-append">
-                  <button class="btn btn-primary btn-pink py-2" type="button" id="reserve">TRIMITE-MI UN LINK</button>
+                  <button class="btn_1 btn-pink py-2" type="button" id="reserve">Trimite-mi un link</button>
                 </div>
               </div>
             </div>
@@ -32,22 +41,6 @@
               height="30"
             >
           </div>
-        </div>
-        <div class="mobile-container col-md-6 col-lg-6 text-center mt-4 d-flex align-items-center justify-content-center">
-          <img
-            class="m-2"
-            src="@/assets/png/i-phone-x-template.png"
-            alt=""
-            width="200"
-            height="380"
-          >
-          <img
-            class="m-2"
-            src="@/assets/png/i-phone-x-template-2.png"
-            alt=""
-            width="200"
-            height="380"
-          >
         </div>
       </div>
     </div>

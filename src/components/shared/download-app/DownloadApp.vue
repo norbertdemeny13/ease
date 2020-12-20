@@ -10,7 +10,7 @@
           height="70"
         >
         <div class="logo-container d-flex flex-column align-items-center ml-3">
-          <h2>Descarca applicatia</h2>
+          <h3>Descarca applicatia</h3>
           <div>
             <img
               src="@/assets/png/google-play.png"

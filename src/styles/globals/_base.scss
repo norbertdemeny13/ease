@@ -186,7 +186,7 @@ h5,
 h6 {
   margin-bottom: 0.5rem;
   margin-top: 0;
-  font-family: SofiaProSemiBold !important;
+  font-family: SofiaProMedium !important;
 }
 
 p {
@@ -5028,8 +5028,8 @@ fieldset:disabled a.btn {
 }
 
 .btn-pink:hover {
-  color: #3b444f;
-  background-color: #ffbfd5;
+  color: #ffffff;
+  background-color: #bb006c;
   border-color: #ffb2cd;
 }
 
@@ -5038,7 +5038,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-pink.disabled, .btn-pink:disabled {
-  color: #3b444f;
+  color: #ffffff;
   background-color: #ffe5ee;
   border-color: #ffe5ee;
 }

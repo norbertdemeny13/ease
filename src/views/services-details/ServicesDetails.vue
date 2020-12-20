@@ -2,23 +2,7 @@
   <div class="content">
     <div class="container margin_30_20">
       <router-link class="back-button" href="" to="/servicii">Inapoi</router-link>
-      <div class="page_header my-4">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-8 col-lg-7 col-md-7 d-md-block">
-              <h1>145 restaurants in Convent Street 2983</h1>
-              <a href="#0">Change address</a>
-            </div>
-            <div class="col-xl-4 col-lg-5 col-md-5">
-              <div class="search_bar_list">
-                <input type="text" class="form-control" placeholder="Dishes, restaurants or cuisines">
-                <button type="submit"><i class="icon_search" /></button>
-              </div>
-            </div>
-          </div>
-        <!-- /row -->
-        </div>
-      </div>
+      <es-address-bar />
       <!-- /page_header -->
       <services-list-skeleton v-if="isFetching" />
       <div v-else class="row">
@@ -34,6 +18,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { AddressBar } from '@/components/features/address-bar';
   import { ServicesListSkeleton } from '@/components/features/services-list';
   import { ServicesListItem } from '@/components/features/services-list-item';
 
@@ -41,6 +26,7 @@
     name: 'es-services-details',
 
     components: {
+      'es-address-bar': AddressBar,
       'services-list-item': ServicesListItem,
       'services-list-skeleton': ServicesListSkeleton,
     },

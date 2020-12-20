@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
     servicesByType: [],
     serviceById: [],
     user: null,
+    location: null,
   } as State,
   mutations: {
     setServices(state, data) {
@@ -30,6 +31,7 @@ export const store = new Vuex.Store({
   },
   getters: {
     isAuth: state => state.isAuth,
+    getLocation: state => state.location,
     getServices: state => state.services,
     getServicesByType: state => state.servicesByType,
     getServiceById: state => state.serviceById,
@@ -85,6 +87,11 @@ export const store = new Vuex.Store({
       } finally {
         Vue.set(state, 'isFetching', false);
       }
+    },
+    setLocation({ state }, location) {
+      Vue.set(state, 'location', location);
+      sessionStorage.setItem('address', location.formatted_address);
+      sessionStorage.setItem('city', location.vicinity);
     },
     setToken({ state }, pass) {
       if (pass === 'qazwsx') {

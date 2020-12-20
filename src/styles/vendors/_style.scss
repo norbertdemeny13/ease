@@ -2134,6 +2134,7 @@ header {
   padding: 15px 0;
   z-index: 99999;
   border-bottom: 1px solid rgba(255, 255, 255, 0);
+  font-family: SofiaProMedium;
 }
 @media (max-width: 767px) {
   header.header {
@@ -2894,7 +2895,7 @@ ul#top_menu li a.login::before {
     padding-right: 10px;
   }
 }
-.custom-search-input button[type='submit'] {
+.custom-search-input button {
   padding: 0 25px;
   height: 50px;
   width: 100%;
@@ -4507,7 +4508,7 @@ header.black_nav .dropdown.user a:hover {
 a.btn_1,
 .btn_1 {
   border: none;
-  background-color: #e54750;
+  background-color: #d00078;
   outline: none;
   cursor: pointer;
   display: inline-block;
@@ -4535,7 +4536,7 @@ a.btn_1:focus,
 }
 a.btn_1:hover,
 .btn_1:hover {
-  background-color: #d00078;
+  background-color: #bb006c;
 }
 a.btn_1.full-width,
 .btn_1.full-width {
@@ -4741,7 +4742,6 @@ footer h3 {
   -webkit-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   footer h3 {
@@ -6128,8 +6128,7 @@ a.box_topic:hover,
 }
 a.box_topic i,
 .box_topic i {
-  font-size: 60px;
-  font-size: 3.75rem;
+  font-size: 3rem;
   background: #d00078;
   background: -webkit-linear-gradient(top, #d00078, #d00078);
   background: linear-gradient(to bottom, #d00078, #d00078);

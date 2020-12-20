@@ -2,8 +2,12 @@
 /* Your custom styles below */
 /*============================================================================================*/
 
+.how-it-works-container .box_how {
+  min-height: 350px;
+}
+
 .why-us-container .box_how {
-  min-height: 230px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +15,7 @@
 }
 
 .companies-container .ease-for-company {
-  height: 200px;
+  height: 250px;
   width: 300px;
 }
 
@@ -48,6 +52,10 @@
   display: none;
 }
 
+.faq-container i {
+  font-size: 46px;
+}
+
 .why-us-container .box_how img,
 .companies-container .box_how img {
   width: 45px;
@@ -80,6 +88,25 @@
   color: #262626 !important;
 }
 
+.es_services-container .address-search-container input {
+  width: 200px;
+}
+
+.es_services-list-container {
+  position: relative;
+}
+
+.es_services-list-container.disabled::after {
+  background-color: hsla(0,0%,100%,.7);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
 .es_services-list-item {
   position: relative;
   display: -ms-flexbox;
@@ -94,6 +121,12 @@
   border-radius: 0.3125rem;
 }
 
+.error-message {
+  color: red;
+  text-align: left;
+  margin-top: 8px;
+}
+
 @media (min-width: 767px) {
   .faq-container .large-view {
     display: block;
@@ -105,11 +138,6 @@
 
   .faq-container .mobile-view {
     display: none;
-  }
-
-  .more-details img {
-    height: auto;
-    width: 460px;
   }
 
   .companies-container .ease-for-company {
@@ -172,3 +200,16 @@
   opacity: 1;
 }
 
+@media (min-width: 1024px) {
+  .more-details img {
+    height: auto;
+    width: 400px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .more-details img {
+    height: auto;
+    width: 600px;
+  }
+}

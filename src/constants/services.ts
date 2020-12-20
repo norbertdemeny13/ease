@@ -62,10 +62,10 @@ export const SERVICES = [
   {
     name: 'Beauty Femei',
     description: null,
-    category: 'beauty_femei',
+    category: 'nails',
     categories: [
       {
-        category: 'unghii',
+        category: 'nails',
         name: 'Unghii',
         relative_image_url: 'something here',
       },
