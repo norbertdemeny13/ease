@@ -49,10 +49,14 @@ export const store = new Vuex.Store({
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServicesByType({ state, commit }, type) {
+    async fetchServicesByType({ state, commit }, { type, query }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find(`/services/${type}`);
+        const { data } = await api.find(`/services/${type}`, {
+          params: {
+            ...query,
+          },
+        });
         commit('setServicesByType', data);
       } finally {
         Vue.set(state, 'isFetching', false);
@@ -81,7 +85,7 @@ export const store = new Vuex.Store({
     async officeRequest({ state }, user) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.create('/users/office_request', {
+        await api.create('/users/office_request', {
           ...user,
         });
       } finally {

@@ -4,6 +4,11 @@ import Portal from 'portal-vue';
 // Application styles
 import '@/styles/main.scss';
 
+import 'jquery';
+import 'vanilla-lazyload';
+import './vendors/common_scripts.min';
+import './vendors/common_func';
+
 // Shared components
 import { Skeleton } from '@/components/shared/skeleton';
 import { SkeletonItem } from '@/components/shared/skeleton-item';

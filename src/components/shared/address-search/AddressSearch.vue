@@ -7,7 +7,7 @@
         placeholder="Introdu o locatie"
         class="form-control no_border_r"
         type="text"
-      />
+      >
     </div>
     <div v-if="hasError" class="error-message ml-4">
       <span>Ease nu este eocamdata disponibil in aceasta locatie. Ne extindem rapid, revino curand. Serviciile sunt disponibile momentan in Cluj sau Bucuresti.</span>
