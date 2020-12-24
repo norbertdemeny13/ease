@@ -44,6 +44,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
   },
   {
+    path: '/servicii/:type/:id/rezerva',
+    name: 'Rezerva',
+    component: () => import('@/views/reserve-service').then(({ ReserveService }) => ReserveService),
+  },
+  {
     path: '/intrebari-frecvente',
     name: 'Intrebari frecvente',
     component: () => import('@/views/faq').then(({ Faq }) => Faq),

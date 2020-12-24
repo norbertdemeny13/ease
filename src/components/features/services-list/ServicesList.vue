@@ -18,7 +18,7 @@
             <services-list-item
               :image-path="item.absolute_image_url"
               :service="item"
-              :to="getToRoute(service.category, item.name)"
+              :to="getToRoute(item.name)"
             />
          </div>
         </template>
@@ -67,13 +67,8 @@
     },
 
     methods: {
-      getToRoute(category: string, item: string): string {
-        let url = `/servicii/${category}`;
-
-        if (category === 'massage') {
-          url += `?type=${item}`;
-        }
-        return url;
+      getToRoute(category: string): string {
+        return `/servicii/${category}`;
       },
 
     },

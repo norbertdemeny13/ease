@@ -4,7 +4,11 @@
     <div class="container margin_30_20">
       <es-address-bar />
       <services-list-skeleton v-if="isFetching" />
-      <services-list v-else :services="getServices" :location="getLocation" />
+      <services-list
+        v-else
+        :services="getServices"
+        :location="getLocation"
+      />
     </div>
   </div>
 </template>

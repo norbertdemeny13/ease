@@ -12,7 +12,10 @@
         </router-link>
         <strong v-if="service.duration">{{ service.duration }} min</strong>
       </div>
-      <p v-if="service.description" class="text-secondary">{{ service.description }}</p>
+      <div class="d-flex justify-content-between">
+        <span v-if="service.description" class="text-secondary">{{ service.description }}</span>
+        <span v-if="service.price_from">{{ service.price_from }} Ron</span>
+      </div>
     </div>
   </div>
 </template>

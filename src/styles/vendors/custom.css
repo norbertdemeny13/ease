@@ -83,13 +83,25 @@
   flex-direction: column;
 }
 
+.reserve-from-app-container .input-group-append {
+  min-width: 164px;
+}
+
 .hero .opacity-mask h1,
 .hero .opacity-mask h3 {
   color: #262626 !important;
 }
 
-.es_services-container .address-search-container input {
+.address-search-container input {
   width: 200px;
+}
+
+.es_service-details-page img {
+  border-radius: 0.3125rem;
+}
+
+.es_services-container .es_services-list-item {
+  border: none;
 }
 
 .es_services-list-container {
@@ -117,8 +129,85 @@
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
+  border-radius: 0.3125rem;
+  border: 1px solid #e7eaf3;
+}
+
+.es_services-list-item img {
+  border-radius: 0.3125rem;
+}
+
+.es_reserve-service-container .day-item {
+  width: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .day {
+    font-size: 18px;
+  }
+
+  .day-string {
+    font-size: 12px;
+    color: #acacac;
+  }
+
+  & span em {
+    width: 80%;
+    height: 4px;
+    background-color: #d00078;
+    display: block;
+    padding: 0 10px;
+  }
+
+  & p {
+    margin: 0;
+  }
+}
+
+.es_reserve-service-container .hour-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.es_reserve-service-container .hour-item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 60px;
+  min-height: 50px;
+  position: relative;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
   border: 1px solid #e7eaf3;
   border-radius: 0.3125rem;
+
+  & .time {
+    margin: 0;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  & .price {
+    color: #7d7d7d;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  &.selected,
+  &:hover {
+    color: #ffffff;
+    background-color: #70d7b7;
+    cursor: pointer;
+
+    & .price {
+      color: #d7d7d7;
+    }
+  }
 }
 
 .error-message {
@@ -198,6 +287,10 @@
 
 .back-button:hover::before {
   opacity: 1;
+}
+
+.owl-item:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {

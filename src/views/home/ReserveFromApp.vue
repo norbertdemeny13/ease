@@ -18,9 +18,9 @@
           <form class="">
             <div class="row no-gutters custom-search-input p-0">
               <div class="input-group">
-                <input type="number" class="form-control" name="email" id="reserve-input" placeholder="Introdu numarul de mobil" aria-label="" aria-describedby="reserve" required>
+                <input type="text" class="form-control" name="email" id="reserve-input" placeholder="Introdu numarul de mobil" aria-label="" aria-describedby="reserve" required>
                 <div class="input-group-append">
-                  <button class="btn_1 btn-pink py-2" type="button" id="reserve">Trimite-mi un link</button>
+                  <button class="btn_1 btn-pink font-size-12 py-2" type="button" id="reserve">Trimite-mi un link</button>
                 </div>
               </div>
             </div>

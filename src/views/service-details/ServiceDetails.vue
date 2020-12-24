@@ -1,7 +1,9 @@
 <template>
   <div class="content">
-    <div class="container margin_30_20">
-      <router-link class="back-button" :to="`/servicii/${$router.currentRoute.params.type}`">Inapoi</router-link>
+    <div class="es_service-details-page container margin_30_20">
+      <router-link class="back-button" :to="`/servicii/${$router.currentRoute.params.type}`">
+        Inapoi
+      </router-link>
       <div class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6">
           <img :src="service.absolute_image_url_large" width="500" height="350">
@@ -146,7 +148,12 @@
             </a>
           </div>
           <div class="d-flex justify-content-center">
-            <button class="btn btn-sm btn-pink btn-pill mt-4 px-6" type="button">Continua</button>
+            <router-link
+              class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+              :to="`${$router.currentRoute.path}/rezerva`"
+            >
+              Continua
+            </router-link>
           </div>
         </div>
       </div>

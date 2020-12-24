@@ -1,13 +1,14 @@
 <template>
   <div class="address-search-container">
-    <div class="form-group ml-4">
+    <div class="d-flex flex-row  align-items-center form-group ml-4">
       <input
         ref="search"
         v-model="location"
         placeholder="Introdu o locatie"
-        class="form-control no_border_r"
+        class="form-control no_border_r pr-4"
         type="text"
       >
+      <a v-if="location" @click.prevent="location = null" href=""><i class="ml-n4 icon_trash" /></a>
     </div>
     <div v-if="hasError" class="error-message ml-4">
       <span>Ease nu este eocamdata disponibil in aceasta locatie. Ne extindem rapid, revino curand. Serviciile sunt disponibile momentan in Cluj sau Bucuresti.</span>

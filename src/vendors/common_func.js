@@ -191,6 +191,35 @@
     $(document).on('click', '.accordion .card', toggleChevron);
   };
 
+  window.initDayCarousel = function() {
+    $('.owl-carousel').owlCarousel({
+      items: 1,
+      loop: false,
+      stagePadding: 50,
+      margin: 40,
+      dots: false,
+      lazyLoad: true,
+      mouseDrag: false,
+      navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+      nav: false,
+      responsive: {
+        0: {
+          items: 4
+        },
+        560: {
+          items: 6
+        },
+        768: {
+          items: 6
+        },
+        1230: {
+          items: 8,
+          nav: true
+        }
+      },
+    });
+  },
+
   window.initEase = function() {
     // Sign in
     $('#sign-in').magnificPopup({
