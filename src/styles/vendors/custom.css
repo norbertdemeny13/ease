@@ -62,9 +62,24 @@
   height: 45px;
 }
 
+.more-details div {
+  display: flex;
+  flex-direction: column;
+
+  & a {
+    display: flex;
+    align-self: center;
+  }
+
+  & .text-content p,
+  & .text-content h3 {
+    padding-left: 1rem;
+  }
+}
+
 .more-details img {
-  height: 200px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
 }
 
 .more-details .reverse-order {
@@ -72,7 +87,26 @@
 }
 
 .download-app-container .row {
+  width: 100%;
   flex-direction: column;
+}
+
+.es_reserve-massage-service-page .owl-item.active {
+  margin-left: 40px;
+}
+
+.es_dreserve-massage-service-page .owl-next {
+  right: 0 !important;
+}
+
+.es_reserve-massage-service-page .owl-next,
+.es_reserve-massage-service-page .owl-prev {
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+  & i {
+    color: #000 !important;
+  }
 }
 
 .reserve-from-app-container {
@@ -93,7 +127,7 @@
 }
 
 .address-search-container input {
-  width: 200px;
+  width: 350px;
 }
 
 .es_service-details-page img {
@@ -149,7 +183,7 @@
     font-size: 18px;
   }
 
-  .day-string {
+  & .day-string {
     font-size: 12px;
     color: #acacac;
   }
@@ -177,8 +211,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 60px;
-  min-height: 50px;
+  width: 70px;
+  min-height: 76px;
   position: relative;
   word-wrap: break-word;
   background-color: #fff;
@@ -216,7 +250,40 @@
   margin-top: 8px;
 }
 
+.info-message {
+  color: blue;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.extra-services-container {
+  align-items: center;
+  position: relative;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e7eaf3;
+}
+
+.extra-services-container:hover,
+.extra-services-container.active {
+  border: 2px solid #70d7b7;
+}
+
+.added-services-container {
+  display: flex;
+  position: relative;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e7eaf3;
+}
+
 @media (min-width: 767px) {
+  .more-details div {
+    flex-direction: row;
+  }
+
   .faq-container .large-view {
     display: block;
   }
@@ -296,13 +363,34 @@
 @media (min-width: 1024px) {
   .more-details img {
     height: auto;
-    width: 400px;
+    width: 550px;
+  }
+}
+
+@media (min-width: 1150px) {
+  .more-details img {
+    height: auto;
+    width: 580px;
   }
 }
 
 @media (min-width: 1366px) {
   .more-details img {
     height: auto;
-    width: 600px;
+    width: 700px;
+  }
+}
+
+@media (min-width: 1480px) {
+  .more-details img {
+    height: auto;
+    width: 750px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .more-details img {
+    height: auto;
+    width: 800px;
   }
 }

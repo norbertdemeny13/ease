@@ -3,7 +3,6 @@
     <div class="container margin_30_40">
       <router-link class="back-button" :to="`/servicii/${$router.currentRoute.params.type}/${$router.currentRoute.params.id}`">Inapoi</router-link>
       <div class="row">
-        <div class="col-lg-6 col-md-6"><span>Something else goes here</span></div>
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
           <h5 class="pl-5 my-2">Alege Data</h5>
           <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in pl-5">
@@ -30,6 +29,7 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6 col-md-6"><span>Something else goes here</span></div>
       </div>
     </div>
     <!-- /container -->

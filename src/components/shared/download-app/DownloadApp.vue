@@ -6,24 +6,24 @@
         <img
           src="@/assets/png/ease-logo.png"
           alt=""
-          width="70"
-          height="70"
+          width="80"
+          height="80"
         >
         <div class="logo-container d-flex flex-column align-items-center ml-3">
           <h3>Descarca applicatia</h3>
           <div>
             <img
-              src="@/assets/png/google-play.png"
+              src="@/assets/png/download-google-play-small.png"
               alt=""
-              width="100"
-              height="30"
+              width="137"
+              height="40"
             >
             <img
               class="ml-2"
-              src="@/assets/png/appstore.png"
+              src="@/assets/png/download-appstore-small.png"
               alt=""
-              width="100"
-              height="30"
+              width="137"
+              height="40"
             >
           </div>
         </div>

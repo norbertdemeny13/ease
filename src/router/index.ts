@@ -34,6 +34,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/companies').then(({ Companies }) => Companies),
   },
   {
+    path: '/servicii/masaj',
+    name: 'Detalii Servicii Masaj',
+    component: () => import('@/views/reserve-massage').then(({ ReserveMassage }) => ReserveMassage),
+  },
+  {
     path: '/servicii/:type',
     name: 'Detalii Servicii',
     component: () => import('@/views/services-details').then(({ ServicesDetails }) => ServicesDetails),
@@ -75,7 +80,7 @@ export const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   const { isAuth } = store.getters;
-  if (isAuth) {
+  if (!isAuth) {
     next();
   }
 });

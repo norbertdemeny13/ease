@@ -191,25 +191,3 @@
     },
   });
 </script>
-
-<style type="text/css">
-  .extra-services-container {
-    align-items: center;
-    width: 350px;
-    position: relative;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e7eaf3;
-  }
-
-  .added-services-container {
-    display: flex;
-    position: relative;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e7eaf3;
-    width: 350px;
-  }
-</style>

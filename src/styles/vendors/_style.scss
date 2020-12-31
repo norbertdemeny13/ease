@@ -3862,6 +3862,12 @@ header.black_nav .dropdown.user a:hover {
 .owl-theme .owl-nav .owl-prev {
   left: -24px;
 }
+
+.owl-theme .owl-nav .owl-prev:hover,
+.owl-theme .owl-nav .owl-next:hover {
+  background: #bb006c;
+}
+
 .owl-theme .owl-nav .owl-next {
   right: -24px;
 }
@@ -3879,7 +3885,7 @@ header.black_nav .dropdown.user a:hover {
 }
 .owl-theme .owl-nav .owl-prev i:hover,
 .owl-theme .owl-nav .owl-next i:hover {
-  color: #e54750;
+  color: #ffffff;
 }
 .owl-theme .owl-nav .owl-prev.disabled,
 .owl-theme .owl-nav .owl-next.disabled {

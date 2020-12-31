@@ -218,7 +218,39 @@
         }
       },
     });
-  },
+  };
+
+  window.initMassageCarousel = function(cb) {
+    $('.owl-carousel').owlCarousel({
+      items: 1,
+      loop: false,
+      stagePadding: 40,
+      dots: false,
+      lazyLoad: true,
+      mouseDrag: false,
+      margin: 40,
+      info: cb(),
+      navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+      nav: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        560: {
+          items: 1
+        },
+        768: {
+          items: 1
+        },
+        1230: {
+          items: 1,
+          nav: true
+        }
+      },
+    });
+
+    $('.owl-carousel').on('changed.owl.carousel', cb);
+  };
 
   window.initEase = function() {
     // Sign in

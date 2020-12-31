@@ -6,7 +6,7 @@
         <div class="mobile-container col-md-4 col-lg-4 offset-md-2 offset-lg-2 text-center mt-4 d-flex align-items-center justify-content-center">
           <img
             class="m-2"
-            src="@/assets/png/i-phone-x-template.png"
+            src="@/assets/png/iphone-x-template.png"
             alt=""
             width="200"
             height="380"
@@ -28,17 +28,17 @@
           </form>
           <div class="my-4 justify-content-start d-flex">
             <img
-              src="@/assets/png/google-play.png"
+              src="@/assets/png/download-google-play-small.png"
               alt=""
-              width="100"
-              height="30"
+              width="137"
+              height="40"
             >
             <img
               class="ml-3"
-              src="@/assets/png/appstore.png"
+              src="@/assets/png/download-appstore-small.png"
               alt=""
-              width="100"
-              height="30"
+              width="137"
+              height="40"
             >
           </div>
         </div>

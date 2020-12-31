@@ -10,7 +10,7 @@
             :image-path="item.absolute_image_url"
             :key="item.category"
             :service="item"
-            :to="getToRoute(service.category, item.name)"
+            :to="getToRoute(item.name)"
           />
         </div>
         <template v-else>
@@ -68,6 +68,9 @@
 
     methods: {
       getToRoute(category: string): string {
+        if (category === 'single' || category === 'couple') {
+          return `/servicii/masaj?type=${category}`;
+        }
         return `/servicii/${category}`;
       },
 

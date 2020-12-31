@@ -16,7 +16,7 @@
           <services-list-item
             :image-path="service.absolute_image_url_large"
             :service="service"
-            :to="`/servicii/${service.category}/${service.uuid}`"
+            :to="getToRoute(service.type, service.uuid)"
           />
         </div>
       </div>
@@ -46,12 +46,12 @@
         isFetching: 'isFetching',
       }),
 
-      services() {
+      services(): Record<any, any>[] {
         return this.getServicesByType;
       },
     },
 
-    created() {
+    created(): void {
       const { type } = this.$router.currentRoute.params;
       this.fetchServicesByType({ type });
     },
@@ -60,6 +60,12 @@
       ...mapActions({
         fetchServicesByType: 'fetchServicesByType',
       }),
+      getToRoute(serviceType: string, id: string): string {
+        if (serviceType.includes('Beauty')) {
+          return `/servicii/beauty/${id}`;
+        }
+        return '/servicii/fasz';
+      },
     },
   });
 </script>
