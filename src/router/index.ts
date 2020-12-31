@@ -80,7 +80,7 @@ export const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   const { isAuth } = store.getters;
-  if (!isAuth) {
+  if (isAuth) {
     next();
   }
 });

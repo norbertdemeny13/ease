@@ -29,7 +29,7 @@
     },
 
     data: () => ({
-      isModalOpen: false,
+      isModalOpen: true,
     }),
 
     computed: {
