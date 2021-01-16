@@ -68,12 +68,12 @@
 
   & a {
     display: flex;
-    align-self: center;
+    margin-left: 2rem;
   }
 
   & .text-content p,
   & .text-content h3 {
-    padding-left: 1rem;
+    padding-left: 2rem;
   }
 }
 
@@ -100,7 +100,9 @@
 }
 
 .es_reserve-massage-service-page .owl-next,
-.es_reserve-massage-service-page .owl-prev {
+.es_reserve-massage-service-page .owl-prev,
+.es_reserve-service-container .owl-next,
+.es_reserve-service-container .owl-prev, {
   background-color: transparent !important;
   box-shadow: none !important;
 
@@ -130,7 +132,8 @@
   width: 350px;
 }
 
-.es_service-details-page img {
+.es_service-details-page img,
+.es_reserve-massage-service-page img {
   border-radius: 0.3125rem;
 }
 
@@ -276,7 +279,14 @@
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #e7eaf3;
+
+  & > div {
+    border: 1px solid #e7eaf3;
+  }
+
+  & img:hover {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 767px) {

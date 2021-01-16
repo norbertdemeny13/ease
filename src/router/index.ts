@@ -49,6 +49,16 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/service-details').then(({ ServiceDetails }) => ServiceDetails),
   },
   {
+    path: '/new/servicii/:type',
+    name: 'Detalii Servicii Aditional',
+    component: () => import('@/views/services-details').then(({ ServicesDetails }) => ServicesDetails),
+  },
+  {
+    path: '/new/servicii/:type/:id',
+    name: 'Detalii Serviciu Aditional',
+    component: () => import('@/views/additional-service-details').then(({ AdditionalServiceDetails }) => AdditionalServiceDetails),
+  },
+  {
     path: '/servicii/:type/:id/rezerva',
     name: 'Rezerva',
     component: () => import('@/views/reserve-service').then(({ ReserveService }) => ReserveService),
@@ -79,8 +89,26 @@ export const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const { isAuth } = store.getters;
-  if (isAuth) {
+  const { params, path } = to;
+  const { type, id } = params;
+  const { isAuth, getSelectedServices } = store.getters;
+  const isNew = path.includes('new');
+
+  if (isNew && !getSelectedServices.length) {
+    const newRoute = path.replace('/new', '');
+    next(newRoute);
+  }
+
+  if (to.name === 'Rezerva' && !getSelectedServices.length) {
+    next(`/servicii/${type}/${id}`);
+  }
+
+  if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
+    await store.dispatch('fetchServiceById', { type, id });
+    next();
+  }
+
+  if (!isAuth) {
     next();
   }
 });

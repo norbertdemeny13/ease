@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
   <div class="how-it-works-container bg_gray">
-    <div class="container margin_30_40">
+    <div class="container py-6">
       <div class="main_title center">
         <h2>Cum functioneaza?</h2>
       </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="es_reserve-service-container">
     <div class="container margin_30_40">
-      <router-link class="back-button" :to="`/servicii/${$router.currentRoute.params.type}/${$router.currentRoute.params.id}`">Inapoi</router-link>
-      <div class="row">
+      <router-link class="back-button mb-2" :to="`/servicii/${$router.currentRoute.params.type}/${$router.currentRoute.params.id}`">Inapoi</router-link>
+      <div class="row mt-4">
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
           <h5 class="pl-5 my-2">Alege Data</h5>
           <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in pl-5">
@@ -29,7 +29,13 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6"><span>Something else goes here</span></div>
+        <div class="col-lg-6 col-md-6">
+          <es-service-summary
+            :selected-services="getSelectedServices"
+            :date="selectedDate"
+            :time="selectedTime"
+          />
+        </div>
       </div>
     </div>
     <!-- /container -->
@@ -37,16 +43,21 @@
   <!-- /bg_gray -->
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapGetters } from 'vuex';
   import {
     getNextMonth,
     getNextHours,
   } from '@/utils/date-helpers';
+  import { ServiceSummary } from '@/components/shared/service-summary';
 
   export default Vue.extend({
     name: 'es-reserve-service',
+
+    components: {
+      'es-service-summary': ServiceSummary,
+    },
 
     data: () => ({
       selectedDate: null,
@@ -56,31 +67,45 @@
     computed: {
       ...mapGetters({
         getServiceById: 'getServiceById',
+        getSelectedServices: 'getSelectedServices',
       }),
-      getDays(): any[] {
+      getDays() {
         return getNextMonth();
       },
-      getHours(): any[] {
-        const { prices } = this.getServiceById;
-        const { date } = this.selectedDate as any;
+      getHours() {
+        const prices = [];
+        this.getSelectedServices.forEach((item) => {
+          item.prices.forEach((n, i) => {
+            if (prices[i]) {
+              prices[i].price += parseInt(n.price, 10);
+            } else {
+              prices[i] = { ...n, price: parseInt(n.price, 10) };
+            }
+          });
+        });
+        const { date } = this.selectedDate;
         return prices ? getNextHours(prices, date) : [];
       },
     },
 
     mounted() {
-      (window as any).initDayCarousel();
+      window.initDayCarousel();
     },
 
     created() {
       const [day] = this.getDays;
       this.selectedDate = day;
+      const [hour] = this.getHours;
+      this.selectedTime = hour;
     },
 
     methods: {
-      selectDate(item: any) {
+      selectDate(item) {
         this.selectedDate = item;
+        const [hour] = this.getHours;
+        this.selectedTime = hour;
       },
-      selectTime(item: any) {
+      selectTime(item) {
         this.selectedTime = item;
       },
     },

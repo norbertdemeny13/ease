@@ -1,21 +1,65 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { api } from '@/services/api';
+import { Service } from '@/interfaces/Services';
 import { State } from './interfaces';
 
 Vue.use(Vuex);
+
+/* eslint-disable */
 
 export const store = new Vuex.Store({
   state: {
     isAuth: false,
     isFetching: false,
     services: [],
+    selectedServices: [],
     servicesByType: [],
     serviceById: [],
     user: null,
     location: null,
+    locationError: false,
   } as State,
   mutations: {
+    removeSelectedService(state, service: Service) {
+      const serviceIdIndex = state.selectedServices.map(item => item.id).indexOf(service.id)
+      serviceIdIndex && state.selectedServices.splice(serviceIdIndex, 1);
+    },
+    setLocation(state, location) {
+      Vue.set(state, 'location', location);
+      sessionStorage.setItem('address', location?.formatted_address);
+      sessionStorage.setItem('city_id', location?.city_id);
+    },
+    setLocationError(state, status) {
+      Vue.set(state, 'locationError', status);
+    },
+    setSelectedService(state, data) {
+      const { service, method } = data;
+      const selectedService = state.selectedServices
+        .find(item => item.id === service.id);
+      const hasComplementaryServices = selectedService?.complementary_services
+        .filter(service => service.selectedCount > 0).length;
+      const isSameCategory = state.selectedServices.filter(item => item.category === service.category).length;
+      let localService = service;
+
+      if (method === 'create') {
+        localService = hasComplementaryServices
+          ? { ...service, complementary_services: selectedService!.complementary_services }
+          : service;
+      }
+
+      if (!isSameCategory) {
+        Vue.set(state, 'selectedServices', []);
+      }
+
+      if (selectedService) {
+        const selectedServices = state.selectedServices
+          .map(item => (item.id === service.id ? localService : item));
+        Vue.set(state, 'selectedServices', selectedServices);
+      } else {
+        state.selectedServices.push(service);
+      }
+    },
     setServices(state, data) {
       Vue.set(state, 'services', data);
     },
@@ -32,6 +76,8 @@ export const store = new Vuex.Store({
   getters: {
     isAuth: state => state.isAuth,
     getLocation: state => state.location,
+    getLocationError: state => state.locationError,
+    getSelectedServices: state => state.selectedServices,
     getServices: state => state.services,
     getServicesByType: state => state.servicesByType,
     getServiceById: state => state.serviceById,
@@ -40,6 +86,28 @@ export const store = new Vuex.Store({
     isAuthenticated: ({ user }) => user && (user as any)?.access_token,
   },
   actions: {
+    async fetchLocation({ state, commit }, place) {
+      const { location } = place.geometry;
+      const lat = location.lat();
+      const lng = location.lng();
+
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create('/users/addresses/geo_location', {
+          location: {
+            lat,
+            lng,
+          },
+        });
+        commit('setLocation', { ...place, ...data });
+        commit('setLocationError', false);
+      } catch ({ response: reason }) {
+        commit('setLocation', null);
+        commit('setLocationError', true);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async fetchServices({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
@@ -63,10 +131,17 @@ export const store = new Vuex.Store({
       }
     },
     async fetchServiceById({ state, commit }, { type, id }) {
+      const city_id = state.location
+        ? state.location.city_id
+        : sessionStorage.getItem('city_id');
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find(`/service/${type}/${id}`);
-        commit('setServiceById', data);
+        const { data } = await api.find(`/service/${type}/${id}`, {
+          params: {
+            city_id,
+          },
+        });
+        commit('setServiceById', { ...data, category: type, uuid: id });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -91,11 +166,6 @@ export const store = new Vuex.Store({
       } finally {
         Vue.set(state, 'isFetching', false);
       }
-    },
-    setLocation({ state }, location) {
-      Vue.set(state, 'location', location);
-      sessionStorage.setItem('address', location.formatted_address);
-      sessionStorage.setItem('city', location.vicinity);
     },
     setToken({ state }, pass) {
       if (pass === 'qazwsx') {

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
-      <router-link class="back-button" href="" :to="`/servicii/${$router.currentRoute.params.type}`">
+      <router-link class="back-button" href="" :to="getToRoute">
         Inapoi
       </router-link>
       <div v-if="isFetching">Fetching ...</div>
@@ -16,28 +16,16 @@
           <es-complementary-services
             v-if="service.complementary_services.length"
             :services="service.complementary_services"
-            @on-count-change="onCountChange"
+            :name="service.name"
           />
 
-          <es-additional-services
-            v-if="additionalServices.length"
-            :services="additionalServices"
-            @on-remove-service="onRemoveAdditionalService"
-          />
-
-          <div class="d-flex justify-content-start">
-            <router-link class="mt-4" :to="`/new/servicii/${$router.currentRoute.params.type}`">
-              <i class="icon_plus" />
-              Mai Adauga Un Serviciu
-            </router-link>
-          </div>
           <div class="d-flex justify-content-center">
             <a
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
               href=""
               @click.prevent="onContinue"
             >
-              Continua
+              Adauga
             </a>
           </div>
         </div>
@@ -50,14 +38,12 @@
   import Vue from 'vue';
   import { mapGetters } from 'vuex';
   import { ComplementaryServices } from '@/components/shared/complementary-services';
-  import AdditionalServices from './AdditionalServices.vue';
 
   export default Vue.extend({
-    name: 'es-service-details',
+    name: 'es-additional-service-details',
 
     components: {
       'es-complementary-services': ComplementaryServices,
-      'es-additional-services': AdditionalServices,
     },
 
     computed: {
@@ -69,30 +55,27 @@
 
       service() {
         /* eslint-disable */
-        const mainService = this.getSelectedServices[0];
+        const mainService = this.getServiceById;
         const complementaryServices = mainService.complementary_services
           .map(item => ({ selectedCount: 0, ...item }));
         return { ...mainService, complementary_services: complementaryServices };
       },
 
-      additionalServices() {
-        return this.getSelectedServices.slice(1);
+      getToRoute() {
+        const { uuid } = this.getSelectedServices[0];
+        return `/servicii/${this.$router.currentRoute.params.type}/${uuid}`;
       },
     },
 
     async created() {
-      await this.$store.commit('setSelectedService', { service: this.getServiceById, method: 'create' });
+      await this.$store.commit('setSelectedService', { service :this.getServiceById, method: 'create' });
     },
 
     methods: {
-      onCountChange() {
-        this.$store.commit('setSelectedService', { service: this.service, method: 'update' });
-      },
       onContinue() {
-        this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
-      },
-      onRemoveAdditionalService(service) {
-        this.$store.commit('removeSelectedService', service);
+        const { service } = this;
+        this.$store.commit('setSelectedService', { service, method: 'update' });
+        this.$router.push(this.getToRoute);
       },
     },
   });

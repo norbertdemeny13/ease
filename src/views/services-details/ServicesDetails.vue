@@ -4,7 +4,7 @@
       <router-link class="back-button" href="" to="/servicii">Inapoi</router-link>
       <es-address-bar />
       <!-- /page_header -->
-      <services-list-skeleton v-if="isFetching" />
+      <div v-if="isFetching">Fetching ...</div>
       <div
         v-for="serviceType in getServicesByType"
         v-else
@@ -16,7 +16,7 @@
           <services-list-item
             :image-path="service.absolute_image_url_large"
             :service="service"
-            :to="getToRoute(service.type, service.uuid)"
+            :to="getToRoute(service.uuid)"
           />
         </div>
       </div>
@@ -28,7 +28,6 @@
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { AddressBar } from '@/components/features/address-bar';
-  import { ServicesListSkeleton } from '@/components/features/services-list';
   import { ServicesListItem } from '@/components/features/services-list-item';
 
   export default Vue.extend({
@@ -37,7 +36,6 @@
     components: {
       'es-address-bar': AddressBar,
       'services-list-item': ServicesListItem,
-      'services-list-skeleton': ServicesListSkeleton,
     },
 
     computed: {
@@ -60,11 +58,11 @@
       ...mapActions({
         fetchServicesByType: 'fetchServicesByType',
       }),
-      getToRoute(serviceType: string, id: string): string {
-        if (serviceType.includes('Beauty')) {
-          return `/servicii/beauty/${id}`;
-        }
-        return '/servicii/fasz';
+      getToRoute(id: string): string {
+        const { path, params } = this.$router.currentRoute;
+        const { type } = params;
+        const isNew = path.includes('new');
+        return `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
       },
     },
   });

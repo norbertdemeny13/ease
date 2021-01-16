@@ -6,7 +6,7 @@
           <h1>{{ getLocation.formatted_address }}</h1>
           <a href="" @click.prevent="changeAddress = true">Change address</a>
         </div>
-        <es-address-search v-else :is-first-time="isFirstTime" />
+        <es-address-search v-else @on-cancel="changeAddress = false" />
       </div>
     <!-- /row -->
     </div>
@@ -27,7 +27,6 @@
 
     data: () => ({
       changeAddress: false,
-      isFirstTime: true,
     }),
 
     computed: {
@@ -43,7 +42,6 @@
       getLocation(newVal) {
         if (newVal) {
           this.changeAddress = false;
-          this.isFirstTime = false;
         }
       },
     },

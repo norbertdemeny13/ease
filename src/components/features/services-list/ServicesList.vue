@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div :class="`es_services-list-container ${!getLocation || isDisabled ? 'disabled' : ''} my-4`">
+  <div :class="`es_services-list-container ${showServices ? '' : 'disabled'} my-4`">
     <div v-if="service.items.length" v-for="service in services" :key="service.category" class="row mt-4">
       <div class="col-12"><h2 class="title_small">{{ service.category }}</h2></div>
       <div v-if="service.description" class="col-12"><p class="text-secondary">{{ service.description }}</p></div>
@@ -53,16 +53,16 @@
     computed: {
       ...mapGetters({
         getLocation: 'getLocation',
+        getLocationError: 'getLocationError',
       }),
-    },
 
-    watch: {
-      getLocation(newVal) {
-        if (!['Cluj-Napoca', 'Bucharest'].includes(newVal.vicinity)) {
-          this.isDisabled = true;
-        } else {
-          this.isDisabled = false;
-        }
+      showServices(): boolean {
+        const location = this.getLocation
+          ? this.getLocation
+          : sessionStorage.getItem('city_id');
+        return this.getLocationError
+          ? false
+          : location;
       },
     },
 

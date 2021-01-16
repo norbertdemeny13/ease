@@ -9,11 +9,12 @@
         type="text"
       >
       <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
+      <a v-if="getLocation && !homePage" href="" class="ml-2" @click.prevent="$emit('on-cancel')">Inapoi</a>
     </div>
-    <div v-if="hasError" class="alert alert-danger ml-4" role="alert">
+    <div v-if="getLocationError && !homePage" class="alert alert-danger ml-4" role="alert">
       <span>Ease nu este deocamdata disponibil in aceasta locatie. Ne extindem rapid, revino curand. Serviciile sunt disponibile momentan in Cluj sau Bucuresti.</span>
     </div>
-    <div v-else-if="!location && isFirstTime" class="alert alert-primary ml-4" role="alert">
+    <div v-else-if="!location && !homePage" class="alert alert-primary ml-4" role="alert">
       <span>Pentru a vizualiza preturile si disponibilitatea serviciilor te rog sa  introduci orasul sau adresa.</span>
     </div>
   </div>
@@ -22,13 +23,12 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { VICINITIES } from '@/constants/available-vicinity';
 
   export default Vue.extend({
     name: 'es-address-search',
 
     props: {
-      isFirstTime: {
+      homePage: {
         type: Boolean,
         default: false,
       },
@@ -36,34 +36,42 @@
 
     data: () => ({
       location: null,
-      hasError: false,
     }),
 
     computed: {
       ...mapGetters({
         getLocation: 'getLocation',
+        getLocationError: 'getLocationError',
       }),
+    },
+
+    watch: {
+      getLocation(newVal) {
+        if (!newVal) {
+          this.location = null;
+        }
+      },
     },
 
     mounted() {
       (window as any).checkAndAttachMapScript(this.initLocationSearch);
     },
 
+    created() {
+      const savedLocation = sessionStorage.getItem('address') || null;
+      this.location = this.getLocation ? this.getLocation.formatted_address : savedLocation;
+    },
+
     methods: {
       ...mapActions({
-        setLocation: 'setLocation',
+        fetchLocation: 'fetchLocation',
       }),
       initLocationSearch() {
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
-        autocomplete.setFields(['geometry', 'formatted_address', 'name', 'vicinity']);
+        autocomplete.setFields(['geometry.location', 'formatted_address', 'name', 'vicinity']);
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
-          if (!VICINITIES.includes(place.vicinity)) {
-            this.hasError = true;
-          } else {
-            this.hasError = false;
-            this.setLocation(place);
-          }
+          this.fetchLocation(place);
           this.location = place.formatted_address;
         });
       },
