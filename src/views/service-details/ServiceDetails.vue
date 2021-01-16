@@ -70,9 +70,10 @@
       service() {
         /* eslint-disable */
         const mainService = this.getSelectedServices[0];
-        const complementaryServices = mainService.complementary_services
+        const services = mainService?.complementary_services || [];
+        const complementaryServices = services
           .map(item => ({ selectedCount: 0, ...item }));
-        return { ...mainService, complementary_services: complementaryServices };
+        return { ...mainService, complementary_services: complementaryServices || [] };
       },
 
       additionalServices() {

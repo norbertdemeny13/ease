@@ -64,7 +64,8 @@
         /* eslint-disable */
         return this.selectedServices
           .map((item) => {
-            const selectedComplementaryServices = item.complementary_services
+            const services = item?.complementary_services || [];
+            const selectedComplementaryServices = services
               .filter(service => service.selectedCount > 0)
               .map(({ id, complementary_service, selectedCount }) => ({
                 name: complementary_service.name,
@@ -93,7 +94,8 @@
         this.selectedServices.forEach((item) => {
           total += parseInt(this.time.price, 10);
           let complementaryTotal = 0;
-          item.complementary_services
+          const services = item.complementary_services || [];
+          services
             .filter(service => service.selectedCount > 0)
             .forEach(service => complementaryTotal += service.selectedCount * parseInt(service.complementary_service.price), 10);
           total += complementaryTotal;

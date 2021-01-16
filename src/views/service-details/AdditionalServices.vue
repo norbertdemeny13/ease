@@ -42,7 +42,8 @@
     methods: {
       getComplementaryServices(service: Service) {
         /* eslint-disable */
-        const selectedComplementaryServices = service.complementary_services
+        const services = service.complementary_services || [];
+        const selectedComplementaryServices = services
           .filter(service => service.selectedCount > 0)
           .map(({ id, complementary_service, selectedCount }: { id: string; complementary_service: ComplementaryService; selectedCount: number }) => ({
             name: complementary_service.name,
