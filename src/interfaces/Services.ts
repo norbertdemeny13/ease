@@ -1,9 +1,11 @@
 export interface ComplementaryService {
-  name: string;
-  price: string;
-  id: string;
-  selectedCount: number;
-  complementary_service: any;
+  name?: string;
+  price?: string;
+  id?: string;
+  selectedCount?: number;
+  complementary_service?: any;
+  uuid: string;
+  is_four_hands?: boolean;
 }
 
 export interface Service {
@@ -11,6 +13,7 @@ export interface Service {
   name: string;
   id: string;
   category?: string;
+  uuid: string;
 }
 
 export interface Price {

@@ -1,7 +1,7 @@
 <template>
   <div class="es_reserve-service-container">
     <div class="container margin_30_40">
-      <router-link class="back-button mb-2" :to="`/servicii/${$router.currentRoute.params.type}/${$router.currentRoute.params.id}`">Inapoi</router-link>
+      <router-link class="back-button mb-2" :to="getToRoute">Inapoi</router-link>
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
           <h5 class="pl-5 my-2">Alege Data</h5>
@@ -85,6 +85,11 @@
         });
         const { date } = this.selectedDate;
         return prices ? getNextHours(prices, date) : [];
+      },
+      getToRoute() {
+        const { id, type } = this.$router.currentRoute.params;
+        const isMassageView = type === 'single' || type === 'couple';
+        return isMassageView ? `/servicii/masaj?type=${type}` : `/servicii/${type}/${id}`;
       },
     },
 

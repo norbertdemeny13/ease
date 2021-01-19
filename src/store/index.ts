@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
         .find(item => item.id === service.id);
       const services = selectedService?.complementary_services || [];
       const hasComplementaryServices = services
-        .filter(service => service.selectedCount > 0).length;
+        .filter(service => service.selectedCount! > 0).length;
       const isSameCategory = state.selectedServices.filter(item => item.category === service.category).length;
       let localService = service;
 

@@ -100,7 +100,11 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.name === 'Rezerva' && !getSelectedServices.length) {
-    next(`/servicii/${type}/${id}`);
+    if (type === 'single' || type === 'couple') {
+      next(`/servicii/masaj?type=${type}`);
+    } else {
+      next(`/servicii/${type}/${id}`);
+    }
   }
 
   if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {

@@ -44,6 +44,7 @@
             </div>
             <es-additional-services
               :services="selectedService.complementary_services"
+              @on-continue="onContinue"
             />
           </div>
         </div>
@@ -71,7 +72,7 @@
         type: '',
         genre: 'oricare',
         duration: '60',
-        form: 'clasic',
+        form: 'classic',
         terapeut: 'single',
       },
     }),
@@ -79,6 +80,7 @@
     computed: {
       ...mapGetters({
         getServicesByType: 'getServicesByType',
+        getServiceById: 'getServiceById',
         isFetching: 'isFetching',
       }),
 
@@ -107,12 +109,6 @@
           this.selectedService = firstService;
         }
       },
-
-      'massageForm.type': function onTypeChange(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          this.fetchServicesByType({ type: newVal });
-        }
-      },
     },
 
     created() {
@@ -124,6 +120,7 @@
     methods: {
       ...mapActions({
         fetchServicesByType: 'fetchServicesByType',
+        fetchServiceById: 'fetchServiceById',
       }),
       setValue(key, value) {
         this.massageForm[key] = value;
@@ -131,6 +128,19 @@
       getActiveCarouselId(info) {
         const index = info ? info.item.index : 0;
         this.selectedService = this.services ? this.services[index] : null;
+      },
+      async onContinue(services) {
+        const { type } = this.massageForm;
+        const { uuid } = this.selectedService;
+        await this.fetchServiceById({ type, id: uuid });
+        const selectedService = {
+          ...this.selectedService,
+          massageForm: this.massageForm,
+          prices: this.getServiceById.prices,
+          selectedComplementaryServices: services,
+        };
+        this.$store.commit('setSelectedService', { service: selectedService, method: 'create' });
+        this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
       },
     },
   });

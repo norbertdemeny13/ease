@@ -25,7 +25,7 @@
           :key="service.id"
         >
           <a href="" @click.prevent="removeService(item.id, service.id); service.selectedCount = 0">{{ service.selectedCount }} x {{ service.name }}</a>
-          <span>{{ service.selectedCount * service.price }} Lei</span>
+          <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Ron</span>
         </li>
       </ul>
 
@@ -59,20 +59,20 @@
         required: true,
       },
     },
+
+    data: () => ({
+      hourPrice: 0,
+    }),
+
     computed: {
       getLocalSelectedServices() {
         /* eslint-disable */
         return this.selectedServices
           .map((item) => {
-            const services = item?.complementary_services || [];
-            const selectedComplementaryServices = services
-              .filter(service => service.selectedCount > 0)
-              .map(({ id, complementary_service, selectedCount }) => ({
-                name: complementary_service.name,
-                price: complementary_service.price,
-                id,
-                selectedCount,
-              }));
+            const isMassage = item.category === 'single' || item.category === 'couple';
+            const selectedComplementaryServices = isMassage
+              ? this.getMassageServices(item)
+              : this.getBeautyServices(item);
             return {
               name: item.name,
               services: selectedComplementaryServices,
@@ -90,14 +90,13 @@
         return `${hour}:${minute === 0 ? '00': minute}`;
       },
       getTotal() {
-        let total = 0;
+        let total = parseInt(this.time.price, 10);
+        const { category } = this.selectedServices[0];
+        const isMassage = category === 'single' || category === 'couple';
         this.selectedServices.forEach((item) => {
-          total += parseInt(this.time.price, 10);
-          let complementaryTotal = 0;
-          const services = item.complementary_services || [];
-          services
-            .filter(service => service.selectedCount > 0)
-            .forEach(service => complementaryTotal += service.selectedCount * parseInt(service.complementary_service.price), 10);
+          let complementaryTotal = isMassage
+            ? this.getMassageServicesTotal(item)
+            : this.getBeautyServicesTotal(item);
           total += complementaryTotal;
         });
         return total;
@@ -113,10 +112,59 @@
 
         selectedComplementaryService.selectedCount = 0;
       },
+      getBeautyServices(service) {
+        const services = service?.complementary_services || [];
+
+        return services
+          .filter(service => service.selectedCount > 0)
+          .map(({ id, complementary_service, selectedCount }) => ({
+            name: complementary_service.name,
+            price: complementary_service.price,
+            id,
+            selectedCount,
+          }));
+      },
+
+      getBeautyServicesTotal(item) {
+        let complementaryTotal = 0;
+        const services = item.complementary_services || [];
+        services
+          .filter(service => service.selectedCount > 0)
+          .forEach(service => complementaryTotal += service.selectedCount * parseInt(service.complementary_service.price), 10);
+        console.log(complementaryTotal, 'fff');
+        return complementaryTotal;
+      },
+      getMassageServices(service) {
+        const isFourHands = service.selectedComplementaryServices.find(item => item.is_four_hands);
+        const selectedServices = service.selectedComplementaryServices.map(item => item.uuid);
+        const services = service?.complementary_services || [];
+        return services
+          .filter(item => selectedServices.includes(item.uuid))
+          .map(({ id, name, price }) => ({
+            name,
+            price,
+            id,
+            selectedCount: 1,
+            isFourHands,
+          }));
+      },
+
+      getMassageServicesTotal(item) {
+        let complementaryTotal = 0;
+        const isFourHands = item.selectedComplementaryServices.find(item => item.is_four_hands);
+        const selectedServices = item.selectedComplementaryServices.map(item => item.uuid);
+        const services = item.complementary_services || [];
+        services
+          .filter(item => selectedServices.includes(item.uuid))
+          .forEach(service => complementaryTotal += 1 * parseInt(service.price === '0' ?  this.hourPrice : service.price), 10);
+        return complementaryTotal;
+      },
       getServicePrice({ id }) {
         const selectedService = this.selectedServices
           .filter(item => item.id === id)[0];
-        return getHourPrice(this.time, selectedService.prices);
+        const hourPrice = getHourPrice(this.time, selectedService.prices);
+        this.hourPrice = hourPrice;
+        return hourPrice;
       },
     },
   });

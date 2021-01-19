@@ -25,7 +25,7 @@
             @on-remove-service="onRemoveAdditionalService"
           />
 
-          <div class="d-flex justify-content-start">
+          <div v-if="canAddAdditionalServices" class="d-flex justify-content-start">
             <router-link class="mt-4" :to="`/new/servicii/${$router.currentRoute.params.type}`">
               <i class="icon_plus" />
               Mai Adauga Un Serviciu
@@ -66,6 +66,12 @@
         getSelectedServices: 'getSelectedServices',
         isFetching: 'isFetching',
       }),
+
+      canAddAdditionalServices() {
+        const isFitness = this.service.category === 'fitness';
+        const additionalServicesCount = this.getSelectedServices.length;
+        return !isFitness && additionalServicesCount < 4;
+      },
 
       service() {
         /* eslint-disable */

@@ -15,6 +15,7 @@
           >
         </div>
         <div
+          class="d-flex justify-content-between align-items-center flex-inline"
           v-for="item in getComplementaryServices(service).services"
           :key="item.id"
         >
@@ -26,9 +27,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
-  import { ComplementaryService, Service } from '@/interfaces/Services';
 
   export default Vue.extend({
     name: 'es-service-details-additional-services',
@@ -40,12 +40,12 @@
     },
 
     methods: {
-      getComplementaryServices(service: Service) {
+      getComplementaryServices(service) {
         /* eslint-disable */
         const services = service.complementary_services || [];
         const selectedComplementaryServices = services
           .filter(service => service.selectedCount > 0)
-          .map(({ id, complementary_service, selectedCount }: { id: string; complementary_service: ComplementaryService; selectedCount: number }) => ({
+          .map(({ id, complementary_service, selectedCount }) => ({
             name: complementary_service.name,
             price: complementary_service.price,
             id,

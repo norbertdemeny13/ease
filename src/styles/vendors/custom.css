@@ -266,10 +266,11 @@
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #e7eaf3;
+  cursor: pointer;
 }
 
 .extra-services-container:hover,
-.extra-services-container.active {
+.extra-services-container.selected {
   border: 2px solid #70d7b7;
 }
 
