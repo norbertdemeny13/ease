@@ -117,7 +117,7 @@
     methods: {
       onContinue() {
         if (this.isAuthenticated) {
-          console.log('nothing happens for now');
+          // do something
         } else {
           $('#sign-in').trigger('click');
         }
