@@ -114,20 +114,6 @@
     closeMarkup: '<button title="%title%" type="button" class="mfp-close" style="font-size:26px; margin-right:-10px;">&#215;</button>'
   });
 
-  // Modal
-  $('.modal_dialog').magnificPopup({
-    type: 'inline',
-    fixedContentPos: true,
-    fixedBgPos: true,
-    overflowY: 'auto',
-    closeBtnInside: true,
-    preloader: false,
-    midClick: true,
-    removalDelay: 300,
-    closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
-    mainClass: 'my-mfp-zoom-in'
-  });
-
   // Modal images
   $('.magnific-gallery').each(function() {
       $(this).magnificPopup({
@@ -249,8 +235,43 @@
       },
     });
 
+    window.goToMassageCarouselIndex = function(index) {
+      $('.massage-owl-carousel').trigger('to.owl.carousel', index);
+    };
+
     $('.owl-carousel').on('changed.owl.carousel', cb);
   };
+
+  window.initModal = function() {
+    $('.modal_dialog').magnificPopup({
+      type: 'inline',
+      fixedContentPos: true,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
+      mainClass: 'my-mfp-zoom-in'
+    });
+    // Modal
+
+    $(document).on('click', '.modal_dialog', function() {
+      $('.modal_dialog').magnificPopup({
+        type: 'inline',
+        fixedContentPos: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
+        mainClass: 'my-mfp-zoom-in'
+      });
+    });
+  }
 
   window.initEase = function() {
     // Sign in

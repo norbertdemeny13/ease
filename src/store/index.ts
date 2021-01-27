@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
   state: {
     isAuth: false,
     isFetching: false,
+    massageInfo: { duration: 60, terapeut: 'single' },
     services: [],
     selectedServices: [],
     servicesByType: [],
@@ -25,18 +26,25 @@ export const store = new Vuex.Store({
       const serviceIdIndex = state.selectedServices.map(item => item.id).indexOf(service.id)
       serviceIdIndex && state.selectedServices.splice(serviceIdIndex, 1);
     },
+    removeSelectedServices(state) {
+      Vue.set(state, 'selectedServices', []);
+    },
+
+    setMassageInfo(state, data) {
+      Vue.set(state, 'massageInfo', data);
+    },
     setLocation(state, location) {
       Vue.set(state, 'location', location);
-      sessionStorage.setItem('address', location?.formatted_address);
-      sessionStorage.setItem('city_id', location?.city_id);
+      sessionStorage.setItem('address', location?.formatted_address || null);
+      sessionStorage.setItem('city_id', location?.city_id || null);
     },
     setLocationError(state, status) {
       Vue.set(state, 'locationError', status);
     },
     setSelectedService(state, data) {
-      const { service, method } = data;
+      const { service, method, type } = data;
       const selectedService = state.selectedServices
-        .find(item => item.id === service.id);
+        .find(item => item.uuid === service.uuid);
       const services = selectedService?.complementary_services || [];
       const hasComplementaryServices = services
         .filter(service => service.selectedCount! > 0).length;
@@ -55,10 +63,32 @@ export const store = new Vuex.Store({
 
       if (selectedService) {
         const selectedServices = state.selectedServices
-          .map(item => (item.id === service.id ? localService : item));
+          .map(item => (item.uuid === service.uuid ? localService : item));
         Vue.set(state, 'selectedServices', selectedServices);
       } else {
         state.selectedServices.push(service);
+      }
+    },
+    setSelectedMassageService(state, data) {
+      const { service, type } = data;
+      const selectedService = state.selectedServices
+        .find(item => item.uuid === service.uuid && item.massageType === service.massageType);
+      const services = selectedService?.complementary_services || [];
+      const hasComplementaryServices = services
+        .filter(service => service.selectedCount! > 0).length;
+      const isSameCategory = state.selectedServices.filter(item => item.category === service.category).length;
+
+      let localService = hasComplementaryServices
+        ? { ...service, complementary_services: selectedService!.complementary_services }
+        : service;
+
+      if (!isSameCategory) {
+        Vue.set(state, 'selectedServices', []);
+      }
+      if (type === 'single' || service.massageType === 'couple_1') {
+        Vue.set(state, 'selectedServices', [localService]);
+      } else {
+        state.selectedServices.push(localService);
       }
     },
     setServices(state, data) {
@@ -78,6 +108,7 @@ export const store = new Vuex.Store({
     isAuth: state => state.isAuth,
     getLocation: state => state.location,
     getLocationError: state => state.locationError,
+    getMassageInfo: state => state.massageInfo,
     getSelectedServices: state => state.selectedServices,
     getServices: state => state.services,
     getServicesByType: state => state.servicesByType,
@@ -131,7 +162,7 @@ export const store = new Vuex.Store({
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServiceById({ state, commit }, { type, id }) {
+    async fetchServiceById({ state, commit }, { type, id, duration }) {
       const city_id = state.location
         ? state.location.city_id
         : sessionStorage.getItem('city_id');
@@ -140,6 +171,7 @@ export const store = new Vuex.Store({
         const { data } = await api.find(`/service/${type}/${id}`, {
           params: {
             city_id,
+            duration,
           },
         });
         commit('setServiceById', { ...data, category: type, uuid: id });

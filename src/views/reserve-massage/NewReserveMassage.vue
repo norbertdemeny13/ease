@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
-      <router-link class="back-button" to="/servicii/">
+      <router-link class="back-button" to="/servicii/masaj?type=couple">
         Inapoi
       </router-link>
       <es-reserve-massage-skeleton v-if="isFetching" />
@@ -28,7 +28,7 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
           <div class="p-5">
-            <h3 v-if="massageType === 'couple'">Masaj 1</h3>
+            <h3 v-if="massageType === 'couple'">Masaj 2</h3>
             <h3 class="text-right">De la {{ selectedService.price_from }}</h3>
             <div v-for="filter in massageFilters" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
@@ -75,7 +75,7 @@
   import ReserveMassageSkeleton from './ReserveMassageSkeleton.vue';
   /* eslint-disable */
   export default Vue.extend({
-    name: 'es-reserve-massage',
+    name: 'es-new-reserve-massage',
 
     components: {
       'es-additional-services': AdditionalServices,
@@ -101,8 +101,8 @@
         getServicesByType: 'getServicesByType',
         getServiceById: 'getServiceById',
         getSelectedServices: 'getSelectedServices',
-        getMassageInfo: 'getMassageInfo',
         isFetching: 'isFetching',
+        getMassageInfo: 'getMassageInfo',
       }),
 
       massageFilters() {
@@ -187,7 +187,8 @@
         }
       },
       getServicesByType(newVal) {
-        const [selectedService] = this.getSelectedServices;
+        const selectedService = this.getSelectedServices
+          .find(item => item.massageType === 'couple_2');
         const [service] = newVal;
         const [firstService] = service.services
           .map(item => ({
@@ -214,6 +215,8 @@
 
     created() {
       const { type } = this.$router.currentRoute.query;
+      this.massageType = type;
+
       const { getMassageInfo } = this;
 
       if (getMassageInfo) {
@@ -222,9 +225,8 @@
         this.massageForm.duration = duration;
       }
 
-      this.massageType = type;
-
-      const [selectedService] = this.getSelectedServices;
+      const selectedService = this.getSelectedServices
+        .find(item => item.massageType === 'couple_2');
 
       if (selectedService) {
         const { massageForm } = selectedService;
@@ -251,24 +253,18 @@
         this.selectedService = this.services ? this.services[index] : null;
       },
       async onContinue() {
-        const { type, terapeut, duration } = this.massageForm;
+        const { type, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
         await this.fetchServiceById({ type, id: uuid, duration });
         const selectedService = {
           ...this.selectedService,
-          massageType: 'couple_1',
+          massageType: 'couple_2',
           massageForm: this.massageForm,
           prices: this.getServiceById.prices,
         };
         this.$store.commit('setSelectedMassageService', { service: selectedService, type: massageType });
-        this.$store.commit('setMassageInfo', { terapeut, duration });
-
-        if (massageType === 'single') {
-          await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
-        } else {
-          await this.$router.push(`/new/servicii/masaj?type=${type}`);
-        }
+        await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
       },
     },
   });

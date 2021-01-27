@@ -91,6 +91,24 @@
   flex-direction: column;
 }
 
+.es_reserve-massage-service-page {
+  & .form-group > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .form-group > div button{
+    margin: 8px 0;
+  }
+}
+
+.es_reserve-massage-service-page .btn-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .es_reserve-massage-service-page .owl-item.active {
   margin-left: 40px;
 }
@@ -168,6 +186,10 @@
   background-clip: border-box;
   border-radius: 0.3125rem;
   border: 1px solid #e7eaf3;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .es_services-list-item img {
@@ -322,6 +344,13 @@
 
   .reserve-from-app-container {
     display: block;
+  }
+
+  .es_reserve-massage-service-page {
+    & .form-group > div {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .reserve-from-app-container .mobile-container {

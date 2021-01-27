@@ -1,10 +1,10 @@
 <template>
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
-      <router-link class="back-button" href="" :to="`/servicii/${$router.currentRoute.params.type}`">
+      <a class="back-button" href="" @click.prevent="onBack">
         Inapoi
-      </router-link>
-      <div v-if="isFetching">Fetching ...</div>
+      </a>
+      <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6">
           <img :src="service.absolute_image_url_large" width="500" height="350">
@@ -51,6 +51,7 @@
   import { mapGetters } from 'vuex';
   import { ComplementaryServices } from '@/components/shared/complementary-services';
   import AdditionalServices from './AdditionalServices.vue';
+  import ServiceDetailSkeleton from './ServiceDetailSkeleton.vue';
 
   export default Vue.extend({
     name: 'es-service-details',
@@ -58,6 +59,7 @@
     components: {
       'es-complementary-services': ComplementaryServices,
       'es-additional-services': AdditionalServices,
+      'es-service-details-skeleton': ServiceDetailSkeleton,
     },
 
     computed: {
@@ -92,6 +94,11 @@
     },
 
     methods: {
+      onBack() {
+        const { service } = this;
+        this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
+        this.$store.commit('removeSelectedServices');
+      },
       onCountChange() {
         this.$store.commit('setSelectedService', { service: this.service, method: 'update' });
       },

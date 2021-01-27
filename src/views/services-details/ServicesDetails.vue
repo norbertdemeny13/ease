@@ -1,10 +1,10 @@
 <template>
   <div class="content">
     <div class="container margin_30_20">
-      <router-link class="back-button" href="" to="/servicii">Inapoi</router-link>
+      <a class="back-button" href="" @click.prevent="onBack">Inapoi</a>
       <es-address-bar />
       <!-- /page_header -->
-      <div v-if="isFetching">Fetching ...</div>
+      <services-list-skeleton v-if="isFetching" />
       <div
         v-for="serviceType in getServicesByType"
         v-else
@@ -27,6 +27,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { ServicesListSkeleton } from '@/components/features/services-list';
   import { AddressBar } from '@/components/features/address-bar';
   import { ServicesListItem } from '@/components/features/services-list-item';
 
@@ -36,11 +37,13 @@
     components: {
       'es-address-bar': AddressBar,
       'services-list-item': ServicesListItem,
+      'services-list-skeleton': ServicesListSkeleton,
     },
 
     computed: {
       ...mapGetters({
         getServicesByType: 'getServicesByType',
+        getSelectedServices: 'getSelectedServices',
         isFetching: 'isFetching',
       }),
 
@@ -63,6 +66,13 @@
         const { type } = params;
         const isNew = path.includes('new');
         return `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
+      },
+      onBack() {
+        const isNew = this.$router.currentRoute.path.includes('/new/');
+        const [service] = this.getSelectedServices || [];
+        const { category, uuid } = service;
+        const to = isNew ? `/servicii/${category}/${uuid}` : '/servicii/';
+        this.$router.push(to);
       },
     },
   });

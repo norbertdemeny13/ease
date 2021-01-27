@@ -9,6 +9,7 @@ export interface State {
     city_id: number;
   } | null;
   locationError: boolean;
+  massageInfo: { duration: number; terapeut: string };
   services: Service[];
   selectedServices: Service[];
   servicesByType: Service[];

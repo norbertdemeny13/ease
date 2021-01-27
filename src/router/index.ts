@@ -39,6 +39,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/reserve-massage').then(({ ReserveMassage }) => ReserveMassage),
   },
   {
+    path: '/new/servicii/masaj',
+    name: 'Detalii Servicii Masaj Cuplu',
+    component: () => import('@/views/reserve-massage').then(({ NewReserveMassage }) => NewReserveMassage),
+  },
+  {
     path: '/servicii/:type',
     name: 'Detalii Servicii',
     component: () => import('@/views/services-details').then(({ ServicesDetails }) => ServicesDetails),
@@ -91,8 +96,13 @@ export const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const { params, path } = to;
   const { type, id } = params;
-  const { isAuth, getSelectedServices } = store.getters;
+  const { isAuth, getSelectedServices, getLocation } = store.getters;
+  const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
+
+  if (path.includes('/servicii/') && hasLocation === 'null') {
+    next('/servicii');
+  }
 
   if (isNew && !getSelectedServices.length) {
     const newRoute = path.replace('/new', '');

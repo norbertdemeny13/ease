@@ -1,19 +1,16 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es_services-list-item transition-3d-hover my-2">
+  <div @click="$router.push(to)" class="es_services-list-item transition-3d-hover my-2">
     <figure>
       <img :src="imagePath" :data-src="imagePath" class="img-fluid lazy" alt="">
       <span v-if="service.discount" class="ribbon off">{{ service.discount }}% off</span>
     </figure>
     <div class="p-2">
       <div class="d-flex justify-content-between">
-        <router-link :to="to">
-          <h5>{{ service.name }}</h5>
-        </router-link>
+        <h5>{{ service.name }}</h5>
         <strong v-if="service.duration">{{ service.duration }} min</strong>
       </div>
       <div class="d-flex justify-content-between">
-        <span v-if="service.description" class="text-secondary">{{ service.description }}</span>
         <span v-if="service.price_from">{{ service.price_from }} Ron</span>
       </div>
     </div>

@@ -34,11 +34,6 @@
         getServices: 'getServices',
         isFetching: 'isFetching',
       }),
-
-      hasError(): boolean {
-        const vicinity = this.getLocation?.vicinity;
-        return vicinity && !['Cluj-Napoca', 'Bucharest'].includes(vicinity);
-      },
     },
 
     watch: {
@@ -53,6 +48,7 @@
 
     created() {
       this.fetchServices();
+      this.$store.commit('removeSelectedServices');
     },
 
     mounted() {

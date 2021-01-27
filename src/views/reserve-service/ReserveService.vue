@@ -31,10 +31,18 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <es-service-summary
-            :selected-services="getSelectedServices"
             :date="selectedDate"
             :time="selectedTime"
           />
+          <div class="d-flex justify-content-center">
+            <a
+              class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+              href=""
+              @click.prevent="onContinue"
+            >
+              Continua
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +53,7 @@
 
 <script>
   import Vue from 'vue';
+  import $ from 'jquery';
   import { mapGetters } from 'vuex';
   import {
     getNextMonth,
@@ -68,6 +77,7 @@
       ...mapGetters({
         getServiceById: 'getServiceById',
         getSelectedServices: 'getSelectedServices',
+        isAuthenticated: 'isAuthenticated',
       }),
       getDays() {
         return getNextMonth();
@@ -105,6 +115,13 @@
     },
 
     methods: {
+      onContinue() {
+        if (this.isAuthenticated) {
+          console.log('nothing happens for now');
+        } else {
+          $('#sign-in').trigger('click');
+        }
+      },
       selectDate(item) {
         this.selectedDate = item;
         const [hour] = this.getHours;

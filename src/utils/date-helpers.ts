@@ -15,6 +15,7 @@ import getDay from 'date-fns/getDay';
 import getHours from 'date-fns/getHours';
 import getMinutes from 'date-fns/getMinutes';
 import addDays from 'date-fns/addDays';
+import differenceInMinutes from 'date-fns/differenceInMinutes';
 
 const currentHour = getHours(new Date());
 
@@ -22,7 +23,7 @@ export const monthNames = ['Ian', 'Feb', 'Mar', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct
 export const weekDayNames = ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam'];
 
 export const getNextMonth = () => eachDayOfInterval({
-  start: currentHour > 21
+  start: currentHour > 20
     ? addDays(zonedTimeToUtc(new Date(), 'Europe/Bucharest'), 1)
     : zonedTimeToUtc(new Date(), 'Europe/Bucharest'),
   end: addDays(zonedTimeToUtc(new Date(), 'Europe/Bucharest'), 30),
@@ -37,51 +38,55 @@ export const getNextHours = (prices: Price[], date: Date) => {
   const filteredPrices = prices.filter(({ weekend }) => isWeekend(date) === weekend);
   const hoursArray: Date[] = [];
 
-  if (isToday(date) && currentHour < 21 && currentHour > 7) {
+  if (isToday(date) && currentHour < 23 && currentHour > 7) {
     const startDate = zonedTimeToUtc(new Date(), 'Europe/Bucharest');
-    const endDate = zonedTimeToUtc(new Date().setHours(21), 'Europe/Bucharest');
+    const endDate = zonedTimeToUtc(new Date().setHours(23), 'Europe/Bucharest');
     const currentHour = getHours(startDate);
 
     eachHourOfInterval({
       start: startDate,
       end: endDate,
     })
-      .filter(item => getHours(new Date(item)) > currentHour + 1)
+      .filter(item => getHours(new Date(item)) > currentHour)
       .forEach((item) => {
         hoursArray.push(item);
-        if (getHours(new Date(item)) < 21) {
+        if (getHours(new Date(item)) < 23) {
           hoursArray.push(addMinutes(new Date(item), 30));
         }
       });
   } else {
     const startDate = new Date(date).setHours(7);
-    const endDate = new Date(date).setHours(21);
+    const endDate = new Date(date).setHours(23);
     eachHourOfInterval({
       start: startDate,
       end: endDate,
     }).forEach(function (item) {
       hoursArray.push(item);
-      if (getHours(new Date(item)) < 21) {
+      if (getHours(new Date(item)) < 23) {
         hoursArray.push(addMinutes(new Date(item), 30));
       }
     });
   }
-
-  return hoursArray.map((hour) => {
-    const hourInterval = filteredPrices
-      .filter(({ start_time: startTime, end_time: endTime }: any) => {
-        const time = getHours(new Date(hour));
-        return ((time >= parseInt(startTime, 10)) && (time <= parseInt(endTime, 10)));
-      })[0];
-    const { price } = hourInterval;
-    return {
-      date: hour,
-      price,
-      hour: getHours(new Date(hour)),
-      minute: getMinutes(new Date(hour)),
-      id: nanoid(),
-    };
-  });
+  return hoursArray
+    .filter((hour) => {
+      const difference = differenceInMinutes(hour, new Date());
+      return difference >= 60;
+    })
+    .map((hour) => {
+      const hourInterval = filteredPrices
+        .filter(({ start_time: startTime, end_time: endTime }: any) => {
+          const time = getHours(new Date(hour));
+          return ((time >= parseInt(startTime, 10)) && (time <= parseInt(endTime, 10)));
+        })[0];
+      const { price } = hourInterval;
+      return {
+        date: hour,
+        price,
+        hour: getHours(new Date(hour)),
+        minute: getMinutes(new Date(hour)),
+        id: nanoid(),
+      };
+    });
 };
 
 export const getHour = () => getHours(new Date());

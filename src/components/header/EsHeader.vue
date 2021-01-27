@@ -69,6 +69,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters } from 'vuex';
+  import $ from 'jquery';
   import { nanoid } from 'nanoid';
   import { LoginModal } from '@/components/login-modal';
   import { NAVBAR_LINKS } from '@/constants/navbar-links';
@@ -106,12 +107,12 @@
       },
       isAuthenticated(newValue) {
         if (newValue) {
-          (window as any).$.magnificPopup.close();
+          ($ as any).magnificPopup.close();
         }
       },
     },
 
-    created() {
+    mounted() {
       (window as any).initEase();
     },
   });

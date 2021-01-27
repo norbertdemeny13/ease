@@ -46,10 +46,6 @@
       },
     },
 
-    data: () => ({
-      isDisabled: false,
-    }),
-
     computed: {
       ...mapGetters({
         getLocation: 'getLocation',
@@ -57,9 +53,13 @@
       }),
 
       showServices(): boolean {
+        const cityId = sessionStorage.getItem('city_id');
+        const addressFromStorage = cityId === 'null' ? null : cityId;
+
         const location = this.getLocation
           ? this.getLocation
-          : sessionStorage.getItem('city_id');
+          : addressFromStorage;
+
         return this.getLocationError
           ? false
           : location;

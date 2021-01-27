@@ -58,7 +58,10 @@
     },
 
     created() {
-      const savedLocation = sessionStorage.getItem('address') || null;
+      const savedLocation = sessionStorage.getItem('address') === 'null'
+        ? null
+        : sessionStorage.getItem('address');
+
       this.location = this.getLocation ? this.getLocation.formatted_address : savedLocation;
     },
 

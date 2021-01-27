@@ -14,6 +14,7 @@ export interface Service {
   id: string;
   category?: string;
   uuid: string;
+  massageType?: string;
 }
 
 export interface Price {

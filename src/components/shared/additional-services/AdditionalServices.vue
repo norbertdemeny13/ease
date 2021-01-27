@@ -22,21 +22,11 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
-      <a
-        class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-        href=""
-        @click.prevent="$emit('on-continue', selectedServices)"
-      >
-        Continua
-      </a>
-    </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
-  import { ComplementaryService } from '@/interfaces/Services';
 
   export default Vue.extend({
     name: 'es-additional-services',
@@ -46,26 +36,41 @@
         type: Array,
         default: null,
       },
+      selectedComplementaryServices: {
+        type: Array,
+        default: null,
+      },
     },
 
     data: () => ({
-      selectedServices: [] as ComplementaryService[],
+      selectedServices: [],
     }),
 
+    created() {
+      /* eslint-disable */
+      const selectedAdditionalServices = this.services
+        .filter(item => item.selectedCount > 0)
+        .map(({ uuid, is_four_hands, id }) => ({ uuid, is_four_hands, id }) );
+      this.selectedServices = selectedAdditionalServices;
+    },
+
     methods: {
-      onServiceSelect(service: ComplementaryService): void {
+      onServiceSelect(service) {
         /* eslint-disable */
-        const { uuid, is_four_hands } = service;
+        const { uuid, is_four_hands, id } = service;
         const exists = this.selectedServices.find(item => item.uuid === uuid);
 
         if (exists) {
           this.selectedServices = this.selectedServices.filter(item => item.uuid !== uuid);
         } else if (is_four_hands) {
-          this.selectedServices = [{ uuid, is_four_hands }];
+          this.selectedServices = [{ uuid, is_four_hands, id }];
         } else {
           this.selectedServices = this.selectedServices.filter(item => !item.is_four_hands);
-          this.selectedServices.push({ uuid, is_four_hands });
+          this.selectedServices.push({ uuid, is_four_hands, id });
         }
+
+        const selectedIds = this.selectedServices.map(({ uuid }) => uuid);
+        this.services.map(item => item.selectedCount = selectedIds.includes(item.uuid) ? 1 : 0);
       },
     },
   });

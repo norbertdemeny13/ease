@@ -68,10 +68,6 @@
       },
     },
 
-    async created() {
-      await this.$store.commit('setSelectedService', { service :this.getServiceById, method: 'create' });
-    },
-
     methods: {
       onContinue() {
         const { service } = this;
