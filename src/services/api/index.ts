@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { client } from './client';
+import { instance as client } from './client';
 
-export const api = {
+const api = {
   request(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return client.request(config);
   }, // request
@@ -62,3 +62,5 @@ export const api = {
     });
   }, // update
 };
+
+export { api };

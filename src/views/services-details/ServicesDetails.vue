@@ -69,10 +69,13 @@
       },
       onBack() {
         const isNew = this.$router.currentRoute.path.includes('/new/');
-        const [service] = this.getSelectedServices || [];
-        const { category, uuid } = service;
-        const to = isNew ? `/servicii/${category}/${uuid}` : '/servicii/';
-        this.$router.push(to);
+        if (isNew) {
+          const [service] = this.getSelectedServices || [];
+          const { category, uuid } = service;
+          this.$router.push(`/servicii/${category}/${uuid}`);
+        } else {
+          this.$router.push('/servicii/');
+        }
       },
     },
   });

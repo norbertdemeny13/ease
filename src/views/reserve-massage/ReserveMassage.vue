@@ -28,9 +28,22 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
           <div class="p-5">
-            <h3 v-if="massageType === 'couple'">Masaj 1</h3>
             <h3 class="text-right">De la {{ selectedService.price_from }}</h3>
-            <div v-for="filter in massageFilters" :key="filter.id" class="form-group">
+            <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
+              <label>{{ filter.label }}</label>
+              <div class="d-flex my-2">
+                <button
+                  v-for="choice in filter.choices"
+                  :key="choice.value"
+                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
+                  @click="setValue(filter.key, choice.value)"
+                >
+                  {{ choice.label }}
+                </button>
+              </div>
+            </div>
+            <h3 v-if="massageType === 'couple'">Masaj 1</h3>
+            <div v-for="filter in massageFilters.slice(2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
               <div class="d-flex my-2">
                 <button

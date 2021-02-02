@@ -92,6 +92,7 @@
   });
 
   $(document).on('click', '#sign-in', function(evt) {
+    console.log('sign in faszom');
     evt.preventDefault();
     // Modal Sign In
     $('#sign-in').magnificPopup({
@@ -242,6 +243,21 @@
     $('.owl-carousel').on('changed.owl.carousel', cb);
   };
 
+  window.showValidatePhoneModal = function() {
+    $('.modal_dialog').magnificPopup({
+      type: 'inline',
+      fixedContentPos: true,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
+      mainClass: 'my-mfp-zoom-in'
+    });
+  }
+
   window.initModal = function() {
     $('.modal_dialog').magnificPopup({
       type: 'inline',
@@ -274,19 +290,6 @@
   }
 
   window.initEase = function() {
-    // Sign in
-    $('#sign-in').magnificPopup({
-      type: 'inline',
-      fixedContentPos: true,
-      fixedBgPos: true,
-      overflowY: 'auto',
-      closeBtnInside: true,
-      preloader: false,
-      midClick: true,
-      removalDelay: 300,
-      closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
-      mainClass: 'my-mfp-zoom-in'
-    });
     // Lazy load
     var lazyLoadInstance = new LazyLoad({
       elements_selector: ".lazy"

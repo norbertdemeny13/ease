@@ -1,0 +1,244 @@
+//
+// @type component
+// @block modal
+// -----------------------------------------------
+
+.es-modal {
+  animation-duration: 200ms;
+  animation-name: fadeIn;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  backface-visibility: hidden;
+  background: rgba(get-color("neutral", 900), .7);
+  overflow-y: auto;
+  z-index: 1500;
+  display: flex;
+  flex-direction: row;
+  align-content: streesh;
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+//
+// @modifier xs
+// -----------------------------------------------
+
+.es-modal--xs {
+  #modal {
+    width: 400px;
+  }
+}
+
+//
+// @modifier sm
+// -----------------------------------------------
+
+.es-modal--sm {
+  #modal {
+    max-width: 600px;
+  }
+}
+
+//
+// @modifier md
+// -----------------------------------------------
+
+.es-modal--md {
+  #modal {
+    width: 800px;
+  }
+}
+
+//
+// @modifier lg
+// -----------------------------------------------
+
+.es-modal--lg {
+  #modal {
+    width: 1000px;
+  }
+}
+
+//
+// @modifier xl
+// -----------------------------------------------
+
+.es-modal--xl {
+  #modal {
+    width: 1200px;
+  }
+}
+
+//
+// @modifier fullscreen
+// -----------------------------------------------
+
+.es-modal--fullscreen {
+  #modal {
+    width: 90vw;
+  }
+
+  .es-modal__body {
+    height: 90vh;
+    max-height: 90vh;
+  }
+}
+
+//
+// @element close
+// -----------------------------------------------
+
+.es-modal__close {
+  position: absolute;
+
+  .es-modal--xs &,
+  .es-modal--sm &,
+  .es-modal--md &,
+  .es-modal--lg &,
+  .es-modal--xl & {
+    right: 13px;
+    top: 13px;
+  }
+
+  .es-modal--error &,
+  .es-modal--info &,
+  .es-modal--success &,
+  .es-modal--warning & {
+    top: 24px;
+  }
+
+  .es-modal--fullscreen & {
+    right: -19px;
+    top: -19px;
+  }
+}
+
+//
+// @element accent
+// -----------------------------------------------
+
+.es-modal__accent {
+  background-color: get-color("white");
+  height: 10px;
+}
+
+//
+// @element header
+// -----------------------------------------------
+
+.es-modal__header {
+  background: get-color("white");
+  padding: 16px 24px;
+}
+
+//
+// @element headline
+// -----------------------------------------------
+
+.es-modal__headline {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+//
+// @element body
+// -----------------------------------------------
+
+.es-modal__body {
+  background: get-color("white");
+  max-height: 60vh;
+  overflow: auto;
+  padding: 0 24px 16px 24px;
+}
+
+//
+// @element controls
+// -----------------------------------------------
+
+.es-modal__controls {
+  align-items: center;
+  background: get-color("white");
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+//
+// @element control-group
+// -----------------------------------------------
+
+.es-modal__control-group {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+//
+// @modifier borders
+// -----------------------------------------------
+
+.es-modal--borders {
+  .es-modal__header {
+    border-bottom: 1px solid get-color("neutral", 300);
+  }
+
+  .es-modal__controls {
+    border-top: 1px solid get-color("neutral", 300);
+  }
+
+  .es-modal__body {
+    padding: 24px;
+  }
+}
+
+//
+// @modifier error
+// -----------------------------------------------
+
+.es-modal--error {
+  .es-modal__accent {
+    background: get-color("error", 500);
+  }
+}
+
+//
+// @modifier warning
+// -----------------------------------------------
+
+.es-modal--warning {
+  .es-modal__accent {
+    background: get-color("warning", 500);
+  }
+}
+
+//
+// @modifier success
+// -----------------------------------------------
+
+.es-modal--success {
+  .es-modal__accent {
+    background: get-color("success", 500);
+  }
+}
+
+//
+// @modifier info
+// -----------------------------------------------
+
+.es-modal--info {
+  .es-modal__accent {
+    background: get-color("info", 500);
+  }
+}
+
+//
+// @component Reservation Modal
+//
+
+.es-modal .show-details {
+  display: none;
+}

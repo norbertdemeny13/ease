@@ -86,7 +86,7 @@
         const prices = [];
         this.getSelectedServices.forEach((item) => {
           item.prices.forEach((n, i) => {
-            if (prices[i]) {
+            if (prices[i] && item.category !== 'couple') {
               prices[i].price += parseInt(n.price, 10);
             } else {
               prices[i] = { ...n, price: parseInt(n.price, 10) };

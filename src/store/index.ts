@@ -1,17 +1,33 @@
+/* eslint-disable */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { api } from '@/services/api';
 import { Service } from '@/interfaces/Services';
 import { State } from './interfaces';
+import instance from '@/main';
+import { nanoid } from 'nanoid';
 
 Vue.use(Vuex);
 
-/* eslint-disable */
+const dispatchToast = (
+  { title, message }: {
+    title: string;
+    message: string;
+  },
+) => {
+  (instance as any).$toasts.toast({
+    id: nanoid(),
+    intent: 'error',
+    title,
+    message,
+  });
+};
 
 export const store = new Vuex.Store({
   state: {
     isAuth: false,
     isFetching: false,
+    isFetchingUser: false,
     massageInfo: { duration: 60, terapeut: 'single' },
     services: [],
     selectedServices: [],
@@ -28,6 +44,29 @@ export const store = new Vuex.Store({
     },
     removeSelectedServices(state) {
       Vue.set(state, 'selectedServices', []);
+    },
+    setErrors(state, reason) {
+      const { status, data } = reason;
+      const errors = data.errors ? data.errors : data.error;
+
+      if (typeof errors === 'string') {
+        dispatchToast({
+          title: 'Eroare',
+          message: errors,
+        });
+      } else {
+        const errorObject = [] as any;
+
+        Object.keys(errors).forEach((item: any) => errorObject.push({
+          key: item,
+          detail: errors[item][0],
+        }));
+
+        errorObject.forEach((item: any) => dispatchToast({
+          title: 'Eroare',
+          message: `${item.key}: ${item.detail}`,
+        }));
+      }
     },
 
     setMassageInfo(state, data) {
@@ -101,6 +140,9 @@ export const store = new Vuex.Store({
       Vue.set(state, 'serviceById', data);
     },
     setUser(state, data) {
+      if (data) {
+        localStorage.setItem('jwt', `Jh${data.refresh_token}`);
+      }
       Vue.set(state, 'user', data);
     },
   },
@@ -114,7 +156,9 @@ export const store = new Vuex.Store({
     getServicesByType: state => state.servicesByType,
     getServiceById: state => state.serviceById,
     isFetching: state => state.isFetching,
+    isFetchingUser: state => state.isFetchingUser,
     getUser: state => state.user,
+    getToken: state => state.user && state.user.access_token,
     isAuthenticated: ({ user }) => user && (user as any)?.access_token,
   },
   actions: {
@@ -179,15 +223,92 @@ export const store = new Vuex.Store({
         Vue.set(state, 'isFetching', false);
       }
     },
+    async jwtLogin({ state, commit }, jwt) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.update('/users/sessions', {
+          refresh_token: jwt.slice(2),
+        });
+        commit('setUser', data);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
     async login({ state, commit }, credentials) {
-      Vue.set(state, 'isFetching', true);
+      Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create('/users/sessions', {
           ...credentials,
         });
         commit('setUser', data);
       } finally {
-        Vue.set(state, 'isFetching', false);
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async forgotPassword({ state, commit }, email) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user/forgot_password', {
+          email,
+        });
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async resetPassword({ state, commit }, password) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user/reset_password', {
+          new_password: password,
+          token: state!.user!.access_token,
+        });
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async logout({ state, commit }) {
+      commit('setUser', null);
+    },
+    async signUp({ state, commit, dispatch }, credentials) {
+      const { email, password } = credentials;
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user', {
+          user: {
+            ...credentials,
+          },
+        });
+        dispatch('login', { email, password });
+      } catch ({ response: reason }) {
+        commit('setErrors', reason);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async requestValidationCode({ state, commit }, phone_number) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user/phone_number', {
+          phone_number,
+        });
+        commit('setUser', data);
+      } catch ({ response: reason }) {
+        commit('setErrors', reason);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async validatePhoneNumber({ state, commit }, code) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user/verify_code', {
+          code,
+        });
+        commit('setUser', data);
+      } catch ({ response: reason }) {
+        commit('setErrors', reason);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
       }
     },
     async officeRequest({ state }, user) {

@@ -1,0 +1,189 @@
+//
+// @type component
+// @block toasts
+// -----------------------------------------------
+
+.es-toasts {
+  position: fixed;
+  right: 24px;
+  top: 76px;
+  width: 400px;
+  z-index: 9999999999;
+}
+
+//
+// @element item
+// -----------------------------------------------
+
+.es-toasts__item {
+  list-style-type: none;
+
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+//
+// @transition slide-enter, slide-leave-to
+// -----------------------------------------------
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translate3d(150%, 0, 0);
+}
+
+//
+// @transition slide-enter-active, slide-leave-active
+// -----------------------------------------------
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+//
+// Component settings
+// -----------------------------------------------
+
+$es-toast-intent: (
+  "info": (
+    "accent-color": get-color("primary", 500),
+    "icon-color": get-color("primary", 500),
+    "icon-border-color": get-color("primary", 300),
+  ),
+  "error": (
+    "accent-color": get-color("error", 500),
+    "icon-color": get-color("error", 500),
+    "icon-border-color": get-color("error", 300),
+  ),
+  "success": (
+    "accent-color": get-color("success", 500),
+    "icon-color": get-color("success", 500),
+    "icon-border-color": get-color("success", 300),
+  ),
+  "warning": (
+    "accent-color": get-color("warning", 500),
+    "icon-color": get-color("warning", 500),
+    "icon-border-color": get-color("warning", 300),
+  ),
+);
+
+//
+// @type component
+// @block toast
+// -----------------------------------------------
+
+.es-toast {
+  background: get-color("white");
+  border-radius: 4px;
+  box-shadow: #{0 25px 50px -12px rgba(0, 0, 0, .25)};
+  position: relative;
+}
+
+//
+// @element accent
+// -----------------------------------------------
+
+.es-toast__accent {
+  border-radius: 4px 4px 0 0;
+  height: 6px;
+}
+
+//
+// @element wrapper
+// -----------------------------------------------
+
+.es-toast__wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+//
+// @element icon
+// -----------------------------------------------
+
+.es-toast__icon {
+  align-items: center;
+  background-color: get-color("white");
+  border-radius: 999px;
+  display: flex;
+  flex-shrink: 0;
+  height: 32px;
+  justify-content: center;
+  margin: 4px 4px 0 0;
+  width: 32px;
+}
+
+//
+// @element content
+// -----------------------------------------------
+
+.es-toast__content {
+  flex: 1;
+  padding: 0 16px;
+
+  .es-text {
+    word-break: break-word;
+  }
+}
+
+//
+// @element close
+// -----------------------------------------------
+
+.es-toast__close {
+  align-items: center;
+  background-color: get-color("white");
+  border: none;
+  color: inherit;
+  display: flex;
+  flex-shrink: 0;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+
+  &:focus {
+    outline: 1px solid get-color("primary", 500);
+    outline-offset: 4px;
+  }
+}
+
+//
+// @element close-icon
+// -----------------------------------------------
+
+.es-toast__close-icon {
+  color: get-color("neutral", 500);
+  cursor: pointer;
+  transition: color .25s ease;
+
+  &:hover {
+    color: get-color("neutral", 900);
+  }
+
+  > .es-icon {
+    display: block;
+  }
+}
+
+//
+// @modifiers {intent}
+// -----------------------------------------------
+
+@each $modifier, $intent in $es-toast-intent {
+  .es-toast--#{$modifier} {
+    .es-toast__accent {
+      background: get-value($intent, "accent-color");
+    }
+
+    .es-toast__icon {
+      box-shadow: 0 0 0 4px get-value($intent, "icon-border-color");
+      color: get-value($intent, "icon-color");
+    }
+  }
+}
+

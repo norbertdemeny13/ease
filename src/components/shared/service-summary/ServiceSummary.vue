@@ -10,6 +10,10 @@
         <li>Ora<span>{{ getHour }}</span></li>
       </ul>
       <hr>
+      <div v-if="getCategoryType() === 'couple'" class="d-flex justify-content-between align-items-center flex-inline">
+        <h3>Masaj Cuplu, {{ getSelectedServices[0].duration }} min</h3>
+        <h5>{{ time.price }} Ron</h5>
+      </div>
       <ul
         v-for="(item, index) in getLocalSelectedServices"
         :key="item.id"
@@ -18,7 +22,7 @@
         <span class="text-gray">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
           <h3>{{ item.name }}</h3>
-          <h5>{{ getServicePrice(item) }} Ron</h5>
+          <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Ron</h5>
         </div>
         <li
           v-for="service in item.services"
@@ -80,6 +84,7 @@
               id: item.id,
               uuid: item.uuid,
               prices: item.price,
+              massageType: item.massageType,
             };
           });
       },
@@ -104,16 +109,23 @@
         return total;
       },
     },
+
     methods: {
       removeService(item, service) {
         const itemId = item.uuid;
+        const itemType = item?.massageType;
         const serviceId = service.id;
         const selectedService = this.getSelectedServices
-          .filter(item => item.uuid === itemId)[0];
+          .filter(item => item.uuid === itemId && item.massageType === itemType)[0];
         const selectedComplementaryService = selectedService.complementary_services
           .filter(item => item.id === serviceId)[0];
         selectedComplementaryService.selectedCount = 0;
       },
+
+      getCategoryType() {
+        return this.getSelectedServices[0].category;
+      },
+
       getBeautyServices(service) {
         const services = service?.complementary_services || [];
         return services

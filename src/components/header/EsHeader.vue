@@ -27,14 +27,14 @@
                         {{ link.label }}
                       </router-link>
                     </li>
-                    <li><a href=""><i class="icon_key" />Iesi din cont</a></li>
+                    <li><a href="" @click.prevent="logout"><i class="icon_key" />Iesi din cont</a></li>
                   </ul>
                 </div>
               </div>
             </div>
             <!-- /dropdown -->
           </li>
-          <li v-else><a id="sign-in" href="#sign-in-dialog" class="login">Sign In</a></li>
+          <li v-else><a href="" class="login" @click.prevent="isLoginModalOpen = true">Sign In</a></li>
         </ul>
         <!-- /top_menu -->
         <a href="" class="open_close">
@@ -62,16 +62,30 @@
         </nav>
       </div>
     </header>
-    <es-login-modal />
+    <es-login-modal
+      v-if="isLoginModalOpen"
+      v-model="isLoginModalOpen"
+      @show-validate-phone-modal="isValidatePhoneModalOpen = true"
+      @show-forgot-password-modal="isForgotPasswordModalOpen = true"
+    />
+    <es-validate-phone-modal v-if="isValidatePhoneModalOpen" v-model="isValidatePhoneModalOpen" />
+    <es-forgot-password-modal
+      v-if="isForgotPasswordModalOpen"
+      v-model="isForgotPasswordModalOpen"
+      @show-reset-password-modal="isResetPasswordModalOpen = true"
+    />
+    <es-reset-password-modal v-if="isResetPasswordModalOpen" v-model="isResetPasswordModalOpen" />
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
-  import $ from 'jquery';
+  import { mapActions, mapGetters } from 'vuex';
   import { nanoid } from 'nanoid';
   import { LoginModal } from '@/components/login-modal';
+  import { ValidatePhoneModal } from '@/components/shared/validate-phone-modal';
+  import { ForgotPasswordModal } from '@/components/shared/forgot-password-modal';
+  import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
   import { NAVBAR_LINKS } from '@/constants/navbar-links';
 
   export default Vue.extend({
@@ -79,10 +93,17 @@
 
     components: {
       'es-login-modal': LoginModal,
+      'es-validate-phone-modal': ValidatePhoneModal,
+      'es-forgot-password-modal': ForgotPasswordModal,
+      'es-reset-password-modal': ResetPasswordModal,
     },
 
     data: () => ({
       isHomePage: false,
+      isLoginModalOpen: false,
+      isValidatePhoneModalOpen: false,
+      isForgotPasswordModalOpen: false,
+      isResetPasswordModalOpen: false,
     }),
 
     computed: {
@@ -105,15 +126,16 @@
       $route(to) {
         this.isHomePage = to.name === 'Home';
       },
-      isAuthenticated(newValue) {
-        if (newValue) {
-          ($ as any).magnificPopup.close();
-        }
-      },
     },
 
     mounted() {
       (window as any).initEase();
+    },
+
+    methods: {
+      ...mapActions({
+        logout: 'logout',
+      }),
     },
   });
 </script>

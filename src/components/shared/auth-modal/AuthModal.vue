@@ -1,12 +1,13 @@
 <template>
   <portal to="modal">
-    <div class="es-modal">
-      <div
-        id="sign-in-dialog"
-        class="container"
-      >
-        <div class="sign-in-wrapper">
-          <div class="form-group mt-4">
+    <es-modal
+      id="modal"
+      size="sm"
+      :on-dismiss="() => $emit('is-open', false)"
+    >
+      <div class="container es-login-modal mt-12">
+        <div id="es-modal-dialog" class="es-auth-modal p-5">
+          <div class="form-group">
             <label>Parola</label>
             <input
               id="auth-password"
@@ -28,7 +29,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </es-modal>
   </portal>
 </template>
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import { store } from '@/store';
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
     path: '/servicii',
     name: 'Servicii',
     component: () => import('@/views/services').then(({ Services }) => Services),
+  },
+  {
+    path: '/abonamente',
+    name: 'Abonamente',
+    component: () => import('@/views/subscriptions').then(({ Subscriptions }) => Subscriptions),
   },
   {
     path: '/companii',
@@ -96,9 +102,14 @@ export const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const { params, path } = to;
   const { type, id } = params;
-  const { isAuth, getSelectedServices, getLocation } = store.getters;
+  const { isAuth, getSelectedServices, getLocation, getToken } = store.getters;
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
+
+  if (!getToken && localStorage.getItem('jwt')) {
+    console.log('refresh the token pelase');
+    await store.dispatch('jwtLogin', localStorage.getItem('jwt'));
+  }
 
   if (path.includes('/servicii/') && hasLocation === 'null') {
     next('/servicii');

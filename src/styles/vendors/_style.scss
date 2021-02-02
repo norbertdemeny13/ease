@@ -4511,6 +4511,16 @@ header.black_nav .dropdown.user a:hover {
 }
 
 /*-------- 3.3 Buttons --------*/
+.btn-nav-pill {
+  border: 2px solid #b7b7b7;
+}
+
+.btn-nav-pill.active,
+.btn-nav-pill:hover, {
+  border: 2px solid #d00078;
+  color: #d00078;
+}
+
 a.btn_1,
 .btn_1 {
   border: none;
@@ -5886,7 +5896,7 @@ img.mfp-img {
 }
 
 /*-------- 3.7 Sing In Modal --------*/
-#sign-in-dialog {
+#es-modal-dialog {
   background: #fff;
   padding: 30px;
   padding-top: 0;
@@ -5902,7 +5912,7 @@ img.mfp-img {
 }
 
 /* Popup close button*/
-#sign-in-dialog .mfp-close,
+#es-modal-dialog .mfp-close,
 #modal-dialog .mfp-close {
   color: #666;
   background-color: #e4e4e4;
@@ -5916,13 +5926,13 @@ img.mfp-img {
   height: 32px;
   line-height: 32px;
 }
-#sign-in-dialog .mfp-close::before,
+#es-modal-dialog .mfp-close::before,
 #modal-dialog .mfp-close::before {
   font-size: 24px;
   font-family: 'ElegantIcons';
   content: "\4d";
 }
-#sign-in-dialog .mfp-close:hover,
+#es-modal-dialog .mfp-close:hover,
 #modal-dialog .mfp-close:hover {
   color: #fff;
   background-color: #66676b;
@@ -5951,11 +5961,11 @@ img.mfp-img {
   font-weight: 500;
 }
 
-#sign-in-dialog .form-group input.form-control {
+#es-modal-dialog .form-group input.form-control {
   padding-left: 40px;
 }
 
-#sign-in-dialog .form-group > i {
+#es-modal-dialog .form-group > i {
   font-size: 18px;
   font-size: 1.125rem;
   position: absolute;
@@ -5967,7 +5977,7 @@ img.mfp-img {
   display: block;
   font-weight: 400 !important;
 }
-#sign-in-dialog .form-group > i.icon_lock_alt {
+#es-modal-dialog .form-group > i.icon_lock_alt {
   top: 35px;
 }
 

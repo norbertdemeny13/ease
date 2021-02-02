@@ -5,6 +5,7 @@ import { Service } from '@/interfaces/Services';
 export interface State {
   isAuth: boolean;
   isFetching: boolean;
+  isFetchingUser: boolean;
   location: {
     city_id: number;
   } | null;

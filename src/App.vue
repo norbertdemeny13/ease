@@ -5,6 +5,7 @@
       <transition name="app_a-fade" mode="out-in">
         <router-view :key="$route.path" />
       </transition>
+      <es-toasts />
     </main>
     <es-footer />
     <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
