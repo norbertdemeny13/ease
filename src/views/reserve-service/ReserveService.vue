@@ -75,9 +75,9 @@
 
     computed: {
       ...mapGetters({
-        getServiceById: 'getServiceById',
-        getSelectedServices: 'getSelectedServices',
-        isAuthenticated: 'isAuthenticated',
+        getServiceById: 'services/getServiceById',
+        getSelectedServices: 'services/getSelectedServices',
+        isAuthenticated: 'session/isAuthenticated',
       }),
       getDays() {
         return getNextMonth();

@@ -40,8 +40,8 @@
 
     computed: {
       ...mapGetters({
-        getLocation: 'getLocation',
-        getLocationError: 'getLocationError',
+        getLocation: 'address/getLocation',
+        getLocationError: 'address/getLocationError',
       }),
     },
 
@@ -67,7 +67,7 @@
 
     methods: {
       ...mapActions({
-        fetchLocation: 'fetchLocation',
+        fetchLocation: 'address/fetchLocation',
       }),
       initLocationSearch() {
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);

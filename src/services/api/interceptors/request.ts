@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { AxiosRequestConfig } from 'axios';
 import { store } from '@/store';
 

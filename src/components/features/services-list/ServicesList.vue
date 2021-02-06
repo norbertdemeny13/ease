@@ -48,8 +48,8 @@
 
     computed: {
       ...mapGetters({
-        getLocation: 'getLocation',
-        getLocationError: 'getLocationError',
+        getLocation: 'address/getLocation',
+        getLocationError: 'address/getLocationError',
       }),
 
       showServices(): boolean {

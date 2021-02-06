@@ -15,9 +15,9 @@
           >
         </div>
         <div
-          class="d-flex justify-content-between align-items-center flex-inline"
           v-for="item in getComplementaryServices(service).services"
           :key="item.id"
+          class="d-flex justify-content-between align-items-center flex-inline"
         >
           <span>{{ item.selectedCount }} x {{ item.name }}</span>
           <span>{{ item.selectedCount * parseInt(item.price, 10) }} Lei</span>

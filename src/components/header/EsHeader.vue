@@ -68,7 +68,16 @@
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
       @show-forgot-password-modal="isForgotPasswordModalOpen = true"
     />
-    <es-validate-phone-modal v-if="isValidatePhoneModalOpen" v-model="isValidatePhoneModalOpen" />
+    <es-validate-phone-modal
+      v-if="isValidatePhoneModalOpen"
+      v-model="isValidatePhoneModalOpen"
+      @show-phone-confirmation-modal="isPhoneConfirmationModalOpen = true"
+    />
+    <es-phone-confirmation-modal
+      v-if="isPhoneConfirmationModalOpen"
+      v-model="isPhoneConfirmationModalOpen"
+      @show-validate-phone-modal="isValidatePhoneModalOpen = true"
+    />
     <es-forgot-password-modal
       v-if="isForgotPasswordModalOpen"
       v-model="isForgotPasswordModalOpen"
@@ -84,6 +93,7 @@
   import { nanoid } from 'nanoid';
   import { LoginModal } from '@/components/login-modal';
   import { ValidatePhoneModal } from '@/components/shared/validate-phone-modal';
+  import { PhoneConfirmationModal } from '@/components/shared/phone-confirmation-modal';
   import { ForgotPasswordModal } from '@/components/shared/forgot-password-modal';
   import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
   import { NAVBAR_LINKS } from '@/constants/navbar-links';
@@ -94,6 +104,7 @@
     components: {
       'es-login-modal': LoginModal,
       'es-validate-phone-modal': ValidatePhoneModal,
+      'es-phone-confirmation-modal': PhoneConfirmationModal,
       'es-forgot-password-modal': ForgotPasswordModal,
       'es-reset-password-modal': ResetPasswordModal,
     },
@@ -101,6 +112,7 @@
     data: () => ({
       isHomePage: false,
       isLoginModalOpen: false,
+      isPhoneConfirmationModalOpen: false,
       isValidatePhoneModalOpen: false,
       isForgotPasswordModalOpen: false,
       isResetPasswordModalOpen: false,
@@ -108,7 +120,7 @@
 
     computed: {
       ...mapGetters({
-        isAuthenticated: 'isAuthenticated',
+        isAuthenticated: 'session/isAuthenticated',
       }),
       getAuthNavLinks() {
         return NAVBAR_LINKS
@@ -134,7 +146,7 @@
 
     methods: {
       ...mapActions({
-        logout: 'logout',
+        logout: 'session/logout',
       }),
     },
   });

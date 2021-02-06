@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/subscriptions').then(({ Subscriptions }) => Subscriptions),
   },
   {
+    path: '/abonamente/:type',
+    name: 'Detalii Abonament',
+    component: () => import('@/views/subscription-details').then(({ SubscriptionDetails }) => SubscriptionDetails),
+  },
+  {
     path: '/companii',
     name: 'Companii',
     component: () => import('@/views/companies').then(({ Companies }) => Companies),
@@ -102,13 +107,16 @@ export const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const { params, path } = to;
   const { type, id } = params;
-  const { isAuth, getSelectedServices, getLocation, getToken } = store.getters;
+  const isAuth = store.getters['session/isAuth'];
+  const getSelectedServices = store.getters['services/getSelectedServices'];
+  const getLocation = store.getters['address/getLocation'];
+  const getToken = store.getters['session/getToken'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
+  const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
 
-  if (!getToken && localStorage.getItem('jwt')) {
-    console.log('refresh the token pelase');
-    await store.dispatch('jwtLogin', localStorage.getItem('jwt'));
+  if (!getToken && jwtToken) {
+    await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
   }
 
   if (path.includes('/servicii/') && hasLocation === 'null') {
@@ -129,7 +137,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
-    await store.dispatch('fetchServiceById', { type, id });
+    await store.dispatch('services/fetchServiceById', { type, id });
     next();
   }
 

@@ -141,11 +141,6 @@
   min-width: 164px;
 }
 
-.hero .opacity-mask h1,
-.hero .opacity-mask h3 {
-  color: #262626 !important;
-}
-
 .address-search-container input {
   width: 350px;
 }

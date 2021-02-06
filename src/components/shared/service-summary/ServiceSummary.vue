@@ -67,7 +67,7 @@
 
     computed: {
       ...mapGetters({
-        getSelectedServices: 'getSelectedServices',
+        getSelectedServices: 'services/getSelectedServices',
       }),
 
       getLocalSelectedServices() {

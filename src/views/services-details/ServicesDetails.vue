@@ -42,9 +42,9 @@
 
     computed: {
       ...mapGetters({
-        getServicesByType: 'getServicesByType',
-        getSelectedServices: 'getSelectedServices',
-        isFetching: 'isFetching',
+        getServicesByType: 'services/getServicesByType',
+        getSelectedServices: 'services/getSelectedServices',
+        isFetching: 'common/isFetching',
       }),
 
       services(): Record<any, any>[] {
@@ -59,7 +59,7 @@
 
     methods: {
       ...mapActions({
-        fetchServicesByType: 'fetchServicesByType',
+        fetchServicesByType: 'services/fetchServicesByType',
       }),
       getToRoute(id: string): string {
         const { path, params } = this.$router.currentRoute;

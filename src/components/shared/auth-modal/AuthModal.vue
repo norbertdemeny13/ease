@@ -16,7 +16,6 @@
               class="form-control"
               name="password"
             >
-            <i class="icon_lock_alt" />
           </div>
           <div class="text-center">
             <button
@@ -46,7 +45,7 @@
 
     methods: {
       ...mapActions({
-        setToken: 'setToken',
+        setToken: 'session/setToken',
       }),
 
       authenticate() {

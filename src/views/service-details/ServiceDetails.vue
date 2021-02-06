@@ -64,9 +64,9 @@
 
     computed: {
       ...mapGetters({
-        getServiceById: 'getServiceById',
-        getSelectedServices: 'getSelectedServices',
-        isFetching: 'isFetching',
+        getServiceById: 'services/getServiceById',
+        getSelectedServices: 'services/getSelectedServices',
+        isFetching: 'common/isFetching',
       }),
 
       canAddAdditionalServices() {
@@ -90,23 +90,23 @@
     },
 
     async created() {
-      await this.$store.commit('setSelectedService', { service: this.getServiceById, method: 'create' });
+      await this.$store.commit('services/setSelectedService', { service: this.getServiceById, method: 'create' });
     },
 
     methods: {
       onBack() {
         const { service } = this;
         this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
-        this.$store.commit('removeSelectedServices');
+        this.$store.commit('services/removeSelectedServices');
       },
       onCountChange() {
-        this.$store.commit('setSelectedService', { service: this.service, method: 'update' });
+        this.$store.commit('services/setSelectedService', { service: this.service, method: 'update' });
       },
       onContinue() {
         this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
       },
       onRemoveAdditionalService(service) {
-        this.$store.commit('removeSelectedService', service);
+        this.$store.commit('services/removeSelectedService', service);
       },
     },
   });

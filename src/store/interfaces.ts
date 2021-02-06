@@ -1,19 +1,6 @@
-/* eslint-disable */
-import { USER } from '@/interfaces/user';
-import { Service } from '@/interfaces/Services';
+/* eslint-disable-next-line @typescript-eslint/no-empty-interface */
+export interface RootState {}
 
-export interface State {
-  isAuth: boolean;
-  isFetching: boolean;
-  isFetchingUser: boolean;
-  location: {
-    city_id: number;
-  } | null;
-  locationError: boolean;
-  massageInfo: { duration: number; terapeut: string };
-  services: Service[];
-  selectedServices: Service[];
-  servicesByType: Service[];
-  serviceById: any;
-  user: USER | null;
+export interface ModuleState {
+  isFetching?: boolean;
 }

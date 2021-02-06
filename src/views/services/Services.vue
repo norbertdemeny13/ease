@@ -30,9 +30,9 @@
 
     computed: {
       ...mapGetters({
-        getLocation: 'getLocation',
-        getServices: 'getServices',
-        isFetching: 'isFetching',
+        getLocation: 'address/getLocation',
+        getServices: 'services/getServices',
+        isFetching: 'common/isFetching',
       }),
     },
 
@@ -48,7 +48,7 @@
 
     created() {
       this.fetchServices();
-      this.$store.commit('removeSelectedServices');
+      this.$store.commit('services/removeSelectedServices');
     },
 
     mounted() {
@@ -57,7 +57,7 @@
 
     methods: {
       ...mapActions({
-        fetchServices: 'fetchServices',
+        fetchServices: 'services/fetchServices',
       }),
     },
   });

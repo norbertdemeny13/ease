@@ -7,7 +7,7 @@ import Portal from 'portal-vue';
 import '@/styles/main.scss';
 
 // Third parties
-import '@fortawesome/fontawesome-free/js/all';
+// import '@fortawesome/fontawesome-free/js/all';
 
 // Plugins
 import { ToastPlugin } from '@/plugins/toast';

@@ -31,7 +31,7 @@
 
     computed: {
       ...mapGetters({
-        getLocation: 'getLocation',
+        getLocation: 'address/getLocation',
       }),
       hasAddress(): boolean {
         return this.getLocation && !this.changeAddress;

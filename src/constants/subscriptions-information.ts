@@ -1,135 +1,86 @@
 export const SUBSCRIPTIONS_INFORMATION = [
   {
-    type: 'massage',
-    content: [
+    value: 'monthly',
+    filterKey: 'lunar',
+    label: 'Lunar',
+    subscriptionList: [
       {
-        interval: 'monthly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare luna',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
+        type: 'masaj',
+        label: 'Masaj',
+        price: '200',
+        discount: '20%',
+        priceBeforeDiscount: '240 Ron',
+        benefits: [
+          'Plata lunara pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
         ],
       },
       {
-        interval: 'yearly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare an',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'beauty',
-    content: [
-      {
-        interval: 'monthly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare luna',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
+        type: 'beauty',
+        label: 'Beauty',
+        price: '200',
+        discount: '20%',
+        priceBeforeDiscount: '240 Ron',
+        benefits: [
+          'Plata lunara pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
         ],
       },
       {
-        interval: 'yearly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare luna',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
+        type: 'fitness',
+        label: 'Fitness',
+        price: '200',
+        discount: '20%',
+        priceBeforeDiscount: '240 Ron',
+        benefits: [
+          'Plata lunara pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
         ],
       },
     ],
   },
   {
-    type: 'fitness',
-    content: [
+    value: 'yearly',
+    label: 'Anual',
+    filterKey: 'anual',
+    subscriptionList: [
       {
-        interval: 'monthly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare luna',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
+        type: 'masaj',
+        label: 'Masaj',
+        price: '2000',
+        discount: '20%',
+        priceBeforeDiscount: '2400 Ron',
+        benefits: [
+          'Plata anuala pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
         ],
       },
       {
-        interval: 'yearly',
-        info: [
-          {
-            label: 'Platesti pentru o sedinta de masaj cu 20% discount in fiecare luna',
-          },
-          {
-            label: 'Beneficiezi de discountul de 20% la oricate masaje rezervi pe langa sedinta inclusa la abonament',
-          },
-          {
-            label: 'Rezerva fiecare sedinta lunara inclusa la abonament alegand orice tip de masaj doresti: suedez, profund, sport, anticelulitic, de relaxare, reflexogen sau prenatal',
-          },
-          {
-            label: 'Sedintele de masaj incluse la abonament nu expira',
-          },
-          {
-            label: 'Rezerva masajul inclus la abonament cand doresti, unde doresti, fara costuri suplimentare',
-          },
+        type: 'beauty',
+        label: 'Beauty',
+        price: '2000',
+        discount: '20%',
+        priceBeforeDiscount: '2400 Ron',
+        benefits: [
+          'Plata anuala pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
+        ],
+      },
+      {
+        type: 'fitness',
+        label: 'Fitness',
+        price: '2000',
+        discount: '20%',
+        priceBeforeDiscount: '2400 Ron',
+        benefits: [
+          'Plata anuala pentru o sedinta de masaj',
+          'Poti anula abonamentul gratuit, oricand',
+          'Ceva text aici',
         ],
       },
     ],

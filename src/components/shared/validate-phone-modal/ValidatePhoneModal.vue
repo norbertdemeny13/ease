@@ -16,31 +16,24 @@
             <div class="validate-phone-wrapper">
               <div class="form-group">
                 <label>Introdu numarul de telefon</label>
-                <input
-                  id="phone"
+                <es-phone-number-input
                   v-model="phone_number"
-                  type="text"
-                  class="form-control"
+                  id="phone"
+                  :required="true"
+                  :translations="translations"
                   name="phone"
-                >
-                <i class="icon_phone" />
-              </div>
-              <div v-if="phone_number && phone_number.length > 9" class="text-left my-2">
-                <input
-                  type="text"
-                  value="Trimite"
-                  class="btn_1 px-0"
-                  @click.prevent="requestPhoneNumberValidationCode()"
+                  default-country-code="RO"
+                  clearable
+                  color="#ced4da"
+                  :no-example="true"
+                  @update="onPhoneNumberUpdate($event)"
                 />
               </div>
-              <div v-if="sentSMS" class="form-group">
-                <label>Introdu codul trimis la: {{ phone_number }}</label>
-                <input type="text" required class="form-control" name="phone" id="phone" v-model="validationCode">
-                <i class="icon_key_alt" />
-              </div>
-              <div v-if="sentSMS" class="d-flex justify-content-between">
-                <input type="text" value="Confirma" class="btn_1 px-0" @click.prevent="requestValidatePhoneNumber()"/>
-                <input type="text" value="Retrimite cod" class="btn_1 px-0" @click.prevent="requestPhoneNumberValidationCode()" />
+              <div class="text-left my-2">
+                <button
+                  class="btn_1"
+                  @click.prevent="requestPhoneNumberValidationCode()"
+                >Trimite</button>
               </div>
             </div>
           <!--form -->
@@ -55,13 +48,13 @@
   /* eslint-disable */
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { Loading } from '@/components/shared/loading';
+  import VuePhoneNumberInput from 'vue-phone-number-input';
 
   export default Vue.extend({
     name: 'es-validate-phone-modal',
 
     components: {
-      'es-loading': Loading,
+      'es-phone-number-input': VuePhoneNumberInput,
     },
 
     model: {
@@ -76,27 +69,54 @@
       },
     },
 
+    computed: {
+      ...mapGetters({ getUser: 'session/getUser' }),
+    },
+
     data: () => ({
-      sentSMS: false,
       phone_number: null,
-      validationCode: null,
+      formattedPhoneNumber: null,
+      translations: {
+        countrySelectorLabel: 'Codul tarii',
+        countrySelectorError: 'Va rugam selectati',
+        phoneNumberLabel: 'Numarul de telefon',
+        example: 'Exemplu:'
+      },
     }),
+
+    watch: {
+      getUser(newVal) {
+        if (newVal.phone_number) {
+          this.$emit('show-phone-confirmation-modal', true);
+          this.$emit('is-open', false);
+        }
+      },
+    },
 
     methods: {
       ...mapActions({
-        requestValidationCode: 'requestValidationCode',
-        validatePhoneNumber: 'validatePhoneNumber',
+        requestValidationCode: 'session/requestValidationCode',
       }),
 
-      async requestPhoneNumberValidationCode() {
-        await this.requestValidationCode(this.phone_number);
-        this.sentSMS = true;
+      onPhoneNumberUpdate(evt: any) {
+        this.formattedPhoneNumber = evt.formattedNumber;
       },
 
-      async requestValidatePhoneNumber() {
-        await this.validatePhoneNumber(this.validationCode);
-        this.$emit('is-open', false);
+      async requestPhoneNumberValidationCode() {
+        await this.requestValidationCode(this.formattedPhoneNumber);
       },
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  .select-country-container:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: none !important;
+  }
+
+  .country-selector__input {
+    border: none !important;
+  }
+</style>

@@ -111,11 +111,11 @@
 
     computed: {
       ...mapGetters({
-        getServicesByType: 'getServicesByType',
-        getServiceById: 'getServiceById',
-        getSelectedServices: 'getSelectedServices',
-        getMassageInfo: 'getMassageInfo',
-        isFetching: 'isFetching',
+        getServicesByType: 'services/getServicesByType',
+        getServiceById: 'services/getServiceById',
+        getSelectedServices: 'services/getSelectedServices',
+        getMassageInfo: 'services/getMassageInfo',
+        isFetching: 'services/isFetching',
       }),
 
       massageFilters() {
@@ -253,8 +253,8 @@
 
     methods: {
       ...mapActions({
-        fetchServicesByType: 'fetchServicesByType',
-        fetchServiceById: 'fetchServiceById',
+        fetchServicesByType: 'services/fetchServicesByType',
+        fetchServiceById: 'services/fetchServiceById',
       }),
       setValue(key, value) {
         this.massageForm[key] = value;
@@ -274,8 +274,8 @@
           massageForm: this.massageForm,
           prices: this.getServiceById.prices,
         };
-        this.$store.commit('setSelectedMassageService', { service: selectedService, type: massageType });
-        this.$store.commit('setMassageInfo', { terapeut, duration });
+        this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
+        this.$store.commit('services/setMassageInfo', { terapeut, duration });
 
         if (massageType === 'single') {
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);

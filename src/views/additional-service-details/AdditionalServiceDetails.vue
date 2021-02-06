@@ -48,9 +48,9 @@
 
     computed: {
       ...mapGetters({
-        getServiceById: 'getServiceById',
-        getSelectedServices: 'getSelectedServices',
-        isFetching: 'isFetching',
+        getServiceById: 'services/getServiceById',
+        getSelectedServices: 'services/getSelectedServices',
+        isFetching: 'services/isFetching',
       }),
 
       service() {
@@ -71,7 +71,7 @@
     methods: {
       onContinue() {
         const { service } = this;
-        this.$store.commit('setSelectedService', { service, method: 'update' });
+        this.$store.commit('services/setSelectedService', { service, method: 'update' });
         this.$router.push(this.getToRoute);
       },
     },

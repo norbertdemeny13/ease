@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <div>
     <es-header />
@@ -9,7 +10,7 @@
     </main>
     <es-footer />
     <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
-    <portal-target name="modal" />
+    <portal-target name="modal" multiple />
   </div>
 </template>
 
@@ -35,7 +36,7 @@
 
     computed: {
       ...mapGetters({
-        isAuth: 'isAuth',
+        isAuth: 'session/isAuth',
       }),
     },
 

@@ -15,12 +15,9 @@
           </div>
           <form>
             <div v-if="isSignIn" class="sign-in-wrapper">
-              <a href="" class="social_bt facebook">Autentifica-te cu Facebook</a>
-              <div class="divider"><span>Sau</span></div>
               <div class="form-group">
                 <label>Email</label>
                 <input type="email" class="form-control" name="email" id="email" v-model="form.email">
-                <i class="icon_mail_alt" />
               </div>
               <div class="form-group">
                   <label>Parola</label>
@@ -33,7 +30,6 @@
                   >
                   <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
                   <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
-                  <i class="icon_lock_alt" />
               </div>
               <div class="clearfix add_bottom_15">
                 <div class="checkboxes float-left">
@@ -55,14 +51,10 @@
                 </div>
             </div>
             <div v-else class="sign-up-wrapper">
-              <es-loading v-if="isFetchingUser" />
-              <div v-else>
-                <a href="" class="social_bt facebook">Autentifica-te cu Facebook</a>
-                <div class="divider"><span>Sau</span></div>
+              <div>
                 <div class="form-group">
                   <label>Email</label>
                   <input type="email" required class="form-control" name="email" id="email" v-model="form.email">
-                  <i class="icon_mail_alt" />
                 </div>
                 <div class="form-group">
                   <label>Prenume</label>
@@ -83,7 +75,6 @@
                   >
                     <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
                     <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
-                  <i class="icon_lock_alt" />
                 </div>
                 <div class="clearfix add_bottom_15">
                   <div class="checkboxes float-left">
@@ -129,14 +120,9 @@
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { nanoid } from 'nanoid';
-  import { Loading } from '@/components/shared/loading';
 
   export default Vue.extend({
     name: 'es-login-modal',
-
-    components: {
-      'es-loading': Loading,
-    },
 
     model: {
       prop: 'is-open',
@@ -164,35 +150,24 @@
 
     computed: {
       ...mapGetters({
-        getUser: 'getUser',
-        getToken: 'getToken',
-        isFetchingUser: 'isFetchingUser',
+        getUser: 'session/getUser',
+        isFetchingUser: 'session/isFetchingUser',
       }),
     },
 
     watch: {
-      getToken(newVal) {
-        if (newVal) {
-          (this as any).$toasts.toasts.push({
-            id: nanoid(),
-            intent: 'success',
-            title: 'Felicitari!',
-            message: 'Crearea contului s-a realizat cu success!',
-          });
-        }
-      },
       getUser(newVal) {
+        this.$emit('is-open', false);
         if (!newVal.phone_number_confirmed) {
           this.$emit('show-validate-phone-modal', true);
         }
-        this.$emit('is-open', false);
       },
     },
 
     methods: {
       ...mapActions({
-        login: 'login',
-        signUp: 'signUp',
+        login: 'session/login',
+        signUp: 'session/signUp',
       }),
 
       async onSubmit() {
@@ -205,6 +180,7 @@
 
       onForgotPassword() {
         this.$emit('show-forgot-password-modal', true);
+        this.$emit('is-open', false);
       },
     },
   });

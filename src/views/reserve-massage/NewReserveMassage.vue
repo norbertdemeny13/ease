@@ -111,11 +111,11 @@
 
     computed: {
       ...mapGetters({
-        getServicesByType: 'getServicesByType',
-        getServiceById: 'getServiceById',
-        getSelectedServices: 'getSelectedServices',
-        isFetching: 'isFetching',
-        getMassageInfo: 'getMassageInfo',
+        getServicesByType: 'services/getServicesByType',
+        getServiceById: 'services/getServiceById',
+        getSelectedServices: 'services/getSelectedServices',
+        isFetching: 'services/isFetching',
+        getMassageInfo: 'services/getMassageInfo',
       }),
 
       massageFilters() {
@@ -255,8 +255,8 @@
 
     methods: {
       ...mapActions({
-        fetchServicesByType: 'fetchServicesByType',
-        fetchServiceById: 'fetchServiceById',
+        fetchServicesByType: 'services/fetchServicesByType',
+        fetchServiceById: 'services/fetchServiceById',
       }),
       setValue(key, value) {
         this.massageForm[key] = value;
@@ -276,7 +276,7 @@
           massageForm: this.massageForm,
           prices: this.getServiceById.prices,
         };
-        this.$store.commit('setSelectedMassageService', { service: selectedService, type: massageType });
+        this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
       },
     },
