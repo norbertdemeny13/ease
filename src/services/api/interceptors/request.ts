@@ -7,7 +7,7 @@ export default (request: AxiosRequestConfig) => {
   /* eslint-disable no-param-reassign */
   request.baseURL = 'https://ease-be.herokuapp.com/api/v1';
 
-  const token = store.getters.getToken;
+  const token = store.getters['session/getToken'];
 
   if (token) {
     request.headers = {

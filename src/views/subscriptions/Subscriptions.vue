@@ -121,7 +121,6 @@
         const el = this.$el.getElementsByClassName('pricing-plan-container')[0];
 
         if (el) {
-          // Use el.scrollIntoView() to instantly scroll to the element
           el.scrollIntoView({ behavior: 'smooth' });
         }
       }

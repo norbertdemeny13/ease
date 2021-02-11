@@ -48,7 +48,6 @@
     </div>
     <!-- /container -->
   </div>
-  <!-- /bg_gray -->
 </template>
 
 <script>

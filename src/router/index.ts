@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/subscriptions').then(({ Subscriptions }) => Subscriptions),
   },
   {
+    path: '/abonamente/rezerva',
+    name: 'Rezerva Abonamente',
+    component: () => import('@/views/subscription-payment').then(({ SubscriptionPayment }) => SubscriptionPayment),
+  },
+  {
     path: '/abonamente/:type',
     name: 'Detalii Abonament',
     component: () => import('@/views/subscription-details').then(({ SubscriptionDetails }) => SubscriptionDetails),

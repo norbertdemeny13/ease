@@ -3,10 +3,12 @@ import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './interfaces';
 import instance from '@/main';
-import session from './modules/session';
-import services from './modules/services';
 import address from './modules/address';
+import cards from './modules/cards';
 import common from './modules/common';
+import services from './modules/services';
+import session from './modules/session';
+import subscriptions from './modules/subscriptions';
 import { nanoid } from 'nanoid';
 
 const dispatchToast = (
@@ -28,10 +30,12 @@ Vue.use(Vuex);
 const options: StoreOptions<RootState> = {
   state: {},
   modules: {
+    cards,
     common,
     address,
-    services,
     session,
+    services,
+    subscriptions,
   },
 };
 

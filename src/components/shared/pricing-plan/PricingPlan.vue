@@ -25,22 +25,12 @@
           :aria-labelledby="`${subscription.value}-tab`"
         >
           <div class="row">
-            <div v-for="item in subscription.subscriptionList" :key="item.type" class="col-md-4">
-              <div class="card pricing-card">
-                <div class="card-body">
-                  <h3 class="pricing-plan-title d-flex align-items-center">{{ item.label }}<span class="badge badge-pill offer-badge ml-auto">{{ item.discount }}</span></h3>
-                  <p class="h1 pricing-plan-original-cost"><del>{{ item.priceBeforeDiscount }}</del></p>
-                  <p class="h1 pricing-plan-cost">{{ item.price }}<span class="currency"> Ron</span></p>
-                  <ul class="pricing-plan-features">
-                    <li v-for="(benefit, i) in item.benefits" :key="`${item.type}-${i}`"><i class="icon_check" />5GB file storage</li>
-                  </ul>
-                  <a href="#" class="btn pricing-plan-purchase-btn" @click.prevent="$router.push(`/abonamente/${item.type}?tip=${subscription.filterKey}`)">Alege</a>
-                  <div class="text-center">
-                    <a href="#" class="pricing-plan-link">Afla mai multe</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <es-pricing-plan-card
+              v-for="item in subscription.subscriptionList"
+              :key="item.type"
+              :item="item"
+              :to="`/abonamente/${item.type}?tip=${subscription.filterKey}`"
+            />
           </div>
         </div>
       </div>
@@ -50,9 +40,14 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import PricingPlanCard from './PricingPlanCard.vue';
 
   export default Vue.extend({
     name: 'es-pricing-plan',
+
+    components: {
+      'es-pricing-plan-card': PricingPlanCard,
+    },
 
     props: {
       showTitle: {
