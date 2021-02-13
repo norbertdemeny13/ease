@@ -309,7 +309,7 @@
   }
 }
 
-.subscription-details-container {
+.es_subscription-details-container {
   & .has-filters {
     display: flex;
     flex-direction: column;
