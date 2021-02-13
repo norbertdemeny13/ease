@@ -16,14 +16,12 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { AddressBar } from '@/components/features/address-bar';
   import { ServicesList, ServicesListSkeleton } from '@/components/features/services-list';
 
   export default Vue.extend({
     name: 'es-services',
 
     components: {
-      'es-address-bar': AddressBar,
       'services-list': ServicesList,
       'services-list-skeleton': ServicesListSkeleton,
     },

@@ -113,6 +113,7 @@ router.beforeEach(async (to, from, next) => {
   const { params, path } = to;
   const { type, id } = params;
   const isAuth = store.getters['session/isAuth'];
+  const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
   const getSelectedServices = store.getters['services/getSelectedServices'];
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
@@ -126,6 +127,14 @@ router.beforeEach(async (to, from, next) => {
 
   if (path.includes('/servicii/') && hasLocation === 'null') {
     next('/servicii');
+  }
+
+  if (path.includes('abonamente/rezerva') && !getSelectedSubscription) {
+   next('/abonamente');
+  }
+
+  if (path.includes('/abonamente/rerzerva') && !getToken && !jwtToken) {
+    next('/abonamente');
   }
 
   if (isNew && !getSelectedServices.length) {
@@ -146,7 +155,7 @@ router.beforeEach(async (to, from, next) => {
     next();
   }
 
-  if (isAuth) {
+  if (!isAuth) {
     next();
   }
 });

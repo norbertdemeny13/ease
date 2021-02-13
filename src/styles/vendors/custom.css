@@ -154,11 +154,13 @@
   border: none;
 }
 
-.es_services-list-container {
+.es_services-list-container,
+.es_subscriptions-list-container {
   position: relative;
 }
 
-.es_services-list-container.disabled::after {
+.es_services-list-container.disabled::after,
+.es_subscriptions-list-container.disabled::after, {
   background-color: hsla(0,0%,100%,.7);
   bottom: 0;
   content: "";
@@ -319,7 +321,7 @@
 
     .choices-container {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
 
       button {
         margin-bottom: 8px;

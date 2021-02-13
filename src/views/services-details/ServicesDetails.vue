@@ -28,14 +28,12 @@
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesListSkeleton } from '@/components/features/services-list';
-  import { AddressBar } from '@/components/features/address-bar';
   import { ServicesListItem } from '@/components/features/services-list-item';
 
   export default Vue.extend({
     name: 'es-services-details',
 
     components: {
-      'es-address-bar': AddressBar,
       'services-list-item': ServicesListItem,
       'services-list-skeleton': ServicesListSkeleton,
     },

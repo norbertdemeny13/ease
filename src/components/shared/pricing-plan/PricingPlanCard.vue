@@ -8,8 +8,7 @@
         <ul class="pricing-plan-features">
           <li v-for="(benefit, i) in item.benefits" :key="`${item.type}-${i}`"><i class="icon_check" />{{ benefit }}</li>
         </ul>
-        <a v-if="to" href="" class="btn pricing-plan-purchase-btn" @click.prevent="$router.push(to)">Alege</a>
-        <a v-else href="" class="btn pricing-plan-purchase-btn" @click.prevent="$emit('on-select', item)">Alege</a>
+        <a href="" class="btn pricing-plan-purchase-btn" @click.prevent="onSelect()">Alege</a>
         <div class="text-center">
           <a href="" class="pricing-plan-link" @click.prevent="isModalOpen = true">Afla mai multe</a>
         </div>
@@ -25,6 +24,7 @@
 
 <script lang="ts">
   import Vue, { PropType } from 'vue';
+  import { mapGetters } from 'vuex';
   import { SubscriptionBenefitsModal } from '@/components/shared/subscription-benefits-modal';
 
   export default Vue.extend({
@@ -52,5 +52,21 @@
     data: () => ({
       isModalOpen: false,
     }),
+
+    computed: {
+      ...mapGetters({
+        isAuthenticated: 'session/isAuthenticated',
+      }),
+    },
+
+    methods: {
+      onSelect() {
+        if (this.to) {
+          this.$router.push(this.to);
+        } else {
+          this.$emit('on-select', this.item);
+        }
+      },
+    },
   });
 </script>

@@ -1,40 +1,36 @@
 <template>
-  <div class="subscription-details-container">
+  <div class="es_subscription-details-container">
     <div class="container margin_30_20">
       <a href="" class="back-button mb-2" @click.prevent="onBack">Inapoi</a>
       <div class="main_title center">
         <h2 v-if="!fetchedSubscription">Alege un abonament</h2>
       </div>
+      <es-address-bar />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
-      <div v-else>
-        <div v-if="!getSubscriptionsInformation.length">
-          <p>Ne pare rau dar acest tip de abonament nu este disponibil</p>
-        </div>
-        <div v-else :class="`row ${fetchedSubscription ? 'has-filters' : ''}`">
-          <div v-if="fetchedSubscription" class="form-group col-md-4">
-            <h3>{{ getFilter.title }}</h3>
-            <label>{{ getFilter.description }}</label>
-            <div class="choices-container d-flex my-2">
-              <button
-                v-for="choice in getFilter.choices"
-                :key="choice.value"
-                :class="`${getFilter.choices.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === duration ? 'active' : ''}`"
-                @click="setValue(choice.key, choice.value)"
-              >
-                {{ choice.label }}
-              </button>
-            </div>
+      <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
+        <div v-if="fetchedSubscription" class="form-group col-md-4">
+          <h3>{{ getFilter.title }}</h3>
+          <label>{{ getFilter.description }}</label>
+          <div class="choices-container d-flex my-2">
+            <button
+              v-for="choice in getFilter.choices"
+              :key="choice.value"
+              :class="`${getFilter.choices.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === duration ? 'active' : ''}`"
+              @click="setValue(choice.key, choice.value)"
+            >
+              {{ choice.label }}
+            </button>
           </div>
-          <es-pricing-plan-card
-            v-for="card in getSubscriptionsInformation"
-            :key="card.id"
-            :item="card"
-            :benefits="getBenefits"
-            :show-title="false"
-            @on-select="onSelect($event)"
-          />
         </div>
+        <es-pricing-plan-card
+          v-for="card in getSubscriptionsInformation"
+          :key="card.id"
+          :item="card"
+          :benefits="getBenefits"
+          :show-title="false"
+          @on-select="onSelect($event)"
+        />
       </div>
     </div>
     <!-- /container -->
@@ -75,8 +71,25 @@
     computed: {
       ...mapGetters({
         getSubscriptions: 'subscriptions/getSubscriptions',
+        isAuthenticated: 'session/isAuthenticated',
         isFetching: 'subscriptions/isFetching',
+        getLocation: 'address/getLocation',
+        getLocationError: 'address/getLocationError',
       }),
+
+      showSubscriptions(): boolean {
+        const cityId = sessionStorage.getItem('city_id');
+        const addressFromStorage = cityId === 'null' ? null : cityId;
+
+        const location = this.getLocation
+          ? this.getLocation
+          : addressFromStorage;
+
+        return this.getLocationError
+          ? false
+          : location;
+      },
+
       getBenefits() {
         return BENEFITS;
       },
@@ -120,6 +133,12 @@
         this.fetchedSubscription = false;
       },
       onSelect(subscription: any): void {
+
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
+
         const { type } = subscription;
         if (this.fetchedSubscription) {
           this.$store.commit('subscriptions/setSelectedSubscription', subscription);

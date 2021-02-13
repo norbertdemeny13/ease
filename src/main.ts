@@ -7,7 +7,10 @@ import Portal from 'portal-vue';
 import '@/styles/main.scss';
 
 // Third parties
-// import '@fortawesome/fontawesome-free/js/all';
+import '@fortawesome/fontawesome-free/js/all';
+
+// FontAwesomeIcon
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // Plugins
 import { ToastPlugin } from '@/plugins/toast';
@@ -20,8 +23,10 @@ import './vendors/common_func';
 // Shared components
 import { Skeleton } from '@/components/shared/skeleton';
 import { SkeletonItem } from '@/components/shared/skeleton-item';
+import { AddressBar } from '@/components/features/address-bar';
 import { Toast } from '@/components/shared/toast';
 import { Modal } from '@/components/shared/modal';
+import { Icon } from '@/components/shared/icon';
 
 // Router and Store
 import { router } from './router';
@@ -35,10 +40,13 @@ Vue.config.productionTip = false;
 Vue.use(Portal);
 Vue.use(ToastPlugin);
 
+Vue.component('es-address-bar', AddressBar);
 Vue.component('es-modal', Modal);
 Vue.component('es-skeleton', Skeleton);
 Vue.component('es-skeleton-item', SkeletonItem);
 Vue.component('es-toast', Toast);
+Vue.component('es-icon', Icon);
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 export default new Vue({
   router,

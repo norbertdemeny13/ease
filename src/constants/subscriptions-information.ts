@@ -95,18 +95,6 @@ export const SUBSCRIPTIONS_INFORMATION = [
           'Ceva text aici',
         ],
       },
-      {
-        type: 'fitness',
-        label: 'Fitness',
-        price: '2000',
-        discount: '20',
-        priceBeforeDiscount: '2400 Ron',
-        benefits: [
-          'Plata anuala pentru o sedinta de masaj',
-          'Poti anula abonamentul gratuit, oricand',
-          'Ceva text aici',
-        ],
-      },
     ],
   },
 ];

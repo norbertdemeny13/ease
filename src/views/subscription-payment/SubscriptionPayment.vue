@@ -23,8 +23,8 @@
         <div class="col-lg-6 col-md-6 p-8">
           <div v-if="!showAddPayment">
             <h5>Metoda de plata</h5>
-            <p>Selecteaza metoda de plata</p>
             <div v-if="selectedCard.length">
+              <p>Selecteaza metoda de plata</p>
               <div class="payment_select">
                 <label class="container_radio">{{ selectedCard[0].number }}</label>
                 <i class="icon_creditcard" />
@@ -35,7 +35,10 @@
               Adauga metoda de plata
             </a>
           </div>
-          <es-payment v-else class="mt-4" @on-add-card="onAddCard" />
+          <div v-else>
+            <h5>Te rugam sa introduci datele</h5>
+            <es-payment class="mt-4" @on-add-card="onAddCard" />
+          </div>
           <div class="d-flex justify-content-center">
             <a
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"

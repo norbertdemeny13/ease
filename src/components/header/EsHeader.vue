@@ -142,6 +142,15 @@
 
     mounted() {
       (window as any).initEase();
+      this.$root.$on('on-show-login', () => {
+        this.isLoginModalOpen = true;
+        (this as any).$toasts.toast({
+          id: 'login-toast',
+          intent: 'info',
+          title: 'Action required',
+          message: 'Please login or signup before continue',
+        });
+      });
     },
 
     methods: {
