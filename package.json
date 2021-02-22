@@ -19,6 +19,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@stripe/stripe-js": "^1.12.1",
     "@types/jquery": "^3.5.5",
     "axios": "^0.21.0",
     "bootstrap": "^4.6.0",
@@ -27,7 +28,6 @@
     "date-fns-tz": "1.0.10",
     "date-time-format-timezone": "1.0.21",
     "vue": "^2.6.11",
-    "vue-credit-card-validation": "^0.1.10",
     "vue-phone-number-input": "^1.1.10",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

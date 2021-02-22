@@ -4180,7 +4180,7 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(41, 124, 187, 0.25);
 }
 
-.btn.disabled, .btn:disabled {
+.btn.disabled, .btn:disabled, a:disabled {
   opacity: 0.65;
   cursor: no-drop;
 }

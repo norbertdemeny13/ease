@@ -84,7 +84,7 @@ export default {
         });
         dispatch('login', { email, password });
       } catch ({ response: reason }) {
-        commit('setErrors', reason);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -98,12 +98,12 @@ export default {
 
         const newData = {
           ...state.user,
-          phone_number: data.phone_number,
+          phone_number,
         };
 
         commit('setUser', newData);
       } catch ({ response: reason }) {
-        commit('setErrors', reason);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -113,6 +113,7 @@ export default {
       try {
         const { data } = await api.create('/user/verify_code', {
           code,
+          phone_number: state.user.phone_number,
         });
         const newData = {
           ...state.user,
@@ -120,7 +121,7 @@ export default {
         };
         commit('setUser', newData);
       } catch ({ response: reason }) {
-        commit('setErrors', reason);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }

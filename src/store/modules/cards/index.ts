@@ -7,6 +7,9 @@ import { api } from '@/services/api';
 export interface State extends ModuleState {
   isFetching: boolean;
   cards: [];
+  stripeCards: [];
+  publicKey: string;
+  clientSecret: string;
 }
 
 export default {
@@ -14,15 +17,35 @@ export default {
 
   state: () => ({
     isFetching: false,
+    publicKey: '',
+    clientSecret: '',
     cards: [],
+    stripeCards: [],
   }) as State,
 
   actions: {
     async fetchCards({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find('/services');
+        const { data } = await api.find('/users/cards');
         commit('setCards', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    setStripeCard({ state }, card) {
+      state.stripeCards.push(card as never);
+    },
+    removeStripeCards({ state }) {
+      Vue.set(state, 'stripeCards', []);
+    },
+    async addCard({ state, commit }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/users/cards/new');
+        const { publicKey, clientSecret } = data;
+        Vue.set(state, 'publicKey', publicKey);
+        Vue.set(state, 'clientSecret', clientSecret);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -31,12 +54,24 @@ export default {
 
   getters: {
     isFetching: state => state.isFetching,
-    getCards: state => state.cards,
+    getCards: (state) => {
+      if (state.stripeCards.length > state.cards.length) {
+        return state.stripeCards;
+      }
+      return state.cards;
+    },
+    getCardInfo: state => ({
+      publicKey: state.publicKey,
+      clientSecret: state.clientSecret,
+    }),
   } as GetterTree<State, RootState>,
 
   mutations: {
     setCards(state, cards) {
       Vue.set(state, 'cards', cards);
+      if (state.stripeCards.length === 0) {
+        Vue.set(state, 'stripeCards', cards);
+      }
     },
   } as MutationTree<State>,
 };

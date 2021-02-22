@@ -92,7 +92,6 @@
   });
 
   $(document).on('click', '#sign-in', function(evt) {
-    console.log('sign in faszom');
     evt.preventDefault();
     // Modal Sign In
     $('#sign-in').magnificPopup({
@@ -151,6 +150,14 @@
 
   // Jquery select
   $('.custom_select select').niceSelect();
+
+  window.initCustomSelect = function() {
+    $('.custom_select select').niceSelect();
+  }
+
+  window.destroyCustomSelect = function() {
+    $('.custom_select select').niceSelect('destroy');
+  }
 
   function toggleChevron(e) {
     if (e.target.className.includes('indicator')) {

@@ -27,7 +27,7 @@
                         {{ link.label }}
                       </router-link>
                     </li>
-                    <li><a href="" @click.prevent="logout"><i class="icon_key" />Iesi din cont</a></li>
+                    <li><a href="" @click.prevent="onLogout"><i class="icon_key" />Iesi din cont</a></li>
                   </ul>
                 </div>
               </div>
@@ -157,6 +157,10 @@
       ...mapActions({
         logout: 'session/logout',
       }),
+      onLogout() {
+        this.$router.push({ name: 'Home' });
+        this.logout();
+      },
     },
   });
 </script>

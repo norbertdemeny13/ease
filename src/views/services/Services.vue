@@ -30,7 +30,7 @@
       ...mapGetters({
         getLocation: 'address/getLocation',
         getServices: 'services/getServices',
-        isFetching: 'common/isFetching',
+        isFetching: 'services/isFetching',
       }),
     },
 
