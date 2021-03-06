@@ -101,6 +101,11 @@
       getReservationDetails(newVal) {
         if (newVal.status === 'waiting_confirmation') {
           this.isReservationConfirmed = true;
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
         }
       },
     },
@@ -118,6 +123,7 @@
     methods: {
       ...mapActions({
         payServiceReservation: 'services/payServiceReservation',
+        fetchCards: 'cards/fetchCards',
         fetchAddresses: 'address/fetchAddresses',
         createReservation: 'services/createReservation',
         createExtraServiceReservation: 'services/createExtraServiceReservation',
@@ -137,6 +143,9 @@
             message: 'Te rugam sa introduci adresa pentru a continua reservarea.',
           });
           return;
+        }
+        if (!this.getCards.length) {
+          this.fetchCards();
         }
         this.payServiceReservation();
       },

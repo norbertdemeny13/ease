@@ -1,7 +1,7 @@
 <template>
   <div class="es-payment-container">
     <h5>Adresa</h5>
-    <div v-if="getLocalAddresses">
+    <div v-if="getLocalAddresses.length">
       <div class="row mb-4">
         <div class="col-6">
           <div class="my-2 form-group">
@@ -66,6 +66,7 @@
       getLocalAddresses(): { id: string; label: string }[] {
         /* eslint-disable */
         const { getAddresses } = this;
+
         return getAddresses && getAddresses.map((
           {
             street_name,
