@@ -13,7 +13,8 @@
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="address-wrapper">
-            <div class="d-flex flex-row align-items-center form-group">
+            <div class="d-flex flex-column form-group">
+              <label>Cauta adresa ta</label>
               <input
                 ref="search"
                 v-model="location"

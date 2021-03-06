@@ -4,7 +4,7 @@
     <es-header />
     <main>
       <transition name="app_a-fade" mode="out-in">
-        <router-view :key="$route.path" />
+        <router-view :key="$route.fullpath" />
       </transition>
       <es-toasts />
     </main>

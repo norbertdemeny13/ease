@@ -70,8 +70,8 @@
             title: 'Felicitari!',
             message: 'Contul tau a fost creat cu success!',
           });
+          this.$emit('is-open', false);
         }
-        this.$emit('is-open', false);
       },
     },
 
