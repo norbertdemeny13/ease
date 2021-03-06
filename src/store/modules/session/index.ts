@@ -132,6 +132,7 @@ export default {
     isAuth: state => state.isAuth,
     isFetchingUser: state => state.isFetchingUser,
     getUser: state => state.user,
+    getUserDefaultAddress: state => state.user.default_address,
     getToken: state => state.user && state.user.access_token,
     isAuthenticated: ({ user }) => user && (user as any)?.access_token,
   } as GetterTree<State, RootState>,

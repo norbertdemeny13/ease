@@ -48,7 +48,7 @@
 
 <script>
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import { ComplementaryServices } from '@/components/shared/complementary-services';
   import AdditionalServices from './AdditionalServices.vue';
   import ServiceDetailSkeleton from './ServiceDetailSkeleton.vue';
@@ -64,9 +64,10 @@
 
     computed: {
       ...mapGetters({
+        getReservationServices: 'services/getReservationServices',
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
-        isFetching: 'common/isFetching',
+        isFetching: 'services/isFetching',
       }),
 
       canAddAdditionalServices() {
@@ -90,21 +91,33 @@
     },
 
     async created() {
-      await this.$store.commit('services/setSelectedService', { service: this.getServiceById, method: 'create' });
+      const { id, type } = this.$router.currentRoute.params;
+      const serviceType = type === 'fitness' ? type : 'beauty';
+
+      await this.$store.commit('services/setSelectedService', { service: { ...this.getServiceById, serviceType, serviceCategory: 'main' }, method: 'create' });
     },
 
     methods: {
+      ...mapActions({
+        createReservation: 'services/createReservation',
+      }),
+
       onBack() {
         const { service } = this;
         this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
         this.$store.commit('services/removeSelectedServices');
       },
+
       onCountChange() {
         this.$store.commit('services/setSelectedService', { service: this.service, method: 'update' });
       },
+
       onContinue() {
+        const { id, type } = this.$router.currentRoute.params;
+        const serviceType = type === 'fitness' ? type : 'beauty';
         this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
       },
+
       onRemoveAdditionalService(service) {
         this.$store.commit('services/removeSelectedService', service);
       },

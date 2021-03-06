@@ -5,22 +5,26 @@ import { ModuleState, RootState } from '@/store/interfaces';
 import { api } from '@/services/api';
 
 export interface State extends ModuleState {
+  activated: boolean;
+  activeSubscription: any;
+  activeSubscriptions: any[];
+  errors: [];
   isFetching: boolean;
   selectedSubscription: any;
   subscriptions: any[];
-  activated: boolean;
-  errors: [];
 }
 
 export default {
   namespaced: true,
 
   state: () => ({
-    isFetching: false,
-    subscriptions: [],
-    selectedSubscription: null,
     activated: false,
+    activeSubscription: null,
+    activeSubscriptions: [],
     errors: [],
+    isFetching: false,
+    selectedSubscription: null,
+    subscriptions: [],
   }) as State,
 
   actions: {
@@ -50,6 +54,7 @@ export default {
         const { data } = await api.create(`users/user_subscriptions/activate/${subscriptionId}`, {
           city_id,
         });
+        Vue.set(state, 'activeSubscription', data);
         Vue.set(state, 'activated', true);
       } catch ({ response: reason }) {
         Vue.set(state, 'errors', [reason]);
@@ -57,17 +62,34 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchActiveSubscriptions({ state, commit }, type) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/users/user_subscriptions');
+        commit('setActiveSubscriptions', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    setSubscription({ state, commit }, subscription) {
+      Vue.set(state, 'selectedSubscription', subscription);
+    },
   } as ActionTree<State, RootState>,
 
   getters: {
     isFetching: state => state.isFetching,
     getActivatedStatus: state => state.activated,
     getErrors: state => state.errors,
+    getActiveSubscription: state => state.activeSubscription,
+    getActiveSubscriptions: state => state.activeSubscriptions,
     getSelectedSubscription: state => state.selectedSubscription,
     getSubscriptions: state => state.subscriptions,
   } as GetterTree<State, RootState>,
 
   mutations: {
+    setActiveSubscriptions(state, subscriptions) {
+      Vue.set(state, 'activeSubscriptions', subscriptions);
+    },
     setSubscriptions(state, subscriptions) {
       Vue.set(state, 'subscriptions', subscriptions);
     },

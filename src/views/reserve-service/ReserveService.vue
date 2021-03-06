@@ -52,8 +52,7 @@
 
 <script>
   import Vue from 'vue';
-  import $ from 'jquery';
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import {
     getNextMonth,
     getNextHours,
@@ -92,6 +91,7 @@
             }
           });
         });
+
         const { date } = this.selectedDate;
         return prices ? getNextHours(prices, date) : [];
       },
@@ -114,11 +114,18 @@
     },
 
     methods: {
+      ...mapActions({
+        setSelectedDate: 'services/setSelectedDate',
+        setSelectedTime: 'services/setSelectedTime',
+      }),
       onContinue() {
         if (this.isAuthenticated) {
-          // do something
+          this.setSelectedDate(this.selectedDate);
+          this.setSelectedTime(this.selectedTime);
+          const path = `${this.$router.currentRoute.fullPath}/plata`;
+          this.$router.push(path);
         } else {
-          $('#sign-in').trigger('click');
+          this.$root.$emit('on-show-login');
         }
       },
       selectDate(item) {

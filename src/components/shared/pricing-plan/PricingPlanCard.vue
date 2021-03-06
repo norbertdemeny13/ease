@@ -6,7 +6,7 @@
         <p class="h1 pricing-plan-original-cost"><del>{{ `${(item.price * (1 + item.discount / 100)).toFixed(2)} Ron` }}</del></p>
         <p class="h1 pricing-plan-cost">{{ item.price }}<span class="currency"> Ron</span></p>
         <ul class="pricing-plan-features">
-          <li v-for="(benefit, i) in item.benefits" :key="`${item.type}-${i}`"><i class="icon_check" />{{ benefit }}</li>
+          <li v-for="(benefit, i) in item.small_descriptions" :key="`${item.type}-${i}`"><i class="icon_check" />{{ benefit }}</li>
         </ul>
         <a href="" class="btn pricing-plan-purchase-btn" @click.prevent="onSelect()">Alege</a>
         <div class="text-center">
@@ -17,7 +17,7 @@
     <es-subscription-benefits-modal
       v-if="isModalOpen"
       v-model="isModalOpen"
-      :benefits="benefits || item.benefits"
+      :benefits="item.detailed_descriptions"
     />
   </div>
 </template>

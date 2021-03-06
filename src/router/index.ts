@@ -85,6 +85,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/reserve-service').then(({ ReserveService }) => ReserveService),
   },
   {
+    path: '/servicii/:type/:id/rezerva/plata',
+    name: 'Plata rezervare',
+    component: () => import('@/views/reserve-service-payment').then(({ ReserveServicePayment }) => ReserveServicePayment),
+  },
+  {
     path: '/intrebari-frecvente',
     name: 'Intrebari frecvente',
     component: () => import('@/views/faq').then(({ Faq }) => Faq),
@@ -125,6 +130,10 @@ router.beforeEach(async (to, from, next) => {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
   }
 
+  if (path.includes('/rezerva/plata') && !getSelectedServices.length) {
+    next(`/servicii/${params.type}/${params.id}`);
+  }
+
   if (path.includes('/servicii/') && hasLocation === 'null') {
     next('/servicii');
   }
@@ -133,7 +142,7 @@ router.beforeEach(async (to, from, next) => {
    next('/abonamente');
   }
 
-  if (path.includes('/abonamente/rerzerva') && !getToken && !jwtToken) {
+  if (path.includes('/abonamente/rezerva') && !getToken && !jwtToken) {
     next('/abonamente');
   }
 
@@ -155,7 +164,7 @@ router.beforeEach(async (to, from, next) => {
     next();
   }
 
-  if (isAuth) {
+  if (!isAuth) {
     next();
   }
 });

@@ -65,7 +65,6 @@
         forgotPassword: 'forgotPassword',
       }),
       onSubmit() {
-        console.log(this.email);
         this.$emit('show-reset-password-modal', true);
       },
     },

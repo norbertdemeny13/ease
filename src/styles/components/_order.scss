@@ -1,3 +1,4 @@
+/* stylelint-disable */
 /*-------- Fixed Booking Panel--------*/
 .box_order {
   -webkit-border-radius: 5px;
@@ -35,6 +36,13 @@
 }
 .box_order .main ul li {
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & p {
+    margin: 0;
+  }
 }
 .box_order .main ul li.total {
   font-size: 18px;
@@ -59,7 +67,10 @@
   line-height: 1;
 }
 .box_order .main ul li a:hover {
-  color: #e74747;
+  color: #d00078;
+}
+.box_order .main ul li p span {
+  float: left;
 }
 .box_order .main ul li span {
   float: right;

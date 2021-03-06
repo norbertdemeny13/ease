@@ -58,6 +58,11 @@ export default {
           title: 'Eroare',
           message: errors,
         });
+      } else if (typeof errors[0] === 'string') {
+        dispatchToast({
+          title: 'Eroare',
+          message: errors[0],
+        })
       } else {
         const errorObject = [] as any;
 

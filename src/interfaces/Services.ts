@@ -8,13 +8,27 @@ export interface ComplementaryService {
   is_four_hands?: boolean;
 }
 
+export interface MassageForm {
+  duration: string;
+  genre: string;
+  form: string;
+}
+
+export interface TherapeuticForms {
+  id: string;
+}
+
 export interface Service {
   complementary_services: ComplementaryService[];
   name: string;
   id: string;
   category?: string;
   uuid: string;
+  massageForm: MassageForm;
   massageType?: string;
+  serviceCategory: string;
+  serviceType: string;
+  therapeutic_forms: TherapeuticForms[];
 }
 
 export interface Price {

@@ -133,7 +133,6 @@
         this.fetchedSubscription = false;
       },
       onSelect(subscription: any): void {
-
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');
           return;

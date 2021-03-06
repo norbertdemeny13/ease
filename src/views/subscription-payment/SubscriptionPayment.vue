@@ -1,8 +1,8 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es_reserve-service-container">
+  <div class="es_reserve-subscription-container">
     <div class="container margin_30_40">
-      <router-link class="back-button mb-2" to="/abonamente">Inapoi</router-link>
+      <a href="" class="back-button mb-2" @click.prevent="onBack">Inapoi</a>
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 p-8 bg_gray">
           <h3>Detalii abonament</h3>
@@ -34,55 +34,29 @@
           <p class="my-6 px-8">Vezi mai multe detalii despre abonamentul tau pe ease.ro sau in aplicatie</p>
           <p class="px-8">Doresti mai mult de o singura sedinta de masaj pe luna?
           Ai 20% discount la toate sedintele de masaj rezervate pe langa sedinta de masaj inclusa la abonamentul tau lunar. Discountul se aplica automat la check-out</p>
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+              @click.prevent="$router.push('/servicii')"
+            >
+              Rezerva acum
+            </button>
+          </div>
         </div>
         <div v-else class="col-lg-6 col-md-6 p-8">
           <h5>Adresa</h5>
           <p>{{ getAddress() }}</p>
-          <div v-show="!showAddPayment">
-            <h5>Metoda de plata</h5>
-            <div v-if="!!getCards.length">
-              <p>Selecteaza metoda de plata</p>
-              <div class="row mb-4">
-                <div class="col-6">
-                  <div class="my-2 form-group">
-                    <div class="custom_select submit">
-                      <select name="credit-card" id="credit-card" class="form-control wide" v-model="selectedCard" @mouseover="initCustomSelect">
-                        <option
-                          v-for="card in getCards"
-                          :key="card.id"
-                          :value="card.id"
-                        >
-                          &#128179 {{ card.brand.toUpperCase() }} **** {{ card.last4 }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <es-payment-details>
+            <div class="d-flex justify-content-center">
+              <button
+                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                @click.prevent="activateSubscription()"
+                :disabled="!getCards.length"
+              >
+                Activeaza
+              </button>
             </div>
-            <a href="" class="mt-4" @click.prevent="addPayment()">
-              <i class="icon_plus" />
-              Adauga metoda de plata
-            </a>
-          </div>
-          <div v-show="showAddPayment">
-            <h5>Te rugam sa introduci datele</h5>
-            <es-payment
-              class="mt-4"
-              :is-fetching="isFetching"
-              @on-add-card="onAddCard"
-              @on-cancel="showAddPayment = false"
-            />
-          </div>
-          <div class="d-flex justify-content-center">
-            <button
-              class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-              @click.prevent="activateSubscription()"
-              :disabled="!getCards.length"
-            >
-              Activeaza
-            </button>
-          </div>
+          </es-payment-details>
         </div>
       </div>
     </div>
@@ -93,93 +67,99 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { nanoid } from 'nanoid';
-  import { Payment } from '@/components/shared/payment';
+  import { PaymentDetails } from '@/components/shared/payment';
 
   export default Vue.extend({
     name: 'es-subscription-payment-view',
 
     components: {
-      'es-payment': Payment,
+      'es-payment-details': PaymentDetails,
     },
 
     data: () => ({
       showAddPayment: false,
       selectedCard: null,
       isSubscriptionActivated: false,
+      polling: 0,
     }),
 
     computed: {
       ...mapGetters({
+        getActiveSubscription: 'subscriptions/getActiveSubscription',
+        getActiveSubscriptions: 'subscriptions/getActiveSubscriptions',
         getActivatedStatus: 'subscriptions/getActivatedStatus',
         getSelectedSubscription: 'subscriptions/getSelectedSubscription',
-        getErrors: 'subscriptions/getErrors',
         getCards: 'cards/getCards',
         isFetching: 'cards/isFetching',
+        getActivePayment: 'services/getActivePayment',
       }),
     },
 
     watch: {
-      getActivatedStatus(newVal) {
+      getActiveSubscriptions(newVal): void {
         if (newVal) {
-          this.isSubscriptionActivated = true;
+          const hasSubscription = !!Object.keys(newVal).filter(item => newVal[item]).length;
+          if (hasSubscription) {
+            this.isSubscriptionActivated = true;
+            clearInterval(this.polling);
+            if (this.getActivePayment) {
+              this.$router.back();
+            }
+          }
         }
       },
-      getCards(newVal) {
-        if (newVal && newVal.length) {
-          const [selectedCard] = newVal.filter((item: any) => item.primary);
-          this.selectedCard = selectedCard ? selectedCard.id : newVal[0].id;
-          (window as any).destroyCustomSelect();
-          (window as any).initCustomSelect();
-        }
-      },
-      getErrors(newVal) {
-        if (newVal.length) {
-          newVal.forEach((error: any) => {
-            (this as any).$toasts.toasts.push({
-              title: 'Atentie!',
-              intent: error.status === 400 ? 'error' : 'warning',
-              message: error.data.error,
-              id: nanoid(),
-            });
+
+      getActiveSubscription(newVal): void {
+        if (newVal && newVal.state === 'payment_pending') {
+          this.initialisePaymentCheck();
+          (this as any).$toasts.toast({
+            id: 'subscription-toast',
+            intent: 'success',
+            title: 'Felicitari!',
+            message: 'Abonamentul tau este in curs de activare. Te rugam sa astepti cateva secunde pana plata va fi activata cu success.',
           });
         }
       },
+
+      getCards(newVal): void {
+        if (newVal && newVal.length) {
+          const [selectedCard] = newVal.filter((item: any) => item.primary);
+          this.selectedCard = selectedCard ? selectedCard.id : newVal[0].id;
+        }
+      },
+    },
+
+    beforeDestroy() {
+      clearInterval(this.polling);
     },
 
     created() {
       this.fetchCards();
     },
 
-    destroyed() {
-      (window as any).destroyCustomSelect();
-      this.removeStripeCards();
-    },
-
     methods: {
       ...mapActions({
         fetchCards: 'cards/fetchCards',
-        removeStripeCards: 'cards/removeStripeCards',
         addCard: 'cards/addCard',
+        fetchActiveSubscriptions: 'subscriptions/fetchActiveSubscriptions',
         activateSubscription: 'subscriptions/activateSubscription',
       }),
 
-      initCustomSelect() {
-        (window as any).initCustomSelect();
+      initialisePaymentCheck(): void {
+        this.polling = setInterval(() => {
+          this.fetchActiveSubscriptions();
+        }, 3000);
       },
 
-      getAddress() {
-        return sessionStorage.getItem('address');
+      getAddress(): string {
+        return sessionStorage.getItem('address') as string;
       },
-
-      async onAddCard() {
-        await this.fetchCards();
-        this.showAddPayment = false;
-      },
-
-      addPayment() {
-        this.addCard();
-        this.showAddPayment = true;
+      onBack(): void {
+        if (this.getActivePayment) {
+          this.$router.back();
+        } else {
+          this.$router.push('/abonamente');
+        }
       },
     },
   });

@@ -134,9 +134,9 @@
   }
 
   span em {
-    width: 60px;
-    height: 4px;
     background-color: #d00078;
     display: block;
+    height: 4px;
+    width: 60px;
   }
 </style>

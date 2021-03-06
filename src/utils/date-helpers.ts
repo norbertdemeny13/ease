@@ -38,9 +38,9 @@ export const getNextHours = (prices: Price[], date: Date) => {
   const filteredPrices = prices.filter(({ weekend }) => isWeekend(date) === weekend);
   const hoursArray: Date[] = [];
 
-  if (isToday(date) && currentHour < 23 && currentHour > 7) {
+  if (isToday(date) && currentHour < 22 && currentHour > 7) {
     const startDate = zonedTimeToUtc(new Date(), 'Europe/Bucharest');
-    const endDate = zonedTimeToUtc(new Date().setHours(23), 'Europe/Bucharest');
+    const endDate = zonedTimeToUtc(new Date().setHours(22), 'Europe/Bucharest');
     const currentHour = getHours(startDate);
 
     eachHourOfInterval({
@@ -50,19 +50,19 @@ export const getNextHours = (prices: Price[], date: Date) => {
       .filter(item => getHours(new Date(item)) > currentHour)
       .forEach((item) => {
         hoursArray.push(item);
-        if (getHours(new Date(item)) < 23) {
+        if (getHours(new Date(item)) < 22) {
           hoursArray.push(addMinutes(new Date(item), 30));
         }
       });
   } else {
     const startDate = new Date(date).setHours(7);
-    const endDate = new Date(date).setHours(23);
+    const endDate = new Date(date).setHours(22);
     eachHourOfInterval({
       start: startDate,
       end: endDate,
     }).forEach(function (item) {
       hoursArray.push(item);
-      if (getHours(new Date(item)) < 23) {
+      if (getHours(new Date(item)) < 22) {
         hoursArray.push(addMinutes(new Date(item), 30));
       }
     });

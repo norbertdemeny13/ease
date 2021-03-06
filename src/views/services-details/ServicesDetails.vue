@@ -42,7 +42,7 @@
       ...mapGetters({
         getServicesByType: 'services/getServicesByType',
         getSelectedServices: 'services/getSelectedServices',
-        isFetching: 'common/isFetching',
+        isFetching: 'services/isFetching',
       }),
 
       services(): Record<any, any>[] {

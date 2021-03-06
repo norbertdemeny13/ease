@@ -202,6 +202,7 @@
       getServicesByType(newVal) {
         const [selectedService] = this.getSelectedServices;
         const [service] = newVal;
+
         const [firstService] = service.services
           .map(item => ({
             ...item,

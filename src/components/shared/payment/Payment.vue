@@ -53,10 +53,6 @@
       isCardMounted: false,
     }),
 
-    async mounted() {
-
-    },
-
     computed: {
       ...mapGetters({
         getCardInfo: 'cards/getCardInfo',
@@ -158,12 +154,12 @@
 
 <style type="text/css">
   .es-payment-container .main {
-    position: relative;
     min-height: 150px;
+    position: relative;
   }
 
   .es-payment-container .main .payment-actions {
-    position: absolute;
     bottom: 16px;
+    position: absolute;
   }
 </style>

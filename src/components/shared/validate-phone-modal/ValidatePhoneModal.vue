@@ -111,9 +111,9 @@
 
 <style type="text/css" scoped>
   .select-country-container:focus {
-    outline: none !important;
-    box-shadow: none !important;
     border-color: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .country-selector__input {

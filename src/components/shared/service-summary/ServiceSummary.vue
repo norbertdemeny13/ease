@@ -28,14 +28,16 @@
           v-for="service in item.services"
           :key="service.id"
         >
-          <a href="" @click.prevent="removeService(item, service); service.selectedCount = 0">{{ service.selectedCount }} x {{ service.name }}</a>
+          <p v-if="isPaymentView"><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
+          <a v-else href="" @click.prevent="removeService(item, service); service.selectedCount = 0">{{ service.selectedCount }} x {{ service.name }}</a>
           <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Ron</span>
         </li>
       </ul>
 
       <ul class="clearfix">
+        <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Ron</span></li>
         <li>Subtotal<span>{{ getTotal }} Ron</span></li>
-        <li class="total">Total<span>{{ getTotal }} Ron</span></li>
+        <li class="total">Total<span>{{ getTotal - getDiscount }} Ron</span></li>
       </ul>
     </div>
   </div>
@@ -50,6 +52,10 @@
   export default Vue.extend({
     name: 'es-service-summary',
     props: {
+      isPaymentView: {
+        default: false,
+        type: Boolean,
+      },
       date: {
         type: Object,
         required: true,
@@ -58,6 +64,11 @@
       time: {
         type: Object,
         required: true,
+      },
+
+      activeSubscription: {
+        type: Object,
+        default: null,
       },
     },
 
@@ -87,6 +98,9 @@
               massageType: item.massageType,
             };
           });
+      },
+      getDiscount() {
+        return this.activeSubscription ? this.getTotal * (this.activeSubscription.subscription.discount / 100) : 0;
       },
       getDate() {
         const { date } = this.date;
