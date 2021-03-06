@@ -134,7 +134,8 @@
         return this.isMassageView ? `/servicii/masaj?type=${type}` : `/servicii/${type}/${id}/rezerva`;
       },
 
-      onPay() {
+      async onPay() {
+        const paymentMethodId = this.getCards[0]?.payment_method_id;
         if (!this.getAddresses.length) {
           this.isAddressModalOpen = true;
           this.$toasts.toast({
@@ -144,8 +145,9 @@
           });
           return;
         }
-        if (!this.getCards.length) {
-          this.fetchCards();
+
+        if (!paymentMethodId) {
+          await this.fetchCards();
         }
         this.payServiceReservation();
       },

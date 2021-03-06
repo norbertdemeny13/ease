@@ -18,7 +18,7 @@
                 ref="search"
                 v-model="location"
                 placeholder="Introdu o locatie"
-                class="form-control"
+                class="form-control pr-6"
                 type="text"
               >
               <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
