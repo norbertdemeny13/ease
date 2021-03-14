@@ -60,6 +60,7 @@
         },
         set(val: number) {
           this.selectedAddress = val;
+          // TODO Change the address for the reservation
         },
       },
 

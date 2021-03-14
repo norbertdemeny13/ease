@@ -96,6 +96,11 @@ export default {
   mutations: {
     setLocation(state: State, location: Location) {
       Vue.set(state, 'location', location);
+      const selectedCity = location.address_components
+        .filter(item => item.types.includes('locality'));
+      if (selectedCity) {
+        sessionStorage.setItem('city', selectedCity[0].short_name);
+      }
       sessionStorage.setItem('address', (location as any)?.formatted_address || null);
       sessionStorage.setItem('city_id', (location as any)?.city_id || null);
     },

@@ -45,6 +45,21 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/subscription-details').then(({ SubscriptionDetails }) => SubscriptionDetails),
   },
   {
+    path: '/carduri-cadou',
+    name: 'Carduri Cadou',
+    component: () => import('@/views/gift-cards').then(({ GiftCards }) => GiftCards),
+  },
+  {
+    path: '/carduri-cadou/:id',
+    name: 'Detalii Card Cadou',
+    component: () => import('@/views/gift-card-details').then(({ GiftCardDetails }) => GiftCardDetails),
+  },
+  {
+    path: '/carduri-cadou/:id/plata',
+    name: 'Plata Card Cadou',
+    component: () => import('@/views/gift-card-summary').then(({ GiftCardSummary }) => GiftCardSummary),
+  },
+  {
     path: '/companii',
     name: 'Companii',
     component: () => import('@/views/companies').then(({ Companies }) => Companies),

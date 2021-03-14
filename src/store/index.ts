@@ -6,6 +6,7 @@ import instance from '@/main';
 import address from './modules/address';
 import cards from './modules/cards';
 import common from './modules/common';
+import giftCards from './modules/gift-cards';
 import services from './modules/services';
 import session from './modules/session';
 import subscriptions from './modules/subscriptions';
@@ -30,9 +31,10 @@ Vue.use(Vuex);
 const options: StoreOptions<RootState> = {
   state: {},
   modules: {
+    address,
     cards,
     common,
-    address,
+    giftCards,
     session,
     services,
     subscriptions,

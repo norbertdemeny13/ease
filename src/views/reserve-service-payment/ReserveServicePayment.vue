@@ -16,6 +16,14 @@
               <h3 class="px-10 text-center">REZERVAREA  A FOST TRIMISA!</h3>
             </div>
             <p class="my-6 px-8">Vei primi in curand o notificare cu detaliile profesionistului tau. </p>
+            <div class="d-flex justify-content-center">
+              <button
+                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                @click.prevent="$router.push('/rezervarile-mele')"
+              >
+                Rezervarile mele
+              </button>
+            </div>
           </div>
           <div v-else>
             <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
@@ -93,8 +101,9 @@
     watch: {
       async getAddresses(newVal, oldVal) {
         if (newVal.length !== oldVal.length) {
-          await this.createReservation();
-          await this.createExtraServiceReservation();
+          // todo
+          // await this.createReservation();
+          // await this.createExtraServiceReservation();
         }
       },
 

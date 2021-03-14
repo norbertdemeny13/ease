@@ -86,32 +86,56 @@ export default {
           type: 'single',
           massage: createMassageReservationForm(selectedService),
         };
-      } else if (isSingleTerapeut) {
-        const secondService = state.selectedServices[1];
-        reservation = {
-          type: 'couple_1',
-          massage: {
-            massage_one: createMassageReservationForm(firstService),
-            massage_two: createMassageReservationForm(secondService),
-          },
-        };
       } else {
-        const secondService = state.selectedServices[1];
         reservation = {
-          type: 'couple_2',
+          type: isSingleTerapeut ? 'couple_1' : 'couple_2',
           massage: {
             massage_one: createMassageReservationForm(firstService),
           },
-          // TODO Realign this based on BE input
-          // type: 'couple_2',
-          // massage: {
-          //   massage_two: createMassageReservationForm(secondService),
-          // },
         };
+        dispatch('createCoupleMassageReservation', { reservation, method: 'create' });
+        return;
       }
 
       try {
         const { data } = await api.create('users/massage_reservations', {
+          reservation,
+        });
+        Vue.set(state, 'reservationDetails', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async createCoupleMassageReservation({ state, dispatch, commit }, { reservation, method }) {
+      const mainServiceId = state.reservationDetails ? state.reservationDetails!.id : null;
+      const url = 'users/massage_reservations';
+
+      try {
+        const { data } = await api.create(url, {
+          reservation,
+        });
+        Vue.set(state, 'reservationDetails', data);
+        dispatch('addExtraCoupleMassageReservation');
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async addExtraCoupleMassageReservation({ state, dispatch, commit }) {
+      const mainServiceId = state.reservationDetails!.id;
+      const url = `users/massage_reservations/${mainServiceId}`;
+
+      const isSingleTerapeut = state.massageInfo.terapeut === 'single';
+      const secondService = state.selectedServices[1];
+
+      const reservation = {
+        type: isSingleTerapeut ? 'couple_1' : 'couple_2',
+        massage: {
+          massage_two: createMassageReservationForm(secondService),
+        },
+      };
+
+      try {
+        const { data } = await api.update(url, {
           reservation,
         });
         Vue.set(state, 'reservationDetails', data);
@@ -160,7 +184,7 @@ export default {
     async addServiceReservationDate({ state, commit }, serviceType) {
       Vue.set(state, 'isFetching', true);
       const mainServiceId = state.reservationDetails!.id;
-      const booking_date = '10-03-2021' || new Date(state.selectedTime.date).toISOString().substr(0,10)
+      const booking_date = '10-04-2021' || new Date(state.selectedTime.date).toISOString().substr(0,10)
       const start_time = `${state.selectedTime.hour}:${state.selectedTime.minute === 0 ? '00' : state.selectedTime.minute}`;
 
       try {

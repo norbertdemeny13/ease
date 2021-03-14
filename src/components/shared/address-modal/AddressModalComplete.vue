@@ -82,11 +82,53 @@
                 name="city"
               >
             </div>
+            <div class="form-group">
+              <label>Tip Adresa</label>
+              <div class="radio_c_group">
+                <label
+                  v-for="option in typeOptions"
+                  :key="option.value"
+                  class="container_radio"
+                  @click="address.address_type = option.value"
+                >{{ option.label }}
+                  <input type="radio" value="checkbox" name="type" :checked="option.value === address.address_type ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
             <div v-if="isMassageView" class="form-group">
               <label>Masa de masaj</label>
               <div class="radio_c_group">
                 <label class="container_check">Am masa mea
                   <input type="checkbox" :checked="address.equipment_ids.includes(1) ? 'checked' : ''" @click="onEquipmentChange(address.equipment_ids.includes(1))">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Animale de companie</label>
+              <div class="radio_c_group">
+                <label
+                  v-for="option in petOptions"
+                  :key="option.value"
+                  class="container_radio"
+                  @click="address.pets = option.value"
+                >{{ option.label }}
+                  <input type="radio" value="checkbox" name="pets" :checked="option.value === address.pets ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Parcare</label>
+              <div class="radio_c_group">
+                <label
+                  v-for="option in parkingOptions"
+                  :key="option.value"
+                  class="container_radio"
+                  @click="address.parking = option.value"
+                >{{ option.label }}
+                  <input type="radio" value="checkbox" name="parking" :checked="option.value === address.parking ? 'checked' : ''">
                   <span class="checkmark" />
                 </label>
               </div>
@@ -122,7 +164,7 @@
   import { mapGetters, mapActions } from 'vuex';
 
   export default Vue.extend({
-    name: 'es-address-modal',
+    name: 'es-address-modal-complete',
 
     model: {
       prop: 'is-open',
@@ -142,6 +184,21 @@
     /* eslint-disable */
     data: () => ({
       location: null,
+      typeOptions: [
+        { value: 'private_residence', label: 'Rezidenta Privata' },
+        { value: 'office', label: 'Birou' },
+        { value: 'hotel', label: 'Hotel' },
+      ],
+      petOptions: [
+        { value: 'cat', label: 'Pisica' },
+        { value: 'dog_and_cat', label: 'Caine si pisica' },
+        { value: 'dog', label: 'Caine'},
+      ],
+      parkingOptions: [
+        { value: 'free_on_street', label: 'Gratuita' },
+        { value: 'paid_on_street', label: 'Cu plata' },
+        { value: 'private_park', label: 'Privata' },
+      ],
       city: '',
       address: {
         street_name: null,
@@ -201,14 +258,14 @@
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
           const selectedCity = place.address_components
-            .filter((item: any) => item.types.includes('locality'))[0].short_name;
+            .filter(item => item.types.includes('locality'))[0].short_name;
           const savedCity = sessionStorage.getItem('city');
           if (savedCity != selectedCity) {
-            (this as any).$toasts.toast({
+            this.$toasts.toast({
               id: 'address-modal',
               title: 'Atentie!',
               intent: 'warning',
-              message: 'Noua adresa nu este compatibila cu rezervarea actuala. In cazul in care doresti sa schimbi orasul, te rugam sa mergi inapoi la servicii si sa selectezi orasul dorit.',
+              message: 'Orasul selectat este diferit fata de orasul selectat la rezervare. In cazul in care doresti sa schimbi orasul, te rugam sa mergi inapoi la servicii si sa selectezi orasul dorit.',
             });
             return;
           }
@@ -233,13 +290,13 @@
       },
 
       onAddAddress(): void {
-        const { address, city } = this;
-        const { street_number, street_name } = address;
+        const { street_number, street_name, city } = this;
+        console.log(street_name, street_number, city);
 
         if (street_name && street_number && city) {
           this.setAddress(this.address);
         } else {
-          (this as any).$toasts.toast({
+          this.$toasts.toast({
             id: 'address-modal',
             title: 'Atentie!',
             intent: 'warning',

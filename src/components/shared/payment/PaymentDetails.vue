@@ -35,6 +35,7 @@
         :is-fetching="isFetching"
         @on-add-card="onAddCard"
         @on-cancel="showAddPayment = false"
+        :is-authenticated="!!isAuthenticated"
       />
     </div>
     <slot />
@@ -65,6 +66,7 @@
         getSelectedSubscription: 'subscriptions/getSelectedSubscription',
         getErrors: 'subscriptions/getErrors',
         getCards: 'cards/getCards',
+        isAuthenticated: 'session/isAuthenticated',
         isFetching: 'cards/isFetching',
       }),
     },
@@ -74,8 +76,6 @@
         if (newVal && newVal.length) {
           const [selectedCard] = newVal.filter((item: any) => item.primary);
           this.selectedCard = selectedCard ? selectedCard.id : newVal[0].id;
-          // (window as any).destroyCustomSelect();
-          // (window as any).initCustomSelect();
         }
       },
       getErrors(newVal) {
@@ -93,7 +93,9 @@
     },
 
     created() {
-      this.fetchCards();
+      if (this.isAuthenticated) {
+        this.fetchCards();
+      }
     },
 
     destroyed() {
@@ -108,17 +110,17 @@
         addCard: 'cards/addCard',
       }),
 
-      initCustomSelect() {
-        // (window as any).initCustomSelect();
-      },
-
       async onAddCard() {
-        await this.fetchCards();
+        if (this.isAuthenticated) {
+          await this.fetchCards();
+        }
         this.showAddPayment = false;
       },
 
       addPayment() {
-        this.addCard();
+        if (this.isAuthenticated) {
+          this.addCard();
+        }
         this.showAddPayment = true;
       },
     },

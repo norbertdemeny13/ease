@@ -102,7 +102,7 @@
       massageType: null,
       massageForm: {
         type: '',
-        genre: 'oricare',
+        genre: 'any_gender',
         duration: 60,
         form: 'classic',
         terapeut: 'single',
@@ -149,15 +149,15 @@
             choices: [
               {
                 label: 'Feminin',
-                value: 'feminin',
+                value: 'female',
               },
               {
                 label: 'Oricare',
-                value: 'oricare',
+                value: 'any_gender',
               },
               {
                 label: 'Masculin',
-                value: 'masculin',
+                value: 'male',
               },
             ],
           },
@@ -176,7 +176,10 @@
       },
 
       getComplementaryServices() {
-        return this.selectedService.complementary_services;
+        const { type } = this.$router.currentRoute.query;
+        const { terapeut } = this.massageForm;
+        return this.selectedService.complementary_services
+          .filter(item => terapeut === 'single' && type !== 'single' ? !item.is_four_hands : item);
       },
       services() {
         return this.getServicesByType[0]?.services

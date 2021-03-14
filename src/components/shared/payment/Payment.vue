@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <div class="es-payment-container">
     <div class="box_order_form">
@@ -43,6 +44,7 @@
 
     props: {
       isFetching: Boolean,
+      isAuthenticated: Boolean,
     },
 
     data: () => ({
@@ -52,6 +54,14 @@
       card: null,
       isCardMounted: false,
     }),
+
+    created() {
+      if (!this.isAuthenticated) {
+        this.clientSecret = 'seti_1ISzYdLYIXXW8aZQff9zfz9b_secret_J59syx0aXanqQrvRaTz74pwfsugtQbh';
+        this.publicKey = 'pk_test_51Gw03jLYIXXW8aZQIiqpyYWjRlVnOvGLKnd6umWrdSlPQGeBEHMa5ScOYj9JPYIUNvyjs0qOF5MwHX0nyO8tG42L00hDCv6ugt';
+        this.setStripe({ publicKey: this.publicKey, clientSecret: this.clientSecret });
+      }
+    },
 
     computed: {
       ...mapGetters({
@@ -72,10 +82,45 @@
       },
     },
 
+    mounted() {
+      this.$root.$on('on-create-payment', this.onCreatePayment);
+    },
+
+   beforeDestroy () {
+      this.$root.$off('on-create-payment', this.onCreatePayment)
+    },
+
     methods: {
       ...mapActions({
         setStripeCard: 'cards/setStripeCard',
       }),
+
+      async onCreatePayment() {
+        const { publicKey, clientSecret, card } = this;
+        await this.setStripe({ publicKey, clientSecret });
+
+        const data = {
+          card,
+          billing_details: { name: 'Jancsi'}
+        };
+
+        (this.stripe! as any)
+          .confirmCardPayment(this.clientSecret, {
+            payment_method: data,
+            setup_future_usage: 'off_session'
+          })
+          .then((result: any) => {
+            if (result.error) {
+              // console.log(result.error, 'error');
+            } else {
+              (this.stripe! as any).retrievePaymentIntent(clientSecret).then((result: any) => {
+                var paymentIntent = result.paymentIntent;
+                var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
+                // console.log(paymentIntentJson);
+              });
+            }
+          });
+      },
       async setStripe({ publicKey, clientSecret }: { publicKey: string; clientSecret: string }): Promise<void> {
         (this.stripe as any) = await loadStripe(publicKey);
 
@@ -95,7 +140,7 @@
           },
         };
 
-        this.card = (this.stripe! as any).elements().create('card', { style });
+        this.card = (this.stripe! as any).elements().create('card', { hidePostalCode: true, style });
         (this.card! as any).mount('#card-element');
         (this.card! as any).on('ready', (event: any) => {
           this.isCardMounted = true;
