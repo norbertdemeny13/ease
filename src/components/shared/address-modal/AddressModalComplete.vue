@@ -258,10 +258,10 @@
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
           const selectedCity = place.address_components
-            .filter(item => item.types.includes('locality'))[0].short_name;
+            .filter((item: any) => item.types.includes('locality'))[0].short_name;
           const savedCity = sessionStorage.getItem('city');
           if (savedCity != selectedCity) {
-            this.$toasts.toast({
+            (this as any).$toasts.toast({
               id: 'address-modal',
               title: 'Atentie!',
               intent: 'warning',
@@ -290,13 +290,13 @@
       },
 
       onAddAddress(): void {
-        const { street_number, street_name, city } = this;
-        console.log(street_name, street_number, city);
+        const { address, city } = this;
+        const { street_number, street_name } = address;
 
         if (street_name && street_number && city) {
           this.setAddress(this.address);
         } else {
-          this.$toasts.toast({
+          (this as any).$toasts.toast({
             id: 'address-modal',
             title: 'Atentie!',
             intent: 'warning',
