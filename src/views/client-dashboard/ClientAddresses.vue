@@ -67,11 +67,11 @@
   .client-address-item {
     align-items: center;
     border: 1px solid #cccccc;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
-    padding: 16px;
     margin: 8px 0;
-    border-radius: 8px;
+    padding: 16px;
   }
 
   .client-address-item.active,

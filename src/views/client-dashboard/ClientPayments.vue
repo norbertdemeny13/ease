@@ -54,13 +54,13 @@
 <style type="text/scss">
   .client-payment-card-item {
     border: 1px solid #cccccc;
+    border-radius: 8px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 16px;
     margin: 8px 0;
-    border-radius: 8px;
+    padding: 16px;
   }
 
   .client-payment-card-item.active,
