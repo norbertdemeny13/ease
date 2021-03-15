@@ -25,6 +25,67 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/contact').then(({ Contact }) => Contact),
   },
   {
+    path: '/client',
+    component: () => import('@/views/client-dashboard').then(({ ClientDashboard }) => ClientDashboard),
+    children: [
+      {
+        path: 'cont',
+        name: 'Cont Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientAccount }) => ClientAccount),
+      },
+      {
+        path: 'parola',
+        name: 'Parola Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientPassword }) => ClientPassword),
+      },
+      {
+        path: 'telefon',
+        name: 'Telefon Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientPhone }) => ClientPhone),
+      },
+      {
+        path: 'recomandare',
+        name: 'Recomandare Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientRecommendations }) => ClientRecommendations),
+      },
+      {
+        path: 'adrese',
+        name: 'Adrese Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientAddresses }) => ClientAddresses),
+      },
+      {
+        path: 'metode-de-plata',
+        name: 'Plata Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientPayments }) => ClientPayments),
+      },
+      {
+        path: 'rezervarile-mele',
+        name: 'Rezervari Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientReservations }) => ClientReservations),
+      },
+      {
+        path: 'comenzile-mele',
+        name: 'Comenzi Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientOrders }) => ClientOrders),
+      },
+      {
+        path: 'abonamente',
+        name: 'Abonamente Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientSubscriptions }) => ClientSubscriptions),
+      },
+      {
+        path: 'cod-promo',
+        name: 'Credit Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientCredits }) => ClientCredits),
+      },
+      {
+        path: 'preferinte',
+        name: 'Preferinte Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientPreferences }) => ClientPreferences),
+      },
+    ],
+  },
+  {
     path: '/servicii',
     name: 'Servicii',
     component: () => import('@/views/services').then(({ Services }) => Services),

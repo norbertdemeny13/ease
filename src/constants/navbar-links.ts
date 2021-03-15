@@ -5,8 +5,8 @@ export const NAVBAR_LINKS = [
   { label: 'Abonamente', to: '/abonamente' },
   { label: 'Carduri Cadou', to: '/carduri-cadou' },
   // { label: 'Companii', to: '/companii' },
-  { label: 'Gestioneaza contul', to: '/gestioneaza-contul', requiresAuth: true },
-  { label: 'Rezervari', to: '/rezervari', requiresAuth: true },
-  { label: 'Adauga cod promo', to: '/adauga-cod-promo', requiresAuth: true },
-  { label: 'Metode de plata', to: '/metode-de-plata', requiresAuth: true },
+  { label: 'Gestioneaza contul', to: '/client/cont', requiresAuth: true },
+  { label: 'Rezervari', to: '/client/rezervarile-mele', requiresAuth: true },
+  { label: 'Adauga cod promo', to: '/client/cod-promo', requiresAuth: true },
+  { label: 'Metode de plata', to: '/client/metode-de-plata', requiresAuth: true },
 ];

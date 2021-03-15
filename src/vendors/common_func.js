@@ -348,7 +348,7 @@
     });
   };
 
-  window.checkAndAttachMapScript = function (callback) {
+    window.checkAndAttachMapScript = function (callback) {
      if (!!window.google) {
         callback();
         return true;

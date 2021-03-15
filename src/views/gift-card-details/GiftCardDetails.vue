@@ -75,7 +75,7 @@
                 type="text"
                 size="md"
                 placeholder="Alege o data"
-              />
+              >
             </es-datepicker>
           </div>
           <div class="form-group my-4">

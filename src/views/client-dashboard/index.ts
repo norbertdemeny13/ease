@@ -1,0 +1,12 @@
+export { default as ClientDashboard } from './ClientDashboard.vue';
+export { default as ClientAccount } from './ClientAccount.vue';
+export { default as ClientPassword } from './ClientPassword.vue';
+export { default as ClientAddresses } from './ClientAddresses.vue';
+export { default as ClientCredits } from './ClientCredits.vue';
+export { default as ClientOrders } from './ClientOrders.vue';
+export { default as ClientPayments } from './ClientPayments.vue';
+export { default as ClientPhone } from './ClientPhone.vue';
+export { default as ClientPreferences } from './ClientPreferences.vue';
+export { default as ClientRecommendations } from './ClientRecommendations.vue';
+export { default as ClientReservations } from './ClientReservations.vue';
+export { default as ClientSubscriptions } from './ClientSubscriptions.vue';

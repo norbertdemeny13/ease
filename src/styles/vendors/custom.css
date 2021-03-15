@@ -388,6 +388,13 @@
   top: 50%;
 }
 
+.copy-btn {
+  color: #d00078;
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+}
+
 .back-button::before {
   font-family: 'ElegantIcons';
   content: "\23";
@@ -443,4 +450,8 @@
     height: auto;
     width: 800px;
   }
+}
+
+.router-link-exact-active {
+  color: #d00078 !important;
 }

@@ -50,7 +50,6 @@
         </div>
       </div>
     </div>
-    <!-- /container -->
     <es-address-modal
       v-if="isAddressModalOpen"
       v-model="isAddressModalOpen"
