@@ -176,10 +176,9 @@
       },
 
       getComplementaryServices() {
-        const { type } = this.$router.currentRoute.query;
         const { terapeut } = this.massageForm;
         return this.selectedService.complementary_services
-          .filter(item => terapeut === 'single' && type !== 'single' ? !item.is_four_hands : item);
+          .filter(item => terapeut === 'double' ? item : !item.is_four_hands);
       },
       services() {
         return this.getServicesByType[0]?.services

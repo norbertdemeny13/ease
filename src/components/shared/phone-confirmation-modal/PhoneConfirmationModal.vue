@@ -68,7 +68,7 @@
             id: nanoid(),
             intent: 'success',
             title: 'Felicitari!',
-            message: 'Contul tau a fost creat cu success!',
+            message: 'Contul telefonul tau a fost adaugat cu succes!',
           });
           this.$emit('is-open', false);
         }

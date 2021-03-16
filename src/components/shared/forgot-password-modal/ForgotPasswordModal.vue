@@ -19,13 +19,13 @@
                 id="email"
                 v-model="email"
                 type="text"
-                class="form-control"
+                class="pl-6 form-control"
                 name="email"
               >
               <i class="icon_mail_alt" />
             </div>
             <div class="d-flex justify-content-between">
-              <button class="btn_1 px-4" @click="onSubmit()">Reseteaza parola</button>
+              <button class="btn_1 px-4" @click="onSubmit()">Trimite</button>
             </div>
           </div>
           <!--form -->
@@ -40,6 +40,7 @@
   /* eslint-disable */
   import Vue, { PropType } from 'vue';
   import { mapActions } from 'vuex';
+  import { validateEmail } from '@/utils/validate-email';
 
   export default Vue.extend({
     name: 'es-forgot-password-modal',
@@ -62,10 +63,26 @@
 
     methods: {
       ...mapActions({
-        forgotPassword: 'forgotPassword',
+        forgotPassword: 'session/forgotPassword',
       }),
-      onSubmit() {
-        this.$emit('show-reset-password-modal', true);
+      async onSubmit() {
+        if (validateEmail(this.email)) {
+          await this.forgotPassword(this.email);
+          (this as any).$toasts.toast({
+            id: 'forgot-password',
+            title: 'Atentie',
+            message: 'Vei primi in curand un email cu un link prin care poti sa resetezi parola.',
+            intent: 'warning',
+          });
+          this.$emit('is-open', false);
+        } else {
+          (this as any).$toasts.toast({
+            id: 'forgot-password',
+            title: 'Atentie',
+            message: 'Te rog sa introduci un email valid.',
+            intent: 'warning',
+          });
+        }
       },
     },
   });

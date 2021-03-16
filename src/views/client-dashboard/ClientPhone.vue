@@ -5,33 +5,80 @@
       <div class="col-md-4">
         <div class="form-group">
           <label>Numar de telefon mobil parola</label>
-          <input
-            id="phone-number"
+          <es-phone-number-input
+            id="phone"
             v-model="phone"
-            type="text"
-            class="form-control"
-            name="phone-number"
-          >
+            :no-example="true"
+            :required="true"
+            :translations="translations"
+            name="phone"
+            default-country-code="RO"
+            clearable
+            color="#ced4da"
+            disabled
+          />
         </div>
         <div class="d-flex justify-content-end">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
+            @click.prevent="isPhoneValidateModalOpen = true"
           >
-            Salveaza
+            Modifica
           </button>
         </div>
       </div>
     </div>
+    <es-phone-validate-modal
+      v-if="isPhoneValidateModalOpen"
+      v-model="isPhoneValidateModalOpen"
+      :is-open="isPhoneValidateModalOpen"
+      @show-phone-confirmation-modal="isPhoneConfirmationModalOpen = true"
+    />
+    <es-phone-confirmation-modal
+      v-if="isPhoneConfirmationModalOpen"
+      v-model="isPhoneConfirmationModalOpen"
+      :is-open="isPhoneConfirmationModalOpen"
+    />
   </div>
 </template>
 
 <script lang="ts">
+  /* eslint-disable */
   import Vue from 'vue';
+  import { mapGetters } from 'vuex';
+  import VuePhoneNumberInput from 'vue-phone-number-input';
+  import { ValidatePhoneModal } from '@/components/shared/validate-phone-modal';
+  import { PhoneConfirmationModal } from '@/components/shared/phone-confirmation-modal';
 
   export default Vue.extend({
     name: 'es-client-phone',
+
+    components: {
+      'es-phone-validate-modal': ValidatePhoneModal,
+      'es-phone-confirmation-modal': PhoneConfirmationModal,
+      'es-phone-number-input': VuePhoneNumberInput,
+    },
+
     data: () => ({
+      translations: {
+        countrySelectorLabel: 'Codul tarii',
+        countrySelectorError: 'Va rugam selectati',
+        phoneNumberLabel: 'Numarul de telefon',
+        example: 'Exemplu:'
+      },
       phone: '',
+      isPhoneConfirmationModalOpen: false,
+      isPhoneValidateModalOpen: false,
     }),
+
+    computed: {
+      ...mapGetters({
+        getUser: 'session/getUser',
+      }),
+    },
+    created() {
+      const { phone_number } = this.getUser;
+      this.phone = phone_number;
+    },
   });
 </script>

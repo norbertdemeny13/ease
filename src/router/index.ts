@@ -222,6 +222,10 @@ router.beforeEach(async (to, from, next) => {
     next('/abonamente');
   }
 
+  if (path.includes('/client') && !getToken && !jwtToken) {
+    next('/');
+  }
+
   if (isNew && !getSelectedServices.length) {
     const newRoute = path.replace('/new', '');
     next(newRoute);

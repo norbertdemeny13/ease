@@ -4,6 +4,8 @@ import { ActionTree, MutationTree, GetterTree } from 'vuex';
 import { ModuleState, RootState } from '@/store/interfaces';
 import { USER } from '@/interfaces/user';
 import { api } from '@/services/api';
+import instance from '@/main';
+import { nanoid } from 'nanoid';
 
 export interface State extends ModuleState {
   isAuth: boolean;
@@ -24,6 +26,43 @@ export default {
     setToken({ state }, pass) {
       if (pass === 'qazwsx') {
         Vue.set(state, 'isAuth', true);
+      }
+    },
+    async updateUser({ state, commit }, user) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.update('/user', {
+          settings: { ...user },
+        });
+        const newData = {
+          ...state.user,
+          ...data,
+        };
+        commit('setUser', newData);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async changePassword({ state, commit }, passwords) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('/user/change_password', {
+          ...passwords,
+        });
+
+      } catch(reason) {
+        const data = {
+          error: 'Te rugam sa introduci parola corecta',
+        };
+        commit('common/setErrors', { data }, { root: true });
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Felicitari!',
+          message: 'Parola a fost schimbata cu success!',
+          intent: 'success',
+        });
       }
     },
     async jwtLogin({ state, commit }, jwt) {

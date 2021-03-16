@@ -7,6 +7,6 @@ export const NAVBAR_LINKS = [
   // { label: 'Companii', to: '/companii' },
   { label: 'Gestioneaza contul', to: '/client/cont', requiresAuth: true },
   { label: 'Rezervari', to: '/client/rezervarile-mele', requiresAuth: true },
-  { label: 'Adauga cod promo', to: '/client/cod-promo', requiresAuth: true },
+  { label: 'Adauga credit', to: '/client/credit-ease', requiresAuth: true },
   { label: 'Metode de plata', to: '/client/metode-de-plata', requiresAuth: true },
 ];

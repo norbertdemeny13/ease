@@ -51,6 +51,14 @@ export default {
   mutations: {
     setErrors(state: State, reason: any) {
       const { status, data } = reason;
+
+      if (!data) {
+        dispatchToast({
+          title: 'Eroare',
+          message: 'Din pacate nu putem procesa cererea, te rugam sa incerci din nou',
+        });
+      }
+
       const errors = data.errors ? data.errors : data.error;
 
       if (typeof errors === 'string') {

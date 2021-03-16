@@ -104,6 +104,7 @@ export default {
         Vue.set(state, 'reservationDetails', data);
       } finally {
         Vue.set(state, 'isFetching', false);
+        dispatch('addServiceReservationDate', 'massage');
       }
     },
     async createCoupleMassageReservation({ state, dispatch, commit }, { reservation, method }) {
@@ -141,6 +142,7 @@ export default {
         Vue.set(state, 'reservationDetails', data);
       } finally {
         Vue.set(state, 'isFetching', false);
+        dispatch('addServiceReservationDate', 'massage');
       }
     },
     async createReservation({ state, dispatch, commit }) {

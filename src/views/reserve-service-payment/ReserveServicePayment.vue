@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-center">
               <button
                 class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-                @click.prevent="$router.push('/rezervarile-mele')"
+                @click.prevent="$router.push('/client/rezervarile-mele')"
               >
                 Rezervarile mele
               </button>

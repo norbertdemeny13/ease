@@ -176,7 +176,9 @@
       },
 
       getComplementaryServices() {
-        return this.selectedService.complementary_services;
+        const { terapeut } = this.massageForm;
+        return this.selectedService.complementary_services
+          .filter(item => terapeut === 'double' ? item : !item.is_four_hands);
       },
       services() {
         return this.getServicesByType[0]?.services

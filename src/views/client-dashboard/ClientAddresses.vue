@@ -71,7 +71,7 @@
     display: flex;
     justify-content: space-between;
     margin: 8px 0;
-    padding: 16px;
+    padding: 8px;
   }
 
   .client-address-item.active,

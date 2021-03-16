@@ -17,7 +17,7 @@
               <label>Introdu noua ta parola</label>
               <input
                 :type="type"
-                class="form-control"
+                class="pl-6 form-control"
                 name="password"
                 id="password"
                 v-model="password"

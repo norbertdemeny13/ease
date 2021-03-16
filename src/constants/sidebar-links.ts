@@ -8,6 +8,6 @@ export const SIDEBAR_LINKS = [
   { label: 'Rezervarile mele', to: 'rezervarile-mele' },
   { label: 'Comenzile mele', to: 'comenzile-mele' },
   { label: 'Abonamente', to: 'abonamente' },
-  { label: 'Cod Promo', to: 'cod-promo' },
+  { label: 'Credit Ease', to: 'credit-ease' },
   { label: 'Preferinte', to: 'preferinte' },
 ];
