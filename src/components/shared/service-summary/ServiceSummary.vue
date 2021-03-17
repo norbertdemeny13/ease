@@ -24,6 +24,9 @@
           <h3>{{ item.name }}</h3>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Ron</h5>
         </div>
+        <li v-if="item.isWithAromaterapeutic">
+          <span>{{ item.terapeuticForm.name }}</span><span>{{ item.terapeuticForm.price }}</span>
+        </li>
         <li
           v-for="service in item.services"
           :key="service.id"
@@ -89,6 +92,8 @@
             const selectedComplementaryServices = isMassage
               ? this.getMassageServices(item)
               : this.getBeautyServices(item);
+            const isWithAromaterapeutic = item.massageForm && item.massageForm.form === 'aromaterapeutic';
+            const terapeuticForm = isWithAromaterapeutic && item.therapeutic_forms[1] || null;
             return {
               name: item.name,
               services: selectedComplementaryServices,
@@ -96,6 +101,8 @@
               uuid: item.uuid,
               prices: item.price,
               massageType: item.massageType,
+              isWithAromaterapeutic,
+              terapeuticForm,
             };
           });
       },
@@ -182,6 +189,12 @@
         const selectedServices = services.filter(item => item.selectedCount > 0);
         selectedServices
           .forEach(service => complementaryTotal += 1 * parseInt(service.price === '0' ?  this.hourPrice : service.price), 10);
+
+        if (item.massageForm && item.massageForm.form === 'aromaterapeutic') {
+          const aromaterapeuticPrice = item.therapeutic_forms[1].price;
+          complementaryTotal = parseInt(aromaterapeuticPrice, 10);
+        }
+
         return complementaryTotal;
       },
       getServicePrice({ uuid }) {

@@ -270,7 +270,7 @@
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
-        await this.fetchServiceById({ type, id: uuid, duration });
+        await this.fetchServiceById({ type, id: uuid, duration, terapeut });
         const selectedService = {
           ...this.selectedService,
           massageType: 'couple_1',

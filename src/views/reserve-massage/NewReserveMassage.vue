@@ -268,10 +268,10 @@
         this.selectedService = this.services ? this.services[index] : null;
       },
       async onContinue() {
-        const { type, duration } = this.massageForm;
+        const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
-        await this.fetchServiceById({ type, id: uuid, duration });
+        await this.fetchServiceById({ type, id: uuid, duration, terapeut });
         const selectedService = {
           ...this.selectedService,
           massageType: 'couple_2',

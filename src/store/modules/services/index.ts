@@ -256,7 +256,7 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServiceById({ state, commit }, { type, id, duration }) {
+    async fetchServiceById({ state, commit }, { type, id, duration, terapeut }) {
       const city_id = state.location
         ? state.location.city_id
         : sessionStorage.getItem('city_id');
@@ -266,6 +266,7 @@ export default {
           params: {
             city_id,
             duration,
+            type: terapeut === 'double' ? 'couple_2' : 'couple_1',
           },
         });
         commit('setServiceById', { ...data, category: type, uuid: id });

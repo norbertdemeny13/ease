@@ -74,8 +74,7 @@
     watch: {
       getCards(newVal) {
         if (newVal && newVal.length) {
-          const [selectedCard] = newVal.filter((item: any) => item.primary);
-          this.selectedCard = selectedCard ? selectedCard.id : newVal[0].id;
+          this.selectedCard = newVal[newVal.length - 1].id;
         }
       },
       getErrors(newVal) {

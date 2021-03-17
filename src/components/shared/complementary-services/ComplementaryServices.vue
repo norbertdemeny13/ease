@@ -18,7 +18,7 @@
         <div class="d-flex flex-column flex-grow-1 ml-2 px-2">
           <h5>{{ service.complementary_service.name }}</h5>
           <div class="d-flex justify-content-between">
-            <p class="m-0">{{ service.complementary_service.price }} Lei / unghie</p>
+            <p class="m-0">{{ service.complementary_service.price }} Lei {{ $router.currentRoute.params.type === 'nails' ? '/ unghie' : '' }}</p>
             <div class="form-group">
               <select
                 v-model="service.selectedCount"
