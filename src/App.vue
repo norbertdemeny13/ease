@@ -6,8 +6,8 @@
       <transition name="app_a-fade" mode="out-in">
         <router-view :key="$route.fullpath" />
       </transition>
-      <es-toasts />
     </main>
+    <es-toasts />
     <es-footer />
     <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
     <portal-target name="modal" multiple />

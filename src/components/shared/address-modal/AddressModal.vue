@@ -64,7 +64,7 @@
                 <div class="form-group">
                   <label>Etaj</label>
                   <input
-                    :value="address.floor"
+                    v-model="address.floor"
                     type="text"
                     class="form-control"
                     name="floor"
@@ -81,15 +81,6 @@
                 class="form-control"
                 name="city"
               >
-            </div>
-            <div v-if="isMassageView" class="form-group">
-              <label>Masa de masaj</label>
-              <div class="radio_c_group">
-                <label class="container_check">Am masa mea
-                  <input type="checkbox" :checked="address.equipment_ids.includes(1) ? 'checked' : ''" @click="onEquipmentChange(address.equipment_ids.includes(1))">
-                  <span class="checkmark" />
-                </label>
-              </div>
             </div>
             <div class="form-group">
               <label>Nota</label>
@@ -134,10 +125,6 @@
         required: true,
         type: Boolean as PropType<boolean>,
       },
-      isMassageView: {
-        required: true,
-        type: Boolean as PropType<boolean>,
-      },
     },
     /* eslint-disable */
     data: () => ({
@@ -153,9 +140,9 @@
         floor: null,
         apartment_number: null,
         postcode: null,
-        lat: '44.429508',
-        lng: '26.067228',
-        equipment_ids: [1],
+        lat: null,
+        lng: null,
+        equipment_ids: [],
       },
     }),
 
@@ -202,16 +189,6 @@
           const place = autocomplete.getPlace();
           const selectedCity = place.address_components
             .filter((item: any) => item.types.includes('locality'))[0].short_name;
-          const savedCity = sessionStorage.getItem('city');
-          if (savedCity != selectedCity) {
-            (this as any).$toasts.toast({
-              id: 'address-modal',
-              title: 'Atentie!',
-              intent: 'warning',
-              message: 'Noua adresa nu este compatibila cu rezervarea actuala. In cazul in care doresti sa schimbi orasul, te rugam sa mergi inapoi la servicii si sa selectezi orasul dorit.',
-            });
-            return;
-          }
           this.address.street_number = place.address_components
             .find((item: any) => item.types[0] === 'street_number').short_name;
           this.address.street_name = place.address_components
@@ -222,14 +199,6 @@
           this.address.lng = place.geometry.location.lng();
           this.location = place.formatted_address;
         });
-      },
-
-      onEquipmentChange(includes: boolean) {
-        if (includes) {
-          this.address.equipment_ids = [];
-        } else {
-          this.address.equipment_ids.push(1);
-        }
       },
 
       onAddAddress(): void {

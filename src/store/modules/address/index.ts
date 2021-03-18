@@ -48,6 +48,7 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+
     async setAddress({ state, commit }, address) {
       Vue.set(state, 'isFetching', true);
       try {
@@ -62,6 +63,39 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+
+    async updateAddress({ state, commit }, { address, id }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.update(`/users/addresses/${id}`, {
+          address,
+        });
+      } catch ({ response: reason }) {
+        commit('setLocationById', null);
+        commit('setLocationError', true);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
+    async setDefaultAddress({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        await api.create(`/users/addresses/${id}/set_default`);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
+    async removeAddress({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        await api.destroy(`/users/addresses/${id}`);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
     async fetchAddresses({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {

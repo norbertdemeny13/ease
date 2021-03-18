@@ -71,6 +71,14 @@
       isPhoneValidateModalOpen: false,
     }),
 
+    watch: {
+      getUser(newVal, oldVal) {
+        if (newVal.phone_number !== oldVal.phone_number) {
+          this.phone = newVal.phone_number;
+        }
+      },
+    },
+
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',

@@ -13,19 +13,6 @@
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="address-wrapper">
-            <div class="d-flex flex-column form-group">
-              <label>Cauta adresa ta</label>
-              <div class="d-flex align-items-center">
-                <input
-                  ref="search"
-                  v-model="location"
-                  placeholder="Introdu o locatie"
-                  class="form-control pr-6"
-                  type="text"
-                >
-                <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
-              </div>
-            </div>
             <div class="form-group">
               <label>Strada</label>
               <input
@@ -64,7 +51,7 @@
                 <div class="form-group">
                   <label>Etaj</label>
                   <input
-                    :value="address.floor"
+                    v-model="address.floor"
                     type="text"
                     class="form-control"
                     name="floor"
@@ -96,7 +83,7 @@
                 </label>
               </div>
             </div>
-            <div v-if="isMassageView" class="form-group">
+            <div class="form-group">
               <label>Masa de masaj</label>
               <div class="radio_c_group">
                 <label class="container_check">Am masa mea
@@ -145,9 +132,9 @@
             <div class="text-left my-2">
               <button
                 class="btn_1"
-                @click.prevent="onAddAddress()"
+                @click.prevent="saveAddress()"
               >
-                Adauga
+                Salveaza
               </button>
             </div>
           </div>
@@ -162,6 +149,7 @@
 <script lang="ts">
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { Address } from '@/interfaces/Address';
 
   export default Vue.extend({
     name: 'es-address-modal-complete',
@@ -176,14 +164,13 @@
         required: true,
         type: Boolean as PropType<boolean>,
       },
-      isMassageView: {
+      selectedAddress: {
         required: true,
-        type: Boolean as PropType<boolean>,
+        type: Object as PropType<Address>,
       },
     },
     /* eslint-disable */
     data: () => ({
-      location: null,
       typeOptions: [
         { value: 'private_residence', label: 'Rezidenta Privata' },
         { value: 'office', label: 'Birou' },
@@ -201,85 +188,66 @@
       ],
       city: '',
       address: {
-        street_name: null,
-        street_number: null,
-        address_type: null,
-        pets: null,
-        parking: null,
-        notes: null,
-        floor: null,
-        apartment_number: null,
-        postcode: null,
-        lat: '44.429508',
-        lng: '26.067228',
-        equipment_ids: [1],
+        street_name: '',
+        street_number: '',
+        address_type: '',
+        pets: '',
+        parking: '',
+        notes: '',
+        floor: '',
+        apartment_number: '',
+        postcode: '',
+        lat: '',
+        lng: '',
+        equipment_ids: [] as number[],
       },
     }),
 
     computed: {
       ...mapGetters({
-        getLocationError: 'address/getLocationError',
-        getLocationById: 'address/getLocationById',
         isFetching: 'address/isFetching',
       }),
     },
 
-    watch: {
-      getLocationError(newVal) {
-        (this as any).$toasts.toast({
-          intent: 'error',
-          id: 'address-toast',
-          title: 'Action required',
-          message: 'Te rugam sa introduci o adresa corecta!',
-        });
-      },
+    created() {
+      const {
+        address_type,
+        apartment_number,
+        city,
+        equipment,
+        floor,
+        lat,
+        lng,
+        notes,
+        parking,
+        pets,
+        street_name,
+        street_number,
+      } = this.selectedAddress;
 
-      getLocationById(newVal, oldVal) {
-        this.fetchAddresses();
-        this.$emit('is-open', false);
-      },
-    },
+      const equipmentId = equipment[0]?.id;
 
-    mounted() {
-      (window as any).checkAndAttachMapScript(this.initLocationSearch);
+      this.address.street_number = street_number;
+      this.address.street_name = street_name;
+      this.address.floor = floor;
+      this.address.apartment_number = apartment_number;
+      this.address.address_type = address_type;
+      this.address.pets = pets;
+      this.address.parking = parking;
+      this.address.notes = notes;
+      this.address.lat = lat;
+      this.address.lng = lng;
+      this.city = city.name;
+
+      if (equipmentId) {
+        this.address.equipment_ids.push(equipmentId);
+      }
     },
 
     methods: {
       ...mapActions({
-        fetchLocation: 'address/fetchLocation',
-        fetchAddresses: 'address/fetchAddresses',
-        setAddress: 'address/setAddress',
+        updateAddress: 'address/updateAddress',
       }),
-
-      async initLocationSearch() {
-        await this.$nextTick();
-        const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
-        autocomplete.setFields(['geometry.location','address_component','formatted_address', 'name']);
-        autocomplete.addListener('place_changed', () => {
-          const place = autocomplete.getPlace();
-          const selectedCity = place.address_components
-            .filter((item: any) => item.types.includes('locality'))[0].short_name;
-          const savedCity = sessionStorage.getItem('city');
-          if (savedCity != selectedCity) {
-            (this as any).$toasts.toast({
-              id: 'address-modal',
-              title: 'Atentie!',
-              intent: 'warning',
-              message: 'Orasul selectat este diferit fata de orasul selectat la rezervare. In cazul in care doresti sa schimbi orasul, te rugam sa mergi inapoi la servicii si sa selectezi orasul dorit.',
-            });
-            return;
-          }
-          this.address.street_number = place.address_components
-            .find((item: any) => item.types[0] === 'street_number').short_name;
-          this.address.street_name = place.address_components
-            .find((item: any) => item.types[0] === 'route').short_name;
-          this.city = place.address_components
-            .find((item: any) => item.types[0] === 'locality').short_name;
-          this.address.lat = place.geometry.location.lat();
-          this.address.lng = place.geometry.location.lng();
-          this.location = place.formatted_address;
-        });
-      },
 
       onEquipmentChange(includes: boolean) {
         if (includes) {
@@ -289,20 +257,11 @@
         }
       },
 
-      onAddAddress(): void {
-        const { address, city } = this;
-        const { street_number, street_name } = address;
-
-        if (street_name && street_number && city) {
-          this.setAddress(this.address);
-        } else {
-          (this as any).$toasts.toast({
-            id: 'address-modal',
-            title: 'Atentie!',
-            intent: 'warning',
-            message: 'Te rugam sa introduci adresa completa. Oras, strada, numar',
-          });
-        }
+      async saveAddress(): Promise<void> {
+        const { address, selectedAddress } = this;
+        const { id } = selectedAddress;
+        await this.updateAddress({ address, id });
+        this.$emit('is-open', false);
       },
     },
   });
