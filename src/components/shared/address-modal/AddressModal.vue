@@ -42,7 +42,6 @@
                   <label>Numar</label>
                   <input
                     v-model="address.street_number"
-                    disabled
                     type="text"
                     class="form-control"
                     name="number"
@@ -187,14 +186,12 @@
         autocomplete.setFields(['geometry.location','address_component','formatted_address', 'name']);
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
-          const selectedCity = place.address_components
-            .filter((item: any) => item.types.includes('locality'))[0].short_name;
           this.address.street_number = place.address_components
-            .find((item: any) => item.types[0] === 'street_number').short_name;
+            .find((item: any) => item.types[0] === 'street_number')?.short_name;
           this.address.street_name = place.address_components
-            .find((item: any) => item.types[0] === 'route').short_name;
+            .find((item: any) => item.types[0] === 'route')?.short_name;
           this.city = place.address_components
-            .find((item: any) => item.types[0] === 'locality').short_name;
+            .find((item: any) => item.types[0] === 'locality')?.short_name;
           this.address.lat = place.geometry.location.lat();
           this.address.lng = place.geometry.location.lng();
           this.location = place.formatted_address;
