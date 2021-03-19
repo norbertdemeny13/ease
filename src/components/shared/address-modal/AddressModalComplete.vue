@@ -29,7 +29,6 @@
                   <label>Numar</label>
                   <input
                     v-model="address.street_number"
-                    disabled
                     type="text"
                     class="form-control"
                     name="number"
