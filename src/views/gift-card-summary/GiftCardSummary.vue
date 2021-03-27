@@ -8,7 +8,7 @@
         <div class="col-lg-6 col-md-6 pt-2 p-4 bg_gray">
           <div class="row mt-6">
             <div class="col-md-7">
-              <img src="@/assets/jpg/Birthday-Gift-Card.jpg" width="100%">
+              <img :src="getSelectedGiftCard.card_design.absolute_image_url" width="100%">
               <div class="d-flex flex-inline justify-content-between mt-4">
                 <h6>Total</h6>
                 <h6>{{ getSelectedGiftCard.value }} Ron</h6>
@@ -20,7 +20,7 @@
 
               <div class="d-flex flex-inline mt-4">
                 <h6 class="mr-4">Trimis</h6>
-                <p class="mb-0">13.03.2021</p>
+                <p class="mb-0">{{ getDate }}</p>
               </div>
 
               <div class="d-flex flex-inline mt-4">
@@ -40,21 +40,36 @@
             </div>
           </div>
           <div class="mt-4">
-            <small>De pe cardul tau va fi incasata suma de {{ getSelectedGiftCard.value }} Lei. Se va trimite un email la {{ getSelectedGiftCard.email }} in data de (25.05.2020) cu un voucher in valoare de ({{ getSelectedGiftCard.value }}), care poate fi valorificat in aplicatia Ease pentru IOS sau Android sau pe site-ul nostru www.ease.ro</small>
+            <small>De pe cardul tau va fi incasata suma de {{ getSelectedGiftCard.value }} Lei. Se va trimite un email la {{ getSelectedGiftCard.email }} in data de {{ getDate }} cu un voucher in valoare de {{ getSelectedGiftCard.value }} Ron, care poate fi valorificat in aplicatia Ease pentru IOS sau Android sau pe site-ul nostru www.ease.ro</small>
             <small>Cardurile Cadou Ease sunt nerambursabile.</small>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 pt-2 p-4">
-          <h3 class="mb-4">Sumar Comanda</h3>
-          <es-payment-details />
-          <div class="d-flex justify-content-center">
-            <button
-              class="btn btn-sm btn-pink btn-pill mt-4 mr-4 px-6"
-              :disabled="isDisabled"
-              @click.prevent="onPay()"
-            >
-              Trimite Comanda
-            </button>
+          <div v-if="isPaymentConfirmed" class="d-flex flex-column align-items-center">
+            <div class="title d-flex flex-column align-items-center">
+              <figure>
+                <img
+                  src="@/assets/png/succes.png"
+                  alt=""
+                  class="lazy"
+                >
+              </figure>
+              <h3 class="px-10 text-center">COMANDA A FOST TRIMISA!</h3>
+            </div>
+            <p>Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
+            <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Ron.</p>
+          </div>
+          <div v-else>
+            <h3 class="mb-4">Sumar Comanda</h3>
+            <es-payment-details />
+            <div class="d-flex justify-content-center">
+              <button
+                class="btn btn-sm btn-pink btn-pill mt-4 mr-4 px-6"
+                @click.prevent="onPay()"
+              >
+                Trimite Comanda
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -71,33 +86,40 @@
   export default Vue.extend({
     name: 'es-gift-card-summary',
 
+    data: () => ({
+      isPaymentConfirmed: false,
+    }),
+
     components: {
       'es-payment-details': PaymentDetails,
     },
 
-    data: () => ({
-      email: null,
-    }),
-
     computed: {
       ...mapGetters({
-        getCards: 'cards/getCards',
         getSelectedGiftCard: 'giftCards/getSelectedGiftCard',
+        getPaymentStatus: 'giftCards/getPaymentStatus',
         isAuthenticated: 'session/isAuthenticated',
       }),
+      getDate() {
+        const date = this.getSelectedGiftCard.send_at;
+        return new Date(date).toISOString().substr(0, 10);
+      },
+    },
 
-      isDisabled() {
-        let disabled = false;
-        if (this.isAuthenticated) {
-          disabled = !this.getCards.length;
+    watch: {
+      getPaymentStatus(newVal) {
+        if (newVal) {
+          this.isPaymentConfirmed = true;
         }
-        return disabled || !this.email;
-      }
+      },
     },
 
     methods: {
+      ...mapActions({
+        onGiftCardPay: 'giftCards/onGiftCardPay',
+      }),
       onPay() {
-        this.$root.$emit('on-create-payment');
+        this.onGiftCardPay();
       },
     },
   });

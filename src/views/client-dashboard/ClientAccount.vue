@@ -25,8 +25,9 @@
           <label>Adresa de email</label>
           <input
             v-model="user.email"
-            type="text"
             class="form-control"
+            disabled
+            type="text"
             name="email"
           >
         </div>

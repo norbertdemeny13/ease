@@ -9,13 +9,13 @@
           <div class="main">
             <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
               <h5>{{ getSelectedSubscription.label }}</h5>
-              <h6>{{ getSelectedSubscription.price }} Ron / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
+              <h6>{{ getSelectedSubscription.price.price }} Ron / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
             </div>
             <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">
-              <h6>Subtotal</h6><h6>{{ getSelectedSubscription.price }} Ron</h6>
+              <h6>Subtotal</h6><h6>{{ getSelectedSubscription.price.price }} Ron</h6>
             </div>
             <div class="d-flex justify-content-between align-items-center flex-inline">
-              <h6>Total</h6><h6>{{ getSelectedSubscription.price }} Ron</h6>
+              <h6>Total</h6><h6>{{ getSelectedSubscription.price.price }} Ron</h6>
             </div>
             <div class="mt-4"><small>Prin apasarea butonului “Activeaza”, accepti Termenii si Conditiile noastre si Politica de Confidentialitate si activezi abonamentul Ritual masaj lunar de 60 minute. Abonamentul se reinnoieste automat in fiecare luna la data la care te-ai abonat, pana cand il anulezi. In fiecare luna se va efectua o plata automata de pe cardul tau pentru care primesti o sedinta de masaj (cu durata aleasa de tine). Poti sa anulezi abonamentul in orice moment, gratuit din aplicatie, de pe site-ul nostru ease.ro  sau apeland serviciu clienti.</small></div>
           </div>
@@ -44,8 +44,7 @@
           </div>
         </div>
         <div v-else class="col-lg-6 col-md-6 p-8">
-          <h5>Adresa</h5>
-          <p>{{ getAddress() }}</p>
+          <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
           <es-payment-details>
             <div class="d-flex justify-content-center">
               <button
@@ -61,6 +60,10 @@
       </div>
     </div>
     <!-- /container -->
+    <es-address-modal
+      v-if="isAddressModalOpen"
+      v-model="isAddressModalOpen"
+    />
   </div>
 </template>
 
@@ -68,11 +71,15 @@
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { PaymentDetails } from '@/components/shared/payment';
+  import { AddressModal } from '@/components/shared/address-modal';
+  import { AddressDetails } from '@/components/shared/address-details';
 
   export default Vue.extend({
     name: 'es-subscription-payment-view',
 
     components: {
+      'es-address-details': AddressDetails,
+      'es-address-modal': AddressModal,
       'es-payment-details': PaymentDetails,
     },
 
@@ -80,6 +87,7 @@
       showAddPayment: false,
       selectedCard: null,
       isSubscriptionActivated: false,
+      isAddressModalOpen: false,
       polling: 0,
     }),
 

@@ -90,9 +90,9 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapActions, mapGetters } from 'vuex';
   /* eslint-disable */
   import { PricingPlan } from '@/components/shared/pricing-plan';
-  import { SUBSCRIPTIONS_INFORMATION } from '@/constants/subscriptions-information';
 
   export default Vue.extend({
     name: 'es-subscriptions',
@@ -107,9 +107,20 @@
     }),
 
     computed: {
-      getSubscriptionsInformation() {
-        return SUBSCRIPTIONS_INFORMATION;
+      ...mapGetters({
+        getAllSubscriptions: 'subscriptions/getAllSubscriptions'
+      }),
+      getSubscriptionsInformation(): any {
+        return this.getAllSubscriptions
+          .map((subscription: any) => ({
+            ...subscription,
+            subscriptionList: subscription.data,
+          }));
       },
+    },
+
+    created() {
+      this.fetchSubscriptions();
     },
 
     mounted() {
@@ -117,7 +128,10 @@
     },
 
     methods: {
-      scrollToElement() {
+      ...mapActions({
+        fetchSubscriptions: 'subscriptions/fetchSubscriptions',
+      }),
+      scrollToElement(): void {
         const el = this.$el.getElementsByClassName('pricing-plan-container')[0];
 
         if (el) {

@@ -191,11 +191,14 @@ export const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const { params, path } = to;
+  let isAuthenticated = false;
+
+  const { params, path, name } = to;
   const { type, id } = params;
   const isAuth = store.getters['session/isAuth'];
   const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
   const getSelectedServices = store.getters['services/getSelectedServices'];
+  const getGiftCard = store.getters['giftCards/getGiftCard'];
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
@@ -204,6 +207,15 @@ router.beforeEach(async (to, from, next) => {
 
   if (!getToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
+    isAuthenticated = true;
+  }
+
+  if ((getToken || isAuthenticated) && name === 'Home') {
+    next('/servicii');
+  }
+
+  if (path.includes('/carduri-cadou/') && !getGiftCard.id) {
+    next('/carduri-cadou');
   }
 
   if (path.includes('/rezerva/plata') && !getSelectedServices.length) {

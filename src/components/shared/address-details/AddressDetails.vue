@@ -39,7 +39,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default Vue.extend({
     name: 'es-address-details',
@@ -51,6 +51,7 @@
     computed: {
       ...mapGetters({
         getAddresses: 'address/getAddresses',
+        getReservationAddress: 'address/getReservationAddress',
         getDefaultAddress: 'session/getUserDefaultAddress',
       }),
 
@@ -59,40 +60,64 @@
           return this.selectedAddress;
         },
         set(val: number) {
+          const routeName = this.$router.currentRoute.name;
           this.selectedAddress = val;
-          // TODO Change the address for the reservation
+          this.setReservationAddress(val);
+
+          if (routeName === 'Plata rezervare') {
+            const address = this.getAddresses.find((item: any) => item.id === val);
+            this.createReservationAddress({ address });
+          }
         },
       },
 
       getLocalAddresses(): { id: string; label: string }[] {
         /* eslint-disable */
-        const { getAddresses } = this;
-
-        return getAddresses && getAddresses.map((
-          {
-            street_name,
-            street_number,
-            city,
-            id,
-          }: {
-            street_number: string;
-            street_name: string;
-            id: string;
-            city: any;
-          },
-        ) => {
-          const label = `${street_number}, ${street_name}, ${city.name}`;
-          return { id, label };
-        });
+        const { getAddresses, selectedAddress } = this;
+        const address = getAddresses.find((address: any) => address.id === selectedAddress);
+        const isRestrictedView = this.$router.currentRoute.name === 'Plata rezervare';
+        const filterAddress = address && isRestrictedView;
+        return getAddresses && getAddresses
+          .filter(({ city }: { city: any }) => filterAddress ? city.id === address.city.id : true)
+          .map((
+            {
+              street_name,
+              street_number,
+              city,
+              id,
+            }: {
+              street_number: string;
+              street_name: string;
+              id: string;
+              city: any;
+            },
+          ) => {
+            const label = `${street_number}, ${street_name}, ${city.name}`;
+            return { id, label };
+          });
       },
+    },
+
+    created() {
+      this.fetchAddresses();
     },
 
     watch: {
       getAddresses(newVal) {
         if (newVal.length) {
-          this.selectedAddress = newVal.filter((item: any) => item.main)[0].id;
+          this.selectedAddress = this.getReservationAddress
+            ? this.getReservationAddress.id
+            : newVal.find((item: any) => item.main).id;
         }
       },
+    },
+
+    methods: {
+      ...mapActions({
+        fetchAddresses: 'address/fetchAddresses',
+        setReservationAddress: 'address/setReservationAddress',
+        createReservationAddress: 'services/setReservationAddress',
+      }),
     },
   });
 </script>

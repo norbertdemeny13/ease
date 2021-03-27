@@ -27,7 +27,6 @@
           v-for="card in getSubscriptionsInformation"
           :key="card.id"
           :item="card"
-          :benefits="getBenefits"
           :show-title="false"
           @on-select="onSelect($event)"
         />
@@ -42,7 +41,7 @@
   import { mapActions, mapGetters } from 'vuex';
   /* eslint-disable */
   import { PricingPlanCard, PricingPlanCardSkeleton } from '@/components/shared/pricing-plan';
-  import { SUBSCRIPTIONS_INFORMATION, SUBSCRIPTION_FILTERS, BENEFITS } from '@/constants/subscriptions-information';
+  import { SUBSCRIPTION_FILTERS } from '@/constants/subscriptions-information';
 
   export default Vue.extend({
     name: 'es-subscription-details',
@@ -63,7 +62,7 @@
     created() {
       const { params, query } = this.$router.currentRoute;
       const period = query.tip === 'lunar' ? '?monthly=true' : '?monthly=false';
-      const serviceType = params.type === 'masaj' ? 'massages' : params.type;
+      const serviceType = params.type === 'massage' ? 'massages' : params.type;
       this.serviceType = serviceType;
       this.fetchSubscriptionsByType(`${serviceType}${period}`);
     },
@@ -90,23 +89,15 @@
           : location;
       },
 
-      getBenefits() {
-        return BENEFITS;
-      },
       getFilter() {
         return SUBSCRIPTION_FILTERS
           .find(filter => filter.type === 'massage')
       },
       getSubscriptionsInformation(): Record<string, any> {
-        const { query } = this.$router.currentRoute;
-        const subscriptionType = query.tip;
         return this.getSubscriptions
-          .filter(({ monthly }: { monthly: boolean }) => subscriptionType === 'lunar' ? monthly : !monthly)
           .map((subscription: any) => ({
             ...subscription,
             label: `${subscription.name} ${subscription.uses > 1 ? subscription.uses : ''}`,
-            price: subscription.price.price,
-            benefits: BENEFITS.slice(0, 2),
           }));
       },
     },

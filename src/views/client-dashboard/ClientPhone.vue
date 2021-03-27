@@ -13,7 +13,6 @@
             :translations="translations"
             name="phone"
             default-country-code="RO"
-            clearable
             color="#ced4da"
             disabled
           />

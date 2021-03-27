@@ -20,12 +20,11 @@
                     <li
                       v-for="link in getAuthNavLinks"
                       :key="link.id"
+                      @click.prevent="onNavLinkClick(link.to)"
                     >
-                      <router-link
-                        :to="link.to"
-                      >
+                      <a href="">
                         {{ link.label }}
-                      </router-link>
+                      </a>
                     </li>
                     <li><a href="" @click.prevent="onLogout"><i class="icon_key" />Iesi din cont</a></li>
                   </ul>
@@ -157,9 +156,13 @@
       ...mapActions({
         logout: 'session/logout',
       }),
-      onLogout() {
+      onNavLinkClick(to: string): void {
+        this.$router.push(to);
+      },
+
+      async onLogout() {
+        await this.logout();
         this.$router.push({ name: 'Home' });
-        this.logout();
       },
     },
   });

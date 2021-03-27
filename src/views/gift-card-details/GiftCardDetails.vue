@@ -6,7 +6,7 @@
       </a>
       <div class="row d-flex justify-content-center">
         <div class="col-md-5">
-          <img class="mb-4" src="@/assets/jpg/Birthday-Gift-Card.jpg" width="500" height="350">
+          <img class="mb-4" :src="getGiftCard.absolute_image_url" width="500" height="350">
           <div class="form-group">
             <label>Valoare cadou</label>
             <select
@@ -69,7 +69,7 @@
             >
               <input
                 id="datepicker-default"
-                v-model="form.send_date"
+                v-model="form.send_at"
                 class="datepicker-input"
                 name="datepicker-default"
                 type="text"
@@ -125,12 +125,15 @@
         from_email: 'john.doe@gmail.com',
         value: 100,
         message: 'Happy Birthday!',
-        send_date: '',
+        send_at: '',
+        card_design_id: null,
       },
     }),
 
     computed: {
       ...mapGetters({
+        getGiftCard: 'giftCards/getGiftCard',
+        getGiftCards: 'giftCards/getGiftCards',
         getSelectedGiftCard: 'giftCards/getSelectedGiftCard',
       }),
     },
@@ -138,7 +141,6 @@
     watch: {
       getSelectedGiftCard(newVal) {
         const { id } = this.$router.currentRoute.params;
-
         if (newVal.gift_card_id) {
           this.$router.push(`/carduri-cadou/${id}/plata`);
         }
@@ -146,15 +148,22 @@
     },
 
     created() {
-      this.form.send_date = new Date();
+      this.form.card_design_id = this.getGiftCard.id;
+      this.form.send_at = new Date();
     },
 
     methods: {
       ...mapActions({
         createGiftCard: 'giftCards/createGiftCard',
       }),
+
       onSubmit() {
-        this.createGiftCard(this.form);
+        const { id } = this.$router.currentRoute.params;
+        const form = {
+          ...this.form,
+          card_design_id: id,
+        }
+        this.createGiftCard(form);
       },
     },
   });

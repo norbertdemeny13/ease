@@ -14,7 +14,7 @@
           </div>
           <div class="address-wrapper">
             <div class="d-flex flex-column form-group">
-              <label>Cauta adresa ta</label>
+              <label>Strada</label>
               <div class="d-flex align-items-center">
                 <input
                   ref="search"
@@ -25,16 +25,6 @@
                 >
                 <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
               </div>
-            </div>
-            <div class="form-group">
-              <label>Strada</label>
-              <input
-                v-model="address.street_name"
-                disabled
-                type="text"
-                class="form-control"
-                name="street"
-              >
             </div>
             <div class="row">
               <div class="col-md-4">

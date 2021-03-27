@@ -50,21 +50,20 @@
     data: () => ({
       publicKey: '',
       clientSecret: '',
+      onPayClientSecret: '',
       stripe: null,
       card: null,
       isCardMounted: false,
+      localCard: null,
     }),
 
     created() {
-      if (!this.isAuthenticated) {
-        this.clientSecret = 'seti_1ISzYdLYIXXW8aZQff9zfz9b_secret_J59syx0aXanqQrvRaTz74pwfsugtQbh';
-        this.publicKey = 'pk_test_51Gw03jLYIXXW8aZQIiqpyYWjRlVnOvGLKnd6umWrdSlPQGeBEHMa5ScOYj9JPYIUNvyjs0qOF5MwHX0nyO8tG42L00hDCv6ugt';
-        this.setStripe({ publicKey: this.publicKey, clientSecret: this.clientSecret });
-      }
+      this.fetchGiftCardPaymentSetup();
     },
 
     computed: {
       ...mapGetters({
+        getPaymentSetup: 'giftCards/getPaymentSetup',
         getCardInfo: 'cards/getCardInfo',
       }),
       localIsFetching(): boolean {
@@ -73,6 +72,13 @@
     },
 
     watch: {
+      getPaymentSetup(newVal): void {
+        if (newVal) {
+          this.clientSecret = newVal.clientSecret;
+          this.publicKey = newVal.publicKey;
+          this.setStripe(newVal);
+        }
+      },
       getCardInfo(newVal): void {
         if (newVal) {
           this.clientSecret = newVal.clientSecret;
@@ -82,45 +88,13 @@
       },
     },
 
-    mounted() {
-      this.$root.$on('on-create-payment', this.onCreatePayment);
-    },
-
-   beforeDestroy () {
-      this.$root.$off('on-create-payment', this.onCreatePayment)
-    },
-
     methods: {
       ...mapActions({
+        fetchGiftCardPaymentSetup: 'giftCards/fetchGiftCardPaymentSetup',
         setStripeCard: 'cards/setStripeCard',
+        setLocalStripeCard: 'cards/'
       }),
 
-      async onCreatePayment() {
-        const { publicKey, clientSecret, card } = this;
-        await this.setStripe({ publicKey, clientSecret });
-
-        const data = {
-          card,
-          billing_details: { name: 'Jancsi'}
-        };
-
-        (this.stripe! as any)
-          .confirmCardPayment(this.clientSecret, {
-            payment_method: data,
-            setup_future_usage: 'off_session'
-          })
-          .then((result: any) => {
-            if (result.error) {
-              // console.log(result.error, 'error');
-            } else {
-              (this.stripe! as any).retrievePaymentIntent(clientSecret).then((result: any) => {
-                var paymentIntent = result.paymentIntent;
-                var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
-                // console.log(paymentIntentJson);
-              });
-            }
-          });
-      },
       async setStripe({ publicKey, clientSecret }: { publicKey: string; clientSecret: string }): Promise<void> {
         (this.stripe as any) = await loadStripe(publicKey);
 
@@ -160,8 +134,9 @@
                 intent: 'error',
               });
             } else {
-              const { card } = result.token;
-              this.setStripeCard(card);
+              const { card, id } = result.token;
+              this.setStripeCard({ ...card, token_id: id });
+              this.localCard = { ...card, token_id: id };
               this.cardSetup();
             }
           });
@@ -185,7 +160,7 @@
                 intent: 'error',
               });
             } else {
-              this.$emit('on-add-card');
+              this.$emit('on-add-card', this.localCard);
             }
           });
       },

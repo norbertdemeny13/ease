@@ -7,7 +7,8 @@ import { Address } from '@/interfaces/Address';
 import { api } from '@/services/api';
 
 export interface State extends ModuleState {
-  addresses: Address[],
+  addresses: Address[];
+  selectedReservationAddress: Address | null;
   location: Location | null;
   locationById: Location | null;
   locationError: boolean;
@@ -19,6 +20,7 @@ export default {
 
   state: () => ({
     addresses: [],
+    selectedReservationAddress: null,
     location: null,
     locationById: null,
     locationError: false,
@@ -62,6 +64,11 @@ export default {
       } finally {
         Vue.set(state, 'isFetching', false);
       }
+    },
+
+    async setReservationAddress({ state, commit }, addressId) {
+      const selectedAddress = state.addresses.find(address => address.id === addressId);
+      Vue.set(state, 'selectedReservationAddress', selectedAddress);
     },
 
     async updateAddress({ state, commit }, { address, id }) {
@@ -120,6 +127,7 @@ export default {
   } as ActionTree<State, RootState>,
 
   getters: {
+    getReservationAddress: state => state.selectedReservationAddress,
     getAddresses: state => state.addresses,
     getLocation: state => state.location,
     getLocationById: state => state.locationById,

@@ -177,8 +177,9 @@
 
       getComplementaryServices() {
         const { terapeut } = this.massageForm;
+        const { type } = this.$router.currentRoute.query;
         return this.selectedService.complementary_services
-          .filter(item => terapeut === 'double' ? item : !item.is_four_hands);
+          .filter(item => (type === 'couple' && terapeut === 'single') ? !item.is_four_hands : item);
       },
       services() {
         return this.getServicesByType[0]?.services

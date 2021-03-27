@@ -12,6 +12,7 @@ export interface State extends ModuleState {
   isFetching: boolean;
   selectedSubscription: any;
   subscriptions: any[];
+  allSubscriptions: any[];
 }
 
 export default {
@@ -25,6 +26,7 @@ export default {
     isFetching: false,
     selectedSubscription: null,
     subscriptions: [],
+    allSubscriptions: [],
   }) as State,
 
   actions: {
@@ -71,6 +73,15 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchSubscriptions({ state, commit }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/users/subscriptions');
+        commit('setAllSubscriptions', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     setSubscription({ state, commit }, subscription) {
       Vue.set(state, 'selectedSubscription', subscription);
     },
@@ -84,6 +95,7 @@ export default {
     getActiveSubscriptions: state => state.activeSubscriptions,
     getSelectedSubscription: state => state.selectedSubscription,
     getSubscriptions: state => state.subscriptions,
+    getAllSubscriptions: state => state.allSubscriptions,
   } as GetterTree<State, RootState>,
 
   mutations: {
@@ -92,6 +104,9 @@ export default {
     },
     setSubscriptions(state, subscriptions) {
       Vue.set(state, 'subscriptions', subscriptions);
+    },
+    setAllSubscriptions(state, subscriptions) {
+      Vue.set(state, 'allSubscriptions', subscriptions);
     },
     setSelectedSubscription(state, subscription) {
       Vue.set(state, 'selectedSubscription', subscription);

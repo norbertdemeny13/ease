@@ -98,14 +98,6 @@
     },
 
     watch: {
-      async getAddresses(newVal, oldVal) {
-        if (newVal.length !== oldVal.length) {
-          // todo
-          // await this.createReservation();
-          // await this.createExtraServiceReservation();
-        }
-      },
-
       getReservationDetails(newVal) {
         if (newVal.status === 'waiting_confirmation') {
           this.isReservationConfirmed = true;

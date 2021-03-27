@@ -1,7 +1,28 @@
 <template>
   <div class="page_header my-4">
     <div class="container">
-      <div class="row">
+      <es-skeleton-item v-if="isFetching" heigth="18px" width="200px" />
+      <div v-else-if="isAuthenticated && getAddresses.length" class="row">
+        <div class="my-2 ml-4 form-group">
+          <div class="custom_select submit">
+            <select
+              id="address"
+              v-model="getSelectedAddress"
+              name="address"
+              class="form-control wide"
+            >
+              <option
+                v-for="address in getLocalAddresses"
+                :key="address.id"
+                :value="address.id"
+              >
+                {{ address.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div v-else class="row">
         <div v-if="hasAddress" class="ml-4 mt-2 d-md-block">
           <h1>{{ getLocation.formatted_address }}</h1>
           <a href="" @click.prevent="changeAddress = true">Change address</a>
@@ -15,7 +36,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import { AddressSearch } from '@/components/shared/address-search';
 
   export default Vue.extend({
@@ -27,15 +48,59 @@
 
     data: () => ({
       changeAddress: false,
+      selectedAddress: 0,
     }),
 
     computed: {
       ...mapGetters({
         getLocation: 'address/getLocation',
+        getAddresses: 'address/getAddresses',
+        getReservationAddress: 'address/getReservationAddress',
+        isFetching: 'address/isFetching',
+        isAuthenticated: 'session/isAuthenticated',
       }),
+
+      getSelectedAddress: {
+        get(): number {
+          return this.selectedAddress;
+        },
+        set(val: number) {
+          this.selectedAddress = val;
+          this.setReservationAddress(val);
+        },
+      },
+
+      getLocalAddresses(): { id: string; label: string }[] {
+        /* eslint-disable */
+        const { getAddresses } = this;
+
+        return getAddresses && getAddresses.map((
+          {
+            street_name,
+            street_number,
+            city,
+            id,
+          }: {
+            street_number: string;
+            street_name: string;
+            id: string;
+            city: any;
+          },
+        ) => {
+          const label = `${street_number}, ${street_name}, ${city.name}`;
+          return { id, label };
+        });
+      },
+
       hasAddress(): boolean {
         return this.getLocation && !this.changeAddress;
       },
+    },
+
+    created() {
+      if (this.isAuthenticated) {
+        this.fetchAddresses();
+      }
     },
 
     watch: {
@@ -44,6 +109,21 @@
           this.changeAddress = false;
         }
       },
+      getAddresses(newVal) {
+        if (newVal.length) {
+          const selectedAddressId = newVal.find((item: any) => item.main).id;
+          this.selectedAddress = this.getReservationAddress
+            ? this.getReservationAddress.id
+            : selectedAddressId;
+        }
+      },
+    },
+
+    methods: {
+      ...mapActions({
+        fetchAddresses: 'address/fetchAddresses',
+        setReservationAddress: 'address/setReservationAddress',
+      }),
     },
   });
 </script>

@@ -7,6 +7,7 @@ import { api } from '@/services/api';
 export interface State extends ModuleState {
   isFetching: boolean;
   cards: [];
+  selectedCard: any;
   stripeCards: [];
   publicKey: string;
   clientSecret: string;
@@ -20,6 +21,7 @@ export default {
     publicKey: '',
     clientSecret: '',
     cards: [],
+    selectedCard: null,
     stripeCards: [],
   }) as State,
 
@@ -32,6 +34,9 @@ export default {
       } finally {
         Vue.set(state, 'isFetching', false);
       }
+    },
+    setSelectedCard({ state }, card) {
+      Vue.set(state, 'selectedCard', card);
     },
     setStripeCard({ state }, card) {
       state.stripeCards.push(card as never);
@@ -60,6 +65,7 @@ export default {
       }
       return state.cards;
     },
+    getStripeCards: (state) => state.stripeCards,
     getCardInfo: state => ({
       publicKey: state.publicKey,
       clientSecret: state.clientSecret,

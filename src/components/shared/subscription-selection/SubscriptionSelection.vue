@@ -94,7 +94,6 @@
       }
 
       this.setServiceCategory(this.subscriptionType);
-
       await this.fetchSubscriptionsByType(this.subscriptionType);
       await this.fetchActiveSubscriptions();
     },

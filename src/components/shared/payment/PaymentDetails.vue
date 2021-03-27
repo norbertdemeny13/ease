@@ -3,13 +3,13 @@
   <div class="es_payment-details-container">
     <div v-show="!showAddPayment">
       <h5>Metoda de plata</h5>
-      <div v-if="!!getCards.length">
+      <div v-if="!!getLocalCards.length">
         <p>Selecteaza metoda de plata</p>
         <div class="row mb-4">
           <div class="col-6">
             <div class="my-2 form-group">
               <div class="custom_select submit">
-                <select name="credit-card" id="credit-card" class="form-control wide" v-model="selectedCard">
+                <select name="credit-card" id="credit-card" class="form-control wide" v-model="getSelectedCard">
                   <option
                     v-for="card in getCards"
                     :key="card.id"
@@ -66,15 +66,34 @@
         getSelectedSubscription: 'subscriptions/getSelectedSubscription',
         getErrors: 'subscriptions/getErrors',
         getCards: 'cards/getCards',
+        getStripeCards: 'cards/getStripeCards',
         isAuthenticated: 'session/isAuthenticated',
         isFetching: 'cards/isFetching',
       }),
+
+      getLocalCards(): any {
+        return this.isAuthenticated
+          ? this.getCards
+          : this.getStripeCards;
+      },
+
+      getSelectedCard: {
+        get(): any {
+          return this.selectedCard;
+        },
+        set(newVal: string): void {
+          const card: any = this.getLocalCards.find((item: any) => item.id === newVal);
+          this.setSelectedCard(card);
+        },
+      },
     },
 
     watch: {
       getCards(newVal) {
         if (newVal && newVal.length) {
-          this.selectedCard = newVal[newVal.length - 1].id;
+          const card = newVal[newVal.length - 1];
+          this.selectedCard = card.id;
+          this.setSelectedCard(card);
         }
       },
       getErrors(newVal) {
@@ -105,14 +124,17 @@
     methods: {
       ...mapActions({
         fetchCards: 'cards/fetchCards',
+        setSelectedCard: 'cards/setSelectedCard',
         removeStripeCards: 'cards/removeStripeCards',
         addCard: 'cards/addCard',
       }),
 
-      async onAddCard() {
+      async onAddCard(card: any) {
         if (this.isAuthenticated) {
           await this.fetchCards();
         }
+        this.selectedCard = card.id;
+        this.setSelectedCard(card);
         this.showAddPayment = false;
       },
 

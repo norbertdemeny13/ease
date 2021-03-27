@@ -27,9 +27,9 @@
           <div class="row">
             <es-pricing-plan-card
               v-for="item in subscription.subscriptionList"
-              :key="item.type"
+              :key="item.category"
               :item="item"
-              :to="`/abonamente/${item.type}?tip=${subscription.filterKey}`"
+              :to="`/abonamente/${item.category}?tip=${subscription.filterKey}`"
             />
           </div>
         </div>

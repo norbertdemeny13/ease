@@ -7,9 +7,9 @@
           <div class="card-number">
             &#128179; &#10240; {{ card.brand.toUpperCase() }} **** {{ card.last4 }} (exp: {{ card.exp_month }}/{{ card.exp_year }})
           </div>
-          <div class="d-flex flex-row align-items-center justify-content-between mt-2">
-            <div>
-              <span :class="`${card.primary ? 'icon_check_alt' : 'icon_circle-empty'}`" />
+          <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
+            <div v-if="card.primary">
+              <span class="icon_check_alt" />
               <span class="ml-2">Card principal</span>
             </div>
             <a href="" class="mr-2" @click.prevent>

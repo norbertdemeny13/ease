@@ -10,38 +10,38 @@
         <ul class="nav nav-pills justify-content-center pricing-tab" id="pricing-tab" role="tablist">
           <li
             v-for="category in getCategories"
-            :key="category.value"
+            :key="category.id"
             class="nav-item"
-            @click="selectedType = category.value"
+            @click="selectedType = category.id"
           >
             <a
-              :class="`nav-link ${category.value === selectedType ? 'active' : ''}`"
-              :id="`${category.value}-tab`"
+              :class="`nav-link ${category.id === selectedType ? 'active' : ''}`"
+              :id="`${category.id}-tab`"
               data-toggle="pill"
-              :href="`#${category.value}`"
+              :href="`#${category.id}`"
               role="tab"
-              :aria-controls="category.value"
+              :aria-controls="category.id"
               aria-selected="true"
-            >{{ category.label }}</a>
+            >{{ category.name }}</a>
           </li>
         </ul>
         <div class="tab-content pricing-tab-content" id="pricing-tab-content">
           <div
             v-for="category in getCategories"
-            :key="category.value"
+            :key="category.id"
             role="tabpanel"
-            :class="`tab-pane ${selectedType === category.value ? 'active': ''}`"
-            :id="category.value"
-            :aria-labelledby="`${category.value}-tab`"
+            :class="`tab-pane ${selectedType === category.id ? 'active': ''}`"
+            :id="category.id"
+            :aria-labelledby="`${category.id}-tab`"
           >
             <div class="row">
               <div
-                v-for="card in category.cards"
+                v-for="card in category.gift_card_templates"
                 :key="card.id"
                 class="col-md-3 my-4"
-                @click.prevent="onClick(card.id)"
+                @click.prevent="onClick(card)"
               >
-                <img :src="card.src" width="100%" />
+                <img :src="card.absolute_image_url" width="100%" />
               </div>
             </div>
           </div>
@@ -53,83 +53,35 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { nanoid } from 'nanoid';
+  import { mapActions, mapGetters } from 'vuex';
+  import { GIFT_CARD } from '@/interfaces/GiftCards';
 
   export default Vue.extend({
     name: 'es-gift-cards',
     data: () => ({
-      selectedType: 'thank_you',
+      selectedType: 1,
     }),
     computed: {
-      getCategories() {
-        return [
-          {
-            value: 'thank_you',
-            label: 'Multumesc',
-            /* eslint-disable global-require */
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-          {
-            value: 'birthday',
-            label: 'La multi ani',
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-          {
-            value: 'congrats',
-            label: 'Felicitari',
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-          {
-            value: 'appreciate',
-            label: 'Apreciere',
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-          {
-            value: 'support',
-            label: 'Incurajare',
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-          {
-            value: 'others',
-            label: 'Orice Ocazie',
-            cards: [
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-              { src: require('@/assets/jpg/Birthday-Gift-Card.jpg'), id: nanoid() },
-            ],
-          },
-        ];
+      ...mapGetters({
+        getGiftCards: 'giftCards/getGiftCards',
+      }),
+      getCategories(): GIFT_CARD[] {
+        return this.getGiftCards;
       },
     },
+
+    created() {
+      this.fetchGiftCards();
+    },
+
     methods: {
-      onClick(id: string) {
-        const route = `/carduri-cadou/${id}`;
+      ...mapActions({
+        setGiftCard: 'giftCards/setGiftCard',
+        fetchGiftCards: 'giftCards/fetchGiftCards',
+      }),
+      onClick(card: GIFT_CARD): void {
+        this.setGiftCard(card);
+        const route = `/carduri-cadou/${card.id}`;
         this.$router.push(route);
       },
     },
