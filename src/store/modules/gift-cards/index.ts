@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import { ActionTree, MutationTree, GetterTree } from 'vuex';
 import { ModuleState, RootState } from '@/store/interfaces';
-import { GIFT_CARD } from '@/interfaces/GiftCards';
+import { GiftCard } from '@/interfaces/GiftCards';
 import { api } from '@/services/api';
 import instance from '@/main';
 import { nanoid } from 'nanoid';
@@ -24,8 +24,8 @@ const dispatchToast = (
 
 export interface State extends ModuleState {
   isFetching: boolean;
-  giftCard: GIFT_CARD;
-  giftCards: GIFT_CARD[];
+  giftCard: GiftCard;
+  giftCards: GiftCard[];
   paymentSetup: any;
   selectedGiftCard: any;
   paymentStatus: any;
@@ -36,7 +36,7 @@ export default {
 
   state: () => ({
     isFetching: false,
-    giftCard: {} as GIFT_CARD,
+    giftCard: {} as GiftCard,
     giftCards: [],
     paymentSetup: {},
     selectedGiftCard: {},

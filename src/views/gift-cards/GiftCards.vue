@@ -54,7 +54,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { GIFT_CARD } from '@/interfaces/GiftCards';
+  import { GiftCard } from '@/interfaces/GiftCards';
 
   export default Vue.extend({
     name: 'es-gift-cards',
@@ -65,7 +65,7 @@
       ...mapGetters({
         getGiftCards: 'giftCards/getGiftCards',
       }),
-      getCategories(): GIFT_CARD[] {
+      getCategories(): GiftCard[] {
         return this.getGiftCards;
       },
     },
@@ -79,7 +79,7 @@
         setGiftCard: 'giftCards/setGiftCard',
         fetchGiftCards: 'giftCards/fetchGiftCards',
       }),
-      onClick(card: GIFT_CARD): void {
+      onClick(card: GiftCard): void {
         this.setGiftCard(card);
         const route = `/carduri-cadou/${card.id}`;
         this.$router.push(route);
