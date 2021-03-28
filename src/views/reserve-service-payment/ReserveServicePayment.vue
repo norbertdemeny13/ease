@@ -137,6 +137,7 @@
 
       async onPay() {
         const paymentMethodId = this.getSelectedCard.payment_method_id;
+
         if (!this.getAddresses.length) {
           this.isAddressModalOpen = true;
           this.$toasts.toast({
@@ -145,6 +146,11 @@
             message: 'Te rugam sa introduci adresa pentru a continua reservarea.',
           });
           return;
+        }
+
+        if (!this.getReservationDetails) {
+          await this.createReservation();
+          await this.createExtraServiceReservation();
         }
 
         if (!paymentMethodId) {
