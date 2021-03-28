@@ -7,7 +7,6 @@
       <services-list
         v-else
         :services="getServices"
-        :location="getLocation"
       />
     </div>
   </div>
@@ -28,7 +27,6 @@
 
     computed: {
       ...mapGetters({
-        getLocation: 'address/getLocation',
         getServices: 'services/getServices',
         isFetching: 'services/isFetching',
       }),

@@ -4,7 +4,7 @@
     <div class="box_order_form">
       <div class="head">
         <div class="title">
-          <h3>Metoda de plata</h3>
+          <h3>Introduce datele cardului</h3>
         </div>
       </div>
       <!-- /head -->

@@ -171,8 +171,12 @@
       }),
 
       async onSubmit() {
+        const { name } = this.$router.currentRoute;
         if (this.isSignIn) {
           await this.login(this.form);
+          if (name === 'Home') {
+            this.$router.push('/servicii');
+          }
         } else {
           await this.signUp(this.form);
         }

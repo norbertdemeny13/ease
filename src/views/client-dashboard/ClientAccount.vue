@@ -35,21 +35,21 @@
           <label>Vreau sa primesc oferte si notificari prin</label>
           <div class="radio_c_group">
             <label
-              class="container_radio"
+              class="container_check"
               @click.prevent="account_settings.email_news = !account_settings.email_news"
             >Email
               <input type="checkbox" value="checkbox" name="notification-email-type" :checked="account_settings.email_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
-              class="container_radio"
+              class="container_check"
               @click.prevent="account_settings.sms_news = !account_settings.sms_news"
             >SMS
               <input type="checkbox" value="checkbox" name="notification-sms-type" :checked="account_settings.sms_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
-              class="container_radio"
+              class="container_check"
               @click.prevent="account_settings.phone_news = !account_settings.phone_news"
             >Telefon
               <input type="checkbox" value="checkbox" name="notification-phone-type" :checked="account_settings.phone_news ? 'checked' : ''">

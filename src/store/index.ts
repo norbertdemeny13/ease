@@ -10,6 +10,7 @@ import giftCards from './modules/gift-cards';
 import services from './modules/services';
 import session from './modules/session';
 import subscriptions from './modules/subscriptions';
+import phrase from './modules/phrase';
 import { nanoid } from 'nanoid';
 
 const dispatchToast = (
@@ -35,6 +36,7 @@ const options: StoreOptions<RootState> = {
     cards,
     common,
     giftCards,
+    phrase,
     session,
     services,
     subscriptions,

@@ -5,6 +5,7 @@
         v-if="value"
         id="modal"
         :on-dismiss="onCancel"
+        size="xs"
         intent="error"
         data-qa-pm="confirm-modal"
       >
@@ -23,7 +24,7 @@
                 href=""
                 @click.prevent="onConfirm()"
               >
-                Confirma
+                {{ cta }}
               </a>
             </div>
           </div>
@@ -43,6 +44,10 @@
       value: {
         required: true,
         type: Boolean,
+      },
+      cta: {
+        default: 'Confirma',
+        type: String,
       },
     },
 

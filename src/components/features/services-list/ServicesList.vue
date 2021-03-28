@@ -50,19 +50,27 @@
       ...mapGetters({
         getLocation: 'address/getLocation',
         getLocationError: 'address/getLocationError',
+        isAuthenticated: 'session/isAuthenticated',
+        getAddresses: 'address/getAddresses',
       }),
 
       showServices(): boolean {
         const cityId = sessionStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
+        let hasLocation = false;
 
-        const location = this.getLocation
-          ? this.getLocation
-          : addressFromStorage;
+        if (this.isAuthenticated) {
+          hasLocation = this.getAddresses.length > 0;
+        } else {
+          const location = this.getLocation
+            ? this.getLocation
+            : addressFromStorage;
+          hasLocation = !!location;
+        }
 
         return this.getLocationError
           ? false
-          : location;
+          : hasLocation;
       },
     },
 

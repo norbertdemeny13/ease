@@ -61,7 +61,7 @@
 
     created() {
       const { params, query } = this.$router.currentRoute;
-      const period = query.tip === 'lunar' ? '?monthly=true' : '?monthly=false';
+      const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
       const serviceType = params.type === 'massage' ? 'massages' : params.type;
       this.serviceType = serviceType;
       this.fetchSubscriptionsByType(`${serviceType}${period}`);
@@ -94,6 +94,7 @@
           .find(filter => filter.type === 'massage')
       },
       getSubscriptionsInformation(): Record<string, any> {
+
         return this.getSubscriptions
           .map((subscription: any) => ({
             ...subscription,
@@ -105,7 +106,9 @@
     watch: {
       duration(newVal, oldVal) {
         if (newVal !== oldVal) {
-          this.fetchSubscriptionsByType(`${this.subscriptionType}?duration=${newVal}`);
+          const { params, query } = this.$router.currentRoute;
+          const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
+          this.fetchSubscriptionsByType(`${this.subscriptionType}${period}&duration=${newVal}`);
         }
       },
     },
@@ -129,6 +132,9 @@
           return;
         }
 
+        const { params, query } = this.$router.currentRoute;
+        const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
+
         const { type } = subscription;
         if (this.fetchedSubscription) {
           this.$store.commit('subscriptions/setSelectedSubscription', subscription);
@@ -138,7 +144,7 @@
           if (type.includes('Massage')) {
             const massageType = type.includes('Couple') ? 'couple_massage' : 'single_massage';
             this.subscriptionType = massageType;
-            this.fetchSubscriptionsByType(`${massageType}?duration=${this.duration}`);
+            this.fetchSubscriptionsByType(`${massageType}${period}&duration=${this.duration}`);
             this.fetchedSubscription = true;
           } else {
             this.$store.commit('subscriptions/setSelectedSubscription', subscription);

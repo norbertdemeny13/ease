@@ -28,7 +28,7 @@
 
 .es-modal--xs {
   #modal {
-    width: 400px;
+    max-width: 400px;
   }
 }
 
@@ -37,7 +37,7 @@
 // -----------------------------------------------
 
 .es-modal--sm {
-  #modal {
+  #es-modal-dialog {
     max-width: 600px;
   }
 }
@@ -47,8 +47,8 @@
 // -----------------------------------------------
 
 .es-modal--md {
-  #modal {
-    width: 800px;
+  #es-modal-dialog {
+    max-width: 800px;
   }
 }
 
@@ -57,7 +57,7 @@
 // -----------------------------------------------
 
 .es-modal--lg {
-  #modal {
+  #es-modal-dialog {
     width: 1000px;
   }
 }
@@ -67,7 +67,7 @@
 // -----------------------------------------------
 
 .es-modal--xl {
-  #modal {
+  #es-modal-dialog {
     width: 1200px;
   }
 }
@@ -77,7 +77,7 @@
 // -----------------------------------------------
 
 .es-modal--fullscreen {
-  #modal {
+  #es-modal-dialog {
     width: 90vw;
   }
 

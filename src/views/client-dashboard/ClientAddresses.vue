@@ -21,7 +21,11 @@
               <i class="icon_pencil-edit" />
               Editeaza
             </a>
-            <a href="" class="my-4" @click.prevent.stop="onRemove(address)">
+            <a
+              href=""
+              class="my-4"
+              @click.prevent.stop="onRemove(address)"
+            >
               <i class="icon_trash_alt" />
               Sterge
             </a>
@@ -52,6 +56,15 @@
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">{{ getConfirmationModalMessage }}</template>
     </es-confirm-modal>
+
+    <es-confirm-modal
+      v-model="isAlertModalOpen"
+      cta="Ok"
+      @on-confirm="isAlertModalOpen = false"
+    >
+      <template slot="title">Eroare</template>
+      <template slot="message">Aceasta adresa este setata ca si adresa principala. Pentru a o sterge, adauga sau alege o alta adresa ca fiind principala.</template>
+    </es-confirm-modal>
   </div>
 </template>
 
@@ -70,6 +83,7 @@
     },
 
     data: () => ({
+      isAlertModalOpen: false,
       isConfirmModalOpen: false,
       isAddressModalCompleteOpen: false,
       isAddressModalOpen: false,
@@ -133,11 +147,15 @@
       },
 
       onRemove(address: Address): void {
-        this.method = 'remove';
-        this.selectedAddress = address;
-        this.modalTitle = 'Stergere adresa';
-        this.modalMessage = `Vrei sa stergi adresa ${this.getAddress(address)}?`;
-        this.isConfirmModalOpen = true;
+        if (address.main) {
+          this.isAlertModalOpen = true;
+        } else {
+          this.method = 'remove';
+          this.selectedAddress = address;
+          this.modalTitle = 'Stergere adresa';
+          this.modalMessage = `Vrei sa stergi adresa ${this.getAddress(address)}?`;
+          this.isConfirmModalOpen = true;
+        }
       },
 
       async onContinue() {

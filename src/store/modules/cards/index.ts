@@ -35,6 +35,23 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async removeCard({ state, commit }, card) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        await api.destroy(`/users/cards/${card.id}`);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async setDefaultCard({ state, commit }, card) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.update(`/users/cards/${card.id}`);
+        commit('setCards', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     setSelectedCard({ state }, card) {
       Vue.set(state, 'selectedCard', card);
     },
