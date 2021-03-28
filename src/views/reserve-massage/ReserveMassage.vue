@@ -4,7 +4,6 @@
       <router-link class="back-button" to="/servicii/">
         Inapoi
       </router-link>
-      <es-address-bar v-if="isAuthenticated" @on-address-change="onAddressChange($event)" />
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6 px-6">
@@ -262,12 +261,6 @@
         fetchServicesByType: 'services/fetchServicesByType',
         fetchServiceById: 'services/fetchServiceById',
       }),
-
-      async onAddressChange({ city }) {
-        const { type } = this.$router.currentRoute.query;
-
-        await this.fetchServicesByType({ type });
-      },
 
       setValue(key, value) {
         this.massageForm[key] = value;

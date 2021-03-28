@@ -251,7 +251,12 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  if (!isAuth) {
+  if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
+    await store.dispatch('services/fetchServiceById', { type, id });
+    next();
+  }
+
+  if (isAuth) {
     next();
   }
 });
