@@ -11,6 +11,7 @@
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
             <h3>Valideaza numarul de telefon telefonul</h3>
+            <button v-if="canCloseModal" type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
             <div class="validate-phone-wrapper">
               <div class="form-group">
@@ -62,6 +63,10 @@
     }, // model
 
     props: {
+      canCloseModal: {
+        default: true,
+        type: Boolean,
+      },
       isOpen: {
         required: true,
         type: Boolean as PropType<boolean>,

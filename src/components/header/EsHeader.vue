@@ -70,11 +70,13 @@
     <es-validate-phone-modal
       v-if="isValidatePhoneModalOpen"
       v-model="isValidatePhoneModalOpen"
+      :can-close-modal="false"
       @show-phone-confirmation-modal="isPhoneConfirmationModalOpen = true"
     />
     <es-phone-confirmation-modal
       v-if="isPhoneConfirmationModalOpen"
       v-model="isPhoneConfirmationModalOpen"
+      :can-close-modal="false"
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
     />
     <es-forgot-password-modal

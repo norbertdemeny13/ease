@@ -89,6 +89,7 @@
       ...mapGetters({
         getAddresses: 'address/getAddresses',
         getCards: 'cards/getCards',
+        getSelectedCard: 'cards/getSelectedCard',
         getReservationDetails: 'services/getReservationDetails',
         getServiceById: 'services/getServiceById',
         getSelectedTime: 'services/getSelectedTime',
@@ -135,7 +136,7 @@
       },
 
       async onPay() {
-        const paymentMethodId = this.getCards[0]?.payment_method_id;
+        const paymentMethodId = this.getSelectedCard.payment_method_id;
         if (!this.getAddresses.length) {
           this.isAddressModalOpen = true;
           this.$toasts.toast({

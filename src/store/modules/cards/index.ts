@@ -82,6 +82,7 @@ export default {
       }
       return state.cards;
     },
+    getSelectedCard: state => state.selectedCard,
     getStripeCards: (state) => state.stripeCards,
     getCardInfo: state => ({
       publicKey: state.publicKey,

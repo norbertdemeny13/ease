@@ -78,7 +78,7 @@ export const getNextHours = (prices: Price[], date: Date) => {
           const time = getHours(new Date(hour));
           return ((time >= parseInt(startTime, 10)) && (time <= parseInt(endTime, 10)));
         })[0];
-      const { price } = hourInterval;
+      const price = hourInterval?.price;
       return {
         date: hour,
         price,

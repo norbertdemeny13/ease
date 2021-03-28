@@ -92,7 +92,7 @@
       ...mapActions({
         fetchGiftCardPaymentSetup: 'giftCards/fetchGiftCardPaymentSetup',
         setStripeCard: 'cards/setStripeCard',
-        setLocalStripeCard: 'cards/'
+        setSelectedCard: 'cards/setSelectedCard',
       }),
 
       async setStripe({ publicKey, clientSecret }: { publicKey: string; clientSecret: string }): Promise<void> {
@@ -160,6 +160,7 @@
                 intent: 'error',
               });
             } else {
+              this.setSelectedCard(this.localCard);
               this.$emit('on-add-card', this.localCard);
             }
           });

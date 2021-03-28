@@ -55,6 +55,13 @@
   export default Vue.extend({
     name: 'es-client-phone',
 
+    props: {
+      canCloseModal: {
+        default: true,
+        type: Boolean,
+      },
+    },
+
     components: {
       'es-phone-validate-modal': ValidatePhoneModal,
       'es-phone-confirmation-modal': PhoneConfirmationModal,
