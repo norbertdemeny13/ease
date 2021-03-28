@@ -4,6 +4,7 @@
       <a class="back-button" href="" @click.prevent="onBack">
         Inapoi
       </a>
+      <es-address-bar v-if="isAuthenticated" @on-address-change="onAddressChange($event)" />
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6">
@@ -68,6 +69,7 @@
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
         isFetching: 'services/isFetching',
+        isAuthenticated: 'session/isAuthenticated',
       }),
 
       canAddAdditionalServices() {
@@ -94,13 +96,24 @@
       const { id, type } = this.$router.currentRoute.params;
       const serviceType = type === 'fitness' ? type : 'beauty';
 
+      await this.fetchServiceById({ type, id });
+
       await this.$store.commit('services/setSelectedService', { service: { ...this.getServiceById, serviceType, serviceCategory: 'main' }, method: 'create' });
     },
 
     methods: {
       ...mapActions({
         createReservation: 'services/createReservation',
+        fetchServiceById: 'services/fetchServiceById',
       }),
+
+      async onAddressChange({ city }) {
+        const { id, type } = this.$router.currentRoute.params;
+        const serviceType = type === 'fitness' ? type : 'beauty';
+
+        await this.fetchServiceById({ type, id });
+        await this.$store.commit('services/setSelectedService', { service: { ...this.getServiceById, serviceType, serviceCategory: 'main' }, method: 'create' });
+      },
 
       onBack() {
         const { service } = this;

@@ -51,13 +51,14 @@ export default {
       }
     },
 
-    async setAddress({ state, commit }, address) {
+    async setAddress({ state, dispatch, commit }, address) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.create('/users/addresses', {
           address,
         });
         commit('setLocationById', data);
+        dispatch('setReservationAddress', data.id);
       } catch ({ response: reason }) {
         commit('setLocationById', null);
         commit('setLocationError', true);
@@ -68,6 +69,9 @@ export default {
 
     async setReservationAddress({ state, commit }, addressId) {
       const selectedAddress = state.addresses.find(address => address.id === addressId);
+      if (selectedAddress) {
+        sessionStorage.setItem('city_id', selectedAddress.city.id);
+      }
       Vue.set(state, 'selectedReservationAddress', selectedAddress);
     },
 
@@ -138,7 +142,7 @@ export default {
   mutations: {
     setLocation(state: State, location: Location) {
       Vue.set(state, 'location', location);
-      const selectedCity = location.address_components
+      const selectedCity = location?.address_components
         .filter(item => item.types.includes('locality'));
       if (selectedCity) {
         sessionStorage.setItem('city', selectedCity[0].short_name);

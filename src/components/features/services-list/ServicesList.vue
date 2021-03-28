@@ -59,8 +59,8 @@
         const addressFromStorage = cityId === 'null' ? null : cityId;
         let hasLocation = false;
 
-        if (this.isAuthenticated) {
-          hasLocation = this.getAddresses.length > 0;
+        if (this.isAuthenticated && this.getAddresses.length > 0) {
+          hasLocation = true;
         } else {
           const location = this.getLocation
             ? this.getLocation

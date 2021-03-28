@@ -65,8 +65,10 @@
           return this.selectedAddress;
         },
         set(val: number) {
+          const selectedAddress = this.getAddresses.find((address: any) => address.id === val);
           this.selectedAddress = val;
           this.setReservationAddress(val);
+          this.$emit('on-address-change', selectedAddress);
         },
       },
 
@@ -112,9 +114,11 @@
       getAddresses(newVal) {
         if (newVal.length) {
           const selectedAddressId = newVal.find((item: any) => item.main).id;
-          this.selectedAddress = this.getReservationAddress
+          const addressId = this.getReservationAddress
             ? this.getReservationAddress.id
             : selectedAddressId;
+          this.selectedAddress = addressId;
+          this.setReservationAddress(addressId);
         }
       },
     },

@@ -11,7 +11,6 @@
         <div id="es-modal-dialog" class="es-phone-validation-modal">
           <div class="modal_header">
             <h3>Valideaza numarul de telefon telefonul</h3>
-            <button class="mfp-close" @click="$emit('is-open', false)"></button>
           </div>
           <a href="" @click.prevent="$emit('is-open', false); $emit('show-validate-phone-modal', true)">Inapoi</a>
           <div class="validate-phone-wrapper mt-4">

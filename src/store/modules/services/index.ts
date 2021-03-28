@@ -122,7 +122,7 @@ export default {
       }
     },
     async addExtraCoupleMassageReservation({ state, dispatch, commit }) {
-      const mainServiceId = state.reservationDetails!.id;
+      const mainServiceId = state.reservationDetails?.id;
       const url = `users/massage_reservations/${mainServiceId}`;
 
       const isSingleTerapeut = state.massageInfo.terapeut === 'single';
@@ -207,7 +207,7 @@ export default {
     async addServiceReservationDate({ state, commit }, serviceType) {
       Vue.set(state, 'isFetching', true);
       const mainServiceId = state.reservationDetails!.id;
-      const booking_date = '10-04-2021' || new Date(state.selectedTime.date).toISOString().substr(0,10)
+      const booking_date = new Date(state.selectedTime.date).toISOString().substr(0,10)
       const start_time = `${state.selectedTime.hour}:${state.selectedTime.minute === 0 ? '00' : state.selectedTime.minute}`;
 
       try {
@@ -248,7 +248,8 @@ export default {
     async payServiceReservation({ state, rootState, commit }) {
       const { payment_method_id } = rootState.cards.selectedCard;
       const serviceCategory = state.serviceCategory === 'massages' ? 'massage': state.serviceCategory;
-      const paymentId = state.reservationDetails!.id;
+
+      const paymentId = state.reservationDetails?.id;
 
       Vue.set(state, 'isFetching', true);
 
@@ -280,15 +281,11 @@ export default {
       }
     },
     async fetchServiceById({ state, rootState, commit }, { type, id, duration, terapeut }) {
-      const selectedAddress = (rootState as any).address.selectedReservationAddress;
       let city_id: string | null = '';
-      if (selectedAddress) {
-        city_id = selectedAddress.city.id;
-      } else {
-        city_id = state.location
-          ? state.location.city_id
-          : sessionStorage.getItem('city_id');
-      }
+
+      city_id = state.location
+        ? state.location.city_id
+        : sessionStorage.getItem('city_id');
 
       Vue.set(state, 'isFetching', true);
 

@@ -105,9 +105,11 @@
     watch: {
       getAddresses(newVal) {
         if (newVal.length) {
-          this.selectedAddress = this.getReservationAddress
-            ? this.getReservationAddress.id
-            : newVal.find((item: any) => item.main).id;
+          const addressId = this.getReservationAddress
+              ? this.getReservationAddress.id
+              : newVal.find((item: any) => item.main).id;
+          this.selectedAddress = addressId;
+          this.setReservationAddress(addressId);
         }
       },
     },

@@ -119,6 +119,7 @@
     data: () => ({
       location: null,
       city: '',
+      isDifferentCity: false,
       address: {
         street_name: null,
         street_number: null,
@@ -137,19 +138,31 @@
 
     computed: {
       ...mapGetters({
+        getLocation: 'address/getLocation',
         getLocationError: 'address/getLocationError',
         getLocationById: 'address/getLocationById',
         isFetching: 'address/isFetching',
+        getReservationAddress: 'address/getReservationAddress',
       }),
     },
 
     watch: {
+      getLocation(newVal) {
+        if (newVal) {
+          const reservationAddressId = this.getReservationAddress
+            ? this.getReservationAddress.city.id
+            : sessionStorage.getItem('city_id');
+          const newAddressId = newVal.city_id;
+          this.isDifferentCity = reservationAddressId != newAddressId;
+        }
+      },
+
       getLocationError(newVal) {
         (this as any).$toasts.toast({
           intent: 'error',
           id: 'address-toast',
-          title: 'Action required',
-          message: 'Te rugam sa introduci o adresa corecta!',
+          title: 'Atentie',
+          message: 'Adresa aleasa e inafara razei noastre. Te rugam sa selectezi o alta adresa!',
         });
       },
 
@@ -185,12 +198,24 @@
           this.address.lat = place.geometry.location.lat();
           this.address.lng = place.geometry.location.lng();
           this.location = place.formatted_address;
+          this.fetchLocation(place);
         });
       },
 
       onAddAddress(): void {
+        const { name } = this.$router.currentRoute;
         const { address, city } = this;
         const { street_number, street_name } = address;
+
+        if (name === 'Plata rezervare' && this.isDifferentCity) {
+          (this as any).$toasts.toast({
+            id: 'address-modal',
+            title: 'Atentie!',
+            intent: 'warning',
+            message: 'Orasul selectat nu poate fi diferit de cel ales la rezervare. In cazul in care doresti sa faci rezervarea intr-un alt oras, te rugam sa mergi inapoi pe pagina de servicii si sa reiei rezervarea.',
+          });
+          return;
+        }
 
         if (street_name && street_number && city) {
           this.setAddress(this.address);

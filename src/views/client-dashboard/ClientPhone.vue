@@ -3,7 +3,7 @@
     <h4>Numar de telefon</h4>
     <div class="row">
       <div class="col-md-4">
-        <div class="form-group">
+        <div v-if="phone" class="form-group">
           <label>Numar de telefon mobil parola</label>
           <es-phone-number-input
             id="phone"
@@ -17,12 +17,15 @@
             disabled
           />
         </div>
+        <div v-else>
+          <p>Te rugam sa adaugi un numar de telefon</p>
+        </div>
         <div class="d-flex justify-content-end">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="isPhoneValidateModalOpen = true"
           >
-            Modifica
+            {{ phone ? 'Modifica' : 'Adauga' }}
           </button>
         </div>
       </div>

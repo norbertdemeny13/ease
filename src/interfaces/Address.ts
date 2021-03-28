@@ -1,5 +1,6 @@
 interface City {
   name: string;
+  id: string;
 }
 
 export interface Address {

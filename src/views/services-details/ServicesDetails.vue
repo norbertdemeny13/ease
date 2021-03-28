@@ -3,7 +3,6 @@
     <div class="container margin_30_20">
       <a class="back-button" href="" @click.prevent="onBack">Inapoi</a>
       <es-address-bar />
-      <!-- /page_header -->
       <services-list-skeleton v-if="isFetching" />
       <div
         v-for="serviceType in getServicesByType"
