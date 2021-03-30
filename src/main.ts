@@ -21,6 +21,7 @@ import './vendors/common_scripts.min';
 import './vendors/common_func';
 
 // Shared components
+import { Divider } from '@/components/shared/divider';
 import { Skeleton } from '@/components/shared/skeleton';
 import { SkeletonItem } from '@/components/shared/skeleton-item';
 import { AddressBar } from '@/components/features/address-bar';
@@ -43,6 +44,7 @@ Vue.use(ToastPlugin);
 
 Vue.component('es-address-bar', AddressBar);
 Vue.component('es-confirm-modal', ConfirmModal);
+Vue.component('es-divider', Divider);
 Vue.component('es-modal', Modal);
 Vue.component('es-skeleton', Skeleton);
 Vue.component('es-skeleton-item', SkeletonItem);
