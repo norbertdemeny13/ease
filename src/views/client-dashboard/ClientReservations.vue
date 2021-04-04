@@ -31,7 +31,7 @@
           </ul>
 
           <div id="pricing-tab-content" class="tab-content pricing-tab-content">
-            <div v-for="item in getReservationList" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between">
+            <div v-for="item in getReservationList" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
               <h6 class="m-0">{{ item.reservation_id }}</h6>
               <div class="m-2">{{ item.start_time.substr(0, 10) }}</div>
               <div class="d-flex align-items-center m-2">
@@ -67,14 +67,48 @@
           </a>
           <div class="mt-4">
             <ul class="summary_list">
+              <li class="d-flex align-items-center">
+                <figure class="mb-0">
+                  <img
+                    class="radius-50"
+                    src="@/assets/jpg/avatar.jpg"
+                    alt=""
+                    width="40px"
+                    height="40px"
+                  >
+                </figure>
+                <a class="ml-2" href="" @click.prevent="">{{ getEliteName(selectedReservation) }}</a>
+              </li>
+            </ul>
+            <h6>Detalii rezervare</h6>
+            <ul class="summary_list">
               <li><strong>Data rezervarii</strong> {{ selectedReservation.start_time.substr(0, 10) }}</li>
               <li><strong>Adresa</strong> {{ getAddress }}</li>
               <li><strong>Telefon</strong> {{ selectedReservation.user.phone_number }}</li>
             </ul>
+            <h6>Sumar comanda</h6>
+            <ul class="summary_list">
+              <li><strong>Data rezervarii</strong> {{ selectedReservation.start_time.substr(0, 10) }}</li>
+              <li><strong>Adresa</strong> {{ getAddress }}</li>
+              <li><strong>Telefon</strong> {{ selectedReservation.user.phone_number }}</li>
+            </ul>
+            <div v-if="selectedReservation.status === 'confirmed'" class="d-flex justify-content-end">
+              <button
+                class="btn btn-sm btn-pink btn-pill my-4 px-6"
+                @click.prevent="isConfirmModalOpen = true"
+              >
+                Anuleaza rezervarea
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <es-confirm-modal v-model="isConfirmModalOpen" cta="Anuleaza contracost" @on-confirm="onContinue()">
+      <template slot="title">Pentru anularea rezervarii in acest moment se va retine o taxa de 20100% din total</template>
+      <template slot="message">Aceasta politica de anulare este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte oportunitati de munca. Deoarece suntem la cerere, profesionistii pierd venituri daca pastreaza un loc disponibil pentru dumneavoastra fara remunerare.
+      </template>
+    </es-confirm-modal>
   </div>
 </template>
 
@@ -88,6 +122,7 @@
 
     data: () => ({
       isListView: true,
+      isConfirmModalOpen: false,
       selectedType: 'upcoming',
       selectedReservation: null,
     }),
@@ -121,8 +156,10 @@
       }),
 
       getEliteName(item: any): string {
-        const { first_name, last_name } = item.reservation_jobs[0].elite;
-        return `${first_name} ${last_name.substr(0,1)}.`;
+        const reservationJobs = item.reservation_jobs;
+        const first_name = !!reservationJobs.length && reservationJobs[0].elite?.first_name;
+        const last_name = !!reservationJobs.length && reservationJobs[0].elite?.last_name;
+        return reservationJobs ? `${first_name} ${last_name?.substr(0,1)}.` : 'N/A';
       },
 
       onBack() {
@@ -133,6 +170,10 @@
       onSelect(item: any): void {
         this.selectedReservation = item;
         this.isListView = false;
+      },
+
+      onContinue() {
+        // cancel reservation
       },
     },
   });

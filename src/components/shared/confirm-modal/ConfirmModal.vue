@@ -11,7 +11,7 @@
       >
         <div class="container es-address-modal mt-12">
           <div id="es-modal-dialog" class="es-confirm-modal">
-            <div class="modal_header">
+            <div class="modal_header pr-6">
               <slot name="title" />
               <button type="button" class="mfp-close" @click.prevent="onCancel()" />
             </div>
