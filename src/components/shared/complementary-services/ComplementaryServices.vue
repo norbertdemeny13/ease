@@ -64,7 +64,7 @@
 </script>
 
 <style type="text/css">
-  .img-fluid {
+  .extra-services-container .img-fluid {
     max-height: 100px;
   }
 </style>
