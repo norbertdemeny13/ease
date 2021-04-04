@@ -16,7 +16,7 @@
       </div>
       <ul
         v-for="(item, index) in getLocalSelectedServices"
-        :key="item.id"
+        :key="`${item.id}${index}`"
         class="clearfix"
       >
         <span class="text-gray">Serviciu {{ index + 1 }}</span>
@@ -98,7 +98,7 @@
               name: item.name,
               services: selectedComplementaryServices,
               id: item.id,
-              uuid: item.uuid,
+              uuid: item.tempServiceId,
               prices: item.price,
               massageType: item.massageType,
               isWithAromaterapeutic,
@@ -107,7 +107,7 @@
           });
       },
       getDiscount() {
-        return this.activeSubscription ? this.getTotal * (this.activeSubscription.subscription.discount / 100) : 0;
+        return (this.activeSubscription ? this.getTotal * (this.activeSubscription.subscription.discount / 100) : 0).toFixed(2);
       },
       getDate() {
         const { date } = this.date;
@@ -136,10 +136,19 @@
         const itemId = item.uuid;
         const itemType = item?.massageType;
         const serviceId = service.id;
-        const selectedService = this.getSelectedServices
-          .filter(item => item.uuid === itemId && item.massageType === itemType)[0];
+        let selectedService = null;
+
+        if (itemType) {
+          selectedService = this.getSelectedServices
+            .filter(item => item.tempServiceId === itemId && item.massageType === itemType)[0];
+        } else {
+          selectedService = this.getSelectedServices
+            .filter(item => item.tempServiceId === itemId)[0];
+        }
+
         const selectedComplementaryService = selectedService.complementary_services
           .filter(item => item.id === serviceId)[0];
+
         selectedComplementaryService.selectedCount = 0;
       },
 
@@ -199,7 +208,7 @@
       },
       getServicePrice({ uuid }) {
         const selectedService = this.getSelectedServices
-          .filter(item => item.uuid === uuid)[0];
+          .filter(item => item.tempServiceId === uuid)[0];
         const hourPrice = getHourPrice(this.time, selectedService.prices);
         this.hourPrice = hourPrice;
         return hourPrice;

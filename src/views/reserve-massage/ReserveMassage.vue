@@ -269,6 +269,7 @@
         const index = info ? info.item.index : 0;
         this.selectedService = this.services ? this.services[index] : null;
       },
+
       async onContinue() {
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;

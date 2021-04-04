@@ -3,7 +3,7 @@
   <portal to="modal">
     <es-modal
       id="modal"
-      size="sm"
+      size="xs"
       :on-dismiss="() => $emit('is-open', false)"
     >
       <div class="container es-login-modal mt-12">

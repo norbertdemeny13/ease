@@ -36,6 +36,7 @@
 
 <script>
   import Vue from 'vue';
+  import { nanoid } from 'nanoid';
   import { mapGetters } from 'vuex';
   import { ComplementaryServices } from '@/components/shared/complementary-services';
 
@@ -71,7 +72,12 @@
     methods: {
       onContinue() {
         const { service } = this;
-        this.$store.commit('services/setSelectedService', { service, method: 'update' });
+        const selectedService = {
+          ...this.service,
+          tempServiceId: nanoid(),
+        };
+
+        this.$store.commit('services/setSelectedService', { service: selectedService, method: 'new' });
         this.$router.push(this.getToRoute);
       },
     },

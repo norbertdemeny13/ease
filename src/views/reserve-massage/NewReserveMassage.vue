@@ -35,8 +35,8 @@
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
-                  @click="setValue(filter.key, choice.value)"
+                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${isDisabled(filter.key, 'terapeut')}`"
+                  @click="isDisabled(filter.key, 'terapeut') ? '' : setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
                 </button>
@@ -49,8 +49,8 @@
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
-                  @click="setValue(filter.key, choice.value)"
+                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${isDisabled(filter.key, 'genre')}`"
+                  @click="isDisabled(filter.key, 'genre') ? '' : setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
                 </button>
@@ -267,6 +267,16 @@
         const index = info ? info.item.index : 0;
         this.selectedService = this.services ? this.services[index] : null;
       },
+
+      isDisabled(key, type) {
+        const { terapeut } = this.massageForm;
+        if (key === 'terapeut') {
+          return 'disabled';
+        } else {
+          return (key === type && terapeut === 'single') ? 'disabled' : '';
+        }
+      },
+
       async onContinue() {
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;

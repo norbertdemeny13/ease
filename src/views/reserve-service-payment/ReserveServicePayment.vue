@@ -29,15 +29,6 @@
             <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
             <es-payment-details />
             <es-subscription-selection @set-active-subscription="setActiveSubscription" />
-            <div class="d-flex my-4 justify-content-center">
-              <button
-                class="btn btn-sm btn-pink btn-pill px-6"
-                :disabled="!getCards.length"
-                @click.prevent="onPay()"
-              >
-                Trimite Rezervarea
-              </button>
-            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
@@ -47,6 +38,15 @@
             :active-subscription="activeSubscription"
             :is-payment-view="true"
           />
+          <div class="d-flex my-4 justify-content-center">
+            <button
+              class="btn btn-sm btn-pink btn-pill px-6"
+              :disabled="!getCards.length"
+              @click.prevent="onPay()"
+            >
+              Trimite Rezervarea
+            </button>
+          </div>
         </div>
       </div>
     </div>

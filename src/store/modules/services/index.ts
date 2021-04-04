@@ -329,7 +329,8 @@ export default {
 
   mutations: {
     removeSelectedService(state: State, service: Service) {
-      const serviceIdIndex = state.selectedServices.map(item => item.id).indexOf(service.id)
+      const serviceIdIndex = state.selectedServices
+        .map(item => item.tempServiceId).indexOf(service.tempServiceId)
       serviceIdIndex && state.selectedServices.splice(serviceIdIndex, 1);
     },
     removeSelectedServices(state: State) {
@@ -341,7 +342,7 @@ export default {
     setSelectedService(state: State, data: any) {
       const { service, method, type } = data;
       const selectedService = state.selectedServices
-        .find(item => item.uuid === service.uuid);
+        .find(item => item.tempServiceId === service.tempServiceId);
       const services = selectedService?.complementary_services || [];
       const hasComplementaryServices = services
         .filter(service => service.selectedCount! > 0).length;
@@ -354,13 +355,18 @@ export default {
           : service;
       }
 
+      if (method === 'new') {
+        state.selectedServices.push(service);
+        return;
+      }
+
       if (!isSameCategory) {
         Vue.set(state, 'selectedServices', []);
       }
 
       if (selectedService) {
         const selectedServices = state.selectedServices
-          .map(item => (item.uuid === service.uuid ? localService : item));
+          .map(item => (item.tempServiceId === service.tempServiceId ? localService : item));
         Vue.set(state, 'selectedServices', selectedServices);
       } else {
         state.selectedServices.push(service);

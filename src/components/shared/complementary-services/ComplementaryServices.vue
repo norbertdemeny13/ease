@@ -62,3 +62,9 @@
     },
   });
 </script>
+
+<style type="text/css">
+  .img-fluid {
+    max-height: 100px;
+  }
+</style>

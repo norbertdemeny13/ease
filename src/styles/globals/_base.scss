@@ -4186,6 +4186,7 @@ pre code {
 
 .btn.disabled, .btn:disabled, a:disabled {
   opacity: 0.65;
+  box-shadow: none;
   cursor: no-drop;
 }
 
@@ -7226,7 +7227,7 @@ input[type="button"].btn-block {
   color: #262626;
 }
 
-.btn-choice:hover,
+.btn-choice:not(.disabled):hover,
 .btn-choice.active {
   background-color: #70d7b7;
   color: #ffffff;

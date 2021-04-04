@@ -28,6 +28,7 @@ export interface Service {
   massageType?: string;
   serviceCategory: string;
   serviceType: string;
+  tempServiceId: string;
   therapeutic_forms: TherapeuticForms[];
 }
 

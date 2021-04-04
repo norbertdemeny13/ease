@@ -48,6 +48,7 @@
 
 <script>
   import Vue from 'vue';
+  import { nanoid } from 'nanoid';
   import { mapActions, mapGetters } from 'vuex';
   import { ComplementaryServices } from '@/components/shared/complementary-services';
   import AdditionalServices from './AdditionalServices.vue';
@@ -94,8 +95,15 @@
     async created() {
       const { id, type } = this.$router.currentRoute.params;
       const serviceType = type === 'fitness' ? type : 'beauty';
-
-      await this.$store.commit('services/setSelectedService', { service: { ...this.getServiceById, serviceType, serviceCategory: 'main' }, method: 'create' });
+      const selectedService = {
+        ...this.getServiceById,
+        serviceType,
+        serviceCategory: 'main',
+        tempServiceId: nanoid(),
+      };
+      if (!this.getSelectedServices.length) {
+        await this.$store.commit('services/setSelectedService', { service: selectedService, method: 'create' });
+      }
     },
 
     methods: {

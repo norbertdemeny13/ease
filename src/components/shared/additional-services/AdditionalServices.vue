@@ -75,3 +75,9 @@
     },
   });
 </script>
+
+<style type="text/css">
+ .extra-services-container .img-fluid {
+    max-height: 100px;
+  }
+</style>
