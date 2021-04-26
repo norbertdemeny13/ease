@@ -59,7 +59,7 @@ export default {
       }
     },
     async onGiftCardPay({ state, rootState }) {
-      const cardId = state.selectedGiftCard.card_design.id;
+      const cardId = state.selectedGiftCard.id;
       const selectedPaymentCard = rootState.cards.selectedCard;
 
       if (!selectedPaymentCard) {
