@@ -2723,6 +2723,11 @@ ul#top_menu li a.login::before {
   position: relative;
   margin: 0;
 }
+
+.hero.pro-hero {
+  background: pink;
+}
+
 .hero .opacity-mask {
   display: flex;
   flex-direction: column;

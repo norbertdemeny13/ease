@@ -20,6 +20,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/home').then(({ Home }) => Home),
   },
   {
+    path: '/pro',
+    name: 'Pro Home',
+    component: () => import('@/views/pro-home').then(({ ProHome }) => ProHome),
+  },
+  {
     path: '/contact',
     name: 'Contact',
     component: () => import('@/views/contact').then(({ Contact }) => Contact),
@@ -170,6 +175,11 @@ const routes: Array<RouteConfig> = [
     name: 'Intrebari frecvente',
     component: () => import('@/views/faq').then(({ Faq }) => Faq),
   },
+  {
+    path: '/ease/pro/intrebari-frecvente',
+    name: 'Intrebari frecvente pro',
+    component: () => import('@/views/pro-faq').then(({ ProFaq }) => ProFaq),
+  },
 ];
 
 export const router = new VueRouter({
@@ -204,8 +214,14 @@ router.beforeEach(async (to, from, next) => {
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+  const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
 
-  if (!getToken && jwtToken) {
+  if (!getToken && authToken) {
+    await store.dispatch('session/getUser');
+    isAuthenticated = true;
+  }
+
+  if (!getToken && !authToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
     isAuthenticated = true;
   }

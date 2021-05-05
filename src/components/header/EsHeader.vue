@@ -3,8 +3,22 @@
     <header :class="`header black_nav clearfix element_to_stick ${isHomePage ? '' : 'header-in'}`">
       <div class="container">
         <div id="logo">
-          <router-link to="/">
-            <img src="@/assets/svg/ease-logo_pink.svg" width="162" height="45" alt="Ease Logo">
+          <router-link v-if="isPro" to="/pro/">
+            <img
+              src="@/assets/png/pro.png"
+              width="90"
+              height="24"
+              alt="Ease Pro Logo"
+              class="my-2"
+            >
+          </router-link>
+          <router-link v-else to="/">
+            <img
+              src="@/assets/svg/ease-logo_pink.svg"
+              width="162"
+              height="45"
+              alt="Ease Logo"
+            >
           </router-link>
         </div>
         <div class="layer" /><!-- Opacity Mask Menu Mobile -->
@@ -64,6 +78,7 @@
     <es-login-modal
       v-if="isLoginModalOpen"
       v-model="isLoginModalOpen"
+      :modal-type="modalType"
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
       @show-forgot-password-modal="isForgotPasswordModalOpen = true"
     />
@@ -111,32 +126,36 @@
     },
 
     data: () => ({
+      isPro: false,
       isHomePage: false,
       isLoginModalOpen: false,
       isPhoneConfirmationModalOpen: false,
       isValidatePhoneModalOpen: false,
       isForgotPasswordModalOpen: false,
       isResetPasswordModalOpen: false,
+      modalType: 'login',
     }),
 
     computed: {
       ...mapGetters({
         isAuthenticated: 'session/isAuthenticated',
+        getUserType: 'session/getUserType',
       }),
-      getAuthNavLinks() {
+      getAuthNavLinks(): any {
         return NAVBAR_LINKS
-          .filter(item => item.requiresAuth)
+          .filter(item => item.requiresAuth && item.role === this.getUserType)
           .map(item => ({ ...item, id: nanoid() }));
       },
-      navLinks() {
+      navLinks(): any {
         return NAVBAR_LINKS
-          .filter(item => !item.requiresAuth)
+          .filter(item => !item.requiresAuth && item.role === this.getUserType)
           .map(item => ({ ...item, id: nanoid() }));
       },
     },
 
     watch: {
       $route(to) {
+        this.isPro = this.$router.currentRoute.path.includes('pro');
         this.isHomePage = to.name === 'Home';
       },
     },
@@ -152,6 +171,10 @@
           message: 'Please login or signup before continue',
         });
       });
+      this.$root.$on('on-show-elite-register', () => {
+        this.modalType = 'register';
+        this.isLoginModalOpen = true;
+      });
     },
 
     methods: {
@@ -162,7 +185,7 @@
         this.$router.push(to);
       },
 
-      async onLogout() {
+      async onLogout(): Promise<void> {
         await this.logout();
         this.$router.push({ name: 'Home' });
       },

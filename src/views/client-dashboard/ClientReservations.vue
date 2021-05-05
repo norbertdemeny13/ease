@@ -106,7 +106,8 @@
     </div>
     <es-confirm-modal v-model="isConfirmModalOpen" cta="Anuleaza contracost" @on-confirm="onContinue()">
       <template slot="title">Pentru anularea rezervarii in acest moment se va retine o taxa de 20100% din total</template>
-      <template slot="message">Aceasta politica de anulare este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte oportunitati de munca. Deoarece suntem la cerere, profesionistii pierd venituri daca pastreaza un loc disponibil pentru dumneavoastra fara remunerare.
+      <template slot="message">
+        Aceasta politica de anulare este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte oportunitati de munca. Deoarece suntem la cerere, profesionistii pierd venituri daca pastreaza un loc disponibil pentru dumneavoastra fara remunerare.
       </template>
     </es-confirm-modal>
   </div>

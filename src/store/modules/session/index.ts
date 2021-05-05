@@ -67,22 +67,69 @@ export default {
     },
     async jwtLogin({ state, commit }, jwt) {
       Vue.set(state, 'isFetchingUser', true);
+      const userType = localStorage.getItem('userType');
       try {
-        const { data } = await api.update('/users/sessions', {
+        const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: jwt.slice(2),
         });
-        commit('setUser', data);
+        const { elite_id } = data;
+        const newData = {
+          ...data,
+          userType: elite_id ? 'elite' : 'client',
+        };
+        commit('setUser', newData);
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async login({ state, commit }, credentials) {
+    async getUser({ state, commit }) {
+      Vue.set(state, 'isFetchingUser', true);
+      const userType = localStorage.getItem('userType');
+      try {
+        const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
+        const { elite_id } = data;
+        const newData = {
+          ...data,
+          userType: elite_id ? 'elite' : 'client',
+        };
+        commit('setUser', newData);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async authLogin({ state, commit }) {
+      const type = localStorage.getItem('userType');
+      const endpoint = type === 'client'
+        ? '/users/sessions'
+        : '/elites/sessions';
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/users/sessions', {
+        const { data } = await api.create(endpoint);
+        const { elite_id } = data;
+        const newData = {
+          ...data,
+          userType: elite_id ? 'elite' : 'client',
+        };
+        commit('setUser', newData);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async login({ state, commit }, { credentials, type }) {
+      const endpoint = type === 'client'
+        ? '/users/sessions'
+        : '/elites/sessions';
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create(endpoint, {
           ...credentials,
         });
-        commit('setUser', data);
+        const { elite_id } = data;
+        const newData = {
+          ...data,
+          userType: elite_id ? 'elite' : 'client',
+        };
+        commit('setUser', newData);
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -111,17 +158,31 @@ export default {
     async logout({ state, commit }) {
       commit('setUser', null);
       localStorage.removeItem('jwt');
+      localStorage.removeItem('auth');
     },
-    async signUp({ state, commit, dispatch }, credentials) {
+    async signUp({ state, commit, dispatch }, { credentials, type }) {
+      const endpoint = type === 'client'
+        ? '/user'
+        : '/elite_registration';
+
+      const payload = type === 'client'
+        ? {
+            user: {
+              ...credentials,
+            },
+          }
+        : {
+            elite: {
+              ...credentials,
+            },
+          };
+
       const { email, password } = credentials;
+
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user', {
-          user: {
-            ...credentials,
-          },
-        });
-        dispatch('login', { email, password });
+        const { data } = await api.create(endpoint, payload);
+        dispatch('login', { credentials, type });
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {
@@ -130,8 +191,9 @@ export default {
     },
     async requestValidationCode({ state, commit }, phone_number) {
       Vue.set(state, 'isFetchingUser', true);
+      const { userType } = state.user;
       try {
-        const { data } = await api.create('/user/phone_number', {
+        const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/phone_number`, {
           phone_number,
         });
 
@@ -149,8 +211,9 @@ export default {
     },
     async validatePhoneNumber({ state, commit }, code) {
       Vue.set(state, 'isFetchingUser', true);
+      const { userType } = state.user;
       try {
-        const { data } = await api.create('/user/verify_code', {
+        const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/verify_code`, {
           code,
           phone_number: state.user.phone_number,
         });
@@ -172,14 +235,19 @@ export default {
     isFetchingUser: state => state.isFetchingUser,
     getUser: state => state.user,
     getUserDefaultAddress: state => state.user.default_address,
+    getUserType: state => state.user.userType || localStorage.getItem('userType'),
     getToken: state => state.user && state.user.access_token,
-    isAuthenticated: ({ user }) => user && (user as any)?.access_token,
+    isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,
 
   mutations: {
     setUser(state: State, data: any) {
-      if (data) {
+      const refreshToken = data?.refresh_token;
+      const authToken = data?.access_token;
+      if (data && refreshToken) {
         localStorage.setItem('jwt', `Jh${data.refresh_token}`);
+        localStorage.setItem('auth', `Kn${data.access_token}`)
+        localStorage.setItem('userType', data.userType);
       }
       Vue.set(state, 'user', data);
     },

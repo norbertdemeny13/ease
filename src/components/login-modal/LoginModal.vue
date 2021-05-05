@@ -13,6 +13,16 @@
             <h3>{{ isSignIn ? 'Logheaza-te' : 'Inregistreaza-te' }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
+          <div class="form-group radio_c_group">
+            <label @click="userType = 'client'" class="container_radio">Client
+              <input type="radio" value="checkbox" name="user-type" :checked="`${userType === 'client' ? 'checked' : ''}`">
+              <span class="checkmark"></span>
+            </label>
+            <label @click="userType = 'elite'" class="container_radio">Profesional
+              <input type="radio" value="checkbox" name="user-type" :checked="`${userType !== 'client' ? 'checked' : ''}`">
+              <span class="checkmark"></span>
+            </label>
+          </div>
           <form>
             <div v-if="isSignIn" class="sign-in-wrapper">
               <div class="form-group">
@@ -76,14 +86,41 @@
                     <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
                     <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
                 </div>
-                <div class="clearfix add_bottom_15">
-                  <div class="checkboxes float-left">
-                    <label class="container_check">Tine-ma minte
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
+                <div v-if="userType === 'elite'">
+                  <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="number" class="form-control" name="telefon" id="telefon" v-model="form.phone_number">
                   </div>
-                  <div class="float-right"><a id="forgot" href="javascript:void(0);">Ai uitat parola??</a></div>
+                  <div class="form-group radio_c_group">
+                    <div class="checkboxes float-left">
+                      <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">Accept Termenii si Conditiile si Politica de Confidentialitate
+                        <input type="checkbox" :checked="terms_and_conditions ? 'checked': ''">
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                    <div class="checkboxes float-left">
+                      <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">Doresc sa primesc informatii utile prin email
+                        <input type="checkbox" :checked="subscribe_to_marketing_emails_list ? 'checked': ''">
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                    <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2">
+                      <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">Masaj
+                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label @click.prevent="form.beauty_marketing = !form.beauty_marketing" class="container_check">Beauty
+                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
+                        <span class="checkmark"></span>
+                      </label>
+                      <label @click.prevent="form.fitness_marketing = !form.beauty_marketing" class="container_check">Fitness
+                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix add_bottom_15">
                   <div class="text-center">
                     <input @click.prevent="onSubmit()" type="submit" value="Inregistreaza-te" class="btn_1 full-width mb_5">
                     Ai deja cont?
@@ -134,9 +171,14 @@
         required: true,
         type: Boolean as PropType<boolean>,
       },
+      modalType: {
+        default: 'login',
+        type: String as PropType<string>,
+      },
     },
 
     data: () => ({
+      userType: 'client',
       showPassword: false,
       type: 'password',
       form: {
@@ -144,7 +186,13 @@
         first_name: '',
         last_name: '',
         password: 'testtest',
+        phone_number: null,
+        massage_marketing: true,
+        beauty_marketing: true,
+        fitness_marketing: true,
       },
+      subscribe_to_marketing_emails_list: false,
+      terms_and_conditions: false,
       isSignIn: true,
     }),
 
@@ -164,6 +212,11 @@
       },
     },
 
+    created() {
+      this.userType = this.$router.currentRoute.path.includes('pro') ? 'elite' : 'client';
+      this.isSignIn = this.modalType !== 'register';
+    },
+
     methods: {
       ...mapActions({
         login: 'session/login',
@@ -171,14 +224,26 @@
       }),
 
       async onSubmit() {
+        if (this.userType === 'elite' && !this.terms_and_conditions && !this.isSignIn) {
+          (this as any).$toasts.toast({
+            id: 'warning-toast',
+            intent: 'warning',
+            message: 'Te rugam sa accepti termenii si conditiile pentru a continua',
+            title: 'Atentie',
+          });
+
+          return;
+        }
+
         const { name } = this.$router.currentRoute;
+        const { form, userType } = this;
         if (this.isSignIn) {
-          await this.login(this.form);
+          await this.login({ credentials: form, type: userType });
           if (name === 'Home') {
             this.$router.push('/servicii');
           }
         } else {
-          await this.signUp(this.form);
+          await this.signUp({ credentials: form, type: userType });
         }
       },
 

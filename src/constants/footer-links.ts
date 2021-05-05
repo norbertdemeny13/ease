@@ -36,11 +36,11 @@ export const FOOTER_LINKS = [
     list: [
       {
         label: 'Lucreaza cu Ease',
-        to: '/lucreaza-cu-ease',
+        to: '/ease/pro',
       },
       {
         label: 'Aplica acum',
-        to: '/tbd',
+        to: '/ease/pro',
       },
     ],
   },
