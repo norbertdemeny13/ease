@@ -5,7 +5,7 @@
         <div id="logo">
           <router-link v-if="isPro" to="/pro/">
             <img
-              src="@/assets/png/pro.png"
+              src="@/assets/png/pro-logo.png"
               width="90"
               height="24"
               alt="Ease Pro Logo"

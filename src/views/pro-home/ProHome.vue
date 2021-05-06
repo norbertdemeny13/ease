@@ -16,9 +16,6 @@
                 </button>
               </div>
             </div>
-            <div class="col-md-4">
-              <img src="@/assets/png/ease-pro-home.png" alt="Ease Home Page">
-            </div>
           </div>
           <!-- /row -->
         </div>

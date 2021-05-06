@@ -2724,10 +2724,6 @@ ul#top_menu li a.login::before {
   margin: 0;
 }
 
-.hero.pro-hero {
-  background: pink;
-}
-
 .hero .opacity-mask {
   display: flex;
   flex-direction: column;
@@ -2742,6 +2738,18 @@ ul#top_menu li a.login::before {
   margin: 0;
   font-weight: 600;
 }
+
+.hero.pro-hero {
+  background: #faf3cc url(../assets/jpg/pro-home-background.jpg) right top no-repeat;
+  background-size: contain;
+
+  .opacity-mask h1,
+  .opacity-mask h3,
+  .opacity-mask p {
+    color: #000;
+  }
+}
+
 @media (max-width: 767px) {
   .hero .opacity-mask h1,
   .hero .opacity-mask h3 {
