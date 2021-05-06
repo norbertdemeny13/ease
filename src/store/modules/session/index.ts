@@ -159,6 +159,7 @@ export default {
       commit('setUser', null);
       localStorage.removeItem('jwt');
       localStorage.removeItem('auth');
+      localStorage.removeItem('userType');
     },
     async signUp({ state, commit, dispatch }, { credentials, type }) {
       const endpoint = type === 'client'
@@ -235,7 +236,7 @@ export default {
     isFetchingUser: state => state.isFetchingUser,
     getUser: state => state.user,
     getUserDefaultAddress: state => state.user.default_address,
-    getUserType: state => state.user.userType || localStorage.getItem('userType'),
+    getUserType: state => state.user?.userType || localStorage.getItem('userType'),
     getToken: state => state.user && state.user.access_token,
     isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,

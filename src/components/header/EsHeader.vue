@@ -142,13 +142,15 @@
         getUserType: 'session/getUserType',
       }),
       getAuthNavLinks(): any {
+        const userType = this.getUserType || 'client';
         return NAVBAR_LINKS
-          .filter(item => item.requiresAuth && item.role === this.getUserType)
+          .filter(item => item.requiresAuth && item.role === userType)
           .map(item => ({ ...item, id: nanoid() }));
       },
       navLinks(): any {
+        const userType = this.getUserType || 'client';
         return NAVBAR_LINKS
-          .filter(item => !item.requiresAuth && item.role === this.getUserType)
+          .filter(item => !item.requiresAuth && item.role === userType)
           .map(item => ({ ...item, id: nanoid() }));
       },
     },
