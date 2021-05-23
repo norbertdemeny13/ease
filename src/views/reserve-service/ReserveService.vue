@@ -2,7 +2,8 @@
   <div class="es_reserve-service-container">
     <div class="container margin_30_40">
       <router-link class="back-button mb-2" :to="getToRoute">Inapoi</router-link>
-      <div class="row mt-4">
+      <es-reserve-service-skeleton v-if="isFetching" />
+      <div v-else class="row mt-4">
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
           <h5 class="pl-5 my-2">Alege Data</h5>
           <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in pl-5">
@@ -24,7 +25,7 @@
               :class="`hour-item m-2 ${selectedTime && selectedTime.id === item.id ? 'selected': ''}`"
               @click="selectTime(item)"
             >
-              <p class="time  mb-0">{{ item.hour }}: {{ item.minute == '0' ? '00': item.minute }}</p>
+              <p class="time  mb-0">{{ item.time }}</p>
               <p class="price mb-0">{{ item.price }} Lei</p>
             </div>
           </div>
@@ -53,17 +54,17 @@
 <script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import {
-    getNextMonth,
-    getNextHours,
-  } from '@/utils/date-helpers';
+  import { nanoid } from 'nanoid';
+  import { getMonthDays } from '@/utils/date-helpers';
   import { ServiceSummary } from '@/components/shared/service-summary';
+  import ReserveServiceSkeleton from './ReserveServiceSkeleton.vue';
 
   export default Vue.extend({
     name: 'es-reserve-service',
 
     components: {
       'es-service-summary': ServiceSummary,
+      'es-reserve-service-skeleton': ReserveServiceSkeleton,
     },
 
     data: () => ({
@@ -75,25 +76,17 @@
       ...mapGetters({
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
+        getReservationDetails: 'services/getReservationDetails',
         isAuthenticated: 'session/isAuthenticated',
+        isFetching: 'services/isFetching',
       }),
       getDays() {
-        return getNextMonth();
+        const reservationDates = this.getReservationDetails?.reservation_dates || [];
+        return getMonthDays(reservationDates);
       },
       getHours() {
-        const prices = [];
-        this.getSelectedServices.forEach((item) => {
-          item.prices.forEach((n, i) => {
-            if (prices[i] && item.category !== 'couple') {
-              prices[i].price += parseInt(n.price, 10);
-            } else {
-              prices[i] = { ...n, price: parseInt(n.price, 10) };
-            }
-          });
-        });
-
-        const { date } = this.selectedDate;
-        return prices ? getNextHours(prices, date) : [];
+        const hours = this.getReservationDetails?.reservation_calendar || [];
+        return hours.map(item => ({ ...item, id: nanoid() }));
       },
       getToRoute() {
         const { id, type } = this.$router.currentRoute.params;
@@ -102,39 +95,55 @@
       },
     },
 
+    watch: {
+      async isFetching() {
+        await this.$nextTick();
+        window.initDayCarousel();
+        this.setTime();
+      },
+    },
+
     mounted() {
       window.initDayCarousel();
     },
 
     created() {
-      const [day] = this.getDays;
-      this.selectedDate = day;
-      const [hour] = this.getHours;
-      this.selectedTime = hour;
+      this.setTime();
     },
 
     methods: {
       ...mapActions({
+        addServiceReservationDate: 'services/addServiceReservationDate',
         setSelectedDate: 'services/setSelectedDate',
         setSelectedTime: 'services/setSelectedTime',
       }),
-      onContinue() {
+      async onContinue() {
         if (this.isAuthenticated) {
-          this.setSelectedDate(this.selectedDate);
-          this.setSelectedTime(this.selectedTime);
+          await this.addServiceReservationDate();
           const path = `${this.$router.currentRoute.fullPath}/plata`;
           this.$router.push(path);
         } else {
           this.$root.$emit('on-show-login');
         }
       },
-      selectDate(item) {
+      async selectDate(item) {
+        this.setSelectedDate(item);
         this.selectedDate = item;
         const [hour] = this.getHours;
+        this.setSelectedTime(hour);
         this.selectedTime = hour;
       },
       selectTime(item) {
+        this.setSelectedTime(item);
         this.selectedTime = item;
+      },
+      setTime() {
+        const [day] = this.getDays;
+        this.setSelectedDate(day);
+        this.selectedDate = day;
+        const [hour] = this.getHours;
+        this.setSelectedTime(hour);
+        this.selectedTime = hour;
       },
     },
   });

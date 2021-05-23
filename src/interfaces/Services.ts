@@ -30,6 +30,7 @@ export interface Service {
   serviceType: string;
   tempServiceId: string;
   therapeutic_forms: TherapeuticForms[];
+  type: string;
 }
 
 export interface Price {
@@ -40,4 +41,5 @@ export interface Price {
 export interface Time {
   date: Date;
   hour: number;
+  time: string;
 }

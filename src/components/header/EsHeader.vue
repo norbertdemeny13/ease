@@ -7,7 +7,7 @@
             <img
               src="@/assets/png/pro-logo.png"
               width="90"
-              height="24"
+              height="30"
               alt="Ease Pro Logo"
               class="my-2"
             >
@@ -112,7 +112,7 @@
   import { PhoneConfirmationModal } from '@/components/shared/phone-confirmation-modal';
   import { ForgotPasswordModal } from '@/components/shared/forgot-password-modal';
   import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
-  import { NAVBAR_LINKS } from '@/constants/navbar-links';
+  import { NAVBAR_LINKS, PRO_NAVBAR_LINKS } from '@/constants/navbar-links';
 
   export default Vue.extend({
     name: 'es-header',
@@ -141,25 +141,30 @@
         isAuthenticated: 'session/isAuthenticated',
         getUserType: 'session/getUserType',
       }),
+      getNavbarLinks(): any {
+        return this.isPro ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;
+      },
       getAuthNavLinks(): any {
-        const userType = this.getUserType || 'client';
-        return NAVBAR_LINKS
-          .filter(item => item.requiresAuth && item.role === userType)
-          .map(item => ({ ...item, id: nanoid() }));
+        return this.getNavbarLinks
+          .filter((item: any) => item.requiresAuth)
+          .map((item: any) => ({ ...item, id: nanoid() }));
       },
       navLinks(): any {
-        const userType = this.getUserType || 'client';
-        return NAVBAR_LINKS
-          .filter(item => !item.requiresAuth && item.role === userType)
-          .map(item => ({ ...item, id: nanoid() }));
+        return this.getNavbarLinks
+          .filter((item: any) => !item.requiresAuth)
+          .map((item: any) => ({ ...item, id: nanoid() }));
       },
     },
 
     watch: {
       $route(to) {
         this.isPro = this.$router.currentRoute.path.includes('pro');
-        this.isHomePage = to.name === 'Home';
+        this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
       },
+    },
+
+    created() {
+      this.isPro = this.$router.currentRoute.path.includes('pro');
     },
 
     mounted() {
@@ -189,7 +194,7 @@
 
       async onLogout(): Promise<void> {
         await this.logout();
-        this.$router.push({ name: 'Home' });
+        this.$router.push({ name: this.isPro ? 'ProHome' : 'Home' });
       },
     },
   });

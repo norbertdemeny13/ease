@@ -115,10 +115,6 @@
       const { type } = this.$router.currentRoute.params;
       this.isMassageView = type === 'single' || type === 'couple';
       await this.fetchAddresses();
-      if (this.getAddresses.length > 0) {
-        await this.createReservation();
-        await this.createExtraServiceReservation();
-      }
     },
 
     methods: {

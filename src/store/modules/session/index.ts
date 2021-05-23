@@ -11,6 +11,7 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
+  statistics: any;
 }
 
 export default {
@@ -20,6 +21,7 @@ export default {
     isAuth: false,
     isFetchingUser: false,
     user: {},
+    statistics: {},
   }) as State,
 
   actions: {
@@ -43,10 +45,56 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async changePassword({ state, commit }, passwords) {
+    async fetchStatistics({ state, commit }, user) {
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user/change_password', {
+        const { data } = await api.find('/elite/statistics');
+        commit('setStatistics', data);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async updateElite({ state, commit }, { user }) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.update('/elite', {
+          ...state.user,
+          ...user,
+        });
+        const newData = {
+          ...state.user,
+          ...data,
+        };
+        commit('setUser', newData);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async updateProfilePicture({ state, commit }, formData) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.update(
+          '/elite/update_avatar',
+          { data: formData },
+          {
+            contentType: 'multipart/form-data'
+          } as any,
+        );
+        const newData = {
+          ...state.user,
+          ...data,
+        };
+        commit('setUser', newData);
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async changePassword({ state, commit }, passwords) {
+      Vue.set(state, 'isFetchingUser', true);
+      const { userType } = state.user;
+
+      try {
+        const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/change_password`, {
           ...passwords,
         });
 
@@ -161,7 +209,7 @@ export default {
       localStorage.removeItem('auth');
       localStorage.removeItem('userType');
     },
-    async signUp({ state, commit, dispatch }, { credentials, type }) {
+    async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
       const endpoint = type === 'client'
         ? '/user'
         : '/elite_registration';
@@ -176,6 +224,7 @@ export default {
             elite: {
               ...credentials,
             },
+            subscribe_to_marketing_emails_list
           };
 
       const { email, password } = credentials;
@@ -183,6 +232,8 @@ export default {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create(endpoint, payload);
+        localStorage.setItem('jwt', `Jh${data.refresh_token}`);
+        localStorage.setItem('auth', `Kn${data.access_token}`);
         dispatch('login', { credentials, type });
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
@@ -234,10 +285,11 @@ export default {
   getters: {
     isAuth: state => state.isAuth,
     isFetchingUser: state => state.isFetchingUser,
+    getStatistics: state => state.statistics,
+    getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
     getUserDefaultAddress: state => state.user.default_address,
     getUserType: state => state.user?.userType || localStorage.getItem('userType'),
-    getToken: state => state.user && state.user.access_token,
     isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,
 
@@ -247,10 +299,13 @@ export default {
       const authToken = data?.access_token;
       if (data && refreshToken) {
         localStorage.setItem('jwt', `Jh${data.refresh_token}`);
-        localStorage.setItem('auth', `Kn${data.access_token}`)
+        localStorage.setItem('auth', `Kn${data.access_token}`);
         localStorage.setItem('userType', data.userType);
       }
       Vue.set(state, 'user', data);
+    },
+    setStatistics(state: State, data: any) {
+      Vue.set(state, 'statistics', data);
     },
   } as MutationTree<State>,
 };

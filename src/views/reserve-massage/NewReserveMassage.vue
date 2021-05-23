@@ -116,6 +116,7 @@
         getSelectedServices: 'services/getSelectedServices',
         isFetching: 'services/isFetching',
         getMassageInfo: 'services/getMassageInfo',
+        isAuthenticated: 'session/isAuthenticated',
       }),
 
       massageFilters() {
@@ -281,6 +282,12 @@
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
+
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
+
         await this.fetchServiceById({ type, id: uuid, duration, terapeut });
         const selectedService = {
           ...this.selectedService,
@@ -289,6 +296,7 @@
           prices: this.getServiceById.prices,
         };
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
+        await this.$store.dispatch('services/createMassageReservation');
         await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
       },
     },

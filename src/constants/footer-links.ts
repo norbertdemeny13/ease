@@ -57,6 +57,42 @@ export const FOOTER_LINKS = [
   },
 ];
 
+export const PRO_FOOTER_LINKS = [
+  {
+    category: 'Ease',
+    list: [
+      {
+        label: 'Servicii',
+        to: '/servicii',
+      },
+    ],
+  },
+  {
+    category: 'Suport',
+    list: [
+      {
+        label: 'Contact',
+        to: '/contact',
+      },
+      {
+        label: 'Intrebari frecvente',
+        to: '/pro/intrebari-frecvente',
+      },
+    ],
+  },
+  {
+    category: 'Orase',
+    list: [
+      {
+        label: 'Bucuresti',
+      },
+      {
+        label: 'Cluj',
+      },
+    ],
+  },
+];
+
 export const FOOTER_ICONS = [
   { name: 'apple-music-ease' },
   { name: 'facebook-ease' },

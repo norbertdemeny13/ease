@@ -26,10 +26,10 @@
           />
 
           <div v-if="canAddAdditionalServices" class="d-flex justify-content-start">
-            <router-link class="mt-4" :to="`/new/servicii/${$router.currentRoute.params.type}`">
+            <a href="" class="mt-4" @click.prevent="onAddAdditionalService">
               <i class="icon_plus" />
               Mai Adauga Un Serviciu
-            </router-link>
+            </a>
           </div>
           <div class="d-flex justify-content-center">
             <a
@@ -66,6 +66,7 @@
     computed: {
       ...mapGetters({
         getReservationServices: 'services/getReservationServices',
+        getReservationDetails: 'services/getReservationDetails',
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
         isFetching: 'services/isFetching',
@@ -79,11 +80,11 @@
       },
 
       service() {
-        /* eslint-disable */
         const mainService = this.getSelectedServices[0];
         const services = mainService?.complementary_services || [];
         const complementaryServices = services
           .map(item => ({ selectedCount: 0, ...item }));
+        /* eslint-disable */
         return { ...mainService, complementary_services: complementaryServices || [] };
       },
 
@@ -93,7 +94,7 @@
     },
 
     async created() {
-      const { id, type } = this.$router.currentRoute.params;
+      const { type } = this.$router.currentRoute.params;
       const serviceType = type === 'fitness' ? type : 'beauty';
       const selectedService = {
         ...this.getServiceById,
@@ -112,8 +113,17 @@
         fetchServiceById: 'services/fetchServiceById',
       }),
 
+      async onAddAdditionalService() {
+        const paramType = this.$router.currentRoute.params.type;
+        if (this.isAuthenticated) {
+          await this.$store.dispatch('services/createReservation');
+          await this.$router.push(`/new/servicii/${paramType}`);
+        } else {
+          this.$root.$emit('on-show-login');
+        }
+      },
+
       onBack() {
-        const { service } = this;
         this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
         this.$store.commit('services/removeSelectedServices');
       },
@@ -122,14 +132,23 @@
         this.$store.commit('services/setSelectedService', { service: this.service, method: 'update' });
       },
 
-      onContinue() {
+      async onContinue() {
         const { id, type } = this.$router.currentRoute.params;
         const serviceType = type === 'fitness' ? type : 'beauty';
-        this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
+
+        if (this.isAuthenticated) {
+          if (!this.getReservationDetails) {
+            await this.$store.dispatch('services/createReservation');
+          }
+          this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
+        } else {
+          this.$root.$emit('on-show-login');
+        }
       },
 
-      onRemoveAdditionalService(service) {
-        this.$store.commit('services/removeSelectedService', service);
+      async onRemoveAdditionalService(service) {
+        await this.$store.dispatch('services/removeExtraServiceReservation', { id: service.id });
+        await this.$store.commit('services/removeSelectedService', service);
       },
     },
   });

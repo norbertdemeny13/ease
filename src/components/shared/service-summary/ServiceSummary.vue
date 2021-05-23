@@ -31,8 +31,7 @@
           v-for="service in item.services"
           :key="service.id"
         >
-          <p v-if="isPaymentView"><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
-          <a v-else href="" @click.prevent="removeService(item, service); service.selectedCount = 0">{{ service.selectedCount }} x {{ service.name }}</a>
+          <p><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
           <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Ron</span>
         </li>
       </ul>
@@ -114,8 +113,8 @@
         return getZonedDate(date);
       },
       getHour() {
-        const { hour, minute } = this.time;
-        return `${hour}:${minute === 0 ? '00': minute}`;
+        const { time } = this.time;
+        return time;
       },
       getTotal() {
         let total = parseInt(this.time.price, 10);
@@ -209,7 +208,8 @@
       getServicePrice({ uuid }) {
         const selectedService = this.getSelectedServices
           .filter(item => item.tempServiceId === uuid)[0];
-        const hourPrice = getHourPrice(this.time, selectedService.prices);
+        const dateObject = { ...this.time, ...this.date };
+        const hourPrice = getHourPrice(dateObject, selectedService.prices);
         this.hourPrice = hourPrice;
         return hourPrice;
       },

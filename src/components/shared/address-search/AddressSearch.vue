@@ -14,7 +14,7 @@
     <div v-if="getLocationError && !homePage" class="alert alert-danger ml-4" role="alert">
       <span>Ease nu este deocamdata disponibil in aceasta locatie. Ne extindem rapid, revino curand. Serviciile sunt disponibile momentan in Cluj sau Bucuresti.</span>
     </div>
-    <div v-else-if="!location && !homePage" class="alert alert-primary ml-4" role="alert">
+    <div v-else-if="showAlert" class="alert alert-primary ml-4" role="alert">
       <span>Pentru a vizualiza preturile si disponibilitatea serviciilor te rog sa  introduci orasul sau adresa.</span>
     </div>
   </div>
@@ -43,6 +43,14 @@
         getLocation: 'address/getLocation',
         getLocationError: 'address/getLocationError',
       }),
+      showAlert(): boolean {
+        const { location, homePage } = this;
+        const cityId = sessionStorage.getItem('city_id');
+        const addressFromStorage = cityId === 'null' ? null : cityId;
+
+        const savedLocation = location || addressFromStorage;
+        return !savedLocation && !homePage;
+      },
     },
 
     watch: {
@@ -69,7 +77,7 @@
       ...mapActions({
         fetchLocation: 'address/fetchLocation',
       }),
-      initLocationSearch() {
+      initLocationSearch(): void {
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
         autocomplete.setFields(['geometry.location', 'formatted_address', 'name', 'address_component']);
         autocomplete.addListener('place_changed', () => {

@@ -70,14 +70,15 @@
     },
 
     methods: {
-      onContinue() {
+      async onContinue() {
         const { service } = this;
         const selectedService = {
           ...this.service,
           tempServiceId: nanoid(),
         };
 
-        this.$store.commit('services/setSelectedService', { service: selectedService, method: 'new' });
+        await this.$store.commit('services/setSelectedService', { service: selectedService, method: 'new' });
+        await this.$store.dispatch('services/createExtraServiceReservation');
         this.$router.push(this.getToRoute);
       },
     },

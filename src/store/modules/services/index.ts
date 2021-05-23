@@ -73,6 +73,7 @@ export default {
       }
     },
     async createMassageReservation({ state, dispatch, commit }) {
+      Vue.set(state, 'isFetching', true);
       const isSingle = state.selectedServices.some(item => item.category === 'single');
       const isSingleTerapeut = state.massageInfo.terapeut === 'single';
       const firstService = state.selectedServices[0];
@@ -104,7 +105,6 @@ export default {
         Vue.set(state, 'reservationDetails', data);
       } finally {
         Vue.set(state, 'isFetching', false);
-        dispatch('addServiceReservationDate', 'massage');
       }
     },
     async createCoupleMassageReservation({ state, dispatch, commit }, { reservation, method }) {
@@ -116,10 +116,8 @@ export default {
           reservation,
         });
         Vue.set(state, 'reservationDetails', data);
-        dispatch('addExtraCoupleMassageReservation');
-      } finally {
-        Vue.set(state, 'isFetching', false);
-      }
+        await dispatch('addExtraCoupleMassageReservation');
+      } finally {}
     },
     async addExtraCoupleMassageReservation({ state, dispatch, commit }) {
       const mainServiceId = state.reservationDetails?.id;
@@ -142,14 +140,14 @@ export default {
         Vue.set(state, 'reservationDetails', data);
       } finally {
         Vue.set(state, 'isFetching', false);
-        dispatch('addServiceReservationDate', 'massage');
       }
     },
     async createReservation({ state, rootState, dispatch, commit }) {
       Vue.set(state, 'isFetching', true);
       const reservationAddress = (rootState as any).address.selectedReservationAddress;
+      const isMassage = !!state.selectedServices.find(({ type }) => type.includes('Massage'));
 
-      if (state.serviceCategory === 'massages') {
+      if (isMassage) {
         dispatch('createMassageReservation');
       } else {
         const selectedService = state.selectedServices.filter(item => item.serviceCategory === 'main')[0];
@@ -159,6 +157,8 @@ export default {
               .filter(item => item.selectedCount! > 0)
               .map(item => ({ uuid: item.complementary_service.uuid, count: item.selectedCount }))
           : [];
+
+        const complementaryServices = state.selectedServices.filter(item => item.serviceCategory !== 'main');
 
         try {
           const { data } = await api.create(`/users/${selectedService.serviceType}_reservations`, {
@@ -170,17 +170,10 @@ export default {
           Vue.set(state, 'reservationDetails', data);
         } finally {
           Vue.set(state, 'isFetching', false);
-          dispatch('addServiceReservationDate', selectedService.serviceType);
-
-          if (reservationAddress) {
-            dispatch('setReservationAddress', { address: reservationAddress });
-          }
         }
       }
     },
     async setReservationAddress({ state, commit }, { address }) {
-      Vue.set(state, 'isFetching', true);
-
       const reservationId = state.reservationDetails!.id;
       const selectedService = state.selectedServices.filter(item => item.serviceCategory === 'main')[0];
       const serviceType = selectedService ? selectedService.serviceType : 'massage';
@@ -189,9 +182,7 @@ export default {
         const { data } = await api.create(`/users/${serviceType}_reservations/${reservationId}/address`, {
           user_address_id: address.id,
         });
-      } finally {
-        Vue.set(state, 'isFetching', false);
-      }
+      } finally {};
     },
 
     async createExtraServiceReservation({ state, dispatch, commit }) {
@@ -202,30 +193,40 @@ export default {
       const mainServiceId = state.reservationDetails!.id;
       const complementaryServices = state.selectedServices.filter(item => item.serviceCategory !== 'main');
 
-      complementaryServices.forEach(item => dispatch('addExtraServiceReservation', { id: mainServiceId, service: item }));
+      await complementaryServices.forEach(item => dispatch('addExtraServiceReservation', { id: mainServiceId, service: item }));
+      Vue.set(state, 'isFetching', false);
     },
-    async addServiceReservationDate({ state, commit }, serviceType) {
-      Vue.set(state, 'isFetching', true);
+
+    async addServiceReservationDate({ state, commit }) {
       const mainServiceId = state.reservationDetails!.id;
-      const booking_date = new Date(state.selectedTime.date).toISOString().substr(0,10)
-      const start_time = `${state.selectedTime.hour}:${state.selectedTime.minute === 0 ? '00' : state.selectedTime.minute}`;
+      const selectedDate = state.selectedDate?.date;
+      const selectedTime = state.selectedTime?.time;
+      const type = state.selectedServices[0].serviceType || 'massage';
+
+      if (!selectedDate) {
+        return;
+        Vue.set(state, 'isFetching', false);
+      }
+
+      const booking_date = selectedDate;
+      const start_time = selectedTime;
 
       try {
-        const { data } = await api.create(`/users/${serviceType}_reservations/${mainServiceId}/date`, {
+        const { data } = await api.create(`/users/${type}_reservations/${mainServiceId}/date`, {
           reservation: {
             booking_date,
             start_time,
           },
         });
 
-        Vue.set(state, 'reservationDetails', data);
+        const newData = { ...state.reservationDetails, ...data };
+        Vue.set(state, 'reservationDetails', newData);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async addExtraServiceReservation({ state, commit }, { id, service }) {
-      Vue.set(state, 'isFetching', true);
 
+    async addExtraServiceReservation({ state, commit }, { id, service }) {
       const complementaries = service.complementary_services
         ? service.complementary_services
           .filter((item: ComplementaryService) => item.selectedCount! > 0)
@@ -237,6 +238,23 @@ export default {
           reservation: {
             uuid: service.uuid,
             complementaries,
+          },
+        });
+
+        Vue.set(state, 'reservationDetails', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
+    async removeExtraServiceReservation({ state, commit }, { id }) {
+      const reservationId = state.reservationDetails!.id;
+      const serviceId = state.reservationDetails!.reservation_service.beauty_service_reservations.find(({ service }) => service.id === id)!.id;
+
+      try {
+        const { data } = await api.create(`/users/beauty_reservations/${reservationId}/remove_service`, {
+          reservation: {
+            service_id: serviceId,
           },
         });
 

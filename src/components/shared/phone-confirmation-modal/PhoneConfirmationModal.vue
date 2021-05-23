@@ -66,7 +66,7 @@
     },
 
     watch: {
-      getUser(newVal) {
+      getUser(newVal, oldVal) {
         if (newVal.phone_number_confirmed) {
           (this as any).$toasts.toasts.push({
             id: nanoid(),

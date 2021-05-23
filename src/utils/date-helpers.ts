@@ -22,6 +22,19 @@ const currentHour = getHours(new Date());
 export const monthNames = ['Ian', 'Feb', 'Mar', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export const weekDayNames = ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam'];
 
+export const getMonthDays = (days: any) => {
+  const localDays = days;
+  return localDays.map((day: any) => {
+    const dayName = weekDayNames[getDay(new Date(day.date))];
+    return {
+      ...day,
+      name: dayName,
+      value: day.date.slice(-2),
+      id: nanoid(),
+    };
+  });
+};
+
 export const getNextMonth = () => eachDayOfInterval({
   start: currentHour > 20
     ? addDays(zonedTimeToUtc(new Date(), 'Europe/Bucharest'), 1)
@@ -91,12 +104,12 @@ export const getNextHours = (prices: Price[], date: Date) => {
 
 export const getHour = () => getHours(new Date());
 
-export const getHourPrice = (time: Time, prices: Price[]) => {
-  const { date, hour } = time;
-  const filteredPrices = prices.filter(({ weekend }) => isWeekend(date) === weekend);
+export const getHourPrice = (selectedDate: Time, prices: Price[]) => {
+  const { date, time } = selectedDate;
+  const filteredPrices = prices.filter(({ weekend }) => isWeekend(new Date(date)) === weekend);
   const hourInterval = filteredPrices
     .filter(
-      ({ start_time: startTime, end_time: endTime }: any) => (hour >= parseInt(startTime, 10)) && (hour <= parseInt(endTime, 10)),
+      ({ start_time: startTime, end_time: endTime }: any) => (parseInt(time, 10) >= parseInt(startTime, 10)) && (parseInt(time, 10) <= parseInt(endTime, 10)),
     )[0];
   const { price } = hourInterval;
   return parseInt(price, 10);

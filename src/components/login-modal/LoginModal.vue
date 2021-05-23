@@ -87,10 +87,6 @@
                     <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
                 </div>
                 <div v-if="userType === 'elite'">
-                  <div class="form-group">
-                    <label>Telefon</label>
-                    <input type="number" class="form-control" name="telefon" id="telefon" v-model="form.phone_number">
-                  </div>
                   <div class="form-group radio_c_group">
                     <div class="checkboxes float-left">
                       <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">Accept Termenii si Conditiile si Politica de Confidentialitate
@@ -236,14 +232,22 @@
         }
 
         const { name } = this.$router.currentRoute;
-        const { form, userType } = this;
+        const { form, userType, subscribe_to_marketing_emails_list } = this;
+
         if (this.isSignIn) {
-          await this.login({ credentials: form, type: userType });
+          await this.login({
+            credentials: form,
+            type: userType,
+          });
           if (name === 'Home') {
             this.$router.push('/servicii');
           }
         } else {
-          await this.signUp({ credentials: form, type: userType });
+          await this.signUp({
+            credentials: form,
+            subscribe_to_marketing_emails_list,
+            type: userType,
+          });
         }
       },
 

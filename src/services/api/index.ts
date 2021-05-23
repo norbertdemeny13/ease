@@ -1,8 +1,13 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { instance as client } from './client';
 
+/* eslint-disable */
 const api = {
   request(config: AxiosRequestConfig): Promise<AxiosResponse> {
+    if ((config as any).contentType === 'multipart/form-data') {
+      /* eslint-disable no-param-reassign */
+      config.data = config.data.data;
+    }
     return client.request(config);
   }, // request
 

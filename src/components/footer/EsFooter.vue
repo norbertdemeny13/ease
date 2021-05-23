@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer :class="`${$router.currentRoute.fullPath.includes('pro') ? 'is-pro' : ''}`">
     <div class="wave footer" />
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
@@ -79,14 +79,28 @@
 <script lang="ts">
   import Vue from 'vue';
   import { nanoid } from 'nanoid';
-  import { FOOTER_LINKS } from '@/constants/footer-links';
+  import { FOOTER_LINKS, PRO_FOOTER_LINKS } from '@/constants/footer-links';
 
   export default Vue.extend({
     name: 'es-footer',
+
+    data: () => ({
+      isProPage: false,
+    }),
+
     computed: {
       footerLinks() {
-        return FOOTER_LINKS
+        const links = this.isProPage
+          ? PRO_FOOTER_LINKS
+          : FOOTER_LINKS;
+        return links
           .map(item => ({ ...item, id: nanoid() }));
+      },
+    },
+
+    watch: {
+      $route(to) {
+        this.isProPage = to.fullPath.includes('pro');
       },
     },
   });

@@ -11,7 +11,7 @@
     </div>
     <div v-else-if="hasSubscription">
       <div class="col-8">
-        <div v-if="getAvailableSubscription" class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">
+        <div class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">
           <h6>{{ `Ab. ${getAvailableSubscription.name} ${getAvailableSubscription.monthly ? 'lunar' : 'anual'}` }}</h6>
           <h6>Activ</h6>
         </div>
@@ -116,6 +116,7 @@
 
         const activeSubscrKey = getActiveSubscriptions && Object.keys(getActiveSubscriptions)
           .filter(item => getActiveSubscriptions[item]) as unknown as string;
+
         const availableSubscription: Subscription = !!activeSubscrKey
           && getActiveSubscriptions[activeSubscrKey];
 

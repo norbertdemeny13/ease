@@ -21,7 +21,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/pro',
-    name: 'Pro Home',
+    name: 'ProHome',
     component: () => import('@/views/pro-home').then(({ ProHome }) => ProHome),
   },
   {
@@ -86,6 +86,67 @@ const routes: Array<RouteConfig> = [
       {
         path: 'preferinte',
         name: 'Preferinte Client',
+        component: () => import('@/views/client-dashboard').then(({ ClientPreferences }) => ClientPreferences),
+      },
+    ],
+  },
+  {
+    path: '/pro/',
+    component: () => import('@/views/pro-dashboard').then(({ ClientDashboard }) => ClientDashboard),
+    children: [
+      {
+        path: 'cont',
+        name: 'Cont Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientAccount }) => ClientAccount),
+      },
+      {
+        path: 'parola',
+        name: 'Parola Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientPassword }) => ClientPassword),
+      },
+      {
+        path: 'telefon',
+        name: 'Telefon Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientPhone }) => ClientPhone),
+      },
+      {
+        path: 'recomandare',
+        name: 'Recomandare Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientRecommendations }) => ClientRecommendations),
+      },
+      {
+        path: 'adrese',
+        name: 'Adrese Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientAddresses }) => ClientAddresses),
+      },
+      {
+        path: 'metode-de-plata',
+        name: 'Plata Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientPayments }) => ClientPayments),
+      },
+      {
+        path: 'rezervarile-mele',
+        name: 'Rezervari Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientReservations }) => ClientReservations),
+      },
+      {
+        path: 'comenzile-mele',
+        name: 'Comenzi Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientOrders }) => ClientOrders),
+      },
+      {
+        path: 'abonamente',
+        name: 'Abonamente Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientSubscriptions }) => ClientSubscriptions),
+      },
+      {
+        path: 'cod-promo',
+        name: 'Credit Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientCredits }) => ClientCredits),
+      },
+      {
+        path: 'preferinte',
+        name: 'Preferinte Pro',
         component: () => import('@/views/client-dashboard').then(({ ClientPreferences }) => ClientPreferences),
       },
     ],
@@ -176,7 +237,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/faq').then(({ Faq }) => Faq),
   },
   {
-    path: '/ease/pro/intrebari-frecvente',
+    path: '/pro/intrebari-frecvente',
     name: 'Intrebari frecvente pro',
     component: () => import('@/views/pro-faq').then(({ ProFaq }) => ProFaq),
   },
@@ -230,6 +291,10 @@ router.beforeEach(async (to, from, next) => {
     next('/servicii');
   }
 
+  if ((getToken || isAuthenticated) && name === 'ProHome') {
+    next('/pro/cont');
+  }
+
   if (path.includes('/carduri-cadou/') && !getGiftCard.id) {
     next('/carduri-cadou');
   }
@@ -272,7 +337,7 @@ router.beforeEach(async (to, from, next) => {
     next();
   }
 
-  if (isAuth) {
+  if (!isAuth) {
     next();
   }
 });

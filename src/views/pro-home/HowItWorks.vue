@@ -11,6 +11,12 @@
             <h1>1</h1>
             <h3>Aplica cu usurinta</h3>
             <p>Iti verificam identitatea, certificarile si experienta</p>
+            <div class="d-flex justify-content-center col-md-12">
+              <router-link
+                class="mt-4"
+                to="/ease/pro/intrebari-frecvente"
+              >Afla mai multe</router-link>
+            </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -18,6 +24,12 @@
             <h1>2</h1>
             <h3>Primesti acces</h3>
             <p>Dupa un scurt interviu vei primi permisiunea sa iti activezi contul</p>
+            <div class="d-flex justify-content-center col-md-12">
+              <router-link
+                class="mt-4"
+                to="/ease/pro/intrebari-frecvente"
+              >Afla mai multe</router-link>
+            </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -25,13 +37,13 @@
             <h1>3</h1>
             <h3>Castiga bani</h3>
             <p>Descarca aplicatia Elite si incepe sa accepti rezervari de la clienti </p>
+            <div class="d-flex justify-content-center col-md-12">
+              <router-link
+                class="mt-4"
+                to="/ease/pro/intrebari-frecvente"
+              >Afla mai multe</router-link>
+            </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-center col-md-12">
-          <router-link
-            class="btn btn-pink btn-pill mt-4 px-6"
-            to="/ease/pro/intrebari-frecvente"
-          >Afla mai multe</router-link>
         </div>
       </div>
     </div>

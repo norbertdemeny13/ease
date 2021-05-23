@@ -18,6 +18,13 @@ export default (request: AxiosRequestConfig) => {
     };
   }
 
+  if ((request as any).contentType) {
+    request.headers = {
+      ...request.headers,
+      'Content-Type': (request as any).contentType,
+    };
+  }
+
   /* eslint-enable no-param-reassign */
   return request;
 };

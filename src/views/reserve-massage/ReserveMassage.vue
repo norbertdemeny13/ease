@@ -274,6 +274,12 @@
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
+
+        if (!this.isAuthenticated && massageType === 'single') {
+          this.$root.$emit('on-show-login');
+          return;
+        }
+
         await this.fetchServiceById({ type, id: uuid, duration, terapeut });
         const selectedService = {
           ...this.selectedService,
@@ -285,6 +291,7 @@
         this.$store.commit('services/setMassageInfo', { terapeut, duration });
 
         if (massageType === 'single') {
+          await this.$store.dispatch('services/createMassageReservation');
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
         } else {
           await this.$router.push(`/new/servicii/masaj?type=${type}`);
