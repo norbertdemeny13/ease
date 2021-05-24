@@ -236,9 +236,10 @@
       const { getMassageInfo } = this;
 
       if (getMassageInfo) {
-        const { duration, terapeut } = getMassageInfo;
+        const { duration, terapeut, genre } = getMassageInfo;
         this.massageForm.terapeut = terapeut;
         this.massageForm.duration = duration;
+        this.massageForm.genre = genre;
       }
 
       const selectedService = this.getSelectedServices

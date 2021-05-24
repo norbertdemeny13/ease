@@ -10,7 +10,7 @@ import { api } from '@/services/api';
 export interface State extends ModuleState {
   activePayment: boolean;
   isFetching: boolean;
-  massageInfo: { duration: number; terapeut: string };
+  massageInfo: { duration: number; terapeut: string, genre: string; };
   location?: Location | null;
   reservationDetails: ReservationDetails | null,
   serviceCategory: string;
@@ -47,7 +47,7 @@ export default {
 
   state: () => ({
     isFetching: false,
-    massageInfo: { duration: 60, terapeut: 'single' },
+    massageInfo: { duration: 60, terapeut: 'single', genre: 'any_gender' },
     reservationDetails: null,
     serviceCategory: '',
     services: [],

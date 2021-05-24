@@ -235,9 +235,10 @@
       const { getMassageInfo } = this;
 
       if (getMassageInfo) {
-        const { duration, terapeut } = getMassageInfo;
+        const { duration, terapeut, genre } = getMassageInfo;
         this.massageForm.terapeut = terapeut;
         this.massageForm.duration = duration;
+        this.massageForm.genre = genre;
       }
 
       this.massageType = type;
@@ -271,7 +272,12 @@
       },
 
       async onContinue() {
-        const { type, terapeut, duration } = this.massageForm;
+        const {
+          type,
+          terapeut,
+          duration,
+          genre,
+        } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
 
@@ -288,7 +294,7 @@
           prices: this.getServiceById.prices,
         };
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
-        this.$store.commit('services/setMassageInfo', { terapeut, duration });
+        this.$store.commit('services/setMassageInfo', { terapeut, duration, genre });
 
         if (massageType === 'single') {
           await this.$store.dispatch('services/createMassageReservation');
