@@ -178,9 +178,9 @@
       showPassword: false,
       type: 'password',
       form: {
-        email: 'norbert.demeny13@gmail.com',
-        first_name: '',
-        last_name: '',
+        email: '123norbert.demeny13@mailinator.com',
+        first_name: 'test',
+        last_name: 'test',
         password: 'testtest',
         phone_number: null,
         massage_marketing: true,

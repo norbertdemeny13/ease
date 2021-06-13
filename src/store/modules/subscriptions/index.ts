@@ -68,7 +68,9 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/user_subscriptions');
-        commit('setActiveSubscriptions', [data]);
+        if (data.length) {
+          commit('setActiveSubscriptions', [data]);
+        }
       } finally {
         Vue.set(state, 'isFetching', false);
       }

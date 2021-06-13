@@ -71,6 +71,7 @@
         getSelectedServices: 'services/getSelectedServices',
         isFetching: 'services/isFetching',
         isAuthenticated: 'session/isAuthenticated',
+        getUser: 'session/getUser',
       }),
 
       canAddAdditionalServices() {
@@ -137,6 +138,29 @@
         const serviceType = type === 'fitness' ? type : 'beauty';
 
         if (this.isAuthenticated) {
+          if (this.getUser.userType === 'elite') {
+            this.$toasts.toast({
+              id: 'warning-toast',
+              intent: 'warning',
+              message: 'Pentru a continua, te rugam sa te autentifici cu un cont de client',
+              title: 'Atentie',
+            });
+
+            return;
+          }
+
+          // show phone modal if address is not set
+          if (!this.getUser.phone_number_confirmed) {
+            this.$root.$emit('on-show-validate-phone-modal');
+            return;
+          }
+
+          // show address modal if address is not set
+          if (!this.getUser.addresses.length) {
+            this.$root.$emit('on-show-address-modal');
+            return;
+          }
+
           if (!this.getReservationDetails) {
             await this.$store.dispatch('services/createReservation');
           }

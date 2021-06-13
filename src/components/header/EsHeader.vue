@@ -100,6 +100,11 @@
       @show-reset-password-modal="isResetPasswordModalOpen = true"
     />
     <es-reset-password-modal v-if="isResetPasswordModalOpen" v-model="isResetPasswordModalOpen" />
+
+    <es-address-modal
+      v-if="isAddressModalOpen"
+      v-model="isAddressModalOpen"
+    />
   </div>
 </template>
 
@@ -112,12 +117,14 @@
   import { PhoneConfirmationModal } from '@/components/shared/phone-confirmation-modal';
   import { ForgotPasswordModal } from '@/components/shared/forgot-password-modal';
   import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
+  import { AddressModal } from '@/components/shared/address-modal';
   import { NAVBAR_LINKS, PRO_NAVBAR_LINKS } from '@/constants/navbar-links';
 
   export default Vue.extend({
     name: 'es-header',
 
     components: {
+      'es-address-modal': AddressModal,
       'es-login-modal': LoginModal,
       'es-validate-phone-modal': ValidatePhoneModal,
       'es-phone-confirmation-modal': PhoneConfirmationModal,
@@ -127,6 +134,7 @@
 
     data: () => ({
       isPro: false,
+      isAddressModalOpen: false,
       isHomePage: false,
       isLoginModalOpen: false,
       isPhoneConfirmationModalOpen: false,
@@ -181,6 +189,12 @@
       this.$root.$on('on-show-elite-register', () => {
         this.modalType = 'register';
         this.isLoginModalOpen = true;
+      });
+      this.$root.$on('on-show-address-modal', () => {
+        this.isAddressModalOpen = true;
+      });
+      this.$root.$on('on-show-validate-phone-modal', () => {
+        this.isValidatePhoneModalOpen = true;
       });
     },
 

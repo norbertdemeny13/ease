@@ -83,8 +83,7 @@
             <div class="text-left my-2">
               <button
                 class="btn_1"
-                @click.prevent="onAddAddress()"
-              >
+                @click.prevent="onAddAddress()">
                 Adauga
               </button>
             </div>
@@ -181,6 +180,7 @@
         fetchLocation: 'address/fetchLocation',
         fetchAddresses: 'address/fetchAddresses',
         setAddress: 'address/setAddress',
+        getUser: 'session/getUser',
       }),
 
       async initLocationSearch() {
@@ -202,7 +202,7 @@
         });
       },
 
-      onAddAddress(): void {
+      async onAddAddress(): Promise<void> {
         const { name } = this.$router.currentRoute;
         const { address, city } = this;
         const { street_number, street_name } = address;
@@ -218,7 +218,8 @@
         }
 
         if (street_name && street_number && city) {
-          this.setAddress(this.address);
+          await this.setAddress(this.address);
+          await this.getUser();
         } else {
           (this as any).$toasts.toast({
             id: 'address-modal',
