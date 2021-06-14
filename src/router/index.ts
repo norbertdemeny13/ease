@@ -272,6 +272,7 @@ router.beforeEach(async (to, from, next) => {
   const getGiftCard = store.getters['giftCards/getGiftCard'];
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
+  const getUser = store.getters['session/getUser'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
@@ -287,11 +288,11 @@ router.beforeEach(async (to, from, next) => {
     isAuthenticated = true;
   }
 
-  if ((getToken || isAuthenticated) && name === 'Home') {
+  if ((getToken || isAuthenticated) && name === 'Home' && getUser.userType === 'client') {
     next('/servicii');
   }
 
-  if ((getToken || isAuthenticated) && name === 'ProHome') {
+  if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.userType === 'elite') {
     next('/pro/cont');
   }
 

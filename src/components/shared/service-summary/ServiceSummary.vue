@@ -39,7 +39,7 @@
       <ul class="clearfix">
         <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Ron</span></li>
         <li>Subtotal<span>{{ getTotal }} Ron</span></li>
-        <li class="total">Total<span>{{ getTotal - getDiscount }} Ron</span></li>
+        <li v-if="showTotal" class="total">Total<span>{{ getTotal - getDiscount }} Ron</span></li>
       </ul>
     </div>
   </div>
@@ -66,6 +66,11 @@
       time: {
         type: Object,
         required: true,
+      },
+
+      showTotal: {
+        default: true,
+        type: Boolean,
       },
 
       activeSubscription: {

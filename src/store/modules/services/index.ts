@@ -197,6 +197,27 @@ export default {
       Vue.set(state, 'isFetching', false);
     },
 
+    async getReservationCalendar({ state, commit }) {
+      const reservationId = state.reservationDetails!.id;
+      const selectedDate = state.selectedDate?.date;
+      const type = state.selectedServices[0].serviceType || 'massage';
+
+      if (!selectedDate) {
+        return;
+        Vue.set(state, 'isFetching', false);
+      }
+
+      const booking_date = selectedDate;
+
+      try {
+        const { data } = await api.find(`/users/${type}_reservations/${reservationId}/reservation_calendar?date=${booking_date}`);
+        const newData = { ...state.reservationDetails, reservation_calendar: data.reservation_calendar };
+        Vue.set(state, 'reservationDetails', newData);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
     async addServiceReservationDate({ state, commit }) {
       const mainServiceId = state.reservationDetails!.id;
       const selectedDate = state.selectedDate?.date;

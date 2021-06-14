@@ -38,7 +38,7 @@
             :active-subscription="activeSubscription"
             :is-payment-view="true"
           />
-          <div class="d-flex my-4 justify-content-center">
+          <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-center">
             <button
               class="btn btn-sm btn-pink btn-pill px-6"
               :disabled="!getCards.length"

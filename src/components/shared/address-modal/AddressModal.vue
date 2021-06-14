@@ -83,7 +83,8 @@
             <div class="text-left my-2">
               <button
                 class="btn_1"
-                @click.prevent="onAddAddress()">
+                @click.prevent="onAddAddress()"
+              >
                 Adauga
               </button>
             </div>

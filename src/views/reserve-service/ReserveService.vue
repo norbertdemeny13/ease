@@ -34,6 +34,7 @@
           <es-service-summary
             :date="selectedDate"
             :time="selectedTime"
+            :show-total="false"
           />
           <div class="d-flex justify-content-center">
             <a
@@ -70,6 +71,7 @@
     data: () => ({
       selectedDate: null,
       selectedTime: null,
+      getDays: [],
     }),
 
     computed: {
@@ -80,10 +82,6 @@
         isAuthenticated: 'session/isAuthenticated',
         isFetching: 'services/isFetching',
       }),
-      getDays() {
-        const reservationDates = this.getReservationDetails?.reservation_dates || [];
-        return getMonthDays(reservationDates);
-      },
       getHours() {
         const hours = this.getReservationDetails?.reservation_calendar || [];
         return hours.map(item => ({ ...item, id: nanoid() }));
@@ -116,6 +114,7 @@
         addServiceReservationDate: 'services/addServiceReservationDate',
         setSelectedDate: 'services/setSelectedDate',
         setSelectedTime: 'services/setSelectedTime',
+        getReservationCalendar: 'services/getReservationCalendar',
       }),
       async onContinue() {
         if (this.isAuthenticated) {
@@ -129,16 +128,21 @@
       async selectDate(item) {
         this.setSelectedDate(item);
         this.selectedDate = item;
+        await this.getReservationCalendar();
         const [hour] = this.getHours;
         this.setSelectedTime(hour);
         this.selectedTime = hour;
+        window.initDayCarousel();
       },
       selectTime(item) {
         this.setSelectedTime(item);
         this.selectedTime = item;
       },
       setTime() {
-        const [day] = this.getDays;
+        const reservationDates = this.getReservationDetails?.reservation_dates || [];
+        const days = getMonthDays(reservationDates);
+        const [day] = days;
+        this.getDays = days;
         this.setSelectedDate(day);
         this.selectedDate = day;
         const [hour] = this.getHours;
