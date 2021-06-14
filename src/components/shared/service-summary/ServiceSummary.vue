@@ -114,8 +114,10 @@
         return (this.activeSubscription ? this.getTotal * (this.activeSubscription.subscription.discount / 100) : 0).toFixed(2);
       },
       getDate() {
-        const { date } = this.date;
-        return getZonedDate(date);
+        const currentDate = this.date?.date;
+        return currentDate
+          ? getZonedDate(currentDate)
+          : '';
       },
       getHour() {
         const { time } = this.time;

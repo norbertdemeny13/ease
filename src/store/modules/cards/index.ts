@@ -26,6 +26,9 @@ export default {
   }) as State,
 
   actions: {
+    resetCards({ state, commit }) {
+      commit('setCards', []);
+    },
     async fetchCards({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {

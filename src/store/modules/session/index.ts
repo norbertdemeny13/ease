@@ -234,6 +234,8 @@ export default {
         const { data } = await api.create(endpoint, payload);
         localStorage.setItem('jwt', `Jh${data.refresh_token}`);
         localStorage.setItem('auth', `Kn${data.access_token}`);
+        dispatch('cards/resetCards', {}, { root: true });
+        dispatch('subscriptions/resetSelectedSubscription', {}, { root: true });
         dispatch('login', { credentials, type });
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });

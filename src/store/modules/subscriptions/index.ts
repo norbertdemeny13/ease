@@ -30,6 +30,9 @@ export default {
   }) as State,
 
   actions: {
+    resetSelectedSubscription({ state, commit }) {
+      Vue.set(state, 'selectedSubscription', null);
+    },
     async fetchSubscriptionsByType({ state, rootState, commit }, type) {
       const city_id = (rootState as any).address.location
         ? (rootState as any).address.location.city_id
