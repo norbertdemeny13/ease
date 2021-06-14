@@ -161,7 +161,7 @@
             return;
           }
 
-          if (!this.getReservationDetails) {
+          if (!this.getReservationDetails || this.getReservationDetails?.status === 'waiting_confirmation') {
             await this.$store.dispatch('services/createReservation');
           }
           this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
