@@ -248,6 +248,9 @@
             subscribe_to_marketing_emails_list,
             type: userType,
           });
+          if (name === 'Home') {
+            this.$router.push('/servicii');
+          }
         }
       },
 

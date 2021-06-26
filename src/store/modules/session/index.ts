@@ -208,6 +208,9 @@ export default {
       localStorage.removeItem('jwt');
       localStorage.removeItem('auth');
       localStorage.removeItem('userType');
+      sessionStorage.removeItem('address');
+      sessionStorage.removeItem('city');
+      sessionStorage.removeItem('city_id');
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
       const endpoint = type === 'client'

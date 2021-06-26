@@ -99,9 +99,11 @@
       },
     },
 
-    created() {
+    async created() {
       if (this.isAuthenticated) {
-        this.fetchAddresses();
+        await this.fetchAddresses();
+        const mainAddress = this.getAddresses.find(({ main }: { main: boolean}) => main);
+        this.selectedAddress = mainAddress?.id || 0;
       }
     },
 
@@ -119,6 +121,12 @@
             : selectedAddressId;
           this.selectedAddress = addressId;
           this.setReservationAddress(addressId);
+        }
+      },
+      isAuthenticated(newVal, oldVal) {
+        if (newVal && newVal !== oldVal) {
+          const mainAddress = this.getAddresses.find(({ main }: { main: boolean}) => main);
+          this.selectedAddress = mainAddress?.id || 0;
         }
       },
     },
