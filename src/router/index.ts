@@ -79,7 +79,7 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/client-dashboard').then(({ ClientSubscriptions }) => ClientSubscriptions),
       },
       {
-        path: 'cod-promo',
+        path: 'credit-ease',
         name: 'Credit Client',
         component: () => import('@/views/client-dashboard').then(({ ClientCredits }) => ClientCredits),
       },

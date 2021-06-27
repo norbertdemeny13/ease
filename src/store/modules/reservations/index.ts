@@ -9,6 +9,7 @@ export interface State extends ModuleState {
   activeReservations: [];
   pastReservations: [];
   upcomingReservations: [];
+  reservation: any;
 }
 
 export default {
@@ -19,6 +20,7 @@ export default {
     isFetching: false,
     pastReservations: [],
     upcomingReservations: [],
+    reservation: null,
   }) as State,
 
   actions: {
@@ -49,11 +51,21 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async showReservation({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/users/reservations/${id}`);
+        Vue.set(state, 'reservation', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
   } as ActionTree<State, RootState>,
 
   getters: {
     getActiveReservations: state => state.activeReservations,
     getPastReservations: state => state.pastReservations,
     getUpcomingReservations: state => state.upcomingReservations,
+    getReservation: state => state.reservation,
   } as GetterTree<State, RootState>,
 };

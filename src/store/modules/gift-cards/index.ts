@@ -29,6 +29,7 @@ export interface State extends ModuleState {
   paymentSetup: any;
   selectedGiftCard: any;
   paymentStatus: any;
+  giftCardHistory: any;
 }
 
 export default {
@@ -41,6 +42,7 @@ export default {
     paymentSetup: {},
     selectedGiftCard: {},
     paymentStatus: {},
+    giftCardHistory: [],
   }) as State,
 
   actions: {
@@ -105,6 +107,33 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchGiftCardsOrderHistory({ state }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/user/ease_credit_history');
+        Vue.set(state, 'giftCardHistory', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async applyGiftCard({ state }, code) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create('/user/apply_gift_card', {
+          promo_code: code,
+        });
+      } catch {
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          intent: 'error',
+          title: 'Atentie!',
+          message: 'Cod validare incorect! Incearca din nou sau ia legatura cu noi sa te ajutam!',
+        });
+      }
+      finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
   } as ActionTree<State, RootState>,
 
   getters: {
@@ -114,9 +143,9 @@ export default {
     getPaymentSetup: state => state.paymentSetup,
     getPaymentStatus: state => state.paymentStatus,
     getSelectedGiftCard: state => state.selectedGiftCard,
+    getGiftCardsHistory: state => state.giftCardHistory,
   } as GetterTree<State, RootState>,
 
   mutations: {
-
   } as MutationTree<State>,
 };

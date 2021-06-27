@@ -133,6 +133,7 @@
         getActiveReservations: 'reservations/getActiveReservations',
         getUpcomingReservations: 'reservations/getUpcomingReservations',
         getPastReservations: 'reservations/getPastReservations',
+        getReservation: 'reservations/getReservation',
       }),
       getAddress(): string {
         const { user_address } = this.selectedReservation as any;
@@ -154,6 +155,7 @@
         fetchUpcomingReservations: 'reservations/fetchUpcomingReservations',
         fetchPastReservations: 'reservations/fetchPastReservations',
         fetchActiveReservations: 'reservations/fetchActiveReservations',
+        showReservation: 'reservations/showReservation',
       }),
 
       getEliteName(item: any): string {
@@ -171,6 +173,7 @@
       onSelect(item: any): void {
         this.selectedReservation = item;
         this.isListView = false;
+        this.showReservation(item.id);
       },
 
       onContinue() {
