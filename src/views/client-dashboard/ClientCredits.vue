@@ -79,7 +79,7 @@
   });
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
   input {
     width: 120px !important;
   }

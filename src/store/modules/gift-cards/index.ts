@@ -52,7 +52,6 @@ export default {
         const { data } = await api.create('/users/virtual_gift_cards', {
           gift_card: {
             ...form,
-            from_name: form.name,
           },
         });
         Vue.set(state, 'selectedGiftCard', data);
