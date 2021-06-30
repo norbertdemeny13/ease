@@ -127,6 +127,7 @@
       onBack() {
         this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
         this.$store.commit('services/removeSelectedServices');
+        this.$store.commit('services/removeReservationDetails');
       },
 
       onCountChange() {

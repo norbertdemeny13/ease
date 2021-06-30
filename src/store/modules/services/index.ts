@@ -374,6 +374,10 @@ export default {
     },
     removeSelectedServices(state: State) {
       Vue.set(state, 'selectedServices', []);
+      Vue.set(state, 'reservationDetails', null);
+    },
+    removeReservationDetails(state: State) {
+      Vue.set(state, 'reservationDetails', null);
     },
     setMassageInfo(state: State, data: any) {
       Vue.set(state, 'massageInfo', data);

@@ -10,8 +10,8 @@
             <div
               v-for="day in getDays"
               :key="day.id"
-              class="day-item"
-              @click="selectDate(day)"
+              :class="`day-item ${day.disabled ? 'disabled' : ''}`"
+              @click="day.disabled ? '' : selectDate(day)"
             >
               <p class="day">{{ day.value }}</p>
               <p class="day-string">{{ day.name }}</p>
@@ -22,7 +22,7 @@
             <div
               v-for="item in getHours"
               :key="item.id"
-              :class="`hour-item m-2 ${selectedTime && selectedTime.id === item.id ? 'selected': ''}`"
+              :class="`hour-item m-2 ${selectedTime && selectedTime.id === item.id ? 'selected': ''} ${item.disabled ? 'disabled' : ''}`"
               @click="selectTime(item)"
             >
               <p class="time  mb-0">{{ item.time }}</p>
@@ -84,7 +84,9 @@
       }),
       getHours() {
         const hours = this.getReservationDetails?.reservation_calendar || [];
-        return hours.map(item => ({ ...item, id: nanoid() }));
+        return hours
+          .map(item => ({ ...item, id: nanoid() }))
+          .filter(({ disabled }) => !disabled);
       },
       getToRoute() {
         const { id, type } = this.$router.currentRoute.params;
@@ -152,3 +154,11 @@
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  .disabled {
+    color: #acacac;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>

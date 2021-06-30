@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
-      <router-link class="back-button" to="/servicii/">
+      <router-link class="back-button" @click="onBack()">
         Inapoi
       </router-link>
       <es-reserve-massage-skeleton v-if="isFetching" />
@@ -270,6 +270,11 @@
       getActiveCarouselId(info) {
         const index = info ? info.item.index : 0;
         this.selectedService = this.services ? this.services[index] : null;
+      },
+
+      onBack() {
+        this.$router.push('/servicii/');
+        this.$store.commit('services/removeReservationDetails');
       },
 
       async onContinue() {
