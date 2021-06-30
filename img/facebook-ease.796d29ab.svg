@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 75">
+    <defs>
+        <style>
+            .cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="Layer_2">
+        <g id="Layer_1-2">
+            <circle cx="37.5" cy="37.5" r="37.5" fill="#262626"/>
+            <path d="M44.22 38.47L28.73 38.47 28.73 31.33 45.41 31.33 44.22 38.47z" class="cls-2"/>
+            <path id="Facebook" d="M32.34 26.61v28.54h7.11v-27.4a1.08 1.08 0 0 1 1.2-1.19h4.76v-7.14h-5.49c-7.76 0-7.58 6.26-7.58 7.19z" class="cls-2"/>
+        </g>
+    </g>
+</svg>
