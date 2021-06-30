@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
-      <router-link class="back-button" @click="onBack()">
+      <a href="" class="back-button" @click.prevent="onBack()">
         Inapoi
-      </router-link>
+      </a>
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6 px-6">

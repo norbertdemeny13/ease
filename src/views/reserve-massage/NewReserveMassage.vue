@@ -114,6 +114,7 @@
         getServicesByType: 'services/getServicesByType',
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
+        getReservationDetails: 'services/getReservationDetails',
         isFetching: 'services/isFetching',
         getMassageInfo: 'services/getMassageInfo',
         isAuthenticated: 'session/isAuthenticated',
@@ -201,6 +202,13 @@
             window.goToMassageCarouselIndex([index, 250]);
             window.initModal();
           }, 300);
+        }
+      },
+      getReservationDetails(newVal) {
+        if (newVal.reservation_service.massage_two) {
+          const { type } = this.massageForm;
+          const { uuid } = this.selectedService;
+          this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
         }
       },
       getServicesByType(newVal) {
@@ -324,7 +332,6 @@
         };
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         await this.$store.dispatch('services/createMassageReservation');
-        await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
       },
     },
   });

@@ -12,7 +12,7 @@ export interface State extends ModuleState {
   isFetching: boolean;
   massageInfo: { duration: number; terapeut: string, genre: string; };
   location?: Location | null;
-  reservationDetails: ReservationDetails | null,
+  reservationDetails: ReservationDetails | null;
   serviceCategory: string;
   services: Service[];
   selectedServices: Service[];
