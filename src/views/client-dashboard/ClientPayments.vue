@@ -3,23 +3,28 @@
     <h4>Carduri</h4>
     <div class="row">
       <div class="col-md-4">
-        <div
-          v-for="card in getCards"
-          :key="card.id"
-          :class="`${card.primary ? 'active' : ''} client-payment-card-item`"
-          @click.prevent="onSelect(card)"
-        >
-          <div class="card-number" v-html="getCardInfo(card)" />
-          <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
-            <div v-if="card.primary">
-              <span class="icon_check_alt" />
-              <span class="ml-2">Card principal</span>
+        <div v-if="getCards.length">
+          <div
+            v-for="card in getCards"
+            :key="card.id"
+            :class="`${card.primary ? 'active' : ''} client-payment-card-item`"
+            @click.prevent="onSelect(card)"
+          >
+            <div class="card-number" v-html="getCardInfo(card)" />
+            <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
+              <div v-if="card.primary">
+                <span class="icon_check_alt" />
+                <span class="ml-2">Card principal</span>
+              </div>
+              <a href="" class="mr-2" @click.prevent.stop="onRemove(card)">
+                <i class="icon_trash_alt" />
+                Sterge
+              </a>
             </div>
-            <a href="" class="mr-2" @click.prevent.stop="onRemove(card)">
-              <i class="icon_trash_alt" />
-              Sterge
-            </a>
           </div>
+        </div>
+        <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
+          <h4>Momentan nu exista nici un card</h4>
         </div>
         <div class="d-flex justify-content-end">
           <button

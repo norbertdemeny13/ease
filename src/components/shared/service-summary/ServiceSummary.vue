@@ -11,7 +11,7 @@
       </ul>
       <hr>
       <div v-if="getCategoryType() === 'couple'" class="d-flex justify-content-between align-items-center flex-inline">
-        <h3>Masaj Cuplu, {{ getSelectedServices[0].duration }} min</h3>
+        <h3>Masaj Cuplu, {{ getSelectedServices[0].massageForm.duration }} min</h3>
         <h5>{{ time.price }} Ron</h5>
       </div>
       <ul

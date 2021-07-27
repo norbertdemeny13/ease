@@ -16,6 +16,8 @@ import getHours from 'date-fns/getHours';
 import getMinutes from 'date-fns/getMinutes';
 import addDays from 'date-fns/addDays';
 import differenceInMinutes from 'date-fns/differenceInMinutes';
+import addMonths from 'date-fns/addMonths';
+import getMonth from 'date-fns/getMonth';
 
 const currentHour = getHours(new Date());
 
@@ -102,6 +104,8 @@ export const getNextHours = (prices: Price[], date: Date) => {
     });
 };
 
+export const getDifferenceInMinutes = (date: any) => differenceInMinutes(new Date(date), new Date());
+
 export const getHour = () => getHours(new Date());
 
 export const getHourPrice = (selectedDate: Time, prices: Price[]) => {
@@ -118,5 +122,19 @@ export const getHourPrice = (selectedDate: Time, prices: Price[]) => {
 export const getZonedDate = (date: any) => format(
   zonedTimeToUtc(new Date(date), 'Europe/Bucharest'),
   'iiii, dd MMM, yyyy',
+  { locale: ro },
+);
+
+export const getNextM = () => {
+  const nextMonth = addMonths(
+    zonedTimeToUtc(new Date(), 'Europe/Bucharest'),
+    1,
+  );
+  return getMonth(nextMonth);
+}
+
+export const getZonedDateTime = (date: any) => format(
+  zonedTimeToUtc(new Date(date), 'Europe/Bucharest'),
+  'iiii, dd MMM, hh:mm',
   { locale: ro },
 );

@@ -94,7 +94,6 @@
     computed: {
       ...mapGetters({
         getActiveSubscription: 'subscriptions/getActiveSubscription',
-        getActiveSubscriptions: 'subscriptions/getActiveSubscriptions',
         getActivatedStatus: 'subscriptions/getActivatedStatus',
         getSelectedSubscription: 'subscriptions/getSelectedSubscription',
         getCards: 'cards/getCards',
@@ -104,19 +103,6 @@
     },
 
     watch: {
-      getActiveSubscriptions(newVal): void {
-        if (newVal) {
-          const hasSubscription = !!Object.keys(newVal).filter(item => newVal[item]).length;
-          if (hasSubscription) {
-            this.isSubscriptionActivated = true;
-            clearInterval(this.polling);
-            if (this.getActivePayment) {
-              this.$router.back();
-            }
-          }
-        }
-      },
-
       getActiveSubscription(newVal): void {
         if (newVal && newVal.state === 'payment_pending') {
           this.initialisePaymentCheck();

@@ -88,6 +88,7 @@
 
     data: () => ({
       isPaymentConfirmed: false,
+      polling: null,
     }),
 
     components: {
@@ -97,6 +98,7 @@
     computed: {
       ...mapGetters({
         getSelectedGiftCard: 'giftCards/getSelectedGiftCard',
+        getSelectedGiftCardSummary: 'giftCards/getSelectedGiftCardSummary',
         getPaymentStatus: 'giftCards/getPaymentStatus',
         isAuthenticated: 'session/isAuthenticated',
       }),
@@ -107,9 +109,17 @@
     },
 
     watch: {
-      getPaymentStatus(newVal) {
-        if (newVal) {
+      getSelectedGiftCardSummary(newVal) {
+        if (newVal.status === 'succeeded') {
           this.isPaymentConfirmed = true;
+          clearInterval(this.polling);
+        }
+      },
+      getPaymentStatus(newVal) {
+        if (newVal.payment) {
+          this.isPaymentConfirmed = true;
+        } else {
+          this.polling = setInterval(this.fetchGiftCardSummary(this.getSelectedGiftCard.id), 5000);
         }
       },
     },
@@ -117,6 +127,7 @@
     methods: {
       ...mapActions({
         onGiftCardPay: 'giftCards/onGiftCardPay',
+        fetchGiftCardSummary: 'giftCards/fetchGiftCardSummary',
       }),
       onPay() {
         this.onGiftCardPay();

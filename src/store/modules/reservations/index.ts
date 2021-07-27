@@ -7,6 +7,7 @@ import { api } from '@/services/api';
 export interface State extends ModuleState {
   isFetching: boolean;
   activeReservations: [];
+  canceledReservation: null;
   pastReservations: [];
   upcomingReservations: [];
   reservation: any;
@@ -20,6 +21,7 @@ export default {
     isFetching: false,
     pastReservations: [],
     upcomingReservations: [],
+    canceledReservation: null,
     reservation: null,
   }) as State,
 
@@ -60,6 +62,15 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async cancelReservation({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create(`/users/reservations/${id}/cancel`);
+        Vue.set(state, 'canceledReservation', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
   } as ActionTree<State, RootState>,
 
   getters: {
@@ -67,5 +78,6 @@ export default {
     getPastReservations: state => state.pastReservations,
     getUpcomingReservations: state => state.upcomingReservations,
     getReservation: state => state.reservation,
+    getCanceledReservation: state => state.canceledReservation,
   } as GetterTree<State, RootState>,
 };

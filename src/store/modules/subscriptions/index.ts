@@ -67,11 +67,21 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async cancelSubscription({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create(`/users/user_subscriptions/cancel/${id}`);
+        commit('setActiveSubscription', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async fetchActiveSubscriptions({ state, commit }, type) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/user_subscriptions');
-        if (data.length) {
+        if (data) {
+          commit('setActiveSubscription', data);
           commit('setActiveSubscriptions', [data]);
         }
       } finally {
@@ -104,6 +114,9 @@ export default {
   } as GetterTree<State, RootState>,
 
   mutations: {
+    setActiveSubscription(state, subscription) {
+      Vue.set(state, 'activeSubscription', subscription);
+    },
     setActiveSubscriptions(state, subscriptions) {
       Vue.set(state, 'activeSubscriptions', subscriptions);
     },

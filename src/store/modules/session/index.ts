@@ -141,6 +141,8 @@ export default {
           userType: elite_id ? 'elite' : 'client',
         };
         commit('setUser', newData);
+      } catch({ error }) {
+        console.log(error, 'setErrors');
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -203,7 +205,7 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async logout({ state, commit }) {
+    async logout({ state, rootState, commit }) {
       commit('setUser', null);
       localStorage.removeItem('jwt');
       localStorage.removeItem('auth');
@@ -211,6 +213,7 @@ export default {
       sessionStorage.removeItem('address');
       sessionStorage.removeItem('city');
       sessionStorage.removeItem('city_id');
+      commit('cards/resetCards', [], { root: true });
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
       const endpoint = type === 'client'

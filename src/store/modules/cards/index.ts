@@ -101,5 +101,9 @@ export default {
         Vue.set(state, 'stripeCards', cards);
       }
     },
+    resetCards(state, cards) {
+      Vue.set(state, 'cards', cards);
+      Vue.set(state, 'stripeCards', cards);
+    },
   } as MutationTree<State>,
 };

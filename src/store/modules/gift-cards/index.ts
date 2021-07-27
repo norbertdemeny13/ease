@@ -28,6 +28,7 @@ export interface State extends ModuleState {
   giftCards: GiftCard[];
   paymentSetup: any;
   selectedGiftCard: any;
+  selectedGiftCardSummary: any;
   paymentStatus: any;
   giftCardHistory: any;
 }
@@ -41,6 +42,7 @@ export default {
     giftCards: [],
     paymentSetup: {},
     selectedGiftCard: {},
+    selectedGiftCardSummary: {},
     paymentStatus: {},
     giftCardHistory: [],
   }) as State,
@@ -59,6 +61,15 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchGiftCardSummary({ state }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/users/virtual_gift_cards/${id}/summary`);
+        Vue.set(state, 'selectedGiftCardSummary', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async onGiftCardPay({ state, rootState }) {
       const cardId = state.selectedGiftCard.id;
       const selectedPaymentCard = rootState.cards.selectedCard;
@@ -69,6 +80,7 @@ export default {
           message: 'Te rugam sa selectezi metoda de plata',
           intent: 'warning',
         });
+        return;
       }
 
       Vue.set(state, 'isFetching', true);
@@ -109,7 +121,7 @@ export default {
     async fetchGiftCardsOrderHistory({ state }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find('/user/ease_credit_history');
+        const { data } = await api.find('/users/user_gift_cards');
         Vue.set(state, 'giftCardHistory', data);
       } finally {
         Vue.set(state, 'isFetching', false);
@@ -142,6 +154,7 @@ export default {
     getPaymentSetup: state => state.paymentSetup,
     getPaymentStatus: state => state.paymentStatus,
     getSelectedGiftCard: state => state.selectedGiftCard,
+    getSelectedGiftCardSummary: state => state.selectedGiftCardSummary,
     getGiftCardsHistory: state => state.giftCardHistory,
   } as GetterTree<State, RootState>,
 

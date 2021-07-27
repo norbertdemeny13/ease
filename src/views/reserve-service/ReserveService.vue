@@ -144,10 +144,11 @@
         const reservationDates = this.getReservationDetails?.reservation_dates || [];
         const days = getMonthDays(reservationDates);
         const [day] = days;
+        const [hour] = this.getHours;
+
         this.getDays = days;
         this.setSelectedDate(day);
         this.selectedDate = day;
-        const [hour] = this.getHours;
         this.setSelectedTime(hour);
         this.selectedTime = hour;
       },

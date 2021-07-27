@@ -26,7 +26,7 @@
                 @change="$emit('on-count-change')"
               >
                 <option
-                  v-for="item in getServiceCount"
+                  v-for="item in getServiceCount(service)"
                   :key="item.value"
                   :value="item.value"
                 >
@@ -54,9 +54,10 @@
       },
     },
 
-    computed: {
-      getServiceCount() {
-        return new Array(11)
+    methods: {
+      getServiceCount(service) {
+        const maxCount = service.max_count || 11;
+        return new Array(maxCount + 1)
           .fill(1).map((item, index) => ({ value: index, label: index }));
       },
     },
