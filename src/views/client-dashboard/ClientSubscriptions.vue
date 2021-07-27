@@ -101,7 +101,7 @@
         this.isCancelSubscriptionModalOpen = true;
       },
       onModify(): void {
-        console.log('on-modify');
+        // on modify
       },
       onContinue(): void {
         this.cancelActiveSubscription(this.getActiveSubscription.id);
