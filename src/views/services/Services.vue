@@ -6,13 +6,13 @@
       <services-list-skeleton v-if="isFetching" />
       <services-list
         v-else
-        :services="getServices"
+        :services="services"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesList, ServicesListSkeleton } from '@/components/features/services-list';
@@ -30,13 +30,17 @@
         getServices: 'services/getServices',
         isFetching: 'services/isFetching',
       }),
+
+      services() {
+        return this.getServices.filter(service => service.category !== 'promotions');
+      },
     },
 
     watch: {
       isFetching(newVal) {
         if (!newVal) {
           setTimeout(() => {
-            (window as any).initEase();
+            window.initEase();
           }, 0);
         }
       },
@@ -48,7 +52,7 @@
     },
 
     mounted() {
-      (window as any).initEase();
+      window.initEase();
     },
 
     methods: {

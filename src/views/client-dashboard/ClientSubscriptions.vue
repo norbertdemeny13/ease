@@ -7,15 +7,18 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div v-if="getActiveSubscription && getActiveSubscription.state === 'active'">
+        <div v-if="hasSubscription">
           <h6 class="mt-4">{{ getActiveSubscription.subscription.name }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
-            <li>Urmatoarea data de facturare</li>
-            <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
+            <div v-if="getActiveSubscription.state === 'active'">
+              <li>Urmatoarea data de facturare</li>
+              <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
+            </div>
             <li><strong>Abonament</strong>{{ getActiveSubscription.subscription.monthly ? 'Lunar' : 'Anual' }}</li>
+            <li><strong>Status</strong>{{ getActiveSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</li>
             <li><strong>Pret</strong>{{ getActiveSubscription.subscription.price.price }}/{{ getActiveSubscription.subscription.monthly ? 'luna' : 'an' }}</li>
           </ul>
-          <div class="d-flex justify-content-end">
+          <div v-if="getActiveSubscription.state === 'active'" class="d-flex justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-4"
               @click="onCancel"
@@ -29,6 +32,13 @@
               Modifica abonamentul
             </button>
           </div>
+          <button
+            v-else
+            class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
+            @click="$router.push('/abonamente')"
+          >
+            Activeaza un abonament
+          </button>
         </div>
         <div v-else>
           <div class="d-flex align-items-center justify-content-between">
@@ -54,10 +64,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { getNextM } from '@/utils/date-helpers';
 
   export default Vue.extend({
     name: 'es-client-subscriptions',
@@ -70,21 +79,15 @@
       ...mapGetters({
         getActiveSubscription: 'subscriptions/getActiveSubscription',
       }),
-      getCurrentYear(): number {
+      getCurrentYear() {
         return new Date().getFullYear();
       },
-    },
-
-    watch: {
-      getActiveSubscription(newVal) {
-        if (newVal.state === 'cancelled') {
-          (this as any).$toasts.toast({
-            id: 'cancel-subscription',
-            title: 'Anulat',
-            message: `Abonamentul tau ${newVal.subscription.name} a fost anulat. Sedintele de masaj ramase nerezervate nu expira si le poti rezerva oricand. Poti reactiva acest abonament incepand cu 1.${getNextM()}.${this.getCurrentYear}`,
-            intent: 'success',
-          });
-        }
+      hasSubscription() {
+        const hasActiveSubscription = this.getActiveSubscription.state === 'active';
+        const hasUsesLeft = this.getActiveSubscription.uses_left > 0;
+        return hasActiveSubscription
+          ? true
+          : hasUsesLeft;
       },
     },
 
@@ -97,13 +100,13 @@
         fetchActiveSubscriptions: 'subscriptions/fetchActiveSubscriptions',
         cancelActiveSubscription: 'subscriptions/cancelSubscription',
       }),
-      onCancel(): void {
+      onCancel() {
         this.isCancelSubscriptionModalOpen = true;
       },
-      onModify(): void {
+      onModify() {
         // on modify
       },
-      onContinue(): void {
+      onContinue() {
         this.cancelActiveSubscription(this.getActiveSubscription.id);
       },
     },

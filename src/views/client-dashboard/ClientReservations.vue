@@ -33,19 +33,50 @@
           <div id="pricing-tab-content" class="tab-content pricing-tab-content">
             <div v-if="getReservationList.length">
               <div v-for="(item, i) in getReservationList" :key="`${item.id}-${i}`" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
-                <h6 class="m-0">{{ item.reservation_id }}</h6>
+                <h6 class="m-0">{{ getReservationName(item) }}</h6>
                 <div class="m-2">{{ item.start_time.substr(0, 10) }}</div>
                 <div class="d-flex flex-column align-items-center m-2">
-                  <figure class="mb-0">
-                    <img
-                      class="radius-50"
-                      src="@/assets/svg/pro-placeholder.svg"
-                      alt=""
-                      width="40px"
-                      height="40px"
-                    >
-                  </figure>
-                  <span class="ml-2">{{ getEliteName(item) }}</span>
+                  <div v-if="getReservationJobs(item).slice(0, 2).length > 0" class="d-flex flex-row align-items-center">
+                    <figure v-for="job in getReservationJobs(item).slice(0, 2)" :key="job.id" class="mb-0">
+                      <img
+                        v-if="job.avatar"
+                        class="radius-50 m-1"
+                        :src="job.avatar"
+                        alt=""
+                        width="40px"
+                        height="40px"
+                      >
+                      <img
+                        v-else
+                        class="radius-50 m-1"
+                        src="@/assets/svg/pro-placeholder.svg"
+                        alt=""
+                        width="40px"
+                        height="40px"
+                      >
+                    </figure>
+                  </div>
+                  <div v-if="getReservationJobs(item).slice(2).length > 0" class="d-flex flex-row align-items-center">
+                    <figure v-for="job in getReservationJobs(item).slice(2)" :key="job.id" class="mb-0">
+                      <img
+                        v-if="job.avatar"
+                        class="radius-50 m-1"
+                        :src="job.avatar"
+                        alt=""
+                        width="40px"
+                        height="40px"
+                      >
+                      <img
+                        v-else
+                        class="radius-50 m-1"
+                        src="@/assets/svg/pro-placeholder.svg"
+                        alt=""
+                        width="40px"
+                        height="40px"
+                      >
+                    </figure>
+                  </div>
+                  <span class="ml-2">{{ getEliteName(item.reservation_jobs[0].elite) }}</span>
                 </div>
                 <div class="ml-2">
                   <span>{{ getStatus(item.status) }}</span>
@@ -77,16 +108,27 @@
           <div class="mt-4">
             <ul class="summary_list">
               <li class="d-flex align-items-center">
-                <figure class="mb-0">
-                  <img
-                    class="radius-50"
-                    src="@/assets/svg/pro-placeholder.svg"
-                    alt=""
-                    width="40px"
-                    height="40px"
-                  >
-                </figure>
-                <a class="ml-2" href="" @click.prevent="">{{ getEliteName(selectedReservation) }}</a>
+                <div v-for="job in getReservationJobs(selectedReservation)" :key="job.id" class="d-flex flex-column align-items-center">
+                  <figure class="mb-0">
+                    <img
+                      v-if="job.avatar"
+                      class="radius-50 m-1"
+                      :src="job.avatar"
+                      alt=""
+                      width="40px"
+                      height="40px"
+                    >
+                    <img
+                      v-else
+                      class="radius-50 m-1"
+                      src="@/assets/svg/pro-placeholder.svg"
+                      alt=""
+                      width="40px"
+                      height="40px"
+                    >
+                  </figure>
+                  <a class="ml-2" href="" @click.prevent="">{{ getEliteName(job.elite) }}</a>
+                </div>
                 <span class="ml-2">{{ getStatus(selectedReservation.status) }}</span>
               </li>
             </ul>
@@ -98,10 +140,14 @@
             </ul>
             <h6>Sumar comanda</h6>
             <ul class="summary_list col-md-6">
-              <li class="my-4"><strong>Data rezervarii</strong> {{ getReservationDate }}</li>
-              <template v-for="service in reservationServices">
+              <li class="my-4"><strong>Pentru data de</strong> {{ getReservationDate }}</li>
+              <li v-if="isCoupleMassage" class="d-flex justify-content-between">
+                <strong>Masaj Cuplu, {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
+              </li>
+              <template v-for="(service, i) in reservationServices">
+                <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
                 <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
-                  <strong>{{ service.name }}</strong><span>{{ `${service.price} Lei` }}</span>
+                  <strong>{{ service.name }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
                 </li>
                 <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
                   <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
@@ -111,12 +157,13 @@
                 </li>
               </template>
               <es-divider />
-              <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ selectedReservation.total }}</li>
-              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> {{ selectedReservation.ease_credit_used }}</li>
-              <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> {{ selectedReservation.subscription_discount }}</li>
-              <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> {{ selectedReservation.promo_code_discount }}</li>
-              <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> {{ selectedReservation.gift_card_discount }}</li>
-              <li class="d-flex justify-content-between"><strong>Total</strong> {{ selectedReservation.to_pay }}</li>
+              <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ `${selectedReservation.total} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+              <li class="d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
             </ul>
             <div v-if="canCancelReservation" class="d-flex justify-content-start">
               <button
@@ -133,7 +180,7 @@
     <es-confirm-modal v-if="isPaidCancelation" v-model="isConfirmModalOpen" cta="Anuleaza contracost" @on-confirm="onContinue()">
       <template slot="title">Anulare rezervare</template>
       <template slot="message">
-        <p>Pentru anularea rezervarii in acest moment suma platita nu se mai ramburseaza</p>
+        <p>{{ getCancelationText }}</p>
         <p>Aceasta <a href="tbd" target="_blank">Politica de anulare</a> este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte oportunitati de munca. Deoarece suntem la cerere, profesionistii pierd venituri daca pastreaza un loc disponibil pentru dumneavoastra fara remunerare.</p>
       </template>
     </es-confirm-modal>
@@ -183,6 +230,19 @@
         const { user_address } = this.selectedReservation;
         return `${user_address.street_name}, ${user_address.street_number}, ${user_address.city.name}`;
       },
+      getCancelationText() {
+        const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);
+        let text = '';
+        if (difference > 120 && difference < 240) {
+          text = 'Pentru anularea rezervarii in acest moment se va retine o taxa de 80% din valoarea rezervarii';
+        } else if (difference > 60 && difference < 120) {
+          text = 'Pentru anularea rezervarii in acest moment se va retine o taxa de 50% din valoarea rezervarii';
+        } else {
+          text = 'Pentru anularea rezervarii in acest moment suma platita nu se mai ramburseaza';
+        }
+
+        return text;
+      },
       getReservationList() {
         return this.selectedType === 'upcoming' ? this.getUpcomingReservations : this.getPastReservations;
       },
@@ -192,9 +252,15 @@
       getReservationDate() {
         return getZonedDateTime(this.selectedReservation.start_time);
       },
+      isCoupleMassage() {
+        return this.selectedReservation.reservation_service_type.includes('CoupleMassageReservation');
+      },
       isPaidCancelation() {
+        const isConfirmed = this.selectedReservation?.status === 'confirmed'; 
         const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);
-        return difference < 60;
+        return isConfirmed
+          ? difference < 240
+          : false;
       },
       reservationServices() {
         const reservationType = this.selectedReservation.reservation_service_type;
@@ -279,11 +345,19 @@
         cancelReservation: 'reservations/cancelReservation',
       }),
 
-      getEliteName(item) {
-        const reservationJobs = item.reservation_jobs;
-        const first_name = !!reservationJobs.length && reservationJobs[0].elite?.first_name;
-        const last_name = !!reservationJobs.length && reservationJobs[0].elite?.last_name;
+      getEliteName(elite) {
+        const first_name = elite?.first_name;
+        const last_name = elite?.last_name;
         return first_name ? `${first_name} ${last_name?.substr(0,1)}.` : '';
+      },
+
+      getReservationJobs(item) {
+        const jobs = item.reservation_jobs.map(job => ({
+          elite: job.elite,
+          avatar: job.elite?.avatar_path,
+          id: job.id,
+        }));
+        return jobs;
       },
 
       getStatus(status) {
@@ -313,6 +387,20 @@
         this.selectedReservation = item;
         this.isListView = false;
         this.showReservation(item.id);
+      },
+
+      getReservationName(item) {
+        let name = item.reservation_id;
+        if (item.reservation_service_type === 'CoupleMassageReservation') {
+          name = 'Masaj Cuplu';
+        } else if (item.reservation_service_type === 'BeautyReservation') {
+          name = item.reservation_service.beauty_service_reservations[0].service.name;
+        } else if (item.reservation_service_type === 'FitnessReservation') {
+          name = item.reservation_service.service.name;
+        } else {
+          name = item.reservation_service.service.name;
+        }
+        return name;
       },
 
       async onContinue() {

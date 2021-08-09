@@ -31,6 +31,7 @@ export interface State extends ModuleState {
   selectedGiftCardSummary: any;
   paymentStatus: any;
   giftCardHistory: any;
+  creditEaseHistory: any;
 }
 
 export default {
@@ -45,6 +46,7 @@ export default {
     selectedGiftCardSummary: {},
     paymentStatus: {},
     giftCardHistory: [],
+    creditEaseHistory: [],
   }) as State,
 
   actions: {
@@ -127,6 +129,15 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchCreditOrderHistory({ state }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/user/ease_credit_history');
+        Vue.set(state, 'creditEaseHistory', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async applyGiftCard({ state }, code) {
       Vue.set(state, 'isFetching', true);
       try {
@@ -156,6 +167,7 @@ export default {
     getSelectedGiftCard: state => state.selectedGiftCard,
     getSelectedGiftCardSummary: state => state.selectedGiftCardSummary,
     getGiftCardsHistory: state => state.giftCardHistory,
+    getCreditEaseHistory: state => state.creditEaseHistory,
   } as GetterTree<State, RootState>,
 
   mutations: {

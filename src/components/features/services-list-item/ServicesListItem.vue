@@ -11,7 +11,7 @@
         <strong v-if="service.duration">{{ service.duration }} min</strong>
       </div>
       <div class="d-flex justify-content-between">
-        <span v-if="service.price_from">{{ service.price_from }} Ron</span>
+        <span v-if="service.price_from">{{ service.price_from }} Lei</span>
       </div>
     </div>
   </div>

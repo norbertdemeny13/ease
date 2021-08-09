@@ -2,7 +2,7 @@
   <div class="es_client-credits-container content">
     <div class="row">
       <div class="col-md-8">
-        <h4>Credit ease: {{ parseInt(getUser.ease_credit, 10) }} Ron</h4>
+        <h4>Credit ease: {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
         <es-divider />
         <h6>Castiga credite Ease invitand prieteni sau introdu codul cardului cadou</h6>
         <div class="d-flex justify-content-start align-items-center">
@@ -34,10 +34,11 @@
     <es-divider />
     <div class="row">
       <div class="col-md-6">
-        <div v-for="item in getGiftCardsHistory" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
+        <div v-for="item in getCreditEaseHistory" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
           <h6 class="m-0">{{ item.id }}</h6>
           <div class="m-2">{{ item.created_at.substr(0, 10) }}</div>
-          <div class="m-2">{{ item.amount }} Ron</div>
+          <div class="m-2">{{ item.reason }}</div>
+          <div class="m-2">{{ item.amount }} Lei</div>
         </div>
       </div>
     </div>
@@ -59,17 +60,17 @@
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
-        getGiftCardsHistory: 'giftCards/getGiftCardsHistory',
+        getCreditEaseHistory: 'giftCards/getCreditEaseHistory',
       }),
     },
 
     created() {
-      this.fetchGiftCardsOrderHistory();
+      this.fetchCreditOrderHistory();
     },
 
     methods: {
       ...mapActions({
-        fetchGiftCardsOrderHistory: 'giftCards/fetchGiftCardsOrderHistory',
+        fetchCreditOrderHistory: 'giftCards/fetchCreditOrderHistory',
         applyGiftCard: 'giftCards/applyGiftCard',
       }),
       async onValidate() {

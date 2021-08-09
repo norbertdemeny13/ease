@@ -12,7 +12,7 @@
       <hr>
       <div v-if="getCategoryType() === 'couple'" class="d-flex justify-content-between align-items-center flex-inline">
         <h3>Masaj Cuplu, {{ getSelectedServices[0].massageForm.duration }} min</h3>
-        <h5>{{ time.price }} Ron</h5>
+        <h5>{{ time.price }} Lei</h5>
       </div>
       <ul
         v-for="(item, index) in getLocalSelectedServices"
@@ -22,7 +22,7 @@
         <span class="text-gray">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
           <h3>{{ item.name }}</h3>
-          <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Ron</h5>
+          <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
         <li v-if="item.isWithAromaterapeutic">
           <span>{{ item.terapeuticForm.name }}</span><span>{{ item.terapeuticForm.price }}</span>
@@ -32,14 +32,14 @@
           :key="service.id"
         >
           <p><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
-          <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Ron</span>
+          <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
       </ul>
 
       <ul class="clearfix">
-        <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Ron</span></li>
-        <li>Subtotal<span>{{ getTotal }} Ron</span></li>
-        <li v-if="showTotal" class="total">Total<span>{{ getTotal - getDiscount }} Ron</span></li>
+        <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Lei</span></li>
+        <li>Subtotal<span>{{ getTotal }} Lei</span></li>
+        <li v-if="showTotal" class="total">Total<span>{{ getTotal - getDiscount }} Lei</span></li>
       </ul>
     </div>
   </div>
@@ -54,10 +54,6 @@
   export default Vue.extend({
     name: 'es-service-summary',
     props: {
-      isPaymentView: {
-        default: false,
-        type: Boolean,
-      },
       date: {
         type: Object,
         required: true,

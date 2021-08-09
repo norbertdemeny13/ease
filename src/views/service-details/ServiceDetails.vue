@@ -117,6 +117,18 @@
       async onAddAdditionalService() {
         const paramType = this.$router.currentRoute.params.type;
         if (this.isAuthenticated) {
+          // show phone modal if address is not set
+          if (!this.getUser.phone_number_confirmed) {
+            this.$root.$emit('on-show-validate-phone-modal');
+            return;
+          }
+
+          // show address modal if address is not set
+          if (!this.getUser.addresses.length) {
+            this.$root.$emit('on-show-address-modal');
+            return;
+          }
+
           await this.$store.dispatch('services/createReservation');
           await this.$router.push(`/new/servicii/${paramType}`);
         } else {

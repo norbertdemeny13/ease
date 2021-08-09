@@ -32,11 +32,9 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
-          <es-service-summary
+          <es-reservation-summary
             :date="getSelectedDate"
             :time="getSelectedTime"
-            :active-subscription="activeSubscription"
-            :is-payment-view="true"
           />
           <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-center">
             <button
@@ -61,7 +59,7 @@
 <script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { ServiceSummary } from '@/components/shared/service-summary';
+  import { ReservationSummary } from '@/components/shared/reservation-summary';
   import { PaymentDetails } from '@/components/shared/payment';
   import { SubscriptionSelection } from '@/components/shared/subscription-selection';
   import { AddressModal } from '@/components/shared/address-modal';
@@ -73,7 +71,7 @@
     components: {
       'es-address-details': AddressDetails,
       'es-address-modal': AddressModal,
-      'es-service-summary': ServiceSummary,
+      'es-reservation-summary': ReservationSummary,
       'es-payment-details': PaymentDetails,
       'es-subscription-selection': SubscriptionSelection,
     },

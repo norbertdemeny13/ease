@@ -11,7 +11,7 @@
               <img :src="getSelectedGiftCard.card_design.absolute_image_url" width="100%">
               <div class="d-flex flex-inline justify-content-between mt-4">
                 <h6>Total</h6>
-                <h6>{{ getSelectedGiftCard.value }} Ron</h6>
+                <h6>{{ getSelectedGiftCard.value }} Lei</h6>
               </div>
               <div class="d-flex flex-inline mt-4">
                 <h6 class="mr-5 mb-0">De la</h6>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="mt-4">
-            <small>De pe cardul tau va fi incasata suma de {{ getSelectedGiftCard.value }} Lei. Se va trimite un email la {{ getSelectedGiftCard.email }} in data de {{ getDate }} cu un voucher in valoare de {{ getSelectedGiftCard.value }} Ron, care poate fi valorificat in aplicatia Ease pentru IOS sau Android sau pe site-ul nostru www.ease.ro</small>
+            <small>De pe cardul tau va fi incasata suma de {{ getSelectedGiftCard.value }} Lei. Se va trimite un email la {{ getSelectedGiftCard.email }} in data de {{ getDate }} cu un voucher in valoare de {{ getSelectedGiftCard.value }} Lei, care poate fi valorificat in aplicatia Ease pentru IOS sau Android sau pe site-ul nostru www.ease.ro</small>
             <small>Cardurile Cadou Ease sunt nerambursabile.</small>
           </div>
         </div>
@@ -57,7 +57,7 @@
               <h3 class="px-10 text-center">COMANDA A FOST TRIMISA!</h3>
             </div>
             <p>Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
-            <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Ron.</p>
+            <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Lei.</p>
           </div>
           <div v-else>
             <h3 class="mb-4">Sumar Comanda</h3>

@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column">
-                  <h6 class="bold">{{ `${subscription.price.price} Ron` }}</h6>
+                  <h6 class="bold">{{ `${subscription.price.price} Lei` }}</h6>
                   <span>{{ `${subscription.monthly ? 'pe luna' : 'pe an'}` }}</span>
                 </div>
               </div>

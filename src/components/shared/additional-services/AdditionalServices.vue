@@ -18,7 +18,7 @@
         <div class="d-flex flex-column flex-grow-1 ml-2 px-2">
           <h5>{{ service.name }} | {{ service.duration }} min</h5>
           <p v-if="service.description">{{ service.description }}</p>
-          <h6>{{ service.price || 49 }} Ron</h6>
+          <h6>{{ service.price || 49 }} Lei</h6>
         </div>
       </div>
     </div>
