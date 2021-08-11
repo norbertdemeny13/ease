@@ -134,6 +134,7 @@
             </ul>
             <h6>Detalii rezervare</h6>
             <ul class="summary_list">
+              <li><strong>Numarul rezervarii</strong> {{ selectedReservation.reservation_id }}</li>
               <li><strong>Data rezervarii</strong> {{ getCreatedReservationDate }}</li>
               <li><strong>Adresa</strong> {{ getAddress }}</li>
               <li><strong>Telefon</strong> {{ selectedReservation.user.phone_number }}</li>
@@ -158,11 +159,11 @@
               </template>
               <es-divider />
               <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ `${selectedReservation.total} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
               <li class="d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
             </ul>
             <div v-if="canCancelReservation" class="d-flex justify-content-start">
@@ -243,8 +244,11 @@
 
         return text;
       },
+      getUpcomingAndActiveReservations() {
+        return [...this.getActiveReservations, ...this.getUpcomingReservations];
+      },
       getReservationList() {
-        return this.selectedType === 'upcoming' ? this.getUpcomingReservations : this.getPastReservations;
+        return this.selectedType === 'upcoming' ? this.getUpcomingAndActiveReservations : this.getPastReservations;
       },
       getCreatedReservationDate() {
         return getZonedDateTime(this.selectedReservation.created_at);

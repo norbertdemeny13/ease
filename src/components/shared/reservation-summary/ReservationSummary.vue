@@ -12,6 +12,7 @@
         <li v-if="isCoupleMassage" class="d-flex justify-content-between">
           <strong>Masaj Cuplu, {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
         </li>
+
         <template v-for="(service, i) in reservationServices">
           <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
@@ -26,11 +27,11 @@
         </template>
         <es-divider />
         <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ `${selectedReservation.total} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
         <li class="total d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
       </ul>
     </div>
@@ -96,12 +97,20 @@
           }));
           return formattedService;
         } else if (reservationType === 'CoupleMassageReservation') {
+          const therapeuticFormPriceOne = new Number(reservationService.massage_one.therapeutic_form.price || 0);
+          const therapeuticFormPriceTwo = new Number(reservationService.massage_two.therapeutic_form.price || 0);
           const massageOne = {
             name: reservationService.massage_one.service.name,
             price: reservationService.massage_one.price,
             id: reservationService.massage_one.id,
             complementaryServices: reservationService.massage_one.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
+            therapeuticForm:therapeuticFormPriceOne > 0
+              ? {
+                  name: reservationService.massage_one.therapeutic_form.name,
+                  price: reservationService.massage_one.therapeutic_form.price,
+                }
+              : null,
           };
           const massageTwo = {
             name: reservationService.massage_two.service.name,
@@ -109,6 +118,12 @@
             id: reservationService.massage_two.id,
             complementaryServices: reservationService.massage_two.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
+            therapeuticForm: therapeuticFormPriceTwo > 0 
+              ? {
+                  name: reservationService.massage_two.therapeutic_form.name,
+                  price: reservationService.massage_two.therapeutic_form.price,
+                }
+              : null,
           };
           return [massageOne, massageTwo];
         } else if (reservationType === 'MassageReservation') {
@@ -135,7 +150,6 @@
     },
 
     created() {
-      console.log(this.getReservationDetails, 'fasz');
       this.selectedReservation = this.getReservationDetails;
     },
   });

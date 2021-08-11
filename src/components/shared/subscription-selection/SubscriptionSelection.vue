@@ -5,7 +5,7 @@
       <div class="col-8">
         <div v-if="getSubscription" class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">
           <h6>{{ `Ab. ${getSubscription.name} ${getSubscription.monthly ? 'lunar' : 'anual'}` }} ({{ getActiveSubscription().uses_left }})</h6>
-          <h6>Activ</h6>
+          <h6>{{ getSelectedSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</h6>
         </div>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <div class="col-8">
         <div class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">
           <h6>{{ `Ab. ${getAvailableSubscription.name} ${getAvailableSubscription.monthly ? 'lunar' : 'anual'}` }}</h6>
-          <h6>Activ</h6>
+          <h6>{{ getSelectedSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</h6>
         </div>
       </div>
     </div>

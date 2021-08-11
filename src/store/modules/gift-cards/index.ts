@@ -24,6 +24,7 @@ const dispatchToast = (
 
 export interface State extends ModuleState {
   isFetching: boolean;
+  appliedGiftCard: any;
   giftCard: GiftCard;
   giftCards: GiftCard[];
   paymentSetup: any;
@@ -38,6 +39,7 @@ export default {
   namespaced: true,
 
   state: () => ({
+    appliedGiftCard: {},
     isFetching: false,
     giftCard: {} as GiftCard,
     giftCards: [],
@@ -144,6 +146,7 @@ export default {
         const { data } = await api.create('/user/apply_gift_card', {
           promo_code: code,
         });
+        Vue.set(state, 'appliedGiftCard', data);
       } catch {
         (instance as any).$toasts.toast({
           id: nanoid(),
@@ -164,6 +167,7 @@ export default {
     getGiftCards: state => state.giftCards,
     getPaymentSetup: state => state.paymentSetup,
     getPaymentStatus: state => state.paymentStatus,
+    getAppliedGiftCard: state => state.appliedGiftCard,
     getSelectedGiftCard: state => state.selectedGiftCard,
     getSelectedGiftCardSummary: state => state.selectedGiftCardSummary,
     getGiftCardsHistory: state => state.giftCardHistory,

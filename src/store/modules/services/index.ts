@@ -263,6 +263,8 @@ export default {
         });
 
         Vue.set(state, 'reservationDetails', data);
+      } catch(reason) {
+        console.log(reason, 'reason');
       } finally {
         Vue.set(state, 'isFetching', false);
       }

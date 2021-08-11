@@ -47,7 +47,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-
+  import { nanoid } from 'nanoid';
   import { mapActions, mapGetters } from 'vuex';
 
   export default Vue.extend({
@@ -61,7 +61,22 @@
       ...mapGetters({
         getUser: 'session/getUser',
         getCreditEaseHistory: 'giftCards/getCreditEaseHistory',
+        getAppliedGiftCard: 'giftCards/getAppliedGiftCard',
       }),
+    },
+
+    watch: {
+      getAppliedGiftCard(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.fetchUser();
+          (this as any).$toasts.toast({
+            id: nanoid(),
+            intent: 'info',
+            title: 'Felicitari!',
+            message: 'Codul a fost activat cu success!',
+          });
+        }
+      },
     },
 
     created() {
@@ -72,6 +87,7 @@
       ...mapActions({
         fetchCreditOrderHistory: 'giftCards/fetchCreditOrderHistory',
         applyGiftCard: 'giftCards/applyGiftCard',
+        fetchUser: 'session/getUser',
       }),
       async onValidate() {
         await this.applyGiftCard(this.code);

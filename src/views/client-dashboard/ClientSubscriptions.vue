@@ -83,8 +83,8 @@
         return new Date().getFullYear();
       },
       hasSubscription() {
-        const hasActiveSubscription = this.getActiveSubscription.state === 'active';
-        const hasUsesLeft = this.getActiveSubscription.uses_left > 0;
+        const hasActiveSubscription = this.getActiveSubscription?.state === 'active';
+        const hasUsesLeft = this.getActiveSubscription?.uses_left > 0;
         return hasActiveSubscription
           ? true
           : hasUsesLeft;

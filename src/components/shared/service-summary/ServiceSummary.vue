@@ -24,15 +24,15 @@
           <h3>{{ item.name }}</h3>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
-        <li v-if="item.isWithAromaterapeutic">
-          <span>{{ item.terapeuticForm.name }}</span><span>{{ item.terapeuticForm.price }}</span>
-        </li>
         <li
           v-for="service in item.services"
           :key="service.id"
         >
           <p><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
           <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
+        </li>
+        <li v-if="item.isWithAromaterapeutic">
+          <span>{{ item.terapeuticForm.name }}</span><span>{{ item.terapeuticForm.price }}</span>
         </li>
       </ul>
 
