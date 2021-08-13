@@ -33,6 +33,26 @@
         <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
         <li class="total d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
+        <es-divider />
+        <div class="promo-code-container">
+          <div class="form-group col-md-8">
+            <label>Adauga un cod promotional sau card cadou</label>
+            <div class="d-flex align-items-center">
+              <input
+                id="promo"
+                v-model="promoCode"
+                type="text"
+                class="form-control"
+                name="promo"
+              >
+              <div class="ml-4">
+                <a href="" class="my-4" @click.prevent="activatePromo({ promoCode })">
+                  Aplica
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
   </div>
@@ -41,6 +61,7 @@
 <script>
   /* eslint-disable */
   import Vue from 'vue';
+  import { isEqual } from 'lodash-es';
   import { getZonedDate, getHourPrice } from '@/utils/date-helpers';
   import { mapActions, mapGetters } from 'vuex';
   import { getZonedDateTime, getDifferenceInMinutes } from '@/utils/date-helpers';
@@ -62,6 +83,7 @@
 
     data: () => ({
       hourPrice: 0,
+      promoCode: '',
       selectedReservation: null,
     }),
 
@@ -142,7 +164,6 @@
             price: reservationService.price,
             id: reservationService.id,
           };
-          console.log('fasz', formattedService);
           return [formattedService];
         }
         return reservationService;
@@ -151,6 +172,20 @@
 
     created() {
       this.selectedReservation = this.getReservationDetails;
+    },
+
+    watch: {
+      getReservationDetails(newVal, oldVal) {
+        if (!isEqual(newVal, oldVal)) {
+          this.selectedReservation = newVal;
+        }
+      },
+    },
+
+    methods: {
+      ...mapActions({
+        activatePromo: 'services/activatePromo',
+      }),
     },
   });
 </script>

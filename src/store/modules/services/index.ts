@@ -6,6 +6,8 @@ import { Service, ComplementaryService } from '@/interfaces/Services';
 import { Location } from '@/interfaces/Location';
 import { ReservationDetails } from '@/interfaces/ReservationDetails';
 import { api } from '@/services/api';
+import instance from '@/main';
+import { nanoid } from 'nanoid';
 
 export interface State extends ModuleState {
   activePayment: boolean;
@@ -339,6 +341,26 @@ export default {
           },
         });
         commit('setServiceById', { ...data, category: type, uuid: id });
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async activatePromo({ state, commit }, { promoCode }) {
+      Vue.set(state, 'isFetching', true);
+      const mainServiceId = state.reservationDetails!.id;
+      const serviceCategory = state.serviceCategory === 'massages' ? 'massage': state.serviceCategory;
+      try {
+        const { data } = await api.create(`users/${serviceCategory}_reservations/${mainServiceId}/promo_code`, {
+          promo_code: promoCode,
+        });
+        Vue.set(state, 'reservationDetails', data);
+      } catch(error) {
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Atentie!',
+          message: 'Codul introdus nu este valid!',
+          intent: 'error',
+        });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
