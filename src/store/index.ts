@@ -6,6 +6,7 @@ import instance from '@/main';
 import address from './modules/address';
 import cards from './modules/cards';
 import common from './modules/common';
+import elite from './modules/elite';
 import giftCards from './modules/gift-cards';
 import reservations from './modules/reservations';
 import services from './modules/services';
@@ -36,6 +37,7 @@ const options: StoreOptions<RootState> = {
     address,
     cards,
     common,
+    elite,
     giftCards,
     phrase,
     reservations,

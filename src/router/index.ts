@@ -172,6 +172,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/subscription-details').then(({ SubscriptionDetails }) => SubscriptionDetails),
   },
   {
+    path: '/elite/:id',
+    name: 'Detalii Elite',
+    component: () => import('@/views/elite-details').then(({ EliteDetails }) => EliteDetails),
+  },
+  {
     path: '/carduri-cadou',
     name: 'Carduri Cadou',
     component: () => import('@/views/gift-cards').then(({ GiftCards }) => GiftCards),

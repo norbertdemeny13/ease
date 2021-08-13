@@ -45,6 +45,7 @@
                         alt=""
                         width="40px"
                         height="40px"
+                        @click="onEliteSelect(job.eliteId)"
                       >
                       <img
                         v-else
@@ -53,6 +54,7 @@
                         alt=""
                         width="40px"
                         height="40px"
+                        @click="onEliteSelect(job.eliteId)"
                       >
                     </figure>
                   </div>
@@ -65,6 +67,7 @@
                         alt=""
                         width="40px"
                         height="40px"
+                        @click="onEliteSelect(job.eliteId)"
                       >
                       <img
                         v-else
@@ -117,6 +120,7 @@
                       alt=""
                       width="40px"
                       height="40px"
+                      @click="onEliteSelect(job.eliteId)"
                     >
                     <img
                       v-else
@@ -349,6 +353,13 @@
         cancelReservation: 'reservations/cancelReservation',
       }),
 
+      onEliteSelect(id) {
+        if (!id) {
+          return;
+        }
+        this.$router.push(`/elite/${id}`);
+      },
+
       getEliteName(elite) {
         const first_name = elite?.first_name;
         const last_name = elite?.last_name;
@@ -360,6 +371,7 @@
           elite: job.elite,
           avatar: job.elite?.avatar_path,
           id: job.id,
+          eliteId: job.elite?.id,
         }));
         return jobs;
       },

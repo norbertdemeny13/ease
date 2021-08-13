@@ -178,7 +178,7 @@
       showPassword: false,
       type: 'password',
       form: {
-        email: 'gabitest86@mailinator.com',
+        email: 'gabitest143@mailinator.com',
         first_name: 'test',
         last_name: 'test',
         password: 'testtest',

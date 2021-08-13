@@ -22,6 +22,7 @@ import './vendors/common_scripts.min';
 import './vendors/common_func';
 
 // Shared components
+import StarRating from 'vue-star-rating';
 import VueSlider from 'vue-slider-component';
 import { Divider } from '@/components/shared/divider';
 import { Skeleton } from '@/components/shared/skeleton';
@@ -45,6 +46,7 @@ Vue.use(Portal);
 Vue.use(ToastPlugin);
 
 Vue.component('es-address-bar', AddressBar);
+Vue.component('es-star-rating', StarRating);
 Vue.component('es-vue-slider', VueSlider);
 Vue.component('es-confirm-modal', ConfirmModal);
 Vue.component('es-divider', Divider);

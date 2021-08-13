@@ -90,7 +90,7 @@
         dotSize: 25,
         height: 10,
         min: 1,
-        max: 6,
+        max: 10,
         interval: 1,
         clickable: true,
         duration: 0.5,

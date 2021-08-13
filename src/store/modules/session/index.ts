@@ -11,7 +11,6 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
-  statistics: any;
 }
 
 export default {
@@ -21,7 +20,6 @@ export default {
     isAuth: false,
     isFetchingUser: false,
     user: {},
-    statistics: {},
   }) as State,
 
   actions: {
@@ -41,15 +39,6 @@ export default {
           ...data,
         };
         commit('setUser', newData);
-      } finally {
-        Vue.set(state, 'isFetchingUser', false);
-      }
-    },
-    async fetchStatistics({ state, commit }, user) {
-      Vue.set(state, 'isFetchingUser', true);
-      try {
-        const { data } = await api.find('/elite/statistics');
-        commit('setStatistics', data);
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -313,7 +302,6 @@ export default {
   getters: {
     isAuth: state => state.isAuth,
     isFetchingUser: state => state.isFetchingUser,
-    getStatistics: state => state.statistics,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
     getUserDefaultAddress: state => state.user.default_address,
