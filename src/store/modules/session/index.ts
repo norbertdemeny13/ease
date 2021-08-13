@@ -97,7 +97,12 @@ export default {
         const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/change_password`, {
           ...passwords,
         });
-
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Felicitari!',
+          message: 'Parola a fost schimbata cu success!',
+          intent: 'success',
+        });
       } catch(reason) {
         const data = {
           error: 'Te rugam sa introduci parola corecta',
@@ -105,12 +110,6 @@ export default {
         commit('common/setErrors', { data }, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
-        (instance as any).$toasts.toast({
-          id: nanoid(),
-          title: 'Felicitari!',
-          message: 'Parola a fost schimbata cu success!',
-          intent: 'success',
-        });
       }
     },
     async jwtLogin({ state, commit }, jwt) {
@@ -141,6 +140,27 @@ export default {
           userType: elite_id ? 'elite' : 'client',
         };
         commit('setUser', newData);
+      } catch({ error }) {
+        console.log(error, 'setErrors');
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async savePreferences({ state, commit }, config) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('user/preferences', {
+          preferences: {
+            ...config,
+          },
+        });
+        commit('setUser', data);
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Felicitari!',
+          message: 'Preferintele tale au fost salvate cu success!',
+          intent: 'success',
+        });
       } catch({ error }) {
         console.log(error, 'setErrors');
       } finally {
