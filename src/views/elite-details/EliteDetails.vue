@@ -198,7 +198,7 @@
         return getZonedDateTime(date);
       },
       onReserve() {
-        console.log('onReserve');
+        // console.log('onReserve');
       },
       onAddFavourite() {
         this.addEliteFavourite({ id: this.getElite.id });
