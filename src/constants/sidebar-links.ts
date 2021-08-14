@@ -1,6 +1,7 @@
 export const SIDEBAR_LINKS = [
   { label: 'Cont', to: 'cont', role: 'client' },
   { label: 'Parola', to: 'parola', role: 'client' },
+  { label: 'Calificari', to: 'calificari', role: 'client' },
   { label: 'Numar de telefon', to: 'telefon', role: 'client' },
   { label: 'Recomanda', to: 'recomandare', role: 'client' },
   { label: 'Adrese', to: 'adrese', role: 'client' },

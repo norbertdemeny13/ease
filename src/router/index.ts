@@ -105,6 +105,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/pro-dashboard').then(({ ClientPassword }) => ClientPassword),
       },
       {
+        path: 'calificari',
+        name: 'Calificari Pro',
+        component: () => import('@/views/pro-dashboard').then(({ ClientServices }) => ClientServices),
+      },
+      {
         path: 'telefon',
         name: 'Telefon Pro',
         component: () => import('@/views/pro-dashboard').then(({ ClientPhone }) => ClientPhone),
