@@ -178,10 +178,10 @@
       showPassword: false,
       type: 'password',
       form: {
-        email: 'gabitest143@mailinator.com',
+        email: 'pro.cj.allservices@gmail.com',
         first_name: 'test',
         last_name: 'test',
-        password: 'testtest',
+        password: 'Password1!',
         phone_number: null,
         massage_marketing: true,
         beauty_marketing: true,

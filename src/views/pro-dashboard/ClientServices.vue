@@ -1,17 +1,15 @@
 <template>
   <div class="es_client-password-container content">
     <h4>Calificari</h4>
-
-    {{servicesList}}
-    <cards-contaienr>
-      <card v-for="service in servicesList" :id="service" :key="service" :title="service">
-        <template v-slot>service</template>
-      </card>
-    </cards-contaienr>
+    <es-cards-container>
+      <es-card v-for="(service, i) in services" :id="i" :key="i" :title="i">
+        <template v-slot>{{ service }}</template>
+      </es-card>
+    </es-cards-container>
   </div>
 </template>
 
-<script lang="ts">
+<script>
   /* eslint-disable */
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
@@ -21,7 +19,10 @@
 
   export default Vue.extend({
     name: 'es-client-services',
-    components: { Card, CardsContaienr },
+    components: {
+      'es-card': Card,
+      'es-cards-container': CardsContaienr,
+    },
 
     data() {
       return {
@@ -33,7 +34,8 @@
       ...mapGetters({ getServices: 'services/getServices', getServicesByType: 'services/getServicesByType' }),
 
       servicesList() {
-        return Object.keys(this.services);
+        const { services } = this;
+        return Object.keys(services);
       }
     },
 
@@ -41,29 +43,31 @@
       ...mapActions({
         fetchServices: 'services/fetchServices',
         fetchServicesByType: 'services/fetchServicesByType',
-      })
+      }),
     },
 
     async created() {
       await this.fetchServices();
-
+      const localServices = {};
       this.getServices.forEach(service => {
-        this.services[service.title] = {};
+        localServices[service.title] = {};
         service.items
           .filter(subService => subService.name)
           .forEach(async subService => {
             await this.fetchServicesByType({ type: subService.name });
-            this.services[service.title][subService.name] = {};
+            localServices[service.title][subService.name] = {};
 
             this.getServicesByType.forEach(serviceType => {
               if (this.getServicesByType.length === 1) {
-                this.services[service.title][subService.name] = serviceType.services.map(service => service.name);
+                localServices[service.title][subService.name] = serviceType.services.map(service => service.name);
               } else {
-                this.services[service.title][subService.name][serviceType.name] = serviceType.services.map(service => service.name);
+                localServices[service.title][subService.name][serviceType.name] = serviceType.services.map(service => service.name);
               }
             });
           });
       });
+      await this.$nextTick();
+      this.services = localServices;
     }
   });
 </script>
