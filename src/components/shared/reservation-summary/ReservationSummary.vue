@@ -33,8 +33,8 @@
         <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
         <li class="total d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
-        <es-divider />
-        <div class="promo-code-container">
+        <es-divider v-if="!isReservationConfirmed" />
+        <div v-if="!isReservationConfirmed" class="promo-code-container">
           <div class="form-group col-md-8">
             <label>Adauga un cod promotional sau card cadou</label>
             <div class="d-flex align-items-center">
@@ -78,6 +78,11 @@
       time: {
         type: Object,
         required: true,
+      },
+
+      isReservationConfirmed: {
+        default: false,
+        type: Boolean,
       },
     },
 

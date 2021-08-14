@@ -35,6 +35,7 @@
           <es-reservation-summary
             :date="getSelectedDate"
             :time="getSelectedTime"
+            :is-reservation-confirmed="isReservationConfirmed"
           />
           <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-center">
             <button

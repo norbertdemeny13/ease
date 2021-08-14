@@ -135,6 +135,6 @@ export const getNextM = () => {
 
 export const getZonedDateTime = (date: any) => format(
   zonedTimeToUtc(new Date(date), 'Europe/Bucharest'),
-  'iiii, dd MMM, hh:mm',
+  'iiii, dd MMM, HH:mm',
   { locale: ro },
 );

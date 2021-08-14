@@ -127,6 +127,7 @@
           let complementaryTotal = isMassage
             ? this.getMassageServicesTotal(item)
             : this.getBeautyServicesTotal(item);
+
           total += complementaryTotal;
         });
         return total;
@@ -203,9 +204,8 @@
 
         if (item.massageForm && item.massageForm.form === 'aromaterapeutic') {
           const aromaterapeuticPrice = item.therapeutic_forms[1].price;
-          complementaryTotal = parseInt(aromaterapeuticPrice, 10);
+          complementaryTotal += parseInt(aromaterapeuticPrice, 10);
         }
-
         return complementaryTotal;
       },
       getServicePrice({ uuid }) {
