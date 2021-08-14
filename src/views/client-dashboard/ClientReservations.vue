@@ -129,6 +129,7 @@
                       alt=""
                       width="40px"
                       height="40px"
+                      @click="onEliteSelect(job.eliteId)"
                     >
                   </figure>
                   <a class="ml-2" href="" @click.prevent="">{{ getEliteName(job.elite) }}</a>

@@ -27,7 +27,7 @@
                 >
               </figure>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <div class="favourite-container">
                 <h3 class="mr-3 mb-0">{{ getEliteName }}</h3>
                 <i

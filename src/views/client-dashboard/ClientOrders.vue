@@ -9,7 +9,7 @@
       <div v-if="isListView" class="col-md-6">
         <div v-if="getGiftCardsHistory.length">
           <div v-for="item in getGiftCardsHistory" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
-            <h6 class="m-0">{{ item.gift_card_id }}</h6>
+            <h6 class="m-0">Card cadou</h6>
             <div class="m-2">{{ item.send_at.substr(0, 10) }}</div>
             <div class="m-2">{{ item.value }} Lei</div>
             <div class="m-2">{{ getStatus(item.payment.status) }}</div>
