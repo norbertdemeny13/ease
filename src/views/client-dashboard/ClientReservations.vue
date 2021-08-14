@@ -423,7 +423,7 @@
       async onContinue() {
         const id = this.selectedReservation?.id;
         if (id) {
-          await this.cancelReservation();
+          await this.cancelReservation(id);
         }
       },
     },
