@@ -1,5 +1,6 @@
 export { default as ClientDashboard } from './ClientDashboard.vue';
 export { default as ClientAccount } from './ClientAccount.vue';
+export { default as ClientServices } from './ClientServices.vue';
 export { default as ClientPassword } from './ClientPassword.vue';
 export { default as ClientAddresses } from './ClientAddresses.vue';
 export { default as ClientCredits } from './ClientCredits.vue';
