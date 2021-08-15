@@ -11,6 +11,6 @@ export const NAVBAR_LINKS = [
 ];
 
 export const PRO_NAVBAR_LINKS = [
-  { label: 'Help Center', to: '/pro/intrebari-frecvente' },
-  { label: 'Gestioneaza contul', to: '/pro/cont', requiresAuth: true },
+  { label: 'Help Center', to: '/easepro/intrebari-frecvente' },
+  { label: 'Gestioneaza contul', to: '/easepro/cont', requiresAuth: true },
 ];
