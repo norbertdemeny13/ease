@@ -288,6 +288,14 @@ router.beforeEach(async (to, from, next) => {
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
   const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
 
+  if (to.fullPath.includes('register')) {
+    const { refferal_code } = to.query;
+    if (refferal_code) {
+      await store.commit('session/setRefferalCode', refferal_code);
+    }
+    next('/');
+  }
+
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;

@@ -76,12 +76,20 @@
 
     methods: {
       getToRoute(category: string): string {
+        const { query } = this.$router.currentRoute;
+        let endpoint = '';
         if (category === 'single' || category === 'couple') {
-          return `/servicii/masaj?type=${category}`;
+          endpoint = query?.elite_id
+            ? `/servicii/masaj?type=${category}&elite_id=${query.elite_id}`
+          : `/servicii/masaj?type=${category}`;
+        } else {
+          endpoint = query?.elite_id
+            ? `/servicii/${category}?elite_id=${query.elite_id}`
+          : `/servicii/${category}`;
         }
-        return `/servicii/${category}`;
-      },
 
+        return endpoint;
+      },
     },
   });
 </script>

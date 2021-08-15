@@ -47,7 +47,12 @@
     },
 
     created() {
-      this.fetchServices();
+      const { query } = this.$router.currentRoute;
+      if (query && query.elite_id) {
+        this.fetchServices(query.elite_id);
+      } else {
+        this.fetchServices();
+      }
       this.$store.commit('services/removeSelectedServices');
     },
 

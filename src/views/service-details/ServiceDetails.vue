@@ -137,7 +137,11 @@
       },
 
       onBack() {
-        this.$router.push(`/servicii/${this.$router.currentRoute.params.type}`);
+        const { query } = this.$router.currentRoute;
+        let endpoint = query?.elite_id
+          ? `/servicii/${this.$router.currentRoute.params.type}?elite_id=${query.elite_id}`
+          : `/servicii/${this.$router.currentRoute.params.type}`;
+        this.$router.push(endpoint);
         this.$store.commit('services/removeSelectedServices');
         this.$store.commit('services/removeReservationDetails');
       },
@@ -147,6 +151,8 @@
       },
 
       async onContinue() {
+        const { query } = this.$router.currentRoute;
+        const eliteId = query?.elite_id;
         const { id, type } = this.$router.currentRoute.params;
         const serviceType = type === 'fitness' ? type : 'beauty';
 
@@ -175,7 +181,7 @@
           }
 
           if (!this.getReservationDetails || this.getReservationDetails?.status === 'waiting_confirmation') {
-            await this.$store.dispatch('services/createReservation');
+            await this.$store.dispatch('services/createReservation', eliteId);
           }
           this.$router.push(`${this.$router.currentRoute.path}/rezerva`);
         } else {

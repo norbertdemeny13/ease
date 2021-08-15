@@ -11,6 +11,7 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
+  refferalCode: string | null;
 }
 
 export default {
@@ -20,6 +21,7 @@ export default {
     isAuth: false,
     isFetchingUser: false,
     user: {},
+    refferalCode: null,
   }) as State,
 
   actions: {
@@ -225,7 +227,7 @@ export default {
       commit('cards/resetCards', [], { root: true });
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
-      const endpoint = type === 'client'
+      let endpoint = type === 'client'
         ? '/user'
         : '/elite_registration';
 
@@ -233,6 +235,7 @@ export default {
         ? {
             user: {
               ...credentials,
+              referral_code: state.refferalCode,
             },
           }
         : {
@@ -256,6 +259,7 @@ export default {
         commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
+        Vue.set(state, 'refferalCode', null);
       }
     },
     async requestValidationCode({ state, commit }, phone_number) {
@@ -304,6 +308,7 @@ export default {
     isFetchingUser: state => state.isFetchingUser,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
+    getRefferalCode: state => state.refferalCode,
     getUserDefaultAddress: state => state.user.default_address,
     getUserType: state => state.user?.userType || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
@@ -322,6 +327,9 @@ export default {
     },
     setStatistics(state: State, data: any) {
       Vue.set(state, 'statistics', data);
+    },
+    setRefferalCode(state: State, code: any) {
+      Vue.set(state, 'refferalCode', code);
     },
   } as MutationTree<State>,
 };

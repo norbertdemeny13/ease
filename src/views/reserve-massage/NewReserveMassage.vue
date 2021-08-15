@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
-      <router-link class="back-button" to="/servicii/masaj?type=couple">
+      <a href="" class="back-button" @click.prevent="onBack()">
         Inapoi
-      </router-link>
+      </a>
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6 px-6">
@@ -288,10 +288,20 @@
         }
       },
 
+      onBack() {
+        const { query } = this.$router.currentRoute;
+        let endpoint = query?.elite_id
+          ? `/servicii/masaj?type=couple&elite_id=${query.elite_id}`
+          : '/servicii/masaj?type=couple';
+        this.$router.push(endpoint);
+      },
+
       async onContinue() {
         const { type, terapeut, duration } = this.massageForm;
         const { massageType } = this;
         const { uuid } = this.selectedService;
+        const { query } = this.$router.currentRoute;
+        const eliteId = query?.elite_id;
 
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');
@@ -331,7 +341,7 @@
           prices: this.getServiceById.prices,
         };
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
-        await this.$store.dispatch('services/createMassageReservation');
+        await this.$store.dispatch('services/createMassageReservation', eliteId);
       },
     },
   });

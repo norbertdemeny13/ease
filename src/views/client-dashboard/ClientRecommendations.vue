@@ -44,17 +44,42 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapActions, mapGetters } from 'vuex';
   import { copyToClipboard } from '@/utils/copy-to-clipboard';
   import { nanoid } from 'nanoid';
 
   export default Vue.extend({
     name: 'es-client-recommendations',
+
     data: () => ({
-      code: 'DGT54',
+      code: '',
     }),
+
+    computed: {
+      ...mapGetters({
+        getUser: 'session/getUser',
+      }),
+    },
+
+    watch: {
+      getUser(newVal) {
+        if (newVal) {
+          this.code = newVal.referral_code;
+        }
+      },
+    },
+
+    created() {
+      this.fetchUser();
+    },
+
     methods: {
+      ...mapActions({
+        fetchUser: 'session/getUser',
+      }),
       onCopy(): void {
-        copyToClipboard(this.code);
+        const fullLink = `${this.$router.currentRoute.fullPath}?referral_code=${this.code}`;
+        copyToClipboard(fullLink);
         (this as any).$toasts.toast({
           id: nanoid(),
           message: 'Trimite prietenilor tai pentru a beneficia de 15 Lei',

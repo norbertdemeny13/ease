@@ -273,7 +273,11 @@
       },
 
       onBack() {
-        this.$router.push('/servicii/');
+        const { query } = this.$router.currentRoute;
+        let endpoint = query?.elite_id
+          ? `/servicii?elite_id=${query.elite_id}`
+          : '/servicii';
+        this.$router.push(endpoint);
         this.$store.commit('services/removeReservationDetails');
       },
 
@@ -284,6 +288,8 @@
           duration,
           genre,
         } = this.massageForm;
+        const { query } = this.$router.currentRoute;
+        const eliteId = query?.elite_id;
         const { massageType } = this;
         const { uuid } = this.selectedService;
 
@@ -328,10 +334,13 @@
         this.$store.commit('services/setMassageInfo', { terapeut, duration, genre });
 
         if (massageType === 'single') {
-          await this.$store.dispatch('services/createMassageReservation');
+          await this.$store.dispatch('services/createMassageReservation', eliteId);
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
         } else {
-          await this.$router.push(`/new/servicii/masaj?type=${type}`);
+          let endpoint = query?.elite_id
+            ? `/new/servicii/masaj?type=${type}&elite_id=${query.elite_id}`
+            : `/new/servicii/masaj?type=${type}`;
+          await this.$router.push(endpoint);
         }
       },
     },

@@ -198,7 +198,7 @@
         return getZonedDateTime(date);
       },
       onReserve() {
-        // console.log('onReserve');
+        this.$router.push(`/servicii?elite_id=${this.getElite.id}`);
       },
       onAddFavourite() {
         this.addEliteFavourite({ id: this.getElite.id });

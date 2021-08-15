@@ -65,16 +65,19 @@ export default {
     setActivePayment({ state, commit }, status) {
       Vue.set(state, 'activePayment', status);
     },
-    async fetchServices({ state, commit }) {
+    async fetchServices({ state, commit }, id) {
       Vue.set(state, 'isFetching', true);
+      const endpoint = id
+        ? `users/elite/${id}/services`
+        : '/services';
       try {
-        const { data } = await api.find('/services');
+        const { data } = await api.find(endpoint);
         commit('setServices', data);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async createMassageReservation({ state, dispatch, commit }) {
+    async createMassageReservation({ state, dispatch, commit }, id) {
       Vue.set(state, 'isFetching', true);
       const isSingle = state.selectedServices.some(item => item.category === 'single');
       const isSingleTerapeut = state.massageInfo.terapeut === 'single';
@@ -96,26 +99,28 @@ export default {
             massage_one: createMassageReservationForm(firstService),
           },
         };
-        dispatch('createCoupleMassageReservation', { reservation, method: 'create' });
+        dispatch('createCoupleMassageReservation', { reservation, method: 'create', id });
         return;
       }
 
       try {
         const { data } = await api.create('users/massage_reservations', {
           reservation,
+          elite_id: id,
         });
         Vue.set(state, 'reservationDetails', data);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async createCoupleMassageReservation({ state, dispatch, commit }, { reservation, method }) {
+    async createCoupleMassageReservation({ state, dispatch, commit }, { reservation, method, id }) {
       const mainServiceId = state.reservationDetails ? state.reservationDetails!.id : null;
       const url = 'users/massage_reservations';
 
       try {
         const { data } = await api.create(url, {
           reservation,
+          elited_id: id,
         });
         Vue.set(state, 'reservationDetails', data);
         await dispatch('addExtraCoupleMassageReservation');
@@ -144,7 +149,7 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async createReservation({ state, rootState, dispatch, commit }) {
+    async createReservation({ state, rootState, dispatch, commit }, id) {
       Vue.set(state, 'isFetching', true);
       const reservationAddress = (rootState as any).address.selectedReservationAddress;
       const isMassage = !!state.selectedServices.find(({ type }) => type.includes('Massage'));
@@ -168,6 +173,7 @@ export default {
               uuid: selectedService.uuid,
               complementaries,
             },
+            elited_id: id,
           });
           Vue.set(state, 'reservationDetails', data);
         } finally {

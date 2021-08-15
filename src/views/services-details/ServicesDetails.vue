@@ -59,20 +59,31 @@
         fetchServicesByType: 'services/fetchServicesByType',
       }),
       getToRoute(id: string): string {
+        const { query } = this.$router.currentRoute;
         const { path, params } = this.$router.currentRoute;
         const { type } = params;
         const isNew = path.includes('new');
-        return `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
+        return query?.elite_id
+          ? `${isNew ? '/new' : ''}/servicii/${type}/${id}?elite_id=${query.elite_id}`
+        : `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
       },
       onBack() {
+        const { query } = this.$router.currentRoute;
         const isNew = this.$router.currentRoute.path.includes('/new/');
+        let endpoint = '';
         if (isNew) {
           const [service] = this.getSelectedServices || [];
           const { category, uuid } = service;
-          this.$router.push(`/servicii/${category}/${uuid}`);
+          endpoint = `/servicii/${category}/${uuid}`;
         } else {
-          this.$router.push('/servicii/');
+          endpoint = '/servicii/';
         }
+
+        if (query && query.elite_id) {
+          endpoint += `?elite_id=${query.elite_id}`;
+        }
+
+        this.$router.push(endpoint);
       },
     },
   });
