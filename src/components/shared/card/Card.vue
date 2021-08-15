@@ -11,7 +11,7 @@
       </h5>
     </div>
 
-    <div :id="id" class="collapse" role="tabpanel" data-parent="#accordion_group">
+    <div :id="id" class="collapse" role="tabpanel" data-parent="#accordion_services">
       <div class="card-body">
         <slot />
       </div>

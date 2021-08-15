@@ -290,8 +290,8 @@
 
       onBack() {
         const { query } = this.$router.currentRoute;
-        let endpoint = query?.elite_id
-          ? `/servicii/masaj?type=couple&elite_id=${query.elite_id}`
+        let endpoint = query?.pro_id
+          ? `/servicii/masaj?type=couple&pro_id=${query.pro_id}`
           : '/servicii/masaj?type=couple';
         this.$router.push(endpoint);
       },
@@ -301,7 +301,7 @@
         const { massageType } = this;
         const { uuid } = this.selectedService;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.elite_id;
+        const eliteId = query?.pro_id;
 
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');

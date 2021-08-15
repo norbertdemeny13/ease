@@ -2,8 +2,17 @@
   <div class="es_client-password-container content">
     <h4>Calificari</h4>
     <es-cards-container>
-      <es-card v-for="(service, i) in services" :id="i" :key="i" :title="i">
-        <template v-slot>{{ service }}</template>
+      <es-card v-for="service in servicesList" :id="service.id" :key="service.id" :title="service.title">
+        <template v-slot>
+          <div v-for="item in service.items" :key="item.id">
+            <div class="checkboxes">
+              <label class="container_check">{{ item.title }}
+                <input type="checkbox">
+                <span class="checkmark" />
+              </label>
+            </div>
+          </div>
+        </template>
       </es-card>
     </es-cards-container>
   </div>
@@ -34,8 +43,33 @@
       ...mapGetters({ getServices: 'services/getServices', getServicesByType: 'services/getServicesByType' }),
 
       servicesList() {
-        const { services } = this;
-        return Object.keys(services);
+        // const { services } = this;
+        // return Object.keys(services);
+        return [
+          {
+            title: 'Fitness',
+            id: 'fitness',
+            items: [
+              { title: 'Muscle', },
+              { title: 'Joga', },
+              { title: 'Hit', },
+              { title: 'Running', },
+            ],
+          },
+          {
+            title: 'Masaj',
+            id: 'masaj',
+            items: [
+              { title: 'massage.ease_swedish', },
+              { title: 'massage.profund', },
+              { title: 'massage.sport', },
+              { title: 'massage.complete_relaxation', },
+              { title: 'massage.anti_cellulite', },
+              { title: 'massage.reflexo', },
+              { title: 'massage.antenatal', },
+            ],
+          },
+        ];
       }
     },
 

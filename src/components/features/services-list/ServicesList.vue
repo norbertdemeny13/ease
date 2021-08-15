@@ -79,12 +79,12 @@
         const { query } = this.$router.currentRoute;
         let endpoint = '';
         if (category === 'single' || category === 'couple') {
-          endpoint = query?.elite_id
-            ? `/servicii/masaj?type=${category}&elite_id=${query.elite_id}`
+          endpoint = query?.pro_id
+            ? `/servicii/masaj?type=${category}&pro_id=${query.pro_id}`
           : `/servicii/masaj?type=${category}`;
         } else {
-          endpoint = query?.elite_id
-            ? `/servicii/${category}?elite_id=${query.elite_id}`
+          endpoint = query?.pro_id
+            ? `/servicii/${category}?pro_id=${query.pro_id}`
           : `/servicii/${category}`;
         }
 

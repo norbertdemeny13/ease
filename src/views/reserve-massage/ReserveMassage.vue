@@ -274,8 +274,8 @@
 
       onBack() {
         const { query } = this.$router.currentRoute;
-        let endpoint = query?.elite_id
-          ? `/servicii?elite_id=${query.elite_id}`
+        let endpoint = query?.pro_id
+          ? `/servicii?pro_id=${query.pro_id}`
           : '/servicii';
         this.$router.push(endpoint);
         this.$store.commit('services/removeReservationDetails');
@@ -289,7 +289,7 @@
           genre,
         } = this.massageForm;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.elite_id;
+        const eliteId = query?.pro_id;
         const { massageType } = this;
         const { uuid } = this.selectedService;
 
@@ -337,8 +337,8 @@
           await this.$store.dispatch('services/createMassageReservation', eliteId);
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
         } else {
-          let endpoint = query?.elite_id
-            ? `/new/servicii/masaj?type=${type}&elite_id=${query.elite_id}`
+          let endpoint = query?.pro_id
+            ? `/new/servicii/masaj?type=${type}&pro_id=${query.pro_id}`
             : `/new/servicii/masaj?type=${type}`;
           await this.$router.push(endpoint);
         }

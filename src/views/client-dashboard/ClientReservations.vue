@@ -358,7 +358,7 @@
         if (!id) {
           return;
         }
-        this.$router.push(`/elite/${id}`);
+        this.$router.push(`/pro/${id}`);
       },
 
       getEliteName(elite) {

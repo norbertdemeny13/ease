@@ -36,11 +36,11 @@ export const FOOTER_LINKS = [
     list: [
       {
         label: 'Lucreaza cu Ease',
-        to: '/pro',
+        to: '/easepro',
       },
       {
         label: 'Aplica acum',
-        to: '/pro',
+        to: '/easepro',
       },
     ],
   },
@@ -76,7 +76,7 @@ export const PRO_FOOTER_LINKS = [
       },
       {
         label: 'Intrebari frecvente',
-        to: '/pro/intrebari-frecvente',
+        to: '/easepro/intrebari-frecvente',
       },
     ],
   },

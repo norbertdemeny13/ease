@@ -138,8 +138,8 @@
 
       onBack() {
         const { query } = this.$router.currentRoute;
-        let endpoint = query?.elite_id
-          ? `/servicii/${this.$router.currentRoute.params.type}?elite_id=${query.elite_id}`
+        let endpoint = query?.pro_id
+          ? `/servicii/${this.$router.currentRoute.params.type}?pro_id=${query.pro_id}`
           : `/servicii/${this.$router.currentRoute.params.type}`;
         this.$router.push(endpoint);
         this.$store.commit('services/removeSelectedServices');
@@ -152,7 +152,7 @@
 
       async onContinue() {
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.elite_id;
+        const eliteId = query?.pro_id;
         const { id, type } = this.$router.currentRoute.params;
         const serviceType = type === 'fitness' ? type : 'beauty';
 

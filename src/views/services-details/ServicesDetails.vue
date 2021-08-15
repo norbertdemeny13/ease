@@ -63,8 +63,8 @@
         const { path, params } = this.$router.currentRoute;
         const { type } = params;
         const isNew = path.includes('new');
-        return query?.elite_id
-          ? `${isNew ? '/new' : ''}/servicii/${type}/${id}?elite_id=${query.elite_id}`
+        return query?.pro_id
+          ? `${isNew ? '/new' : ''}/servicii/${type}/${id}?pro_id=${query.pro_id}`
         : `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
       },
       onBack() {
@@ -79,8 +79,8 @@
           endpoint = '/servicii/';
         }
 
-        if (query && query.elite_id) {
-          endpoint += `?elite_id=${query.elite_id}`;
+        if (query && query.pro_id) {
+          endpoint += `?pro_id=${query.pro_id}`;
         }
 
         this.$router.push(endpoint);

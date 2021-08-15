@@ -120,7 +120,7 @@ export default {
       try {
         const { data } = await api.create(url, {
           reservation,
-          elited_id: id,
+          elite_id: id,
         });
         Vue.set(state, 'reservationDetails', data);
         await dispatch('addExtraCoupleMassageReservation');
@@ -173,7 +173,7 @@ export default {
               uuid: selectedService.uuid,
               complementaries,
             },
-            elited_id: id,
+            elite_id: id,
           });
           Vue.set(state, 'reservationDetails', data);
         } finally {

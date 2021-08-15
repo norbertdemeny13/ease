@@ -20,7 +20,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/home').then(({ Home }) => Home),
   },
   {
-    path: '/pro',
+    path: '/easepro',
     name: 'ProHome',
     component: () => import('@/views/pro-home').then(({ ProHome }) => ProHome),
   },
@@ -91,7 +91,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: '/pro/',
+    path: '/easepro/',
     component: () => import('@/views/pro-dashboard').then(({ ClientDashboard }) => ClientDashboard),
     children: [
       {
@@ -177,7 +177,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/subscription-details').then(({ SubscriptionDetails }) => SubscriptionDetails),
   },
   {
-    path: '/elite/:id',
+    path: '/pro/:id',
     name: 'Detalii Elite',
     component: () => import('@/views/elite-details').then(({ EliteDetails }) => EliteDetails),
   },
@@ -247,7 +247,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/faq').then(({ Faq }) => Faq),
   },
   {
-    path: '/pro/intrebari-frecvente',
+    path: '/easepro/intrebari-frecvente',
     name: 'Intrebari frecvente pro',
     component: () => import('@/views/pro-faq').then(({ ProFaq }) => ProFaq),
   },
@@ -311,7 +311,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.userType === 'elite') {
-    next('/pro/cont');
+    next('/easepro/cont');
   }
 
   if (path.includes('/carduri-cadou/') && !getGiftCard.id) {
