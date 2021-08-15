@@ -25,7 +25,6 @@
             <a v-if="image" href="" @click.prevent="onSavePicture()">Save</a>
           </div>
         </div>
-
       </div>
       <div v-if="getBalance" class="col-md-4">
         <h6>Balanta ta</h6>
@@ -127,7 +126,7 @@
             v-model="user.bio"
             class="form-control"
             :placeholder="
-            `ex: Terapeut de masaj autorizat, practicând din 2013. Am experiență cu o clientelă diversă și sunt pricepută într-o varietate de tehnici de masaj. Imbin cele mai eficiente tehnici pentru o sesiune personalizată, adaptată nevoilor și preferințelor individuale.`"
+              `ex: Terapeut de masaj autorizat, practicând din 2013. Am experiență cu o clientelă diversă și sunt pricepută într-o varietate de tehnici de masaj. Imbin cele mai eficiente tehnici pentru o sesiune personalizată, adaptată nevoilor și preferințelor individuale.`"
             name="bio"
           />
         </div>

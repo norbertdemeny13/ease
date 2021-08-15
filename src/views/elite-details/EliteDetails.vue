@@ -217,8 +217,8 @@
   }
 
   .favourite-container {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   .favourite-container i {
@@ -233,15 +233,15 @@
   .item-logo {
     align-items: center;
     background: #e2e2e2;
-    color: #ffffff;
     border-radius: 50%;
+    color: #ffffff;
     display: flex;
-    justify-content: center;
     height: 35px;
+    justify-content: center;
     width: 35px;
   }
 
   span {
-   font-size: 1rem;
+    font-size: 1rem;
   }
 </style>
