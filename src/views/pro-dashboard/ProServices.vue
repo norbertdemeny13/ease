@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-password-container content">
+  <div class="es_pro-password-container content">
     <h4>Calificari</h4>
     <es-cards-container>
       <es-card v-for="service in servicesList" :id="service.id" :key="service.id" :title="service.title">
@@ -15,6 +15,72 @@
         </template>
       </es-card>
     </es-cards-container>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Cum ai auzit de Ease?*</label>
+          <div class="radio_c_group d-flex flex-column">
+            <label
+              v-for="option in heardFromUs"
+              :key="option.value"
+              class="container_radio"
+              @click="heard = option.value"
+            >{{ option.label }}
+              <input type="radio" value="checkbox" name="type" :checked="option.value === heard ? 'checked' : ''">
+              <span class="checkmark" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label required>Genul</label>
+          <div class="radio_c_group d-flex flex-column">
+            <label
+              class="container_radio"
+              @click="gender = 'male'"
+            >Masculin
+              <input type="radio" value="checkbox" name="gender" :checked="gender === 'male' ? 'checked' : ''">
+              <span class="checkmark" />
+            </label>
+          </div>
+          <div class="radio_c_group d-flex flex-column">
+            <label
+              class="container_radio"
+              @click="gender = 'female'"
+            >Feminin
+              <input type="radio" value="checkbox" name="gender" :checked="gender === 'female' ? 'checked' : ''">
+              <span class="checkmark" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label required>Cat speri sa castigi pe saptamana lucrand cu noi?</label>
+          <input
+            id="earning"
+            v-model="earning"
+            type="text"
+            required
+            class="form-control"
+            name="earning"
+          >
+        </div>
+        <div class="d-flex justify-content-end">
+          <button
+            class="btn btn-sm btn-pink btn-pill my-4 px-6"
+            @click.prevent="onSave()"
+          >
+            Salveaza
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,7 +93,7 @@
   import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
 
   export default Vue.extend({
-    name: 'es-client-services',
+    name: 'es-pro-services',
     components: {
       'es-card': Card,
       'es-cards-container': CardsContaienr,
@@ -35,7 +101,20 @@
 
     data() {
       return {
-        services: {}
+        services: {},
+        heard: '',
+        gender: '',
+        earning: '',
+        heardFromUs: [
+          { value: 'facebook', label: 'Facebook' },
+          { value: 'prieten', label: 'Prieten' },
+          { value: 'google', label: 'Rezultate Google' },
+          { value: 'instagram', label: 'Instagram' },
+          { value: 'article', label: 'Articol din presa' },
+          { value: 'ejobs', label: 'Ejobs' },
+          { value: 'bestjobs', label: 'Bestjobs' },
+          { value: 'other', label: 'De altundeva' },
+        ],
       }
     },
 
@@ -78,6 +157,9 @@
         fetchServices: 'services/fetchServices',
         fetchServicesByType: 'services/fetchServicesByType',
       }),
+      onSave() {
+        // do something
+      },
     },
 
     async created() {

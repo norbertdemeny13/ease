@@ -181,7 +181,7 @@
         email: 'pro.cj.allservices@gmail.com',
         first_name: 'test',
         last_name: 'test',
-        password: 'Password1!',
+        password: 'Password1!!!',
         phone_number: null,
         massage_marketing: true,
         beauty_marketing: true,

@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-account-container content">
+  <div class="es_pro-account-container content">
     <h4>Profil</h4>
     <div class="row">
       <div class="col-md-8">
@@ -27,15 +27,17 @@
         </div>
       </div>
       <div v-if="getBalance" class="col-md-4">
-        <h6>Balanta ta</h6>
+        <h6>Sold</h6>
         <h3>{{ `${getBalance.available} Lei` }}</h3>
         <h6>{{ `${getBalance.pending} Lei disponibili` }}</h6>
         <div class="d-flex justify-content-start">
-          <button
+          <a
             class="btn btn-sm btn-stripe my-4 px-6"
+            :href="getStripeUrl"
+            target="_blank"
           >
             Contul meu stripe
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -151,7 +153,7 @@
   import { Datepicker } from '@/components/shared/datepicker';
 
   export default Vue.extend({
-    name: 'es-client-account',
+    name: 'es-pro-account',
 
     components: {
       'es-datepicker': Datepicker,
@@ -179,6 +181,9 @@
 
     created() {
       this.fetchStatistics();
+      this.fetchStripeSSO();
+      // TODO: Get stripe url, or generate if you don't have it 
+      // this.registerEliteStripe();
       const {
         first_name,
         last_name,
@@ -215,18 +220,24 @@
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
-        getStatistics: 'elite/getStatistics'
+        getStatistics: 'elite/getStatistics',
+        getStripeSSO: 'elite/getStripeSSO',
       }),
       getBalance() {
         return this.getStatistics?.balance;
+      },
+      getStripeUrl() {
+        return this.getStripeSSO?.url || '';
       },
     },
 
     methods: {
       ...mapActions({
         fetchStatistics: 'elite/fetchStatistics',
+        registerEliteStripe: 'elite/registerEliteStripe',
         updateElite: 'session/updateElite',
         updateProfilePicture: 'session/updateProfilePicture',
+        fetchStripeSSO: 'elite/fetchStripeSSO',
       }),
       handleFileUpload() {
         this.profilePicture = this.$refs['profile-picture'].files[0];

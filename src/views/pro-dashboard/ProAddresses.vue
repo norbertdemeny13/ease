@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-addresses-container content">
+  <div class="es_pro-addresses-container content">
     <h4>Adrese</h4>
     <div class="row">
       <div class="col-md-6">
@@ -75,7 +75,7 @@
   import { Address } from '@/interfaces/Address';
 
   export default Vue.extend({
-    name: 'es-client-addresses',
+    name: 'es-pro-addresses',
 
     components: {
       'es-address-modal': AddressModal,

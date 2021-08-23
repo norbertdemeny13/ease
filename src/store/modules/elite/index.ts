@@ -13,6 +13,7 @@ export interface State extends ModuleState {
   eliteFavorites: [];
   eliteReviews: [];
   statistics: any;
+  stripeSSO: any;
 }
 
 export default {
@@ -23,6 +24,7 @@ export default {
     elite: {},
     eliteFavorites: [],
     eliteReviews: [],
+    stripeSSO: null,
   }) as State,
 
   actions: {
@@ -31,6 +33,23 @@ export default {
       try {
         const { data } = await api.find(`/users/elite/${id}`);
         Vue.set(state, 'elite', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async registerEliteStripe({ state, commit }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create('elite/express_account?authorization_code=ac_IsxLpJbhdnEOumCuk4tDbaQ4U7wfNpJz');
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async fetchStripeSSO({ state, commit }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/elite/stripe_sso');
+        Vue.set(state, 'stripeSSO', data);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -84,6 +103,7 @@ export default {
 
   getters: {
     getStatistics: state => state.statistics,
+    getStripeSSO: state => state.stripeSSO,
     getElite: state => state.elite,
     getEliteReviews: state => state.eliteReviews,
     getEliteFavorites: state => state.eliteFavorites,

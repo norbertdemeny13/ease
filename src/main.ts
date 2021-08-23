@@ -21,6 +21,9 @@ import 'vanilla-lazyload';
 import './vendors/common_scripts.min';
 import './vendors/common_func';
 
+// Internationalization
+import i18n from '@/i18n';
+
 // Shared components
 import StarRating from 'vue-star-rating';
 import VueSlider from 'vue-slider-component';
@@ -60,5 +63,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 export default new Vue({
   router,
   store,
+  i18n,
   render: h => h(App),
 }).$mount('#app');

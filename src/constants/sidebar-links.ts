@@ -12,3 +12,13 @@ export const SIDEBAR_LINKS = [
   { label: 'Credit Ease', to: 'credit-ease', role: 'client' },
   { label: 'Preferinte', to: 'preferinte', role: 'client' },
 ];
+
+export const PRO_SIDEBAR_LINKS = [
+  { label: 'Cont', to: 'cont', role: 'pro' },
+  { label: 'Parola', to: 'parola', role: 'pro' },
+  { label: 'Numar de telefon', to: 'telefon', role: 'pro' },
+  { label: 'Adrese', to: 'adrese', role: 'pro' },
+  { label: 'Calificari', to: 'calificari', role: 'pro' },
+  { label: 'Documente', to: 'documente', role: 'pro' },
+  { label: 'Recomanda', to: 'recomandare', role: 'pro' },
+];

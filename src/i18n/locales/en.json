@@ -1,0 +1,2574 @@
+{
+  "api": {
+    "errors": {
+      "0": {
+        "description": "There seems to have been a network issue.",
+        "title": "Network Error"
+      },
+      "401": {
+        "title": "Authentication Failure"
+      },
+      "500": {
+        "description": "We are experiencing an issue. If you were making a request, please try again later. If you continue to receive this message, contact the Cofense Technical Operations Center.",
+        "title": "Internal Error"
+      }
+    }
+  },
+  "alerts": {
+    "mixedAttachmentTypes": "Scenarios in this group have different attachment types. As a result, reporting data might not be accurate. Consider grouping scenarios that have similar attachment types.",
+    "incompleteScenario": "This scenario is still active or is in the process of being finalized. Consider downloading the CSV file again an hour after the scenario ends to ensure that the file reflects final data.",
+    "incompleteScenarios": "One or more templates in this group are still active or are not yet scheduled. As a result, reporting data might not be accurate. Either wait until all templates are completed or remove the incomplete templates from the group.",
+    "recipientGroupWithScheduledScenarios": {
+      "change": "Changes to this recipient group will update the associated scheduled scenarios. Scenarios set to launch within 48 hours may not be updated. If you need to ensure a scenario has the latest recipients, unschedule and reschedule the scenario to trigger an update.",
+      "delete": "This recipient group is included in one or more scheduled scenarios and cannot be deleted. To delete this recipient group, first remove it from the associated scenarios."
+    },
+    "restrictedRecipients": {
+      "description": "Users with the \"anonymous reporting\" role are restricted from viewing recipient information.",
+      "title": "Restricted"
+    }
+  },
+  "app": {
+    "company": "Cofense",
+    "product": "PhishMe",
+    "productName": "Cofense PhishMe",
+    "roles": {
+      "admin": "Admin",
+      "superAdmin": "Super Admin"
+    },
+    "subscriptions": {
+      "enterprise": "Enterprise",
+      "free": "Free",
+      "sbe": "Small Business Edition"
+    }
+  },
+  "components": {
+    "features": {
+      "account": {
+        "acceptance": {
+          "description": "Agreement accepted on {timestamp}",
+          "title": "Acceptance Timestamp"
+        },
+        "mfa": {
+          "description": "Require a security key or code in addition to your password.",
+          "title": "Multi-Factor Authentication"
+        },
+        "views": {
+          "activity": "Activity Log",
+          "company": "Company Settings",
+          "notifications": "Notifications"
+        }
+      },
+      "accountCompany": {
+        "allowedDomains": {
+          "description": "A list of allowed domains for your organization. Allowed domains restrict recipient email addresses uploaded to the account.",
+          "title": "Allowed Domains"
+        },
+        "accessAndSecurity": {
+          "description": "Review settings for allowed domains, API access, password, and session timeout policies.",
+          "title": "Access and Security"
+        },
+        "apiAccess": {
+          "alert": "You can have only one API token at a time. If you generate a new one, your current one will no longer be able to access the API. Be sure you need a new token before you generate a new one.",
+          "created": "Your API token was created {start} and does not expire.",
+          "description": "Generate a Cofense PhishMe API token to access PhishMe data programmatically. For details, see the {0}.",
+          "expires": "Your API token was created {start} and expires {end}.",
+          "link": "API Documentation",
+          "pastExpire": "Your API token expired. Generate a new one to access PhishMe data through the API.",
+          "revokeToken": "Revoke Token...",
+          "title": "API Token",
+          "copyToast": {
+            "title": "Successfully Copied",
+            "message": "Token copied to clipboard."
+          }
+        },
+        "companyDetails": {
+          "description": "Ensure your company information is up to date and update company content placeholders for use in email and educational templates.",
+          "title": "Company Details"
+        },
+        "companyPlaceholders": {
+          "companyName": "Company Name",
+          "companyNickname": "Company Nickname",
+          "description": "Many Cofense PhishMe email and education templates include placeholders for your company name and contact details to help legitimize your phishing scenarios.",
+          "programContact": "Program Contact",
+          "programContactDetails": "Program Contact Details",
+          "title": "Company Placeholders"
+        },
+        "copyToast": {
+          "title": "Successfully Copied",
+          "message": "Token copied to clipboard."
+        },
+        "deliverySettings": {
+          "description": "Manage responsive delivery or review your default settings.",
+          "title": "Delivery Settings"
+        },
+        "deliveryThrottle": {
+          "description": "Throttling is the maximum number of emails will be sent from Cofense PhishMe on a \"per minute\" basis. Attachment scenarios may take longer to send than the other scenario types.",
+          "title": "Delivery Throttle (SMTP Email)"
+        },
+        "licenseDetails": {
+          "description": "Account recipient usage and license expiration information.",
+          "expirationDate": "Expiration Date",
+          "recipientUsage": "{count} out of {limit}",
+          "title": "License Details"
+        },
+        "mailIp": {
+          "description": "This shows you the IP address associated with your account. PhishMe recommends to whitelist this IP address within your environment to assist in delivery.",
+          "title": "Mail IP"
+        },
+        "passwordPolicy": {
+          "description": "Review your organization's password policy.",
+          "title": "Password Policy (for non-SSO users)"
+        },
+        "recipientSync": {
+          "cta": "Review Your Settings",
+          "description": "Recipient Sync allows you to automatically synchronize your organization’s user directory service with Cofense PhishMe. When you add, modify, or delete directory users, Recipient Sync updates the PhishMe master recipient list.",
+          "title": "Recipient Sync"
+        },
+        "reporterToken": {
+          "description": "The Cofense Reporter Token is a unique ID that can be utilized when generating Cofense Reporter installations.",
+          "title": "Cofense Reporter Token"
+        },
+        "responsiveDelivery": {
+          "description": [
+            "Responsive Delivery enables Cofense PhishMe to forgo traditional scenario scheduling and deliver scenario emails when recipients are active in their inboxes.",
+            "Through the use of Exchange Web Services (EWS), Responsive Delivery detects recipients Microsoft Outlook activity to make well-timed deliveries of scenario emails and improve scenario statistics. {link}"
+          ],
+          "title": "Responsive Delivery Credential Management"
+        },
+        "sessionTimeout": {
+          "description": "Review your organizations session timeout policy.",
+          "title": "Session Timeout"
+        }
+      },
+      "accountSnapshot": {
+        "domains": "Domains",
+        "expires": "Expires",
+        "license": "License",
+        "mailIp": "Mail IP",
+        "recipients": "Recipients",
+        "resiliencyRate": "Resiliency Rate",
+        "totalEmailReports": "Total Emails Reported",
+        "users": "Operators"
+      },
+      "activityTimeline": {
+        "actions": {
+          "clicked": "Clicked",
+          "enteredData": "Entered Data",
+          "openedAttachment": "Opened Attachment",
+          "reported": "Reported",
+          "viewedEducation": "Viewed Education"
+        },
+        "columns": {
+          "action": "Action",
+          "browser": "Browser",
+          "password": "Password",
+          "remoteIp": "Remote IP",
+          "respondedAt": "Responded At",
+          "username": "Username"
+        },
+        "deliveryStatus": {
+          "noStatus": "No Status",
+          "permanent": "Permanent Failure",
+          "success": "Success",
+          "temporary": "Temporary Failure"
+        },
+        "metadata": {
+          "deliveryStatus": "Delivery Status:",
+          "fromLine": "From Line:",
+          "sent": "Sent:",
+          "subject": "Subject:",
+          "type": "Type:"
+        },
+        "noResults": "There are no statistics for this recipient with this scenario."
+      },
+      "announcementsListing": {
+        "filter": {
+          "allAnnouncements": "All Newsletters",
+          "allTests": "All Archives",
+          "groups": "Groups",
+          "myAnnouncements": "Newsletters",
+          "myTests": "Archive"
+        }
+      },
+      "boardReportForm": {
+        "emailAddress": "Email Address",
+        "comments": "Comments (Optional)",
+        "companyName": "Company Name",
+        "legal": "By clicking the submit button, you give us permission to send your personal data from this form to one of our analysts, who are located in the United States. We need this information in order to confirm your identity, to contact you with any further questions if necessary, and deliver the Board Report to you. If you do not agree to this transfer, please do not click the submit button and contact our Support team for assistance.",
+        "phoneNumber": "Phone Number (Optional)",
+        "requesterName": "Requester Name",
+        "success": {
+          "description": "Thank you for your interest in receiving a Board of Directors Report customized to your company's phishing program. A member of the Data Analytics Team may reach out to you for additional information. Please allow up to ten business days for the delivery of your report.",
+          "title": "Request Submitted"
+        },
+        "toast": {
+          "message": "Your request was submitted."
+        }
+      },
+      "chartBrowsersByResponse": {
+        "clickedLink": "Clicked Link",
+        "description": "These charts show the percentage of recipients who opened the email on desktop and mobile browsers. Data in this section can help identify trends within your own organization and plan your next scenario or awareness newsletter.",
+        "desktop": "Desktop",
+        "mobile": "Mobile",
+        "noDesktopDataAvailable": "No Desktop Browser Data Available",
+        "noMobileDataAvailable": "No Mobile Browser Data Available",
+        "openedAttachment": "Opened Attachment",
+        "openedEmail": "Opened Email",
+        "responseTypeLabel": "Response Type",
+        "submittedForm": "Submitted Form",
+        "title": "Desktop and Mobile Browsers",
+        "viewedEducation": "Viewed Education"
+      },
+      "chartComparisonWithMetrics": {
+        "benchmark": {
+          "averageLabel": "Average Susceptibility",
+          "description": "Benchmark scenarios allow organizations to compare their susceptibility results with other organizations. All data collected through benchmark scenarios are anonymous.",
+          "valueLabel": "Your Susceptibility",
+          "minLabel": "Min Susceptibility",
+          "maxLabel": "Max Susceptibility",
+          "minMaxLabel": "Min/Max Susceptibility",
+          "title": "Benchmark Comparison",
+          "yLabel": "Response Rate"
+        },
+        "report": {
+          "averageLabel": "Average Report Rate",
+          "description": "Benchmark scenarios allow organizations to compare their reporter results with other organizations. All data collected through benchmark scenarios are anonymous.",
+          "valueLabel": "Your Report Rate",
+          "minMaxLabel": "Min/Max Report Rate",
+          "minLabel": "Min Report Rate",
+          "maxLabel": "Max Report Rate",
+          "title": "Reporter Comparison",
+          "yLabel": "Report Rate"
+        }
+      },
+      "chartGeolocationHotspots": {
+        "description": "This map shows geolocation hotspots of activity happening in your organization based on IP address. Hotspots indicate which locations recipients are interacting with your {type}.",
+        "title": "Geolocation Hotspots"
+      },
+      "chartOverallResponses": {
+        "description": "Review response trends based on scenario types and reporting rate over the past three months.",
+        "legend": {
+          "attachmentPhish": "Attachment Phish responses include opening an attachment.",
+          "credentialPhish": "Credential Phish responses include clicking a link or entering credentials.",
+          "urlPhish": "URL Phish responses include clicking a link."
+        },
+        "month": "Month",
+        "rate": "Rate %",
+        "reportingRate": "Reporting Rate",
+        "responsesByLabel": "Show responses by:",
+        "startDate": "Start Date",
+        "title": "Overall Responses",
+        "yLabelLeft": "Response Rate",
+        "yLabelRight": "Reporting Rate"
+      },
+      "chartRepeatClickers": {
+        "description": "Identify repeat susceptible behavior within your organization.",
+        "emptyStateTitle": "No Repeat Clickers Data",
+        "title": "Repeat Clickers",
+        "xLabel": "Number of times susceptible",
+        "yLabel": "Percentage of Clickers"
+      },
+      "chartReportedByDay": {
+        "description": "For all emails delivered, see how many recipients responded to the emails by interacting with them compared to how many recipients proactively report emails without interacting with them.",
+        "emptyStateDescription": "Excepteur sint occaecat cupidatat non proident",
+        "outOfEmailsSent": "Out of {count} Emails Delivered",
+        "reporterOnly": "Reported Only",
+        "susceptibleAndNotReported": "Responded, Did Not Report",
+        "susceptibleAndReported": "Responded and Reported",
+        "title": "Reported By Day",
+        "totalEmailsSent": "Total Emails Delivered",
+        "totalReporterOnly": "Total Reported Only",
+        "totalSusceptibleAndNotReported": "Responded, Did Not Report",
+        "totalSusceptibleAndReported": "Responded and Reported",
+        "yLabel": "Percentage of Recipients"
+      },
+      "chartReporterTimeline": {
+        "description": "This timeline shows the time differential among the first 200 reports and indicates whether a recipient was a new reporter or a repeat reporter. This timeline also displays the date and time of the first report and the date and time of the first response to the phishing email.",
+        "firstReporter": "First Reporter",
+        "newReporter": "New Reporter",
+        "repeatReporter": "Repeat Reporter",
+        "scenarioStart": "Scenario Start",
+        "title": "Reporter Timeline (First 200 Reports)"
+      },
+      "chartReportingFrequency": {
+        "description": "See the breakdown of how your organization uses Cofense Reporter to report scenario emails.",
+        "title": "Reporting Frequency"
+      },
+      "chartResponsesByTimeframe": {
+        "clickedLink": "Clicked Link",
+        "clickedAndNotSubmitted": "Clicked Link and Did Not Submit Data",
+        "clickedAndSubmitted": "Clicked Link and Submitted Data",
+        "openedAttachment": "Opened Attachment",
+        "openedEmail": "Opened Email",
+        "reportedPhish": "Reported Phish",
+        "viewedEducation": "Viewed Education",
+        "responsesByLabel": "Show responses by:",
+        "yLabel": "Number of Recipients",
+        "chartResponsesByDay": {
+          "description": {
+            "announcement": "This chart illustrates the daily number of responses received throughout the awareness newsletter.",
+            "scenario": "This chart illustrates the daily number of responses received throughout the scenario."
+          },
+          "title": "Responses by Day"
+        },
+        "chartResponsesByHours": {
+          "description": {
+            "announcement": "This chart illustrates the how quickly the recipients responded in the first 8 hours of your awareness newsletter.",
+            "scenario": "This chart illustrates how quickly the recipients responded in the first 8 hours of your scenario."
+          },
+          "label": "First 8 Hours",
+          "title": "Responses in First 8 Hours"
+        }
+      },
+      "chartResponsesBreakdown": {
+        "clickedLink": "Clicked Link",
+        "clickedLinkSubmittedData": "Clicked Link and Submitted Data",
+        "clickedLinkDidNotSubmitData": "Clicked Link, did not Submit Data",
+        "description": "This chart illustrates the actions of your recipients, broken out by response type.",
+        "noResponse": "Unread/No Response",
+        "openedAttachmentAndViewedEducation": "Opened Attachment and Viewed Education",
+        "openedEmailOnly": "Opened Email, only",
+        "reportedOnly": "Reported Only",
+        "title": "Response Breakdown",
+        "unreadNoResponse": "Unread and no Response"
+      },
+      "chartTimeSpentOnEducation": {
+        "description": "See how long a recipient who accessed an education stayed on the page. Cofense PhishMe does not record the time a recipient spends watching videos.",
+        "title": "Time Spent on Education",
+        "tooltip": "{count} users spent {duration} on education",
+        "xAxisTitle": "Seconds spent on education",
+        "xLabels": "{from} to {to} seconds",
+        "yAxisTitle": "Number of users"
+      },
+      "ckeditorError": {
+        "title": "There was an issue loading the data",
+        "message": "Try to refresh the page. If you still have trouble, contact our support team."
+      },
+      "currentAccount": {
+        "title": "Current Account"
+      },
+      "dashboardAnalytics": {
+        "title": "Analytics Snapshot",
+        "viewButton": "View Analytics"
+      },
+      "dashboardScenarios": {
+        "activeTime": "Ends {time}",
+        "completedTime": "Ended {time}",
+        "emptyScenarios": {
+          "active": {
+            "noScheduled": "You have no active templates.",
+            "scheduled": "Your next scenario will start {time}",
+            "title": "No Active Templates"
+          },
+          "completed": {
+            "callToAction": "View Scenario",
+            "noScheduled": "You have no completed templates.",
+            "scheduled": "Your scenario will end {time}",
+            "title": "No Completed Templates"
+          },
+          "scheduled": {
+            "callToAction": "Create Scenario",
+            "noScheduled": "Create and schedule a new template for your program.",
+            "title": "No Upcoming Templates"
+          }
+        },
+        "recipientCount": "No recipients in {recipientGroups} | 1 recipient in {recipientGroups} | {recipientCount} recipients in {recipientGroups}",
+        "recipientGroups": "no groups | {recipientGroupsName} group | {recipientGroupsCount} groups",
+        "review": "Review",
+        "reviewA11y": "Review {name} analytics",
+        "scenarioStatus": "{type} Templates",
+        "scheduledTime": "Starts {time} and runs for {duration}",
+        "viewAll": "View All",
+        "viewAllA11y": "View all {type} scenarios"
+      },
+      "dashboardWelcome": {
+        "description": "We've given PhishMe a fresh new look that we hope you'll like. You'll find the same great features you've been using (plus some more!) to help you do your job more efficiently.",
+        "message": "Welcome, {userName}!"
+      },
+      "educationTemplateListing": {
+        "filter": {
+          "multilingual": "Multilingual",
+          "multilingualA11y": "View all Multilingual templates",
+          "multilingualTooltip": " Show only those education pieces that Cofense already translated into the standard language options."
+        },
+        "itemSort": {
+          "newest": "Newest",
+          "oldest": "Oldest"
+        }
+      },
+      "leaveModal": {
+        "message": "You're about to leave PhishMe to go to {link}. You can return to PhishMe using your browser's Back button. Do you want to continue?",
+        "title": "Do you want to leave?"
+      },
+      "mutateAllowedDomainsModal": {
+        "addTableTitle": "Add new domains | {count} domain to add | {count} domains to add",
+        "existingTableTitle": "No domains | {count} existing domain| {count} existing domains",
+        "deleteTableTitle": "No domains | {count} domain to delete | {count} domains to delete"
+      },
+      "mutatePasswordModal": {
+        "newPassword": "New Password",
+        "oldPassword": "Old Password",
+        "renterNewPassword": "Re-enter New Password",
+        "requirements": {
+          "description": "Your password must contain the following:",
+          "title": "Minimum Requirements"
+        }
+      },
+      "mutateRecipientGroupModal": {
+        "description": "Description",
+        "dynamicDescription": "Quickly generate the group from one master recipient list using filters. As your recipient list changes, the group will automatically update based on the filter criteria.",
+        "dynamicGroup": "Dynamic",
+        "name": "Name",
+        "staticDescription": "Manually choose and update all recipients in the group.",
+        "staticGroup": "Static",
+        "tableTitle": "Recipients to add",
+        "type": "Type"
+      },
+      "mutateScenario": {
+        "archiveScenarioText": "Archive scenario",
+        "enableHttpDescription": "Use HTTPS instead of HTTP for all phishing links in the scenario. HTTPS can only be used with Cofense PhishMe domains."
+      },
+      "mutateScenarioGroupModal": {
+        "addTableTitle": "No items in group | {count} item to add to group | {count} items to add to group",
+        "description": "Description",
+        "existingTableTitle": "No items in group | {count} existing item in group | {count} existing items in group",
+        "name": "Name",
+        "removeTableTitle": "No items in group | {count} item to remove from group | {count} items to remove from group"
+      },
+      "mutateScenarioModal": {
+        "description": "Description",
+        "enableHttpCheckboxText": "Enable HTTPS",
+        "enableHttpText": "Enable HTTPS",
+        "enableHttpTooltipContent": "Use HTTPS instead of HTTP for the anchor and destination of all phishing links. This is a common practice that threat actors use to make the links seem more secure, further enticing recipients to click them. (Applies only to PhishMe domains.)",
+        "testAnnouncementCheckboxLabel": "Archive this awareness newsletter. Do not include any data from this newsletter in my historical analysis reports.",
+        "testScenarioCheckboxLabel": "Archive this scenario. Do not include any data from this scenario in my historical analysis reports.",
+        "testScenarioText": "Test Scenario",
+        "title": "Title",
+        "titlePlaceholder": "For example: 'Jan 2019 New-hires' or '2019 Q1 / Accounting Dept.'",
+        "titleTooltip": "Recipients do not see this title, but it will appear in your analytics and reports."
+      },
+      "newPlaybookForm": {
+        "announcement": {
+          "description": "Do you want this playbook to include an email that explains your organization’s program?",
+          "label": "Introduce Your Program"
+        },
+        "create": {
+          "toast": {
+            "message": "Generation of playbook scenarios is in progress."
+          }
+        },
+        "description": {
+          "label": "Playbook Description"
+        },
+        "duration": {
+          "description": "How long should the scenario run? Benchmark scenarios automatically run for 7 days by default.",
+          "label": "Duration"
+        },
+        "intro": [
+          "{question} A playbook is a 12-month program of suggested templates that Cofense PhishMe selects, schedules, and runs based on parameters that you define. Playbooks help automate the setup of your simulated phishing campaign when you are not sure where to start or lack the time to set up a campaign from scratch.",
+          "After you create a playbook, you can customize any of its templates except for benchmark scenarios. You can also change the scheduled launch date of a playbook email. We’ll send you reminders before we launch each email."
+        ],
+        "maxTime": {
+          "description": "What is the latest time to send emails?",
+          "label": "End Time"
+        },
+        "minTime": {
+          "description": "What is the earliest time to send emails?",
+          "label": "Start Time"
+        },
+        "name": {
+          "label": "Playbook Name"
+        },
+        "placeholdersAlert": "Before you continue, provide some details about your company to use in placeholders.",
+        "programFrequency": {
+          "description": "How often should we send playbook emails?",
+          "label": "Program Frequency"
+        },
+        "programLanguage": {
+          "description": "In what language should recipients see the playbook emails?",
+          "label": "Program Language"
+        },
+        "programPreview": {
+          "caption": "Preview Not Available",
+          "description": [
+            "Templates can be modified (except benchmarks) and/or rescheduled after the playbook has been created.",
+            "The times displayed in this preview are in the time zone set in your profile."
+          ],
+          "label": "Program Preview"
+        },
+        "programType": {
+          "description": "What level of program should we create?",
+          "label": "Program Type"
+        },
+        "question": "What is a playbook?",
+        "recipientGroup": {
+          "description": "Who should receive this playbook’s emails?",
+          "label": "Recipient Group",
+          "placeholder": "Select Recipient Group"
+        },
+        "recipientsAlert": "You must create at least one recipient group before you complete this form.",
+        "recipientsCta": "Go to Recipients",
+        "sendDays": {
+          "description": "Which days of the week can we send playbook emails? (Select multiple.)",
+          "label": "Send Days"
+        },
+        "startDate": {
+          "announcement": "If your playbook includes a program introduction, we’ll send that email on this date. The next program email will follow a week later.",
+          "description": "When should we start the playbook?",
+          "label": "Start Date",
+          "placeholder": "Select Start Date"
+        },
+        "submit": "Schedule Playbook",
+        "tableHeaders": {
+          "dayOfWeek": "Day of Week",
+          "preview": "Preview",
+          "scheduledDate": "Scheduled Date",
+          "templateName": "Template Name",
+          "time": "Time",
+          "type": "Type"
+        }
+      },
+      "notificationCenter": {
+        "actions": {
+          "close": "Close {title}",
+          "open": "Open notification center"
+        },
+        "title": "Utilities",
+        "notifications": {
+          "cta": "View All",
+          "delete": "Delete {term} notification",
+          "title": "Notifications",
+          "markAsRead": "Mark {term} as read"
+        },
+        "noUnreadMessages": "No Unread Messages",
+        "profileSection": {
+          "title": "Profile"
+        },
+        "unreadMessages": "Unread Messages"
+      },
+      "passwordPolicyList": {
+        "expiration": {
+          "everyDays": "Users must change their passwords every {count} days"
+        },
+        "reuse": {
+          "lastDays": "Users can't reuse any password they used within the last {count} days.",
+          "lastPasswords": "Users can't reuse any of their last {count} passwords."
+        }
+      },
+      "playbookListing": {
+        "delete": {
+          "toast": {
+            "message": "We removed the playbook you selected."
+          }
+        },
+        "itemSort": {
+          "newest": "Newest",
+          "oldest": "Oldest"
+        }
+      },
+      "recipientsListing": {
+        "addToExistingGroup": "Add to existing static group",
+        "createNewRecipient": "Create New Recipient",
+        "groupRecipients": "Group Recipients",
+        "itemSort": {
+          "newest": "Newest",
+          "oldest": "Oldest"
+        },
+        "noItemsSelected": "No Items Selected",
+        "selectRecipient": "Select Recipient"
+      },
+      "recipientSync": {
+        "activeDescription": "You've configured your Cofense PhishMe account for synchronization with your organization’s user directory service.",
+        "agreeButton": "I Agree",
+        "inStopQueueDescription": "You requested PhishMe to stop synchronizing recipients with your user directory service. This process typically takes less than one hour.",
+        "inStopQueueTitle": "Recipient Sync Unavailable",
+        "instructions": {
+          "intro": "To synchronize your organization’s user directory service with PhishMe:",
+          "link": "Setup and configuration instructions.",
+          "outro1": "When your directory administrator enables Recipient Sync, your user directory service starts sending information to PhishMe, which starts synchronizing recipients.",
+          "outro2": "You can return to this page at any time to view information about the latest synchronization, stop synchronizing recipients, or request a new token.",
+          "step1": "Copy both the unique URL and the token.",
+          "step2": "Provide both the URL and the token to your directory administrator to use in setting the user directory service for Recipient Sync."
+        },
+        "intro": [
+          "Recipient Sync allows you to automatically synchronize your organization’s user directory service with Cofense PhishMe. When you add, modify, or delete directory users, Recipient Sync updates the PhishMe master recipient list.",
+          "Recipient Sync currently supports synchronizing with Azure Active Directory. For more information about setting up and using Recipient Sync, {link}."
+        ],
+        "stopping": {
+          "cta": "Return to Recipients",
+          "description": [
+            "Someone requested PhishMe to stop synchronizing recipients with your user directory service.",
+            "This process typically takes less than one hour.",
+            "If you want to restart synchronization, return to the Recipient Sync page later."
+          ],
+          "title": "Stopping Recipient Sync"
+        },
+        "tableDescription": "Depending on the size of your recipient list, initial and subsequent recipient syncs might take some time to complete. After the initial sync, Cofense PhishMe synchronizes with your user directory service every few hours. The time required to complete subsequent refreshes depends on the amount of change. Rejected files expire after 7 calendar days.",
+        "termsAndConditions": "You (and the business, government or entity you represent) understand and agree that in addition to the agreement you have entered into with Cofense for the use of Cofense PhishMe, you acknowledge, agree and consent to the terms located at {link} in order to activate and use Cofense PhishMe Recipient Sync, and have reviewed the Cofense PhishMe Recipient Sync user manuals."
+      },
+      "reporterSummary": {
+        "downloadDeploymentCSV": "Deployment CSV",
+        "downloadReporterCSV": "Reporter CSV",
+        "exportAllToCsv": "All to CSV",
+        "exportTop100ToCsv": "Top 100 to CSV",
+        "metric": {
+          "activeReporters": "Active Reporters",
+          "emailReports": "Email Reports",
+          "phishmeEmailReports": "PhishMe Email Reports",
+          "totalReports": "Total Emails Reported",
+          "uniqueInstalls": "Unique Installs"
+        },
+        "title": "Reporter Summary"
+      },
+      "scenarioAnalytics": {
+        "actions": {
+          "toggleChartData": "Toggle Chart Data",
+          "tooltip": {
+            "hide": "Hide in Chart",
+            "show": "Show in Chart"
+          }
+        },
+        "chartDescription": "The chart shows ungrouped scenarios and scenario groups. The chart does not show individual scenarios that are part of a scenario group.",
+        "chartTooltip": "Zooming in on data in the chart does not filter the table results. To filter the results displayed in the table, use the date range filter.",
+        "dateFilter": {
+          "label": "Date Range:",
+          "options": [
+            "All Time",
+            "2 Years",
+            "1 Year",
+            "6 Months",
+            "3 Months",
+            "1 Month"
+          ]
+        },
+        "tableHeaders": {
+          "awarenessNewsletterDetails": "Awareness Newsletter Details",
+          "clickedLink": "Clicked Link",
+          "clickedOnly": "Clicked Only",
+          "emailsDelivered": "Emails Delivered",
+          "endDate": "End Date",
+          "enteredData": "Entered Data",
+          "openedAttachment": "Opened Attachment",
+          "responses": "Responses",
+          "responseRate": "Response Rate",
+          "scenarioDetails": "Scenario Details",
+          "startDate": "Start Date"
+        }
+      },
+      "scenarioCreationFlow": {
+        "attachment": {
+          "changeAttachment": "Change Attachment ...",
+          "editEducationLink": "Edit Education Link ...",
+          "educationLink": "Education Link",
+          "filenameTooltip": "This controls the filename of the attachment recipients receive.",
+          "infoText": "The information given in this training is for guidance only and does not constitute legal or professional advice. Cofense encourages you to seek advice of counsel with respect to your requirements and obligations.",
+          "infoTextCta": "Go to Email",
+          "zipAttachmentTooltip": "You can encrypt your attachment in a zip file.",
+          "zipNameTooltip": "This controls the filename of the zip file recipients will see.",
+          "zipPassword": "Zip Password",
+          "zipPasswordTooltip": "You can password-protect the zip file content."
+        },
+        "education": {
+          "ctaButtonText": "Change Education Content...",
+          "infoText": "The information given in this training is for guidance only and does not constitute legal or professional advice. Cofense encourages you to seek advice of counsel with respect to your requirements and obligations."
+        },
+        "email": {
+          "attachmentPhishBenchmarkScenarioInfo": "To ensure the best comparative data, PhishMe prevents edits to the from address, subject line, email content, and attachment name. You can change the education portion of the scenario.",
+          "credentialBenchmarkScenarioInfo": "To ensure the best comparative data, PhishMe prevents edits to the from address, subject line, email content, and landing page. You can make changes to the education portion of the scenario.",
+          "enableTrackingRadioLabel": "Enable Email Tracking",
+          "enableTrackingRadioTooltip": "Cofense PhishMe can attempt to track when a recipient opens the email by monitoring if an invisible image was downloaded. <br><br>For more information, visit the Cofense Resource Center (EMEA and META | Other locations).",
+          "freemailValidation": {
+            "toast": {
+              "message": "Email was sent with success."
+            }
+          },
+          "fromBuilder": {
+            "allowedDomains": "Allowed Domains",
+            "allowedDomainsInfo": [
+              "NOTE: Only use this option if your email servers allow inbound email using your domains from email relays that you do not operate. If you are unsure, ask your email administrator.",
+              "Use the dropdown list in the From Address line to select a domain your organization registered with Cofense. To explore best practices, visit the Cofense Resource Center ({emeaLink} | {otherLink})."
+            ],
+            "emeaLink": "EMEA and META",
+            "otherLink": "Other locations",
+            "cofensePhishmeDomains": "Cofense PhishMe's Domains",
+            "cofensePhishmeDomainsInfo": [
+              "Cofense PhishMe has registered a library of domains designed to match the content of our scenario templates. Use the dropdown list in the From Address line to select one of these registered domains.",
+              "Do you need a domain to match a custom scenario you created? Let us know and we can help you register one."
+            ],
+            "domainOptions": "Domain Options",
+            "domainOptionsTooltip": "Choose a domain option to view details about it. The selection you make here affects the domain choices available in the From Address dropdown list.",
+            "freemailDomains": "Freemail Domains",
+            "freemailDomainsInfo": [
+              "You can create an email account on a freemail domain for your scenario. Use the dropdown list in the From Address line to view the domains you might use. You must create the email address before you can use it in a scenario."
+            ],
+            "freemailDomainsValidationInfo": "This email address must be verified. To do so, follow the instructions in the verification email we sent to that account.",
+            "friendlyName": "Friendly Name",
+            "friendlyNameTooltip": "Type the name you want recipients to see in the from address of the email. Often, this is what a recipient relies on to identify the sender.",
+            "fromAddress": "From Address",
+            "fromAddressTooltip": "Type the username part of the email address and select the desired domain to appear after the @ symbol in the address.",
+            "previewFromLine": "Preview of From Line",
+            "previewFromLineTooltip": "Displays results of current From Builder settings.",
+            "previouslyUsedAddresses": "Previously Used Addresses ",
+            "previouslyUsedAddressesHint": "Select a previously used email address"
+          },
+          "fromTooltip": "This is the address from which the email will appear to have been sent. Click the From Builder to customize it.",
+          "markAsUrgentRadioLabel": "Mark as urgent",
+          "markAsUrgentRadioTooltip": "Mark an email as urgent to flag with high priority and increase the chance a recipient will act quickly.",
+          "infoText": "This template may mention a branded product. You are not authorized to use the brand name in the email from or friendly name or in the email signature area. You may remove, but not modify, any logo that may be included.",
+          "previouslyCreatedEmails": "Use Previously Created Emails ...",
+          "previouslyCreatedLures": "Use Previously Created Lures ...",
+          "subjectTooltip": "This controls the subject line of the email. You can incorporate placeholders which insert personalized recipient data to make it more enticing. Position your cursor where you want to insert a placeholder and click Add Placeholder to open a list.",
+          "timeframeText": "Time between delivery of lure and email",
+          "urlPhishBenchmarkScenarioInfo": "To ensure the best comparative data, PhishMe prevents edits to the from address, subject line, and email content. You can make changes to the education portion of the scenario."
+        },
+        "landing": {
+          "after": "After",
+          "infoText": "The information given in this training is for guidance only and does not constitute legal or professional advice. Cofense encourages you to seek advice of counsel with respect to your requirements and obligations.",
+          "ctaButtonText": "Change Landing Page...",
+          "collectUsernamesRadioLabel": "Collect Usernames",
+          "collectUsernamesRadioTooltip": "By default, usernames entered by recipients are sent to Cofense servers so they can be included in your reports. If you disable this option, a value of YES or NO will indicate if a recipient entered a username. Passwords are NEVER sent to Cofense servers.",
+          "forwardToEducationRadioLabel": "Forward to Education",
+          "forwardToEducationRadioTooltip": "Recipients who visit the landing page, but do not submit data, are forwarded to education after the time specified."
+        },
+        "placeholders": {
+          "company": {
+            "name": "Company Name",
+            "nameTooltip": "How should your company name be displayed in simulated phishing emails and educational material?",
+            "nickName": "Company Nickname",
+            "nickNameTooltip": "What shorthand name or acronym do you use for your company name that your employees would commonly see in communications?",
+            "programContactDetails": "Program Contact Details",
+            "programContactDetailsTooltip": " What email address would you like to display in scenario emails and education for the program contact?",
+            "programContactName": "Program Contact Name",
+            "programContactNameTooltip": "What is the name of the person or group in your company that you would like to convey as 'sender' of the scenario emails? (Be sure to obtain consent from a named individual.)",
+            "title": "Company Placeholders"
+          },
+          "recipient": {
+            "description": "You must provide a default value for each placeholder. These defaults are used in the event a recipient has no data for a specific field.",
+            "title": "Recipient Placeholders"
+          },
+          "recipientPlaceholderAnalysis": {
+            "info": {
+              "title": "The following recipient groups are in use.",
+              "description": "If none of the recipients in a group have an entry for a specific placeholder, the placeholder's name is listed in that group's row. Cofense PhishMe will use the placeholder's default value for all recipients."
+            },
+            "recipientGroupsInUser": "Recipient Groups in Use",
+            "placeholdersMissingForAllRecipientsInGroup": "Placeholders Missing for All Recipients in Group",
+            "title": "Recipient Group Placeholder Analysis"
+          },
+          "scenario": {
+            "attachmentPassword": "Attachment Password",
+            "awarenessNewsletterPlaceholders": "Awareness Newsletter Placeholders",
+            "currentYear": "Current Year",
+            "fromFriendlyName": "From Friendly Name",
+            "fromFullEmailAddress": "From Full Email Address",
+            "fromEmailAddress": "From Email Address",
+            "scenarioPlaceholders": "Scenario Placeholders",
+            "startDatetime": "Start Date/Time",
+            "startDateTime": "Start Datetime",
+            "startDatetimeFormat": "SCENARIO_START_DATETIME - Date Format",
+            "startDatetimeOffset": "SCENARIO_START_DATETIME - Days Offset",
+            "title": "Scenario Placeholders",
+            "zipPassword": "Zip Password",
+            "zipPasswordWarning": "Please do not use a real password used by your organization for any service."
+          }
+        },
+        "schedule": {
+          "advancedOptions": "Advanced Options",
+          "advancedOptionsInfoText": "If you enable more than one advanced option, they can affect one another.{linebreak} For more information about these interactions, visit the {link}.",
+          "availabilityAndTrackingDurationLabel": "Availability and Tracking Duration",
+          "availabilityAndTrackingDurationTooltip": "The amount of time after launch, when content is available to recipients and their activity is tracked. Benchmark scenarios require 7-days.",
+          "deliveryEndDateInfoText": "This feature enables you to evenly distribute the delivery of emails over time.{linebreak}Given your email delivery start date and end date, Cofense PhishMe actively adjusts the delivery rate as necessary.{linebreak}Cofense servers calculate the email delivery end date from the time zone you selected above.",
+          "deliveryEndDateLabel": "End Date",
+          "deliveryEndDateTooltip": "The date you want Cofense PhishMe to send the last email.",
+          "deliveryRateInfoText": "This feature enables you to specify the number of emails per minute you want Cofense PhishMe to attempt to deliver.{linebreak}Values can range from 1 to 1,000. If you do not enter a value, it will default to the Delivery Throttle (SMTP Email) value in your account's Delivery Settings.",
+          "deliveryRateLabel": "Target Emails Delivered Per Minute",
+          "deliveryTimeTooltip": "The time you want Cofense PhishMe to start sending scenario emails to your recipients.",
+          "deliveryWindowEndTime": "Delivery Window End Time",
+          "deliveryWindowSendDays": "Delivery Window Send Days",
+          "deliveryWindowStartTime": "Delivery Window Start Time",
+          "deliveryWindowTimezone": "Delivery Window Time Zone",
+          "emailDeliveryWindow": "Email Delivery Window",
+          "emailDeliveryWindowTooltip": "You can limit the delivery of emails to a specific window of time and certain days of the week.",
+          "endDateTooltip": "The date you want Cofense PhishMe to send the last email.",
+          "launchASAP": "Launch As Soon As Possible",
+          "launchASAPTooltip": "Set the date and time controls for the soonest launch possible.",
+          "recipientGroupsTooltip": "Search the recipient groups you created previously, and select those you want to receive this scenario. You can send it to a maximum of 125 recipient groups.",
+          "recipientTimeZoneBasedDelivery": "Recipient Time Zone Based Delivery",
+          "recipientTimeZoneBasedDeliveryTooltip": "Deliver emails to each recipient in their local time zone, based on the launch information selected above.",
+          "requestCofenseReview": "Request Cofense Review",
+          "requestCofenseReviewTooltip": "Prior to launch, you can have your scenario reviewed by a Cofense support professional. Allow at least one business day before launch.",
+          "responsiveDelivery": "Responsive Delivery",
+          "responsiveDeliveryTooltip": "Use Responsive Delivery to deliver emails when recipients are active in their email inboxes.",
+          "searchPlaceholderText": "Type to search for recipient groups",
+          "startDateTooltip": "The date you want Cofense PhishMe to send the first email.",
+          "startDateTooltipAlternative": "For reference, this displays the date you selected above.",
+          "startTimeTooltip": "The time you want Cofense PhishMe to send the first email.",
+          "timezoneTooltip": "Email delivery starts based on this time zone."
+        },
+        "summary": {
+          "attachment": {
+            "description": "Recipients who open the scenario email attachment will see this content."
+          },
+          "cofensePhishmeIpAddress": "Cofense PhishMe IP Address",
+          "deliveryAndAccessDescription": "Make sure your email or network teams have the following items in your organization's allow list.",
+          "deliveryAndAccessTitle": "Ensure Email Delivery and Access",
+          "deliveryInfo": "Failure to ensure delivery can have an adverse impact on reporting and education.",
+          "education": {
+            "description": "Recipients who interact with the email by clicking links, submitting forms, or opening attachments will see the education."
+          },
+          "emailDelivery": "Email Delivery",
+          "fromAddress": "Email's From Address",
+          "hostNames": "Hostnames",
+          "landing": {
+            "collectUsernames": "Collect Usernames",
+            "description": "Recipients who click a link in the scenario email will see this content.",
+            "forwardToEducation": "Forward to Education"
+          },
+          "noRecipientsAssigned": "No Recipients Assigned",
+          "overallWarning": {
+            "title": "Your Scenario Won't Send",
+            "description": "The scenario isn't complete there are problems in:",
+            "item": "{type} has a problem"
+          },
+          "recipientTooltip": "If a dynamic recipient group is included, this value might change later.",
+          "schedule": {
+            "dailyScenarioReport": "Daily Scenario Report (Email)",
+            "deliveryDate": "Delivery Date",
+            "duration": "Duration",
+            "emailsDeliveredPerMinutes": "Emails Delivered per Minutes",
+            "sendDays": "Send Days",
+            "timeZone": "Time Zone",
+            "timeZoneDelivery": "Time Zone Delivery"
+          },
+          "statusEmails": "Status Emails",
+          "statusEmailDescription": "You can have Cofense PhishMe send several types of status emails.",
+          "stepWarning": {
+            "title": "Something is incomplete",
+            "message": "Please complete this step to complete the scenario"
+          }
+        }
+      },
+      "scenarioListing": {
+        "addToExistingGroup": "Add to existing group",
+        "filter": {
+          "allScenarios": "All Scenarios",
+          "allTests": "All Archives",
+          "groups": "Groups",
+          "myScenarios": "Scenarios",
+          "myTests": "Archive"
+        },
+        "itemSort": {
+          "newest": "Newest",
+          "oldest": "Oldest"
+        },
+        "noItemsSelected": "No Items Selected",
+        "tooltip": "To help you organize your scenario list, you can group scenarios of the same type."
+      },
+      "scenarioReport": {
+        "deliveryInformation": {
+          "deliveryEmailThrottle": "Delivery Email Throttle",
+          "deliveryTiming": "Delivery Timing",
+          "emailAfterLureOffset": "Email sent {offset} after the lure",
+          "emailAfterLureTooltip": "If the recipient reported the lure, the email is not delivered.",
+          "emailsDelivered": "Emails Delivered",
+          "lureAfterEmailOffset": "Lure sent {offset} after the email",
+          "lureAfterEmailTooltip": "If the recipient reported or responded to the email, the lure is not delivered.",
+          "luresDelivered": "Lures Delivered",
+          "title": "Delivery Information"
+        },
+        "download": {
+          "activityTimeline": "Activity Timeline",
+          "executiveSummary": "Executive Summary",
+          "fullCsv": "Full CSV"
+        },
+        "export": {
+          "readEmailDetails": "Read Email Details",
+          "responseDetails": "Response Details"
+        },
+        "previews": {
+          "attachment": "Attachment",
+          "education": "Education",
+          "email": "Email",
+          "landing": "Landing",
+          "lure": "Lure",
+          "title": "Content Previews"
+        },
+        "susceptibilityRate": "Susceptibility Rate",
+        "resiliencyRate": "Resiliency Rate",
+        "responseMetrics": {
+          "clickedLink": "Clicked Link",
+          "clickedLinkAndSubmittedData": "Clicked Link and Submitted Data",
+          "clickedLinkDidNotSubmitData": "Clicked Link, did not Submit Data",
+          "description": "Elit eget gravida cum sociis natoque penatibus et. Fusce ut placerat orci nulla. Mauris a diam maecenas sed enim ut sem viverra.",
+          "openedAttachment": "Opened Attachment",
+          "openedEmailOnly": "Opened Email Only",
+          "reportedOnly": "Reported Only",
+          "title": "Response Metrics",
+          "viewedEducation": "Viewed Education"
+        },
+        "scenarioFormat": {
+          "markedAsUrgent": "Marked as Urgent",
+          "timeZoneDelivery": "Time Zone Delivery",
+          "title": "Scenario Format",
+          "trackingEmailOpen": "Tracking Email Open",
+          "zipFileName": "Zip File Name",
+          "zipFilePassword": "Zip File Password"
+        },
+        "totalRecipients": "Total Recipients",
+        "views": {
+          "enhancedAnalytics": "Enhanced Analytics",
+          "mailStatus": "Mail Status",
+          "networksAndMaps": "Networks and Maps",
+          "reporter": "Reporter",
+          "responses": "Responses",
+          "summary": "Summary",
+          "userAgents": "User Agents"
+        }
+      },
+      "scenarioNavigation": {
+        "confirmModal": {
+          "title": "Do you want to leave?",
+          "message": "If you leave this page, you will lose any unsaved changes."
+        }
+      },
+      "singleRecipient": {
+        "description": "Report card statistics reflect completed, unarchived scenarios that were delivered to this recipient.",
+        "stats": {
+          "tooltip": {
+            "reportRate": "Percentage of emails this recipient reported out of all scenario emails delivered to this recipient",
+            "emailsDelivered": "Total number of scenario emails delivered to this recipient",
+            "educationViewed": "Total number of times this recipient viewed the education associated with completed scenarios",
+            "reportedEmails": "Total number of scenario emails this recipient reported"
+          }
+        }
+      },
+      "singleRecipientGroup": {
+        "scheduledScenarios": {
+          "title": "Scheduled Scenarios"
+        },
+        "dynamicFilters": {
+          "title": "Filters",
+          "description": [
+            "Dynamic groups give you the ability to filter your master recipient list based off criteria that you select. Dynamic groups will automatically update when changes are made to your recipients via upload or sync, before the launch of a scenario, or by clicking the Update Group option. You can add up to 5 dynamic filters to a dynamic group.",
+            "Note: Random recipients will only update when the Update Group option is selected."
+          ],
+          "update": {
+            "toast": {
+              "title": "Group updated",
+              "description": "Filters and recipients were updated for {groupName}."
+            }
+          },
+          "error": {
+            "toast": {
+              "title": "Invalid filter",
+              "description": "Please fix the error and try again"
+            }
+          }
+        },
+        "recipients": {
+          "selectedCount": "No Recipients Selected | 1 Recipient Selected | {count} Recipients Selected"
+        }
+      },
+      "statsReporterTimeline": {
+        "averageReportTime": "Average Report Time",
+        "fastestReportTime": "Fastest Report Time",
+        "firstSusceptible": "First Susceptible",
+        "slowestReportTime": "Slowest Report Time",
+        "title": "Reporter Statistics"
+      },
+      "suggestedPhishingTemplates": {
+        "description": "Smart Suggest uses best practice and machine learning to suggest appropriate templates based upon program history and industry relevance.",
+        "resultsMeta": "Showing {from}-{to} of {total}",
+        "title": "Suggested for you"
+      },
+      "suspiciousEmails": {
+        "emptyStateDescription": "Not available. No emails have been reported yet.",
+        "title": "Top 100 Suspicious Email Reporters"
+      },
+      "tableRepeatClickers": {
+        "description": "The table below contains details about all repeat clickers (recipients who clicked, submitted data, or viewed an attachment) for completed scenarios. Response Rate captures total responses for a scenario. Susceptibility captures the action a user takes, at which point PhishMe presents the education. The chart reflects a sample of up to 300 repeat clickers. It can take up to an hour for data for recently completed scenarios to appear on this page. However, you can click Download Report to view this data immediately.",
+        "attachment": "Attachment",
+        "clicked": "Clicked",
+        "clickedOnly": "Clicked Only",
+        "lastResponse": "Last Response",
+        "openedAttachment": "Opened Attachement",
+        "responseRate": "Response Rate",
+        "submittedData": "Submitted Data",
+        "totalScenarios": "Total Scenarios",
+        "viewedEducation": "Viewed Education"
+      },
+      "tableScenarioMailStatus": {
+        "clientError": "Client Error",
+        "exportButton": "Download All SMTP Records",
+        "lure": "Lure",
+        "mailType": "Mail Type",
+        "messaging": {
+          "clientError": "These messages are part of an active Responsive Delivery scenario and have not yet been delivered because the recipients are not actively working in Outlook. Cofense PhishMe will continue to attempt delivery until the scenario ends or an operator elects to stop the scenario before the emails are delivered.",
+          "serverError": "These messages were rejected by your email server. The “status=” field, provided by your email server, indicates that Cofense PhishMe should not try to redeliver the messages. Permanent delivery failures can result when email addresses of recipients are not valid.",
+          "success": "These messages were successfully received by your email server. If the message is not present in a recipient’s inbox, the message might have been routed to another folder as a result of an email filtering action. For example, the message could have been quarantined or moved to a spam folder."
+        },
+        "serverError": "Server Error",
+        "smtpLog": "SMTP Log",
+        "stats": {
+          "delivered": "Successfully Delivered",
+          "pending": "Pending Delivery",
+          "permanent": "Permanent Failure",
+          "temporary": "Temporary Failure",
+          "undelivered": "Undelivered"
+        },
+        "title": "Mail Status"
+      },
+      "tableScenarioNetworks": {
+        "city": "City",
+        "country": "Country",
+        "ipAddress": "IP Address",
+        "isp": "ISP",
+        "title": "Results by Network",
+        "totalRequests": "Total Requests"
+      },
+      "tableScenarioReporter": {
+        "emailAddress": "Email Address",
+        "isNew": "New",
+        "isRepeated": "Repeated",
+        "name": "Name",
+        "recipientGroups": "Groups",
+        "timeToReport": "Time To Report",
+        "title": "Fastest Reporters"
+      },
+      "tableScenarioResponses": {
+        "clickedAt": "Clicked",
+        "groups": "Groups",
+        "openedAttachmentAt": "Opened Attachment",
+        "openedEmailAt": "Opened Email",
+        "passwordEntered": "Password",
+        "remoteIp": "Remote IP",
+        "title": "Response Details",
+        "usernameEntered": "Username",
+        "viewedEducationAt": "Viewed Education",
+        "viewedEmailAt": "Viewed Email"
+      },
+      "tableScenarioUserAgents": {
+        "browserType": "Browser Type",
+        "clickedLink": "Clicked Link",
+        "openedAttachment": "Opened/Previewed Attachment",
+        "openedEmail": "Opened Email Trackings",
+        "submittedData": "Submitted Data",
+        "title": "Responses by Browser Type",
+        "totalResponses": "Total Responses",
+        "viewedEducation": "Viewed Education"
+      },
+      "templateListing": {
+        "announcementsTitle": "Awareness Newsletter Templates",
+        "enableRedirect": {
+          "a11yLabel": "Enable Redirect",
+          "label": "Enable Redirect"
+        },
+        "bookmarked": {
+          "a11yLabel": "Bookmarked templates",
+          "label": "Bookmarked"
+        },
+        "previouslyUsed": {
+          "a11yLabel": "Previously Used templates",
+          "label": "Previously Used"
+        },
+        "scenariosTitle": "Phishing Templates",
+        "search": {
+          "label": "Search templates",
+          "placeholder": "Search templates"
+        },
+        "selectAllFilters": "Select all filters",
+        "selectFilters": "Select filters",
+        "sort": {
+          "leastPopular": "Least Popular",
+          "leastSusceptible": "Least Susceptible",
+          "mostPopular": "Most Popular",
+          "mostSusceptible": "Most Susceptible",
+          "newest": "Newest",
+          "oldest": "Oldest"
+        },
+        "view": {
+          "grid": "Grid",
+          "list": "List"
+        }
+      },
+      "viewPasswordPolicyModal": {
+        "expiration": {
+          "title": "Expiration"
+        },
+        "reuse": {
+          "title": "Reuse"
+        },
+        "requirements": {
+          "description": "Passwords must contain the following:",
+          "title": "Minimum Requirements"
+        }
+      }
+    },
+    "shared": {
+      "chart": {
+        "downloadButtonTooltip": "Download this chart as a PNG file"
+      },
+      "comingSoon": {
+        "analytics": {
+          "scenarios": {
+            "link": "Scenario Management",
+            "message": "Scenario Reports are available by clicking the template title on the {url} page"
+          },
+          "newsletters": {
+            "link": "Awareness Newsletter Management",
+            "message": "Awareness Newsletter Reports are available by clicking the template title on the {url} page"
+          }
+        },
+        "announcementsEdit": {
+          "message": "In the meantime, head to the legacy version. You can pick up where you left off by editing the awareness newsletter (called an \"announcement\" in legacy) you just started.",
+          "link": "Continue to edit your awareness newsletter",
+          "title": "We are still working on the pages for creating awareness newsletters."
+        },
+        "announcementsSummary": {
+          "message": "In the meantime, head to the legacy version. You can pick up where you left off with the awareness newsletter (called \"announcement\" in legacy) summary.",
+          "link": "Continue to announcement summary",
+          "title": "We are still working on pages for the awareness newsletters summary."
+        },
+        "catalog": {
+          "cbtModules": {
+            "link": "CBT Modules",
+            "message": "CBT Modules are available by clicking on the {url} page",
+            "title": "We are still working on pages for the CBT modules."
+          }
+        },
+        "links": {
+          "boardReport": "Board Report",
+          "cbtModules": "CBT Modules",
+          "dashboard": "Dashboard",
+          "getReporter": "Get Reporter",
+          "recipientImport": "Recipient Import",
+          "recipients": "Recipients",
+          "repeatClickerReporting": "Repeat Clicker Analytics",
+          "reporting": "Reporting & Analytics"
+        },
+        "message": "In the meantime, head to the legacy version of this page to get the job done. Here's a place to start:",
+        "scenariosEdit": {
+          "message": "In the meantime, head to the legacy version. You can pick up where you left off by editing the scenario you just started.",
+          "link": "Continue to edit your scenario",
+          "title": "We are still working on the pages for creating scenarios."
+        },
+        "scenariosSummary": {
+          "message": "In the meantime, head to the legacy version. You can pick up where you left off with the scernario summary.",
+          "link": "Continue to scenario summary",
+          "title": "We are still working on pages for the scenarios summary."
+        },
+        "tagline": "Coming Soon!",
+        "title": "We are working on this page to give you the best possible experience."
+      },
+      "contentBadges": {
+        "approvedBrands": "Approved Brands",
+        "attachmentPhish": "Attachment Phish",
+        "announcement": "Awareness Newsletter",
+        "benchmark": "Benchmark",
+        "chain": "Chain",
+        "conversational": "Conversational",
+        "credentialPhish": "Credential Phish",
+        "dynamicGroup": "Dynamic Group",
+        "emailThreatIntel": "Email Threat Intel",
+        "forPurchase": "For Purchase",
+        "infographic": "Infographic",
+        "multilingual": "Multilingual",
+        "partnerEducation": "Partner Education",
+        "purchased": "Purchased",
+        "recentlyAdded": "Recently Added",
+        "recipient": "Recipient",
+        "recipientGroup": "Recipients",
+        "recipientImport": "Import",
+        "recipientSync": "Sync",
+        "responsiveDelivery": "Responsive Delivery",
+        "spearPhishing": "Spear Phishing",
+        "staticGroup": "Static Group",
+        "staticHtml": "HTML",
+        "urlPhish": "URL Phish",
+        "video": "Video"
+      },
+      "discardChangesModal": {
+        "message": "To stay on this page so you can save your changes, click Cancel. To leave this page and discard your unsaved changes, click Continue.",
+        "title": "Page contains unsaved changes"
+      },
+      "goToSelect": {
+        "label": "Go to"
+      },
+      "listingFetchUpdate": {
+        "message": "Your {type} are loading.",
+        "thankYou": "Thank you for being patient.",
+        "tipLabel": "Did you know?",
+        "tips": {
+          "1": "Because threat actors constantly innovate, Cofense offers simulations based on their latest tactics. Our simulations are shaped by our deep threat intelligence gathered from the millions of real phishing threats analyzed by the Cofense Phishing Defense Center&trade;, Cofense Intelligence&trade;, and Cofense Labs.",
+          "2": "Cofense PhishMe Playbooks let you configure a full 12-month program—phishing simulation scenarios, landing pages, attachments, and educational content—in just a few clicks.",
+          "3": "Smart Suggest uses advanced algorithms and embedded best practices to recommend scenarios based on current active threats, industry relevance, and your program’s history.",
+          "4": "With Cofense PhishMe Responsive Delivery, you can maximize user engagement by sending phishing awareness emails to employees when they are active in email.",
+          "5": "Click rate, or susceptibility, is only part of the story. More important are reporting and resiliency rates, the latter being the ratio of people who click to those who report bad emails.",
+          "6": "Cofense PhishMe comes with Cofense Reporter&trade; - our one-click email reporting button - to turn users into active defenders and reliable human sensors. Combine reporting data to understand how users are likely to react in a real attack.",
+          "7": "Our Board Reports allow your executives to monitor program performance and track the change in resiliency to phishing.",
+          "8": "Benchmarking is a patented feature to conduct an identical scenario and receive an additional report that provides an anonymous comparison of your results with other Cofense customers or industry peers that ran the same scenario.",
+          "9": "Use Highly Personalized templates to simulate advanced social engineering tactics by using specific public, known details about email recipients gathered from internal and public sources.",
+          "10": "Cofense Reporter&trade; makes it easy to report suspicious emails. With a single click of the Cofense phishing button, users can notify security teams to investigate potential phishing threats. With real-time visibility, your SOC can respond to and stop phishing attacks faster.",
+          "11": "Cofense Reporter&trade; separates phishing simulations from emails sent by unknown sources-only emails that could be phish are delivered to incident responders. There’s no simpler way for users to report phishing attacks or the SOC to begin analyses.",
+          "12": "Cofense Reporter unites vigilant users and incident responders. It supplies the SOC with the original email and summarizes other valuable information needed to analyze emails efficiently: subject, headers, attachments, URLs, and more."
+        },
+        "types": {
+          "announcements": "Awareness Newsletters",
+          "announcementGroups": "Awareness Newsletter Groups",
+          "playbooks": "Playbooks",
+          "recipients": "Recipients",
+          "recipientGroups": "Recipient Groups",
+          "recipientTimeline": "Recipient Timeline",
+          "repeatClickers": "Repeat Clickers",
+          "reportCards": "Report Cards",
+          "scenarios": "Scenarios",
+          "scenarioGroups": "Scenario Groups"
+        }
+      },
+      "notFound": {
+        "announcement": {
+          "cta": "Go to Awareness Newsletters",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Newsletter Not Found",
+          "title": "We can't find the awareness newsletter you're looking for."
+        },
+        "announcementGroup": {
+          "cta": "Go to Awareness Newsletter Groups",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Group Not Found",
+          "title": "We can't find the awareness newsletter group you're looking for."
+        },
+        "generic": {
+          "cta": "Go to Dashboard",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Page Not Found",
+          "title": "We can't find the  page you're looking for."
+        },
+        "recipient": {
+          "cta": "Go to Recipients",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Recipient Not Found",
+          "title": "We can't find the recipient you're looking for."
+        },
+        "recipientGroup": {
+          "cta": "Go to Recipient Groups",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Group Not Found",
+          "title": "We can't find the recipient group you're looking for."
+        },
+        "scenario": {
+          "cta": "Go to Scenarios",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Scenario Not Found",
+          "title": "We can't find the scenario you're looking for."
+        },
+        "scenarioGroup": {
+          "cta": "Go to Scenario Groups",
+          "message": "Try again. If you still have trouble, contact our support team.",
+          "tagline": "Group Not Found",
+          "title": "We can't find the scenario group you're looking for."
+        }
+      },
+      "paginatedResults": {
+        "resultCount": "Showing {range} of {totalRecords} Results"
+      },
+      "perPageSelect": {
+        "label": "Per page"
+      },
+      "phishEmailInterval": {
+        "30seconds": "About 30 seconds",
+        "5minutes": "About 5 minutes",
+        "15minutes": "About 15 minutes",
+        "30minutes": "About 30 minutes",
+        "1hour": "About 1 hour",
+        "3hours": "About 3 hours",
+        "6hours": "About 6 hours",
+        "24hours": "About 24 hours"
+      },
+      "scenarioListingItem": {
+        "id": "ID",
+        "professionalServices": "Professional Services",
+        "recipientCount": "No recipients in {recipientGroups} | 1 recipient in {recipientGroups} | {recipientCount} recipients in {recipientGroups}",
+        "recipientGroups": "no groups | {recipientGroupsName} | {recipientGroupsCount} groups",
+        "responsiveDelivery": "Responsive Delivery",
+        "scenarioName": "Scenario Name",
+        "selectScenario": "Select Scenario"
+      },
+      "sessionTimeoutModal": {
+        "button": "Stay Logged In",
+        "message": "Your session has expired. | Your session will expire in 1 second. | Your session will expire in {count} seconds.",
+        "title": "Session Expiring"
+      },
+      "sortBySelect": {
+        "label": "Sort by"
+      }
+    }
+  },
+  "cta": {
+    "activePlaybook": {
+      "cta": "View Running Playbook",
+      "description": "Only one playbook can run at a time. ",
+      "title": "Another Playbook Is In Progress"
+    },
+    "emptyChartOverallResponses": {
+      "description": "Schedule your first template to review response trends.",
+      "title": "No Overall Responses Data"
+    },
+    "emptyChartReportingFrequency": {
+      "descriptionWithoutReporter": "Empower users to easily report real phishing messages.",
+      "descriptionWithReporter": "Create and schedule a scenario to see overall engagement of your organization.",
+      "title": "No Reporting Frequency Data"
+    },
+    "emptyReportCardTable": {
+      "description": "No unarchived scenarios matching filtering criteria were delivered to this recipient",
+      "title": "No Data"
+    },
+    "emptyRepeatClickersTable": {
+      "description": "Create and schedule a scenario to see overall engagement of your organization.",
+      "title": "No Repeat Clickers Data"
+    },
+    "getReporter": {
+      "description": "Awareness is good. Action is better.",
+      "title": "Cofense Reporter"
+    },
+    "getReporterWithoutData": {
+      "description": "No Reporter Data.",
+      "title": "Cofense Reporter"
+    },
+    "importRecipientsDashboard": {
+      "title": "Get Started",
+      "description": "Who should receive emails?"
+    },
+    "newAnnouncement": {
+      "description": "Announce your program, explain your compliance policy, alert your employees to the latest email threats, and more.",
+      "title": "Create a New Awareness Newsletter"
+    },
+    "newPlaybook": {
+      "description": "Create and schedule an automated yearly program.",
+      "title": "Schedule a Playbook"
+    },
+    "newScenario": {
+      "description": "Create a new scenario from existing templates or build your own.",
+      "title": "Create New Scenario"
+    },
+    "recipientsImport": {
+      "description": "Get started by importing a recipient list.",
+      "title": "Import Recipients"
+    },
+    "recipientsSyncActive": {
+      "description": "You configured your Cofense PhishMe account for synchronization with your organization’s user directory service.",
+      "title": "View Recipient Sync"
+    },
+    "recipientsSyncInactive": {
+      "description": "Automatically synchronize your organization’s user directory service with Cofense PhishMe.",
+      "title": "Configure Recipient Sync"
+    }
+  },
+  "generic": {
+    "action": "Action",
+    "actions": "Actions",
+    "active": "Active",
+    "activities": "Activities",
+    "activity": "Activity",
+    "activityTimeline": "Activity Timeline",
+    "add": "Add",
+    "additionalActions": {
+      "cancel": "Cancel...",
+      "cancelRemoval": "Cancel Removal",
+      "change": "Change...",
+      "changePassword": "Change Password...",
+      "deactivate": "Deactivate...",
+      "delete": "Delete...",
+      "duplicate": "Duplicate...",
+      "edit": "Edit...",
+      "enroll": "Enroll ...",
+      "enrollDevive": "Enroll Device",
+      "enrollNewDevice": "Enroll New Device",
+      "generateToken": "Generate Token...",
+      "launchScenario": "Launch Scenario ...",
+      "manage": "Manage...",
+      "remove": "Remove...",
+      "removeFromGroup": "Remove From Group...",
+      "removeRecipients": "Remove Recipients...",
+      "requestChange": "Request Change...",
+      "requestToken": "Request Token...",
+      "sendTestMessage": "Send a Test Message ...",
+      "statusEmailOptions": "Status Email Options ...",
+      "stopSync": "Stop Sync...",
+      "typeToSearch": "Type to search...",
+      "view": "View...",
+      "viewActivity": "View Activity..."
+    },
+    "addFilter": "Add Filter",
+    "addPlaceholder": "Add placeholder",
+    "addPlaceholders": "Add placeholders",
+    "address": "Address",
+    "address1": "Address 1",
+    "address2": "Address 2",
+    "addToGroup": "Add To Group",
+    "all": "All",
+    "allScenarios": "All Scenarios",
+    "allScenarioData": "All Scenario Data",
+    "am": "AM",
+    "apiToken": "API Token",
+    "apply": "Apply",
+    "archive": "Archive",
+    "archived": "Archived",
+    "archiveScenario": "Archive Scenario",
+    "attachment": "Attachment",
+    "attachmentFilename": "Attachment Filename",
+    "attachmentPhish": "Attachment Phish",
+    "attachmentType": "Attachment Type",
+    "authorize": "Authorize",
+    "automatic": "Automatic",
+    "awarenessNewsletter": "Awareness Newsletter",
+    "back": "Back",
+    "bounced": "Bounced",
+    "cancel": "Cancel",
+    "cancelGrouping": "Cancel Grouping",
+    "changePassword": "Change Password",
+    "city": "City",
+    "cke4": "CK4 - Editor",
+    "clicked": "Clicked",
+    "clickedLink": "Clicked Link",
+    "clickedOnly": "Clicked Only",
+    "clickonly": "Click Only",
+    "clickOnly": "Click Only",
+    "clear": "Clear",
+    "clearFilters": "Clear Filters",
+    "close": "Close",
+    "cofenseResourceCenter": "Cofense Resource Center",
+    "collapseSidebarLabel": "Collapse Sidebar",
+    "comingSoon": "Coming Soon",
+    "configure": "Configure",
+    "confirm": "Confirm",
+    "confirmAndRun": "Confirm and Run",
+    "confirmed": "Confirmed",
+    "contactSales": "Contact Sales",
+    "content": "content",
+    "continue": "Continue",
+    "copy": "Copy",
+    "count": "Count",
+    "country": "Country",
+    "courses": "Courses",
+    "create": "Create",
+    "created": "Created",
+    "createdAt": {
+      "past": "Created on:"
+    },
+    "createNewGroup": "Create New Group",
+    "createNow": "Create Now",
+    "createScenario": "Create Scenario",
+    "credentials": "Credentials",
+    "currentCompany": "Current Company",
+    "dataentry": "Data Entry",
+    "dataEntry": "Data Entry",
+    "dateTime": "{date} at {time}",
+    "day": "Day",
+    "deactivate": "Deactivate",
+    "deactivateAll": "Deactivate All",
+    "default": "Default",
+    "delete": "Delete",
+    "deleteAll": "Delete All",
+    "deliveryEndDate": "Delivery End Date",
+    "deliveryRate": "Delivery Rate",
+    "deliveryStatus": "Delivery Status",
+    "description": "Description",
+    "details": "Details",
+    "deviceType": "Device Type",
+    "disabled": "Disabled",
+    "discard": "Discard",
+    "disclaimer": "Disclaimer",
+    "documentName": "Document Name",
+    "domain": "Domain",
+    "download": "Download",
+    "downloadAll": "Download All",
+    "downloadAttachment": "Download Attachment",
+    "downloadAsZip": "Download .ZIP",
+    "downloadDetails": "Download Details",
+    "downloadReport": "Download Report",
+    "duplicate": "Duplicate",
+    "duration": "Duration:",
+    "durationDays": "N/A | 1 day | {duration} days",
+    "dynamic": "Dynamic",
+    "edit": "Edit",
+    "education": "Education",
+    "educationPreview": "Education Preview",
+    "educationViewed": "Education Viewed",
+    "email": "Email",
+    "emails": "Emails",
+    "emailAddress": "Email Address",
+    "emailAddresses": "Email Addresses",
+    "emailPreview": "Email Preview",
+    "emailsDelivered": "Emails Delivered",
+    "emailSubject": "Email Subject",
+    "emailTracking": "Email Tracking",
+    "emptyResultsButton": "Reset Results",
+    "emptyResultsTitle": "No Results Were Found",
+    "enable": "Enable",
+    "enabled": "Enabled",
+    "endedAt": {
+      "future": "Ends on:",
+      "past": "Ended on:"
+    },
+    "enteredData": "Entered Data",
+    "equals": "Equals",
+    "estimatedRecipients": "Estimated Recipients",
+    "example": "Example",
+    "export": "Export",
+    "exportToCsv": "Export to CSV",
+    "findOutMore": "Find out more.",
+    "flagAsUrgent": "Flag as Urgent",
+    "for": "For",
+    "from": "From",
+    "fromAddress": "From Address",
+    "fromBuilder": "From Builder",
+    "generate": "Generate",
+    "getReporter": "Get Reporter",
+    "goToDashboard": "Go To Dashboard",
+    "group": "Group",
+    "groupAnnouncements": "Group Newsletters",
+    "groupItems": "Group Items",
+    "groupRecipients": "Group Recipients",
+    "groups": "Groups",
+    "groupScenarios": "Group Scenarios",
+    "hideAllSampleData": "Hide All Sample Data",
+    "httpsLinks": "HTTPS Links",
+    "iAgree": "I Agree",
+    "id": "ID",
+    "impersonating": "Impersonating",
+    "import": "Import",
+    "imported": "Imported",
+    "importRecipients": "Import Recipients",
+    "inactive": "Inactive",
+    "instructions": "Instructions",
+    "label": "Label",
+    "landing": "Landing",
+    "landingPreview": "Landing Preview",
+    "language": "Language",
+    "lastSync": "Last sync",
+    "leavePage": "Leave Page",
+    "legalDisclaimer": "Legal Disclaimer",
+    "listingView": "Listing view",
+    "lure": "Lure",
+    "lureEmail": "Lure Email",
+    "lurePreview": "Lure Preview",
+    "managedClient": "Managed Client",
+    "manual": "Manual",
+    "minutesCount": "None | 1 minute | {count} minutes",
+    "multiple": "Multiple",
+    "myContent": "My Content",
+    "na": "N/A",
+    "name": "Name",
+    "network": "Network",
+    "networkClass": "Network Class",
+    "newest": "Newest",
+    "newsletter": "Newsletter",
+    "next": "Next",
+    "no": "No",
+    "noDataAvailable": "No Data Available",
+    "noDetailsFoundFor": "No details found for \"{term}\"",
+    "none": "None",
+    "nonSsoAccount": "Non-SSO Account",
+    "noRecipientGroupsFound": "No recipient groups found",
+    "noScenarioGroupsFound": "No scenario groups found",
+    "notProvided": "Not Provided",
+    "numberBounced": "No bounced emails | {count} bounced email | {count} bounced emails",
+    "oldest": "Oldest",
+    "openAttachment": "Open Attachment",
+    "openedAttachment": "Opened Attachment",
+    "or": "or",
+    "perMinute": "per minute",
+    "phishEmail": "Phish Email",
+    "phishingLinks": "Phishing Links",
+    "phishingTemplate": "Phishing Template",
+    "phishmeContent": "PhishMe Content",
+    "phishPreview": "Phish Preview",
+    "phoneNumber": "Phone Number",
+    "placeholders": "Placeholders",
+    "pm": "PM",
+    "popularity": "Popularity",
+    "premiumContent": "Premium Content",
+    "preview": "Preview",
+    "previewAttachment": "Preview Attachment",
+    "previewEducation": "Preview Education",
+    "previewEducationTemplate": "Preview Education Template",
+    "previewEmail": "Preview Email",
+    "previewLanding": "Preview Landing",
+    "previewLure": "Preview Lure",
+    "previous": "Previous",
+    "qr": "QR Code",
+    "provided": "Provided",
+    "readTheDocumentation": "read the documentation",
+    "recipient": "Recipient",
+    "recipientCount": "0 Recipients | 1 Recipient | {count} Recipients",
+    "recipientGroups": "Recipient Groups",
+    "recipientSync": "Recipient Sync",
+    "recipients": "Recipients",
+    "redirectContent": "Redirect Content",
+    "redirectionUrl": "Redirection URL",
+    "rejected": "Rejected",
+    "remove": "Remove",
+    "removeAll": "Remove All",
+    "removed": "Removed",
+    "reportCard": "Report Card",
+    "reportRate": "Report Rate",
+    "reported": "Reported",
+    "reportedEmails": "Reported Emails",
+    "request": "Request",
+    "requiredField": "Required field",
+    "resendVerificationEmail": "Resend Verification Email",
+    "resetFilters": "Reset Filters",
+    "resources": "Resources",
+    "revert": "Revert",
+    "review": "Review",
+    "role": "Role",
+    "sampleData": "Sample Data",
+    "sampleDataHidden": "Sample Data Hidden",
+    "sampleDataVisible": "Sample Data Visible",
+    "save": "Save",
+    "saveAndContinue": "Save and Continue",
+    "saveAndLeave": "Save and Leave",
+    "saveAndPreview": "Save and Preview",
+    "scenario": "Scenario",
+    "scenarioProgress": "Scenario Progress",
+    "scenarios": "Scenarios",
+    "scenarioType": "Scenario Type",
+    "scenarioTypes": {
+      "attachmentPhish": "Attachment Phish",
+      "dataEntry": "Data Entry",
+      "urlPhish": "URL Phish",
+      "credentialPhish": "Credential Phish"
+    },
+    "schedule": "Schedule",
+    "scheduled": "Scheduled",
+    "scheduleNow": "Schedule Now",
+    "scheduling": "Scheduling",
+    "search": "Search",
+    "searchGroup": "Search Group",
+    "seconds": "seconds",
+    "select": "Select",
+    "selectAll": "Select All",
+    "selectCategory": "Select Category",
+    "selected": "Selected:",
+    "selectGroup": "Select Group",
+    "selectOption": "Select Option",
+    "send": "Send",
+    "sendTo": "Send to",
+    "setAsDefault": "Set as Default",
+    "showSampleData": "Show Sample Data",
+    "skipToLinkLabel": "Skip to main content",
+    "sso": "sso",
+    "ssoAccount": "SSO Account",
+    "startedAt": {
+      "future": "Starts on:",
+      "past": "Started on:"
+    },
+    "startDate": "Start Date",
+    "startTime": "Start Time",
+    "state": "State",
+    "static": "Static",
+    "status": "Status",
+    "stayOnPage": "Stay on Page",
+    "stop": "Stop",
+    "subject": "Subject",
+    "subjectPlaceholders": "Subject Placeholders",
+    "submittedData": "Submitted Data",
+    "subscribedToNewsletter": "Subscribed to Newsletter",
+    "success": "Success",
+    "summary": "Summary",
+    "susceptibility": "Susceptibility",
+    "syncedOn": "Synced On",
+    "selectCountry": "Select Country",
+    "selectTimezone": "Select Time Zone",
+    "synced": "Synced",
+    "switch": "Switch",
+    "termsAndConditions": "Terms and Conditions",
+    "timeline": "Timeline",
+    "timezone": "Time Zone",
+    "title": "Title",
+    "token": "Token",
+    "tracking": "Tracking",
+    "to": "To",
+    "topic": "Topic",
+    "trialCompany": "Trial Company",
+    "type": "Type",
+    "unknown": "Unknown",
+    "unknownInitials": "?",
+    "unsavedChanges": {
+      "title": "Unsaved changes",
+      "description": "You have some unsaved changes. Do you want to save them before leaving this page?"
+    },
+    "unsubscribedFromNewsletter": "Unsubscribed from Newsletter",
+    "update": "Update",
+    "updated": "Updated",
+    "updateGroup": "Update Group",
+    "updatedAt": {
+      "past": "Updated on:"
+    },
+    "url": "URL",
+    "userProfile": "User Profile",
+    "validationCode": "Validation code",
+    "view": "View",
+    "viewActivity": "View Activity",
+    "viewAnalytics": "View Analytics",
+    "viewedEducation": "Viewed Education",
+    "viewGroup": "View Group",
+    "viewRecipient": "View Recipient",
+    "viewReports": "View Reports",
+    "viewSummary": "View Summary",
+    "viewTimeline": "View Timeline",
+    "yes": "Yes",
+    "warning": "Warning",
+    "zip": "Zip",
+    "zipAttachment": "Zip Attachment",
+    "zipName": "Zip Filename",
+    "zipPassword": "Zip Password",
+    "zipPasswords": "Zip Passwords"
+  },
+  "links": {
+    "aboutCofense": "About Cofense",
+    "acceptableUsePolicy": "Acceptable Use Policy",
+    "agreement": "Cofense Master Software and Service Agreement",
+    "blog": "Blog",
+    "contactUs": "Contact Us",
+    "events": "Events",
+    "followUs": "Follow Us",
+    "news": "News",
+    "termsAndConditions": "Terms and Conditions",
+    "recipientSyncDocumentation": "Recipient Sync Documentation"
+  },
+  "modal": {
+    "accountProfile": {
+      "update": {
+        "title": "Update Profile",
+        "sampleData": "Show Sample Scenarios, Recipient Groups, and Reporting ",
+        "subscribedToNewsletter": "Subscribe to Email Newsletter and Updates",
+        "toast": {
+          "message": "We updated your profile."
+        }
+      }
+    },
+    "allowedDomains": {
+      "duplicate": {
+        "toast": {
+          "title": "Duplicate domain",
+          "message": "<strong>{domain}</strong> already exists."
+        }
+      },
+      "update": {
+        "title": "Edit Allowed Domains",
+        "toast": {
+          "message": "We updated the allowed domains you selected."
+        }
+      }
+    },
+    "announcement": {
+      "create": {
+        "title": "Create New Awareness Newsletter",
+        "toast": {
+          "message": "Awareness newsletter was created."
+        }
+      },
+      "remove": {
+        "message": "You are about to remove the awareness newsletter {name} from your account.",
+        "title": "Remove this awareness newsletter from your account?",
+        "toast": {
+          "message": "We removed the awareness newsletter you selected."
+        },
+        "will": {
+          "messages": [
+            "This awareness newsletter from your account",
+            "This awareness newsletter from associated groups and playbooks",
+            "This awareness newsletter's associated reports",
+            "This awareness newsletter's associated recipient data"
+          ],
+          "title": "This action removes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Associated recipient groups",
+            "Associated recipients"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "update": {
+        "title": "Edit Awareness Newsletter",
+        "toast": {
+          "message": "We updated the awareness newsletter you selected."
+        }
+      }
+    },
+    "announcementGroup": {
+      "create": {
+        "title": "Create New Awareness Newsletter Group",
+        "toast": {
+          "message": "Awareness newsletter group was created."
+        }
+      },
+      "delete": {
+        "message": "You are about to delete the awareness newsletter group {name}.",
+        "title": "Delete this awareness newsletter group?",
+        "toast": {
+          "message": "We deleted the awareness newsletter group you selected."
+        },
+        "will": {
+          "messages": [
+            "The awareness newsletter group",
+            "The awareness newsletter group's aggregate report"
+          ],
+          "title": "This action deletes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Associated scenarios",
+            "Associated recipient groups",
+            "Associated recipients"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "update": {
+        "title": "Edit Awareness Newsletter Group",
+        "toast": {
+          "message": "We updated the awareness newsletter group you selected."
+        }
+      }
+    },
+    "apiAccessToken": {
+      "afterGenerate": {
+        "alert": [
+          "Copy your new token now.",
+          "You won’t be able to view, copy, or retrieve this token after you close this modal. Treat it like a password and keep it secure."
+        ]
+      },
+      "beforeGenerate": {
+        "alert": [
+          "You can have only one API token.",
+          "If you already have a token and you generate a new one, all access associated with your current token will be disabled. This action cannot be undone."
+        ]
+      },
+      "generate": {
+        "form": {
+          "label": "Optional Expiration Date",
+          "placeholder": "Expiration Date"
+        },
+        "title": "Generate API Token"
+      },
+      "revoke": {
+        "message": "If you revoke your token, all access associated with your current token will be disabled. This action cannot be undone.",
+        "title": "Revoke API Access Token",
+        "toast": {
+          "message": "Your API Token has been revoked"
+        }
+      }
+    },
+    "changePassword": {
+      "update": {
+        "title": "Change Password",
+        "toast": {
+          "message": "Your password was changed."
+        }
+      }
+    },
+    "companyAddress": {
+      "update": {
+        "title": "Update Company Address",
+        "toast": {
+          "message": "We updated your company address."
+        }
+      }
+    },
+    "changeEducation": {
+      "title": "Change Education Content"
+    },
+    "companyPlaceholders": {
+      "update": {
+        "description": [
+          "When you provide your company and program details here, we'll use those details in your playbooks and in any scenario, newsletter, and education templates that contain these placeholders.",
+          "At a minimum, playbooks require a company name, a program contact, and program contact details."
+        ],
+        "title": "Edit Company Placeholders",
+        "name": {
+          "description": "How should your company name be displayed in simulated phishing emails and educational material?",
+          "label": "Company Name (COMPANY_NAME)"
+        },
+        "nickname": {
+          "description": "(Optional) What shorthand name or acronym do you use for your company name that your employees would commonly see in communications?",
+          "label": "Company Nickname (COMPANY_NICKNAME)"
+        },
+        "programContact": {
+          "description": "What is the name of the person or group in your company that you would like to convey as \"sender\" of the scenario emails? (Be sure to obtain consent from a named individual.)",
+          "label": "Program Contact (PROGRAM_CONTACT)"
+        },
+        "programContactDetails": {
+          "description": "What email address would you like to display in scenario emails and education for the program contact?",
+          "label": "Program Contact Details (PROGRAM_CONTACT_DETAILS)"
+        },
+        "toast": {
+          "message": "We updated the company placeholders."
+        }
+      }
+    },
+    "educationContent": {
+      "redirectContent": {
+        "copyToast": {
+          "title": "Successfully Copied",
+          "message": "{url} copied to clipboard."
+        },
+        "description": [
+          "Redirect education enables you to redirect the recipient to a website outside of Cofense PhishMe.",
+          "If your organization has a phishing education webpage, you can redirect recipients to that destination on your website. If you redirect to a page on your intranet site, be aware that it might only be accessible when the recipient is logged in to your computer network.",
+          "Using this feature prevents Cofense PhishMe from recording time spent on education."
+        ],
+        "destinationWebUrl": "Destination Webpage URL",
+        "destinationWebUrlTooltip": "Provide the complete URL for your webpage where recipients will be redirected.",
+        "destinationWebUrlPlaceholder": "HTTP://www.example.com/phish_education",
+        "title": "Redirect Education",
+        "toast": {
+          "message": "Redirect url was saved with success!"
+        }
+      }
+    },
+    "mfaDevices": {
+      "destroy": {
+        "title": "Delete this device?",
+        "message": "You will no longer be able to use the device to authenticate your login attempts.",
+        "toast": {
+          "message": "Your device was deleted."
+        }
+      },
+      "confirm": {
+        "title": "Delete this device?",
+        "message": "You will no longer be able to use the device to authenticate your login attempts."
+      },
+      "view": {
+        "title": "Manage Multi-Factor Authentication Devices",
+        "description": "You have {confirmed} confirmed and {unconfirmed} unconfirmed devices"
+      },
+      "create": {
+        "description": "Set up multi-factor authentication by enrolling either your phone to receive a voice call or SMS text message or by enrolling an authenticator device using an authenticator app.",
+        "qrDescription": "Please scan the QR code below with your authenticator device.",
+        "title": "Enroll Multi-Factor Authentication Device",
+        "message": "You will no longer be able to use the device to authenticate your login attempts.",
+        "toast": {
+          "message": "Your device was enrolled. Please validate it."
+        }
+      }
+    },
+    "passwordPolicy": {
+      "view": {
+        "title": "Password Policy"
+      }
+    },
+    "placeholdersExample": {
+      "view": {
+        "imageAlt": "Company Placeholders Inforgraphic",
+        "title": "Company Placeholders Example"
+      }
+    },
+    "placeholders": {
+      "company": {
+        "tooltip": "You can set default values for company placeholders in your account settings. If set, the default values are presented, but you can override them."
+      },
+      "placeholder": "Type to filter list",
+      "recipient": {
+        "tooltip": "You can include placeholders whose values are populated with unique details you provided about your recipients. Missing recipient data will populate with a default value."
+      },
+      "scenario": {
+        "tooltip": ""
+      },
+      "title": "Available Placeholders"
+    },
+    "playbook": {
+      "cancel": {
+        "message": "You are about to cancel the playbook {name}.",
+        "title": "Cancel this playbook?",
+        "toast": {
+          "message": "Playbook you selected was canceled."
+        },
+        "will": {
+          "messages": [
+            "Stops in-progress scenarios immediately",
+            "Removes associated scheduled scenarios and awareness newsletters"
+          ],
+          "title": "This action does the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Associated completed scenarios",
+            "Associated recipient groups",
+            "Associated recipients"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "delete": {
+        "message": "You will no longer be able to use the playbook or see data related to the playbook in your analytics. Do you want to continue?",
+        "title": "Remove this playbook?",
+        "toast": {
+          "message": "We removed the playbook you selected."
+        }
+      },
+      "update": {
+        "title": "Edit Playbook",
+        "toast": {
+          "message": "We updated the playbook you selected."
+        }
+      }
+    },
+    "previouslyUsedEmails": {
+      "title": "Previously Created Emails"
+    },
+    "previouslyUsedLures": {
+      "title": "Previously Created Lures"
+    },
+    "recipient": {
+      "create": {
+        "title": "Create New Recipient",
+        "toast": {
+          "message": "Recipient was created."
+        }
+      },
+      "deactivate": {
+        "message": "This action will deactivate the recipient {name} from your account.",
+        "title": "Deactivate this recipient in your account?",
+        "toast": {
+          "message": "We deactivated the recipient you selected."
+        },
+        "will": {
+          "messages": [
+            "Recipient lists and groups",
+            "Recipient license count",
+            "Repeat clickers report",
+            "Scheduled scenarios and awareness newsletters"
+          ],
+          "title": "This action removes this recipient from the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Recipient data in completed scenarios, awareness newsletters, and groups."
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "remove": {
+        "message": "You are about to remove {name} from this group. You can add any recipients back to the group later from your recipients list.",
+        "title": "Remove this recipient from this group? | Remove the selected recipients from this group?",
+        "recipientCount": "1 recipient | {count} recipients"
+      },
+      "update": {
+        "title": "Edit Recipient",
+        "toast": {
+          "message": "We updated the recipient you selected."
+        }
+      }
+    },
+    "recipientGroup": {
+      "create": {
+        "title": "Create New Recipient Group",
+        "toast": {
+          "message": "Recipient group was created."
+        }
+      },
+      "delete": {
+        "message": "You are about to delete the recipient group {name} from your account.",
+        "title": "Delete this recipient group?",
+        "toast": {
+          "message": "We deleted the recipient group you selected."
+        },
+        "will": {
+          "messages": [
+            "Selected recipient group"
+          ],
+          "title": "This action deletes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Completed scenarios and awareness newsletters",
+            "Individual recipients associated with selected recipient group"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "update": {
+        "title": "Edit Recipient Group",
+        "toast": {
+          "message": "We updated the recipient group you selected."
+        }
+      }
+    },
+    "recipientGroupStatic": {
+      "delete": {
+        "message": "You are about to delete the recipient group {name} from your account.",
+        "title": "Delete this recipient group?",
+        "toast": {
+          "message": "We deleted the recipient group you selected."
+        },
+        "will": {
+          "messages": [
+            "Selected recipient group",
+            "Any dynamic group filters that use selected recipient group"
+          ],
+          "title": "This action deletes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Completed scenarios and awareness newsletters",
+            "Individual recipients associated with selected recipient group"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      }
+    },
+    "recipients": {
+      "deactivate": {
+        "message": "You are about to deactivate all of your recipients. You will no longer be able to use these recipients in groups and scenarios or see related recipient data in your analytics.",
+        "title": "Deactivate all recipients in your account?",
+        "toast": {
+          "message": "We removed all recipients."
+        }
+      }
+    },
+    "recipientSync": {
+      "stop": {
+        "message": [
+          "PhishMe stops synchronizing recipients. To stop your user directory from sending updates to PhishMe, ask your directory administrator to turn off provisioning in the Recipient Sync application.",
+          "If you stop synchronization, PhishMe deletes the connection with your user directory service. This process might take up to an hour. To restart synchronization later, you must reconfigure Recipient Sync. Do you want to continue?"
+        ],
+        "title": "Stop Synchronization?",
+        "toast": {
+          "message": "You requested PhishMe to stop synchronizing recipients with your user directory service. This process typically takes less than one hour."
+        }
+      },
+      "update": {
+        "message": "Requesting a new token will invalidate your existing token. This will disrupt synchronization between Azure AD and Recipient Management. You must re-enter a valid token in Azure AD to continue synchronization. Do you want to continue?",
+        "title": "Confirm New Token Request",
+        "successTitle": "PhishMe Recipient Sync Authentication",
+        "toast": {
+          "message": "A new credential token has been created."
+        }
+      },
+      "copy": {
+        "message": "Copy the unique URL and Token below. Do not close until you have verified that you have both values.",
+        "toast": {
+          "title": "Successfully Copied",
+          "message": "{type} copied to clipboard."
+        }
+      }
+    },
+    "responsiveDeliveryCredentials": {
+      "create": {
+        "description": "Provide your company's EWS email service credentials for use with Responsive Delivery. For more information about this feature and configuring an EWS connection, see the {link}.",
+        "linkText": "Cofense PhishMe Responsive Delivery Guides",
+        "title": "Responsive Delivery Credentials",
+        "toast": {
+          "message": "Credentials were saved."
+        }
+      },
+      "copiedRedirectUri": {
+        "message": "EWS OAuth Configuration Redirect URI copied to clipboard.",
+        "title": "Successfully Copied"
+      },
+      "form": {
+        "basicAuth": "Basic Authorization",
+        "ewsAuthEndpoint": "Authorization Endpoint",
+        "ewsAuthEndpointTooltip": "Specify the OAuth authorization endpoint for the registered Cofense PhishMe OAuth application.",
+        "ewsAuthType": "Authorization Type",
+        "ewsClientId": "Client ID",
+        "ewsClientIdTooltip": "Specify the client ID for the registered Cofense PhishMe OAuth application.",
+        "ewsClientSecret": "Client Secret",
+        "ewsClientSecretTooltip": "Specify the client secret for the registered Cofense PhishMe OAuth application.",
+        "ewsExchangeName": "Exchange Name",
+        "ewsUrl": "Exchange URL",
+        "ewsPassword": "Password",
+        "ewsTokenEndpoint": "Token Endpoint",
+        "ewsTokenEndpointTooltip": "Specify the OAuth token endpoint for the registered Cofense PhishMe OAuth application.",
+        "ewsUsername": "Username",
+        "legalDisclaimer": "You (and the business, government or entity you represent) understand and agree that in addition to the agreement you have entered into with Cofense for the use of Cofense PhishMe, you acknowledge, agree and consent to the terms located at {link} in order to activate and use Cofense PhishMe Responsive Delivery, and have reviewed the Cofense PhishMe Responsive Delivery user manuals.",
+        "oauth2": "OAuth 2.0",
+        "redirectUri": "EWS OAuth Configuration Redirect URI"
+      }
+    },
+    "scenario": {
+      "create": {
+        "title": "Create New Scenario",
+        "toast": {
+          "message": "Scenario was created."
+        }
+      },
+      "remove": {
+        "message": "You are about to remove the scenario {name} from your account.",
+        "title": "Remove this scenario from your account?",
+        "toast": {
+          "message": "We removed the scenario you selected."
+        },
+        "will": {
+          "messages": [
+            "This scenario from your account",
+            "This scenario from associated groups and playbooks",
+            "This scenario's associated reports",
+            "This scenario's associated recipient data"
+          ],
+          "title": "This action removes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Associated recipient groups",
+            "Associated recipients "
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "update": {
+        "title": "Edit Scenario",
+        "toast": {
+          "message": "Scenario was updated."
+        }
+      }
+    },
+    "scenarioGroup": {
+      "create": {
+        "title": "Create New Scenario Group",
+        "toast": {
+          "message": "Scenario group was created."
+        }
+      },
+      "delete": {
+        "message": "You are about to delete the scenario group {name}.",
+        "title": "Delete this scenario group?",
+        "toast": {
+          "message": "We deleted the scenario group you selected."
+        },
+        "will": {
+          "messages": [
+            "The scenario group",
+            "The scenario group's aggregate report"
+          ],
+          "title": "This action deletes the following:"
+        },
+        "willNot": {
+          "messages": [
+            "Associated scenarios",
+            "Associated recipient groups",
+            "Associated recipients"
+          ],
+          "title": "This action will NOT impact the following:"
+        }
+      },
+      "update": {
+        "title": "Edit Scenario Group",
+        "toast": {
+          "message": "We updated the scenario group you selected."
+        }
+      }
+    },
+    "scenarioTestEmail": {
+      "send": {
+        "toast": {
+          "message": "Email was sent with success."
+        }
+      },
+      "label": "Email Addresses",
+      "placeholder": "Type a complete email address",
+      "title": "Send a Test Version of this Phish",
+      "tooltip": "You can send to yourself and to other email addresses from your allowed domains. Interactions with this test do not affect your reporting results.",
+      "update": {
+        "toast": {
+          "message": "The list was updated with success."
+        }
+      },
+      "unsavedChangesWarning": "You have unsaved changes. You might send an out of date test"
+    }
+  },
+  "navigationLabels": {
+    "account": "Account",
+    "analytics": "Analytics",
+    "analyticsAnnouncements": "Awareness Newsletters",
+    "analyticsRepeatClickers": "Repeat Clickers",
+    "analyticsScenarios": "Scenarios",
+    "announcements": "Awareness Newsletters",
+    "boardReport": "Board Report",
+    "community": "Community",
+    "dashboard": "Dashboard",
+    "catalog": {
+      "cbtModules": "CBT Modules",
+      "education": "Education",
+      "title": "Catalog"
+    },
+    "legacyPhishme": "Legacy PhishMe",
+    "logout": "Logout",
+    "playbooks": "Playbooks",
+    "recipients": "Recipients",
+    "recipientsImport": "Import",
+    "recipientsSync": "Sync",
+    "reporter": "Reporter",
+    "reporterGet": "Get",
+    "reporterSummary": "Summary",
+    "scenarios": "Scenarios"
+  },
+  "status": {
+    "acknowledged": "Acknowledged",
+    "active": "Active",
+    "canceled": "Canceled",
+    "canceling": "Canceling",
+    "cancellationError": "Cancellation Error",
+    "complete": "Complete",
+    "completed": "Completed",
+    "dataProcessing": "Data Processing",
+    "deleting": "Deleting",
+    "emailsSent": "Emails Sent",
+    "enrolled": "Enrolled",
+    "failed": "Failed",
+    "finished": "Finished",
+    "generatingScenarios": "Generating",
+    "initial": "Initial",
+    "inProgress": "In Progress",
+    "missingAttachment": "Missing Attachment",
+    "missingEducation": "Missing Education",
+    "missingEmail": "Missing Email",
+    "missingFromAddress": "Missing From Address",
+    "missingLandingPage": "Missing Landing Page",
+    "missingLure": "Missing Lure",
+    "missingPlaceholder": "Missing Placeholder",
+    "missingRecipients": "Missing Recipients",
+    "needsReview": "Needs Review",
+    "readyToSchedule": "Ready to Schedule",
+    "saveEmailRequired": "Save Email Required",
+    "scenarioGenerationError": "Generation Error",
+    "scenariosGenerated": "Generated",
+    "scheduled": "Scheduled",
+    "sending": "Sending",
+    "unscheduled": "Unscheduled"
+  },
+  "title": {
+    "recipientManagement": "Recipient Management",
+    "recipientGroupManagement": "Recipient Group Management",
+    "enhancedAnalytics": "Enhanced Analytics",
+    "geolocationHotspots": "Geolocation Hotspots",
+    "mailStatus": "Mail Status",
+    "reporter": "Reporter",
+    "responses": "Responses",
+    "userAgents": "User Agents"
+  },
+  "validation": {
+    "toastTitle": "Invalid Form",
+    "errors": {
+      "email": "Field must contain a valid email address",
+      "maxLength": "Input cannot exceed {length} characters",
+      "noSpecialCharacters": "Input cannot have special characters",
+      "password": "Password does not match",
+      "required": "Field is required",
+      "url": "Field must contain a valid url"
+    }
+  },
+  "views": {
+    "account": {
+      "title": "Account Settings"
+    },
+    "accountActivityLog": {
+      "title": "Activity Log"
+    },
+    "accountNotifications": {
+      "title": "Notifications"
+    },
+    "analyticsAnnouncements": {
+      "downloadReport": "Download Report",
+      "title": "Awareness Newsletter Analytics"
+    },
+    "analyticsRepeatClickers": {
+      "title": "Repeat Clickers Analytics"
+    },
+    "analyticsScenarios": {
+      "downloadReport": "Download Report",
+      "hideAll": "Hide All",
+      "showAll": "Show All",
+      "title": "Scenarios Analytics"
+    },
+    "announcements": {
+      "title": "Awareness Newsletter Management",
+      "description": "Awareness newsletters are emails that you use to communicate with your recipients about running simulated phishing campaigns, about phishing practices and prevention, and about your company's policies or procedures regarding information security and phishing. On this page, you can create and organize these newsletters."
+    },
+    "announcementsAttachment": {
+      "title": "Attachment"
+    },
+    "announcementsCreate": {
+      "title": "Create Awareness Newsletter"
+    },
+    "announcementsDuplicate": {
+      "title": "Duplicate Awareness Newsletter"
+    },
+    "announcementsEdit": {
+      "title": "Edit Awareness Newsletter"
+    },
+    "announcementsEmail": {
+      "title": "Email"
+    },
+    "announcementsEmails": {
+      "title": "Emails"
+    },
+    "announcementsEducation": {
+      "title": "Education"
+    },
+    "announcementsLanding": {
+      "title": "Landing Page"
+    },
+    "announcementsPlaceholders": {
+      "title": "Placeholders",
+      "description": "Your awareness newsletter includes placeholders in your emails, education, or landing page. Each placeholder must have a default value."
+    },
+    "announcementsSchedule": {
+      "title": "Schedule"
+    },
+    "announcementsGroup": {
+      "title": "Awareness Newsletter Group Management"
+    },
+    "announcementsGroupReport": {
+      "title": "Awareness Newsletter Report"
+    },
+    "announcementsNew": {
+      "title": "Create Awareness Newsletter"
+    },
+    "announcementsReport": {
+      "title": "Awareness Newsletter Report"
+    },
+    "announcementsSummary": {
+      "title": "Review"
+    },
+    "boardReport": {
+      "description": [
+        "The Board of Directors Report is designed to illustrate a high-level of your program's success. The report has a variety of formats available based on your phishing awareness program maturity and data available. A Cofense Data Analyst will create your report based on a review of your program.",
+        "If there is certain information you would like to include/exclude, please insert this information in the Comments field below."
+      ],
+      "downloadReport": "Download a Sample Report",
+      "sample": "Sample Company: Resiliency Trends",
+      "title": "Board of Directors Report Request"
+    },
+    "catalog": {
+      "cbtModules": {
+        "description": [
+          "The CBT modules are organized into the categories displayed below. Click a category to display more information.",
+          "All modules are delivered in SCORM 1.2 compliant HTML5 packages. If you need a different scoring format, contact our support team."
+        ],
+        "packageTitle": "{title} Courses",
+        "subTitle": "CBT Packages",
+        "title": "Download CBT Modules",
+        "pageTitle": "CBT Module Catalog"
+      },
+      "education": {
+        "title": "Education Catalog"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "pageNotFound": {
+      "ctaLabel": "Go To Dashboard",
+      "message": "Try again. If you still have trouble, contact our support team.",
+      "tagline": "Page Not Found",
+      "title": "We can't find the page you're looking for."
+    },
+    "playbooks": {
+      "title": "Playbook Management",
+      "description": "A playbook is a 12-month program of suggested scenarios that Cofense PhishMe selects, schedules, and sends based on parameters that you define. Playbooks help automate the setup of your simulated phishing campaign. On this page, you can see the status of these campaigns and make any necessary changes."
+    },
+    "playbooksCancel": {
+      "title": "Cancel Playbook"
+    },
+    "playbooksId": {
+      "title": "Playbook"
+    },
+    "playbooksNew": {
+      "title": "Create Playbook"
+    },
+    "recipients": {
+      "title": "Recipient Management",
+      "description": "In real phishing campaigns, recipients are the targets of the threat actors who launch such campaigns. Recipients are employees in your organization who receive scenario and awareness newsletter emails. On this page, you can update your master recipient list and segment your recipients into groups that you can use in your scenarios and awareness newsletters."
+    },
+    "recipientsImport": {
+      "title": "Recipient Import"
+    },
+    "recipientsSync": {
+      "title": "Recipient Sync"
+    },
+    "repeatClickers": {
+      "downloadReport": "Download Report",
+      "reportRequested": "Report Requested",
+      "title": "Repeat Clickers",
+      "toast": {
+        "message": "<strong>{title}</strong> is preparing for download.<br>It might take a while to gather  the requested data. You can follow the progress in Notifications.",
+        "reportTitle": "Repeat Clickers CSV report ({timestamp})",
+        "title": "Info"
+      }
+    },
+    "reporter": {
+      "title": "Reporter"
+    },
+    "reporterGet": {
+      "title": "Get"
+    },
+    "reporterSummary": {
+      "title": "Summary"
+    },
+    "scenarios": {
+      "title": "Scenario Management",
+      "description": "Scenarios in Cofense PhishMe are simulated phishing campaigns that you create and then send to recipients. On this page, you can create, organize, and review the results of these targeted campaigns."
+    },
+    "scenariosCreate": {
+      "title": "Create Scenario"
+    },
+    "scenariosDuplicate": {
+      "title": "Duplicate Scenario"
+    },
+    "scenariosEdit": {
+      "title": "Edit Scenario"
+    },
+    "scenariosEmail": {
+      "title": "Email"
+    },
+    "scenariosEmails": {
+      "title": "Emails"
+    },
+    "scenariosAttachment": {
+      "title": "Attachment",
+      "description": "Recipients who open the scenario email attachment will see this content."
+    },
+    "scenariosEducation": {
+      "title": "Education",
+      "description": "Recipients who interact with the email by clicking links, submitting forms, or opening attachments will see the education."
+    },
+    "scenariosLanding": {
+      "title": "Landing Page",
+      "description": "Recipients who click a link in the scenario email will see this content."
+    },
+    "scenariosSchedule": {
+      "title": "Schedule"
+    },
+    "scenariosPlaceholders": {
+      "title": "Placeholders",
+      "description": "Your scenario includes placeholders in your emails, education, or landing page. Each placeholder must have a default value."
+    },
+    "scenariosGroup": {
+      "title": "Scenario Group Management"
+    },
+    "scenariosGroupReport": {
+      "title": "Scenario Group Report"
+    },
+    "scenariosNew": {
+      "title": "Create Scenario"
+    },
+    "scenariosReport": {
+      "title": "Scenario Report"
+    },
+    "scenariosSummary": {
+      "title": "Review"
+    },
+    "serverError": {
+      "ctaLabel": "Go To Dashboard",
+      "message": "If you were making a request, please try again later. If you continue to receive this message, contact our support team.",
+      "tagline": "Internal Error",
+      "title": "We are experiencing an issue."
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-dashboard-container bg_gray content">
+  <div class="es_pro-dashboard-container bg_gray content">
     <div class="container margin_30_20">
       <div class="row bg-white">
         <div class="col-md-2 border-right mt-4">
@@ -17,15 +17,15 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { SIDEBAR_LINKS } from '@/constants/sidebar-links';
+  import { PRO_SIDEBAR_LINKS } from '@/constants/sidebar-links';
   import { Link } from '@/interfaces/Link';
   import { nanoid } from 'nanoid';
 
   export default Vue.extend({
-    name: 'es-client-dashboard',
+    name: 'es-pro-dashboard',
     computed: {
       getSidebarLinks(): Link[] {
-        return SIDEBAR_LINKS.map((item: Link) => ({ ...item, id: nanoid() }));
+        return PRO_SIDEBAR_LINKS.map((item: Link) => ({ ...item, id: nanoid() }));
       },
     },
   });

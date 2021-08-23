@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-phone-container content">
+  <div class="es_pro-phone-container content">
     <h4>Numar de telefon</h4>
     <div class="row">
       <div class="col-md-4">
@@ -53,7 +53,7 @@
   import { PhoneConfirmationModal } from '@/components/shared/phone-confirmation-modal';
 
   export default Vue.extend({
-    name: 'es-client-phone',
+    name: 'es-pro-phone',
 
     components: {
       'es-phone-validate-modal': ValidatePhoneModal,

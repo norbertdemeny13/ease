@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-recommendations-container content">
+  <div class="es_pro-recommendations-container content">
     <h4>Recomanda</h4>
     <div class="row">
       <div class="col-md-4">
@@ -48,7 +48,7 @@
   import { nanoid } from 'nanoid';
 
   export default Vue.extend({
-    name: 'es-client-recommendations',
+    name: 'es-pro-recommendations',
     data: () => ({
       code: 'DGT54',
     }),

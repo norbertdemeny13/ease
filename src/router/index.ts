@@ -92,67 +92,42 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/easepro/',
-    component: () => import('@/views/pro-dashboard').then(({ ClientDashboard }) => ClientDashboard),
+    component: () => import('@/views/pro-dashboard').then(({ ProDashboard }) => ProDashboard),
     children: [
       {
         path: 'cont',
         name: 'Cont Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientAccount }) => ClientAccount),
+        component: () => import('@/views/pro-dashboard').then(({ ProAccount }) => ProAccount),
       },
       {
         path: 'parola',
         name: 'Parola Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientPassword }) => ClientPassword),
+        component: () => import('@/views/pro-dashboard').then(({ ProPassword }) => ProPassword),
       },
       {
         path: 'calificari',
         name: 'Calificari Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientServices }) => ClientServices),
+        component: () => import('@/views/pro-dashboard').then(({ ProServices }) => ProServices),
+      },
+      {
+        path: 'documente',
+        name: 'Documents',
+        component: () => import('@/views/pro-dashboard').then(({ ProDocuments }) => ProDocuments),
       },
       {
         path: 'telefon',
         name: 'Telefon Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientPhone }) => ClientPhone),
+        component: () => import('@/views/pro-dashboard').then(({ ProPhone }) => ProPhone),
       },
       {
         path: 'recomandare',
         name: 'Recomandare Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientRecommendations }) => ClientRecommendations),
+        component: () => import('@/views/pro-dashboard').then(({ ProRecommendations }) => ProRecommendations),
       },
       {
         path: 'adrese',
         name: 'Adrese Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientAddresses }) => ClientAddresses),
-      },
-      {
-        path: 'metode-de-plata',
-        name: 'Plata Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientPayments }) => ClientPayments),
-      },
-      {
-        path: 'rezervarile-mele',
-        name: 'Rezervari Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientReservations }) => ClientReservations),
-      },
-      {
-        path: 'comenzile-mele',
-        name: 'Comenzi Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientOrders }) => ClientOrders),
-      },
-      {
-        path: 'abonamente',
-        name: 'Abonamente Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientSubscriptions }) => ClientSubscriptions),
-      },
-      {
-        path: 'cod-promo',
-        name: 'Credit Pro',
-        component: () => import('@/views/pro-dashboard').then(({ ClientCredits }) => ClientCredits),
-      },
-      {
-        path: 'preferinte',
-        name: 'Preferinte Pro',
-        component: () => import('@/views/client-dashboard').then(({ ClientPreferences }) => ClientPreferences),
+        component: () => import('@/views/pro-dashboard').then(({ ProAddresses }) => ProAddresses),
       },
     ],
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="es_client-password-container content">
+  <div class="es_pro-password-container content">
     <h4>Schimba Parola</h4>
     <div class="row">
       <div class="col-md-4">
@@ -63,7 +63,7 @@
   import { ResetPasswordModal } from '@/components/shared/reset-password-modal';
 
   export default Vue.extend({
-    name: 'es-client-password',
+    name: 'es-pro-password',
 
     components: {
       'es-forgot-password-modal': ForgotPasswordModal,
