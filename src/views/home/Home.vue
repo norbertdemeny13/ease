@@ -5,14 +5,14 @@
         <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
             <div class="col-xl-6 col-lg-8 text-center">
-              <h4 class="mb-4">Servicii wellness de 5 stele cand si unde doresti</h4>
+              <h4 class="mb-4">{{ $t('views.home.title') }}</h4>
               <form>
                 <div class="row no-gutters custom-search-input">
                   <div class="col-lg-10">
                     <es-address-search :home-page="true" />
                   </div>
                   <div class="col-lg-2">
-                    <button class="btn_1" type="button" @click="$router.push('/servicii')">Rezerva</button>
+                    <button class="btn_1" type="button" @click="$router.push('/servicii')">{{ $t('generic.reserve') }}</button>
                   </div>
                 </div>
                 <!-- /row -->

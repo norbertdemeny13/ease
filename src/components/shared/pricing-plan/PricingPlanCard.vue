@@ -8,9 +8,9 @@
         <ul class="pricing-plan-features">
           <li v-for="(benefit, i) in item.small_descriptions" :key="`${item.type}-${i}`"><i class="icon_check" />{{ benefit }}</li>
         </ul>
-        <a href="" class="btn pricing-plan-purchase-btn" @click.prevent="onSelect()">Alege</a>
+        <a href="" class="btn pricing-plan-purchase-btn" @click.prevent="onSelect()">{{ $t('generic.pick') }}</a>
         <div class="text-center">
-          <a href="" class="pricing-plan-link" @click.prevent="isModalOpen = true">Afla mai multe</a>
+          <a href="" class="pricing-plan-link" @click.prevent="isModalOpen = true">{{ $t('generic.learn_more') }}</a>
         </div>
       </div>
     </div>

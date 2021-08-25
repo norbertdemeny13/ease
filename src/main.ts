@@ -22,7 +22,7 @@ import './vendors/common_scripts.min';
 import './vendors/common_func';
 
 // Internationalization
-import i18n from '@/i18n';
+import { i18n } from '@/i18n';
 
 // Shared components
 import StarRating from 'vue-star-rating';

@@ -5,9 +5,9 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-10">
-              <h1>Abonamentele Ease</h1>
-              <p>Bucura-te de servicii wellness la tine, in timp ce economisesti 20% - 25% din fiecare rezervare</p>
-              <a href="" class="btn_1" @click.prevent="scrollToElement()">Activeaza</a>
+              <h1>{{ $t('views.subscriptions.title') }}</h1>
+              <p>{{ $t('views.subscriptions.title_description') }}</p>
+              <a href="" class="btn_1" @click.prevent="scrollToElement()">{{ $t('generic.activate') }}</a>
             </div>
           </div>
           <!-- /row -->

@@ -2,13 +2,13 @@
   <div class="content">
     <div class="es_gift-card-details-page container margin_30_20">
       <a class="back-button" href="" @click.prevent="$router.push('/carduri-cadou')">
-        Inapoi
+        {{ $t('generic.back') }}
       </a>
       <div class="row d-flex justify-content-center">
         <div class="col-md-5">
           <img class="mb-4" :src="getGiftCard.absolute_image_url" width="500" height="350">
           <div class="form-group">
-            <label>Valoare cadou</label>
+            <label>{{ $t('generic.gift_value') }}</label>
             <select
               id="value"
               v-model="form.value"
@@ -25,11 +25,11 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Pentru</label>
+            <label>{{ $t('generic.for') }}</label>
             <input
               v-model="form.name"
               type="text"
-              placeholder="Numele beneficiarului"
+              :placeholder="$t('generic.name_of_beneficiary')"
               class="form-control"
               name="name"
             >
@@ -38,16 +38,17 @@
             <input
               v-model="form.email"
               type="text"
-              placeholder="Emailul beneficiarului"
+              :placeholder="$t('generic.email_of_beneficiary')"
               class="form-control"
               name="email"
             >
           </div>
           <div class="form-group">
-            <label>De la</label>
+            <label>{{ $t('generic.from') }}</label>
             <input
               v-model="form.from_name"
               type="text"
+              :placeholder="$t('generic.name_of_sender')"
               class="form-control"
               name="from-name"
             >
@@ -56,12 +57,13 @@
             <input
               v-model="form.from_email"
               type="text"
+              :placeholder="$t('generic.email_of_sender')"
               class="form-control"
               name="from-email"
             >
           </div>
           <div class="form-group my-4">
-            <label>Cand doresti sa trimitem cadoul?</label>
+            <label>{{ $t('generic.when_to_send_gift') }}</label>
             <es-datepicker
               :options="{
                 minDate: 'today',
@@ -74,16 +76,16 @@
                 name="datepicker-default"
                 type="text"
                 size="md"
-                placeholder="Alege o data"
+                :placeholder="$t('generic.choose_a_date')"
               >
             </es-datepicker>
           </div>
           <div class="form-group my-4">
-            <label>Mesaj</label>
+            <label>{{ $t('generic.message') }}</label>
             <textarea
               v-model="form.message"
               type="text"
-              placeholder="Mesaj (optional)"
+              :placeholder="$t('generic.message_optional')"
               class="form-control"
               name="message"
             />
@@ -94,7 +96,7 @@
               href=""
               @click.prevent="onSubmit()"
             >
-              Continua
+              {{ $t('generic.continue') }}
             </a>
           </div>
         </div>

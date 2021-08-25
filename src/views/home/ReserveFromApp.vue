@@ -13,14 +13,14 @@
           >
         </div>
         <div class="col-md-4 col-lg-4 justify-content-center d-flex flex-column">
-          <h3>Rezerva de pe telefonul tau</h3>
-          <p class="text-secondary">Introdu numarul tau de mobil si vei primi linkul aplicatiei.</p>
+          <h3>{{ $t('views.home.rop_title') }}</h3>
+          <p class="text-secondary">{{ $t('views.home.rop_description') }}</p>
           <form class="">
             <div class="row no-gutters custom-search-input p-0">
               <div class="input-group">
-                <input type="text" class="form-control" name="email" id="reserve-input" placeholder="Introdu numarul de mobil" aria-label="" aria-describedby="reserve" required>
+                <input type="text" class="form-control" name="email" id="reserve-input" :placeholder="$t('generic.enter_phone_number')"  aria-label="" aria-describedby="reserve" required>
                 <div class="input-group-append">
-                  <button class="btn_1 btn-pink font-size-12 py-2" type="button" id="reserve">Trimite-mi un link</button>
+                  <button class="btn_1 btn-pink font-size-12 py-2" type="button" id="reserve">{{ $t('generic.send_me_a_link') }}</button>
                 </div>
               </div>
             </div>

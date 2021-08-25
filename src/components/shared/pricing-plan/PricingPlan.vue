@@ -2,16 +2,16 @@
 <template>
   <div class="pricing-plan-container" id="pricing-plan-container">
     <div class="container">
-      <h1 v-if="showTitle" class="text-center pricing-table-title">Abonamente</h1>
+      <h1 v-if="showTitle" class="text-center pricing-table-title">{{ $t('generic.subscriptions') }}</h1>
 
       <ul v-if="showTitle" class="nav nav-pills justify-content-center pricing-tab" id="pricing-tab" role="tablist">
         <li class="nav-item" @click="selectedType = 'monthly'">
           <a class="nav-link active" id="monthly-tab" data-toggle="pill" href="#monthly" role="tab" aria-controls="monthly"
-            aria-selected="true">Lunar</a>
+            aria-selected="true">{{ $t('generic.monthly') }}</a>
         </li>
         <li class="nav-item" @click="selectedType = 'yearly'">
           <a class="nav-link" id="yearly-tab" data-toggle="pill" href="#yearly" role="tab" aria-controls="yearly"
-            aria-selected="false">Anual</a>
+            aria-selected="false">{{ $t('generic.anual') }}</a>
         </li>
       </ul>
 

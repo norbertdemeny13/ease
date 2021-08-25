@@ -3,8 +3,8 @@
   <div class="es-gift-cards-container">
     <div class="container margin_30_40">
       <div class="main_title center">
-        <h2>Intodeauna Cadoul Perfect</h2>
-        <p>Alege Design-ul Cardului Tau</p>
+        <h2>{{ $t('views.giftcards.title') }}</h2>
+        <p>{{ $t('views.giftcards.title_description') }}</p>
       </div>
       <div class="row justify-content-center">
         <ul class="nav nav-pills justify-content-center pricing-tab" id="pricing-tab" role="tablist">

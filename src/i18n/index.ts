@@ -22,4 +22,4 @@ const i18n = new VueI18n({
   messages: loadLocaleMessages(),
 });
 
-export default i18n;
+export { i18n };

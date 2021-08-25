@@ -1,10 +1,10 @@
 <template>
   <div class="es_client-account-container content">
-    <h4>Cont</h4>
+    <h4>{{ $t('generic.account') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Prenume</label>
+          <label>{{ $t('generic.first_name') }}</label>
           <input
             v-model="user.first_name"
             type="text"
