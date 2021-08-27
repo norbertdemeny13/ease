@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-payments-container content">
-    <h4>Carduri</h4>
+    <h4>{{ $t('generic.cards') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div v-if="getCards.length">
@@ -14,11 +14,11 @@
             <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
               <div v-if="card.primary">
                 <span class="icon_check_alt" />
-                <span class="ml-2">Card principal</span>
+                <span class="ml-2">{{ $t('generic.main_card') }}</span>
               </div>
               <a href="" class="mr-2" @click.prevent.stop="onRemove(card)">
                 <i class="icon_trash_alt" />
-                Sterge
+                {{ $t('generic.delete') }}
               </a>
             </div>
           </div>
@@ -31,7 +31,7 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="addPayment()"
           >
-            Adauga
+            {{ $t('generic.add') }}
           </button>
         </div>
       </div>

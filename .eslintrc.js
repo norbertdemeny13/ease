@@ -19,7 +19,7 @@ module.exports = {
     // Vue rules
     'vue/component-definition-name-casing': ['error', 'kebab-case'],
     'vue/component-name-in-template-casing': ['error', 'kebab-case'],
-    'linebreak-style': ["error", "windows"],
+    'linebreak-style': ['error', 'windows'],
     'vue/max-attributes-per-line': [
       'error',
       {

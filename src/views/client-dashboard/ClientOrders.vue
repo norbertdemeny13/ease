@@ -2,7 +2,7 @@
   <div class="es_client-orders-container content">
     <div class="row">
       <div class="col-md-6">
-        <h4>Comenzile mele</h4>
+        <h4>{{ $t('generic.my_reservations') }}</h4>
       </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <div class="m-2">{{ getStatus(item.payment.status) }}</div>
             <div class="my-4">
               <a class="pricing-plan-link" href="" @click.prevent="onSelect(item)">
-                Vezi detalii
+                {{ $t('generic.view_details') }}
               </a>
             </div>
           </div>
@@ -28,13 +28,13 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click="$router.push('/carduri-cadou')"
           >
-            Daruieste un card cadou
+            {{ $t('generic.give_a_gift_card') }}
           </button>
         </div>
       </div>
       <div v-else class="col-md-6">
         <a class="back-button" href="" @click.prevent="onBack()">
-          Inapoi
+          {{ $t('generic.back') }}
         </a>
         <div class="mt-4">
           <figure class="mb-0">
@@ -49,14 +49,14 @@
             <li><strong>Plasata pe</strong>{{ selectedCard.send_at.substr(0, 10) }}</li>
             <li><strong>Total</strong>{{ selectedCard.payment.amount }} Lei</li>
           </ul>
-          <h6>Sumar comanda</h6>
+          <h6>{{ $t('generic.order_sum') }}</h6>
           <div class="d-flex flex-inline mt-4">
             <h6 class="mr-5 mb-0">De la</h6>
             <p class="mb-0">{{ selectedCard.from_name }}</p>
           </div>
 
           <div class="d-flex flex-inline mt-4">
-            <h6 class="mr-4">Pentru</h6>
+            <h6 class="mr-4">{{ $t('generic.for') }}</h6>
             <div class="d-flex flex-column">
               <p class="mb-0">{{ selectedCard.name }}</p>
               <p class="mb-0">{{ selectedCard.email }}</p>
@@ -64,12 +64,12 @@
           </div>
 
           <div class="d-flex flex-inline mt-4">
-            <h6 class="mr-4">Trimis</h6>
+            <h6 class="mr-4">{{ $t('generic.sent') }}</h6>
             <p class="mb-0">{{ getDate }}</p>
           </div>
 
           <div v-if="selectedCard.message" class="d-flex flex-inline mt-4">
-            <h6 class="mr-4">Mesaj</h6>
+            <h6 class="mr-4">{{ $t('generic.message') }}</h6>
             <div class="d-flex flex-column">
               <p class="mb-0">{{ selectedCard.message }}</p>
             </div>

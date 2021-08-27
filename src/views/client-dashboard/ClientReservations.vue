@@ -2,7 +2,7 @@
   <div class="es_client-reservations-container content">
     <div class="row">
       <div class="col-md-8 col-sm-6">
-        <h4>Rezervarile mele</h4>
+        <h4>{{ $t('generic.my_reservations') }}</h4>
         <es-divider />
         <div v-if="isListView">
           <ul id="pricing-tab" class="nav nav-pills pricing-tab mb-4" role="tablist">
@@ -15,7 +15,7 @@
                 role="tab"
                 aria-controls="past"
                 :aria-selected="selectedType === 'past' ? 'true' : 'false'"
-              >Rezervari anterioare</a>
+              >{{ $t('generic.previous_reservations') }}</a>
             </li>
             <li class="nav-item" @click="selectedType = 'upcoming'">
               <a
@@ -26,7 +26,7 @@
                 role="tab"
                 aria-controls="upcoming"
                 :aria-selected="selectedType === 'upcoming' ? 'true' : 'false'"
-              >Rezervari viitoare</a>
+              >{{ $t('generic.future_reservations') }}</a>
             </li>
           </ul>
 
@@ -86,13 +86,13 @@
                 </div>
                 <div class="my-4">
                   <a class="pricing-plan-link" href="" @click.prevent="onSelect(item)">
-                    Vezi detalii
+                    {{ $t('generic.view_details') }}
                   </a>
                 </div>
               </div>
             </div>
             <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
-              <h4>Momentan nu exista nici o rezervare {{ selectedType === 'upcoming' ? 'viitoare' : 'anterioara' }}</h4>
+              <h4>{{ $t('views.my_reservations.description') }} {{ selectedType === 'upcoming' ? 'viitoare' : 'anterioara' }}</h4>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -100,13 +100,13 @@
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click.prevent="$router.push('/servicii')"
             >
-              Rezerva
+              {{ $t('generic.reserve') }}
             </button>
           </div>
         </div>
         <div v-else>
           <a class="back-button" href="" @click.prevent="onBack()">
-            Inapoi
+            {{ $t('generic.back') }}
           </a>
           <div class="mt-4">
             <ul class="summary_list">

@@ -2,7 +2,7 @@
   <div class="es_client-subscriptions-container content">
     <div class="row">
       <div class="col-md-6">
-        <h4>Detalii Abonament</h4>
+        <h4>{{ $t('generic.subscription_details') }}</h4>
       </div>
     </div>
     <div class="row">
@@ -14,22 +14,22 @@
               <li>Urmatoarea data de facturare</li>
               <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
             </div>
-            <li><strong>Abonament</strong>{{ getActiveSubscription.subscription.monthly ? 'Lunar' : 'Anual' }}</li>
-            <li><strong>Status</strong>{{ getActiveSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</li>
-            <li><strong>Pret</strong>{{ getActiveSubscription.subscription.price.price }}/{{ getActiveSubscription.subscription.monthly ? 'luna' : 'an' }}</li>
+            <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? 'Lunar' : 'Anual' }}</li>
+            <li><strong>{{ $t('generic.status') }}</strong>{{ getActiveSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</li>
+            <li><strong>{{ $t('generic.price') }}</strong>{{ getActiveSubscription.subscription.price.price }}/{{ getActiveSubscription.subscription.monthly ? 'luna' : 'an' }}</li>
           </ul>
           <div v-if="getActiveSubscription.state === 'active'" class="d-flex justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-4"
               @click="onCancel"
             >
-              Anuleaza un abonamentul
+              {{ $t('generic.activate_a_subscription') }}
             </button>
             <button
               class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
               @click="onModify"
             >
-              Modifica abonamentul
+              {{ $t('generic.change_subscription') }}
             </button>
           </div>
           <button
@@ -37,7 +37,7 @@
             class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
             @click="$router.push('/abonamente')"
           >
-            Activeaza un abonament
+            {{ $t('generic.activate_a_subscription') }}
           </button>
         </div>
         <div v-else>
@@ -49,14 +49,14 @@
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click="$router.push('/abonamente')"
             >
-              Activeaza un abonament
+              {{ $t('generic.activate_subscription') }}
             </button>
           </div>
         </div>
       </div>
     </div>
     <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" @on-confirm="onContinue()">
-      <template slot="title">Anulare abonament</template>
+      <template slot="title">{{ $t('generic.cancel_subscription') }}</template>
       <template slot="message">
         <p>Esti sigur ca doresti sa anulezi abonamentul?</p>
       </template>

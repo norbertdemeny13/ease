@@ -11,7 +11,7 @@
           <a href="" class="my-4" @click.prevent="$emit('on-show-address-modal')">
             Incarca
           </a>
-          <span class="info"></span>
+          <span class="info" />
         </div>
       </div>
     </div>

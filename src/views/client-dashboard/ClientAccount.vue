@@ -13,7 +13,7 @@
           >
         </div>
         <div class="form-group">
-          <label>Nume</label>
+          <label>{{ $t('generic.name') }}</label>
           <input
             v-model="user.last_name"
             type="text"
@@ -22,7 +22,7 @@
           >
         </div>
         <div class="form-group">
-          <label>Adresa de email</label>
+          <label>{{ $t('generic.email_adress') }}</label>
           <input
             v-model="user.email"
             class="form-control"
@@ -32,26 +32,26 @@
           >
         </div>
         <div class="form-group">
-          <label>Vreau sa primesc oferte si notificari prin</label>
+          <label>{{ $t('generic.notifications') }}</label>
           <div class="radio_c_group">
             <label
               class="container_check"
               @click.prevent="account_settings.email_news = !account_settings.email_news"
-            >Email
+            >{{ $t('generic.email') }}
               <input type="checkbox" value="checkbox" name="notification-email-type" :checked="account_settings.email_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
               class="container_check"
               @click.prevent="account_settings.sms_news = !account_settings.sms_news"
-            >SMS
+            >{{ $t('generic.sms') }}
               <input type="checkbox" value="checkbox" name="notification-sms-type" :checked="account_settings.sms_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
               class="container_check"
               @click.prevent="account_settings.phone_news = !account_settings.phone_news"
-            >Telefon
+            >{{ $t('generic.phone') }}
               <input type="checkbox" value="checkbox" name="notification-phone-type" :checked="account_settings.phone_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
@@ -61,9 +61,7 @@
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
-          >
-            Salveaza
-          </button>
+          >{{ $t('generic.save') }}</button>
         </div>
       </div>
     </div>
