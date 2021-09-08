@@ -9,12 +9,12 @@
       <div class="container es-login-modal mt-12">
         <div id="es-modal-dialog" class="es-reset-password-modal">
           <div class="modal_header">
-            <h3>Am uitat parola</h3>
+            <h3>{{ $t('generic.forgot_password') }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
           <div class="reset-passwrod-modal-wrapper">
             <div class="form-group">
-              <label>Introdu noua ta parola</label>
+              <label>{{ $t('lbl_enter_new_password') }}</label>
               <input
                 :type="type"
                 class="pl-6 form-control"
@@ -22,12 +22,12 @@
                 id="password"
                 v-model="password"
               >
-                <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
-                <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
+                <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">{{ $t('generic.password_show') }}</span>
+                <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">{{ $t('generic.password_hide') }}</span>
               <i class="icon_lock_alt" />
             </div>
             <div class="d-flex justify-content-between">
-              <button class="btn_1 px-4" @click="onSubmit()">Reseteaza parola</button>
+              <button class="btn_1 px-4" @click="onSubmit()">{{ $t('lbl_reset_password') }}</button>
             </div>
           </div>
           <!--form -->

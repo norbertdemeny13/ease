@@ -11,7 +11,7 @@
           <h6 class="mt-4">{{ getActiveSubscription.subscription.name }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
             <div v-if="getActiveSubscription.state === 'active'">
-              <li>Urmatoarea data de facturare</li>
+              <li>{{ $t('views.client_dashboard.subscriptions.next_bill') }}</li>
               <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
             </div>
             <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? 'Lunar' : 'Anual' }}</li>
@@ -42,7 +42,7 @@
         </div>
         <div v-else>
           <div class="d-flex align-items-center justify-content-between">
-            <h4>Momentan nu ai nici un abonament activ</h4>
+            <h4>{{ $t('views.client_dashboard.subscriptions.description') }}</h4>
           </div>
           <div class="d-flex justify-content-end">
             <button
@@ -58,7 +58,7 @@
     <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" @on-confirm="onContinue()">
       <template slot="title">{{ $t('generic.cancel_subscription') }}</template>
       <template slot="message">
-        <p>Esti sigur ca doresti sa anulezi abonamentul?</p>
+        <p>{{ $t('subscription.cancel.title') }}</p>
       </template>
     </es-confirm-modal>
   </div>

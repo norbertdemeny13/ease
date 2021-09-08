@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>{{ $t('views.recommend.title_description') }}</label>
+          <label>{{ $t('views.client_dashboard.recommend.title_description') }}</label>
           <div class="d-flex align-items-center">
             <input
               id="code"
@@ -82,7 +82,7 @@
         copyToClipboard(fullLink);
         (this as any).$toasts.toast({
           id: nanoid(),
-          message: 'Trimite prietenilor tai pentru a beneficia de 15 Lei',
+          message: 'Trimite linkul prietenilor tai pentru a castiga 15 Lei',
           title: 'Cod copiat!',
           intent: 'success',
         });

@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4">
         <div v-if="phone" class="form-group">
-          <label>{{ $t('generic.phone_nr_mobile') }}</label>
+          <label>{{ $t('generic.phone_nr_verified') }}</label>
           <es-phone-number-input
             id="phone"
             v-model="phone"

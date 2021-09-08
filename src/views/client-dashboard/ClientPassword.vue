@@ -12,8 +12,8 @@
             class="form-control"
             name="old-password"
           >
-          <span v-if="newPassType === 'password'" class="show-password-btn" @click.prevent="newPassType = 'text'">Arata</span>
-          <span v-if="newPassType === 'text'" class="show-password-btn" @click.prevent="newPassType = 'password'">Ascunde</span>
+          <span v-if="newPassType === 'password'" class="show-password-btn" @click.prevent="newPassType = 'text'">{{ $t('generic.password_show') }}</span>
+          <span v-if="newPassType === 'text'" class="show-password-btn" @click.prevent="newPassType = 'password'">{{ $t('generic.password_hide') }}</span>
         </div>
         <div class="form-group">
           <label>{{ $t('generic.new_password') }}</label>

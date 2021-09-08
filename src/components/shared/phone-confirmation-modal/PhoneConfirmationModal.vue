@@ -10,7 +10,7 @@
         <!-- Sign In Modal -->
         <div id="es-modal-dialog" class="es-phone-validation-modal">
           <div class="modal_header">
-            <h3>Valideaza numarul de telefon telefonul</h3>
+            <h3>{{ $t('generic.validate_phone_number') }}</h3>
             <button v-if="canCloseModal" type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
           <a href="" @click.prevent="$emit('is-open', false); $emit('show-validate-phone-modal', true)">Inapoi</a>
@@ -20,8 +20,8 @@
               <input type="text" required class="form-control" name="phone" id="phone" v-model="validationCode">
             </div>
             <div class="d-flex">
-              <button class="btn_1 mr-2" @click.prevent="requestValidatePhoneNumber()">Confirma</button>
-              <button class="btn_1" @click.prevent="requestPhoneNumberValidationCode()">Retrimite cod</button>
+              <button class="btn_1 mr-2" @click.prevent="requestValidatePhoneNumber()">{{ $t('generic.confirm') }}</button>
+              <button class="btn_1" @click.prevent="requestPhoneNumberValidationCode()">{{ $t('lbl_resend_code') }}</button>
             </div>
           </div>
           <!--form -->

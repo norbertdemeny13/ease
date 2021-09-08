@@ -7,10 +7,10 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h6>Presiunea preferata la masaj</h6>
+        <h6>{{ $t('account.preferedPresure') }}</h6>
         <div class="row mt-5">
           <div class="col-md-1">
-            <span>Usor</span>
+            <span>{{ $t('account.mildPresure') }}</span>
           </div>
           <div class="col-md-6">
             <es-vue-slider
@@ -21,14 +21,14 @@
             />
           </div>
           <div class="col-md-1">
-            <span>Tare</span>
+            <span>{{ $t('account.strongPresure') }}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-md-4">
-        <h6>Conversatia in timpul serviciului</h6>
+        <h6>{{ $t('account.preferedConversation') }}</h6>
         <es-vue-slider
           ref="slider"
           v-model="talkingLevel"
@@ -39,7 +39,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-md-4">
-        <h6>Arome de evitat</h6>
+        <h6>{{ $t('account.aromaToBeAvoided') }}</h6>
         <div class="form-group">
           <input
             v-model="avoidedScents"
@@ -52,7 +52,7 @@
     </div>
     <div class="row mt-4">
       <div class="col-md-4">
-        <h6>Notite pentru profesionisti</h6>
+        <h6>{{ $t('account.notes') }}</h6>
         <div class="form-group">
           <input
             v-model="notes"
@@ -67,7 +67,7 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave"
           >
-            Salveaza
+            {{ $t('generic.save') }}
           </button>
         </div>
       </div>

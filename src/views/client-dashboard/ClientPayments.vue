@@ -24,14 +24,14 @@
           </div>
         </div>
         <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
-          <h4>Momentan nu exista nici un card</h4>
+          <h4>{{ $t('views.client_dashboard.payment_methods.description') }}</h4>
         </div>
         <div class="d-flex justify-content-end">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="addPayment()"
           >
-            {{ $t('generic.add') }}
+            {{ $t('views.client_dashboard.payment_methods.add') }}
           </button>
         </div>
       </div>

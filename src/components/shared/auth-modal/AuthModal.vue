@@ -8,7 +8,7 @@
       <div class="container es-login-modal mt-12">
         <div id="es-modal-dialog" class="es-auth-modal p-5">
           <div class="form-group">
-            <label>Parola</label>
+            <label>{{ $t('generic.password') }}</label>
             <input
               id="auth-password"
               v-model="password"

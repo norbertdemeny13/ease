@@ -103,7 +103,7 @@
           (this as any).$toasts.toast({
             id: 'update-toast',
             title: 'Felicitari',
-            message: 'Contul a fost modificat cu success!',
+            message: 'Contul tau a fost modificat cu success!',
             intent: 'success',
           });
         }

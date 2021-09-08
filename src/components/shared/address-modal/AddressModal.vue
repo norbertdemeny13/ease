@@ -9,12 +9,12 @@
         <!-- Sign In Modal -->
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
-            <h3>Adauga adresa</h3>
+            <h3>{{ $t('generic.add_address') }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="address-wrapper">
             <div class="d-flex flex-column form-group">
-              <label>Strada</label>
+              <label>{{ $t('address.street') }}</label>
               <div class="d-flex align-items-center">
                 <input
                   ref="search"
@@ -29,7 +29,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Numar</label>
+                  <label>{{ $t('address.number') }}</label>
                   <input
                     v-model="address.street_number"
                     type="text"
@@ -40,7 +40,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Ap</label>
+                  <label>{{ $t('address.apartment') }}</label>
                   <input
                     v-model="address.apartment_number"
                     type="text"
@@ -51,7 +51,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Etaj</label>
+                  <label>{{ $t('address.floors') }}</label>
                   <input
                     v-model="address.floor"
                     type="text"
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Oras</label>
+              <label>{{ $t('address.city') }}</label>
               <input
                 :value="city"
                 disabled
@@ -72,7 +72,7 @@
               >
             </div>
             <div class="form-group">
-              <label>Nota</label>
+              <label>{{ $t('address.notesTitle') }}</label>
               <input
                 v-model="address.notes"
                 type="text"
@@ -85,7 +85,7 @@
                 class="btn_1"
                 @click.prevent="onAddAddress()"
               >
-                Adauga
+                {{ $t('generic.add') }}
               </button>
             </div>
           </div>

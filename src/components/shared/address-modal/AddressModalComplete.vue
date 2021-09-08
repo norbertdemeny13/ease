@@ -9,12 +9,12 @@
         <!-- Sign In Modal -->
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
-            <h3>Adauga adresa</h3>
+            <h3>{{ $t('generic.add_address') }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="address-wrapper">
             <div class="form-group">
-              <label>Strada</label>
+              <label>{{ $t('address.street') }}</label>
               <input
                 v-model="address.street_name"
                 disabled
@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Numar</label>
+                  <label>{{ $t('address.number') }}</label>
                   <input
                     v-model="address.street_number"
                     type="text"
@@ -37,7 +37,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Ap</label>
+                  <label>{{ $t('address.apartment') }}</label>
                   <input
                     v-model="address.apartment_number"
                     type="text"
@@ -48,7 +48,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label>Etaj</label>
+                  <label>{{ $t('address.floors') }}</label>
                   <input
                     v-model="address.floor"
                     type="text"
@@ -59,7 +59,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Oras</label>
+              <label>{{ $t('address.city') }}</label>
               <input
                 :value="city"
                 disabled
@@ -69,7 +69,7 @@
               >
             </div>
             <div class="form-group">
-              <label>Tip Adresa</label>
+              <label>{{ $t('address.type') }}</label>
               <div class="radio_c_group">
                 <label
                   v-for="option in typeOptions"
@@ -83,16 +83,16 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Masa de masaj</label>
+              <label>{{ $t('address.equipment') }}</label>
               <div class="radio_c_group">
-                <label class="container_check">Am masa mea
+                <label class="container_check">{{ $t('address.my_own_massage_table') }}
                   <input type="checkbox" :checked="address.equipment_ids.includes(1) ? 'checked' : ''" @click="onEquipmentChange(address.equipment_ids.includes(1))">
                   <span class="checkmark" />
                 </label>
               </div>
             </div>
             <div class="form-group">
-              <label>Animale de companie</label>
+              <label>{{ $t('address.petsTitle') }}</label>
               <div class="radio_c_group">
                 <label
                   v-for="option in petOptions"
@@ -106,7 +106,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Parcare</label>
+              <label>{{ $t('address.parking') }}</label>
               <div class="radio_c_group">
                 <label
                   v-for="option in parkingOptions"
@@ -120,7 +120,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Nota</label>
+              <label>{{ $t('address.notesTitle') }}</label>
               <input
                 v-model="address.notes"
                 type="text"
@@ -133,7 +133,7 @@
                 class="btn_1"
                 @click.prevent="saveAddress()"
               >
-                Salveaza
+                {{ $t('address.save') }}
               </button>
             </div>
           </div>

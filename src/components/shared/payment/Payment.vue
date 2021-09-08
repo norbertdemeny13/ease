@@ -4,7 +4,7 @@
     <div class="box_order_form">
       <div class="head">
         <div class="title">
-          <h3>Introduce datele cardului</h3>
+          <h3>{{ $t('generic.add_payment_method') }}</h3>
         </div>
       </div>
       <!-- /head -->
@@ -23,7 +23,7 @@
         <!--End row -->
         <div class="payment-actions">
           <a href="" @click.prevent="onAddCard">
-            Adauga card
+            {{ $t('generic.save') }}
           </a>
           <a href="" class="ml-4" @click.prevent="$emit('on-cancel')">
             Inapoi

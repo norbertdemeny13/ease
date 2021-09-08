@@ -14,7 +14,7 @@
           </div>
           <div class="forgot-password-modal-wrapper">
             <div class="form-group">
-              <label>Introdu adresa ta de email pentru resetarea parolei</label>
+              <label>{{ $t('desc_enter_email_reset_password') }}</label>
               <input
                 id="email"
                 v-model="email"
@@ -25,7 +25,7 @@
               <i class="icon_mail_alt" />
             </div>
             <div class="d-flex justify-content-between">
-              <button class="btn_1 px-4" @click="onSubmit()">Trimite</button>
+              <button class="btn_1 px-4" @click="onSubmit()">{{ $t('generic.send') }}</button>
             </div>
           </div>
           <!--form -->

@@ -9,33 +9,33 @@
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Serviciu Clienti</h2>
-              <span><i class="icon_phone mr-2" />(+40 123 456 79)</span><br>
+              <h2>Clienti</h2>
+              <span><i class="icon_phone mr-2" />+40 123 456 79</span><br>
               <span><i class="icon_mail mr-2" />serviciuclienti@ease.ro</span>
-              <small>L-V: 9-18</small>
+              <small>Luni - Vineri: 9-18</small>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Ease la locul de munca</h2>
-              <span><i class="icon_mail mr-2" />business@ease.ro</span>
+              <h2>Profesionisti</h2>
+              <span><i class="icon_phone mr-2" />+40 123 456 79</span><br>
+              <span><i class="icon_mail mr-2" />profesionisti@ease.ro</span>
+              <small>Luni - Vineri: 9-18</small>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Marketing:</h2>
+              <h2>Marketing</h2>
               <span><i class="icon_mail mr-2" />marketing@ease.ro</span>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Profesionisti Ease</h2>
-              <span><i class="icon_phone mr-2" />(+40 123 456 79)</span><br>
-              <span><i class="icon_mail mr-2" />profesionisti@ease.ro</span>
-              <small>L-V: 7-20</small>
+              <h2>Business</h2>
+              <span><i class="icon_mail mr-2" />business@ease.ro</span>
             </div>
           </div>
         </div>

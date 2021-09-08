@@ -1,6 +1,6 @@
 <template>
   <div class="es-payment-container">
-    <h5>Adresa</h5>
+    <h5>{{ $t('generic.address') }}</h5>
     <div v-if="getLocalAddresses.length">
       <div class="row mb-4">
         <div class="col-6">
@@ -26,12 +26,12 @@
       </div>
     </div>
     <div v-else class="my-4">
-      <p>Te rugam sa adaugi o adresa</p>
+      <p>{{ $t('generic.please_add_an_address') }}</p>
     </div>
     <div class="my-4">
       <a href="" class="my-4" @click.prevent="$emit('on-show-address-modal')">
         <i class="icon_plus" />
-        Adauga adresa
+        {{ $t('generic.add_address') }}
       </a>
     </div>
   </div>
