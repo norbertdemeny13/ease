@@ -1,15 +1,15 @@
 <template>
   <div class="es_pro-phone-container content">
-    <h4>Documente</h4>
+    <h4>{{ $t('views.pro_dashboard.documents') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div class="document-type d-flex d-column">
-          <h6>Certificat de calificare</h6>
-          <p>Poza dupa certificatul de calificare</p>
+          <h6>{{ $t('views.pro_dashboard.qualification_certificate') }}</h6>
+          <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
         </div>
         <div class="upload-button">
           <a href="" class="my-4" @click.prevent="$emit('on-show-address-modal')">
-            Incarca
+            {{ $t('views.pro_dashboard.upload') }}
           </a>
           <span class="info" />
         </div>

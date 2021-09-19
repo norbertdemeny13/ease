@@ -3,39 +3,39 @@
     <!-- /container -->
     <div class="bg_gray">
       <div class="container margin_60_40">
-        <h4>Contacteaza-ne</h4>
-        <h5 class="my-4">EASE APP S.R.L</h5>
+        <h4>{{ $t('views.contact.contact_us') }}</h4>
+        <h5 class="my-4">{{ $t('views.contact.ease_app') }}</h5>
         <div class="row justify-content-center">
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Clienti</h2>
-              <span><i class="icon_phone mr-2" />+40 123 456 79</span><br>
-              <span><i class="icon_mail mr-2" />serviciuclienti@ease.ro</span>
-              <small>Luni - Vineri: 9-18</small>
+              <h2>{{ $t('views.contact.clients') }}</h2>
+              <span><i class="icon_phone mr-2" />{{ $t('views.contact.clients_phone') }}</span><br>
+              <span><i class="icon_mail mr-2" />{{ $t('views.contact.clients_email') }}</span>
+              <small>{{ $t('views.contact.clients_hours') }}</small>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Profesionisti</h2>
-              <span><i class="icon_phone mr-2" />+40 123 456 79</span><br>
-              <span><i class="icon_mail mr-2" />profesionisti@ease.ro</span>
-              <small>Luni - Vineri: 9-18</small>
+              <h2>{{ $t('views.contact.pros') }}</h2>
+              <span><i class="icon_phone mr-2" />{{ $t('views.contact.pros_phone') }}</span><br>
+              <span><i class="icon_mail mr-2" />{{ $t('views.contact.pros_email') }}</span>
+              <small>{{ $t('views.contact.pros_hours') }}</small>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Marketing</h2>
-              <span><i class="icon_mail mr-2" />marketing@ease.ro</span>
+              <h2>{{ $t('views.contact.marketing') }}</h2>
+              <span><i class="icon_mail mr-2" />{{ $t('views.contact.marketing_email') }}</span>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_lifesaver" />
-              <h2>Business</h2>
-              <span><i class="icon_mail mr-2" />business@ease.ro</span>
+              <h2>{{ $t('views.contact.business') }}</h2>
+              <span><i class="icon_mail mr-2" />{{ $t('views.contact.business_email') }}</span>
             </div>
           </div>
         </div>

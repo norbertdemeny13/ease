@@ -6,6 +6,8 @@
     "activate_now": "Activeaza acum",
     "add": "Adauga",
     "add_address": "Adauga adresa",
+    "address_delete": "Stergere adresa",
+    "address_delete_question": "Esti sigur ca doresti sa stergi adresa?",
     "add_payment_method": "Introdu datele cardului",
     "address": "Adrese",
     "all_rights_reserved": "©2021 EaseApp. Toate drepturile rezervate",
@@ -27,7 +29,7 @@
     "download_app": "Descarca aplicatia",
     "edit": "Editeaza",
     "email": "Email",
-    "email_adress": "Adresa de email",
+    "email_address": "Adresa de email",
     "email_of_beneficiary": "Emailul beneficiarului",
     "email_of_sender": "Emailul expeditorului",
     "enter_phone_number": "Introdu numarul de mobil",
@@ -65,6 +67,7 @@
     "new_password": "Noua parola (minim 6 caractere)",
     "notifications": "Vreau sa primesc oferte si notificari prin",
     "no_account_yet": "Inca nu ai cont?",
+    "not_found": "Ne pare rau, aceasta pagina nu exista",
     "old_password": "Vechea parola",
     "order_sum": "Sumar comanda",
     "order_was_sent": "COMANDA A FOST TRIMISA!",
@@ -110,6 +113,13 @@
     "view_details": "vezi detalii",
     "when_to_send_gift": "Cand doresti sa trimitem cadoul?"
   },
+  "toast": {
+    "error_title": "Eroare",
+    "success_title": "Succes",
+    "account_update": "Modificarea a fost salvata",
+    "wrong_password": "Te rugam sa introduci parola corecta",
+    "referral_link_copied": "Trimite linkul prietenilor tai pentru a castiga 15 Lei"
+  },
   "views": {
     "home": {
       "title": "Servicii wellness de 5 stele cand si unde doresti",
@@ -140,11 +150,87 @@
       "title": "Abonamentele Ease",
       "title_description": "Bucura-te de servicii wellness la tine, in timp ce economisesti 20% - 25% din fiecare rezervare"
     },
-   "giftcards": {
+    "faq": {
+      "frequently_asked_questions": "Intrebari frecvente",
+      "title": "Abonamentele Ease"
+    },
+    "contact": {
+      "business": "Business",
+      "business_email": "business@ease.ro",
+      "clients": "Clienti",
+      "clients_phone": "+40 123 456 79",
+      "clients_email": "serviciuclienti@ease.ro",
+      "clients_hours": "Luni - Vineri: 9-18",
+      "contact_us": "Contacteaza-ne",
+      "ease_app": "Ease App SRL",
+      "marketing": "Marketing",
+      "marketing_email": "marketing@ease.ro",
+      "pros": "Profesionisti",
+      "pros_phone": "+40 123 456 79",
+      "pros_email": "profesionisti@ease.ro",
+      "pros_hours": "Luni - Vineri: 9-18"
+    },
+    "pro_details": {
+      "experience": "Experienta",
+      "certified": "Certificat",
+      "certified_100": "100%",
+      "spoken_languages": "Limbi vorbite",
+      "rating": "Rating",
+      "reviews": "Recenzii"
+    },
+    "giftcards": {
       "giftcard_summary_info": "De pe cardul tau va fi incasata suma de {ammount} Lei. Se va trimite un email la {email} in data de {date} cu un voucher in valoare de {total} Lei, care poate fi valorificat in aplicatia Ease pentru IOS sau Android sau pe site-ul nostru www.ease.ro",
       "giftcard_summary_info2": "Cardurile Cadou Ease sunt nerambursabile.",
       "title": "Intodeauna Cadoul Perfect",
       "title_description": "Alege Design-ul Cardului Tau"
+      },
+    "pro_home": {
+      "apply_now": "Aplica acum",
+      "footer_message": "Daca ai experienta, pasiune pentru wellness si dorinta de a castiga mai multi bani, incepe sa lucrezi cu Ease!",
+      "how_it_works": "Cum functioneaza?",
+      "how_it_works_card1_title": "Aplica cu usurinta",
+      "how_it_works_card1_message": "Iti verificam identitatea, certificarile si experienta",
+      "how_it_works_card2_title": "Primesti acces",
+      "how_it_works_card2_message": "Dupa un scurt interviu ti se va activa contul si vei incepe sa primesti oferte de lucru",
+      "how_it_works_card3_title": "Incepe sa castigi",
+      "how_it_works_card3_message": "Descarca aplicatia Elite si incepe sa accepti rezervari de la clienti",
+      "learn_more": "Afla mai multe",
+      "page_title": "Castiga mai multi bani, pe termenii tai",
+      "page_subtitle": "Ofera servicii de masaj, beauty sau fitness pe platforma de wellness cu cei mai multi utilizatori activi din Romania",
+      "photo1_title": "Esti platit rapid si sigur",
+      "photo1_text1": "• Banii ajung în contul tau bancar la 24h dupa fiecare serviciu prestat",
+      "photo1_text2": "• Poti sa primesti bacsis direct prin aplicatie",
+      "photo1_text3": "• Stii exact cat incasezi inainte de fiecare rezervare",
+      "photo1_text4": "• Beneficiezi de garantarea transferului si protectia sumelor de bani pana la incasare",
+      "photo2_title": "Iti respectam timpul",
+      "photo2_text1": "• Incasezi mai mult pentru serviciile prestate la ore tarzii",
+      "photo2_text2": "• Clientii platesc taxe pentru anularile intarziate care se transfera in proportie de 100% pe contul tau",
+      "photo3_title": "Concentreaza-te pe serviciile tale, noi ne ocupam de restul",
+      "photo3_text1": "• Lasa marketing-ul, vanzarile si complexitatile sistemele de plata pe seama noastra",
+      "photo3_text2": "• Noi ne ocupam de tot pentru ca tu sa poti oferi intodeauna servicii excelente",
+      "work_with_us": "Lucreaza cu noi",
+      "work_with_us_card1_title": "Castiga mai mult",
+      "work_with_us_card1_message": "Ca profesionist independent Ease poti castiga pana la de 2-3 ori mai mult decat standardul in industrie",
+      "work_with_us_card2_title": "Pe termenii tai",
+      "work_with_us_card2_message": "Lucrezi cand doresti unde doresti. Nu exista cerinte pentru un numar minim de ore lucrate",
+      "work_with_us_card3_title": "In siguranta",
+      "work_with_us_card3_message": "Fara timp irosit in trafic, fara sali de asteptare si fara locuri aglomerate. Ease aduce wellness-ul la tine!"
+    },
+    "pro_dashboard": {
+        "profile": "Profil",
+        "bio": "Bio* Scrie despre lucrurile care te pasioneaza",
+        "bio_placeholder": "Am fost întotdeauna pasionata de artă și una dintre cele mai rafinate expresii ale artei - machiajul. M-am specializat într-o gamă largă de servicii de înfrumusețare de lux, personalizate, inclusiv machiaj de zi, machiaj de ocazie si laminare gene. Aștept cu nerăbdare să fac putina magie cu tine!",
+        "documents": "Documente",
+        "gender": "Genul*",
+        "how_did_you_find_out_about_ease": "Cum ai auzit de Ease?",
+        "how_much_you_hope_to_earn": "Cat speri sa castigi pe saptamana lucrand cu noi?",
+        "my_stripe_account": "Contul meu Stripe",
+        "qualifications": "Calificari",
+        "qualification_certificate": "Certificat de calificare",
+        "qualification_certificate_photo": "Poza cu certificatul de calificare",
+        "spoken_languages": "Limbi vorbite",
+        "upload": "Incarca",
+        "years_of_experience": "Ani experienta"
     },
     "client_dashboard": {
       "recommend": {
@@ -498,7 +584,7 @@
   "equipment_string": "Echipament",
   "equipment.massage_table": "Masa de masaj",
   "error_string": "A aparut o eroare",
-  "experience_string": "experienta",
+  "experience_string": "Experienta",
   "extensions": "Extensii",
   "eyebrow": "Sprancene",
   "eyebrow.threading": "Definire Sprancene (cu ata)",

@@ -82,8 +82,8 @@
         copyToClipboard(fullLink);
         (this as any).$toasts.toast({
           id: nanoid(),
-          message: 'Trimite linkul prietenilor tai pentru a castiga 15 Lei',
-          title: 'Cod copiat!',
+          message: this.$t('toast.referral_link_copied'),
+          title: this.$t('toast.success_title'),
           intent: 'success',
         });
       },

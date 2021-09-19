@@ -12,9 +12,9 @@
               height="234"
             >
           </figure>
-          <p>Ne pare rau, dar aceasta pagina nu exista</p>
+          <p>{{ $t('generic.not_found') }}</p>
           <div class="text-center">
-            <router-link class="btn btn-pill btn-sm btn-pink mt-4 px-5" to="/">Inapoi</router-link>
+            <router-link class="btn btn-pill btn-sm btn-pink mt-4 px-5" to="/">{{ $t('generic.back') }}</router-link>
           </div>
         </div>
       </div>

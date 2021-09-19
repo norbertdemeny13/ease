@@ -2,7 +2,7 @@
   <div class="faq-container bg_gray">
     <div class="container margin_30_40">
       <div class="main_title center">
-        <h2>Intrebari frecvente</h2>
+        <h2>{{ $t('views.faq.frequently_asked_questions') }}</h2>
       </div>
 
       <div class="large-view">

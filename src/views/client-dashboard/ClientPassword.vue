@@ -92,8 +92,8 @@
         } else {
           (this as any).$toasts.toast({
             id: 'password-toast',
-            title: 'Atentie',
-            message: 'Te rog sa introduci o parola corecta!',
+            title: this.$t('toast.error'),
+            message: this.$t('toast.wrong_password'),
             intent: 'warning',
           });
         }

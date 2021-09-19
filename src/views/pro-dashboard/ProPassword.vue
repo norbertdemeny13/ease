@@ -1,10 +1,10 @@
 <template>
   <div class="es_pro-password-container content">
-    <h4>Schimba Parola</h4>
+    <h4>{{ $t('generic.change_password') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Vechea parola</label>
+          <label>{{ $t('generic.old_password') }}</label>
           <input
             id="old-password"
             v-model="oldPassword"
@@ -12,11 +12,11 @@
             class="form-control"
             name="old-password"
           >
-          <span v-if="newPassType === 'password'" class="show-password-btn" @click.prevent="newPassType = 'text'">Arata</span>
-          <span v-if="newPassType === 'text'" class="show-password-btn" @click.prevent="newPassType = 'password'">Ascunde</span>
+          <span v-if="newPassType === 'password'" class="show-password-btn" @click.prevent="newPassType = 'text'">{{ $t('generic.show') }}</span>
+          <span v-if="newPassType === 'text'" class="show-password-btn" @click.prevent="newPassType = 'password'">{{ $t('generic.hide') }}</span>
         </div>
         <div class="form-group">
-          <label>Noua parola (minim 6 caractere)</label>
+          <label>{{ $t('generic.new_password') }}</label>
           <input
             id="new-password"
             v-model="newPassword"
@@ -24,20 +24,20 @@
             class="form-control"
             name="new-password"
           >
-          <span v-if="oldPassType === 'password'" class="show-password-btn" @click.prevent="oldPassType = 'text'">Arata</span>
-          <span v-if="oldPassType === 'text'" class="show-password-btn" @click.prevent="oldPassType = 'password'">Ascunde</span>
+          <span v-if="oldPassType === 'password'" class="show-password-btn" @click.prevent="oldPassType = 'text'">{{ $t('generic.show') }}</span>
+          <span v-if="oldPassType === 'text'" class="show-password-btn" @click.prevent="oldPassType = 'password'">{{ $t('generic.hide') }}</span>
         </div>
         <div class="d-flex justify-content-end">
           <div class="d-flex align-items-center mr-4">
             <a href="" @click.prevent="isForgotPasswordModalOpen = true">
-              Am uitat parola
+              {{ $t('generic.forgot_password') }}
             </a>
           </div>
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
           >
-            Salveaza
+            {{ $t('generic.save') }}
           </button>
         </div>
       </div>
@@ -92,8 +92,8 @@
         } else {
           (this as any).$toasts.toast({
             id: 'password-toast',
-            title: 'Atentie',
-            message: 'Te rog sa introduci o parola corecta!',
+            title: this.$t('toast.error_title'),
+            message: this.$t('toast.wrong_password'),
             intent: 'warning',
           });
         }

@@ -4,7 +4,7 @@
       <div class="row bg-white p-4">
         <div class="col-md-6">
           <a class="back-button" href="" @click.prevent="onBack()">
-            Inapoi
+            {{ $t('generic.back') }}
           </a>
           <div class="row mt-2">
             <div class="col-md-3">
@@ -52,7 +52,7 @@
                   class="btn btn-sm btn-pink btn-pill my-4 px-6"
                   @click.prevent="onReserve"
                 >
-                  Rezerva
+                  {{ $t('generic.reserve') }}
                 </button>
               </div>
             </div>
@@ -68,7 +68,7 @@
                   >
                 </figure>
                 <div class="ml-2">
-                  <h6 class="mb-0">Experienta</h6>
+                  <h6 class="mb-0">{{ $t('views.pro_details.experience') }}</h6>
                   <p>16 ani</p>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                   >
                 </figure>
                 <div class="ml-2">
-                  <h6 class="mb-0">Limbi vorbite</h6>
+                  <h6 class="mb-0">{{ $t('views.pro_details.spoken_languages') }}</h6>
                   <p>Romana, Franceza</p>
                 </div>
               </div>
@@ -94,15 +94,15 @@
                   >
                 </figure>
                 <div class="ml-2">
-                  <h6 class="mb-0">Certificat</h6>
-                  <p>100%</p>
+                  <h6 class="mb-0">{{ $t('views.pro_details.certified') }}</h6>
+                  <p>{{ $t('views.pro_details.certified_100') }}</p>
                 </div>
               </div>
             </div>
           </div>
           <div v-if="getReviews.length" class="row">
             <div class="col-md-12">
-              <h6>Recenzii</h6>
+              <h6>{{ $t('views.pro_details.reviews') }}</h6>
               <p>Rating {{ getElite.rating }} din 5 ({{ getReviews.length }})</p>
               <div class="es_reviews-container">
                 <div v-for="review in getReviews" :key="review.id" class="es_reviews-container__item">
