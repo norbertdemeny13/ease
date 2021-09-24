@@ -12,7 +12,8 @@ import {
 } from './interceptors';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'https://ease-be.herokuapp.com/api/v1',
+  // baseURL: 'https://ease-be.herokuapp.com/api/v1',
+  baseURL: 'http://localhost:3000/api/v1',
 });
 
 instance.interceptors.request.use(
