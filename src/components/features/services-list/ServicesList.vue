@@ -2,8 +2,8 @@
 <template>
   <div :class="`es_services-list-container ${showServices ? '' : 'disabled'} my-4`">
     <div v-if="service.items.length" v-for="service in services" :key="service.category" class="row mt-4">
-      <div class="col-12"><h2 class="title_small">{{ service.category }}</h2></div>
-      <div v-if="service.description" class="col-12"><p class="text-secondary">{{ service.description }}</p></div>
+      <div class="col-12"><h2 class="title_small">{{ $t(service.category) }}</h2></div>
+      <div v-if="service.description" class="col-12"><p class="text-secondary">{{ $t(service.description) }}</p></div>
         <div v-if="service.items.length > 4" class="col-12 owl-carousel owl-theme categories_carousel_in">
           <services-list-item
             v-for="item in service.items"

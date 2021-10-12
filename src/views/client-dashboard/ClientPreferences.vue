@@ -2,7 +2,7 @@
   <div class="es_client-preferences-container content">
     <div class="row">
       <div class="col-md-6">
-        <h4>Preferinte</h4>
+        <h4>{{ $t('views.client_dashboard.preferences.title') }}</h4>
       </div>
     </div>
     <div class="row">

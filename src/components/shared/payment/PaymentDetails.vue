@@ -2,9 +2,9 @@
 <template>
   <div class="es_payment-details-container">
     <div v-show="!showAddPayment">
-      <h5>Metoda de plata</h5>
+      <h5>{{ $t('generic.payment_method') }}</h5>
       <div v-if="!!getLocalCards.length">
-        <p>Selecteaza metoda de plata</p>
+        <p>{{ $t('generic.select_payment_method') }}</p>
         <div class="row mb-4">
           <div class="col-6">
             <div class="my-2 form-group">
@@ -25,11 +25,11 @@
       </div>
       <a href="" class="mt-4" @click.prevent="addPayment()">
         <i class="icon_plus" />
-        Adauga metoda de plata
+        {{ $t('generic.add_new_payment_method') }}
       </a>
     </div>
     <div v-show="showAddPayment">
-      <h5>Te rugam sa introduci datele</h5>
+      <h5>{{ $t('generic.add_new_payment_method') }}</h5>
       <es-payment
         class="mt-4"
         :is-fetching="isFetching"
@@ -100,7 +100,7 @@
         if (newVal.length) {
           newVal.forEach((error: any) => {
             (this as any).$toasts.toasts.push({
-              title: 'Atentie!',
+              title: this.$t('toast.error_title'),
               intent: error.status === 400 ? 'error' : 'warning',
               message: error.data.error,
               id: nanoid(),

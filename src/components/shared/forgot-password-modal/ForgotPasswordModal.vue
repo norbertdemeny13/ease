@@ -9,7 +9,7 @@
       <div class="container es-login-modal mt-12">
         <div id="es-modal-dialog" class="es-forgot-password-modal">
           <div class="modal_header">
-            <h3>Am uitat parola</h3>
+            <h3>{{ $t('generic.forgot_password') }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
           <div class="forgot-password-modal-wrapper">
@@ -70,16 +70,16 @@
           await this.forgotPassword(this.email);
           (this as any).$toasts.toast({
             id: 'forgot-password',
-            title: 'Atentie',
-            message: 'Vei primi in curand un email cu un link prin care poti sa resetezi parola.',
+            title: this.$t('toast.warning_title'),
+            message: this.$t('toast.password_reset'),
             intent: 'warning',
           });
           this.$emit('is-open', false);
         } else {
           (this as any).$toasts.toast({
             id: 'forgot-password',
-            title: 'Atentie',
-            message: 'Te rog sa introduci un email valid.',
+            title: this.$t('toast.warning_title'),
+            message: this.$t('toast.invalid_email'),
             intent: 'warning',
           });
         }

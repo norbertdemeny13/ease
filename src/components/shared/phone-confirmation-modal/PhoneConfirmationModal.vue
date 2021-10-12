@@ -13,10 +13,10 @@
             <h3>{{ $t('generic.validate_phone_number') }}</h3>
             <button v-if="canCloseModal" type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
-          <a href="" @click.prevent="$emit('is-open', false); $emit('show-validate-phone-modal', true)">Inapoi</a>
+          <a href="" @click.prevent="$emit('is-open', false); $emit('show-validate-phone-modal', true)">{{ $t('generic.back') }}</a>
           <div class="validate-phone-wrapper mt-4">
             <div class="form-group">
-              <label>Introdu codul trimis la: {{ getUser.phone_number }}</label>
+              <label>{{ $t('generic.enter_code') }} {{ getUser.phone_number }}</label>
               <input type="text" required class="form-control" name="phone" id="phone" v-model="validationCode">
             </div>
             <div class="d-flex">
@@ -71,8 +71,8 @@
           (this as any).$toasts.toasts.push({
             id: nanoid(),
             intent: 'success',
-            title: 'Felicitari!',
-            message: 'Contul telefonul tau a fost adaugat cu succes!',
+            title: this.$t('toast.congrats_title'),
+            message: this.$t('toast.phone_number_confirmed'),
           });
           this.$emit('is-open', false);
         }

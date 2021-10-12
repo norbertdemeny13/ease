@@ -62,8 +62,8 @@
       cta="Ok"
       @on-confirm="isAlertModalOpen = false"
     >
-      <template slot="title">Eroare</template>
-      <template slot="message">Aceasta adresa este setata ca si adresa principala. Pentru a o sterge, adauga sau alege o alta adresa ca fiind principala.</template>
+      <template slot="title">{{ $t('delete.default.address.title') }}</template>
+      <template slot="message">{{ $t('delete.default.address.text') }}</template>
     </es-confirm-modal>
   </div>
 </template>
@@ -141,7 +141,7 @@
 
         this.method = 'select';
         this.selectedAddress = address;
-        this.modalTitle = 'Schimbare adresa primara';
+        this.modalTitle = 'Schimbare adresa principala';
         this.modalMessage = `Vrei sa setezi ${this.getAddress(address)} ca si adresa primara?`;
         this.isConfirmModalOpen = true;
       },

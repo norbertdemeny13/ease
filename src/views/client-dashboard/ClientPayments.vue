@@ -86,8 +86,8 @@
           if (this.method === 'remove' && this.getCards.length > 0) {
             (this as any).$toasts.toast({
               id: 'remove-card',
-              title: 'Status card',
-              message: 'Cardul este in curs de stergere. Lista cardurilor se va actualiza automat cand stergerea a fost cu success!',
+              title: this.$t('toast.success_title'),
+              message: this.$t('toast.remove_card'),
               intent: 'success',
             });
           }
@@ -128,7 +128,7 @@
 
         this.method = 'select';
         this.selectedCard = card;
-        this.modalTitle = 'Schimbare card';
+        this.modalTitle = 'Schimbare card principal';
         this.modalMessage = `Vrei sa setezi ${this.getCardInfo(card)} ca si card principal?`;
         this.isConfirmModalOpen = true;
       },

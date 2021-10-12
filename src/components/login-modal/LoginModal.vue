@@ -14,7 +14,7 @@
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
           <div class="form-group radio_c_group">
-            <label @click="userType = 'client'" class="container_radio">Client
+            <label @click="userType = 'client'" class="container_radio">{{ $t('generic.client') }}
               <input type="radio" value="checkbox" name="user-type" :checked="`${userType === 'client' ? 'checked' : ''}`">
               <span class="checkmark"></span>
             </label>
@@ -138,11 +138,11 @@
               </div>
               <div id="forgot_pw">
                 <div class="form-group">
-                  <label>Te rog sa confirmi emailul de logare</label>
+                  <label>{{ $t('generic.please_confirm_your_email') }}</label>
                   <input type="email" class="form-control" name="email_forgot" id="email_forgot">
                   <i class="icon_mail_alt" />
                 </div>
-                <p>Vei primi un mail care va contine un link unde o sa iti pot seta parola dorita.</p>
+                <p>{{ $t('reset_password_email_sent') }}</p>
                 <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
               </div>
             </div>
@@ -231,8 +231,8 @@
           (this as any).$toasts.toast({
             id: 'warning-toast',
             intent: 'warning',
-            message: 'Te rugam sa accepti termenii si conditiile pentru a continua',
-            title: 'Atentie',
+            message: this.$t('toast.accept_terms_and_conditions'),
+            title: this.$t('toast.warning_title'),
           });
 
           return;

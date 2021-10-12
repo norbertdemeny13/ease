@@ -21,7 +21,7 @@
           </div>
         </div>
         <div v-else class="d-flex align-items-center justify-content-between">
-          <h4>Momentan nu exista nicio comanda</h4>
+          <h4>{{ $t('views.client_dashboard.my_orders.no_orders') }}</h4>
         </div>
         <div class="d-flex justify-content-end">
           <button
@@ -44,14 +44,14 @@
               width="240px"
             >
           </figure>
-          <h6 class="mt-4">Comanda Nr. {{ selectedCard.gift_card_id }}</h6>
+          <h6 class="mt-4">{{ $t('views.client_dashboard.my_orders.order_nr') }} {{ selectedCard.gift_card_id }}</h6>
           <ul class="summary_list">
             <li><strong>{{ $t('views.client_dashboard.my_orders.sent_on') }}</strong>{{ selectedCard.send_at.substr(0, 10) }}</li>
-            <li><strong>Total</strong>{{ selectedCard.payment.amount }} Lei</li>
+            <li><strong>{{ $t('generic.total') }}</strong>{{ selectedCard.payment.amount }} Lei</li>
           </ul>
           <h6>{{ $t('generic.order_sum') }}</h6>
           <div class="d-flex flex-inline mt-4">
-            <h6 class="mr-5 mb-0">De la</h6>
+            <h6 class="mr-5 mb-0">{{ $t('generic.from') }}</h6>
             <p class="mb-0">{{ selectedCard.from_name }}</p>
           </div>
 

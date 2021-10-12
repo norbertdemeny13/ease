@@ -2,7 +2,7 @@
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
       <a href="" class="back-button" @click.prevent="onBack()">
-        Inapoi
+        {{ $t('generic.back') }}
       </a>
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
@@ -57,8 +57,8 @@
               </div>
             </div>
             <div v-if="massageForm.form === 'aromaterapeutic'" class="d-flex flex-column align-items-center">
-              <h6>Adauga puterea uleiurilor esentiale 100% pure</h6>
-              <a href="#modal-dialog" class="modal_dialog" @click.prevent>Mai multe</a>
+              <h6>{{ $t('generic.add_aromatherapeutic_oil') }}</h6>
+              <a href="#modal-dialog" class="modal_dialog" @click.prevent>{{ $t('generic.learn_more') }}</a>
             </div>
             <es-additional-services
               :services="getComplementaryServices"
@@ -69,7 +69,7 @@
                 href=""
                 @click.prevent="onContinue"
               >
-                Continua
+                {{ $t('generic.continue') }}
               </a>
             </div>
             <es-aromaterapeutic-modal v-if="selectedService.therapeutic_forms.length > 1" :product="selectedService.therapeutic_forms[1]" />
@@ -125,52 +125,52 @@
         const { durations, therapeutic_forms } = this.selectedService;
         return [
           {
-            label: 'Durata Masaj',
+            label: this.$t('massage.massageDuration'),
             key: 'duration',
             length: durations.length,
             choices: durations.map(item => ({ label: `${item} min`, value: item })),
           },
           {
-            label: 'Numar Terapeut',
+            label: this.$t('generic.therapist_number'),
             key: 'terapeut',
             isCouple: true,
             choices: [
               {
-                label: '1 - Masaj pe rand',
+                label: this.$t('generic.one_therapist'),
                 value: 'single',
               },
               {
-                label: '2 - Masaj simultan',
+                label: this.$t('generic.two_therapists'),
                 value: 'double',
               },
             ],
           },
           {
-            label: 'Gen Terapeut',
+            label: this.$t('massage.gender'),
             key: 'genre',
             length: 3,
             choices: [
               {
-                label: 'Feminin',
+                label: this.$t('massage.genderF'),
                 value: 'female',
               },
               {
-                label: 'Oricare',
+                label: this.$t('massage.genderAny'),
                 value: 'any_gender',
               },
               {
-                label: 'Masculin',
+                label: this.$t('massage.genderM'),
                 value: 'male',
               },
             ],
           },
           {
-            label: 'Forma Masaj',
+            label: this.$t('massage.form'),
             key: 'form',
             length: therapeutic_forms.length,
             choices: therapeutic_forms.map(({ id }) => (
               {
-                label: id === 1 ? 'Classic' : 'Aromaterapeutic',
+                label: id === 1 ? this.$t('massage.formClassic') : this.$t('massage.fromAroma'),
                 value: id === 1 ? 'classic' : 'aromaterapeutic',
               }),
             ),
@@ -313,8 +313,8 @@
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',
-              message: 'Pentru a continua, te rugam sa te autentifici cu un cont de client',
-              title: 'Atentie',
+              message: this.$t('toast.login_as_client'),
+              title: this.$t('toast.warning_title'),
             });
 
             return;

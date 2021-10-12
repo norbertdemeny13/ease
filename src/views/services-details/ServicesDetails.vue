@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="container margin_30_20">
-      <a class="back-button" href="" @click.prevent="onBack">Inapoi</a>
+      <a class="back-button" href="" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <es-address-bar />
       <services-list-skeleton v-if="isFetching" />
       <div

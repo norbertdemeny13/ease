@@ -5,8 +5,8 @@
         <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
             <div class="col-xl-6 col-lg-8">
-              <h1>Servicii wellness de 5 stele cand si unde doresti</h1>
-              <p>Iti aducem profesionisti cu experienta, atent selectionati, la usa ta</p>
+              <h1>{{ $t('views.home.title') }}</h1>
+              <p>{{ $t('views.home.subtitle') }}</p>
               <form method="post" action="grid-listing-filterscol.html">
                 <div class="row no-gutters custom-search-input">
                   <div class="col-lg-10">
@@ -20,7 +20,7 @@
                     </div>
                   </div>
                   <div class="col-lg-2">
-                    <button class="btn_1 gradient" type="submit">Rezerva</button>
+                    <button class="btn_1 gradient" type="submit">{{ $t('generic.reserve') }}</button>
                   </div>
                 </div>
                 <!-- /row -->

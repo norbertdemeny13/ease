@@ -26,7 +26,8 @@
             {{ $t('generic.save') }}
           </a>
           <a href="" class="ml-4" @click.prevent="$emit('on-cancel')">
-            Inapoi
+            {{ $t('generic.back') }}
+
           </a>
         </div>
       </div>
@@ -128,7 +129,7 @@
           .then((result: any) => {
             if (result.error) {
               (this as any).$toasts.toast({
-                title: 'Atentie',
+                title: this.$t('toast.error_title'),
                 id: 'card',
                 message: result.error.message,
                 intent: 'error',
@@ -154,7 +155,7 @@
           .then((result: any) => {
             if (result.error) {
               (this as any).$toasts.toast({
-                title: 'Atentie',
+                title: this.$t('toast.error_title'),
                 id: 'card',
                 message: result.error.message,
                 intent: 'error',

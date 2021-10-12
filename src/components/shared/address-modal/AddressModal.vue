@@ -161,8 +161,8 @@
         (this as any).$toasts.toast({
           intent: 'error',
           id: 'address-toast',
-          title: 'Atentie',
-          message: 'Adresa aleasa e inafara razei noastre. Te rugam sa selectezi o alta adresa!',
+          title: this.$t('toast.warning_title'),
+          message: this.$t('toast.address_outside_of_area'),
         });
       },
 
@@ -211,9 +211,9 @@
         if (name === 'Plata rezervare' && this.isDifferentCity) {
           (this as any).$toasts.toast({
             id: 'address-modal',
-            title: 'Atentie!',
+            title: this.$t('toast.warning_title'),
             intent: 'warning',
-            message: 'Orasul selectat nu poate fi diferit de cel ales la rezervare. In cazul in care doresti sa faci rezervarea intr-un alt oras, te rugam sa mergi inapoi pe pagina de servicii si sa reiei rezervarea.',
+            message: this.$t('toast.city_is_changed'),
           });
           return;
         }
@@ -224,9 +224,9 @@
         } else {
           (this as any).$toasts.toast({
             id: 'address-modal',
-            title: 'Atentie!',
+            title: this.$t('toast.warning_title'),
             intent: 'warning',
-            message: 'Te rugam sa introduci adresa completa. Oras, strada, numar',
+            message: this.$t('toast.address_is_incomplete'),
           });
         }
       },

@@ -20,7 +20,7 @@
     <div v-else>
       <div class="my-2">
         <h5>Activeaza un abonament</h5>
-        <p class="my-2">Ai discount de 20% sau 25% la toate sedintele de masaj si sedintele incluse la abonament nu expira</p>
+        <p class="my-2">Comanda orice serviciu cu pana la 25% reducere</p>
         <div class="d-flex flex-column">
           <div class="pricing-card-small mb-4" v-for="subscription in getSubscriptions" :key="subscription.id">
             <div class="card-body" @click.prevent="onSubscriptionSelect(subscription)">

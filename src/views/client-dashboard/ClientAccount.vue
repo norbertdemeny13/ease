@@ -104,8 +104,8 @@
         if (!isEqual(newVal, oldVal)) {
           (this as any).$toasts.toast({
             id: 'update-toast',
-            title: 'Felicitari',
-            message: 'Contul tau a fost modificat cu success!',
+            title: this.$t('toast.congrats_title'),
+            message: this.$t('toast.account_update'),
             intent: 'success',
           });
         }

@@ -3,7 +3,7 @@
   <div class="why-us-container">
     <div class="container margin_30_40">
       <div class="main_title center">
-        <h2>Lucreaza cu noi</h2>
+        <h2>{{ $t('views.pro_home.work_with_us') }}</h2>
       </div>
         <div class="row">
           <div class="col-md-6 col-lg-4">

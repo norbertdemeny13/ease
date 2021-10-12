@@ -1,11 +1,11 @@
 <template>
   <div class="es_reserve-service-container">
     <div class="container margin_30_40">
-      <router-link class="back-button mb-2" :to="getToRoute">Inapoi</router-link>
+      <router-link class="back-button mb-2" :to="getToRoute">{{ $t('generic.back') }}</router-link>
       <es-reserve-service-skeleton v-if="isFetching" />
       <div v-else class="row mt-4">
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
-          <h5 class="pl-5 my-2">Alege Data</h5>
+          <h5 class="pl-5 my-2">{{ $t('calendar.title') }}</h5>
           <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in pl-5">
             <div
               v-for="day in getDays"
@@ -42,7 +42,7 @@
               href=""
               @click.prevent="onContinue"
             >
-              Continua
+              {{ $t('generic.continue') }}
             </a>
           </div>
         </div>

@@ -3,7 +3,7 @@
   <div class="how-it-works-container">
     <div class="container py-6">
       <div class="main_title center">
-        <h2>Cum functioneaza?</h2>
+        <h2>{{ $t('views.pro_home.how_it_works') }}</h2>
       </div>
       <div class="row">
         <div class="col-md-6 col-lg-4">

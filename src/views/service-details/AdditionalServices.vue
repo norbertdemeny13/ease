@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="my-4">Servicii Aditionale</h4>
+    <h4 class="my-4">{{ $t('beauty.additional') }}</h4>
     <div class="added-services-container row my-4 ml-0">
       <div v-for="(service, i) in services" :key="`${service.id}${i}`" class="d-flex flex-column p-4 m-2 w-100">
         <div class="d-flex alig-items-center justify-content-between">

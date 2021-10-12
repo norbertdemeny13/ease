@@ -1,9 +1,9 @@
 <template>
   <div class="es_subscription-details-container">
     <div class="container margin_30_20">
-      <a href="" class="back-button mb-2" @click.prevent="onBack">Inapoi</a>
+      <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="main_title center">
-        <h2 v-if="!fetchedSubscription">Alege un abonament</h2>
+        <h2 v-if="!fetchedSubscription">{{ $t('views.subscriptions.choose') }}</h2>
       </div>
       <es-address-bar />
       <!-- /row -->

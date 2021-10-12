@@ -186,8 +186,8 @@
         (this as any).$toasts.toast({
           id: 'login-toast',
           intent: 'info',
-          title: 'Action required',
-          message: 'Please login or signup before continue',
+          title: this.$t('toast.info_title'),
+          message: this.$t('toast.login_or_register'),
         });
       });
       this.$root.$on('on-show-elite-register', () => {

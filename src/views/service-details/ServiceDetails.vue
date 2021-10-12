@@ -2,7 +2,7 @@
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
       <a class="back-button" href="" @click.prevent="onBack">
-        Inapoi
+        {{ $t('generic.back') }}
       </a>
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
@@ -37,7 +37,7 @@
               href=""
               @click.prevent="onContinue"
             >
-              Continua
+              {{ $t('generic.continue') }}
             </a>
           </div>
         </div>
@@ -161,8 +161,8 @@
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',
-              message: 'Pentru a continua, te rugam sa te autentifici cu un cont de client',
-              title: 'Atentie',
+              message: this.$t('toast.login_as_client'),
+              title: this.$t('toast.warning_title'),
             });
 
             return;
