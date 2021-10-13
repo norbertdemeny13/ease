@@ -77,16 +77,18 @@
       ...mapGetters({ getUser: 'session/getUser' }),
     },
 
-    data: () => ({
-      phone_number: null,
-      formattedPhoneNumber: null,
-      translations: {
-        countrySelectorLabel: 'Codul tarii',
-        countrySelectorError: 'Va rugam selectati',
-        phoneNumberLabel: 'Numarul de telefon',
-        example: 'Exemplu:'
-      },
-    }),
+    data() {
+      return {
+        phone_number: null,
+        formattedPhoneNumber: null,
+        translations: {
+          countrySelectorLabel: this.$t('generic.phone_nr_country_selector'),
+          countrySelectorError: this.$t('generic.phone_nr_selector_error'),
+          phoneNumberLabel: this.$t('generic.phone_nr_label'),
+          example: this.$t('generic.phone_nr_example')
+        },
+      }
+    },
 
     watch: {
       getUser(newVal) {

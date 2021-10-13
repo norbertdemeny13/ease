@@ -128,16 +128,16 @@
 
         this.method = 'select';
         this.selectedCard = card;
-        this.modalTitle = 'Schimbare card principal';
-        this.modalMessage = `Vrei sa setezi ${this.getCardInfo(card)} ca si card principal?`;
+        this.modalTitle = this.$t('views.client_dashboard.payment_methods.change_default_card_title').toString();
+        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getCardInfo(card)} ${this.$t('generic.set_primary_card').toString()}`;
         this.isConfirmModalOpen = true;
       },
 
       onRemove(card: any): void {
         this.method = 'remove';
         this.selectedCard = card;
-        this.modalTitle = 'Stergere card';
-        this.modalMessage = `Vrei sa stergi cardul ${this.getCardInfo(card)}?`;
+        this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
+        this.modalMessage = `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
         this.isConfirmModalOpen = true;
       },
 

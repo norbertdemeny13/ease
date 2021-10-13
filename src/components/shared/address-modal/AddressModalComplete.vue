@@ -169,38 +169,40 @@
       },
     },
     /* eslint-disable */
-    data: () => ({
-      typeOptions: [
-        { value: 'private_residence', label: 'Rezidenta Privata' },
-        { value: 'office', label: 'Birou' },
-        { value: 'hotel', label: 'Hotel' },
-      ],
-      petOptions: [
-        { value: 'cat', label: 'Pisica' },
-        { value: 'dog_and_cat', label: 'Caine si pisica' },
-        { value: 'dog', label: 'Caine'},
-      ],
-      parkingOptions: [
-        { value: 'free_on_street', label: 'Gratuita' },
-        { value: 'paid_on_street', label: 'Cu plata' },
-        { value: 'private_park', label: 'Privata' },
-      ],
-      city: '',
-      address: {
-        street_name: '',
-        street_number: '',
-        address_type: '',
-        pets: '',
-        parking: '',
-        notes: '',
-        floor: '',
-        apartment_number: '',
-        postcode: '',
-        lat: '',
-        lng: '',
-        equipment_ids: [] as number[],
-      },
-    }),
+    data() {
+      return {
+        typeOptions: [
+          { value: 'private_residence', label: this.$t('address.type.private') },
+          { value: 'office', label: this.$t('address.type.office') },
+          { value: 'hotel', label: this.$t('address.type.hotel') },
+        ],
+        petOptions: [
+          { value: 'cat', label: this.$t('address.pet.cat') },
+          { value: 'dog_and_cat', label: this.$t('address.pet.dogAndCat') },
+          { value: 'dog', label: this.$t('address.pet.dog')},
+        ],
+        parkingOptions: [
+          { value: 'free_on_street', label: this.$t('address.parking.free_street') },
+          { value: 'paid_on_street', label: this.$t('address.parking.paid_street') },
+          { value: 'private_park', label: this.$t('address.parking.private') },
+        ],
+        city: '',
+        address: {
+          street_name: '',
+          street_number: '',
+          address_type: '',
+          pets: '',
+          parking: '',
+          notes: '',
+          floor: '',
+          apartment_number: '',
+          postcode: '',
+          lat: '',
+          lng: '',
+          equipment_ids: [] as number[],
+        },
+      };
+    },
 
     computed: {
       ...mapGetters({

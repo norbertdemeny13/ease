@@ -141,8 +141,8 @@
 
         this.method = 'select';
         this.selectedAddress = address;
-        this.modalTitle = 'Schimbare adresa principala';
-        this.modalMessage = `Vrei sa setezi ${this.getAddress(address)} ca si adresa primara?`;
+        this.modalTitle = this.$t('change.default.address.title').toString();
+        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getAddress(address)} ${this.$t('generic.set_primary_address').toString()}`;
         this.isConfirmModalOpen = true;
       },
 
@@ -152,8 +152,8 @@
         } else {
           this.method = 'remove';
           this.selectedAddress = address;
-          this.modalTitle = 'Stergere adresa';
-          this.modalMessage = `Vrei sa stergi adresa ${this.getAddress(address)}?`;
+          this.modalTitle = this.$t('generic.address_delete').toString();
+          this.modalMessage = `${this.$t('generic.address_delete_question').toString()} ${this.getAddress(address)}?`;
           this.isConfirmModalOpen = true;
         }
       },

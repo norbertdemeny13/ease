@@ -141,11 +141,10 @@
 
         this.method = 'select';
         this.selectedAddress = address;
-        this.modalTitle = 'Schimbare adresa principala';
-        this.modalMessage = `Vrei sa setezi ${this.getAddress(address)} ca si adresa principala?`;
+        this.modalTitle = this.$t('change.default.address.title').toString();
+        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getAddress(address)} ${this.$t('generic.set_primary_address').toString()}`;
         this.isConfirmModalOpen = true;
       },
-
       onRemove(address: Address): void {
         if (address.main) {
           this.isAlertModalOpen = true;
