@@ -1,17 +1,17 @@
 <template>
   <div class="ml-2 box_order">
     <div class="head">
-      <h3>DETALII REZERVARE</h3>
+      <h3>{{ $t('lbl_reservation_details') }}</h3>
     </div>
     <!-- /head -->
     <div class="main">
       <ul>
-        <li>Data<span>{{ getDate }}</span></li>
-        <li>Ora<span>{{ getHour }}</span></li>
+        <li>{{ $t('generic.date') }}<span>{{ getDate }}</span></li>
+        <li>{{ $t('generic.hour') }}<span>{{ getHour }}</span></li>
       </ul>
       <hr>
       <div v-if="getCategoryType() === 'couple'" class="d-flex justify-content-between align-items-center flex-inline">
-        <h3>Masaj Cuplu, {{ getSelectedServices[0].massageForm.duration }} min</h3>
+        <h3>{{ $t('generic.couple_massage') }} {{ getSelectedServices[0].massageForm.duration }} min</h3>
         <h5>{{ time.price }} Lei</h5>
       </div>
       <ul
@@ -21,7 +21,7 @@
       >
         <span class="text-gray">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
-          <h3>{{ item.name }}</h3>
+          <h3>{{ $t(item.name) }}</h3>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
         <li
@@ -38,8 +38,8 @@
 
       <ul class="clearfix">
         <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Lei</span></li>
-        <li>Subtotal<span>{{ getTotal }} Lei</span></li>
-        <li v-if="showTotal" class="total">Total<span>{{ getTotal - getDiscount }} Lei</span></li>
+        <li>{{ $t('bookings.details.subTotal') }}<span>{{ getTotal }} Lei</span></li>
+        <li v-if="showTotal" class="total">{{ $t('bookings.details.totalCharged') }}<span>{{ getTotal - getDiscount }} Lei</span></li>
       </ul>
     </div>
   </div>

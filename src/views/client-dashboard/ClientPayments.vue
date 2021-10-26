@@ -24,14 +24,14 @@
           </div>
         </div>
         <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
-          <h4>Momentan nu exista nici un card</h4>
+          <h4>{{ $t('views.client_dashboard.payment_methods.description') }}</h4>
         </div>
         <div class="d-flex justify-content-end">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="addPayment()"
           >
-            {{ $t('generic.add') }}
+            {{ $t('views.client_dashboard.payment_methods.add') }}
           </button>
         </div>
       </div>
@@ -86,8 +86,8 @@
           if (this.method === 'remove' && this.getCards.length > 0) {
             (this as any).$toasts.toast({
               id: 'remove-card',
-              title: 'Status card',
-              message: 'Cardul este in curs de stergere. Lista cardurilor se va actualiza automat cand stergerea a fost cu success!',
+              title: this.$t('toast.success_title'),
+              message: this.$t('toast.remove_card'),
               intent: 'success',
             });
           }
@@ -128,16 +128,16 @@
 
         this.method = 'select';
         this.selectedCard = card;
-        this.modalTitle = 'Schimbare card';
-        this.modalMessage = `Vrei sa setezi ${this.getCardInfo(card)} ca si card principal?`;
+        this.modalTitle = this.$t('views.client_dashboard.payment_methods.change_default_card_title').toString();
+        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getCardInfo(card)} ${this.$t('generic.set_primary_card').toString()}`;
         this.isConfirmModalOpen = true;
       },
 
       onRemove(card: any): void {
         this.method = 'remove';
         this.selectedCard = card;
-        this.modalTitle = 'Stergere card';
-        this.modalMessage = `Vrei sa stergi cardul ${this.getCardInfo(card)}?`;
+        this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
+        this.modalMessage = `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
         this.isConfirmModalOpen = true;
       },
 

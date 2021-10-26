@@ -64,13 +64,21 @@
       <div class="row">
         <div class="ml-3">
           <ul class="additional_links">
-            <li><a href="#">Politica de confidentialitate</a></li>
-            <li><a href="#">Conditii de utilizare</a></li>
+            <li>
+              <a href="#">{{ $t('generic.privacy_policy') }}
+              </a>
+            </li>
+            <li>
+              <a href="#">{{ $t('generic.terms_and_conditions') }}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <div class="row my-3">
-        <p class="ml-3 text-secondary">©2020 EaseApp. Toate drepturile rezervate</p>
+        <p class="ml-3 text-secondary">
+          {{ $t('generic.all_rights_reserved') }}
+        </p>
       </div>
     </div>
   </footer>

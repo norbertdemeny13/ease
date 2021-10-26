@@ -1,10 +1,10 @@
 <template>
   <div class="es_pro-recommendations-container content">
-    <h4>Recomanda</h4>
+    <h4>{{ $t('generic.recommend') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Daruieste unui prieten 15 Lei din prima rezervare si primeste 15 Lei dupa ce a rezervat</label>
+          <label>{{ $t('views.client_dashboard.recommend.title_description') }}</label>
           <div class="d-flex align-items-center">
             <input
               id="code"
@@ -14,7 +14,7 @@
               name="code"
               disabled
             >
-            <span class="copy-btn" @click.prevent="onCopy">Copiaza</span>
+            <span class="copy-btn" @click.prevent="onCopy">{{ $t('generic.copy') }}</span>
           </div>
         </div>
         <div class="d-flex flex-row">
@@ -57,8 +57,8 @@
         copyToClipboard(this.code);
         (this as any).$toasts.toast({
           id: nanoid(),
-          message: 'Trimite prietenilor tai pentru a beneficia de 15 Lei',
-          title: 'Cod copiat!',
+          message: this.$t('toast.referral_link_copied'),
+          title: this.$t('toast.success_title'),
           intent: 'success',
         });
       },

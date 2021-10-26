@@ -6,13 +6,13 @@
           <div class="row pt-6 px-6">
             <div class="col-md-8">
               <div class="text-center text-content mt-4 d-flex align-items-start flex-column justify-content-center">
-                <h3 class="text-left">Castiga mai multi bani, pe termenii tai</h3>
-                <p class="my-2 text-left">Ofera servicii de masaj, beauty sau fitness pe platforma de wellness cu cei mai multi utilizatori activi din Romania</p>
+                <h3 class="text-left">{{ $t('views.pro_home.page_title') }}</h3>
+                <p class="my-2 text-left">{{ $t('views.pro_home.page_subtitle') }}</p>
                 <button
                   class="btn btn-pink btn-pill mt-4 px-6"
                   @click="onSubmit"
                 >
-                  Aplica acum
+                  {{ $t('views.pro_home.apply_now') }}
                 </button>
               </div>
             </div>
@@ -29,12 +29,12 @@
     <div class="text-center text-content m-4 p-4 d-flex align-items-center flex-column justify-content-center bg_gray">
       <div class="row">
         <div class="col-md-8 offset-2">
-          <h3 class="text-center">Daca ai experienta, pasiune pentru wellness si dorinta de a castiga mai multi bani, incepe sa lucrezi cu Ease!</h3>
+          <h3 class="text-center">{{ $t('views.pro_home.footer_message') }}</h3>
           <button
             class="btn btn-pink btn-pill mt-4 px-6"
             @click="onSubmit"
           >
-            Aplica acum
+            {{ $t('views.pro_home.apply_now') }}
           </button>
         </div>
       </div>

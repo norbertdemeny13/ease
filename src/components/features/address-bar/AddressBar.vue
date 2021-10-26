@@ -25,7 +25,7 @@
       <div v-else class="row">
         <div v-if="hasAddress" class="ml-4 mt-2 d-md-block">
           <h1>{{ getLocation.formatted_address }}</h1>
-          <a href="" @click.prevent="changeAddress = true">Change address</a>
+          <a href="" @click.prevent="changeAddress = true">{{ $t('generic.change_address') }}</a>
         </div>
         <es-address-search v-else @on-cancel="changeAddress = false" />
       </div>

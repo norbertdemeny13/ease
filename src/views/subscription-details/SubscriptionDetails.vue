@@ -1,17 +1,17 @@
 <template>
   <div class="es_subscription-details-container">
     <div class="container margin_30_20">
-      <a href="" class="back-button mb-2" @click.prevent="onBack">Inapoi</a>
+      <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="main_title center">
-        <h2 v-if="!fetchedSubscription">Alege un abonament</h2>
+        <h2 v-if="!fetchedSubscription">{{ $t('views.subscriptions.choose') }}</h2>
       </div>
       <es-address-bar />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
       <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
         <div v-if="fetchedSubscription" class="form-group col-md-4">
-          <h3>{{ getFilter.title }}</h3>
-          <label>{{ getFilter.description }}</label>
+          <h3>{{ $t(getFilter.title) }}</h3>
+          <label>{{ $t(getFilter.description) }}</label>
           <div class="choices-container d-flex my-2">
             <button
               v-for="choice in getFilter.choices"

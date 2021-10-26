@@ -19,16 +19,16 @@
 
     <div class="container margin_30_20">
       <div class="main_title center">
-        <h2>Why Submit to FooYes</h2>
-        <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+        <h2>{{ $t('views.subscriptions.title_2') }}</h2>
+        <p>{{ $t('views.subscriptions.title_description_2') }}</p>
       </div>
 
       <div class="row justify-content-center align-items-center add_bottom_15">
         <div class="col-lg-6">
           <div class="box_about">
-            <h3>Boost your Bookings</h3>
-            <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto pro, ei mei doming vivendo legendos. Cu sit magna zril, an odio delectus constituto vis. Vis ludus omnesque ne, est veri quaeque ad.</p>
+            <h3>{{ $t('views.subscriptions.photo1_title') }}</h3>
+            <p class="lead">{{ $t('views.subscriptions.photo1_subtitle') }}</p>
+            <p>{{ $t('views.subscriptions.photo1_body') }}</p>
             <img src="@/assets/png/arrow_about.png" alt="" class="arrow_1">
           </div>
         </div>
@@ -55,9 +55,9 @@
         </div>
         <div class="col-lg-6">
           <div class="box_about">
-            <h3>Manage Easly</h3>
-            <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto pro, ei mei doming vivendo legendos. Cu sit magna zril, an odio delectus constituto vis. Vis ludus omnesque ne, est veri quaeque ad.</p>
+            <h3>{{ $t('views.subscriptions.photo2_title') }}</h3>
+            <p class="lead">{{ $t('views.subscriptions.photo2_subtitle') }}</p>
+            <p>{{ $t('views.subscriptions.photo2_body') }}</p>
             <img src="@/assets/png/arrow_about.png" alt="" class="arrow_2">
           </div>
         </div>
@@ -66,9 +66,9 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-6">
           <div class="box_about">
-            <h3>Reach New Customers</h3>
-            <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto pro, ei mei doming vivendo legendos. Cu sit magna zril, an odio delectus constituto vis. Vis ludus omnesque ne, est veri quaeque ad.</p>
+            <h3>{{ $t('views.subscriptions.photo3_title') }}</h3>
+            <p class="lead">{{ $t('views.subscriptions.photo3_subtitle') }}</p>
+            <p>{{ $t('views.subscriptions.photo3_body') }}</p>
           </div>
         </div>
         <div class="col-lg-6 text-center d-none d-lg-block">

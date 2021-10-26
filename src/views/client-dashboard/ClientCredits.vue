@@ -2,12 +2,12 @@
   <div class="es_client-credits-container content">
     <div class="row">
       <div class="col-md-8">
-        <h4>Credit ease: {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
+        <h4>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
         <es-divider />
-        <h6>Castiga credite Ease invitand prieteni sau introdu codul cardului cadou</h6>
+        <h6>{{ $t('views.client_dashboard.ease_credit.description') }}</h6>
         <div class="d-flex justify-content-start align-items-center">
           <div>
-            <label>Cod card cadou</label>
+            <label>{{ $t('views.client_dashboard.ease_credit.gift_card_code') }}</label>
             <input
               id="credit-code"
               v-model="code"
@@ -20,13 +20,13 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click="onValidate()"
           >
-            Valorifica
+            {{ $t('views.client_dashboard.ease_credit.apply') }}
           </button>
           <button
             class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-6"
             @click="$router.push('/client/recomandare')"
           >
-            Recomanda
+            {{ $t('generic.recommend') }}
           </button>
         </div>
       </div>

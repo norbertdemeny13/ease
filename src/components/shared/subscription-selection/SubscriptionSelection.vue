@@ -19,17 +19,17 @@
     </div>
     <div v-else>
       <div class="my-2">
-        <h5>Activeaza un abonament</h5>
-        <p class="my-2">Ai discount de 20% sau 25% la toate sedintele de masaj si sedintele incluse la abonament nu expira</p>
+        <h5>{{ $t('activate_subscription') }}</h5>
+        <p class="my-2">{{ $t('activate_subscription_for_discount') }}</p>
         <div class="d-flex flex-column">
           <div class="pricing-card-small mb-4" v-for="subscription in getSubscriptions" :key="subscription.id">
             <div class="card-body" @click.prevent="onSubscriptionSelect(subscription)">
               <h3 class="pricing-plan-title d-flex align-items-center"><span class="badge badge-pill offer-badge mr-auto">{{ subscription.discount }} %</span></h3>
               <div class="d-flex justify-content-between mt-4 mb-2">
                 <div>
-                  <h6>{{ subscription.name }}</h6>
+                  <h6>{{ $t(subscription.name) }}</h6>
                   <div class="d-flex flex-column">
-                    <span v-for="(detail, i) in subscription.small_descriptions" :key="i">{{ detail }}</span>
+                    <span v-for="(detail, i) in subscription.small_descriptions" :key="i">{{ $t(detail) }}</span>
                   </div>
                 </div>
                 <div class="d-flex flex-column">

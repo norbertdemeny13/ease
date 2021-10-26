@@ -9,11 +9,11 @@
       <div class="container es-login-modal mt-12">
         <div id="es-modal-dialog" class="es-subscription-benefits-modal">
           <div class="modal_header">
-            <h3>Beneficii abonament</h3>
+            <h3>{{ $t('views.subscriptions.benefits') }}</h3>
             <button class="mfp-close" @click="$emit('is-open', false)"></button>
           </div>
           <ul class="pricing-plan-features">
-            <li v-for="(benefit, i) in benefits" :key="i"><i class="icon_check" />{{ benefit }}</li>
+            <li v-for="(benefit, i) in benefits" :key="i"><i class="icon_check" />{{ $t(benefit) }}</li>
           </ul>
         </div>
       </div>

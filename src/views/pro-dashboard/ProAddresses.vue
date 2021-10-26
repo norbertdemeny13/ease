@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-addresses-container content">
-    <h4>Adrese</h4>
+    <h4>{{ $t('generic.address') }}</h4>
     <div class="row">
       <div class="col-md-6">
         <div
@@ -13,13 +13,13 @@
             <div>{{ getAddress(address) }}</div>
             <div v-if="address.main" class="mt-2">
               <span class="icon_check_alt" />
-              <span class="ml-2">Adresa principala</span>
+              <span class="ml-2">{{ $t('generic.main_address') }}</span>
             </div>
           </div>
           <div class="my-4">
             <a href="" class="my-4 mr-2" @click.prevent.stop="onEdit(address)">
               <i class="icon_pencil-edit" />
-              Editeaza
+              {{ $t('generic.edit') }}
             </a>
             <a
               href=""
@@ -27,7 +27,7 @@
               @click.prevent.stop="onRemove(address)"
             >
               <i class="icon_trash_alt" />
-              Sterge
+              {{ $t('generic.delete') }}
             </a>
           </div>
         </div>
@@ -36,7 +36,7 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="isAddressModalOpen = true"
           >
-            Adauga
+            {{ $t('generic.add') }}
           </button>
         </div>
       </div>
@@ -62,8 +62,8 @@
       cta="Ok"
       @on-confirm="isAlertModalOpen = false"
     >
-      <template slot="title">Eroare</template>
-      <template slot="message">Aceasta adresa este setata ca si adresa principala. Pentru a o sterge, adauga sau alege o alta adresa ca fiind principala.</template>
+      <template slot="title">{{ $t('delete.default.address.title') }}</template>
+      <template slot="message">{{ $t('delete.default.address.text') }}</template>
     </es-confirm-modal>
   </div>
 </template>
@@ -141,19 +141,18 @@
 
         this.method = 'select';
         this.selectedAddress = address;
-        this.modalTitle = 'Schimbare adresa primara';
-        this.modalMessage = `Vrei sa setezi ${this.getAddress(address)} ca si adresa primara?`;
+        this.modalTitle = this.$t('change.default.address.title').toString();
+        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getAddress(address)} ${this.$t('generic.set_primary_address').toString()}`;
         this.isConfirmModalOpen = true;
       },
-
       onRemove(address: Address): void {
         if (address.main) {
           this.isAlertModalOpen = true;
         } else {
           this.method = 'remove';
           this.selectedAddress = address;
-          this.modalTitle = 'Stergere adresa';
-          this.modalMessage = `Vrei sa stergi adresa ${this.getAddress(address)}?`;
+          this.modalTitle = this.$t('generic.address_delete').toString();
+          this.modalMessage = `${this.$t('generic.address_delete_question').toString()} ${this.getAddress(address)}?`;
           this.isConfirmModalOpen = true;
         }
       },

@@ -2,7 +2,7 @@
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
       <a class="back-button" href="" @click.prevent="onBack">
-        Inapoi
+        {{ $t('generic.back') }}
       </a>
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
@@ -10,8 +10,8 @@
           <img :src="service.absolute_image_url_large" width="500" height="350">
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6">
-          <h2>{{ service.name }}</h2>
-          <p>{{ service.description }}</p>
+          <h2>{{ $t(service.name) }}</h2>
+          <p>{{ $t(service.description) }}</p>
 
           <es-complementary-services
             v-if="service.complementary_services.length"
@@ -28,7 +28,7 @@
           <div v-if="canAddAdditionalServices" class="d-flex justify-content-start">
             <a href="" class="mt-4" @click.prevent="onAddAdditionalService">
               <i class="icon_plus" />
-              Mai Adauga Un Serviciu
+              {{ $t('generic.add_more') }}
             </a>
           </div>
           <div class="d-flex justify-content-center">
@@ -37,7 +37,7 @@
               href=""
               @click.prevent="onContinue"
             >
-              Continua
+              {{ $t('generic.continue') }}
             </a>
           </div>
         </div>
@@ -161,8 +161,8 @@
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',
-              message: 'Pentru a continua, te rugam sa te autentifici cu un cont de client',
-              title: 'Atentie',
+              message: this.$t('toast.login_as_client'),
+              title: this.$t('toast.warning_title'),
             });
 
             return;

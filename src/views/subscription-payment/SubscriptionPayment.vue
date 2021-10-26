@@ -2,20 +2,20 @@
 <template>
   <div class="es_reserve-subscription-container">
     <div class="container margin_30_40">
-      <a href="" class="back-button mb-2" @click.prevent="onBack">Inapoi</a>
+      <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 p-8 bg_gray">
-          <h3>Detalii abonament</h3>
+          <h3>{{ $t('views.subscriptions.details') }}</h3>
           <div class="main">
             <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
               <h5>{{ getSelectedSubscription.label }}</h5>
               <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
             </div>
             <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">
-              <h6>Subtotal</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
+              <h6>{{ $t('generic.subtotal') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
             </div>
             <div class="d-flex justify-content-between align-items-center flex-inline">
-              <h6>Total</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
+              <h6>{{ $t('generic.total') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
             </div>
             <div class="mt-4"><small>Prin apasarea butonului “Activeaza”, accepti Termenii si Conditiile noastre si Politica de Confidentialitate si activezi abonamentul Ritual masaj lunar de 60 minute. Abonamentul se reinnoieste automat in fiecare luna la data la care te-ai abonat, pana cand il anulezi. In fiecare luna se va efectua o plata automata de pe cardul tau pentru care primesti o sedinta de masaj (cu durata aleasa de tine). Poti sa anulezi abonamentul in orice moment, gratuit din aplicatie, de pe site-ul nostru ease.ro  sau apeland serviciu clienti.</small></div>
           </div>
@@ -29,17 +29,16 @@
                 class="lazy"
               >
             </figure>
-            <h3 class="px-10 text-center">Felicitari, abonamentul tau a fost activat!</h3>
+            <h3 class="px-10 text-center">{{ $t('views.subscriptions.activation_success_title') }}</h3>
           </div>
-          <p class="my-6 px-8">Vezi mai multe detalii despre abonamentul tau pe ease.ro sau in aplicatie</p>
-          <p class="px-8">Doresti mai mult de o singura sedinta de masaj pe luna?
-          Ai 20% discount la toate sedintele de masaj rezervate pe langa sedinta de masaj inclusa la abonamentul tau lunar. Discountul se aplica automat la check-out</p>
+          <p class="my-6 px-8">{{ $t('views.subscriptions.activation_success_1') }}</p>
+          <p class="px-8">{{ $t('views.subscriptions.activation_success_2') }}</p>
           <div class="d-flex justify-content-center">
             <button
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
               @click.prevent="$router.push('/servicii')"
             >
-              Rezerva acum
+              {{ $t('generic.reserve_now') }}
             </button>
           </div>
         </div>
@@ -52,7 +51,7 @@
                 @click.prevent="activateSubscription()"
                 :disabled="!getCards.length"
               >
-                Activeaza
+                {{ $t('generic.activate') }}
               </button>
             </div>
           </es-payment-details>
@@ -109,8 +108,8 @@
           (this as any).$toasts.toast({
             id: 'subscription-toast',
             intent: 'success',
-            title: 'Felicitari!',
-            message: 'Abonamentul tau este in curs de activare. Te rugam sa astepti cateva secunde pana plata va fi activata cu success.',
+            title: this.$t('toast.congrats_title'),
+            message: this.$t('toast.subscription_activation'),
           });
         }
       },

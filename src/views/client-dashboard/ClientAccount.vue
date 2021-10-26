@@ -22,7 +22,7 @@
           >
         </div>
         <div class="form-group">
-          <label>{{ $t('generic.email_adress') }}</label>
+          <label>{{ $t('generic.email_address') }}</label>
           <input
             v-model="user.email"
             class="form-control"
@@ -61,7 +61,9 @@
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
-          >{{ $t('generic.save') }}</button>
+          >
+            {{ $t('generic.save') }}
+          </button>
         </div>
       </div>
     </div>
@@ -102,8 +104,8 @@
         if (!isEqual(newVal, oldVal)) {
           (this as any).$toasts.toast({
             id: 'update-toast',
-            title: 'Felicitari',
-            message: 'Contul a fost modificat cu success!',
+            title: this.$t('toast.congrats_title'),
+            message: this.$t('toast.account_update'),
             intent: 'success',
           });
         }

@@ -1,10 +1,10 @@
 <template>
   <div class="es_pro-phone-container content">
-    <h4>Numar de telefon</h4>
+    <h4>{{ $t('generic.phone_nr') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div v-if="phone" class="form-group">
-          <label>Numar de telefon mobil parola</label>
+          <label>{{ $t('generic.phone_nr_verified') }}</label>
           <es-phone-number-input
             id="phone"
             v-model="phone"
@@ -18,7 +18,7 @@
           />
         </div>
         <div v-else>
-          <p>Te rugam sa adaugi un numar de telefon</p>
+          <p>{{ $t('generic.please_add_your_phone_nr') }}</p>
         </div>
         <div class="d-flex justify-content-end">
           <button
@@ -61,17 +61,19 @@
       'es-phone-number-input': VuePhoneNumberInput,
     },
 
-    data: () => ({
-      translations: {
-        countrySelectorLabel: 'Codul tarii',
-        countrySelectorError: 'Va rugam selectati',
-        phoneNumberLabel: 'Numarul de telefon',
-        example: 'Exemplu:'
-      },
-      phone: '',
-      isPhoneConfirmationModalOpen: false,
-      isPhoneValidateModalOpen: false,
-    }),
+    data() {
+      return {
+        translations: {
+          countrySelectorLabel: this.$t('generic.phone_nr_country_selector'),
+          countrySelectorError: this.$t('generic.phone_nr_selector_error'),
+          phoneNumberLabel: this.$t('generic.phone_nr_label'),
+          example: this.$t('generic.phone_nr_example')
+        },
+        phone: '',
+        isPhoneConfirmationModalOpen: false,
+        isPhoneValidateModalOpen: false,
+      }
+    },
 
     watch: {
       getUser(newVal, oldVal) {

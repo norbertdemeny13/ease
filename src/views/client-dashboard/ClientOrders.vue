@@ -2,14 +2,14 @@
   <div class="es_client-orders-container content">
     <div class="row">
       <div class="col-md-6">
-        <h4>{{ $t('generic.my_reservations') }}</h4>
+        <h4>{{ $t('generic.my_orders') }}</h4>
       </div>
     </div>
     <div class="row">
       <div v-if="isListView" class="col-md-6">
         <div v-if="getGiftCardsHistory.length">
           <div v-for="item in getGiftCardsHistory" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
-            <h6 class="m-0">Card cadou</h6>
+            <h6 class="m-0">{{ $t('generic.gift_card') }}</h6>
             <div class="m-2">{{ item.send_at.substr(0, 10) }}</div>
             <div class="m-2">{{ item.value }} Lei</div>
             <div class="m-2">{{ getStatus(item.payment.status) }}</div>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div v-else class="d-flex align-items-center justify-content-between">
-          <h4>Momentan nu exista nici o comanda activa</h4>
+          <h4>{{ $t('views.client_dashboard.my_orders.no_orders') }}</h4>
         </div>
         <div class="d-flex justify-content-end">
           <button
@@ -44,14 +44,14 @@
               width="240px"
             >
           </figure>
-          <h6 class="mt-4">Comanda Nr. {{ selectedCard.gift_card_id }}</h6>
+          <h6 class="mt-4">{{ $t('views.client_dashboard.my_orders.order_nr') }} {{ selectedCard.gift_card_id }}</h6>
           <ul class="summary_list">
-            <li><strong>Plasata pe</strong>{{ selectedCard.send_at.substr(0, 10) }}</li>
-            <li><strong>Total</strong>{{ selectedCard.payment.amount }} Lei</li>
+            <li><strong>{{ $t('views.client_dashboard.my_orders.sent_on') }}</strong>{{ selectedCard.send_at.substr(0, 10) }}</li>
+            <li><strong>{{ $t('generic.total') }}</strong>{{ selectedCard.payment.amount }} Lei</li>
           </ul>
           <h6>{{ $t('generic.order_sum') }}</h6>
           <div class="d-flex flex-inline mt-4">
-            <h6 class="mr-5 mb-0">De la</h6>
+            <h6 class="mr-5 mb-0">{{ $t('generic.from') }}</h6>
             <p class="mb-0">{{ selectedCard.from_name }}</p>
           </div>
 
@@ -77,7 +77,7 @@
 
           <ul class="summary_list col-md-6">
             <es-divider />
-            <li class="d-flex justify-content-between"><strong>Total de plata Ease</strong>{{ selectedCard.payment.amount }} Lei</li>
+            <li class="d-flex justify-content-between"><strong>{{ $t('views.client_dashboard.my_orders.total') }}</strong>{{ selectedCard.payment.amount }} Lei</li>
           </ul>
         </div>
       </div>
@@ -117,7 +117,7 @@
       }),
       getStatus(item) {
         const statuses = {
-          succeeded: 'Plata cu success',
+          succeeded: 'Plasata cu success',
         };
         return statuses[item];
       },

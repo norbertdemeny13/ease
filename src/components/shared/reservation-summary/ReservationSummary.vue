@@ -1,22 +1,22 @@
 <template>
   <div class="ml-2 box_order">
     <div class="head">
-      <h3>DETALII REZERVARE</h3>
+      <h3>{{ $t('lbl_reservation_summary') }}</h3>
     </div>
     <div class="main">
       <ul>
-        <li>Data<span>{{ getDate }}</span></li>
-        <li>Ora<span>{{ getHour }}</span></li>
+        <li>{{ $t('generic.date') }}<span>{{ getDate }}</span></li>
+        <li>{{ $t('generic.hour') }}<span>{{ getHour }}</span></li>
       </ul>
       <ul>
         <li v-if="isCoupleMassage" class="d-flex justify-content-between">
-          <strong>Masaj Cuplu, {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
+          <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
         </li>
 
         <template v-for="(service, i) in reservationServices">
           <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
-            <strong>{{ service.name }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
+            <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
             <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
@@ -26,17 +26,17 @@
           </li>
         </template>
         <es-divider />
-        <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ `${selectedReservation.total} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
-        <li class="total d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
+        <li class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subTotal') }}</strong> {{ `${selectedReservation.total} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Numele abonamentului activ</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong> {{ $t('summary.subscriptionDiscount') }}</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+        <li class="total d-flex justify-content-between"><strong>{{ $t('summary.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
         <es-divider v-if="!isReservationConfirmed" />
         <div v-if="!isReservationConfirmed" class="promo-code-container">
           <div class="form-group col-md-8">
-            <label>Adauga un cod promotional sau card cadou</label>
+            <label>{{ $t('summary.add_promo_code_or_giftcard') }}</label>
             <div class="d-flex align-items-center">
               <input
                 id="promo"
@@ -47,7 +47,7 @@
               >
               <div class="ml-4">
                 <a href="" class="my-4" @click.prevent="activatePromo({ promoCode })">
-                  Aplica
+                  {{ $t('summary.apply') }}
                 </a>
               </div>
             </div>

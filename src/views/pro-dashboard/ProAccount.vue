@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-account-container content">
-    <h4>Profil</h4>
+    <h4>{{ $t('views.pro_dashboard.profile') }}</h4>
     <div class="row">
       <div class="col-md-8">
         <div class="d-flex align-items-center">
@@ -36,7 +36,7 @@
             :href="getStripeUrl"
             target="_blank"
           >
-            Contul meu stripe
+            {{ $t('views.pro_dashboard.my_stripe_account') }}
           </a>
         </div>
       </div>
@@ -45,7 +45,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Prenume</label>
+          <label>{{ $t('generic.first_name') }}</label>
           <input
             v-model="user.first_name"
             type="text"
@@ -54,7 +54,7 @@
           >
         </div>
         <div class="form-group">
-          <label>Nume</label>
+          <label>{{ $t('generic.name') }}</label>
           <input
             v-model="user.last_name"
             type="text"
@@ -63,7 +63,7 @@
           >
         </div>
         <div class="form-group">
-          <label>Adresa de email</label>
+          <label>{{ $t('generic.email_address') }}</label>
           <input
             v-model="user.email"
             class="form-control"
@@ -73,30 +73,30 @@
           >
         </div>
         <div class="form-group">
-          <label>Vreau sa primesc oferte si notificari prin</label>
+          <label>{{ $t('generic.notifications') }}</label>
           <div class="radio_c_group">
             <label
               class="container_check"
-            >Email
+            >{{ $t('generic.email') }}
               <input type="checkbox" value="checkbox" name="notification-email-type" :checked="account_settings.email_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
               class="container_check"
-            >SMS
+            >{{ $t('generic.sms') }}
               <input type="checkbox" value="checkbox" name="notification-sms-type" :checked="account_settings.sms_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
             <label
               class="container_check"
-            >Telefon
+            >{{ $t('generic.phone') }}
               <input type="checkbox" value="checkbox" name="notification-phone-type" :checked="account_settings.phone_news ? 'checked' : ''">
               <span class="checkmark" />
             </label>
           </div>
         </div>
         <div class="form-group">
-          <label>Ani experienta</label>
+          <label>{{ $t('views.pro_dashboard.years_of_experience') }}</label>
           <es-datepicker
             :options="{
               maxDate: 'today',
@@ -114,7 +114,7 @@
           </es-datepicker>
         </div>
         <div class="form-group">
-          <label>Limbi vorbite</label>
+          <label>{{ $t('views.pro_dashboard.spoken_languages') }}</label>
           <input
             v-model="user.languages"
             type="text"
@@ -123,12 +123,12 @@
           >
         </div>
         <div class="form-group">
-          <label>BIO* Scrie despre lucrurile care te pasioneaza</label>
+          <label>{{ $t('views.pro_dashboard.bio') }}</label>
           <textarea
             v-model="user.bio"
             class="form-control"
             :placeholder="
-              `ex: Terapeut de masaj autorizat, practicând din 2013. Am experiență cu o clientelă diversă și sunt pricepută într-o varietate de tehnici de masaj. Imbin cele mai eficiente tehnici pentru o sesiune personalizată, adaptată nevoilor și preferințelor individuale.`"
+              $t('views.pro_dashboard.bio_placeholder')"
             name="bio"
           />
         </div>
@@ -137,7 +137,7 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
           >
-            Salveaza
+            {{ $t('generic.save') }}
           </button>
         </div>
       </div>
@@ -209,8 +209,8 @@
         if (!isEqual(newVal, oldVal)) {
           this.$toasts.toast({
             id: 'update-toast',
-            title: 'Felicitari',
-            message: 'Contul a fost modificat cu success!',
+            title: this.$t('toast.success_title'),
+            message: this.$t('toast.account_update'),
             intent: 'success',
           });
         }

@@ -9,7 +9,7 @@
       <div class="container es-login-modal mt-12">
         <div id="es-modal-dialog" class="es-card-modal">
           <div class="modal_header">
-            <h3>Adauga card</h3>
+            <h3>{{ $t('generic.add_card') }}</h3>
             <button class="mfp-close" @click="$emit('is-open', false)"></button>
           </div>
           <div class="credit-card-wrapper mt-4">

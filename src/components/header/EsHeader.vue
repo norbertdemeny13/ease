@@ -26,7 +26,8 @@
           <li v-if="isAuthenticated">
             <div class="dropdown user clearfix">
               <a href="#" data-toggle="dropdown">
-                <figure><img src="@/assets/jpg/avatar.jpg" alt=""></figure><span>Contul Meu</span>
+                <figure><img src="@/assets/jpg/avatar.jpg" alt=""></figure><span>{{ $t('generic.my_account') }}
+                </span>
               </a>
               <div class="dropdown-menu">
                 <div class="dropdown-menu-content">
@@ -40,7 +41,10 @@
                         {{ link.label }}
                       </a>
                     </li>
-                    <li><a href="" @click.prevent="onLogout"><i class="icon_key" />Iesi din cont</a></li>
+                    <li>
+                      <a href="" @click.prevent="onLogout"><i class="icon_key" />{{ $t('generic.logout') }}
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -182,8 +186,8 @@
         (this as any).$toasts.toast({
           id: 'login-toast',
           intent: 'info',
-          title: 'Action required',
-          message: 'Please login or signup before continue',
+          title: this.$t('toast.info_title'),
+          message: this.$t('toast.login_or_register'),
         });
       });
       this.$root.$on('on-show-elite-register', () => {

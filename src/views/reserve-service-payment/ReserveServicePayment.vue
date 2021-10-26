@@ -13,15 +13,15 @@
                   class="lazy"
                 >
               </figure>
-              <h3 class="px-10 text-center">REZERVAREA  A FOST TRIMISA!</h3>
+              <h3 class="px-10 text-center">{{ $t('reservation_sent_successfully') }}</h3>
             </div>
-            <p class="my-6 px-8">Vei primi in curand o notificare cu detaliile profesionistului tau. </p>
+            <p class="my-6 px-8">{{ $t('reservation_sent_successfully_text') }} </p>
             <div class="d-flex justify-content-center">
               <button
                 class="btn btn-sm btn-pink btn-pill mt-4 px-6"
                 @click.prevent="$router.push('/client/rezervarile-mele')"
               >
-                Rezervarile mele
+                {{ $t('generic.my_reservations') }}
               </button>
             </div>
           </div>
@@ -43,7 +43,7 @@
               :disabled="!getCards.length"
               @click.prevent="onPay()"
             >
-              Trimite Rezervarea
+              {{ $t('summary.sendReservation') }}
             </button>
           </div>
         </div>
@@ -137,8 +137,8 @@
           this.isAddressModalOpen = true;
           this.$toasts.toast({
             id: 'address-toast',
-            title: 'Action required',
-            message: 'Te rugam sa introduci adresa pentru a continua reservarea.',
+            title: this.$t('toast.warning_title'),
+            message: this.$t('toast.no_address'),
           });
           return;
         }

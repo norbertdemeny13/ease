@@ -7,7 +7,7 @@
     </figure>
     <div class="p-2">
       <div class="d-flex justify-content-between">
-        <h5>{{ service.name }}</h5>
+        <h5>{{ $t(service.name) }}</h5>
         <strong v-if="service.duration">{{ service.duration }} min</strong>
       </div>
       <div class="d-flex justify-content-between">

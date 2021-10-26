@@ -10,12 +10,12 @@
         <!-- Sign In Modal -->
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
-            <h3>Valideaza numarul de telefon telefonul</h3>
+            <h3>{{ $t('generic.validate_phone_number') }}</h3>
             <button v-if="canCloseModal" type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
             <div class="validate-phone-wrapper">
               <div class="form-group">
-                <label>Introdu numarul de telefon</label>
+                <label>{{ $t('enter_your_mobile_number') }}</label>
                 <es-phone-number-input
                   v-model="phone_number"
                   id="phone"
@@ -33,7 +33,7 @@
                 <button
                   class="btn_1"
                   @click.prevent="requestPhoneNumberValidationCode()"
-                >Trimite</button>
+                >{{ $t('generic.send') }}</button>
               </div>
             </div>
           <!--form -->
@@ -77,16 +77,18 @@
       ...mapGetters({ getUser: 'session/getUser' }),
     },
 
-    data: () => ({
-      phone_number: null,
-      formattedPhoneNumber: null,
-      translations: {
-        countrySelectorLabel: 'Codul tarii',
-        countrySelectorError: 'Va rugam selectati',
-        phoneNumberLabel: 'Numarul de telefon',
-        example: 'Exemplu:'
-      },
-    }),
+    data() {
+      return {
+        phone_number: null,
+        formattedPhoneNumber: null,
+        translations: {
+          countrySelectorLabel: this.$t('generic.phone_nr_country_selector'),
+          countrySelectorError: this.$t('generic.phone_nr_selector_error'),
+          phoneNumberLabel: this.$t('generic.phone_nr_label'),
+          example: this.$t('generic.phone_nr_example')
+        },
+      }
+    },
 
     watch: {
       getUser(newVal) {

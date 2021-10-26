@@ -12,10 +12,10 @@
       <a v-if="getLocation && !homePage" href="" class="ml-2" @click.prevent="$emit('on-cancel')">Inapoi</a>
     </div>
     <div v-if="getLocationError && !homePage" class="alert alert-danger ml-4" role="alert">
-      <span>Ease nu este deocamdata disponibil in aceasta locatie. Ne extindem rapid, revino curand. Serviciile sunt disponibile momentan in Cluj sau Bucuresti.</span>
+      <span>{{ $t('user_address.outside_of_area') }}</span>
     </div>
     <div v-else-if="showAlert" class="alert alert-primary ml-4" role="alert">
-      <span>Pentru a vizualiza preturile si disponibilitatea serviciilor te rog sa  introduci orasul sau adresa.</span>
+      <span>{{ $t('user_address.add.city') }}</span>
     </div>
   </div>
 </template>

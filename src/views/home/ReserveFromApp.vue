@@ -20,7 +20,7 @@
               <div class="input-group">
                 <input type="text" class="form-control" name="email" id="reserve-input" :placeholder="$t('generic.enter_phone_number')"  aria-label="" aria-describedby="reserve" required>
                 <div class="input-group-append">
-                  <button class="btn_1 btn-pink font-size-12 py-2" type="button" id="reserve">{{ $t('generic.send_me_a_link') }}</button>
+                  <button class="btn_1 btn-pink font-size-12 py-2" type="button" id="reserve">{{ $t('generic.send_me_a_sms') }}</button>
                 </div>
               </div>
             </div>

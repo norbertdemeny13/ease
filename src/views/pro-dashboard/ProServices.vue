@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-password-container content">
-    <h4>Calificari</h4>
+    <h4>{{ $t('views.pro_dashboard.qualifications') }}</h4>
     <es-cards-container>
       <es-card v-for="service in servicesList" :id="service.id" :key="service.id" :title="service.title">
         <template v-slot>
@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>Cum ai auzit de Ease?*</label>
+          <label>{{ $t('views.pro_dashboard.how_did_you_find_out_about_ease') }}</label>
           <div class="radio_c_group d-flex flex-column">
             <label
               v-for="option in heardFromUs"
@@ -36,12 +36,12 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label required>Genul</label>
+          <label required>{{ $t('views.pro_dashboard.gender') }}</label>
           <div class="radio_c_group d-flex flex-column">
             <label
               class="container_radio"
               @click="gender = 'male'"
-            >Masculin
+            >{{ $t('gender_male') }}
               <input type="radio" value="checkbox" name="gender" :checked="gender === 'male' ? 'checked' : ''">
               <span class="checkmark" />
             </label>
@@ -50,7 +50,7 @@
             <label
               class="container_radio"
               @click="gender = 'female'"
-            >Feminin
+            >{{ $t('gender_female') }}
               <input type="radio" value="checkbox" name="gender" :checked="gender === 'female' ? 'checked' : ''">
               <span class="checkmark" />
             </label>
@@ -61,7 +61,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label required>Cat speri sa castigi pe saptamana lucrand cu noi?</label>
+          <label required>{{ $t('views.pro_dashboard.how_much_you_hope_to_earn') }}</label>
           <input
             id="earning"
             v-model="earning"
@@ -76,7 +76,7 @@
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
           >
-            Salveaza
+            {{ $t('generic.save') }}
           </button>
         </div>
       </div>
@@ -106,14 +106,15 @@
         gender: '',
         earning: '',
         heardFromUs: [
-          { value: 'facebook', label: 'Facebook' },
-          { value: 'prieten', label: 'Prieten' },
-          { value: 'google', label: 'Rezultate Google' },
-          { value: 'instagram', label: 'Instagram' },
-          { value: 'article', label: 'Articol din presa' },
-          { value: 'ejobs', label: 'Ejobs' },
-          { value: 'bestjobs', label: 'Bestjobs' },
-          { value: 'other', label: 'De altundeva' },
+          { value: 'bestjobs', label: this.$t('views.pro_dashboard.heard_from_bestjobs') },
+          { value: 'ejobs', label: this.$t('views.pro_dashboard.heard_from_ejobs') },
+          { value: 'google', label: this.$t('views.pro_dashboard.heard_from_google') },
+          { value: 'article', label: this.$t('views.pro_dashboard.heard_from_press_article') },
+          { value: 'instagram', label: this.$t('views.pro_dashboard.heard_from_instagram') },
+          { value: 'facebook', label: this.$t('views.pro_dashboard.heard_from_facebook') },
+          { value: 'prieten', label: this.$t('views.pro_dashboard.heard_from_friend') },
+          { value: 'ease_pro', label: this.$t('views.pro_dashboard.heard_from_ease_pro') },
+          { value: 'other', label: this.$t('views.pro_dashboard.heard_from_other') },
         ],
       }
     },

@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4">
         <div v-if="phone" class="form-group">
-          <label>{{ $t('generic.phone_nr_mobile') }}</label>
+          <label>{{ $t('generic.phone_nr_verified') }}</label>
           <es-phone-number-input
             id="phone"
             v-model="phone"
@@ -61,17 +61,19 @@
       'es-phone-number-input': VuePhoneNumberInput,
     },
 
-    data: () => ({
-      translations: {
-        countrySelectorLabel: 'Codul tarii',
-        countrySelectorError: 'Va rugam selectati',
-        phoneNumberLabel: 'Numarul de telefon',
-        example: 'Exemplu:'
-      },
-      phone: '',
-      isPhoneConfirmationModalOpen: false,
-      isPhoneValidateModalOpen: false,
-    }),
+    data() {
+      return {
+        translations: {
+          countrySelectorLabel: this.$t('generic.phone_nr_country_selector'),
+          countrySelectorError: this.$t('generic.phone_nr_selector_error'),
+          phoneNumberLabel: this.$t('generic.phone_nr_label'),
+          example: this.$t('generic.phone_nr_example')
+        },
+        phone: '',
+        isPhoneConfirmationModalOpen: false,
+        isPhoneValidateModalOpen: false,
+      }
+    },
 
     watch: {
       getUser(newVal, oldVal) {

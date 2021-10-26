@@ -91,8 +91,8 @@
                 </div>
               </div>
             </div>
-            <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
-              <h4>{{ $t('views.my_reservations.description') }} {{ selectedType === 'upcoming' ? 'viitoare' : 'anterioara' }}</h4>
+            <div class="d-flex align-items-center justify-content-between my-2 mx-4">
+              <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $('generic.previous') }}</h4>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -137,18 +137,18 @@
                 <span class="ml-2">{{ getStatus(selectedReservation.status) }}</span>
               </li>
             </ul>
-            <h6>Detalii rezervare</h6>
+            <h6>{{ $t('lbl_reservation_details') }}</h6>
             <ul class="summary_list">
-              <li><strong>Numarul rezervarii</strong> {{ selectedReservation.reservation_id }}</li>
-              <li><strong>Data rezervarii</strong> {{ getCreatedReservationDate }}</li>
-              <li><strong>Adresa</strong> {{ getAddress }}</li>
-              <li><strong>Telefon</strong> {{ selectedReservation.user.phone_number }}</li>
+              <li><strong>{{ $t('bookings.details.number') }}</strong> {{ selectedReservation.reservation_id }}</li>
+              <li><strong>{{ $t('bookings.details.bookingDate') }}</strong> {{ getCreatedReservationDate }}</li>
+              <li><strong>{{ $t('views.client_dashboard.my_reservations.address') }}</strong> {{ getAddress }}</li>
+              <li><strong>{{ $t('bookings.details.telephone') }}</strong> {{ selectedReservation.user.phone_number }}</li>
             </ul>
-            <h6>Sumar comanda</h6>
+            <h6>{{ $t('reservation_summary') }}</h6>
             <ul class="summary_list col-md-6">
-              <li class="my-4"><strong>Pentru data de</strong> {{ getReservationDate }}</li>
+              <li class="my-4"><strong>{{ $t('views.client_dashboard.my_reservations.for_the_date_of') }}</strong> {{ getReservationDate }}</li>
               <li v-if="isCoupleMassage" class="d-flex justify-content-between">
-                <strong>Masaj Cuplu, {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
+                <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
               </li>
               <template v-for="(service, i) in reservationServices">
                 <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
@@ -163,20 +163,20 @@
                 </li>
               </template>
               <es-divider />
-              <li class="d-flex justify-content-between"><strong>Subtotal</strong> {{ `${selectedReservation.total} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Abonament discount</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount abonament</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount promo cod</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>Discount card cadou</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
-              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>Credit Used</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
-              <li class="d-flex justify-content-between"><strong>Total</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
+              <li class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subTotal') }}</strong> {{ `${selectedReservation.total} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Numele abonamentului</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subscriptionDiscount') }}</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+              <li class="d-flex justify-content-between"><strong>{{ $t('generic.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
             </ul>
             <div v-if="canCancelReservation" class="d-flex justify-content-start">
               <button
                 class="btn btn-sm btn-pink btn-pill my-4 px-6"
                 @click.prevent="isConfirmModalOpen = true"
               >
-                Anuleaza rezervarea
+                {{ $t('lbl_cancel_reservation') }}
               </button>
             </div>
           </div>
@@ -184,16 +184,16 @@
       </div>
     </div>
     <es-confirm-modal v-if="isPaidCancelation" v-model="isConfirmModalOpen" cta="Anuleaza contracost" @on-confirm="onContinue()">
-      <template slot="title">Anulare rezervare</template>
+      <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
       <template slot="message">
         <p>{{ getCancelationText }}</p>
-        <p>Aceasta <a href="tbd" target="_blank">Politica de anulare</a> este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte oportunitati de munca. Deoarece suntem la cerere, profesionistii pierd venituri daca pastreaza un loc disponibil pentru dumneavoastra fara remunerare.</p>
+        <p>Aceasta <a href="tbd" target="_blank">Politica de anulare</a> este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte posibile rezervari</p>
       </template>
     </es-confirm-modal>
     <es-confirm-modal v-else v-model="isConfirmModalOpen" cta="Da, anuleaza gratuit" @on-confirm="onContinue()">
-      <template slot="title">Anulare rezervare</template>
+      <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
       <template slot="message">
-        <p>Vrei sa anulezi rezervarea?</p>
+        <p>{{ $t('bookings.details.cancel.free.title') }}</p>
       </template>
     </es-confirm-modal>
   </div>
@@ -240,11 +240,11 @@
         const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);
         let text = '';
         if (difference > 120 && difference < 240) {
-          text = 'Pentru anularea rezervarii in acest moment se va retine o taxa de 80% din valoarea rezervarii';
+          text = $t('bookings.details.cancel.20.body');
         } else if (difference > 60 && difference < 120) {
-          text = 'Pentru anularea rezervarii in acest moment se va retine o taxa de 50% din valoarea rezervarii';
+          text = $t('bookings.details.cancel.50.body');
         } else {
-          text = 'Pentru anularea rezervarii in acest moment suma platita nu se mai ramburseaza';
+          text = $t('bookings.details.cancel.100.body');
         }
 
         return text;
@@ -337,8 +337,8 @@
           this.isListView = true;
           this.$toasts.toast({
             id: 'cancel-reservation',
-            title: 'Success',
-            message: 'Rezervarea a fost anulata cu success!',
+            title: this.$t('generic.success'),
+            message: this.$t('toast.cancel_reservation'),
             intent: 'success',
           });
         }
@@ -379,18 +379,18 @@
 
       getStatus(status) {
         const satatusLabel = {
-          auto_cancelled: 'Anulata automat',
-          reservation_cancelled_by_user: 'Anulata de user',
-          reservation_cancelled_by_elite: 'Anulata de pro',
-          reservation_cancelled_by_admin: 'Anulata de serviciu clienti',
-          payment_ongoing: 'Plata in curs',
-          incomplete: 'Incompleta',
-          waiting_confirmation: 'Rezervat',
-          confirmed: 'Confirmat',
-          on_the_way: 'Pe drum',
-          arrived: 'Sosit',
-          completed: 'Completa',
-          admin_refunded: 'Ramubrsata',
+          auto_cancelled: $t('auto_cancelled'),
+          reservation_cancelled_by_user: $t('reservation_cancelled_by_user'),
+          reservation_cancelled_by_elite: $t('reservation_cancelled_by_elite'),
+          reservation_cancelled_by_admin: $t('auto_cancelled'),
+          payment_ongoing: $t('payment_ongoing'),
+          incomplete: $t('incomplete'),
+          waiting_confirmation: $t('waiting_confirmation'),
+          confirmed: $t('confirmed'),
+          on_the_way: $t('on_the_way'),
+          arrived: $t('arrived'),
+          completed: $t('completed'),
+          admin_refunded: $t('admin_refunded'),
         };
         return satatusLabel[status];
       },

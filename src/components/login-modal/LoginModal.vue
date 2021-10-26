@@ -10,15 +10,16 @@
         <!-- Sign In Modal -->
         <div id="es-modal-dialog">
           <div class="modal_header">
-            <h3>{{ isSignIn ? 'Logheaza-te' : 'Inregistreaza-te' }}</h3>
+            <h3>{{ isSignIn ? $t('generic.login') : $t('generic.sign_up') }}</h3>
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"></button>
           </div>
           <div class="form-group radio_c_group">
-            <label @click="userType = 'client'" class="container_radio">Client
+            <label @click="userType = 'client'" class="container_radio">{{ $t('generic.client') }}
               <input type="radio" value="checkbox" name="user-type" :checked="`${userType === 'client' ? 'checked' : ''}`">
               <span class="checkmark"></span>
             </label>
-            <label @click="userType = 'elite'" class="container_radio">Profesional
+            <label @click="userType = 'elite'" class="container_radio">{{ $t('generic.pro') }}
+
               <input type="radio" value="checkbox" name="user-type" :checked="`${userType !== 'client' ? 'checked' : ''}`">
               <span class="checkmark"></span>
             </label>
@@ -26,11 +27,11 @@
           <form>
             <div v-if="isSignIn" class="sign-in-wrapper">
               <div class="form-group">
-                <label>Email</label>
+                <label>{{ $t('generic.email') }}</label>
                 <input type="email" class="form-control" name="email" id="email" v-model="form.email">
               </div>
               <div class="form-group">
-                  <label>Parola</label>
+                  <label>{{ $t('generic.password') }}</label>
                   <input
                     :type="type"
                     class="form-control"
@@ -38,44 +39,50 @@
                     id="password"
                     v-model="form.password"
                   >
-                  <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
-                  <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
+                  <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">{{ $t('generic.password_show') }}
+</span>
+                  <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">{{ $t('generic.password_hide') }}
+</span>
               </div>
               <div class="clearfix add_bottom_15">
                 <div class="checkboxes float-left">
-                  <label class="container_check">Tine-ma minte
+                  <label class="container_check">{{ $t('generic.remember_me') }}
+
                     <input type="checkbox">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="float-right">
-                  <a id="forgot" href="" @click.prevent="onForgotPassword">Ai uitat parola??</a>
+                  <a id="forgot" href="" @click.prevent="onForgotPassword">{{ $t('generic.forgot_password_question') }}
+</a>
                 </div>
                 </div>
                 <div class="text-center">
                   <input @click.prevent="onSubmit()" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
-                  Inca nu ai cont?
+                  {{ $t('generic.no_account_yet') }}
+
                   <a @click.prevent="isSignIn = false" href="">
-                    Inregistreaza-te
+                    {{ $t('generic.sign_up') }}
+
                   </a>
                 </div>
             </div>
             <div v-else class="sign-up-wrapper">
               <div>
                 <div class="form-group">
-                  <label>Email</label>
+                  <label>{{ $t('generic.email') }}</label>
                   <input type="email" required class="form-control" name="email" id="email" v-model="form.email">
                 </div>
                 <div class="form-group">
-                  <label>Prenume</label>
+                  <label>{{ $t('generic.first_name') }}</label>
                   <input type="email" class="form-control" name="firstName" id="firstName" v-model="form.first_name">
                 </div>
                 <div class="form-group">
-                  <label>Nume</label>
+                  <label>{{ $t('generic.last_name') }}</label>
                   <input type="email" class="form-control" name="lastName" id="lastName" v-model="form.last_name">
                 </div>
                 <div class="form-group">
-                  <label>Parola</label>
+                  <label>{{ $t('generic.password') }}</label>
                   <input
                     :type="type"
                     class="form-control"
@@ -83,33 +90,33 @@
                     id="password"
                     v-model="form.password"
                   >
-                    <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">Arata</span>
-                    <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">Ascunde</span>
+                    <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">{{ $t('generic.password_show') }}</span>
+                    <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">{{ $t('generic.password_hide') }}</span>
                 </div>
                 <div v-if="userType === 'elite'">
                   <div class="form-group radio_c_group">
                     <div class="checkboxes float-left">
-                      <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">Accept Termenii si Conditiile si Politica de Confidentialitate
+                      <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">{{ $t('generic.terms_and_conditions_agreement') }}
                         <input type="checkbox" :checked="terms_and_conditions ? 'checked': ''">
                         <span class="checkmark"></span>
                       </label>
                     </div>
                     <div class="checkboxes float-left">
-                      <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">Doresc sa primesc informatii utile prin email
+                      <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
                         <input type="checkbox" :checked="subscribe_to_marketing_emails_list ? 'checked': ''">
                         <span class="checkmark"></span>
                       </label>
                     </div>
                     <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2">
-                      <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">Masaj
+                      <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
-                      <label @click.prevent="form.beauty_marketing = !form.beauty_marketing" class="container_check">Beauty
+                      <label @click.prevent="form.beauty_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.beauty') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
-                      <label @click.prevent="form.fitness_marketing = !form.beauty_marketing" class="container_check">Fitness
+                      <label @click.prevent="form.fitness_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.fitness') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
@@ -119,23 +126,23 @@
                 <div class="clearfix add_bottom_15">
                   <div class="text-center">
                     <input @click.prevent="onSubmit()" type="submit" value="Inregistreaza-te" class="btn_1 full-width mb_5">
-                    Ai deja cont?
+                    {{ $t('generic.already_have_an_account') }}
                     <a
                       href=""
                       @click.prevent="isSignIn = true"
                     >
-                      Logheaza-te
+                      {{ $t('generic.login') }}
                     </a>
                   </div>
                 </div>
               </div>
               <div id="forgot_pw">
                 <div class="form-group">
-                  <label>Te rog sa confirmi emailul de logare</label>
+                  <label>{{ $t('generic.please_confirm_your_email') }}</label>
                   <input type="email" class="form-control" name="email_forgot" id="email_forgot">
                   <i class="icon_mail_alt" />
                 </div>
-                <p>Vei primi un mail care va contine un link unde o sa iti pot seta parola dorita.</p>
+                <p>{{ $t('reset_password_email_sent') }}</p>
                 <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
               </div>
             </div>
@@ -224,8 +231,8 @@
           (this as any).$toasts.toast({
             id: 'warning-toast',
             intent: 'warning',
-            message: 'Te rugam sa accepti termenii si conditiile pentru a continua',
-            title: 'Atentie',
+            message: this.$t('toast.accept_terms_and_conditions'),
+            title: this.$t('toast.warning_title'),
           });
 
           return;
