@@ -22,7 +22,7 @@
               role="tab"
               :aria-controls="category.id"
               aria-selected="true"
-            >{{ category.name }}</a>
+            >{{ $t(category.name) }}</a>
           </li>
         </ul>
         <div class="tab-content pricing-tab-content" id="pricing-tab-content">
