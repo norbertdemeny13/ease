@@ -27,9 +27,9 @@
               <h3 class="pricing-plan-title d-flex align-items-center"><span class="badge badge-pill offer-badge mr-auto">{{ subscription.discount }} %</span></h3>
               <div class="d-flex justify-content-between mt-4 mb-2">
                 <div>
-                  <h6>{{ subscription.name }}</h6>
+                  <h6>{{ $t(subscription.name) }}</h6>
                   <div class="d-flex flex-column">
-                    <span v-for="(detail, i) in subscription.small_descriptions" :key="i">{{ detail }}</span>
+                    <span v-for="(detail, i) in subscription.small_descriptions" :key="i">{{ $t(detail) }}</span>
                   </div>
                 </div>
                 <div class="d-flex flex-column">

@@ -21,7 +21,7 @@
       >
         <span class="text-gray">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
-          <h3>{{ item.name }}</h3>
+          <h3>{{ $t(item.name) }}</h3>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
         <li

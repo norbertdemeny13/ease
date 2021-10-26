@@ -2,7 +2,7 @@
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
       <router-link class="back-button" href="" :to="getToRoute">
-        Inapoi
+        {{ $t('generic.back') }}
       </router-link>
       <div v-if="isFetching">Fetching ...</div>
       <div v-else class="row my-4">
@@ -10,8 +10,8 @@
           <img :src="service.absolute_image_url_large" width="500" height="350">
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6">
-          <h2>{{ service.name }}</h2>
-          <p>{{ service.description }}</p>
+          <h2>{{ $t(service.name) }}</h2>
+          <p>{{ $t(service.description) }}</p>
 
           <es-complementary-services
             v-if="service.complementary_services.length"
@@ -25,7 +25,7 @@
               href=""
               @click.prevent="onContinue"
             >
-              Adauga
+              {{ $t('generic.add') }}
             </a>
           </div>
         </div>

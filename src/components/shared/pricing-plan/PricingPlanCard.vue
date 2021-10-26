@@ -2,11 +2,11 @@
   <div class="col-md-4 col-sm-6">
     <div class="card pricing-card">
       <div class="card-body">
-        <h3 class="pricing-plan-title d-flex align-items-center">{{ item.label }}<span class="badge badge-pill offer-badge ml-auto">{{ item.discount }} %</span></h3>
+        <h3 class="pricing-plan-title d-flex align-items-center">{{ $t(item.label) }}<span class="badge badge-pill offer-badge ml-auto">{{ item.discount }} %</span></h3>
         <p class="h1 pricing-plan-original-cost"><del>{{ `${(item.price.price * (1 + item.discount / 100)).toFixed(2)} Lei` }}</del></p>
         <p class="h1 pricing-plan-cost">{{ item.price.price }}<span class="currency"> Lei</span></p>
         <ul class="pricing-plan-features">
-          <li v-for="(benefit, i) in item.small_descriptions" :key="`${item.type}-${i}`"><i class="icon_check" />{{ benefit }}</li>
+          <li v-for="(benefit, i) in item.small_descriptions" :key="`${item.type}-${i}`"><i class="icon_check" />{{ $t(benefit) }}</li>
         </ul>
         <a href="" class="btn pricing-plan-purchase-btn" @click.prevent="onSelect()">{{ $t('generic.pick') }}</a>
         <div class="text-center">

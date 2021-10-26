@@ -10,8 +10,8 @@
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
       <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
         <div v-if="fetchedSubscription" class="form-group col-md-4">
-          <h3>{{ getFilter.title }}</h3>
-          <label>{{ getFilter.description }}</label>
+          <h3>{{ $t(getFilter.title) }}</h3>
+          <label>{{ $t(getFilter.description) }}</label>
           <div class="choices-container d-flex my-2">
             <button
               v-for="choice in getFilter.choices"

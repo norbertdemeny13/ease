@@ -16,7 +16,7 @@
         <template v-for="(service, i) in reservationServices">
           <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
-            <strong>{{ service.name }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
+            <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
             <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>

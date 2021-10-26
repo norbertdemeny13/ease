@@ -13,7 +13,7 @@
             <button class="mfp-close" @click="$emit('is-open', false)"></button>
           </div>
           <ul class="pricing-plan-features">
-            <li v-for="(benefit, i) in benefits" :key="i"><i class="icon_check" />{{ benefit }}</li>
+            <li v-for="(benefit, i) in benefits" :key="i"><i class="icon_check" />{{ $t(benefit) }}</li>
           </ul>
         </div>
       </div>

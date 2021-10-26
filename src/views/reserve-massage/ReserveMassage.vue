@@ -19,8 +19,8 @@
                   >
                 </figure>
                 <div class="text-center">
-                  <h3>{{ item.name }}</h3>
-                  <p>{{ item.description }}</p>
+                  <h3>{{ $t(item.name) }}</h3>
+                  <p>{{ $t(item.description) }}</p>
                 </div>
               </div>
             </div>

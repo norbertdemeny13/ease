@@ -19,8 +19,8 @@
                   >
                 </figure>
                 <div class="text-center">
-                  <h3>{{ item.name }}</h3>
-                  <p>{{ item.description }}</p>
+                  <h3>{{ $t(item.name) }}</h3>
+                  <p>{{ $t(item.description) }}</p>
                 </div>
               </div>
             </div>
@@ -42,7 +42,7 @@
                 </button>
               </div>
             </div>
-            <h3 v-if="massageType === 'couple'">Masaj 2</h3>
+            <h3 v-if="massageType === 'couple'">{{ $t('generic.masaj_2') }}</h3>
             <div v-for="filter in massageFilters.slice(2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
               <div class="d-flex my-2">
