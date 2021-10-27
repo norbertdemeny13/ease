@@ -17,7 +17,7 @@
             <div class="d-flex justify-content-between align-items-center flex-inline">
               <h6>{{ $t('generic.total') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
             </div>
-            <div class="mt-4"><small>Prin apasarea butonului “Activeaza”, accepti Termenii si Conditiile noastre si Politica de Confidentialitate si activezi abonamentul Ritual masaj lunar de 60 minute. Abonamentul se reinnoieste automat in fiecare luna la data la care te-ai abonat, pana cand il anulezi. In fiecare luna se va efectua o plata automata de pe cardul tau pentru care primesti o sedinta de masaj (cu durata aleasa de tine). Poti sa anulezi abonamentul in orice moment, gratuit din aplicatie, de pe site-ul nostru ease.ro  sau apeland serviciu clienti.</small></div>
+            <div class="mt-4"><small>{{ getTermsAndConditions }}</small></div>
           </div>
         </div>
         <div v-if="isSubscriptionActivated" class="col-lg-6 col-md-6 p-8">
@@ -99,6 +99,23 @@
         isFetching: 'cards/isFetching',
         getActivePayment: 'services/getActivePayment',
       }),
+      getTermsAndConditions(): string {
+        const { type, uses, monthly } = this.getSelectedSubscription;
+        let termsText = 'subscription.terms.body';
+        const period = monthly ? 'monthly' : 'yearly';
+
+        if (type === 'FitnessSubscription') {
+          termsText += `.fitness.${uses}`;
+        } else if (type === 'BeautySubscription') {
+          termsText += `.beauty.${period}`;
+        } else if (type === 'MassageSubscription') {
+          termsText += `.single_massage.${period}`;
+        } else {
+          termsText += `.couple_massage.${period}`;
+        }
+
+        return this.$t(termsText).toString();
+      },
     },
 
     watch: {

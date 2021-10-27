@@ -81,34 +81,36 @@
 
   export default Vue.extend({
     name: 'es-client-preferences',
-    data: () => ({
-      pressureLevel: 1,
-      talkingLevel: 0,
-      notes: null,
-      avoidedScents: null,
-      massageOptions: {
-        dotSize: 25,
-        height: 10,
-        min: 1,
-        max: 10,
-        interval: 1,
-        clickable: true,
-        duration: 0.5,
-      },
-      conversationOptions: {
-        dotSize: 25,
-        height: 10,
-        min: 0,
-        max: 2,
-        interval: 1,
-        clickable: true,
-        duration: 0.5,
-        tooltipFormatter: (value) => {
-          const options = ['Liniste, te rog', 'Putina conversatie e ok', 'Vorbeste cu mine'];
-          return options[value];
+    data() {
+      return {
+        pressureLevel: 1,
+        talkingLevel: 0,
+        notes: null,
+        avoidedScents: null,
+        massageOptions: {
+          dotSize: 25,
+          height: 10,
+          min: 1,
+          max: 10,
+          interval: 1,
+          clickable: true,
+          duration: 0.5,
         },
-      },
-    }),
+        conversationOptions: {
+          dotSize: 25,
+          height: 10,
+          min: 0,
+          max: 2,
+          interval: 1,
+          clickable: true,
+          duration: 0.5,
+          tooltipFormatter: (value) => {
+            const options = ['account.quietPlease', 'account.someTalkingIsFine', 'account.talkWithMe'];
+            return this.$t(options[value]);
+          },
+        },
+      };
+    },
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',

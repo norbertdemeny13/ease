@@ -33,7 +33,7 @@
           <div id="pricing-tab-content" class="tab-content pricing-tab-content">
             <div v-if="getReservationList.length">
               <div v-for="(item, i) in getReservationList" :key="`${item.id}-${i}`" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
-                <h6 class="m-0">{{ getReservationName(item) }}</h6>
+                <h6 class="m-0">{{ $t(getReservationName(item)) }}</h6>
                 <div class="m-2">{{ item.start_time.substr(0, 10) }}</div>
                 <div class="d-flex flex-column align-items-center m-2">
                   <div v-if="getReservationJobs(item).slice(0, 2).length > 0" class="d-flex flex-row align-items-center">
@@ -91,8 +91,8 @@
                 </div>
               </div>
             </div>
-            <div class="d-flex align-items-center justify-content-between my-2 mx-4">
-              <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $('generic.previous') }}</h4>
+            <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
+              <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $t('generic.previous') }}</h4>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -153,7 +153,7 @@
               <template v-for="(service, i) in reservationServices">
                 <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
                 <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
-                  <strong>{{ service.name }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
+                  <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
                 </li>
                 <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
                   <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
@@ -187,7 +187,7 @@
       <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
       <template slot="message">
         <p>{{ getCancelationText }}</p>
-        <p>Aceasta <a href="tbd" target="_blank">Politica de anulare</a> este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte posibile rezervari</p>
+        <p>{{ $t('generic.this') }} <a href="tbd" target="_blank">{{ $t('generic.cancel_policy') }}</a> {{ $t('generic.cancel_policy_description') }}</p>
       </template>
     </es-confirm-modal>
     <es-confirm-modal v-else v-model="isConfirmModalOpen" cta="Da, anuleaza gratuit" @on-confirm="onContinue()">
@@ -240,11 +240,11 @@
         const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);
         let text = '';
         if (difference > 120 && difference < 240) {
-          text = $t('bookings.details.cancel.20.body');
+          text = this.$t('bookings.details.cancel.20.body');
         } else if (difference > 60 && difference < 120) {
-          text = $t('bookings.details.cancel.50.body');
+          text = this.$t('bookings.details.cancel.50.body');
         } else {
-          text = $t('bookings.details.cancel.100.body');
+          text = this.$t('bookings.details.cancel.100.body');
         }
 
         return text;
@@ -379,18 +379,18 @@
 
       getStatus(status) {
         const satatusLabel = {
-          auto_cancelled: $t('auto_cancelled'),
-          reservation_cancelled_by_user: $t('reservation_cancelled_by_user'),
-          reservation_cancelled_by_elite: $t('reservation_cancelled_by_elite'),
-          reservation_cancelled_by_admin: $t('auto_cancelled'),
-          payment_ongoing: $t('payment_ongoing'),
-          incomplete: $t('incomplete'),
-          waiting_confirmation: $t('waiting_confirmation'),
-          confirmed: $t('confirmed'),
-          on_the_way: $t('on_the_way'),
-          arrived: $t('arrived'),
-          completed: $t('completed'),
-          admin_refunded: $t('admin_refunded'),
+          auto_cancelled: this.$t('auto_cancelled'),
+          reservation_cancelled_by_user: this.$t('reservation_cancelled_by_user'),
+          reservation_cancelled_by_elite: this.$t('reservation_cancelled_by_elite'),
+          reservation_cancelled_by_admin: this.$t('auto_cancelled'),
+          payment_ongoing: this.$t('payment_ongoing'),
+          incomplete: this.$t('incomplete'),
+          waiting_confirmation: this.$t('waiting_confirmation'),
+          confirmed: this.$t('confirmed'),
+          on_the_way: this.$t('on_the_way'),
+          arrived: this.$t('arrived'),
+          completed: this.$t('completed'),
+          admin_refunded: this.$t('admin_refunded'),
         };
         return satatusLabel[status];
       },
