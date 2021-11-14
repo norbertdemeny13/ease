@@ -246,7 +246,7 @@
             credentials: form,
             type: userType,
           });
-          if (name === 'Home') {
+          if (name === 'Home' && userType !== 'elite') {
             this.$router.push('/servicii');
           }
         } else {
@@ -255,7 +255,7 @@
             subscribe_to_marketing_emails_list,
             type: userType,
           });
-          if (name === 'Home') {
+          if (name === 'Home' && userType !== 'elite') {
             this.$router.push('/servicii');
           }
         }

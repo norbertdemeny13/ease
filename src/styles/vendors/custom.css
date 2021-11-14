@@ -388,6 +388,12 @@
   top: 50%;
 }
 
+.delete-btn,
+.upload-btn {
+  color: #d00078;
+  cursor: pointer;
+}
+
 .copy-btn {
   color: #d00078;
   cursor: pointer;

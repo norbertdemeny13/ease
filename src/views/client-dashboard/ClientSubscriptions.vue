@@ -49,7 +49,7 @@
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click="$router.push('/abonamente')"
             >
-              {{ $t('generic.activate_subscription') }}
+              {{ $t('generic.activate_a_subscription') }}
             </button>
           </div>
         </div>

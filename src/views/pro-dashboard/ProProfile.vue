@@ -132,115 +132,6 @@
             name="bio"
           />
         </div>
-      </div>
-    </div>
-    <div v-if="!getUser.heard_from" class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.how_did_you_find_out_about_ease') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              v-for="option in heardFromUs"
-              :key="option.value"
-              class="container_radio"
-              @click="user.heard_from = option.value"
-            >{{ option.label }}
-              <input type="radio" value="checkbox" name="type" :checked="option.value === user.heard_from ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.gender') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.gender = 'male'"
-            >{{ $t('gender_male') }}
-              <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'male' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.gender = 'female'"
-            >{{ $t('gender_female') }}
-              <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'female' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.active_city') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.working_city_id = 1"
-            >{{ $t('city.bucuresti') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 1 ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.working_city_id = 2"
-            >{{ $t('city.cluj_napoca') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 2 ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.cif_number') }}</label>
-          <input
-            v-model="user.cif_number"
-            type="text"
-            class="form-control"
-            name="cif_number"
-          >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.registration_number') }}</label>
-          <input
-            v-model="user.registration_number"
-            type="text"
-            class="form-control"
-            name="registration_number"
-          >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div v-if="!getUser.expected_salary" class="form-group">
-          <label required>{{ $t('views.pro_dashboard.how_much_you_hope_to_earn') }}</label>
-          <input
-            id="earning"
-            v-model="user.expected_salary"
-            type="text"
-            required
-            class="form-control"
-            name="earning"
-          >
-        </div>
         <div class="d-flex justify-content-end">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
@@ -259,7 +150,6 @@
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { isEqual } from 'lodash-es';
-  import { getUtcToZonedTime } from '@/utils/date-helpers';
   import { Datepicker } from '@/components/shared/datepicker';
 
   export default Vue.extend({
@@ -269,50 +159,49 @@
       'es-datepicker': Datepicker,
     },
 
-    data() {
-      return {
-        services: {},
-        heardFromUs: [
-          { value: 'bestjobs', label: this.$t('views.pro_dashboard.heard_from_bestjobs') },
-          { value: 'ejobs', label: this.$t('views.pro_dashboard.heard_from_ejobs') },
-          { value: 'google', label: this.$t('views.pro_dashboard.heard_from_google') },
-          { value: 'article', label: this.$t('views.pro_dashboard.heard_from_press_article') },
-          { value: 'instagram', label: this.$t('views.pro_dashboard.heard_from_instagram') },
-          { value: 'facebook', label: this.$t('views.pro_dashboard.heard_from_facebook') },
-          { value: 'prieten', label: this.$t('views.pro_dashboard.heard_from_friend') },
-          { value: 'ease_pro', label: this.$t('views.pro_dashboard.heard_from_ease_pro') },
-          { value: 'other', label: this.$t('views.pro_dashboard.heard_from_other') },
-        ],
-        isProfilePictureModalOpen: false,
-        image: '',
-        profilePicture: {},
-        user: {
-          first_name: '',
-          last_name: '',
-          email: '',
-          expected_salary: '',
-          bio: '',
-          languages: '',
-          started_working_at: '',
-          gender: '',
-          heard_from: '',
-          working_city_id: '',
-        },
-        account_settings: {
-          send_app_notifications: false,
-          sms_news: false,
-          email_news: false,
-          phone_news: false,
-        },
-      };
-    },
+    data: () => ({
+      isProfilePictureModalOpen: false,
+      image: '',
+      profilePicture: {},
+      user: {
+        first_name: '',
+        last_name: '',
+        email: '',
+        bio: '',
+        languages: '',
+        started_working_at: '',
+      },
+      account_settings: {
+        send_app_notifications: false,
+        sms_news: false,
+        email_news: false,
+        phone_news: false,
+      },
+    }),
 
     created() {
       this.fetchStatistics();
       this.fetchStripeSSO();
       // TODO: Get stripe url, or generate if you don't have it 
       // this.registerEliteStripe();
-      this.user = { ...this.getUser };
+      const {
+        first_name,
+        last_name,
+        email,
+        account_setting,
+        bio,
+        languages,
+        started_working_at,
+      } = this.getUser;
+      this.user = {
+        first_name,
+        last_name,
+        email,
+        bio,
+        languages,
+        started_working_at,
+      };
+      this.account_settings = { ...account_setting };
     },
 
     watch: {
@@ -378,7 +267,6 @@
         if (sms_news || email_news || phone_news) {
           this.account_settings.send_app_notifications = true;
         }
-        this.user.started_working_at = getUtcToZonedTime(this.$data.user.started_working_at).toDateString();
         this.updateElite(this.$data);
       },
     },

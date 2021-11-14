@@ -6,6 +6,7 @@ import { USER } from '@/interfaces/user';
 import { api } from '@/services/api';
 import instance from '@/main';
 import { nanoid } from 'nanoid';
+import { router } from '@/router';
 
 export interface State extends ModuleState {
   isAuth: boolean;
@@ -110,12 +111,7 @@ export default {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: jwt.slice(2),
         });
-        const { elite_id } = data;
-        const newData = {
-          ...data,
-          userType: elite_id ? 'elite' : 'client',
-        };
-        commit('setUser', newData);
+        commit('setUser', data);
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -125,12 +121,7 @@ export default {
       const userType = localStorage.getItem('userType');
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
-        const { elite_id } = data;
-        const newData = {
-          ...data,
-          userType: elite_id ? 'elite' : 'client',
-        };
-        commit('setUser', newData);
+        commit('setUser', data);
       } catch({ error }) {
         console.log(error, 'setErrors');
       } finally {
@@ -166,12 +157,7 @@ export default {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create(endpoint);
-        const { elite_id } = data;
-        const newData = {
-          ...data,
-          userType: elite_id ? 'elite' : 'client',
-        };
-        commit('setUser', newData);
+        commit('setUser', data);
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -185,12 +171,11 @@ export default {
         const { data } = await api.create(endpoint, {
           ...credentials,
         });
-        const { elite_id } = data;
-        const newData = {
-          ...data,
-          userType: elite_id ? 'elite' : 'client',
-        };
-        commit('setUser', newData);
+        commit('setUser', data);
+
+        if (!router.currentRoute.fullPath.includes('easepro/cont') && data.user_type === 'elite') {
+          router.push('easepro/cont');
+        }
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -310,7 +295,7 @@ export default {
     getUser: state => state.user,
     getRefferalCode: state => state.refferalCode,
     getUserDefaultAddress: state => state.user.default_address,
-    getUserType: state => state.user?.userType || localStorage.getItem('userType'),
+    getUserType: state => state.user?.user_type || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,
 
@@ -321,8 +306,8 @@ export default {
       if (data && refreshToken) {
         localStorage.setItem('jwt', `Jh${data.refresh_token}`);
         localStorage.setItem('auth', `Kn${data.access_token}`);
-        localStorage.setItem('userType', data.userType);
       }
+      localStorage.setItem('userType', data?.user_type);
       Vue.set(state, 'user', data);
     },
     setStatistics(state: State, data: any) {

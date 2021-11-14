@@ -15,72 +15,6 @@
         </template>
       </es-card>
     </es-cards-container>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.how_did_you_find_out_about_ease') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              v-for="option in heardFromUs"
-              :key="option.value"
-              class="container_radio"
-              @click="heard = option.value"
-            >{{ option.label }}
-              <input type="radio" value="checkbox" name="type" :checked="option.value === heard ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.gender') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="gender = 'male'"
-            >{{ $t('gender_male') }}
-              <input type="radio" value="checkbox" name="gender" :checked="gender === 'male' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="gender = 'female'"
-            >{{ $t('gender_female') }}
-              <input type="radio" value="checkbox" name="gender" :checked="gender === 'female' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.how_much_you_hope_to_earn') }}</label>
-          <input
-            id="earning"
-            v-model="earning"
-            type="text"
-            required
-            class="form-control"
-            name="earning"
-          >
-        </div>
-        <div class="d-flex justify-content-end">
-          <button
-            class="btn btn-sm btn-pink btn-pill my-4 px-6"
-            @click.prevent="onSave()"
-          >
-            {{ $t('generic.save') }}
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -97,26 +31,6 @@
     components: {
       'es-card': Card,
       'es-cards-container': CardsContaienr,
-    },
-
-    data() {
-      return {
-        services: {},
-        heard: '',
-        gender: '',
-        earning: '',
-        heardFromUs: [
-          { value: 'bestjobs', label: this.$t('views.pro_dashboard.heard_from_bestjobs') },
-          { value: 'ejobs', label: this.$t('views.pro_dashboard.heard_from_ejobs') },
-          { value: 'google', label: this.$t('views.pro_dashboard.heard_from_google') },
-          { value: 'article', label: this.$t('views.pro_dashboard.heard_from_press_article') },
-          { value: 'instagram', label: this.$t('views.pro_dashboard.heard_from_instagram') },
-          { value: 'facebook', label: this.$t('views.pro_dashboard.heard_from_facebook') },
-          { value: 'prieten', label: this.$t('views.pro_dashboard.heard_from_friend') },
-          { value: 'ease_pro', label: this.$t('views.pro_dashboard.heard_from_ease_pro') },
-          { value: 'other', label: this.$t('views.pro_dashboard.heard_from_other') },
-        ],
-      }
     },
 
     computed: {

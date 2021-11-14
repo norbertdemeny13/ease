@@ -3,7 +3,7 @@
     <header :class="`header black_nav clearfix element_to_stick ${isHomePage ? '' : 'header-in'}`">
       <div class="container">
         <div id="logo">
-          <router-link v-if="isPro" to="/pro/">
+          <router-link v-if="isPro" to="/easepro/">
             <img
               src="@/assets/png/pro-logo.png"
               width="90"
@@ -154,7 +154,7 @@
         getUserType: 'session/getUserType',
       }),
       getNavbarLinks(): any {
-        return this.isPro ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;
+        return this.getUserType === 'elite' ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;
       },
       getAuthNavLinks(): any {
         return this.getNavbarLinks

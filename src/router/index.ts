@@ -258,6 +258,7 @@ router.beforeEach(async (to, from, next) => {
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
   const getUser = store.getters['session/getUser'];
+  const getUserType = store.getters['session/getUserType'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
@@ -271,6 +272,11 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
+  // if (!getToken && to.name !== 'ProHome') {
+  //   const route = to.fullPath.includes('easepro') ? 'easepro' : '/';
+  //   next(route);
+  // }
+
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;
@@ -281,11 +287,11 @@ router.beforeEach(async (to, from, next) => {
     isAuthenticated = true;
   }
 
-  if ((getToken || isAuthenticated) && name === 'Home' && getUser.userType === 'client') {
+  if ((getToken || isAuthenticated) && name === 'Home' && getUser.user_type === 'user') {
     next('/servicii');
   }
 
-  if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.userType === 'elite') {
+  if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.user_type === 'elite') {
     next('/easepro/cont');
   }
 
@@ -308,6 +314,7 @@ router.beforeEach(async (to, from, next) => {
   if (path.includes('/abonamente/rezerva') && !getToken && !jwtToken) {
     next('/abonamente');
   }
+
 
   if (path.includes('/client') && !getToken && !jwtToken) {
     next('/');

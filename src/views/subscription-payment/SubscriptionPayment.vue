@@ -8,7 +8,7 @@
           <h3>{{ $t('views.subscriptions.details') }}</h3>
           <div class="main">
             <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
-              <h5>{{ getSelectedSubscription.label }}</h5>
+              <h5>{{ $t(getSelectedSubscription.label) }}</h5>
               <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
             </div>
             <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">

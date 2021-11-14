@@ -5,6 +5,7 @@ import { ro } from 'date-fns/locale';
 import format from 'date-fns/format';
 import addMinutes from 'date-fns/addMinutes';
 import zonedTimeToUtc from 'date-fns-tz/zonedTimeToUtc';
+import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
 import endOfHour from 'date-fns/endOfHour';
 import isWeekend from 'date-fns/isWeekend';
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
@@ -124,6 +125,8 @@ export const getZonedDate = (date: any) => format(
   'iiii, dd MMM, yyyy',
   { locale: ro },
 );
+
+export const getUtcToZonedTime = (date: any) => zonedTimeToUtc(new Date(date), 'Europe/Bucharest');
 
 export const getNextM = () => {
   const nextMonth = addMonths(

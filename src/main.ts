@@ -24,6 +24,8 @@ import './vendors/common_func';
 // Internationalization
 import { i18n } from '@/i18n';
 
+import FileSelector from 'vue-file-selector';
+
 // Shared components
 import StarRating from 'vue-star-rating';
 import VueSlider from 'vue-slider-component';
@@ -47,6 +49,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Portal);
 Vue.use(ToastPlugin);
+Vue.use(FileSelector);
 
 Vue.component('es-address-bar', AddressBar);
 Vue.component('es-star-rating', StarRating);
