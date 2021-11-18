@@ -37,13 +37,13 @@
             :show-total="false"
           />
           <div class="d-flex justify-content-center">
-            <a
+            <button
+                :disabled="!selectedTime"
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-              href=""
               @click.prevent="onContinue"
             >
               {{ $t('generic.continue') }}
-            </a>
+            </button>
           </div>
         </div>
       </div>

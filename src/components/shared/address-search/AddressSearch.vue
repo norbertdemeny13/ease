@@ -4,7 +4,7 @@
       <input
         ref="search"
         v-model="location"
-        placeholder="Introdu o locatie"
+        :placeholder="$t('generic.enter_location')"
         class="form-control ml-4 no_border_r pr-4"
         type="text"
       >

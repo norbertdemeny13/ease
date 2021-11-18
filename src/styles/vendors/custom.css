@@ -142,7 +142,8 @@
 }
 
 .address-search-container input {
-  width: 350px;
+  max-width: 350px;
+  width: 80%;
 }
 
 .es_service-details-page img,
@@ -164,9 +165,9 @@
   background-color: hsla(0,0%,100%,.7);
   bottom: 0;
   content: "";
-  left: 0;
+  left: -50px;
   position: absolute;
-  right: 0;
+  right: -50px;
   top: 0;
   z-index: 1;
 }
@@ -330,52 +331,6 @@
   }
 }
 
-@media (min-width: 767px) {
-  .more-details div {
-    flex-direction: row;
-  }
-
-  .faq-container .large-view {
-    display: block;
-  }
-
-  .faq-container .main_title {
-    display: block;
-  }
-
-  .faq-container .mobile-view {
-    display: none;
-  }
-
-  .companies-container .ease-for-company {
-    height: 360px;
-    width: 390px;
-  }
-
-  .more-details .reverse-order {
-    order: 2;
-  }
-
-  .download-app-container .row {
-    flex-direction: row;
-  }
-
-  .reserve-from-app-container {
-    display: block;
-  }
-
-  .es_reserve-massage-service-page {
-    & .form-group > div {
-      display: flex;
-      flex-direction: row;
-    }
-  }
-
-  .reserve-from-app-container .mobile-container {
-    flex-direction: row;
-  }
-}
-
 .back-button {
   font-size: 18px;
 }
@@ -421,6 +376,67 @@
 
 .owl-item:hover {
   cursor: pointer;
+}
+
+.filters {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+.dropdown-menu {
+  left: -90px;
+}
+
+@media (max-width: 560px) {
+  .address-search-container .alert {
+    width: 80%;
+  }
+}
+
+@media (min-width: 767px) {
+  .more-details div {
+    flex-direction: row;
+  }
+
+  .faq-container .large-view {
+    display: block;
+  }
+
+  .faq-container .main_title {
+    display: block;
+  }
+
+  .faq-container .mobile-view {
+    display: none;
+  }
+
+  .companies-container .ease-for-company {
+    height: 360px;
+    width: 390px;
+  }
+
+  .more-details .reverse-order {
+    order: 2;
+  }
+
+  .download-app-container .row {
+    flex-direction: row;
+  }
+
+  .reserve-from-app-container {
+    display: block;
+  }
+
+  .es_reserve-massage-service-page {
+    & .form-group > div {
+        display: flex;
+        flex-direction: row;
+      }
+  }
+
+  .reserve-from-app-container .mobile-container {
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 1024px) {
