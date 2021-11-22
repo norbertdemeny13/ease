@@ -184,18 +184,18 @@
           <div class="radio_c_group d-flex flex-column">
             <label
               class="container_radio"
-              @click="user.working_city_id = 1"
+              @click="user.working_city_id = 2"
             >{{ $t('city.bucuresti') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 1 ? 'checked' : ''">
+              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 2 ? 'checked' : ''">
               <span class="checkmark" />
             </label>
           </div>
           <div class="radio_c_group d-flex flex-column">
             <label
               class="container_radio"
-              @click="user.working_city_id = 2"
+              @click="user.working_city_id = 1"
             >{{ $t('city.cluj_napoca') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 2 ? 'checked' : ''">
+              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 1 ? 'checked' : ''">
               <span class="checkmark" />
             </label>
           </div>
