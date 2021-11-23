@@ -5,7 +5,7 @@
         <h4>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
         <es-divider />
         <h6>{{ $t('views.client_dashboard.ease_credit.description') }}</h6>
-        <div class="d-flex justify-content-start align-items-center">
+        <div class="d-flex flex-wrap justify-content-start align-items-center">
           <div>
             <label>{{ $t('views.client_dashboard.ease_credit.gift_card_code') }}</label>
             <input
@@ -16,18 +16,22 @@
               name="credit-code"
             >
           </div>
-          <button
-            class="btn btn-sm btn-pink btn-pill my-4 px-6"
-            @click="onValidate()"
-          >
-            {{ $t('views.client_dashboard.ease_credit.apply') }}
-          </button>
-          <button
-            class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-6"
-            @click="$router.push('/client/recomandare')"
-          >
-            {{ $t('generic.recommend') }}
-          </button>
+          <div class="row">
+            <div class="col">
+              <button
+                  class="btn btn-sm btn-pink btn-pill my-4 px-6"
+                  @click="onValidate()"
+              >
+                {{ $t('views.client_dashboard.ease_credit.apply') }}
+              </button>
+              <button
+                  class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-6"
+                  @click="$router.push('/client/recomandare')"
+              >
+                {{ $t('generic.recommend') }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

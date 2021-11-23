@@ -31,11 +31,11 @@
             <h3 class="text-right">{{ $t('generic.from') }} {{ selectedService.price_from }}</h3>
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
-              <div class="d-flex my-2">
+              <div class="my-2 row filters">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
+                  :class="`${getFilterClasses(filter)} btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
                   @click="setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
@@ -45,7 +45,7 @@
             <h3 v-if="massageType === 'couple'">{{ $t('summary.massageOne') }}</h3>
             <div v-for="filter in massageFilters.slice(2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
-              <div class="d-flex my-2">
+              <div class="d-flex flex-wrap my-2">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
@@ -343,6 +343,18 @@
           await this.$router.push(endpoint);
         }
       },
+      getFilterClasses(filter) {
+        switch (filter.length) {
+          case 1:
+            return 'col-3';
+          case 2:
+            return 'col-sm-12 col-md-8 col-lg-4';
+          case 3:
+            return 'col-sm-12 col-md-8 col-lg-3'
+          default:
+            return 'col-sm-12 col-md-8 col-lg-5';
+        }
+      }
     },
   });
 </script>
