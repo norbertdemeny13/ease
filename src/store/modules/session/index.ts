@@ -83,8 +83,7 @@ export default {
     },
     async changePassword({ state, commit }, passwords) {
       Vue.set(state, 'isFetchingUser', true);
-      const { userType } = state.user;
-
+      const userType = state.user.user_type;
       try {
         const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/change_password`, {
           ...passwords,
@@ -249,7 +248,7 @@ export default {
     },
     async requestValidationCode({ state, commit }, phone_number) {
       Vue.set(state, 'isFetchingUser', true);
-      const { userType } = state.user;
+      const userType = state.user.user_type;
       try {
         const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/phone_number`, {
           phone_number,
@@ -269,7 +268,7 @@ export default {
     },
     async validatePhoneNumber({ state, commit }, code) {
       Vue.set(state, 'isFetchingUser', true);
-      const { userType } = state.user;
+      const userType = state.user.user_type;
       try {
         const { data } = await api.create(`/${userType === 'elite' ? 'elite' : 'user'}/verify_code`, {
           code,
