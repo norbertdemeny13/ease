@@ -2,7 +2,7 @@ export const SIDEBAR_LINKS = [
   { label: 'Cont', to: 'cont', role: 'client' },
   { label: 'Parola', to: 'parola', role: 'client' },
   { label: 'Numar de telefon', to: 'telefon', role: 'client' },
-  { label: 'Recomanda', to: 'recomandare', role: 'client' },
+  { label: 'Promoveaza', to: 'recomandare', role: 'client' },
   { label: 'Adrese', to: 'adrese', role: 'client' },
   { label: 'Metode de plata', to: 'metode-de-plata', role: 'client' },
   { label: 'Rezervarile mele', to: 'rezervarile-mele', role: 'client' },
@@ -19,5 +19,5 @@ export const PRO_SIDEBAR_LINKS = [
   { label: 'Adrese', to: 'adrese', role: 'pro' },
   { label: 'Calificari', to: 'calificari', role: 'pro' },
   { label: 'Documente', to: 'documente', role: 'pro' },
-  { label: 'Recomanda', to: 'recomandare', role: 'pro' },
+  { label: 'Promoveaza', to: 'recomandare', role: 'pro' },
 ];

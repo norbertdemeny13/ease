@@ -107,7 +107,7 @@
     "price": "Pret",
     "privacy_policy": "Politica de confidentialitate",
     "pro": "Profesionist",
-    "recommend": "Recomanda",
+    "recommend": "Promoveaza",
     "remember_me": "Tine-ma minte",
     "reserve": "Rezerva",
     "reserve_now": "Rezerva acum",
@@ -468,7 +468,7 @@
     },
     "client_dashboard": {
       "recommend": {
-        "title_description": "Invita-ti prietenii pe Ease si amandoi primiti 15 Lei"
+        "title_description": "Promovează-ți profilul ca să afle cât mai multe persoane de serviciile oferite de tine"
       },
       "subscriptions": {
         "description": "Momentan nu ai niciun abonament activ",
