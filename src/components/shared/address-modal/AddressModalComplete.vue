@@ -17,7 +17,6 @@
               <label>{{ $t('address.street') }}</label>
               <input
                 v-model="address.street_name"
-                disabled
                 type="text"
                 class="form-control"
                 name="street"
@@ -61,7 +60,7 @@
             <div class="form-group">
               <label>{{ $t('address.city') }}</label>
               <input
-                :value="city"
+                :value="$t(city)"
                 disabled
                 type="text"
                 class="form-control"

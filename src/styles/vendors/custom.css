@@ -387,6 +387,10 @@
   left: -90px;
 }
 
+.phone-nr-input {
+  min-width: 280px;
+}
+
 @media (max-width: 560px) {
   .address-search-container .alert {
     width: 80%;

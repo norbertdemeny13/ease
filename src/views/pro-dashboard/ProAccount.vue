@@ -20,7 +20,7 @@
             </figure>
           </div>
           <div class="ml-4">
-            <h6>{{ getUser.display_name }}</h6>
+            <h6>{{ getUser.first_name }}</h6>
             <p>{{ getUser.elite_id }}</p>
             <a v-if="image" href="" @click.prevent="onSavePicture()">Save</a>
           </div>

@@ -3,7 +3,7 @@
     <h4>{{ $t('generic.phone_nr') }}</h4>
     <div class="row">
       <div class="col-md-4">
-        <div v-if="phone" class="form-group">
+        <div v-if="phone" class="form-group phone-nr-input">
           <label>{{ $t('generic.phone_nr_verified') }}</label>
           <es-phone-number-input
             id="phone"
