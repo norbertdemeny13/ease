@@ -109,6 +109,85 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6">
+        <es-divider />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 d-flex justify-content-between">
+        <div class="document-type d-flex flex-column">
+          <h6>{{ $t('views.pro_dashboard.accept_terms_and_conditions') }}</h6>
+          <p>{{ $t('views.pro_dashboard.accept_terms_and_conditions_info') }}</p>
+          <button
+            class="btn btn-sm btn-pink btn-pill px-6 documents-button"
+            @click.prevent="openTermsAndConditionsModal()"
+          >
+            {{ $t('views.pro_dashboard.accept_terms_and_conditions_button') }}
+          </button>
+        </div>
+        <div class="d-flex">
+          <es-custom-checkbox :checked="false" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <es-divider />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 d-flex justify-content-between">
+        <div class="document-type d-flex flex-column">
+          <h6>{{ $t('views.pro_dashboard.interview') }}</h6>
+          <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
+          <button
+            class="btn btn-sm btn-pink btn-pill px-6 documents-button"
+            @click.prevent="onOpenCalendly()"
+          >
+            {{ $t('views.pro_dashboard.interview_button') }}
+          </button>
+        </div>
+        <div class="d-flex">
+          <es-custom-checkbox :checked="false" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <es-divider />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 d-flex justify-content-between">
+        <div class="document-type d-flex flex-column">
+          <h6>{{ $t('views.pro_dashboard.bank_account') }}</h6>
+          <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>
+          <div class="row">
+            <button class="btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button">
+              {{ $t('views.pro_dashboard.bank_account_button') }}
+            </button>
+            <div class="d-flex flex-wrap align-items-center ml-4">
+              <img src="@/assets/svg/stripe.svg" class="logo"/>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <es-custom-checkbox :checked="false" />
+        </div>
+      </div>
+      <es-calendly-modal
+        v-if="isCalendlyModalOpen"
+        v-model="isCalendlyModalOpen"
+        @close="isCalendlyModalOpen = false"
+      />
+
+      <es-terms-and-conditions-modal
+        v-if="isTermsAndConditionsModalOpen"
+        v-model="isTermsAndConditionsModalOpen"
+        @close="isTermsAndConditionsModalOpen = false"
+      />
+    </div>
   </div>
 </template>
 
@@ -116,12 +195,18 @@
   /* eslint-disable */
   import Vue from 'vue';
   import { CustomCheckbox } from '@/components/shared/custom-checkbox';
+  import { Divider } from '@/components/shared/divider';
+  import { CalendlyModal } from '@/components/shared/calendly-modal';
+  import { TermsAndConditionsModal } from '@/components/shared/terms-and-conditions-modal';
 
   export default Vue.extend({
     name: 'es-pro-documents',
 
     components: {
       'es-custom-checkbox': CustomCheckbox,
+      'es-divider': Divider,
+      'es-calendly-modal': CalendlyModal,
+      'es-terms-and-conditions-modal': TermsAndConditionsModal
     },
 
     data: () => ({
@@ -129,6 +214,8 @@
       certificate_of_calification: '',
       id_card: '',
       practice_insurance: '',
+      isCalendlyModalOpen: false,
+      isTermsAndConditionsModalOpen: false
     }),
 
     methods: {
@@ -138,6 +225,12 @@
       onRemove(type, index) {
         const newArray = this.$data[type].splice(index, 1);
       },
+      onOpenCalendly() {
+        this.isCalendlyModalOpen = true;
+      },
+      openTermsAndConditionsModal() {
+        this.isTermsAndConditionsModalOpen = true;
+      }
     },
   });
 </script>
@@ -146,5 +239,13 @@
   .documents-input {
     position: absolute !important;
     visibility: hidden;
+  }
+
+  .documents-button {
+    width: 225px;
+  }
+
+  .logo {
+    height: 19px;
   }
 </style>

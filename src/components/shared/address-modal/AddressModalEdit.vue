@@ -19,7 +19,7 @@
                 <input
                   ref="search"
                   v-model="address.street_name"
-                  placeholder="Introdu o locatie"
+                  :placeholder="$t('generic.enter_location')"
                   class="form-control pr-6"
                   type="text"
                 >
