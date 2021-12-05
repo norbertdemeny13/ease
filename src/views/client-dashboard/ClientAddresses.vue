@@ -9,7 +9,7 @@
           :class="`${address.main ? 'active': ''} client-address-item`"
           @click.prevent="onSelect(address)"
         >
-          <div>
+          <div class="address">
             <div>{{ getAddress(address) }}</div>
             <div v-if="address.main" class="mt-2">
               <span class="icon_check_alt" />
@@ -26,8 +26,10 @@
               class="my-4"
               @click.prevent.stop="onRemove(address)"
             >
-              <i class="icon_trash_alt" />
-              {{ $t('generic.delete') }}
+              <div>
+                <i class="icon_trash_alt" />
+                {{ $t('generic.delete') }}
+              </div>
             </a>
           </div>
         </div>
@@ -126,7 +128,7 @@
 
       getAddress(address: Address): string {
         return `${address.street_name}, Nr.
-              ${address.street_number}, ${address.city.name}`;
+              ${address.street_number}, ${this.$t(address.city.name)}`;
       },
 
       onEdit(address: Address): void {
@@ -188,5 +190,9 @@
   .client-address-item:hover {
     border: 1px solid #d00078;
     cursor: pointer;
+  }
+
+  .address {
+    max-width: 60%;
   }
 </style>

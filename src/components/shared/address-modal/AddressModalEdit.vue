@@ -10,7 +10,7 @@
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
             <h3>{{ $t('generic.add_address') }}</h3>
-            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
+            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"/>
           </div>
           <div class="address-wrapper">
             <div class="d-flex flex-column form-group">
@@ -18,12 +18,12 @@
               <div class="d-flex align-items-center">
                 <input
                   ref="search"
-                  v-model="location"
+                  v-model="address.street_name"
                   placeholder="Introdu o locatie"
                   class="form-control pr-6"
                   type="text"
                 >
-                <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
+                <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash"/></a>
               </div>
             </div>
             <div class="row">
@@ -94,9 +94,9 @@
             <div class="text-left my-2">
               <button
                 class="btn_1"
-                @click.prevent="onAddAddress()"
+                @click.prevent="saveAddress()"
               >
-                {{ $t('generic.add') }}
+                {{ $t('address.save') }}
               </button>
             </div>
           </div>
@@ -111,6 +111,7 @@
 <script lang="ts">
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { Address } from '@/interfaces/Address';
 
   export default Vue.extend({
     name: 'es-address-modal',
@@ -125,6 +126,10 @@
         required: true,
         type: Boolean as PropType<boolean>,
       },
+      selectedAddress: {
+        required: true,
+        type: Object as PropType<Address>,
+      },
     },
     /* eslint-disable */
     data: () => ({
@@ -132,18 +137,18 @@
       city: '',
       isDifferentCity: false,
       address: {
-        street_name: null,
-        street_number: null,
-        address_type: null,
-        pets: null,
-        parking: null,
-        notes: null,
-        floor: null,
-        apartment_number: null,
-        postcode: null,
-        lat: null,
-        lng: null,
-        equipment_ids: [],
+        street_name: '',
+        street_number: '',
+        address_type: '',
+        pets: '',
+        parking: '',
+        notes: '',
+        floor: '',
+        apartment_number: '',
+        postcode: '',
+        lat: '',
+        lng: '',
+        equipment_ids: [] as number[],
       },
     }),
 
@@ -156,6 +161,43 @@
         getReservationAddress: 'address/getReservationAddress',
         getUserType: 'session/getUserType',
       }),
+    },
+
+    created() {
+      const {
+        address_type,
+        apartment_number,
+        city,
+        equipment,
+        floor,
+        lat,
+        lng,
+        notes,
+        parking,
+        pets,
+        street_name,
+        street_number,
+        postcode,
+      } = this.selectedAddress;
+
+      const equipmentId = equipment[0]?.id;
+
+      this.address.street_number = street_number;
+      this.address.street_name = street_name;
+      this.address.floor = floor;
+      this.address.apartment_number = apartment_number;
+      this.address.address_type = address_type;
+      this.address.pets = pets;
+      this.address.parking = parking;
+      this.address.notes = notes;
+      this.address.lat = lat;
+      this.address.lng = lng;
+      this.address.postcode = postcode
+      this.city = city.name;
+
+      if (equipmentId) {
+        this.address.equipment_ids.push(equipmentId);
+      }
     },
 
     watch: {
@@ -195,11 +237,14 @@
         setAddress: 'address/setAddress',
         getUser: 'session/getUser',
       }),
+      ...mapActions({
+        updateAddress: 'address/updateAddress',
+      }),
 
       async initLocationSearch() {
         await this.$nextTick();
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
-        autocomplete.setFields(['geometry.location','address_component','formatted_address', 'name']);
+        autocomplete.setFields(['geometry.location', 'address_component', 'formatted_address', 'name']);
         autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
           this.address.street_number = place.address_components
@@ -216,9 +261,9 @@
       },
 
       async onAddAddress(): Promise<void> {
-        const { name } = this.$router.currentRoute;
-        const { address, city } = this;
-        const { street_number, street_name } = address;
+        const {name} = this.$router.currentRoute;
+        const {address, city} = this;
+        const {street_number, street_name} = address;
 
         if (name === 'Plata rezervare' && this.isDifferentCity) {
           (this as any).$toasts.toast({
@@ -241,6 +286,12 @@
             message: this.$t('toast.address_is_incomplete'),
           });
         }
+      },
+      async saveAddress(): Promise<void> {
+        const {address, selectedAddress} = this;
+        const {id} = selectedAddress;
+        await this.updateAddress({address, id});
+        this.$emit('is-open', false);
       },
     },
   });
