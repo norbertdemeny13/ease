@@ -135,7 +135,7 @@
         this.setSubscription(
           {
             ...subscription,
-            label: `${subscription.name} ${subscription.uses > 1 ? subscription.uses : ''}`,
+            label: `${subscription.name} ${subscription.uses > 1 ? subscription.uses : ''}`.trim(),
             price: subscription.price.price,
           },
         );

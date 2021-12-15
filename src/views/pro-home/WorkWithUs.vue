@@ -10,7 +10,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/icons/castiga-mai-multi-bani.svg"
+                  src="@/assets/svg/work_with_us_1.svg"
                   alt=""
                   width="35"
                   height="35"
@@ -25,7 +25,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/icons/lucreaza-cand-doresti.svg"
+                  src="@/assets/svg/work_with_us_2.svg"
                   alt=""
                   width="35"
                   height="35"
@@ -40,7 +40,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/icons/securitate.svg"
+                  src="@/assets/svg/work_with_us_3.svg"
                   alt=""
                   width="35"
                   height="35"

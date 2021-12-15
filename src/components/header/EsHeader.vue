@@ -170,7 +170,7 @@
 
     watch: {
       $route(to) {
-        this.isPro = this.$router.currentRoute.path.includes('pro');
+        this.isPro = this.$router.currentRoute.path.includes('easepro');
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
       },
     },

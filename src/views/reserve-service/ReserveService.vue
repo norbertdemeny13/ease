@@ -38,7 +38,7 @@
           />
           <div class="d-flex justify-content-center">
             <button
-                :disabled="!selectedTime"
+              :disabled="!selectedTime"
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
               @click.prevent="onContinue"
             >

@@ -94,11 +94,10 @@
           .find(filter => filter.type === 'massage')
       },
       getSubscriptionsInformation(): Record<string, any> {
-
         return this.getSubscriptions
           .map((subscription: any) => ({
             ...subscription,
-            label: `${subscription.name} ${subscription.uses > 1 ? subscription.uses : ''}`,
+            label: `${this.$t(subscription.name)} ${subscription.uses > 1 ? subscription.uses : ''}`.trim(),
           }));
       },
     },

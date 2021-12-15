@@ -11,7 +11,7 @@
             <figure>
               <img
                 src="@/assets/png/lazy-placeholder-100-100-white.png"
-                :data-src="image"
+                :data-src="image1"
                 alt=""
                 width="150"
                 height="167"
@@ -27,7 +27,7 @@
             <figure>
               <img
                 src="@/assets/png/lazy-placeholder-100-100-white.png"
-                :data-src="image"
+                :data-src="image2"
                 alt=""
                 width="150"
                 height="167"
@@ -43,7 +43,7 @@
             <figure>
               <img
                 src="@/assets/png/lazy-placeholder-100-100-white.png"
-                :data-src="image"
+                :data-src="image3"
                 alt=""
                 width="150"
                 height="167"
@@ -61,12 +61,16 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import image from '@/assets/svg/how.svg';
+  import image1 from '@/assets/svg/homepage_1.svg';
+  import image2 from '@/assets/svg/homepage_2.svg';
+  import image3 from '@/assets/svg/homepage_3.svg';
 
   export default Vue.extend({
     name: 'es-home-how-it-works',
     data: () => ({
-      image,
+      image1,
+      image2,
+      image3,
     }),
   });
 </script>

@@ -122,12 +122,15 @@
       getActiveSubscription(newVal): void {
         if (newVal && newVal.state === 'payment_pending') {
           this.initialisePaymentCheck();
+        } else {
+          this.isSubscriptionActivated = true;
           (this as any).$toasts.toast({
             id: 'subscription-toast',
             intent: 'success',
             title: this.$t('toast.congrats_title'),
             message: this.$t('toast.subscription_activation'),
           });
+          clearInterval(this.polling);
         }
       },
 

@@ -32,7 +32,7 @@
           <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
         <li v-if="item.isWithAromaterapeutic">
-          <span>{{ item.terapeuticForm.name }}</span><span>{{ item.terapeuticForm.price }}</span>
+          <span>{{ $t(item.terapeuticForm.name) }}</span><span>{{ item.terapeuticForm.price }}</span>
         </li>
       </ul>
 
@@ -116,6 +116,7 @@
           : '';
       },
       getHour() {
+        console.log(this.time, 'fasz');
         const { time } = this.time;
         return time;
       },

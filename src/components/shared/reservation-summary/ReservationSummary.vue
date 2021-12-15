@@ -30,7 +30,7 @@
         <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Numele abonamentului activ</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong> {{ $t('summary.subscriptionDiscount') }}</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('generic.gift_card') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
         <li class="total d-flex justify-content-between"><strong>{{ $t('summary.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
         <es-divider v-if="!isReservationConfirmed" />

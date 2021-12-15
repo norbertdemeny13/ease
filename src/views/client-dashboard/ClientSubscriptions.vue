@@ -8,22 +8,22 @@
     <div class="row">
       <div class="col-md-6">
         <div v-if="hasSubscription">
-          <h6 class="mt-4">{{ getActiveSubscription.subscription.name }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 class="mt-4">{{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
-            <div v-if="getActiveSubscription.state === 'active'">
+            <div v-if="hasActiveSubscription">
               <li>{{ $t('views.client_dashboard.subscriptions.next_bill') }}</li>
               <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
             </div>
-            <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? 'Lunar' : 'Anual' }}</li>
-            <li><strong>{{ $t('generic.status') }}</strong>{{ getActiveSubscription.state === 'active' ? 'Activ' : 'Anulat' }}</li>
-            <li><strong>{{ $t('generic.price') }}</strong>{{ getActiveSubscription.subscription.price.price }}/{{ getActiveSubscription.subscription.monthly ? 'luna' : 'an' }}</li>
+            <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.anual') }}</li>
+            <li><strong>{{ $t('generic.status') }}</strong>{{ hasActiveSubscription ? 'Activ' : 'Anulat' }}</li>
+            <li><strong>{{ $t('generic.price') }}</strong>{{ getActiveSubscription.subscription.price.price }} Ron/{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.year') }}</li>
           </ul>
-          <div v-if="getActiveSubscription.state === 'active'" class="d-flex justify-content-end">
+          <div v-if="hasActiveSubscription" class="d-flex justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-4"
               @click="onCancel"
             >
-              {{ $t('generic.activate_a_subscription') }}
+              {{ $t('generic.cancel_subscription') }}
             </button>
             <button
               class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
@@ -55,6 +55,13 @@
         </div>
       </div>
     </div>
+    <es-subscription-modal
+      v-if="isSubscriptionModalOpen"
+      :id="getActiveSubscription.subscription.id"
+      v-model="isSubscriptionModalOpen"
+      :user-id="getActiveSubscription.id"
+      :active-subscription="getActiveSubscription"
+    />
     <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" @on-confirm="onContinue()">
       <template slot="title">{{ $t('generic.cancel_subscription') }}</template>
       <template slot="message">
@@ -67,12 +74,18 @@
 <script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
+  import { SubscriptionModal } from '@/components/shared/subscription-modal';
 
   export default Vue.extend({
     name: 'es-client-subscriptions',
 
+    components: {
+      'es-subscription-modal': SubscriptionModal,
+    },
+
     data: () => ({
       isCancelSubscriptionModalOpen: false,
+      isSubscriptionModalOpen: false,
     }),
 
     computed: {
@@ -83,11 +96,13 @@
         return new Date().getFullYear();
       },
       hasSubscription() {
-        const hasActiveSubscription = this.getActiveSubscription?.state === 'active';
         const hasUsesLeft = this.getActiveSubscription?.uses_left > 0;
-        return hasActiveSubscription
+        return this.hasActiveSubscription
           ? true
           : hasUsesLeft;
+      },
+      hasActiveSubscription() {
+        return this.getActiveSubscription?.state === 'upcoming' || this.getActiveSubscription?.state === 'active';
       },
     },
 
@@ -104,7 +119,7 @@
         this.isCancelSubscriptionModalOpen = true;
       },
       onModify() {
-        // on modify
+        this.isSubscriptionModalOpen = true;
       },
       onContinue() {
         this.cancelActiveSubscription(this.getActiveSubscription.id);

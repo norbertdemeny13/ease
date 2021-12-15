@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-6 text-center d-none d-lg-block">
           <img
-            src="@/assets/svg/about_1.svg"
+            src="@/assets/svg/subscription_1.svg"
             alt=""
             class="img-fluid"
             width="250"
@@ -46,7 +46,7 @@
       <div class="row justify-content-center align-items-center add_bottom_15">
         <div class="col-lg-6 text-center d-none d-lg-block">
           <img
-            src="@/assets/svg/about_2.svg"
+            src="@/assets/svg/subscription_2.svg"
             alt=""
             class="img-fluid"
             width="250"
@@ -73,7 +73,7 @@
         </div>
         <div class="col-lg-6 text-center d-none d-lg-block">
           <img
-            src="@/assets/svg/about_3.svg"
+            src="@/assets/svg/subscription_3.svg"
             alt=""
             class="img-fluid"
             width="250"

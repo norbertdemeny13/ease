@@ -26,6 +26,9 @@
             </div>
           </div>
           <div v-else>
+            <div v-if="!getCards.length" class="alert alert-danger" role="alert">
+              <span>{{ $t('generic.please_add_a_payment_method') }}</span>
+            </div>
             <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
             <es-payment-details />
             <es-subscription-selection @set-active-subscription="setActiveSubscription" />

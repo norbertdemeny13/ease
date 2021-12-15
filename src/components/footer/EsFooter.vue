@@ -108,7 +108,7 @@
 
     watch: {
       $route(to) {
-        this.isProPage = to.fullPath.includes('pro');
+        this.isProPage = to.fullPath.includes('easepro');
       },
     },
   });

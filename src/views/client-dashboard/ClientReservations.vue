@@ -156,10 +156,10 @@
                   <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
                 </li>
                 <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
-                  <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
+                  <strong>{{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
                 </li>
                 <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-4">
-                  <strong>{{ service.therapeuticForm.name }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
+                  <strong>{{ $t(service.therapeuticForm.name) }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
                 </li>
               </template>
               <es-divider />
@@ -292,6 +292,7 @@
             id: reservationService.massage_one.id,
             complementaryServices: reservationService.massage_one.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
+            therapeuticForm: reservationService.massage_one.therapeutic_form,
           };
           const massageTwo = {
             name: reservationService.massage_two.service.name,
@@ -299,6 +300,7 @@
             id: reservationService.massage_two.id,
             complementaryServices: reservationService.massage_two.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
+            therapeuticForm: reservationService.massage_two.therapeutic_form,
           };
           return [massageOne, massageTwo];
         } else if (reservationType === 'MassageReservation') {

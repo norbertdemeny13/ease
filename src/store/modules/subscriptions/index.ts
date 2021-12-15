@@ -8,6 +8,7 @@ export interface State extends ModuleState {
   activated: boolean;
   activeSubscription: any;
   activeSubscriptions: any[];
+  availableSubscriptions: any[];
   errors: [];
   isFetching: boolean;
   selectedSubscription: any;
@@ -22,6 +23,7 @@ export default {
     activated: false,
     activeSubscription: null,
     activeSubscriptions: [],
+    availableSubscriptions: [],
     errors: [],
     isFetching: false,
     selectedSubscription: null,
@@ -88,11 +90,39 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+
+    async fetchAvailableSubscriptions({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/users/subscriptions/available_subscriptions_to_change', {
+          params: {
+            active_subscription_id: id,
+          },
+        });
+        commit('setAvailableSubscriptions', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
     async fetchSubscriptions({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/subscriptions');
         commit('setAllSubscriptions', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+
+    async changeSubscription({ state, commit }, { activeId, newId }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create('/users/user_subscriptions/change', {
+          active_user_subscription_id: activeId,
+          new_subscription_id: newId,
+        });
+        console.log(data, 'adta');
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -108,6 +138,7 @@ export default {
     getErrors: state => state.errors,
     getActiveSubscription: state => state.activeSubscription,
     getActiveSubscriptions: state => state.activeSubscriptions,
+    getAvailableSubscriptions: state => state.availableSubscriptions,
     getSelectedSubscription: state => state.selectedSubscription,
     getSubscriptions: state => state.subscriptions,
     getAllSubscriptions: state => state.allSubscriptions,
@@ -115,7 +146,8 @@ export default {
 
   mutations: {
     setActiveSubscription(state, subscription) {
-      Vue.set(state, 'activeSubscription', subscription);
+      const localSubscription = !subscription.length ? subscription : subscription.find((item: any) => item.state === 'upcoming' || item.state === 'active');
+      Vue.set(state, 'activeSubscription', localSubscription);
     },
     setActiveSubscriptions(state, subscriptions) {
       Vue.set(state, 'activeSubscriptions', subscriptions);
@@ -125,6 +157,9 @@ export default {
     },
     setAllSubscriptions(state, subscriptions) {
       Vue.set(state, 'allSubscriptions', subscriptions);
+    },
+    setAvailableSubscriptions(state, subscriptions) {
+      Vue.set(state, 'availableSubscriptions', subscriptions);
     },
     setSelectedSubscription(state, subscription) {
       Vue.set(state, 'selectedSubscription', subscription);
