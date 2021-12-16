@@ -44,12 +44,14 @@ import { store } from './store';
 
 // Default import
 import App from './App.vue';
+import VueCalendly from 'vue-calendly';
 
 Vue.config.productionTip = false;
 
 Vue.use(Portal);
 Vue.use(ToastPlugin);
 Vue.use(FileSelector);
+Vue.use(VueCalendly);
 
 Vue.component('es-address-bar', AddressBar);
 Vue.component('es-star-rating', StarRating);
@@ -61,7 +63,8 @@ Vue.component('es-skeleton', Skeleton);
 Vue.component('es-skeleton-item', SkeletonItem);
 Vue.component('es-toast', Toast);
 Vue.component('es-icon', Icon);
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('es-vue-calendly', VueCalendly);
 
 export default new Vue({
   router,

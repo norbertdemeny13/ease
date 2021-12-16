@@ -9,7 +9,7 @@
           :class="`${address.main ? 'active': ''} client-address-item`"
           @click.prevent="onSelect(address)"
         >
-          <div>
+          <div class="address">
             <div>{{ getAddress(address) }}</div>
             <div v-if="address.main" class="mt-2">
               <span class="icon_check_alt" />
@@ -26,8 +26,10 @@
               class="my-4"
               @click.prevent.stop="onRemove(address)"
             >
-              <i class="icon_trash_alt" />
-              {{ $t('generic.delete') }}
+              <div>
+                <i class="icon_trash_alt" />
+                {{ $t('generic.delete') }}
+              </div>
             </a>
           </div>
         </div>
@@ -41,17 +43,21 @@
         </div>
       </div>
     </div>
-    <es-address-modal-complete
-      v-if="isAddressModalCompleteOpen"
-      v-model="isAddressModalCompleteOpen"
-      :selected-address="selectedAddress"
-    />
 
     <es-address-modal
       v-if="isAddressModalOpen"
       v-model="isAddressModalOpen"
+      :selected-address="selectedAddress"
       :is-massage-view="false"
     />
+
+    <es-address-modal-edit
+      v-if="isAddressModalEditOpen"
+      v-model="isAddressModalEditOpen"
+      :selected-address="selectedAddress"
+      :is-masssage-view="false"
+    />
+
     <es-confirm-modal v-model="isConfirmModalOpen" @on-confirm="onContinue()">
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">{{ getConfirmationModalMessage }}</template>
@@ -71,22 +77,23 @@
 <script lang="ts">
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { AddressModal, AddressModalComplete } from '@/components/shared/address-modal';
+  import { AddressModal } from '@/components/shared/address-modal';
   import { Address } from '@/interfaces/Address';
+  import AddressModalEdit from '@/components/shared/address-modal/AddressModalEdit.vue';
 
   export default Vue.extend({
     name: 'es-pro-addresses',
 
     components: {
       'es-address-modal': AddressModal,
-      'es-address-modal-complete': AddressModalComplete,
+      'es-address-modal-edit': AddressModalEdit,
     },
 
     data: () => ({
       isAlertModalOpen: false,
       isConfirmModalOpen: false,
-      isAddressModalCompleteOpen: false,
       isAddressModalOpen: false,
+      isAddressModalEditOpen: false,
       selectedAddress: {} as Address,
       modalTitle: '',
       modalMessage: '',
@@ -106,7 +113,12 @@
     },
 
     watch: {
-      isAddressModalCompleteOpen(newVal) {
+      isAddressModalEditOpen(newVal) {
+        if (!newVal) {
+          this.fetchAddresses();
+        }
+      },
+      isAddressModalOpen(newVal) {
         if (!newVal) {
           this.fetchAddresses();
         }
@@ -126,12 +138,12 @@
 
       getAddress(address: Address): string {
         return `${address.street_name}, Nr.
-              ${address.street_number}, ${address.city.name}`;
+              ${address.street_number}, ${this.$t(address.city.name)}`;
       },
 
       onEdit(address: Address): void {
         this.selectedAddress = address;
-        this.isAddressModalCompleteOpen = true;
+        this.isAddressModalEditOpen = true;
       },
 
       onSelect(address: Address): void {
@@ -187,5 +199,9 @@
   .client-address-item:hover {
     border: 1px solid #d00078;
     cursor: pointer;
+  }
+
+  .address {
+    max-width: 60%;
   }
 </style>

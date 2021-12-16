@@ -18,4 +18,5 @@ export interface Address {
   pets: string;
   street_name: string;
   street_number: string;
+  postcode: string;
 }

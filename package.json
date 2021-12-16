@@ -70,6 +70,7 @@
     "stylelint-scss": "3.14.2",
     "typescript": "~3.9.3",
     "vanilla-lazyload": "^17.3.0",
+    "vue-calendly": "^0.0.4",
     "vue-template-compiler": "^2.6.11"
   }
 }
