@@ -32,7 +32,7 @@
   <!-- /bg_gray -->
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { PROFAQ } from '@/constants/faq';
   import FaqList from '@/views/faq/FaqList.vue';
@@ -56,14 +56,15 @@
     },
 
     created() {
-      (window as any).initAccordion();
+      window.initAccordion();
+      this.$zendesk.load('4591939b-c8e2-4d8c-b9db-bb9e1b531846');
     },
 
     methods: {
-      getFaqListByCategory(category: string) {
+      getFaqListByCategory(category) {
         return this.faq.filter(item => item.category === category)[0];
       },
-      setCategory(category: string) {
+      setCategory(category) {
         this.selectedCategory = category;
       },
     },

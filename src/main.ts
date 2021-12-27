@@ -45,8 +45,22 @@ import { store } from './store';
 // Default import
 import App from './App.vue';
 import VueCalendly from 'vue-calendly';
+import Zendesk from '@dansmaculotte/vue-zendesk';
 
 Vue.config.productionTip = false;
+
+Vue.use(Zendesk, {
+  key: '4591939b-c8e2-4d8c-b9db-bb9e1b531846',
+  disabled: true,
+  hideOnLoad: true,
+  settings: {
+    webWidget: {
+      color: {
+        theme: '#78a300'
+      }
+    }
+  }
+});
 
 Vue.use(Portal);
 Vue.use(ToastPlugin);

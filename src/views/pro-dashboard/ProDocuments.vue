@@ -168,7 +168,7 @@
               {{ $t('views.pro_dashboard.bank_account_button') }}
             </button>
             <div class="d-flex flex-wrap align-items-center ml-4">
-              <img src="@/assets/svg/stripe.svg" class="logo"/>
+              <img src="@/assets/svg/stripe.svg" class="logo">
             </div>
           </div>
         </div>
@@ -187,6 +187,22 @@
         v-model="isTermsAndConditionsModalOpen"
         @close="isTermsAndConditionsModalOpen = false"
       />
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <es-divider />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-end">
+          <button
+            class="btn btn-sm btn-pink btn-pill my-4 px-6"
+          >
+            {{ $t('generic.save') }}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

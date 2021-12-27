@@ -47,10 +47,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
 
   export default Vue.extend({
     name: 'es-not-found',
+    created() {
+      this.$zendesk.load('4591939b-c8e2-4d8c-b9db-bb9e1b531846');
+    },
   });
 </script>

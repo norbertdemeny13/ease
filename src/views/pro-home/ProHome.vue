@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import HowItWorks from './HowItWorks.vue';
   import MoreDetails from './MoreDetails.vue';
@@ -58,11 +58,15 @@
     },
 
     mounted() {
-      (window as any).initEase();
+      window.initEase();
+    },
+
+    created() {
+      this.$zendesk.load('4591939b-c8e2-4d8c-b9db-bb9e1b531846');
     },
 
     methods: {
-      onSubmit(): void {
+      onSubmit() {
         this.$root.$emit('on-show-elite-register');
       },
     },

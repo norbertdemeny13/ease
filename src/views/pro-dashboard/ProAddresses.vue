@@ -75,6 +75,7 @@
 </template>
 
 <script lang="ts">
+  /* eslint-disable */
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { AddressModal } from '@/components/shared/address-modal';

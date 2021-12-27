@@ -7,7 +7,7 @@
     >
       <div class="container es-calendly-modal mt-12 calendly-modal" @click="$emit('close')">
         <div @click.stop>
-          <vue-calendly url="https://calendly.com/easeapp/interviu?hide_gdpr_banner=1"></vue-calendly>
+          <vue-calendly url="https://calendly.com/easeapp/interviu?hide_gdpr_banner=1" />
         </div>
       </div>
     </es-modal>
@@ -22,6 +22,3 @@
     name: 'es-calendly-modal',
   })
 </script>
-
-<style type="text/css">
-</style>

@@ -9,7 +9,7 @@
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
             <h3>{{ $t('generic.accept_terms_and_conditions') }}</h3>
-            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"/>
+            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="terms-and-conditions-container">
             <div class="row text-center">

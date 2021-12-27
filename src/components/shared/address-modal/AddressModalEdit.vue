@@ -10,7 +10,7 @@
         <div id="es-modal-dialog" class="es-request-phone-validation-modal">
           <div class="modal_header">
             <h3>{{ $t('generic.add_address') }}</h3>
-            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)"/>
+            <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="address-wrapper">
             <div class="d-flex flex-column form-group">
@@ -23,7 +23,7 @@
                   class="form-control pr-6"
                   type="text"
                 >
-                <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash"/></a>
+                <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
               </div>
             </div>
             <div class="row">

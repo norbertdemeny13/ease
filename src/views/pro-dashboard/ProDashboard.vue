@@ -28,5 +28,9 @@
         return PRO_SIDEBAR_LINKS.map((item: Link) => ({ ...item, id: nanoid() }));
       },
     },
+
+    created() {
+      (this as any).$zendesk.load('4591939b-c8e2-4d8c-b9db-bb9e1b531846');
+    },
   });
 </script>
