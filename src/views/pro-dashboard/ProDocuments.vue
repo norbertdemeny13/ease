@@ -278,7 +278,6 @@
         uploadDocuments: 'elite/uploadDocuments',
       }),
       handleFilesChanged(files, type) {
-        console.log(files, 'files');
         this.$data.documents[type] = [...files];
       },
       onRemove(type, index) {
