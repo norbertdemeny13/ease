@@ -90,6 +90,22 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async uploadDocuments({ state, commit }, formData) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.create(
+          'elite/upload_documents',
+          {
+            data: formData,
+          },
+          {
+            contentType: 'multipart/form-data',
+          } as any,
+        );
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async fetchEliteFavorites({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {

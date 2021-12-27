@@ -63,6 +63,10 @@
     }, // model
 
     props: {
+      actionType: {
+        default: 'add',
+        type: String as PropType<string>,
+      },
       canCloseModal: {
         default: true,
         type: Boolean,
@@ -115,7 +119,7 @@
   });
 </script>
 
-<style type="text/css" scoped>
+<style scoped>
   .select-country-container:focus {
     border-color: none !important;
     box-shadow: none !important;

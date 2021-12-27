@@ -7,7 +7,6 @@
       :on-dismiss="() => $emit('is-open', false)"
     >
       <div class="container es-login-modal mt-12">
-        <!-- Sign In Modal -->
         <div id="es-modal-dialog" class="es-phone-validation-modal">
           <div class="modal_header">
             <h3>{{ $t('generic.validate_phone_number') }}</h3>
@@ -47,6 +46,10 @@
     }, // model
 
     props: {
+      actionType: {
+        default: 'add',
+        type: String as PropType<string>,
+      },
       canCloseModal: {
         default: true,
         type: Boolean,

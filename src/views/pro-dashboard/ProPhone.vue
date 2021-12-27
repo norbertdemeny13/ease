@@ -34,12 +34,14 @@
       v-if="isPhoneValidateModalOpen"
       v-model="isPhoneValidateModalOpen"
       :is-open="isPhoneValidateModalOpen"
+      :action-type="actionType"
       @show-phone-confirmation-modal="isPhoneConfirmationModalOpen = true"
     />
     <es-phone-confirmation-modal
       v-if="isPhoneConfirmationModalOpen"
       v-model="isPhoneConfirmationModalOpen"
       :is-open="isPhoneConfirmationModalOpen"
+      :action-type="actionType"
     />
   </div>
 </template>
@@ -63,6 +65,7 @@
 
     data() {
       return {
+        actionType: 'add',
         translations: {
           countrySelectorLabel: this.$t('generic.phone_nr_country_selector'),
           countrySelectorError: this.$t('generic.phone_nr_selector_error'),
@@ -88,9 +91,11 @@
         getUser: 'session/getUser',
       }),
     },
+
     created() {
       const { phone_number } = this.getUser;
       this.phone = phone_number;
+      this.actionType = phone_number ? 'modify' : 'add';
     },
   });
 </script>
