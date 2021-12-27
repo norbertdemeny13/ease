@@ -257,6 +257,7 @@ export default {
         const newData = {
           ...state.user,
           phone_number,
+          phone_number_confirmed: false,
         };
 
         commit('setUser', newData);
