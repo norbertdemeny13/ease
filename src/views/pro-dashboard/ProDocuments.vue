@@ -61,7 +61,7 @@
           <h6>{{ $t('views.pro_dashboard.register_certificate') }}</h6>
           <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
           <div v-if="documents.certificate_of_registration.length" class="documents-container">
-            <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)">Sterge</span></p>
+            <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)">Sterge</span></p>
           </div>
         </div>
         <div class="d-flex">
@@ -114,7 +114,7 @@
         <div class="document-type d-flex flex-column">
           <h6>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h6>
           <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
-          <div v-if="documents.practice_insurance.length" class="documents-container">
+          <div v-if="documents.criminal_record.length" class="documents-container">
             <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)">Sterge</span></p>
           </div>
         </div>
@@ -240,6 +240,7 @@
   /* eslint-disable */
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { isEqual } from 'lodash-es';
   import { CustomCheckbox } from '@/components/shared/custom-checkbox';
   import { Divider } from '@/components/shared/divider';
   import { CalendlyModal } from '@/components/shared/calendly-modal';
@@ -267,6 +268,19 @@
       isTermsAndConditionsModalOpen: false
     }),
 
+    watch: {
+      getUser(newVal, oldVal) {
+        if (!isEqual(newVal, oldVal)) {
+          this.$toasts.toast({
+            id: 'update-toast',
+            title: this.$t('toast.success_title'),
+            message: this.$t('toast.account_update'),
+            intent: 'success',
+          });
+        }
+      },
+    },
+
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
@@ -278,7 +292,7 @@
         uploadDocuments: 'elite/uploadDocuments',
       }),
       handleFilesChanged(files, type) {
-        this.$data.documents[type] = [...files];
+        this.$data.documents[type] = [...this.$data.documents[type], ...files];
       },
       onRemove(type, index) {
         const newArray = this.$data.documents[type].splice(index, 1);

@@ -102,6 +102,7 @@ export default {
             contentType: 'multipart/form-data',
           } as any,
         );
+        commit('session/setUser', data, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
