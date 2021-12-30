@@ -74,6 +74,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/client-dashboard').then(({ ClientOrders }) => ClientOrders),
       },
       {
+        path: 'profesionisti-salvati',
+        name: 'Profesionisti Salvati',
+        component: () => import('@/views/client-dashboard').then(({ ClientFavourite }) => ClientFavourite),
+      },
+      {
         path: 'abonamente',
         name: 'Abonamente Client',
         component: () => import('@/views/client-dashboard').then(({ ClientSubscriptions }) => ClientSubscriptions),

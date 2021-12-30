@@ -138,6 +138,18 @@
     </div>
     <div class="row">
       <div class="col-md-6">
+        <div class="d-flex justify-content-end">
+          <button
+            class="btn btn-sm btn-pink btn-pill my-4 px-6"
+            @click="onSave"
+          >
+            {{ $t('generic.save') }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <es-divider />
       </div>
     </div>
@@ -214,23 +226,6 @@
         v-model="isTermsAndConditionsModalOpen"
         @close="isTermsAndConditionsModalOpen = false"
       />
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <es-divider />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="d-flex justify-content-end">
-          <button
-            class="btn btn-sm btn-pink btn-pill my-4 px-6"
-            @click="onSave"
-          >
-            {{ $t('generic.save') }}
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </template>

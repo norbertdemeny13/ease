@@ -33,7 +33,7 @@
                 <i
                   v-if="getIsFavourite"
                   class="icon_heart"
-                  @click="onAddFavourite"
+                  @click="isFavourite ? onRemoveFavourite() : onAddFavourite()"
                   @mouseover="onHover = true"
                   @mouseleave="onHover = false"
                 />
@@ -47,6 +47,7 @@
               <div class="d-flex align-items-center">
                 <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : 'Momentan nu exista nicio recenzie.' }}</span>
               </div>
+              {{ getElite.last_booking }}
               <div class="d-flex justify-content-start">
                 <button
                   class="btn btn-sm btn-pink btn-pill my-4 px-6"
@@ -113,13 +114,15 @@
                       <p class="mb-0">{{ getFormattedDate(review.created_at) }}</p>
                     </div>
                   </div>
-                  <div class="start-rating">
+                  <div class="start-rating d-flex align-items-center">
                     <es-star-rating
                       v-model="review.rating"
                       :read-only="true"
                       :show-rating="false"
                       :star-size="20"
+                      increment="0.5"
                     />
+                     {{ ` (${review.rating})` }}
                   </div>
                   <p class="mt-2">{{ review.review }}</p>
                 </div>
@@ -135,13 +138,12 @@
 <script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-  import { getZonedDateTime } from '@/utils/date-helpers';
+  import { getZonedDate } from '@/utils/date-helpers';
 
   export default Vue.extend({
     name: 'es-elite-details',
 
     data: () => ({
-      isFavourite: false,
       onHover: false,
       rating: 2,
     }),
@@ -168,6 +170,11 @@
           ? reviews.map(review => ({ ...review, rating: Number(review.average) }))
           : [];
       },
+      isFavourite() {
+        const { id } = this.$router.currentRoute.params;
+        const elite = this.getEliteFavorites.find(item => item.id === parseInt(id, 10));
+        return !!elite;
+      },
     },
 
     created() {
@@ -187,7 +194,7 @@
       }),
 
       onBack() {
-        this.$router.push('/client/rezervarile-mele');
+        this.$router.back();
       },
 
       getInitials(name) {
@@ -195,16 +202,18 @@
       },
 
       getFormattedDate(date) {
-        return getZonedDateTime(date);
+        return getZonedDate(date);
       },
       onReserve() {
         this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
       },
-      onAddFavourite() {
-        this.addEliteFavourite({ id: this.getElite.id });
+      async onAddFavourite() {
+        await this.addEliteFavourite({ id: this.getElite.id });
+        await this.fetchEliteFavorites();
       },
-      onRemoveFavourite() {
-        this.removeEliteFavourite({ id: this.getElite.id });
+      async onRemoveFavourite() {
+        await this.removeEliteFavourite({ id: this.getElite.id });
+        await this.fetchEliteFavorites();
       },
     },
   });

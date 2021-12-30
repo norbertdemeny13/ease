@@ -1,0 +1,86 @@
+<template>
+  <div class="es_client-favourite-container content">
+    <h4>{{ $t('generic.saved_elites') }}</h4>
+    <div v-if="getEliteFavorites.length" class="row">
+      <div
+        v-for="(item, i) in getEliteFavorites"
+        :key="`${item.id}-${i}`"
+        class="col-md-2 d-flex flex-column align-items-center"
+        @click="$router.push(`/pro/${item.id}`)"
+      >
+        <figure class="mb-0 d-flex justify-content-center">
+          <img
+            v-if="item.avatar_path"
+            class="radius-50 m-1"
+            :src="item.avatar_path"
+            alt=""
+            width="120px"
+            height="120px"
+          >
+          <img
+            v-else
+            class="radius-50 m-1"
+            src="@/assets/svg/pro-placeholder.svg"
+            alt=""
+            width="120px"
+            height="120px"
+          >
+        </figure>
+        <span class="text-center">{{ item.first_name }}</span>
+        <div class="d-flex align-items-center">
+          <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(item.rating) > 0 ? item.rating : 'Momentan nu exista nicio recenzie.' }}</span>
+        </div>
+      </div>
+    </div>
+    <div v-else class="row">
+      <div class="col-md-6">
+        <div class="d-flex flex-column">
+          <h4>{{ $t('views.client_dashboard.favourite_elite.no_favourite_title') }}</h4>
+          <p>{{ $t('views.client_dashboard.favourite_elite.no_favourite_description') }}</p>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button
+            class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
+            @click="$router.push('rezervarile-mele')"
+          >
+            {{ $t('generic.my_reservations') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  /* eslint-disable */
+  import Vue from 'vue';
+  import { mapActions, mapGetters } from 'vuex';
+  import { isEqual } from 'lodash-es';
+
+  export default Vue.extend({
+    name: 'es-client-favourite',
+
+    created() {
+      this.fetchEliteFavorites();
+    },
+
+    computed: {
+      ...mapGetters({
+        getEliteFavorites: 'elite/getEliteFavorites',
+      }),
+    },
+
+    methods: {
+      ...mapActions({
+        fetchEliteFavorites: 'elite/fetchEliteFavorites',
+      }),
+    },
+  });
+</script>
+
+<style type="text/css" scoped>
+  i.icon_star {
+    color: #fad055;
+    font-size: 1.3rem;
+  }
+</style>

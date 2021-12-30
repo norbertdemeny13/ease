@@ -3,6 +3,7 @@ export { default as ClientAccount } from './ClientAccount.vue';
 export { default as ClientPassword } from './ClientPassword.vue';
 export { default as ClientAddresses } from './ClientAddresses.vue';
 export { default as ClientCredits } from './ClientCredits.vue';
+export { default as ClientFavourite } from './ClientFavourite.vue';
 export { default as ClientOrders } from './ClientOrders.vue';
 export { default as ClientPayments } from './ClientPayments.vue';
 export { default as ClientPhone } from './ClientPhone.vue';

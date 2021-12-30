@@ -123,6 +123,7 @@
     "reserve_now": "Rezerva acum",
     "my_reservations": "Rezervarile mele",
     "save": "Salveaza",
+    "saved_elites": "Profesionistii Salvati",
     "session": "sedinta",
     "send_me_a_sms": "Trimite-mi SMS",
     "send_order": "Trimite comanda",
@@ -505,6 +506,10 @@
         "ease_credit": "Credit Ease:",
         "description": "Castiga credite Ease invitand prieteni sau introdu codul cardului cadou",
         "gift_card_code": "Cod card cadou"
+      },
+      "favourite_elite": {
+        "no_favourite_title": "Ai avut o experienta uimitoare la ultima rezervare?",
+        "no_favourite_description": "Salveaza profesionistul! Profesionistii tai vor aparea aici pentru a-i putea rezerva rapid data viitoare"
       },
       "my_orders": {
         "no_orders": "Cardurile cadou comandate vor fi afisate aici",

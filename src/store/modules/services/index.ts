@@ -77,6 +77,14 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchAllServices({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        await api.find('/all_service_categories');
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async createMassageReservation({ state, dispatch, commit }, id) {
       Vue.set(state, 'isFetching', true);
       const isSingle = state.selectedServices.some(item => item.category === 'single');

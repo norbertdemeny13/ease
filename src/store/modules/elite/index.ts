@@ -75,8 +75,7 @@ export default {
     async addEliteFavourite({ state, commit }, { id }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.update(`user/add_elite_favorite/${id}`);
-        console.log(data, 'data');
+        await api.update(`user/add_elite_favorite/${id}`);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -84,8 +83,7 @@ export default {
     async removeEliteFavourite({ state, commit }, { id }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.update(`user/remove_elite_favorite/${id}`);
-        console.log(data, 'data');
+        await api.update(`user/remove_elite_favorite/${id}`);
       } finally {
         Vue.set(state, 'isFetching', false);
       }

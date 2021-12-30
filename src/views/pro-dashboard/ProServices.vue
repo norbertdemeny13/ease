@@ -70,6 +70,7 @@
     methods: {
       ...mapActions({
         fetchServices: 'services/fetchServices',
+        fetchAllServices: 'services/fetchAllServices',
         fetchServicesByType: 'services/fetchServicesByType',
       }),
       onSave() {
@@ -79,6 +80,7 @@
 
     async created() {
       await this.fetchServices();
+      await this.fetchAllServices();
       const localServices = {};
       this.getServices.forEach(service => {
         localServices[service.title] = {};
