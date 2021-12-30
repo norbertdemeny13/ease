@@ -16,7 +16,7 @@
               id="certificate_of_calification"
               ref="certificate_of_calification"
               class="documernts-input"
-              accept-extensions=".pdf"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
               :multiple="true"
               :max-file-size="5 * 1024 * 1024"
               @changed="handleFilesChanged($event, 'certificate_of_calification')"
@@ -43,7 +43,7 @@
               id="id_card"
               ref="id_card"
               class="documernts-input"
-              accept-extensions=".pdf"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
               :multiple="true"
               :max-file-size="5 * 1024 * 1024"
               @changed="handleFilesChanged($event, 'id_card')"
@@ -70,7 +70,7 @@
               id="certificate_of_registration"
               ref="certificate_of_registration"
               class="documernts-input"
-              accept-extensions=".pdf"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
               :multiple="true"
               :max-file-size="5 * 1024 * 1024"
               @changed="handleFilesChanged($event, 'certificate_of_registration')"
@@ -97,7 +97,7 @@
               id="practice_insurance"
               ref="practice_insurance"
               class="documernts-input"
-              accept-extensions=".pdf"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
               :multiple="true"
               :max-file-size="5 * 1024 * 1024"
               @changed="handleFilesChanged($event, 'practice_insurance')"
@@ -124,7 +124,7 @@
               id="criminal_record"
               ref="criminal_record"
               class="documernts-input"
-              accept-extensions=".pdf"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
               :multiple="true"
               :max-file-size="5 * 1024 * 1024"
               @changed="handleFilesChanged($event, 'criminal_record')"
@@ -170,7 +170,6 @@
           <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
           <button
             class="btn btn-sm btn-pink btn-pill px-6 documents-button"
-            disabled="getUser.interview_done"
             @click.prevent="onOpenCalendly()"
           >
             {{ $t('views.pro_dashboard.interview_button') }}
@@ -268,19 +267,6 @@
       isTermsAndConditionsModalOpen: false
     }),
 
-    watch: {
-      getUser(newVal, oldVal) {
-        if (!isEqual(newVal, oldVal)) {
-          this.$toasts.toast({
-            id: 'update-toast',
-            title: this.$t('toast.success_title'),
-            message: this.$t('toast.account_update'),
-            intent: 'success',
-          });
-        }
-      },
-    },
-
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
@@ -303,12 +289,25 @@
       openTermsAndConditionsModal() {
         this.isTermsAndConditionsModalOpen = true;
       },
-      onSave() {
-        Object.keys(this.documents).filter(key => this.documents[key].length).forEach(async (key) => {
+      async onSave() {
+        await Object.keys(this.documents).filter(key => this.documents[key].length).forEach(async (key) => {
           let formData = new FormData();
           this.documents[key].forEach(item => formData.append('files[]', item));
           formData.append('file_attribute', key);
           await this.uploadDocuments(formData);
+        });
+        this.documents = {
+          certificate_of_registration: '',
+          certificate_of_calification: '',
+          criminal_record: '',
+          id_card: '',
+          practice_insurance: '',
+        };
+        this.$toasts.toast({
+          id: 'update-toast',
+          title: this.$t('toast.success_title'),
+          message: this.$t('toast.account_update'),
+          intent: 'success',
         });
       },
     },
