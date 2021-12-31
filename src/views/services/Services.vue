@@ -48,8 +48,9 @@
 
     created() {
       const { query } = this.$router.currentRoute;
-      if (query && query.elite_id) {
-        this.fetchServices(query.elite_id);
+
+      if (query && query.pro_id) {
+        this.fetchServices(query.pro_id);
       } else {
         this.fetchServices();
       }

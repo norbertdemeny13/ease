@@ -175,6 +175,7 @@
     "phone_number_confirmed": "Numarul de telefon a fost verificat cu succes",
     "remove_card": "Cardul tau a fost sters cu succes",
     "wrong_password": "Te rugam sa introduci parola corecta",
+    "wrong_service_address": "Acest profesionist nu presteaza servicii la adresa selectata",
     "referral_link_copied": "Trimite linkul prietenilor tai pentru a castiga 15 Lei",
     "subscription_activation": "Abonamentul a fost activat cu succes"
   },

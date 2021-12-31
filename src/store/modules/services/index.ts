@@ -65,26 +65,6 @@ export default {
     setActivePayment({ state, commit }, status) {
       Vue.set(state, 'activePayment', status);
     },
-    async fetchServices({ state, commit }, id) {
-      Vue.set(state, 'isFetching', true);
-      const endpoint = id
-        ? `users/elite/${id}/services`
-        : '/services';
-      try {
-        const { data } = await api.find(endpoint);
-        commit('setServices', data);
-      } finally {
-        Vue.set(state, 'isFetching', false);
-      }
-    },
-    async fetchAllServices({ state, commit }, id) {
-      Vue.set(state, 'isFetching', true);
-      try {
-        await api.find('/all_service_categories');
-      } finally {
-        Vue.set(state, 'isFetching', false);
-      }
-    },
     async createMassageReservation({ state, dispatch, commit }, id) {
       Vue.set(state, 'isFetching', true);
       const isSingle = state.selectedServices.some(item => item.category === 'single');
@@ -324,14 +304,34 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServicesByType({ state, commit }, { type, query }) {
+    async fetchServices({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      const endpoint = id
+        ? `users/elite/${id}/services`
+        : '/services';
+      try {
+        const { data } = await api.find(endpoint);
+        commit('setServices', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async fetchAllServices({ state, commit }, id) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find(`/services/${type}`, {
-          params: {
-            ...query,
-          },
-        });
+        await api.find('/all_service_categories');
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async fetchServicesByType({ state, commit }, { type, id }) {
+      Vue.set(state, 'isFetching', true);
+      const endpoint = id
+        ? `users/elite/${id}/services/${type}`
+        : `/services/${type}`;
+
+      try {
+        const { data } = await api.find(endpoint);
         commit('setServicesByType', data);
       } finally {
         Vue.set(state, 'isFetching', false);

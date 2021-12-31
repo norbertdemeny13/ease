@@ -116,7 +116,6 @@
           : '';
       },
       getHour() {
-        console.log(this.time, 'fasz');
         const { time } = this.time;
         return time;
       },

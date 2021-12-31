@@ -240,6 +240,7 @@
 
     created() {
       const { type } = this.$router.currentRoute.query;
+      const { query } = this.$router.currentRoute;
       this.massageType = type;
 
       const { getMassageInfo } = this;
@@ -263,7 +264,12 @@
       }
 
       this.massageForm.type = type;
-      this.fetchServicesByType({ type });
+
+      if (query && query.pro_id) {
+        this.fetchServicesByType({ type, id: query.pro_id });
+      } else {
+        this.fetchServicesByType({ type });
+      }
     },
 
     methods: {

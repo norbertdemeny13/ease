@@ -11,7 +11,7 @@
               <figure class="mb-0">
                 <img
                   v-if="getElite.avatar_path"
-                  class="radius-50 m-1"
+                  :class="`radius-50 m-1 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
                   :src="getElite.avatar_path"
                   alt=""
                   width="120px"
@@ -19,7 +19,7 @@
                 >
                 <img
                   v-else
-                  class="radius-50 m-1"
+                  :class="`radius-50 m-1 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
                   src="@/assets/svg/pro-placeholder.svg"
                   alt=""
                   width="120px"
@@ -50,7 +50,7 @@
               {{ getElite.last_booking }}
               <div class="d-flex justify-content-start">
                 <button
-                  class="btn btn-sm btn-pink btn-pill my-4 px-6"
+                  :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
                   @click.prevent="onReserve"
                 >
                   {{ $t('generic.reserve') }}
@@ -120,9 +120,9 @@
                       :read-only="true"
                       :show-rating="false"
                       :star-size="20"
-                      increment="0.5"
+                      :increment="0.5"
                     />
-                     {{ ` (${review.rating})` }}
+                    {{ ` (${review.rating})` }}
                   </div>
                   <p class="mt-2">{{ review.review }}</p>
                 </div>
@@ -205,7 +205,16 @@
         return getZonedDate(date);
       },
       onReserve() {
-        this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
+        if (this.getElite.located_in_current_users_city) {
+          this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
+        } else {
+          this.$toasts.toast({
+            id: 'login-toast',
+            intent: 'info',
+            title: this.$t('toast.info_title'),
+            message: this.$t('toast.wrong_service_address'),
+          });
+        }
       },
       async onAddFavourite() {
         await this.addEliteFavourite({ id: this.getElite.id });
@@ -252,5 +261,10 @@
 
   span {
     font-size: 1rem;
+  }
+
+  img.disabled {
+    background-color: #000;
+    opacity: 0.4;
   }
 </style>

@@ -51,7 +51,13 @@
 
     created(): void {
       const { type } = this.$router.currentRoute.params;
-      this.fetchServicesByType({ type });
+      const { query } = this.$router.currentRoute;
+
+      if (query && query.pro_id) {
+        this.fetchServicesByType({ type, id: query.pro_id });
+      } else {
+        this.fetchServicesByType({ type });
+      }
     },
 
     methods: {

@@ -11,7 +11,7 @@
         <figure class="mb-0 d-flex justify-content-center">
           <img
             v-if="item.avatar_path"
-            class="radius-50 m-1"
+            :class="`radius-50 m-1 ${item.located_in_current_users_city ? '' : 'disabled'}`"
             :src="item.avatar_path"
             alt=""
             width="120px"
@@ -19,7 +19,7 @@
           >
           <img
             v-else
-            class="radius-50 m-1"
+            :class="`radius-50 m-1 ${item.located_in_current_users_city ? '' : 'disabled'}`"
             src="@/assets/svg/pro-placeholder.svg"
             alt=""
             width="120px"
@@ -27,6 +27,7 @@
           >
         </figure>
         <span class="text-center">{{ item.first_name }}</span>
+        <span>{{ item.located_in_current_users_city ? 'yes' : 'no' }}</span>
         <div class="d-flex align-items-center">
           <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(item.rating) > 0 ? item.rating : 'Momentan nu exista nicio recenzie.' }}</span>
         </div>
@@ -82,5 +83,10 @@
   i.icon_star {
     color: #fad055;
     font-size: 1.3rem;
+  }
+
+  img.disabled {
+    background-color: #000;
+    opacity: 0.4;
   }
 </style>

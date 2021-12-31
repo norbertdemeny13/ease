@@ -122,7 +122,6 @@ export default {
           active_user_subscription_id: activeId,
           new_subscription_id: newId,
         });
-        console.log(data, 'adta');
       } finally {
         Vue.set(state, 'isFetching', false);
       }
