@@ -39,7 +39,9 @@
         "vue-router": "^3.2.0",
         "vue-slider-component": "^3.2.14",
         "vue-star-rating": "^1.7.0",
-        "vuex": "^3.4.0"
+        "vuex": "^3.4.0",
+        "express": "^4.17.2",
+        "body-parser": "*"
     },
     "devDependencies": {
         "@kazupon/vue-i18n-loader": "0.5.0",
@@ -57,12 +59,10 @@
         "@vue/eslint-config-airbnb": "^5.0.2",
         "@vue/eslint-config-typescript": "^5.0.2",
         "@vue/test-utils": "^1.0.3",
-        "body-parser": "*",
         "eslint": "^6.7.2",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-vue": "^6.2.2",
         "execa": "latest",
-        "express": "^4.17.2",
         "jquery": "^3.5.1",
         "nanoid": "3.1.12",
         "portal-vue": "2.1.7",
