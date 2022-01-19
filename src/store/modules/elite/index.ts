@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import { ActionTree, MutationTree, GetterTree } from 'vuex';
 import { ModuleState, RootState } from '@/store/interfaces';
-import { USER } from '@/interfaces/user';
+import { USER } from '@/interfaces/User';
 import { api } from '@/services/api';
 import instance from '@/main';
 import { nanoid } from 'nanoid';
