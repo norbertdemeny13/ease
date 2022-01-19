@@ -12,7 +12,7 @@
         "lint:scripts": "vue-cli-service lint",
         "lint:styles": "stylelint 'src/**/*.+(scss|vue)'",
         "deploy": "node scripts/gh-pages-deploy.js",
-        "postinstall": "npm run build",
+        "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
         "start": "node server.js"
     },
     "dependencies": {
