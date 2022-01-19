@@ -77,5 +77,8 @@
         "vanilla-lazyload": "^17.3.0",
         "vue-calendly": "^0.0.4",
         "vue-template-compiler": "^2.6.11"
+    },
+    "engines": {
+        "node": "12.x"
     }
 }
