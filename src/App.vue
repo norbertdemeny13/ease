@@ -1,16 +1,25 @@
 <!-- eslint-disable -->
 <template>
   <div>
-    <es-header />
-    <main>
-      <transition name="app_a-fade" mode="out-in">
-        <router-view :key="$route.fullpath" />
-      </transition>
-    </main>
-    <es-toasts />
-    <es-footer />
-    <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
-    <portal-target name="modal" multiple />
+    <div class="login-form" v-if="!loggedIn()">
+      <form>
+        <input v-model="username" placeholder="username">
+        <input v-model="password" placeholder="password" type="password">
+        <input @click="login()" type="submit" value="log in">
+      </form>
+    </div>
+    <div v-if="loggedIn()">
+      <es-header />
+      <main>
+        <transition name="app_a-fade" mode="out-in">
+          <router-view :key="$route.fullpath" />
+        </transition>
+      </main>
+      <es-toasts />
+      <es-footer />
+      <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
+      <portal-target name="modal" multiple />
+    </div>
   </div>
 </template>
 
@@ -32,6 +41,8 @@
 
     data: () => ({
       isModalOpen: false,
+      username: '',
+      password: '',
     }),
 
     computed: {
@@ -44,6 +55,20 @@
       isAuth(newVal, oldVal) {
         if (newVal && !oldVal) {
           this.isModalOpen = false;
+        }
+      },
+    },
+    methods: {
+      loggedIn() {
+        return localStorage.getItem('loggedInVerify') === 'true';
+      },
+
+      login() {
+        if (this.username === 'admin' && this.password === 'Password1!') {
+          localStorage.setItem('loggedInVerify', 'true');
+        } else {
+          alert('Incorrect username or password!');
+          localStorage.setItem('loggedInVerify', 'false');
         }
       },
     },
