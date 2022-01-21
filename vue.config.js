@@ -2,31 +2,31 @@
 const webpack = require('webpack');
 
 module.exports = {
-  publicPath: '/ease',
-  configureWebpack: {
-    devtool: 'source-map',
+    publicPath: '/',
+    configureWebpack: {
+        devtool: 'source-map',
 
-    plugins: [
-      // ...
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        LazyLoad: 'vanilla-lazyload',
-        'window.LazyLoad': 'vanilla-lazyload',
-        'window.jQuery': 'jquery',
-      }),
-    ],
+        plugins: [
+            // ...
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery',
+                LazyLoad: 'vanilla-lazyload',
+                'window.LazyLoad': 'vanilla-lazyload',
+                'window.jQuery': 'jquery',
+            }),
+        ],
 
-    resolve: {
-      symlinks: false,
+        resolve: {
+            symlinks: false,
+        },
     },
-  },
-  pluginOptions: {
-    i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
-      localeDir: 'locales',
-      enableInSFC: true,
+    pluginOptions: {
+        i18n: {
+            locale: 'en',
+            fallbackLocale: 'en',
+            localeDir: 'locales',
+            enableInSFC: true,
+        },
     },
-  },
 };

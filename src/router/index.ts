@@ -235,7 +235,6 @@ const routes: Array<RouteConfig> = [
 
 export const router = new VueRouter({
   linkActiveClass: 'is-current-route',
-  mode: 'history',
   base: process.env.BASE_URL,
   routes,
   scrollBehavior(to, from) {
@@ -249,6 +248,7 @@ export const router = new VueRouter({
       behavior: 'smooth',
     });
   },
+  mode: 'history'
 });
 
 router.beforeEach(async (to, from, next) => {
