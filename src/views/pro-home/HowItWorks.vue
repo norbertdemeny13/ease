@@ -14,7 +14,7 @@
             <div class="d-flex justify-content-center col-md-12">
               <router-link
                 class="mt-4"
-                to="/ease/pro/intrebari-frecvente"
+                to="/easepro/intrebari-frecvente"
               >{{ $t('views.pro_home.learn_more') }}</router-link>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="d-flex justify-content-center col-md-12">
               <router-link
                 class="mt-4"
-                to="/ease/pro/intrebari-frecvente"
+                to="/easepro/intrebari-frecvente"
               >{{ $t('views.pro_home.learn_more') }}</router-link>
             </div>
           </div>
@@ -40,7 +40,7 @@
             <div class="d-flex justify-content-center col-md-12">
               <router-link
                 class="mt-4"
-                to="/ease/pro/intrebari-frecvente"
+                to="/easepro/intrebari-frecvente"
               >{{ $t('views.pro_home.learn_more') }}</router-link>
             </div>
           </div>

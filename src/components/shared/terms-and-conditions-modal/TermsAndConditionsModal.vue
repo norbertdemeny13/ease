@@ -14,12 +14,12 @@
           <div class="terms-and-conditions-container">
             <div class="row text-center">
               <div class="col">
-                <button class="btn btn-sm btn-pink">
+                <button class="btn btn-sm btn-pink" @click="$emit('on-accept')">
                   {{ $t('generic.agree') }}
                 </button>
               </div>
               <div class="col">
-                <button class="btn btn-sm btn-secondary">
+                <button class="btn btn-sm btn-secondary" @click="$emit('is-open', false)">
                   {{ $t('generic.do_not_agree') }}
                 </button>
               </div>
@@ -50,6 +50,10 @@
     },
 
     /* eslint-disable */
-    data: () => ({})
+    data: () => ({}),
+
+    created() {
+      console.log('modal faszkope');
+    },
   });
 </script>

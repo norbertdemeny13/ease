@@ -159,6 +159,7 @@
           <h6>{{ $t('views.pro_dashboard.accept_terms_and_conditions') }}</h6>
           <p>{{ $t('views.pro_dashboard.accept_terms_and_conditions_info') }}</p>
           <button
+            v-if="!user.accord_accepted"
             class="btn btn-sm btn-pink btn-pill px-6 documents-button"
             @click.prevent="openTermsAndConditionsModal()"
           >
@@ -166,7 +167,7 @@
           </button>
         </div>
         <div class="d-flex">
-          <es-custom-checkbox :checked="false" />
+          <es-custom-checkbox :checked="user.accord_accepted" />
         </div>
       </div>
     </div>
@@ -181,6 +182,7 @@
           <h6>{{ $t('views.pro_dashboard.interview') }}</h6>
           <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
           <button
+            v-if="!getUser.interview_done"
             class="btn btn-sm btn-pink btn-pill px-6 documents-button"
             @click.prevent="onOpenCalendly()"
           >
@@ -192,18 +194,22 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div v-if="!getUser.stripe_account_created" class="row">
       <div class="col-md-6">
         <es-divider />
       </div>
     </div>
-    <div class="row">
+    <div v-if="!getUser.stripe_account_created" class="row">
       <div class="col-md-6 d-flex justify-content-between">
         <div class="document-type d-flex flex-column">
           <h6>{{ $t('views.pro_dashboard.bank_account') }}</h6>
           <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>
           <div class="row">
-            <a href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o" target="_blank" class="btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button">
+            <a
+              href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o"
+              target="_blank"
+              :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
+            >
               {{ $t('views.pro_dashboard.bank_account_button') }}
             </a>
             <div class="d-flex flex-wrap align-items-center ml-4">
@@ -225,6 +231,7 @@
         v-if="isTermsAndConditionsModalOpen"
         v-model="isTermsAndConditionsModalOpen"
         @close="isTermsAndConditionsModalOpen = false"
+        @on-accept="onAccept()"
       />
     </div>
   </div>
@@ -259,7 +266,10 @@
         practice_insurance: '',
       },
       isCalendlyModalOpen: false,
-      isTermsAndConditionsModalOpen: false
+      isTermsAndConditionsModalOpen: false,
+      user: {
+        accord_accepted: false,
+      },
     }),
 
     computed: {
@@ -268,9 +278,14 @@
       }),
     },
 
+    created() {
+      this.user = { ...this.getUser };
+    },
+
     methods: {
       ...mapActions({
         uploadDocuments: 'elite/uploadDocuments',
+        updateElite: 'session/updateElite',
       }),
       handleFilesChanged(files, type) {
         this.$data.documents[type] = [...this.$data.documents[type], ...files];
@@ -304,6 +319,11 @@
           message: this.$t('toast.account_update'),
           intent: 'success',
         });
+      },
+      async onAccept() {
+        this.user.accord_accepted = true;
+        await this.updateElite(this.$data);
+        this.isTermsAndConditionsModalOpen = false;
       },
     },
   });

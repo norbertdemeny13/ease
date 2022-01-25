@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div v-if="getBalance" class="col-md-4">
+      <div v-if="getBalance && getStripeUrl" class="col-md-4">
         <h6>Sold</h6>
         <h3>{{ `${getBalance.available} Lei` }}</h3>
         <h6>{{ `${getBalance.pending} Lei disponibili` }}</h6>
@@ -308,10 +308,19 @@
     },
 
     created() {
+      const { stripe_account_created } = this.getUser;
+      const { query } = this.$router.currentRoute;
+
       this.fetchStatistics();
-      this.fetchStripeSSO();
-      // TODO: Get stripe url, or generate if you don't have it 
-      // this.registerEliteStripe();
+
+      if (stripe_account_created) {
+        this.fetchStripeSSO();
+      }
+
+
+      if (query && query.code && !stripe_account_created) {
+        this.registerEliteStripe(query.code);
+      }
       this.user = { ...this.getUser };
     },
 
@@ -338,7 +347,7 @@
         return this.getStatistics?.balance;
       },
       getStripeUrl() {
-        return this.getStripeSSO?.url || '';
+        return this.getStripeSSO?.url;
       },
     },
 

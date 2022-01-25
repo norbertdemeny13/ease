@@ -481,3 +481,7 @@
 .router-link-exact-active {
   color: #d00078 !important;
 }
+
+.es-calendly-modal {
+  overflow: hidden;
+}

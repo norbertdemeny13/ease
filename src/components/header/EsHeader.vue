@@ -5,7 +5,7 @@
         <div id="logo">
           <router-link v-if="isPro" to="/easepro/">
             <img
-              src="@/assets/png/pro-logo.png"
+              src="@/assets/svg/pro-logo.svg"
               width="90"
               height="30"
               alt="Ease Pro Logo"
@@ -26,7 +26,11 @@
           <li v-if="isAuthenticated">
             <div class="dropdown user clearfix">
               <a href="#" data-toggle="dropdown">
-                <figure><img src="@/assets/jpg/avatar.jpg" alt=""></figure><span>{{ $t('generic.my_account') }}
+                <figure>
+                  <img v-if="getUser.avatar && getUser.avatar.url" :src="getUser.avatar.url" alt="Profile Pic">
+                  <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+                </figure>
+                <span>{{ $t('generic.my_account') }}
                 </span>
               </a>
               <div class="dropdown-menu">
@@ -152,6 +156,7 @@
       ...mapGetters({
         isAuthenticated: 'session/isAuthenticated',
         getUserType: 'session/getUserType',
+        getUser: 'session/getUser',
       }),
       getNavbarLinks(): any {
         return this.getUserType === 'elite' ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;
