@@ -171,9 +171,9 @@ export default {
           ...credentials,
         });
         commit('setUser', data);
-
         if (!router.currentRoute.fullPath.includes('easepro/cont') && data.user_type === 'elite') {
-          router.push('easepro/cont');
+          const path = router.currentRoute.fullPath.includes('easepro') ? '/easepro/cont' : 'easepro/cont';
+          router.push(path);
         }
       } finally {
         Vue.set(state, 'isFetchingUser', false);

@@ -262,7 +262,6 @@ router.beforeEach(async (to, from, next) => {
   const getGiftCard = store.getters['giftCards/getGiftCard'];
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
-  const getUser = store.getters['session/getUser'];
   const getUserType = store.getters['session/getUserType'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
@@ -277,15 +276,12 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
-  // if (!getToken && to.name !== 'ProHome') {
-  //   const route = to.fullPath.includes('easepro') ? 'easepro' : '/';
-  //   next(route);
-  // }
-
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;
   }
+
+  const getUser = store.getters['session/getUser'];
 
   if (!getToken && !authToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
@@ -322,6 +318,10 @@ router.beforeEach(async (to, from, next) => {
 
 
   if (path.includes('/client') && !getToken && !jwtToken) {
+    next('/');
+  }
+
+  if (path.includes('/easepro/cont') && !getToken && !jwtToken) {
     next('/');
   }
 

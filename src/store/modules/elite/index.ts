@@ -33,14 +33,16 @@ export default {
       try {
         const { data } = await api.find(`/users/elite/${id}`);
         Vue.set(state, 'elite', data);
+      } catch(err) {
+        console.log(err, 'err');
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async registerEliteStripe({ state, commit }) {
+    async registerEliteStripe({ state, commit }, code) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.create('elite/express_account?authorization_code=ac_IsxLpJbhdnEOumCuk4tDbaQ4U7wfNpJz');
+        const { data } = await api.create(`elite/express_account?authorization_code=${code}`);
       } finally {
         Vue.set(state, 'isFetching', false);
       }
