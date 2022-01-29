@@ -492,7 +492,7 @@
         "identity_card_info": "Poza dupa buletin, pasaport sau carnet de conducere",
         "interview": "Interviu",
         "interview_button": "Programează interviu",
-        "interview_info": "Funcția pentru programarea interviului se activează după ce ai încărcat toate documentele necesare",
+        "interview_info": "Funcția pentru programarea interviului se activează după ce ai selectat serviciile pe care doresti sa le prestezi si ai încărcat minim un certificat de calificare si cartea de identitate.",
         "my_stripe_account": "Contul meu Stripe",
         "qualifications": "Calificari",
         "qualification_certificate": "Certificat de calificare",

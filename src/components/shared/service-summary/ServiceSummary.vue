@@ -28,11 +28,11 @@
           v-for="service in item.services"
           :key="service.id"
         >
-          <p><span>{{ service.selectedCount }} x {{ service.name }}</span></p>
+          <p><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
           <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
         <li v-if="item.isWithAromaterapeutic">
-          <span>{{ $t(item.terapeuticForm.name) }}</span><span>{{ item.terapeuticForm.price }}</span>
+          <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
         </li>
       </ul>
 

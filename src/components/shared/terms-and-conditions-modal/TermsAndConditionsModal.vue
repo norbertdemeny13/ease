@@ -51,9 +51,5 @@
 
     /* eslint-disable */
     data: () => ({}),
-
-    created() {
-      console.log('modal faszkope');
-    },
   });
 </script>

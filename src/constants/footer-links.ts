@@ -41,7 +41,8 @@ export const FOOTER_LINKS = [
       },
       {
         label: i18n.t('generic.applyNow'),
-        to: '/easepro',
+        to: '',
+        id: 'apply-now',
       },
     ],
   },

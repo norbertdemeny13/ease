@@ -305,10 +305,13 @@ export default {
       }
     },
     async fetchServices({ state, commit }, id) {
+      const cityId = sessionStorage.getItem('city_id');
+      const services = cityId && !cityId.includes('null') ? `/services?city_id=${cityId}` : '/services';
+
       Vue.set(state, 'isFetching', true);
       const endpoint = id
         ? `users/elite/${id}/services`
-        : '/services';
+        : services;
       try {
         const { data } = await api.find(endpoint);
         commit('setServices', data);
@@ -326,9 +329,11 @@ export default {
     },
     async fetchServicesByType({ state, commit }, { type, id }) {
       Vue.set(state, 'isFetching', true);
+      const cityId = sessionStorage.getItem('city_id');
+      const services = cityId && !cityId.includes('null') ? `/services/${type}?city_id=${cityId}` : `/services/${type}`;
       const endpoint = id
         ? `users/elite/${id}/services/${type}`
-        : `/services/${type}`;
+        : services;
 
       try {
         const { data } = await api.find(endpoint);

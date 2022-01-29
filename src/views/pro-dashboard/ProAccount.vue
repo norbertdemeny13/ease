@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div v-if="getBalance && getStripeUrl" class="col-md-4">
+      <div v-if="getUser.stripe_account_created && getBalance && getStripeUrl" class="col-md-4">
         <h6>Sold</h6>
         <h3>{{ `${getBalance.available} Lei` }}</h3>
         <h6>{{ `${getBalance.pending} Lei disponibili` }}</h6>

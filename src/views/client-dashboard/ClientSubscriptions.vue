@@ -12,7 +12,7 @@
           <ul class="summary_list">
             <div v-if="hasActiveSubscription">
               <li>{{ $t('views.client_dashboard.subscriptions.next_bill') }}</li>
-              <li><strong>{{ getActiveSubscription.active_until.substr(0, 10) }}</strong></li>
+              <li><strong>{{ getActiveSubscription.active_from.substr(0, 10) }}</strong></li>
             </div>
             <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.anual') }}</li>
             <li><strong>{{ $t('generic.status') }}</strong>{{ hasActiveSubscription ? 'Activ' : 'Anulat' }}</li>

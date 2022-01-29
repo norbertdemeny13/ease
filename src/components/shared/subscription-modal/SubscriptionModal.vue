@@ -30,7 +30,7 @@
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               :disabled="getSubscriptionInfo && getSubscriptionInfo.id === id"
-              @click.prevent="isConfirmModalOpen = true"
+              @click.prevent="onSave()"
             >
               {{ $t('generic.save') }}
             </button>
@@ -39,10 +39,6 @@
         </div>
       </div>
     </es-modal>
-    <es-confirm-modal v-model="isConfirmModalOpen" @on-confirm="onSave()">
-      <template slot="title">{{ $t('subscription.modify.title') }}</template>
-      <template slot="message">{{ getSubscriptionInfo && getSubscriptionInfo.label }}</template>
-    </es-confirm-modal>
   </portal>
 </template>
 
@@ -79,7 +75,6 @@
     /* eslint-disable */
     data: () => ({
       selectedSubscription: '',
-      isConfirmModalOpen: false,
     }),
 
     computed: {
@@ -121,12 +116,11 @@
           activeId: this.userId,
           newId: this.selectedSubscription,
         });
-        this.isConfirmModalOpen = false;
         this.$emit('is-open', false)
         this.$toasts.toast({
           title: this.$t('toast.success_title'),
           id: 'subscription',
-          message: this.$t('subscriptions.modify_info'),
+          message: this.$t('views.subscriptions.modify_info'),
           intent: 'success',
         });
       },

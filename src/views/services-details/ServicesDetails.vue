@@ -10,7 +10,7 @@
         :key="serviceType.name"
         class="row mt-2"
       >
-        <div class="col-12"><h2 class="title_small">{{ serviceType.name }}</h2></div>
+        <div class="col-12"><h2 class="title_small">{{ $t(serviceType.name) }}</h2></div>
         <div v-for="service in serviceType.services" :key="service.uuid" class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
           <services-list-item
             :image-path="service.absolute_image_url_large"

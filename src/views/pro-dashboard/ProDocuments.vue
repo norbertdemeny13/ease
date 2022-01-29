@@ -185,7 +185,7 @@
             v-if="!getUser.interview_done"
             href=""
             onclick="Calendly.initPopupWidget({url: 'https://calendly.com/easeapp/interviu?hide_gdpr_banner=1&primary_color=d00078'});return false;"
-            class="btn btn-sm btn-pink btn-pill px-6 documents-button"
+            :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!isInterviewPossible ? 'disabled' : ''}`"
           >{{ $t('views.pro_dashboard.interview_button') }}</a>
         </div>
         <div class="d-flex">
@@ -229,6 +229,7 @@
       <es-terms-and-conditions-modal
         v-if="isTermsAndConditionsModalOpen"
         v-model="isTermsAndConditionsModalOpen"
+        :is-open="isTermsAndConditionsModalOpen"
         @close="isTermsAndConditionsModalOpen = false"
         @on-accept="onAccept()"
       />
@@ -275,6 +276,13 @@
       ...mapGetters({
         getUser: 'session/getUser',
       }),
+      isInterviewPossible() {
+        const {
+          certificate_of_calification_confirmed,
+          id_card_confirmed,
+        } = this.getUser;
+        return certificate_of_calification_confirmed && id_card_confirmed;
+      },
     },
 
     created() {

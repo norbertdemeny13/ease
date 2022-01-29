@@ -19,10 +19,10 @@
             <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
-            <strong>{{ complementaryService.name }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
+            <strong>{{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
           </li>
           <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-4">
-            <strong>{{ service.therapeuticForm.name }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
+            <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
           </li>
         </template>
         <es-divider />

@@ -42,7 +42,7 @@
                 </button>
               </div>
             </div>
-            <h3 v-if="massageType === 'couple'">{{ $t('generic.masaj_2') }}</h3>
+            <h3 v-if="massageType === 'couple'">{{ $t('generic.massage_2') }}</h3>
             <div v-for="filter in massageFilters.slice(2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
               <div class="d-flex my-2">

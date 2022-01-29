@@ -28,7 +28,9 @@
               <a href="#" data-toggle="dropdown">
                 <figure>
                   <img v-if="getUser.avatar && getUser.avatar.url" :src="getUser.avatar.url" alt="Profile Pic">
-                  <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+                  <div v-else class="item-header">
+                    <div class="item-logo">{{ getInitials }}</div>
+                  </div>
                 </figure>
                 <span>{{ $t('generic.my_account') }}
                 </span>
@@ -87,6 +89,7 @@
       v-if="isLoginModalOpen"
       v-model="isLoginModalOpen"
       :modal-type="modalType"
+      :type="userType"
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
       @show-forgot-password-modal="isForgotPasswordModalOpen = true"
     />
@@ -150,6 +153,7 @@
       isForgotPasswordModalOpen: false,
       isResetPasswordModalOpen: false,
       modalType: 'login',
+      userType: 'client',
     }),
 
     computed: {
@@ -158,6 +162,11 @@
         getUserType: 'session/getUserType',
         getUser: 'session/getUser',
       }),
+      getInitials() {
+        const firstNameI = this.getUser.first_name?.split(' ').map(n => n[0]).join('');
+        const lastNameI = this.getUser.last_name?.split(' ').map(n => n[0]).join('');
+        return `${firstNameI.toUpperCase()} ${lastNameI.toUpperCase()}`;
+      },
       getNavbarLinks(): any {
         return this.getUserType === 'elite' ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;
       },
@@ -197,6 +206,7 @@
       });
       this.$root.$on('on-show-elite-register', () => {
         this.modalType = 'register';
+        this.userType = 'elite';
         this.isLoginModalOpen = true;
       });
       this.$root.$on('on-show-address-modal', () => {
@@ -222,3 +232,24 @@
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  .item-header {
+    display: flex;
+  }
+
+  .item-logo {
+    align-items: center;
+    background: #f7f7f7;
+    border-radius: 50%;
+    color: #000000;
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    width: 35px;
+  }
+
+  span {
+    font-size: 1rem;
+  }
+</style>

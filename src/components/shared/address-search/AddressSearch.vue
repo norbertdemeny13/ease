@@ -76,13 +76,15 @@
     methods: {
       ...mapActions({
         fetchLocation: 'address/fetchLocation',
+        fetchServices: 'services/fetchServices',
       }),
       initLocationSearch(): void {
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
         autocomplete.setFields(['geometry.location', 'formatted_address', 'name', 'address_component']);
-        autocomplete.addListener('place_changed', () => {
+        autocomplete.addListener('place_changed', async () => {
           const place = autocomplete.getPlace();
-          this.fetchLocation(place);
+          await this.fetchLocation(place);
+          await this.fetchServices();
           this.location = place.formatted_address;
         });
       },

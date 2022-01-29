@@ -32,7 +32,7 @@
       }),
 
       services() {
-        return this.getServices.filter(service => service.category !== 'promotions');
+        return this.getServices;
       },
     },
 

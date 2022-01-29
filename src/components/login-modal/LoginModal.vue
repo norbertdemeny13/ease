@@ -39,9 +39,9 @@
                     id="password"
                     v-model="form.password"
                   >
-                  <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">{{ $t('generic.password_show') }}
+                  <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}
 </span>
-                  <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">{{ $t('generic.password_hide') }}
+                  <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}
 </span>
               </div>
               <div class="clearfix add_bottom_15">
@@ -84,14 +84,14 @@
                 <div class="form-group">
                   <label>{{ $t('generic.password') }}</label>
                   <input
-                    :type="type"
+                    :type="passwordType"
                     class="form-control"
                     name="password"
                     id="password"
                     v-model="form.password"
                   >
-                    <span v-if="type === 'password'" class="show-password-btn" @click.prevent="type = 'text'">{{ $t('generic.password_show') }}</span>
-                    <span v-if="type === 'text'" class="show-password-btn" @click.prevent="type = 'password'">{{ $t('generic.password_hide') }}</span>
+                    <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}</span>
+                    <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}</span>
                 </div>
                 <div v-if="userType === 'elite'">
                   <div class="form-group radio_c_group">
@@ -178,12 +178,16 @@
         default: 'login',
         type: String as PropType<string>,
       },
+      type: {
+        default: 'client',
+        type: String as PropType<string>,
+      },
     },
 
     data: () => ({
       userType: 'client',
       showPassword: false,
-      type: 'password',
+      passwordType: 'password',
       form: {
         email: 'pro.cj.allservices@gmail.com',
         first_name: 'test',
@@ -218,6 +222,7 @@
     created() {
       this.userType = this.$router.currentRoute.path.includes('pro') ? 'elite' : 'client';
       this.isSignIn = this.modalType !== 'register';
+      this.userType = this.type;
     },
 
     methods: {

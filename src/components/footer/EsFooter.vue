@@ -8,8 +8,15 @@
           <div :id="item.id" class="collapse dont-collapse-sm links">
             <ul>
               <li v-for="link in item.list" :key="link.label">
+                <a
+                  v-if="link.id"
+                  href=""
+                  @click="onClick($event)"
+                >
+                  {{ link.label }}
+                </a>
                 <router-link
-                  v-if="link.to"
+                  v-else-if="link.to"
                   :to="link.to"
                 >
                   {{ link.label }}
@@ -109,6 +116,13 @@
     watch: {
       $route(to) {
         this.isProPage = to.fullPath.includes('easepro');
+      },
+    },
+
+    methods: {
+      onClick(event) {
+        event.preventDefault();
+        this.$root.$emit('on-show-elite-register');
       },
     },
   });

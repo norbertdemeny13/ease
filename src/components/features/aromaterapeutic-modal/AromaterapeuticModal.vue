@@ -12,10 +12,10 @@
       </figure>
     </div>
     <div class="content pb-1">
-      <h3>{{ product.name }}</h3>
+      <h3>{{ $t(product.name) }}</h3>
        <h6 class="mb-1">+ {{ product.price }} {{ $t('generic.lei') }}/{{ $t('generic.session') }}
 </h6>
-       <p>{{ product.description }}</p>
+       <p>{{ $t(product.description) }}</p>
     </div>
   </div>
 </template>
