@@ -5,10 +5,8 @@
       size="md"
       :on-dismiss="() => $emit('close')"
     >
-      <div class="container es-calendly-modal mt-12 calendly-modal" @click="$emit('close')">
-        <div @click.stop>
-          <vue-calendly url="https://calendly.com/easeapp/interviu?hide_gdpr_banner=1" :style="{ height: '700px' }" />
-        </div>
+      <div class="container es-calendly-modal mt-2 calendly-modal" @click="$emit('close')">
+        <vue-calendly url="https://calendly.com/easeapp/interviu?hide_gdpr_banner=1" :style="{ height: '700px' }" />
       </div>
     </es-modal>
   </portal>

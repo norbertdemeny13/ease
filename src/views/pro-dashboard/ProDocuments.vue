@@ -181,13 +181,12 @@
         <div class="document-type d-flex flex-column">
           <h6>{{ $t('views.pro_dashboard.interview') }}</h6>
           <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
-          <button
+          <a
             v-if="!getUser.interview_done"
+            href=""
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/easeapp/interviu?hide_gdpr_banner=1&primary_color=d00078'});return false;"
             class="btn btn-sm btn-pink btn-pill px-6 documents-button"
-            @click.prevent="onOpenCalendly()"
-          >
-            {{ $t('views.pro_dashboard.interview_button') }}
-          </button>
+          >{{ $t('views.pro_dashboard.interview_button') }}</a>
         </div>
         <div class="d-flex">
           <es-custom-checkbox :checked="getUser.interview_done" />
