@@ -91,7 +91,7 @@
         return endpoint;
       },
 
-      getImagePath(item) {
+      getImagePath(item: any): string {
         const path = item.absolute_image_url || item.image.url;
         return path;
       },

@@ -162,9 +162,9 @@
         getUserType: 'session/getUserType',
         getUser: 'session/getUser',
       }),
-      getInitials() {
-        const firstNameI = this.getUser.first_name?.split(' ').map(n => n[0]).join('');
-        const lastNameI = this.getUser.last_name?.split(' ').map(n => n[0]).join('');
+      getInitials(): string {
+        const firstNameI = this.getUser.first_name?.split(' ').map((n: any) => n[0]).join('');
+        const lastNameI = this.getUser.last_name?.split(' ').map((n: any) => n[0]).join('');
         return `${firstNameI.toUpperCase()} ${lastNameI.toUpperCase()}`;
       },
       getNavbarLinks(): any {

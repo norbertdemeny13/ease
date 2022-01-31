@@ -67,6 +67,7 @@
         if (this.username === 'admin' && this.password === 'Password1!') {
           localStorage.setItem('loggedInVerify', 'true');
         } else {
+          /* eslint-disable */
           alert('Incorrect username or password!');
           localStorage.setItem('loggedInVerify', 'false');
         }

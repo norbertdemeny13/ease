@@ -120,7 +120,7 @@
     },
 
     methods: {
-      onClick(event) {
+      onClick(event: any): void {
         event.preventDefault();
         this.$root.$emit('on-show-elite-register');
       },
