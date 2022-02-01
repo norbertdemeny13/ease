@@ -102,7 +102,7 @@
             (this as any).$toasts.toasts.push({
               title: this.$t('toast.error_title'),
               intent: error.status === 400 ? 'error' : 'warning',
-              message: error.data.error,
+              message: this.$t(error.data.error),
               id: nanoid(),
             });
           });
