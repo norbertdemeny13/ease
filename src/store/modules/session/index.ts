@@ -115,14 +115,18 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async getUser({ state, commit }) {
+    async getUser({ state, commit, dispatch }) {
       Vue.set(state, 'isFetchingUser', true);
       const userType = localStorage.getItem('userType');
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
-      } catch({ error }) {
-        console.log(error, 'setErrors');
+      } catch({ response: reason }) {
+        const { errors } = reason?.data;
+        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+        if (errors === 'access_token_expired' && jwtToken) {
+          await dispatch('jwtLogin', localStorage.getItem('jwt'));
+        }
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -142,8 +146,6 @@ export default {
           message: 'Preferintele tale au fost salvate cu success!',
           intent: 'success',
         });
-      } catch({ error }) {
-        console.log(error, 'setErrors');
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }

@@ -54,13 +54,6 @@ export default (reason: AxiosError) => {
     });
   }
 
-  if (status === 401) {
-    dispatchToast({
-      title: 'Neautorizat',
-      message: 'Aceasta solicitare este neautorizata',
-    });
-  }
-
   if (status === 403) {
     router.push('/dashboard');
   }
