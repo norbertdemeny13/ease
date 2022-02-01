@@ -14,6 +14,8 @@
         <p class="my-2 text-left">{{ $t('views.pro_home.photo1_text2') }}</p>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo1_text3') }}</p>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo1_text4') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo1_text5') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo1_text6') }}</p>
       </div>
     </div>
     <div class="py-6 d-flex justify-content-between">
@@ -21,6 +23,8 @@
         <h3 class="text-left">{{ $t('views.pro_home.photo2_title') }}</h3>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo2_text1') }}</p>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo2_text2') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo2_text3') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo2_text4') }}</p>
       </div>
       <div class="d-flex reverse-order">
         <img
@@ -40,6 +44,9 @@
         <h3 class="text-left">{{ $t('views.pro_home.photo3_title') }}</h3>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo3_text1') }}</p>
         <p class="my-2 text-left">{{ $t('views.pro_home.photo3_text2') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo3_text3') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo3_text4') }}</p>
+        <p class="my-2 text-left">{{ $t('views.pro_home.photo3_text5') }}</p>
       </div>
     </div>
   </div>

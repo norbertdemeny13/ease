@@ -33,7 +33,7 @@
               <div class="form-group">
                   <label>{{ $t('generic.password') }}</label>
                   <input
-                    :type="type"
+                    :type="passwordType"
                     class="form-control"
                     name="password"
                     id="password"

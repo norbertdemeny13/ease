@@ -159,6 +159,8 @@ export default {
       try {
         const { data } = await api.create(endpoint);
         commit('setUser', data);
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -177,6 +179,8 @@ export default {
           const path = router.currentRoute.fullPath.includes('easepro') ? '/easepro/cont' : 'easepro/cont';
           router.push(path);
         }
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }

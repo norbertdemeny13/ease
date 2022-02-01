@@ -2,7 +2,7 @@
 <template>
   <div class="es_services-container content">
     <div class="container margin_30_20">
-      <es-address-bar />
+      <es-address-bar @on-address-change="onAddressChange" />
       <services-list-skeleton v-if="isFetching" />
       <services-list
         v-else
@@ -65,6 +65,9 @@
       ...mapActions({
         fetchServices: 'services/fetchServices',
       }),
+      onAddressChange() {
+        this.fetchServices();
+      },
     },
   });
 </script>

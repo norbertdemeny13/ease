@@ -20,14 +20,12 @@
     <div class="container margin_30_20">
       <div class="main_title center">
         <h2>{{ $t('views.subscriptions.title_2') }}</h2>
-        <p>{{ $t('views.subscriptions.title_description_2') }}</p>
       </div>
 
       <div class="row justify-content-center align-items-center add_bottom_15">
         <div class="col-lg-6">
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo1_title') }}</h3>
-            <p class="lead">{{ $t('views.subscriptions.photo1_subtitle') }}</p>
             <p>{{ $t('views.subscriptions.photo1_body') }}</p>
             <img src="@/assets/png/arrow_about.png" alt="" class="arrow_1">
           </div>
@@ -56,7 +54,6 @@
         <div class="col-lg-6">
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo2_title') }}</h3>
-            <p class="lead">{{ $t('views.subscriptions.photo2_subtitle') }}</p>
             <p>{{ $t('views.subscriptions.photo2_body') }}</p>
             <img src="@/assets/png/arrow_about.png" alt="" class="arrow_2">
           </div>
@@ -67,7 +64,6 @@
         <div class="col-lg-6">
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo3_title') }}</h3>
-            <p class="lead">{{ $t('views.subscriptions.photo3_subtitle') }}</p>
             <p>{{ $t('views.subscriptions.photo3_body') }}</p>
           </div>
         </div>

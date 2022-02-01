@@ -24,7 +24,7 @@
               <span class="upload-btn">{{ $t('views.pro_dashboard.upload') }}</span>
             </file-selector>
           </div>
-          <es-custom-checkbox :checked="getUser.certificate_of_registration_confirmed" />
+          <es-custom-checkbox :checked="getUser.certificate_of_calification_confirmed" />
         </div>
       </div>
     </div>
