@@ -1,6 +1,6 @@
 <template>
   <div class="page_header my-4">
-    <div class="container">
+    <div class="container-fluid">
       <es-skeleton-item v-if="isFetching" heigth="18px" width="200px" />
       <div v-else-if="isAuthenticated && getAddresses.length" class="row">
         <div class="my-2 ml-4 form-group">

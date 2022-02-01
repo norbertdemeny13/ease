@@ -19,7 +19,7 @@
               height="40"
             >
             <img
-              class="ml-2"
+              class="ml-md-2"
               src="@/assets/png/download-appstore-small.png"
               alt=""
               width="137"

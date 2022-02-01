@@ -3,7 +3,7 @@
   <div class="reserve-from-app-container">
     <div class="container margin_30_40">
       <div class="row my-4">
-        <div class="mobile-container col-md-4 col-lg-4 offset-md-2 offset-lg-2 text-center mt-4 d-flex align-items-center justify-content-center">
+        <div class="mobile-container col-md-4 col-lg-4 offset-md-1 offset-lg-2 text-center mt-4 d-flex align-items-center justify-content-center">
           <img
             class="m-2"
             src="@/assets/png/iphone-x-template.png"
@@ -12,7 +12,7 @@
             height="380"
           >
         </div>
-        <div class="col-md-4 col-lg-4 justify-content-center d-flex flex-column">
+        <div class="col-md-6 col-lg-4 justify-content-center d-flex flex-column">
           <h3>{{ $t('views.home.rop_title') }}</h3>
           <p class="text-secondary">{{ $t('views.home.rop_description') }}</p>
           <form class="">

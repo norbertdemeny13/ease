@@ -1,11 +1,11 @@
 <template>
   <div class="address-search-container">
-    <div class="d-flex flex-row align-items-center form-group">
+    <div class="d-flex flex-row align-items-center justify-content-center form-group">
       <input
         ref="search"
         v-model="location"
         :placeholder="$t('generic.enter_location')"
-        class="form-control ml-4 no_border_r pr-4"
+        class="form-control no_border_r pr-4 text-center"
         type="text"
       >
       <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
