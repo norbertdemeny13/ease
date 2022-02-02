@@ -191,6 +191,9 @@
 
     created() {
       this.isPro = this.$router.currentRoute.path.includes('pro');
+      if (this.isAuthenticated && !this.getUser.phone_number_confirmed) {
+        this.isValidatePhoneModalOpen = true;
+      }
     },
 
     mounted() {

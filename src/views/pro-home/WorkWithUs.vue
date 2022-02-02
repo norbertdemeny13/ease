@@ -10,7 +10,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/svg/work_with_us_1.svg"
+                  src="@/assets/svg/earn-more.svg"
                   alt=""
                   width="35"
                   height="35"
@@ -25,7 +25,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/svg/work_with_us_2.svg"
+                  src="@/assets/svg/work-when-you-want.svg"
                   alt=""
                   width="35"
                   height="35"
@@ -40,7 +40,7 @@
             <div class="box_how">
               <figure>
                 <img
-                  src="@/assets/svg/work_with_us_3.svg"
+                  src="@/assets/svg/security.svg"
                   alt=""
                   width="35"
                   height="35"
