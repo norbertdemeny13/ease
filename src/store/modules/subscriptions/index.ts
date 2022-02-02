@@ -47,6 +47,8 @@ export default {
           },
         });
         commit('setSubscriptions', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -74,6 +76,8 @@ export default {
       try {
         const { data } = await api.create(`/users/user_subscriptions/cancel/${id}`);
         commit('setActiveSubscription', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -86,6 +90,8 @@ export default {
           commit('setActiveSubscription', data);
           commit('setActiveSubscriptions', [data]);
         }
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -100,6 +106,8 @@ export default {
           },
         });
         commit('setAvailableSubscriptions', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -110,6 +118,8 @@ export default {
       try {
         const { data } = await api.find('/users/subscriptions');
         commit('setAllSubscriptions', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -122,6 +132,8 @@ export default {
           active_user_subscription_id: activeId,
           new_subscription_id: newId,
         });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

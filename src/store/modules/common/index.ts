@@ -6,6 +6,7 @@ import { api } from '@/services/api';
 import instance from '@/main';
 import { i18n } from '@/i18n';
 import { nanoid } from 'nanoid';
+import { store } from '@/store';
 
 const dispatchToast = (
   { title, message }: {
@@ -58,6 +59,15 @@ export default {
           title: 'Eroare',
           message: 'Din pacate nu putem procesa cererea, te rugam sa incerci din nou',
         });
+      }
+
+      if (status === 401) {
+        const { errors } = reason?.data;
+        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+        if (errors === 'access_token_expired' && jwtToken) {
+          store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
+          return;
+        }
       }
 
       const errors = data.errors ? data.errors : data.error;

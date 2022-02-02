@@ -33,8 +33,8 @@ export default {
       try {
         const { data } = await api.find(`/users/elite/${id}`);
         Vue.set(state, 'elite', data);
-      } catch(err) {
-        console.log(err, 'err');
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -43,6 +43,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.create(`elite/express_account?authorization_code=${code}`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -52,6 +54,8 @@ export default {
       try {
         const { data } = await api.find('/elite/stripe_sso');
         Vue.set(state, 'stripeSSO', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -61,6 +65,8 @@ export default {
       try {
         const { data } = await api.find(`/users/elite/${id}/reviews`);
         Vue.set(state, 'eliteReviews', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -70,6 +76,8 @@ export default {
       try {
         const { data } = await api.find('/elite/statistics');
         commit('setStatistics', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -78,6 +86,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.update(`user/add_elite_favorite/${id}`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -86,6 +96,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.update(`user/remove_elite_favorite/${id}`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -103,6 +115,8 @@ export default {
           } as any,
         );
         commit('session/setUser', data, { root: true });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -112,6 +126,8 @@ export default {
       try {
         const { data } = await api.find('user/elite_favorites');
         Vue.set(state, 'eliteFavorites', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

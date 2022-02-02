@@ -62,6 +62,7 @@ export default {
       } catch ({ response: reason }) {
         commit('setLocationById', null);
         commit('setLocationError', true);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -84,6 +85,7 @@ export default {
       } catch ({ response: reason }) {
         commit('setLocationById', null);
         commit('setLocationError', true);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -93,6 +95,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.create(`/users/addresses/${id}/set_default`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -102,6 +106,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.destroy(`/users/addresses/${id}`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -112,6 +118,8 @@ export default {
       try {
         const { data } = await api.find('/users/addresses');
         Vue.set(state, 'addresses', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -124,6 +132,7 @@ export default {
         commit('setLocationById', data);
       } catch ({ response: reason }) {
         commit('setLocationById', null);
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

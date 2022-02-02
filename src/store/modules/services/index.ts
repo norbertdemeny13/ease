@@ -327,7 +327,7 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServicesByType({ state, commit }, { type, id }) {
+    async fetchServicesByType({ state, commit, dispatch }, { type, id }) {
       Vue.set(state, 'isFetching', true);
       const cityId = sessionStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services/${type}?city_id=${cityId}` : `/services/${type}`;
@@ -338,6 +338,12 @@ export default {
       try {
         const { data } = await api.find(endpoint);
         commit('setServicesByType', data);
+      } catch({ response: reason }) {
+        const { errors } = reason?.data;
+        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+        if (errors === 'access_token_expired' && jwtToken) {
+          await dispatch('jwtLogin', localStorage.getItem('jwt'));
+        }
       } finally {
         Vue.set(state, 'isFetching', false);
       }

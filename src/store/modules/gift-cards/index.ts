@@ -52,7 +52,7 @@ export default {
   }) as State,
 
   actions: {
-    async createGiftCard({ state }, form) {
+    async createGiftCard({ state, commit }, form) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.create('/users/virtual_gift_cards', {
@@ -61,20 +61,24 @@ export default {
           },
         });
         Vue.set(state, 'selectedGiftCard', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchGiftCardSummary({ state }, id) {
+    async fetchGiftCardSummary({ state, commit }, id) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find(`/users/virtual_gift_cards/${id}/summary`);
         Vue.set(state, 'selectedGiftCardSummary', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async onGiftCardPay({ state, rootState }) {
+    async onGiftCardPay({ state, commit, rootState }) {
       const cardId = state.selectedGiftCard.id;
       const selectedPaymentCard = rootState.cards.selectedCard;
 
@@ -97,6 +101,8 @@ export default {
             : selectedPaymentCard.payment_method_id,
         });
         Vue.set(state, 'paymentStatus', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -104,38 +110,46 @@ export default {
     async setGiftCard({ state }, card) {
       Vue.set(state, 'giftCard', card);
     },
-    async fetchGiftCardPaymentSetup({ state }) {
+    async fetchGiftCardPaymentSetup({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/virtual_gift_cards/payment_setup');
         Vue.set(state, 'paymentSetup', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchGiftCards({ state }) {
+    async fetchGiftCards({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/virtual_gift_cards');
         Vue.set(state, 'giftCards', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchGiftCardsOrderHistory({ state }) {
+    async fetchGiftCardsOrderHistory({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/user_gift_cards');
         Vue.set(state, 'giftCardHistory', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchCreditOrderHistory({ state }) {
+    async fetchCreditOrderHistory({ state, commit }) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/user/ease_credit_history');
         Vue.set(state, 'creditEaseHistory', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

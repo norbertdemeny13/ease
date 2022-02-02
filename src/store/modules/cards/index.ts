@@ -35,6 +35,8 @@ export default {
       try {
         const { data } = await api.find('/users/cards');
         commit('setCards', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -43,6 +45,8 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.destroy(`/users/cards/${card.id}`);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -52,6 +56,8 @@ export default {
       try {
         const { data } = await api.update(`/users/cards/${card.id}`);
         commit('setCards', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -72,6 +78,8 @@ export default {
         const { publicKey, clientSecret } = data;
         Vue.set(state, 'publicKey', publicKey);
         Vue.set(state, 'clientSecret', clientSecret);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
