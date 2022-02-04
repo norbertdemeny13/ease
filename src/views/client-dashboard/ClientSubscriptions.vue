@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12 col-lg-8">
         <div v-if="hasSubscription">
           <h6 class="mt-4">{{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">

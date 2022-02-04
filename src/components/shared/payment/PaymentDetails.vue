@@ -6,7 +6,7 @@
       <div v-if="!!getLocalCards.length">
         <p>{{ $t('generic.select_payment_method') }}</p>
         <div class="row mb-4">
-          <div class="col-6">
+          <div class="col-sm-12 col-md-12 col-lg-8">
             <div class="my-2 form-group">
               <div class="custom_select submit">
                 <select name="credit-card" id="credit-card" class="form-control wide" v-model="getSelectedCard">

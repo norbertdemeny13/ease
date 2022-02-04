@@ -2,7 +2,7 @@
   <div class="es_client-addresses-container content">
     <h4>{{ $t('generic.address') }}</h4>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div
           v-for="address in getAddresses"
           :key="address.id"

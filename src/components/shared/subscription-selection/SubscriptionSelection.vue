@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es-subscription-selection-container py-4 pr-12">
+  <div class="es-subscription-selection-container py-4">
     <div v-if="hasActiveSubscription" class="row">
       <div class="col-8">
         <div v-if="getSubscription" class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">
@@ -25,16 +25,15 @@
           <div class="pricing-card-small mb-4" v-for="subscription in getSubscriptions" :key="subscription.id">
             <div class="card-body" @click.prevent="onSubscriptionSelect(subscription)">
               <h3 class="pricing-plan-title d-flex align-items-center"><span class="badge badge-pill offer-badge mr-auto">{{ subscription.discount }} %</span></h3>
-              <div class="d-flex justify-content-between mt-4 mb-2">
+              <div class="d-flex justify-content-between flex-column mt-4 mb-2">
                 <div>
-                  <h6>{{ $t(subscription.name) }}</h6>
+                  <h3>{{ $t(subscription.name) }}</h3>
                   <div class="d-flex flex-column">
                     <span v-for="(detail, i) in subscription.small_descriptions" :key="i">{{ $t(detail) }}</span>
                   </div>
                 </div>
                 <div class="d-flex flex-column">
-                  <h6 class="bold">{{ `${subscription.price.price} Lei` }}</h6>
-                  <span>{{ `${subscription.monthly ? 'pe luna' : 'pe an'}` }}</span>
+                  <h6 class="bold">{{ `${subscription.price.price} Lei` }}<span>/{{ `${subscription.monthly ? 'pe luna' : 'pe an'}` }}</span></h6>
                 </div>
               </div>
             </div>

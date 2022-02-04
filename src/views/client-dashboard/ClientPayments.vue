@@ -2,7 +2,7 @@
   <div class="es_client-payments-container content">
     <h4>{{ $t('generic.cards') }}</h4>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div v-if="getCards.length">
           <div
             v-for="card in getCards"

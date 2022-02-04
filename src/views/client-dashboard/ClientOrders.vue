@@ -1,7 +1,7 @@
 <template>
   <div class="es_client-orders-container content">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h4>{{ $t('generic.my_orders') }}</h4>
       </div>
     </div>

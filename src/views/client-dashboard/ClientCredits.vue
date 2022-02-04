@@ -1,7 +1,7 @@
 <template>
   <div class="es_client-credits-container content">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-10 col-lg-8 col-xl-6">
         <h4>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
         <es-divider />
         <h6>{{ $t('views.client_dashboard.ease_credit.description') }}</h6>

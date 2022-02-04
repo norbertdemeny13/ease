@@ -1,7 +1,7 @@
 <template>
   <div class="es_client-reservations-container content">
     <div class="row">
-      <div class="col-md-8 col-sm-6">
+      <div class="col-md-12 col-sm-6">
         <h4>{{ $t('generic.my_reservations') }}</h4>
         <es-divider />
         <div v-if="isListView">

@@ -11,7 +11,7 @@
       </ul>
       <hr>
       <div v-if="getCategoryType() === 'couple'" class="d-flex justify-content-between align-items-center flex-inline">
-        <h3>{{ $t('generic.couple_massage') }} {{ getSelectedServices[0].massageForm.duration }} min</h3>
+        <h5>{{ $t('generic.couple_massage') }} {{ getSelectedServices[0].massageForm.duration }} min</h5>
         <h5>{{ time.price }} Lei</h5>
       </div>
       <ul
@@ -19,9 +19,9 @@
         :key="`${item.id}${index}`"
         class="clearfix"
       >
-        <span class="text-gray">Serviciu {{ index + 1 }}</span>
+        <span class="">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
-          <h3>{{ $t(item.name) }}</h3>
+          <h5>{{ $t(item.name) }}</h5>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
         <li

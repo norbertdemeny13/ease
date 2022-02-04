@@ -5,8 +5,8 @@
       <es-reserve-service-skeleton v-if="isFetching" />
       <div v-else class="row mt-4">
         <div class="col-lg-6 col-md-6 pt-2 bg_gray">
-          <h5 class="pl-5 my-2">{{ $t('calendar.title') }}</h5>
-          <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in pl-5">
+          <h5 class="text-center my-2">{{ $t('calendar.title') }}</h5>
+          <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in">
             <div
               v-for="day in getDays"
               :key="day.id"
@@ -18,7 +18,7 @@
               <span v-if="day.id === selectedDate.id"><em /></span>
             </div>
           </div>
-          <div class="hour-container my-2 pl-5">
+          <div class="hour-container my-2">
             <div
               v-for="item in getHours"
               :key="item.id"

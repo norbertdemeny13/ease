@@ -2651,7 +2651,7 @@ header.black_nav .main-menu>ul>li:hover>a {
 
 ul#top_menu {
     float: right;
-    margin: 0 0 0 10px;
+    margin: 7px 0 0 10px;
     padding: 0;
     list-style: none;
     font-size: 13px;
@@ -3551,7 +3551,7 @@ header.black_nav .dropdown.user>a {
 
 .dropdown.user>a {
     float: left;
-    padding: 14px 0 5px 40px !important;
+    padding: 7px 0 7px 40px !important;
     line-height: 1;
     color: #fff;
     font-weight: 500;
@@ -3579,7 +3579,7 @@ header.black_nav .dropdown.user>a {
     overflow: hidden;
     position: absolute;
     left: 0;
-    top: 2px;
+    top: -4px;
     display: inline-block;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -6747,6 +6747,45 @@ screen and (max-height: 300px) {
     font-weight: 400 !important;
 }
 
+#es-modal-dialog {
+    .forgot-password-modal-wrapper {
+        .form-group>i {
+            right: 12px;
+            left: auto;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    #es-modal-dialog {
+        .forgot-password-modal-wrapper {
+            .form-group>i {
+                top: 70%;
+            }
+        }
+    }
+}
+
+@media (min-width: 375px) {
+    #es-modal-dialog {
+        .forgot-password-modal-wrapper {
+            .form-group>i {
+                top: 64%;
+            }
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    #es-modal-dialog {
+        .forgot-password-modal-wrapper {
+            .form-group>i {
+                top: 50%;
+            }
+        }
+    }
+}
+
 #es-modal-dialog .form-group>i.icon_lock_alt {
     top: 35px;
 }
@@ -7356,6 +7395,9 @@ ul.plan-features {
     z-index: 1000000000 !important;
 }
 
+
+/*Subscriptions*/
+
 // subscriptions button
 .subscriptions-container {
     .btn_1 {
@@ -7366,5 +7408,91 @@ ul.plan-features {
         border-radius: 3px;
         font-weight: 600;
         line-height: 50px;
+    }
+    .custom-subscription-card {
+        border: 1px solid #e7eaf3;
+        border-radius: 8px;
+        margin: 15px;
+        &:nth-child(3) {
+             :first-child {
+                order: 1;
+            }
+             :last-child {
+                order: 0;
+            }
+        }
+        &:nth-child(4) {
+             :last-child {
+                padding-bottom: 15px;
+            }
+        }
+    }
+}
+
+//bootstrap breakpoint
+@media (min-width: 768px) {
+    .subscriptions-container {
+        .btn_1 {
+            width: 80%;
+        }
+    }
+    .pricing-plan-container {
+        .container {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (min-width: 991px) {
+    .subscriptions-container {
+        .btn_1 {
+            width: 30%;
+        }
+        .custom-subscription-card {
+            border: 0 none;
+            margin: 0;
+            &:nth-child(3) {
+                 :first-child {
+                    order: 0;
+                }
+                 :last-child {
+                    order: 1;
+                }
+            }
+            &:nth-child(4) {
+                 :last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+
+/*Gift Card Details Page*/
+
+.es-gift-cards-container {
+    margin: 0 15px;
+}
+
+.es_gift-card-details-page {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.es_client-reservations-container {
+    .pricing-tab {
+        .nav-link {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.reservation-list-item {
+    h6 {
+        width: 200px;
     }
 }
