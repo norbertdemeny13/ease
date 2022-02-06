@@ -200,12 +200,12 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async resetPassword({ state, commit }, password) {
+    async resetPassword({ state, commit }, { password, token }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create('/user/reset_password', {
           new_password: password,
-          token: state!.user!.access_token,
+          token,
         });
       } catch({ response: reason }) {
         commit('common/setErrors', reason, { root: true });

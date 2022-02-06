@@ -86,13 +86,13 @@ export default {
         const errorObject = [] as any;
 
         Object.keys(errors).forEach((item: any) => errorObject.push({
-          key: item,
+          key: i18n.t(item),
           detail: i18n.t(errors[item][0]),
         }));
 
         errorObject.forEach((item: any) => dispatchToast({
           title: 'Eroare',
-          message: `${item.key}: ${i18n.t(item.detail)}`,
+          message: `${item.key}: ${item.detail}`,
         }));
       }
     },

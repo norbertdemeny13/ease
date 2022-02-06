@@ -22,5 +22,5 @@ export const PRO_SIDEBAR_LINKS = [
   { label: i18n.t('generic.address').toString(), to: 'adrese', role: 'pro' },
   { label: i18n.t('generic.califications').toString(), to: 'calificari', role: 'pro' },
   { label: i18n.t('generic.documents').toString(), to: 'documente', role: 'pro' },
-  { label: i18n.t('generic.recommend').toString(), to: 'recomandare', role: 'pro' },
+  { label: i18n.t('generic.promote').toString(), to: 'promoveaza', role: 'pro' },
 ];

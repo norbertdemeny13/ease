@@ -29,7 +29,8 @@
           :key="service.id"
         >
           <p><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
-          <span>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
+          <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)) }} Lei</span>
+          <span v-else>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
         <li v-if="item.isWithAromaterapeutic">
           <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
@@ -183,7 +184,7 @@
         const services = service?.complementary_services || [];
         const selectedServices = services
           .filter(service => service.selectedCount > 0)
-        const isFourHands = selectedServices || selectedServices[0].is_four_hands;
+        const isFourHands = selectedServices && selectedServices[0].is_four_hands;
         return selectedServices
           .map(({ uuid, id, name, price }) => ({
             name,

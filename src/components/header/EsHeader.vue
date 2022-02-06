@@ -187,13 +187,15 @@
         this.isPro = this.$router.currentRoute.path.includes('easepro');
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
       },
+      getUser(newVal) {
+        if (this.isAuthenticated && !newVal?.phone_number_confirmed) {
+          this.isValidatePhoneModalOpen = true;
+        }
+      },
     },
 
     created() {
       this.isPro = this.$router.currentRoute.path.includes('pro');
-      if (this.isAuthenticated && !this.getUser.phone_number_confirmed) {
-        this.isValidatePhoneModalOpen = true;
-      }
     },
 
     mounted() {

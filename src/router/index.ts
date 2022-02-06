@@ -125,8 +125,8 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/pro-dashboard').then(({ ProPhone }) => ProPhone),
       },
       {
-        path: 'recomandare',
-        name: 'Recomandare Pro',
+        path: 'promoveaza',
+        name: 'Promoveaza Pro',
         component: () => import('@/views/pro-dashboard').then(({ ProRecommendations }) => ProRecommendations),
       },
       {
@@ -140,6 +140,11 @@ const routes: Array<RouteConfig> = [
     path: '/servicii',
     name: 'Servicii',
     component: () => import('@/views/services').then(({ Services }) => Services),
+  },
+  {
+    path: '/reset-password',
+    name: 'Reset Password',
+    component: () => import('@/views/reset-password').then(({ ResetPassword }) => ResetPassword),
   },
   {
     path: '/abonamente',

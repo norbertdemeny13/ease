@@ -22,7 +22,6 @@
           <div class="ml-4">
             <h6>{{ getUser.first_name }}</h6>
             <p>{{ getUser.elite_id }}</p>
-            <a v-if="image" href="" @click.prevent="onSavePicture()">Save</a>
           </div>
         </div>
       </div>
@@ -72,29 +71,7 @@
             name="email"
           >
         </div>
-        <div class="form-group">
-          <label>{{ $t('generic.notifications') }}</label>
-          <div class="radio_c_group">
-            <label
-              class="container_check"
-            >{{ $t('generic.email') }}
-              <input type="checkbox" value="checkbox" name="notification-email-type" :checked="account_settings.email_news ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-            <label
-              class="container_check"
-            >{{ $t('generic.sms') }}
-              <input type="checkbox" value="checkbox" name="notification-sms-type" :checked="account_settings.sms_news ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-            <label
-              class="container_check"
-            >{{ $t('generic.phone') }}
-              <input type="checkbox" value="checkbox" name="notification-phone-type" :checked="account_settings.phone_news ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
+
         <div class="form-group">
           <label>{{ $t('views.pro_dashboard.years_of_experience') }}</label>
           <es-datepicker
@@ -388,6 +365,7 @@
           this.account_settings.send_app_notifications = true;
         }
         this.user.started_working_at = getUtcToZonedTime(this.$data.user.started_working_at).toDateString();
+        this.onSavePicture();
         this.updateElite(this.$data);
       },
     },

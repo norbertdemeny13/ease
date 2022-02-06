@@ -92,7 +92,7 @@
               city: any;
             },
           ) => {
-            const label = `${street_number}, ${street_name}, ${city.name}`;
+            const label = `${street_number}, ${street_name}, ${this.$t(city.name)}`;
             return { id, label };
           });
       },
