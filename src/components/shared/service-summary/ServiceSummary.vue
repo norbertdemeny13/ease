@@ -184,7 +184,7 @@
         const services = service?.complementary_services || [];
         const selectedServices = services
           .filter(service => service.selectedCount > 0)
-        const isFourHands = selectedServices && selectedServices[0].is_four_hands;
+        const isFourHands = selectedServices && selectedServices[0]?.is_four_hands;
         return selectedServices
           .map(({ uuid, id, name, price }) => ({
             name,
