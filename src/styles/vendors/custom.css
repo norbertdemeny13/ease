@@ -330,9 +330,23 @@
     cursor: pointer;
 }
 
+.extra-services-container>div {
+    flex-direction: column;
+}
+
+.extra-services-container img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.extra-services-container .custom-text {
+    text-align: center;
+}
+
 .extra-services-container:hover,
 .extra-services-container.selected {
-    border: 2px solid #70d7b7;
+    border: 1px solid #70d7b7;
 }
 
 .added-services-container {
@@ -434,11 +448,13 @@
 }
 
 @media (min-width: 767px) {
-    .more-details div {
-        flex-direction: row;
+    .more-details .custom-container-info .custom-text {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
     }
-    .more-details .custom-container-info {
-        margin: 0;
+    .more-details .custom-container-info .custom-text h3 {
+        font-size: 40px;
     }
     .faq-container .large-view {
         display: block;
@@ -452,9 +468,6 @@
     .companies-container .ease-for-company {
         height: 360px;
         width: 390px;
-    }
-    .more-details .reverse-order {
-        order: 2;
     }
     .download-app-container .row {
         flex-direction: row;
@@ -484,6 +497,17 @@
         width: 100%;
         margin-bottom: 10px;
     }
+    .extra-services-container>div {
+        flex-direction: row;
+    }
+    .extra-services-container img {
+        width: 30%;
+        margin-bottom: 0;
+    }
+    .extra-services-container .custom-text {
+        justify-content: center;
+        text-align: left;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -496,6 +520,46 @@
     }
     .address-search-container {
         width: 100%;
+    }
+    .more-details div {
+        flex-direction: row;
+    }
+    .more-details .custom-container-info {
+        width: 100%;
+    }
+    .more-details .custom-container-info .custom-text {
+        max-width: 57%;
+        margin-left: 10%;
+        margin-right: auto;
+        text-align: left;
+    }
+    .more-details .custom-container-info {
+        margin: 0;
+    }
+    .more-details .reverse-order {
+        order: 2;
+    }
+    .more-details div a {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .more-details .reverse-order.custom-text {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 10%;
+    }
+    .more-details .reverse-order.custom-text a {
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 1366px) {
+    .more-details .custom-container-info .custom-text h3 {
+        font-size: 60px;
+    }
+    .extra-services-container img {
+        width: 20%;
     }
 }
 
