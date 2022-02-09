@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   /* eslint-disable */
@@ -76,7 +76,7 @@
         getLocationError: 'address/getLocationError',
       }),
 
-      showSubscriptions(): boolean {
+      showSubscriptions() {
         const cityId = sessionStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
 
@@ -93,9 +93,9 @@
         return SUBSCRIPTION_FILTERS
           .find(filter => filter.type === 'massage')
       },
-      getSubscriptionsInformation(): Record<string, any> {
+      getSubscriptionsInformation() {
         return this.getSubscriptions
-          .map((subscription: any) => ({
+          .map((subscription) => ({
             ...subscription,
             label: `${this.$t(subscription.name)} ${subscription.uses > 1 ? subscription.uses : ''}`.trim(),
           }));
@@ -117,7 +117,7 @@
         fetchSubscriptionsByType: 'subscriptions/fetchSubscriptionsByType',
         setDefaultAddress: 'address/setDefaultAddress',
       }),
-      onBack(): void {
+      onBack() {
         if (this.isSelected) {
           this.fetchSubscriptionsByType(this.serviceType);
           this.isSelected = false;
@@ -126,7 +126,7 @@
         }
         this.fetchedSubscription = false;
       },
-      onSelect(subscription: any): void {
+      onSelect(subscription) {
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');
           return;
@@ -152,7 +152,7 @@
           }
         }
       },
-      setValue(key: string, value: string) {
+      setValue(key, value) {
         this.$data[key] = value;
       },
       onAddressChange(address) {
