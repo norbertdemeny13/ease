@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-2 box_order">
+  <div class="box_order">
     <div class="head">
       <h3>{{ $t('lbl_reservation_details') }}</h3>
     </div>
@@ -21,7 +21,7 @@
       >
         <span class="">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline">
-          <h5>{{ $t(item.name) }}</h5>
+          <h6>{{ $t(item.name) }}</h6>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>
         <li

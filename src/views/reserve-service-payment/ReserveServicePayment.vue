@@ -3,7 +3,7 @@
     <div class="container margin_30_40">
       <router-link v-if="!isReservationConfirmed" class="back-button mb-2" :to="getToRoute()">Inapoi</router-link>
       <div class="row mt-4">
-        <div class="col-lg-6 col-md-6 pt-2 p-4 bg_gray">
+        <div class="col-lg-6 col-md-6">
           <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center">
             <div class="title d-flex flex-column align-items-center">
               <figure>

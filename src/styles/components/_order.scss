@@ -22,7 +22,7 @@
     text-align: center;
     border-bottom: 1px solid #ededed;
     padding: 17px 20px 12px 20px;
-    background-color: #d00078;
+    background-color: #454545;
     color: #fff;
 }
 
@@ -108,6 +108,9 @@
 }
 
 @media (max-width: 991px) {
+    .box_order {
+        
+    }
     .box_order.mobile_fixed {
         display: none;
         -webkit-border-radius: 0;

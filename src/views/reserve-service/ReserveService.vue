@@ -4,29 +4,35 @@
       <router-link class="back-button mb-2" :to="getToRoute">{{ $t('generic.back') }}</router-link>
       <es-reserve-service-skeleton v-if="isFetching" />
       <div v-else class="row mt-4">
-        <div class="col-lg-6 col-md-6 pt-2 bg_gray">
-          <h5 class="text-center my-2">{{ $t('calendar.title') }}</h5>
-          <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in">
-            <div
-              v-for="day in getDays"
-              :key="day.id"
-              :class="`day-item ${day.disabled ? 'disabled' : ''}`"
-              @click="day.disabled ? '' : selectDate(day)"
-            >
-              <p class="day">{{ day.value }}</p>
-              <p class="day-string">{{ day.name }}</p>
-              <span v-if="day.id === selectedDate.id"><em /></span>
+        <div class="col-lg-6 col-md-6">
+          <div class="box_order">
+            <div class="head">
+              <h3 class="text-center">{{ $t('calendar.title') }}</h3>
             </div>
-          </div>
-          <div class="hour-container my-2">
-            <div
-              v-for="item in getHours"
-              :key="item.id"
-              :class="`hour-item m-2 ${selectedTime && selectedTime.id === item.id ? 'selected': ''} ${item.disabled ? 'disabled' : ''}`"
-              @click="selectTime(item)"
-            >
-              <p class="time  mb-0">{{ item.time }}</p>
-              <p class="price mb-0">{{ item.price }} Lei</p>
+            <div class="main">
+              <div class="date-container col-12 owl-carousel owl-theme categories_carousel_in">
+                <div
+                  v-for="day in getDays"
+                  :key="day.id"
+                  :class="`day-item ${day.disabled ? 'disabled' : ''}`"
+                  @click="day.disabled ? '' : selectDate(day)"
+                >
+                  <p class="day">{{ day.value }}</p>
+                  <p class="day-string">{{ day.name }}</p>
+                  <span v-if="day.id === selectedDate.id"><em /></span>
+                </div>
+              </div>
+              <div class="hour-container my-2">
+                <div
+                  v-for="item in getHours"
+                  :key="item.id"
+                  :class="`hour-item m-2 ${selectedTime && selectedTime.id === item.id ? 'selected': ''} ${item.disabled ? 'disabled' : ''}`"
+                  @click="selectTime(item)"
+                >
+                  <p class="time  mb-0">{{ item.time }}</p>
+                  <p class="price mb-0">{{ item.price }} Lei</p>
+                </div>
+              </div>
             </div>
             <div v-if="!getHours.length" class="p-2">
               <img src="@/assets/svg/no-time.svg" width="40" height="40">
