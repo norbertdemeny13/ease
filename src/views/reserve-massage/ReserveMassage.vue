@@ -28,14 +28,13 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
           <div class="p-5">
-            <h3 class="text-right">{{ $t('generic.from') }} {{ selectedService.price_from }}</h3>
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
               <div class="my-2 row filters">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${getFilterClasses(filter)} btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
+                  :class="`${getFilterClasses(filter)} btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${choice.disabled ? 'disabled' : ''}`"
                   @click="setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
@@ -44,12 +43,12 @@
             </div>
             <h3 v-if="massageType === 'couple'">{{ $t('summary.massageOne') }}</h3>
             <div v-for="filter in massageFilters.slice(2)" :key="filter.id" class="form-group">
-              <label>{{ filter.label }}</label>
-              <div class="d-flex flex-wrap my-2">
+              <label v-if="!filter.isHidden">{{ filter.label }}</label>
+              <div v-if="!filter.isHidden" class="d-flex flex-wrap my-2">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
+                  :class="`${filter.length === 1 ? 'col-3' : 'col'} fasz btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''}`"
                   @click="setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
@@ -100,6 +99,7 @@
       selectedService: null,
       showAromaterapeuticModal: false,
       massageType: null,
+      isTargetedReservation: false,
       massageForm: {
         type: '',
         genre: 'any_gender',
@@ -141,12 +141,14 @@
               {
                 label: this.$t('generic.two_therapists'),
                 value: 'double',
+                disabled: this.isTargetedReservation,
               },
             ],
           },
           {
             label: this.$t('massage.gender'),
             key: 'genre',
+            isHidden: this.isTargetedReservation,
             length: 3,
             choices: [
               {
@@ -196,7 +198,7 @@
     watch: {
       isFetching(newVal) {
         if (!newVal) {
-          const index = this.services.map(item => item.uuid).indexOf(this.selectedService?.uuid);
+          const index = this.services?.map(item => item.uuid).indexOf(this.selectedService?.uuid);
           setTimeout(() => {
             window.initMassageCarousel(this.getActiveCarouselId);
             window.goToMassageCarouselIndex([index, 250]);
@@ -257,8 +259,8 @@
 
       this.massageForm.type = type;
 
-
       if (query && query.pro_id) {
+        this.isTargetedReservation = true;
         this.fetchServicesByType({ type, id: query.pro_id });
       } else {
         this.fetchServicesByType({ type });

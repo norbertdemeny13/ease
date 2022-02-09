@@ -116,7 +116,7 @@
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
-                      <label @click.prevent="form.fitness_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.fitness') }}
+                      <label @click.prevent="form.fitness_marketing = !form.fitness_marketing" class="container_check">{{ $t('generic.fitness') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>

@@ -74,6 +74,7 @@
             <li
               v-for="link in navLinks"
               :key="link.id"
+              class="open_close"
             >
               <router-link
                 :to="link.to"
@@ -233,6 +234,9 @@
       async onLogout(): Promise<void> {
         await this.logout();
         this.$router.push({ name: this.isPro ? 'ProHome' : 'Home' });
+        if (this.isValidatePhoneModalOpen) {
+          this.isValidatePhoneModalOpen = false;
+        }
       },
     },
   });

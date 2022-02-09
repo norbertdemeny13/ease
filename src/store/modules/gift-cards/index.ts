@@ -154,22 +154,16 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async applyGiftCard({ state }, code) {
+    async applyGiftCard({ commit, state }, code) {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.create('/user/apply_gift_card', {
           promo_code: code,
         });
         Vue.set(state, 'appliedGiftCard', data);
-      } catch {
-        (instance as any).$toasts.toast({
-          id: nanoid(),
-          intent: 'error',
-          title: 'Atentie!',
-          message: 'Cod validare incorect! Incearca din nou sau ia legatura cu noi sa te ajutam!',
-        });
-      }
-      finally {
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      } finally {
         Vue.set(state, 'isFetching', false);
       }
     },

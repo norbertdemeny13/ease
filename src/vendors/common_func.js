@@ -30,6 +30,12 @@
     $('.layer').toggleClass('layer-is-visible');
   });
 
+  $(document).on("click", "li.open_close", function (evt) {
+    evt.preventDefault();
+    $('.main-menu').toggleClass('show');
+    $('.layer').toggleClass('layer-is-visible');
+  });
+
   $(document).on("click", "a.show-submenu", function (evt) {
     evt.preventDefault();
     $(this).next().toggleClass("show_normal");

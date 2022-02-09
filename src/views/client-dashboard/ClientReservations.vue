@@ -234,7 +234,7 @@
       },
       getAddress() {
         const { user_address } = this.selectedReservation;
-        return `${user_address.street_name}, ${user_address.street_number}, ${user_address.city.name}`;
+        return `${user_address.street_name}, ${user_address.street_number}, ${this.$t(user_address.city.name)}`;
       },
       getCancelationText() {
         const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);

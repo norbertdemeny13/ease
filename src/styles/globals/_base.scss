@@ -4188,6 +4188,7 @@ pre code {
   opacity: 0.65;
   box-shadow: none;
   cursor: no-drop;
+  pointer-events: none;
 }
 
 a.btn.disabled,

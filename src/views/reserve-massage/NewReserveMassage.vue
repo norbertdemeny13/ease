@@ -28,14 +28,13 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
           <div class="p-5">
-            <h3 class="text-right">De la {{ selectedService.price_from }}</h3>
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
               <label>{{ filter.label }}</label>
               <div class="d-flex my-2">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${isDisabled(filter.key, 'terapeut')}`"
+                  :class="`${filter.length === 1 ? 'col-3' : 'col'} btn btn-choice btn-small border px-6 mr-4 ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${isDisabled(filter.key, 'terapeut')}  ${choice.disabled ? 'disabled' : ''}`"
                   @click="isDisabled(filter.key, 'terapeut') ? '' : setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}
@@ -100,6 +99,7 @@
       selectedService: null,
       showAromaterapeuticModal: false,
       massageType: null,
+      isTargetedReservation: false,
       massageForm: {
         type: '',
         genre: 'any_gender',
@@ -142,6 +142,7 @@
               {
                 label: this.$t('generic.two_therapists'),
                 value: 'double',
+                disabled: this.isTargetedReservation,
               },
             ],
           },
@@ -149,6 +150,7 @@
             label: this.$t('massage.gender'),
             key: 'genre',
             length: 3,
+            isHidden: this.isTargetedReservation,
             choices: [
               {
                 label: this.$t('massage.genderF'),

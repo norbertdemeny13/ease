@@ -2473,6 +2473,11 @@ header.sticky .main-menu > ul > li:hover > a, header.header-in .main-menu > ul >
   }
 }
 @media only screen and (max-width: 991px) {
+  .layer-is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
   #header_menu {
     display: block;
     text-align: center;
@@ -5137,11 +5142,6 @@ ul.additional_links li:after {
   transition: all 0.1s ease;
   opacity: 0;
   visibility: hidden;
-}
-
-.layer-is-visible {
-  opacity: 1;
-  visibility: visible;
 }
 
 .rotate-x {

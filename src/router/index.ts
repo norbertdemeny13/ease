@@ -259,7 +259,7 @@ export const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   let isAuthenticated = false;
 
-  const { params, path, name } = to;
+  const { params, path, query, name } = to;
   const { type, id } = params;
   const isAuth = store.getters['session/isAuth'];
   const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
@@ -331,8 +331,9 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (isNew && !getSelectedServices.length) {
+    const { type, pro_id } = query;
     const newRoute = path.replace('/new', '');
-    next(newRoute);
+    next(`${newRoute}?type=${type ? type : 'couple'}${pro_id ? '&pro_id=' : ''}${pro_id ? pro_id : ''}`);
   }
 
   if (to.name === 'Rezerva' && !getSelectedServices.length) {

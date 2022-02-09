@@ -395,13 +395,8 @@ export default {
           promo_code: promoCode,
         });
         Vue.set(state, 'reservationDetails', data);
-      } catch(error) {
-        (instance as any).$toasts.toast({
-          id: nanoid(),
-          title: 'Atentie!',
-          message: 'Codul introdus nu este valid!',
-          intent: 'error',
-        });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

@@ -7,24 +7,6 @@
         <p>{{ $t('views.giftcards.title_description') }}</p>
       </div>
       <div class="row justify-content-center">
-        <ul class="nav nav-pills justify-content-center pricing-tab" id="pricing-tab" role="tablist">
-          <li
-            v-for="category in getCategories"
-            :key="category.id"
-            class="nav-item"
-            @click="selectedType = category.id"
-          >
-            <a
-              :class="`nav-link ${category.id === selectedType ? 'active' : ''}`"
-              :id="`${category.id}-tab`"
-              data-toggle="pill"
-              :href="`#${category.id}`"
-              role="tab"
-              :aria-controls="category.id"
-              aria-selected="true"
-            >{{ $t(category.name) }}</a>
-          </li>
-        </ul>
         <div class="tab-content pricing-tab-content" id="pricing-tab-content">
           <div
             v-for="category in getCategories"

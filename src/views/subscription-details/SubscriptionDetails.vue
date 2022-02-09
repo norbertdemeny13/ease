@@ -5,7 +5,7 @@
       <div class="main_title center">
         <h2 v-if="!fetchedSubscription">{{ $t('views.subscriptions.choose') }}</h2>
       </div>
-      <es-address-bar />
+      <es-address-bar @on-address-change="onAddressChange" />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
       <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
@@ -115,6 +115,7 @@
     methods: {
       ...mapActions({
         fetchSubscriptionsByType: 'subscriptions/fetchSubscriptionsByType',
+        setDefaultAddress: 'address/setDefaultAddress',
       }),
       onBack(): void {
         if (this.isSelected) {
@@ -153,6 +154,15 @@
       },
       setValue(key: string, value: string) {
         this.$data[key] = value;
+      },
+      onAddressChange(address) {
+        const cityId = address?.id;
+
+        if (cityId) {
+          this.setDefaultAddress(cityId);
+        }
+
+        this.fetchSubscriptionsByType(this.serviceType);
       },
     },
   });

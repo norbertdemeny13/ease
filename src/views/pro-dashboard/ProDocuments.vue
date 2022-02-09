@@ -148,76 +148,78 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <es-divider />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 d-flex justify-content-between">
-        <div class="document-type d-flex flex-column">
-          <h6>{{ $t('views.pro_dashboard.accept_terms_and_conditions') }}</h6>
-          <p>{{ $t('views.pro_dashboard.accept_terms_and_conditions_info') }}</p>
-          <button
-            v-if="!user.accord_accepted"
-            class="btn btn-sm btn-pink btn-pill px-6 documents-button"
-            @click.prevent="openTermsAndConditionsModal()"
-          >
-            {{ $t('views.pro_dashboard.accept_terms_and_conditions_button') }}
-          </button>
-        </div>
-        <div class="d-flex">
-          <es-custom-checkbox :checked="user.accord_accepted" />
+    <div v-if="getUser.status === 'pending'">
+      <div class="row">
+        <div class="col-md-6">
+          <es-divider />
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <es-divider />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 d-flex justify-content-between">
-        <div class="document-type d-flex flex-column">
-          <h6>{{ $t('views.pro_dashboard.interview') }}</h6>
-          <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
-          <a
-            v-if="!getUser.interview_done"
-            href=""
-            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/easeapp/interviu?hide_gdpr_banner=1&primary_color=d00078'});return false;"
-            :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!isInterviewPossible ? 'disabled' : ''}`"
-          >{{ $t('views.pro_dashboard.interview_button') }}</a>
-        </div>
-        <div class="d-flex">
-          <es-custom-checkbox :checked="getUser.interview_done" />
-        </div>
-      </div>
-    </div>
-    <div v-if="!getUser.stripe_account_created" class="row">
-      <div class="col-md-6">
-        <es-divider />
-      </div>
-    </div>
-    <div v-if="!getUser.stripe_account_created" class="row">
-      <div class="col-md-6 d-flex justify-content-between">
-        <div class="document-type d-flex flex-column">
-          <h6>{{ $t('views.pro_dashboard.bank_account') }}</h6>
-          <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>
-          <div class="row">
-            <a
-              href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o"
-              target="_blank"
-              :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-between">
+          <div class="document-type d-flex flex-column">
+            <h6>{{ $t('views.pro_dashboard.accept_terms_and_conditions') }}</h6>
+            <p>{{ $t('views.pro_dashboard.accept_terms_and_conditions_info') }}</p>
+            <button
+              v-if="!user.accord_accepted"
+              class="btn btn-sm btn-pink btn-pill px-6 documents-button"
+              @click.prevent="openTermsAndConditionsModal()"
             >
-              {{ $t('views.pro_dashboard.bank_account_button') }}
-            </a>
-            <div class="d-flex flex-wrap align-items-center ml-4">
-              <img src="@/assets/svg/stripe.svg" class="logo">
-            </div>
+              {{ $t('views.pro_dashboard.accept_terms_and_conditions_button') }}
+            </button>
+          </div>
+          <div class="d-flex">
+            <es-custom-checkbox :checked="user.accord_accepted" />
           </div>
         </div>
-        <div class="d-flex">
-          <es-custom-checkbox :checked="false" />
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <es-divider />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-between">
+          <div class="document-type d-flex flex-column">
+            <h6>{{ $t('views.pro_dashboard.interview') }}</h6>
+            <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
+            <a
+              v-if="!getUser.interview_done"
+              href=""
+              onclick="Calendly.initPopupWidget({url: 'https://calendly.com/easeapp/interviu?hide_gdpr_banner=1&primary_color=d00078'});return false;"
+              :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!isInterviewPossible ? 'disabled' : ''}`"
+            >{{ $t('views.pro_dashboard.interview_button') }}</a>
+          </div>
+          <div class="d-flex">
+            <es-custom-checkbox :checked="getUser.interview_done" />
+          </div>
+        </div>
+      </div>
+      <div v-if="!getUser.stripe_account_created && getUser.status === 'pending'" class="row">
+        <div class="col-md-6">
+          <es-divider />
+        </div>
+      </div>
+      <div v-if="!getUser.stripe_account_created && getUser.status === 'pending'" class="row">
+        <div class="col-md-6 d-flex justify-content-between">
+          <div class="document-type d-flex flex-column">
+            <h6>{{ $t('views.pro_dashboard.bank_account') }}</h6>
+            <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>
+            <div class="row">
+              <a
+                href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o"
+                target="_blank"
+                :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
+              >
+                {{ $t('views.pro_dashboard.bank_account_button') }}
+              </a>
+              <div class="d-flex flex-wrap align-items-center ml-4">
+                <img src="@/assets/svg/stripe.svg" class="logo">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <es-custom-checkbox :checked="false" />
+          </div>
         </div>
       </div>
       <es-calendly-modal

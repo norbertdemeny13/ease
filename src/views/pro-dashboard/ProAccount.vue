@@ -21,7 +21,7 @@
           </div>
           <div class="ml-4">
             <h6>{{ getUser.first_name }}</h6>
-            <p>{{ getUser.elite_id }}</p>
+            <p class="m-0">{{ getUser.elite_id }}</p>
           </div>
         </div>
       </div>
@@ -53,12 +53,12 @@
           >
         </div>
         <div class="form-group">
-          <label>{{ $t('generic.name') }}</label>
+          <label>{{ $t('generic.display_name') }}</label>
           <input
-            v-model="user.last_name"
+            v-model="user.display_name"
             type="text"
             class="form-control"
-            name="firstName"
+            name="displayName"
           >
         </div>
         <div class="form-group">
@@ -71,7 +71,16 @@
             name="email"
           >
         </div>
-
+        <div class="form-group">
+          <label>{{ $t('generic.email_address') }}</label>
+          <input
+            v-model="user.email"
+            class="form-control"
+            disabled
+            type="text"
+            name="email"
+          >
+        </div>
         <div class="form-group">
           <label>{{ $t('views.pro_dashboard.years_of_experience') }}</label>
           <es-datepicker
@@ -176,6 +185,19 @@
               <span class="checkmark" />
             </label>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>{{ $t('views.pro_dashboard.company_name') }}</label>
+          <input
+            v-model="user.company_name"
+            type="text"
+            class="form-control"
+            name="company_name"
+          >
         </div>
       </div>
     </div>

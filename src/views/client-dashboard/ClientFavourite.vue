@@ -27,9 +27,8 @@
           >
         </figure>
         <span class="text-center">{{ item.first_name }}</span>
-        <span>{{ item.located_in_current_users_city ? 'yes' : 'no' }}</span>
         <div class="d-flex align-items-center">
-          <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(item.rating) > 0 ? item.rating : 'Momentan nu exista nicio recenzie.' }}</span>
+          <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(item.rating) > 0 ? item.rating : '0.0' }}</span>
         </div>
       </div>
     </div>
