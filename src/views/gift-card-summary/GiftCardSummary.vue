@@ -49,19 +49,21 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-6 pt-2 p-4">
-          <div v-if="isPaymentConfirmed" class="d-flex flex-column align-items-center">
-            <div class="title d-flex flex-column align-items-center">
-              <figure>
-                <img
-                  src="@/assets/png/succes.png"
-                  alt=""
-                  class="lazy"
-                >
-              </figure>
-              <h3 class="px-10 text-center">{{ $t('generic.order_was_sent') }}</h3>
+          <div v-if="isPaymentConfirmed" class="d-flex flex-column align-items-center box_order">
+            <div class="main">
+              <div class="title d-flex flex-column align-items-center">
+                <figure>
+                  <img
+                    src="@/assets/png/succes.png"
+                    alt=""
+                    class="lazy"
+                  >
+                </figure>
+                <h3 class="px-10 text-center">{{ $t('generic.order_was_sent') }}</h3>
+              </div>
+              <p>Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
+              <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Lei.</p>
             </div>
-            <p>Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
-            <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Lei.</p>
           </div>
           <div v-else>
             <div class="box_order">

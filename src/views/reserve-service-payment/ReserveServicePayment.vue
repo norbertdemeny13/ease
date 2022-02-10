@@ -3,8 +3,8 @@
     <div class="container margin_30_40">
       <router-link v-if="!isReservationConfirmed" class="back-button mb-2" :to="getToRoute()">Inapoi</router-link>
       <div class="row mt-4">
-        <div class="col-lg-6 col-md-6">
-          <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center">
+        <div class="col-lg-6 col-md-6 box_order">
+          <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center main">
             <div class="title d-flex flex-column align-items-center">
               <figure>
                 <img
@@ -29,9 +29,17 @@
             <div v-if="!getCards.length" class="alert alert-danger" role="alert">
               <span>{{ $t('generic.please_add_a_payment_method') }}</span>
             </div>
-            <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
-            <es-payment-details />
-            <es-subscription-selection @set-active-subscription="setActiveSubscription" />
+            <div class="box_order">
+              <div class="main">
+                <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
+                <es-payment-details />
+              </div>
+            </div>
+            <div class="box_order mt-4 mb-4">
+              <div class="main">
+                <es-subscription-selection @set-active-subscription="setActiveSubscription" />
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">

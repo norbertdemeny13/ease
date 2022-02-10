@@ -4,7 +4,7 @@
     <div class="container margin_30_40">
       <div class="row d-flex align-items-center justify-content-center">
         <img
-          src="@/assets/png/ease-logo.png"
+          src="@/assets/svg/appicon.svg"
           alt=""
           width="80"
           height="80"

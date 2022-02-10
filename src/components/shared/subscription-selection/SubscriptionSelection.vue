@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es-subscription-selection-container py-4">
+  <div class="es-subscription-selection-container">
     <div v-if="hasActiveSubscription" class="row">
       <div class="col-8">
         <div v-if="getSubscription" class="active-subscription d-flex justify-content-between align-items-center py-4 px-4">

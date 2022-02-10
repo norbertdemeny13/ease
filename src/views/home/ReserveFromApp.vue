@@ -6,7 +6,7 @@
         <div class="mobile-container col-md-4 col-lg-4 offset-md-1 offset-lg-2 text-center mt-4 d-flex align-items-center justify-content-center">
           <img
             class="m-2"
-            src="@/assets/png/iphone-x-template.png"
+            src="@/assets/jpg/iPhone_13_Pro_Silver.jpg"
             alt=""
             width="200"
             height="380"

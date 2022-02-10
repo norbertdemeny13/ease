@@ -101,6 +101,7 @@
 .download-app-container .row {
     width: 100%;
     flex-direction: column;
+    margin: 0;
 }
 
 
@@ -133,6 +134,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    white-space: nowrap;
 }
 
 .es_reserve-massage-service-page .owl-item.active {
@@ -190,10 +192,6 @@
 
 .es_services-container .es_services-list-item {
     border: none;
-}
-
-.es_services-container .address-search-container {
-    width: 40%;
 }
 
 .es_services-list-container,
@@ -303,7 +301,7 @@
         background-color: #70d7b7;
         cursor: pointer;
         & .price {
-            color: #d7d7d7;
+            color: #FFFFFF;
         }
     }
 }
@@ -517,6 +515,9 @@
     .reserve-from-app-container form .input-group input {
         width: 1%;
         margin-bottom: 0;
+    }
+    .es_services-container .address-search-container {
+        width: 40%;
     }
     .address-search-container {
         width: 100%;

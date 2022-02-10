@@ -41,7 +41,7 @@
 
 @media (max-width: 991px) {
     .box_how figure img {
-        width: 80px;
+        width: 160px;
         height: auto;
     }
 }
