@@ -20,7 +20,7 @@
             </figure>
           </div>
           <div class="ml-4">
-            <h6>{{ getUser.first_name }}</h6>
+            <h6>{{ getUser.display_name }}</h6>
             <p class="m-0">{{ getUser.elite_id }}</p>
           </div>
         </div>
