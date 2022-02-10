@@ -62,13 +62,12 @@
           >
         </div>
         <div class="form-group">
-          <label>{{ $t('generic.email_address') }}</label>
+          <label>{{ $t('generic.name') }}</label>
           <input
-            v-model="user.email"
+            v-model="user.last_name"
             class="form-control"
-            disabled
             type="text"
-            name="email"
+            name="lastName"
           >
         </div>
         <div class="form-group">
