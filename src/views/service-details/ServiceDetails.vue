@@ -7,7 +7,7 @@
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6">
-          <img :src="service.absolute_image_url_large" width="500" height="350">
+          <img :src="service.absolute_image_url_large" width="100%" height="auto">
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6">
           <h2>{{ $t(service.name) }}</h2>

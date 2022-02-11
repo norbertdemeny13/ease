@@ -7,7 +7,7 @@
       </div>
       <div class="row">
         <div class="col-md-6 col-lg-4">
-          <div class="box_how d-flex flex-column justify-content-center">
+          <div class="box_how d-flex flex-column justify-content-center text-center">
             <h1>1</h1>
             <h3>{{ $t('views.pro_home.how_it_works_card1_title') }}</h3>
             <p>{{ $t('views.pro_home.how_it_works_card1_message') }}</p>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
-          <div class="box_how d-flex flex-column justify-content-center">
+          <div class="box_how d-flex flex-column justify-content-center text-center">
             <h1>2</h1>
             <h3>{{ $t('views.pro_home.how_it_works_card2_title') }}</h3>
             <p>{{ $t('views.pro_home.how_it_works_card2_message') }}</p>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
-          <div class="box_how d-flex flex-column justify-content-center">
+          <div class="box_how d-flex flex-column justify-content-center text-center">
             <h1>3</h1>
             <h3>{{ $t('views.pro_home.how_it_works_card3_title') }}</h3>
             <p>{{ $t('views.pro_home.how_it_works_card3_message') }} </p>

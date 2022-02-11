@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-6 col-md-6 mt-4">
           <es-service-summary
             :date="selectedDate"
             :time="selectedTime"

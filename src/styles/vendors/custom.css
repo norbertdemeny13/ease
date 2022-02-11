@@ -62,8 +62,8 @@
 
 .why-us-container .box_how img,
 .companies-container .box_how img {
-    width: 45px;
-    height: 45px;
+    width: auto;
+    height: 100px;
 }
 
 .more-details div {
