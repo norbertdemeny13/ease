@@ -65,7 +65,6 @@
             ...item,
             id: item.category,
             items: item.items
-              .filter(({ name }) => name !== 'couple')
               .map(({ services }) => services)
               .map((item) => item),
           }));

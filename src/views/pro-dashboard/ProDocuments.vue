@@ -283,7 +283,7 @@
           certificate_of_calification_confirmed,
           id_card_confirmed,
         } = this.getUser;
-        return certificate_of_calification_confirmed && id_card_confirmed;
+        return certificate_of_calification_confirmed === 'accepted' && id_card_confirmed === 'accepted';
       },
     },
 
