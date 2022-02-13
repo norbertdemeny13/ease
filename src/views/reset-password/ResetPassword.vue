@@ -64,8 +64,13 @@
     methods: {
       ...mapActions({ resetPassword: 'session/resetPassword' }),
       onChange() {
+        const isClient = this.$router.currentRoute.fullPath.includes('user');
         if (this.password === this.confirmPassword) {
-          this.resetPassword({ password: this.newPassword, token: this.token });
+          this.resetPassword({
+            password: this.newPassword,
+            token: this.token,
+            type: isClient ? 'user' : 'elite',
+          });
         } else {
           this.$toasts.toast({
             id: nanoid(),

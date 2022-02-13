@@ -188,10 +188,10 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async forgotPassword({ state, commit }, email) {
+    async forgotPassword({ state, commit }, { email, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user/forgot_password', {
+        const { data } = await api.create(`/${type === 'client' ? 'user' : 'elite'}/forgot_password`, {
           email,
         });
       } catch({ response: reason }) {
@@ -200,12 +200,18 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async resetPassword({ state, commit }, { password, token }) {
+    async resetPassword({ state, commit }, { password, token, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user/reset_password', {
+        const { data } = await api.create(`/${type}/reset_password`, {
           new_password: password,
           token,
+        });
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Felicitari!',
+          message: 'Parola a fost schimbata cu success!',
+          intent: 'success',
         });
       } catch({ response: reason }) {
         commit('common/setErrors', reason, { root: true });

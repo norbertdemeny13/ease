@@ -55,6 +55,10 @@
         required: true,
         type: Boolean as PropType<boolean>,
       },
+      type: {
+        default: 'client',
+        type: String,
+      },
     },
 
     data: () => ({
@@ -66,8 +70,9 @@
         forgotPassword: 'session/forgotPassword',
       }),
       async onSubmit() {
-        if (validateEmail(this.email)) {
-          await this.forgotPassword(this.email);
+        const { email, type } = this;
+        if (validateEmail(email)) {
+          await this.forgotPassword({ email, type });
           (this as any).$toasts.toast({
             id: 'forgot-password',
             title: this.$t('toast.warning_title'),

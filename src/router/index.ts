@@ -142,7 +142,12 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/services').then(({ Services }) => Services),
   },
   {
-    path: '/reset-password',
+    path: '/elite/reset-password',
+    name: 'Reset Password',
+    component: () => import('@/views/reset-password').then(({ ResetPassword }) => ResetPassword),
+  },
+  {
+    path: '/user/reset-password',
     name: 'Reset Password',
     component: () => import('@/views/reset-password').then(({ ResetPassword }) => ResetPassword),
   },

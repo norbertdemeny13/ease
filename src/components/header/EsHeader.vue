@@ -91,6 +91,7 @@
       v-model="isLoginModalOpen"
       :modal-type="modalType"
       :type="userType"
+      @on-type-change="onTypeChange"
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
       @show-forgot-password-modal="isForgotPasswordModalOpen = true"
     />
@@ -109,6 +110,7 @@
     <es-forgot-password-modal
       v-if="isForgotPasswordModalOpen"
       v-model="isForgotPasswordModalOpen"
+      :type="userType"
       @show-reset-password-modal="isResetPasswordModalOpen = true"
     />
     <es-reset-password-modal v-if="isResetPasswordModalOpen" v-model="isResetPasswordModalOpen" />
@@ -229,6 +231,10 @@
       }),
       onNavLinkClick(to: string): void {
         this.$router.push(to);
+      },
+
+      onTypeChange(type: string): void {
+        this.userType = type;
       },
 
       async onLogout(): Promise<void> {

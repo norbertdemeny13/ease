@@ -217,6 +217,11 @@
           this.$emit('show-validate-phone-modal', true);
         }
       },
+      userType(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.$emit('on-type-change', newVal);
+        }
+      },
     },
 
     created() {
