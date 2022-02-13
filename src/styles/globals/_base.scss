@@ -7259,6 +7259,10 @@ input[type="button"].btn-block {
   width: 100%;
 }
 
+.form-control.disable {
+  pointer-events: none;
+}
+
 .input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,

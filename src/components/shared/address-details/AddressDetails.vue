@@ -1,38 +1,28 @@
 <template>
   <div class="es-payment-container">
     <h5>{{ $t('generic.address') }}</h5>
-    <div v-if="getLocalAddresses.length">
-      <div class="row mb-4">
-        <div class="col-6">
-          <div class="my-2 form-group">
-            <div class="custom_select submit">
-              <select
-                id="address"
-                v-model="getSelectedAddress"
-                name="address"
-                class="form-control wide"
+    <div class="row mb-4">
+      <div class="col-6">
+        <div class="my-2 form-group">
+          <div class="custom_select submit">
+            <select
+              id="address"
+              v-model="getSelectedAddress"
+              name="address"
+              class="form-control wide"
+              disabled
+            >
+              <option
+                v-for="address in getLocalAddresses"
+                :key="address.id"
+                :value="address.id"
               >
-                <option
-                  v-for="address in getLocalAddresses"
-                  :key="address.id"
-                  :value="address.id"
-                >
-                  {{ address.label }}
-                </option>
-              </select>
-            </div>
+                {{ address.label }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
-    </div>
-    <div v-else class="my-4">
-      <p>{{ $t('generic.please_add_an_address') }}</p>
-    </div>
-    <div class="my-4">
-      <a href="" class="my-4" @click.prevent="$emit('on-show-address-modal')">
-        <i class="icon_plus" />
-        {{ $t('generic.add_address') }}
-      </a>
     </div>
   </div>
 </template>

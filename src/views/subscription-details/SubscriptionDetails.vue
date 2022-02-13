@@ -5,7 +5,7 @@
       <div class="main_title center">
         <h2 v-if="!fetchedSubscription">{{ $t('views.subscriptions.choose') }}</h2>
       </div>
-      <es-address-bar @on-address-change="onAddressChange" />
+      <es-address-bar @on-address-change="onAddressChange" :disabled="disabledAddress" />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
       <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
@@ -53,6 +53,7 @@
 
     data: () => ({
       duration: 60,
+      disabledAddress: false,
       isSelected: false,
       fetchedSubscription: false,
       serviceType: '',
@@ -74,6 +75,7 @@
         isFetching: 'subscriptions/isFetching',
         getLocation: 'address/getLocation',
         getLocationError: 'address/getLocationError',
+        getUser: 'session/getUser',
       }),
 
       showSubscriptions() {
@@ -124,11 +126,18 @@
         } else {
           this.$router.push('/abonamente');
         }
+        this.disabledAddress = false;
         this.fetchedSubscription = false;
       },
       onSelect(subscription) {
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');
+          return;
+        }
+
+        // show address modal if address is not set
+        if (!this.getUser.addresses.length) {
+          this.$root.$emit('on-show-address-modal');
           return;
         }
 
@@ -146,6 +155,7 @@
             this.subscriptionType = massageType;
             this.fetchSubscriptionsByType(`${massageType}${period}&duration=${this.duration}`);
             this.fetchedSubscription = true;
+            this.disabledAddress = true;
           } else {
             this.$store.commit('subscriptions/setSelectedSubscription', subscription);
             this.$router.push('/abonamente/rezerva');
@@ -156,13 +166,16 @@
         this.$data[key] = value;
       },
       onAddressChange(address) {
+        const { params, query } = this.$router.currentRoute;
+        const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
         const cityId = address?.id;
+        const endpoint = period ? `${this.serviceType}${period}` : this.serviceType;
 
         if (cityId) {
           this.setDefaultAddress(cityId);
         }
 
-        this.fetchSubscriptionsByType(this.serviceType);
+        this.fetchSubscriptionsByType(endpoint);
       },
     },
   });
