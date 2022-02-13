@@ -1,9 +1,9 @@
 <template>
   <div class="custom-checkbox">
-    <label class="label">
-      <input class="label__checkbox" type="checkbox" :checked="checked">
+    <label class="label" @click.prevent>
+      <input class="label__checkbox" type="checkbox" :checked="getCheckState">
       <span class="label__text">
-        <span class="label__check">
+        <span :class="`label__check ${isPending ? 'pending': ''} `">
           <i class="fa fa-check icon" />
         </span>
       </span>
@@ -20,7 +20,25 @@
     props: {
       checked: {
         default: false,
-        type: Boolean,
+        type: [String, Boolean],
+      },
+    },
+
+    computed: {
+      getCheckState(): boolean {
+        let status = false;
+        if (typeof this.checked === 'boolean') {
+          status = this.checked;
+        } else {
+          status = this.checked !== 'not_uploaded';
+        }
+        return status;
+      },
+      isPending(): boolean {
+        return this.checked === 'pending';
+      },
+      isAccepted(): boolean {
+        return this.checked === 'accepted';
       },
     },
   });
@@ -58,6 +76,10 @@
     &:hover {
       border: 5px solid rgba(0,0,0,0.2);
     }
+  }
+
+  .label__check.pending {
+    background: #F0AD4E !important;
   }
 
   .label__checkbox:checked + .label__text .label__check {
