@@ -31,6 +31,8 @@ export default {
       try {
         const { data } = await api.find('/users/reservations/active');
         Vue.set(state, 'activeReservations', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -40,6 +42,8 @@ export default {
       try {
         const { data } = await api.find('/users/reservations/upcoming');
         Vue.set(state, 'upcomingReservations', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -49,6 +53,8 @@ export default {
       try {
         const { data } = await api.find('/users/reservations/past');
         Vue.set(state, 'pastReservations', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -58,6 +64,8 @@ export default {
       try {
         const { data } = await api.find(`/users/reservations/${id}`);
         Vue.set(state, 'reservation', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -67,6 +75,8 @@ export default {
       try {
         const { data } = await api.create(`/users/reservations/${id}/cancel`);
         Vue.set(state, 'canceledReservation', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

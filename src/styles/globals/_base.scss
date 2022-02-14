@@ -4188,6 +4188,7 @@ pre code {
   opacity: 0.65;
   box-shadow: none;
   cursor: no-drop;
+  pointer-events: none;
 }
 
 a.btn.disabled,
@@ -7256,6 +7257,10 @@ input[type="button"].btn-block {
   -ms-flex-align: stretch;
       align-items: stretch;
   width: 100%;
+}
+
+.form-control.disable {
+  pointer-events: none;
 }
 
 .input-group > .form-control,

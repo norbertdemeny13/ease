@@ -9,7 +9,8 @@
               id="address"
               v-model="getSelectedAddress"
               name="address"
-              class="form-control wide"
+              :class="`form-control wide ${disabled ? 'disable' : ''}`"
+              :disabled="disabled"
             >
               <option
                 v-for="address in getLocalAddresses"
@@ -44,6 +45,13 @@
 
     components: {
       'es-address-search': AddressSearch,
+    },
+
+    props: {
+      disabled: {
+        default: false,
+        type: Boolean,
+      },
     },
 
     data: () => ({

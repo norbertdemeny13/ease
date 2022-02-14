@@ -116,7 +116,7 @@
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
-                      <label @click.prevent="form.fitness_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.fitness') }}
+                      <label @click.prevent="form.fitness_marketing = !form.fitness_marketing" class="container_check">{{ $t('generic.fitness') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
                       </label>
@@ -215,6 +215,11 @@
         this.$emit('is-open', false);
         if (!newVal.phone_number_confirmed) {
           this.$emit('show-validate-phone-modal', true);
+        }
+      },
+      userType(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.$emit('on-type-change', newVal);
         }
       },
     },

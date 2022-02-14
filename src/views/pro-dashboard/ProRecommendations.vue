@@ -1,10 +1,10 @@
 <template>
   <div class="es_pro-recommendations-container content">
-    <h4>{{ $t('generic.recommend') }}</h4>
+    <h4>{{ $t('generic.promote') }}</h4>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label>{{ $t('views.client_dashboard.recommend.title_description') }}</label>
+          <label>{{ $t('msg_promote') }}</label>
           <div class="d-flex align-items-center">
             <input
               id="code"
@@ -19,22 +19,21 @@
         </div>
         <div class="d-flex flex-row">
           <figure>
-            <img
-              src="@/assets/icons/facebook-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
+            <ShareNetwork
+              network="Facebook"
+              :url="code"
+              title="Ease"
+              description="Hey! Descarca aplicatia Ease si comanda servicii profesionale de masaj, beauty sau fitness direct la usa ta. Descopera serviciile oferite de mine."
+              hashtags="Ease, Beauty"
             >
-          </figure>
-          <figure>
-            <img
-              src="@/assets/icons/insta-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
+              <img
+                src="@/assets/icons/facebook-ease.svg"
+                alt=""
+                width="35"
+                height="35"
+                class="lazy mx-2"
+              >
+            </ShareNetwork>
           </figure>
         </div>
       </div>
@@ -44,14 +43,24 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapGetters } from 'vuex';
   import { copyToClipboard } from '@/utils/copy-to-clipboard';
   import { nanoid } from 'nanoid';
 
   export default Vue.extend({
     name: 'es-pro-recommendations',
     data: () => ({
-      code: 'DGT54',
+      code: 'https://ease.ro/pro/',
     }),
+    computed: {
+      ...mapGetters({
+        getUser: 'session/getUser',
+      }),
+    },
+    created() {
+      const { id } = this.getUser;
+      this.code = `https://ease.ro/pro/${id}`;
+    },
     methods: {
       onCopy(): void {
         copyToClipboard(this.code);

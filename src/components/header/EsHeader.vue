@@ -74,6 +74,7 @@
             <li
               v-for="link in navLinks"
               :key="link.id"
+              class="open_close"
             >
               <router-link
                 :to="link.to"
@@ -90,6 +91,7 @@
       v-model="isLoginModalOpen"
       :modal-type="modalType"
       :type="userType"
+      @on-type-change="onTypeChange"
       @show-validate-phone-modal="isValidatePhoneModalOpen = true"
       @show-forgot-password-modal="isForgotPasswordModalOpen = true"
     />
@@ -108,6 +110,7 @@
     <es-forgot-password-modal
       v-if="isForgotPasswordModalOpen"
       v-model="isForgotPasswordModalOpen"
+      :type="userType"
       @show-reset-password-modal="isResetPasswordModalOpen = true"
     />
     <es-reset-password-modal v-if="isResetPasswordModalOpen" v-model="isResetPasswordModalOpen" />
@@ -187,6 +190,11 @@
         this.isPro = this.$router.currentRoute.path.includes('easepro');
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
       },
+      getUser(newVal) {
+        if (this.isAuthenticated && !newVal?.phone_number_confirmed) {
+          this.isValidatePhoneModalOpen = true;
+        }
+      },
     },
 
     created() {
@@ -225,9 +233,16 @@
         this.$router.push(to);
       },
 
+      onTypeChange(type: string): void {
+        this.userType = type;
+      },
+
       async onLogout(): Promise<void> {
         await this.logout();
         this.$router.push({ name: this.isPro ? 'ProHome' : 'Home' });
+        if (this.isValidatePhoneModalOpen) {
+          this.isValidatePhoneModalOpen = false;
+        }
       },
     },
   });

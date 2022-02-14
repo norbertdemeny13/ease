@@ -2473,6 +2473,11 @@ header.sticky .main-menu > ul > li:hover > a, header.header-in .main-menu > ul >
   }
 }
 @media only screen and (max-width: 991px) {
+  .layer-is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
   #header_menu {
     display: block;
     text-align: center;
@@ -2724,7 +2729,7 @@ ul#top_menu li a.login::before {
 
 /*-------- 1.5 Heros/Above the fold  --------*/
 .hero {
-  background: #fbe1e1 url(../assets/jpg/home-background.jpg) left top no-repeat;
+  background: #fbe1e1 url(../assets/svg/homepage.svg) left top no-repeat;
   background-size: cover;
   color: #fff;
   height: 620px;
@@ -2749,7 +2754,7 @@ ul#top_menu li a.login::before {
 }
 
 .hero.pro-hero {
-  background: #fff0f1 url(../assets/jpg/pro-home-background.jpg) right bottom no-repeat;
+  background: #F8FAFC url(../assets/jpg/pro-home-background.jpg) right bottom no-repeat;
   background-size: contain;
 
   .opacity-mask h1,
@@ -5139,11 +5144,6 @@ ul.additional_links li:after {
   visibility: hidden;
 }
 
-.layer-is-visible {
-  opacity: 1;
-  visibility: visible;
-}
-
 .rotate-x {
   animation-duration: .5s;
   animation-name: rotate-x;
@@ -5178,6 +5178,20 @@ ul.additional_links li:after {
 }
 .container_check input:checked ~ .checkmark {
   background-color: #d00078;
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+  -moz-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+  box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+}
+.container_check.pending input:checked ~ .checkmark {
+  background-color: #F0AD4E;
+  border: 2px solid transparent;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+  -moz-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+  box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
+}
+.container_check.accepted input:checked ~ .checkmark {
+  background-color: #00d478;
   border: 2px solid transparent;
   -webkit-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);
   -moz-box-shadow: 0px 0px 0px 2px rgba(208, 0, 108, 0.3);

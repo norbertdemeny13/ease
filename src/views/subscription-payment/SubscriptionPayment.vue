@@ -43,7 +43,7 @@
           </div>
         </div>
         <div v-else class="col-lg-6 col-md-6 p-8">
-          <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
+          <es-address-details />
           <es-payment-details>
             <div class="d-flex justify-content-center">
               <button
@@ -58,11 +58,6 @@
         </div>
       </div>
     </div>
-    <!-- /container -->
-    <es-address-modal
-      v-if="isAddressModalOpen"
-      v-model="isAddressModalOpen"
-    />
   </div>
 </template>
 
@@ -70,7 +65,6 @@
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { PaymentDetails } from '@/components/shared/payment';
-  import { AddressModal } from '@/components/shared/address-modal';
   import { AddressDetails } from '@/components/shared/address-details';
 
   export default Vue.extend({
@@ -78,7 +72,6 @@
 
     components: {
       'es-address-details': AddressDetails,
-      'es-address-modal': AddressModal,
       'es-payment-details': PaymentDetails,
     },
 
@@ -86,7 +79,6 @@
       showAddPayment: false,
       selectedCard: null,
       isSubscriptionActivated: false,
-      isAddressModalOpen: false,
       polling: 0,
     }),
 

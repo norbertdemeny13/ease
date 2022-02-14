@@ -19,7 +19,7 @@
           :key="item.id"
           class="d-flex justify-content-between align-items-center flex-inline"
         >
-          <span>{{ item.selectedCount }} x {{ item.name }}</span>
+          <span>{{ item.selectedCount }} x {{ $t(item.name) }}</span>
           <span>{{ item.selectedCount * parseInt(item.price, 10) }} Lei</span>
         </div>
       </div>

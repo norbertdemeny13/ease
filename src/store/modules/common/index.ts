@@ -6,6 +6,7 @@ import { api } from '@/services/api';
 import instance from '@/main';
 import { i18n } from '@/i18n';
 import { nanoid } from 'nanoid';
+import { store } from '@/store';
 
 const dispatchToast = (
   { title, message }: {
@@ -60,6 +61,15 @@ export default {
         });
       }
 
+      if (status === 401) {
+        const { errors } = reason?.data;
+        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+        if (errors === 'access_token_expired' && jwtToken) {
+          store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
+          return;
+        }
+      }
+
       const errors = data.errors ? data.errors : data.error;
 
       if (typeof errors === 'string') {
@@ -76,13 +86,13 @@ export default {
         const errorObject = [] as any;
 
         Object.keys(errors).forEach((item: any) => errorObject.push({
-          key: item,
+          key: i18n.t(item),
           detail: i18n.t(errors[item][0]),
         }));
 
         errorObject.forEach((item: any) => dispatchToast({
           title: 'Eroare',
-          message: `${item.key}: ${i18n.t(item.detail)}`,
+          message: `${item.key}: ${item.detail}`,
         }));
       }
     },

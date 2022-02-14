@@ -46,6 +46,7 @@
       v-if="isForgotPasswordModalOpen"
       v-model="isForgotPasswordModalOpen"
       :is-open="isForgotPasswordModalOpen"
+      type="client"
     />
     <es-reset-password-modal
       v-if="isResetPasswordModalOpen"

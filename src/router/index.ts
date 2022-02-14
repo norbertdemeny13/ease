@@ -125,8 +125,8 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/pro-dashboard').then(({ ProPhone }) => ProPhone),
       },
       {
-        path: 'recomandare',
-        name: 'Recomandare Pro',
+        path: 'promoveaza',
+        name: 'Promoveaza Pro',
         component: () => import('@/views/pro-dashboard').then(({ ProRecommendations }) => ProRecommendations),
       },
       {
@@ -140,6 +140,16 @@ const routes: Array<RouteConfig> = [
     path: '/servicii',
     name: 'Servicii',
     component: () => import('@/views/services').then(({ Services }) => Services),
+  },
+  {
+    path: '/elite/reset-password',
+    name: 'Reset Password',
+    component: () => import('@/views/reset-password').then(({ ResetPassword }) => ResetPassword),
+  },
+  {
+    path: '/user/reset-password',
+    name: 'Reset Password',
+    component: () => import('@/views/reset-password').then(({ ResetPassword }) => ResetPassword),
   },
   {
     path: '/abonamente',
@@ -254,7 +264,7 @@ export const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   let isAuthenticated = false;
 
-  const { params, path, name } = to;
+  const { params, path, query, name } = to;
   const { type, id } = params;
   const isAuth = store.getters['session/isAuth'];
   const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
@@ -326,8 +336,9 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (isNew && !getSelectedServices.length) {
+    const { type, pro_id } = query;
     const newRoute = path.replace('/new', '');
-    next(newRoute);
+    next(`${newRoute}?type=${type ? type : 'couple'}${pro_id ? '&pro_id=' : ''}${pro_id ? pro_id : ''}`);
   }
 
   if (to.name === 'Rezerva' && !getSelectedServices.length) {

@@ -64,8 +64,15 @@
     methods: {
       ...mapActions({
         fetchServices: 'services/fetchServices',
+        setDefaultAddress: 'address/setDefaultAddress',
       }),
-      onAddressChange() {
+      onAddressChange(address) {
+        const cityId = address?.id;
+
+        if (cityId) {
+          this.setDefaultAddress(cityId);
+        }
+
         this.fetchServices();
       },
     },

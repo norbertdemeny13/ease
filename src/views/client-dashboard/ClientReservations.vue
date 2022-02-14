@@ -156,10 +156,10 @@
                   <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
                 </li>
                 <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
-                  <strong>{{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
+                  <strong>{{ complementaryService.count ? `${complementaryService.count} x` : '' }} {{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
                 </li>
                 <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-4">
-                  <strong>{{ $t(service.therapeuticForm.name) }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
+                  <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
                 </li>
               </template>
               <es-divider />
@@ -234,7 +234,7 @@
       },
       getAddress() {
         const { user_address } = this.selectedReservation;
-        return `${user_address.street_name}, ${user_address.street_number}, ${user_address.city.name}`;
+        return `${user_address.street_name}, ${user_address.street_number}, ${this.$t(user_address.city.name)}`;
       },
       getCancelationText() {
         const difference = getDifferenceInMinutes(this.selectedReservation?.start_time);
@@ -282,7 +282,7 @@
             price: item.price,
             id: item.id,
             complementaryServices: item.complementary_services
-              .map(complementaryItem => ({ name: complementaryItem.complementary_service.name, price: complementaryItem.price, id: complementaryItem.id })),
+              .map(complementaryItem => ({ name: complementaryItem.complementary_service.name, price: complementaryItem.price, id: complementaryItem.id, count: complementaryItem.count })),
           }));
           return formattedService;
         } else if (reservationType === 'CoupleMassageReservation') {

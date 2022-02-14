@@ -45,7 +45,7 @@
                 />
               </div>
               <div class="d-flex align-items-center">
-                <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : 'Momentan nu exista nicio recenzie.' }}</span>
+                <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span>
               </div>
               {{ getElite.last_booking }}
               <div class="d-flex justify-content-start">

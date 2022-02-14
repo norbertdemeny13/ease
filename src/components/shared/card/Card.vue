@@ -7,7 +7,7 @@
           :href="`#${id}`"
           aria-expanded="true"
           class="toggle"
-        ><i class="indicator icon_plus" />{{ title }}</a>
+        ><i class="indicator icon_plus" />{{ $t(title) }}</a>
       </h5>
     </div>
 

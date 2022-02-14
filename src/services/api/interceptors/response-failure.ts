@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { nanoid } from 'nanoid';
 import instance from '@/main';
+import { store } from '@/store';
 import { router } from '@/router';
 
 // eslint-disable

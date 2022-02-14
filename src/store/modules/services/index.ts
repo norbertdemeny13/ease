@@ -97,6 +97,8 @@ export default {
           elite_id: id,
         });
         Vue.set(state, 'reservationDetails', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -133,6 +135,8 @@ export default {
           reservation,
         });
         Vue.set(state, 'reservationDetails', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -164,6 +168,8 @@ export default {
             elite_id: id,
           });
           Vue.set(state, 'reservationDetails', data);
+        } catch ({ response: reason }) {
+          commit('common/setErrors', reason, { root: true });
         } finally {
           Vue.set(state, 'isFetching', false);
         }
@@ -178,6 +184,8 @@ export default {
         const { data } = await api.create(`/users/${serviceType}_reservations/${reservationId}/address`, {
           user_address_id: address.id,
         });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {};
     },
 
@@ -209,6 +217,8 @@ export default {
         const { data } = await api.find(`/users/${type}_reservations/${reservationId}/reservation_calendar?date=${booking_date}`);
         const newData = { ...state.reservationDetails, reservation_calendar: data.reservation_calendar };
         Vue.set(state, 'reservationDetails', newData);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -238,6 +248,8 @@ export default {
 
         const newData = { ...state.reservationDetails, ...data };
         Vue.set(state, 'reservationDetails', newData);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -259,8 +271,8 @@ export default {
         });
 
         Vue.set(state, 'reservationDetails', data);
-      } catch(reason) {
-        console.log(reason, 'reason');
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -278,6 +290,8 @@ export default {
         });
 
         Vue.set(state, 'reservationDetails', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -315,6 +329,8 @@ export default {
       try {
         const { data } = await api.find(endpoint);
         commit('setServices', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -323,11 +339,13 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.find('/all_service_categories');
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServicesByType({ state, commit }, { type, id }) {
+    async fetchServicesByType({ state, commit, dispatch }, { type, id }) {
       Vue.set(state, 'isFetching', true);
       const cityId = sessionStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services/${type}?city_id=${cityId}` : `/services/${type}`;
@@ -338,6 +356,8 @@ export default {
       try {
         const { data } = await api.find(endpoint);
         commit('setServicesByType', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -360,6 +380,8 @@ export default {
           },
         });
         commit('setServiceById', { ...data, category: type, uuid: id });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }
@@ -373,13 +395,8 @@ export default {
           promo_code: promoCode,
         });
         Vue.set(state, 'reservationDetails', data);
-      } catch(error) {
-        (instance as any).$toasts.toast({
-          id: nanoid(),
-          title: 'Atentie!',
-          message: 'Codul introdus nu este valid!',
-          intent: 'error',
-        });
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetching', false);
       }

@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // Plugins
 import { ToastPlugin } from '@/plugins/toast';
 
+import VueSocialSharing from 'vue-social-sharing'
+
 import 'jquery';
 import 'vanilla-lazyload';
 import './vendors/common_scripts.min';
@@ -61,6 +63,8 @@ Vue.use(Zendesk, {
     }
   }
 });
+
+Vue.use(VueSocialSharing);
 
 Vue.use(Portal);
 Vue.use(ToastPlugin);

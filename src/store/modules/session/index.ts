@@ -42,6 +42,8 @@ export default {
           ...data,
         };
         commit('setUser', newData);
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -58,7 +60,9 @@ export default {
           ...data,
         };
         commit('setUser', newData);
-      } finally {
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
@@ -77,7 +81,9 @@ export default {
           ...data,
         };
         commit('setUser', newData);
-      } finally {
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
@@ -94,11 +100,8 @@ export default {
           message: 'Parola a fost schimbata cu success!',
           intent: 'success',
         });
-      } catch(reason) {
-        const data = {
-          error: 'Te rugam sa introduci parola corecta',
-        };
-        commit('common/setErrors', { data }, { root: true });
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -111,7 +114,9 @@ export default {
           refresh_token: jwt.slice(2),
         });
         commit('setUser', data);
-      } finally {
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
@@ -122,12 +127,8 @@ export default {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
       } catch({ response: reason }) {
-        const { errors } = reason?.data;
-        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
-        if (errors === 'access_token_expired' && jwtToken) {
-          await dispatch('jwtLogin', localStorage.getItem('jwt'));
-        }
-      } finally {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
@@ -146,6 +147,8 @@ export default {
           message: 'Preferintele tale au fost salvate cu success!',
           intent: 'success',
         });
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -185,23 +188,33 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async forgotPassword({ state, commit }, email) {
+    async forgotPassword({ state, commit }, { email, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user/forgot_password', {
+        const { data } = await api.create(`/${type === 'client' ? 'user' : 'elite'}/forgot_password`, {
           email,
         });
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async resetPassword({ state, commit }, password) {
+    async resetPassword({ state, commit }, { password, token, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
-        const { data } = await api.create('/user/reset_password', {
+        const { data } = await api.create(`/${type}/reset_password`, {
           new_password: password,
-          token: state!.user!.access_token,
+          token,
         });
+        (instance as any).$toasts.toast({
+          id: nanoid(),
+          title: 'Felicitari!',
+          message: 'Parola a fost schimbata cu success!',
+          intent: 'success',
+        });
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
       }
