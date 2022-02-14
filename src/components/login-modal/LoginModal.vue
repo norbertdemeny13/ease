@@ -107,7 +107,7 @@
                         <span class="checkmark"></span>
                       </label>
                     </div>
-                    <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2">
+                    <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2 custom-marketing">
                       <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
                         <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
                         <span class="checkmark"></span>
