@@ -1,13 +1,11 @@
 {
-  "applinks": {
-    "apps": [],
-    "details": [
-      {
-        "appID": "928NJTW278.com.ease.ease-app",
-        "paths": [
-          "/user/reset_password/*"
-        ]
-      }
-    ]
-  }
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "928NJTW278.com.ease.ease-app",
+            "paths": [
+                "/reset-password/*"
+            ]
+        }]
+    }
 }
