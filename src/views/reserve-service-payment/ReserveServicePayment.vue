@@ -30,13 +30,13 @@
               <div v-if="!getCards.length" class="alert alert-danger" role="alert">
                 <span>{{ $t('generic.please_add_a_payment_method') }}</span>
               </div>
-              <div class="box_order">
+              <div class="">
                 <div class="main">
                   <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
                   <es-payment-details />
                 </div>
               </div>
-              <div class="box_order mt-4 mb-4">
+              <div class=" mt-4 mb-4">
                 <div class="main">
                   <es-subscription-selection @set-active-subscription="setActiveSubscription" />
                 </div>

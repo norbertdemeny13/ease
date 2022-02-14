@@ -4,7 +4,7 @@
       <router-link class="back-button mb-2" :to="getToRoute">{{ $t('generic.back') }}</router-link>
       <es-reserve-service-skeleton v-if="isFetching" />
       <div v-else class="row mt-4">
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-6 col-md-6 mb-4">
           <div class="box_order">
             <div class="head">
               <h3 class="text-center">{{ $t('calendar.title') }}</h3>
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 mt-4">
+        <div class="col-lg-6 col-md-6">
           <es-service-summary
             :date="selectedDate"
             :time="selectedTime"

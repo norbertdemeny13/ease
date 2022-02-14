@@ -33,7 +33,7 @@
             >
           </div>
         </div>
-        <div class="custom-container-info py-6">
+        <div class="custom-container-info pt-6">
           <div class="d-flex col-sm-12 col-lg-6 custom-image-padding">
             <img
               src="@/assets/jpg/faq.jpg"
