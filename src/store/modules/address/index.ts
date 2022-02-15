@@ -91,10 +91,11 @@ export default {
       }
     },
 
-    async setDefaultAddress({ state, commit }, id) {
+    async setDefaultAddress({ state, commit }, { id, cityId }) {
       Vue.set(state, 'isFetching', true);
       try {
         await api.create(`/users/addresses/${id}/set_default`);
+        sessionStorage.setItem('city_id', cityId);
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {

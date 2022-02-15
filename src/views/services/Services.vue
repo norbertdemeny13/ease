@@ -67,10 +67,11 @@
         setDefaultAddress: 'address/setDefaultAddress',
       }),
       onAddressChange(address) {
-        const cityId = address?.id;
+        const id = address?.id;
+        const cityId = address?.city?.id;
 
         if (cityId) {
-          this.setDefaultAddress(cityId);
+          this.setDefaultAddress({ id, cityId });
         }
 
         this.fetchServices();

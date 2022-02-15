@@ -168,11 +168,12 @@
       onAddressChange(address) {
         const { params, query } = this.$router.currentRoute;
         const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
-        const cityId = address?.id;
+        const id = address?.id;
+        const cityId = address?.city?.id;
         const endpoint = period ? `${this.serviceType}${period}` : this.serviceType;
 
         if (cityId) {
-          this.setDefaultAddress(cityId);
+          this.setDefaultAddress({ id, cityId });
         }
 
         this.fetchSubscriptionsByType(endpoint);

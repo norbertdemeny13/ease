@@ -162,7 +162,10 @@
 
       async onContinue() {
         if (this.method === 'select') {
-          await this.setDefaultAddress(this.selectedAddress.id);
+          await this.setDefaultAddress({
+            id: this.selectedAddress.id,
+            cityId: this.selectedAddress.city.id,
+          });
         }
 
         if (this.method === 'remove') {

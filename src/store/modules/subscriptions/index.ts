@@ -113,10 +113,17 @@ export default {
       }
     },
 
-    async fetchSubscriptions({ state, commit }) {
+    async fetchSubscriptions({ state, rootState, commit }) {
       Vue.set(state, 'isFetching', true);
+      const city_id = (rootState as any).address.location
+        ? (rootState as any).address.location.city_id
+        : sessionStorage.getItem('city_id');
       try {
-        const { data } = await api.find('/users/subscriptions');
+        const { data } = await api.find('/users/subscriptions', {
+          params: {
+            city_id,
+          }
+        });
         commit('setAllSubscriptions', data);
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
