@@ -213,6 +213,8 @@ export default {
           message: 'Parola a fost schimbata cu success!',
           intent: 'success',
         });
+        const path = router.currentRoute.fullPath.includes('user') ? '/' : '/easepro/';
+        router.push(path);
       } catch({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {
