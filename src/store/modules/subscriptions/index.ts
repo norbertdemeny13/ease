@@ -35,10 +35,8 @@ export default {
     resetSelectedSubscription({ state, commit }) {
       Vue.set(state, 'selectedSubscription', null);
     },
-    async fetchSubscriptionsByType({ state, rootState, commit }, type) {
-      const city_id = (rootState as any).address.location
-        ? (rootState as any).address.location.city_id
-        : sessionStorage.getItem('city_id');
+    async fetchSubscriptionsByType({ state, commit }, type) {
+      const city_id = sessionStorage.getItem('city_id');
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find(`/users/subscriptions/${type}`, {
@@ -54,9 +52,7 @@ export default {
       }
     },
     async activateSubscription({ state, rootState, commit }) {
-      const city_id = (rootState as any).address.location
-        ? (rootState as any).address.location.city_id
-        : sessionStorage.getItem('city_id');
+      const city_id = sessionStorage.getItem('city_id');
       const subscriptionId = (rootState as any).subscriptions.selectedSubscription.id;
       Vue.set(state, 'isFetching', true);
       try {

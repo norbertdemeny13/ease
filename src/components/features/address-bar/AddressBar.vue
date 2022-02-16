@@ -133,6 +133,7 @@
       },
       isAuthenticated(newVal, oldVal) {
         if (newVal && newVal !== oldVal) {
+          this.fetchAddresses();
           const mainAddress = this.getAddresses.find(({ main }: { main: boolean}) => main);
           this.selectedAddress = mainAddress?.id || 0;
         }

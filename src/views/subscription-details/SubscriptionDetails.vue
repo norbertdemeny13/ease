@@ -5,7 +5,7 @@
       <div class="main_title center">
         <h2 v-if="!fetchedSubscription">{{ $t('views.subscriptions.choose') }}</h2>
       </div>
-      <es-address-bar @on-address-change="onAddressChange" :disabled="disabledAddress" />
+      <es-address-bar :disabled="disabledAddress" @on-address-change="onAddressChange" />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
       <div v-else :class="`row es_subscriptions-list-container ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
@@ -165,7 +165,7 @@
       setValue(key, value) {
         this.$data[key] = value;
       },
-      onAddressChange(address) {
+      async onAddressChange(address) {
         const { params, query } = this.$router.currentRoute;
         const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
         const id = address?.id;
@@ -173,10 +173,10 @@
         const endpoint = period ? `${this.serviceType}${period}` : this.serviceType;
 
         if (cityId) {
-          this.setDefaultAddress({ id, cityId });
+          await this.setDefaultAddress({ id, cityId });
         }
 
-        this.fetchSubscriptionsByType(endpoint);
+        await this.fetchSubscriptionsByType(endpoint);
       },
     },
   });
