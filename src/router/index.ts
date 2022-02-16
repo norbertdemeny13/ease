@@ -110,8 +110,8 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/pro-dashboard').then(({ ProPassword }) => ProPassword),
       },
       {
-        path: 'calificari',
-        name: 'Calificari Pro',
+        path: 'servicii',
+        name: 'Servicii Pro',
         component: () => import('@/views/pro-dashboard').then(({ ProServices }) => ProServices),
       },
       {

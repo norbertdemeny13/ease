@@ -12,7 +12,7 @@
     </div>
 
     <div :id="id" class="collapse" role="tabpanel" data-parent="#accordion_services">
-      <div class="card-body">
+      <div class="card-body row">
         <slot />
       </div>
     </div>

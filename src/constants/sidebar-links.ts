@@ -20,7 +20,7 @@ export const PRO_SIDEBAR_LINKS = [
   { label: i18n.t('generic.password').toString(), to: 'parola', role: 'pro' },
   { label: i18n.t('generic.phone').toString(), to: 'telefon', role: 'pro' },
   { label: i18n.t('generic.address').toString(), to: 'adrese', role: 'pro' },
-  { label: i18n.t('generic.califications').toString(), to: 'calificari', role: 'pro' },
+  { label: i18n.t('generic.services').toString(), to: 'servicii', role: 'pro' },
   { label: i18n.t('generic.documents').toString(), to: 'documente', role: 'pro' },
   { label: i18n.t('generic.promote').toString(), to: 'promoveaza', role: 'pro' },
 ];
