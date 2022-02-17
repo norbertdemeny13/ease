@@ -90,7 +90,7 @@
 
     computed: {
       ...mapGetters({
-        getServices: 'services/getServices',
+        getServices: 'services/getProServices',
         getUser: 'session/getUser',
       }),
 
@@ -123,7 +123,7 @@
 
     methods: {
       ...mapActions({
-        fetchServices: 'services/fetchServices',
+        fetchServices: 'services/fetchProServices',
         updateElite: 'session/updateElite',
         fetchUser: 'session/getUser',
       }),

@@ -17,6 +17,7 @@ export interface State extends ModuleState {
   reservationDetails: ReservationDetails | null;
   serviceCategory: string;
   services: Service[];
+  proServices: Service[];
   selectedServices: Service[];
   servicesByType: Service[];
   selectedDate: any;
@@ -53,6 +54,7 @@ export default {
     reservationDetails: null,
     serviceCategory: '',
     services: [],
+    proServices: [],
     selectedServices: [],
     servicesByType: [],
     serviceById: [],
@@ -335,6 +337,17 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchProServices({ state, commit }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find('/services_pro');
+        commit('setProServices', data);
+      } catch ({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async fetchAllServices({ state, commit }, id) {
       Vue.set(state, 'isFetching', true);
       try {
@@ -421,6 +434,7 @@ export default {
     getSelectedServices: state => state.selectedServices,
     getSelectedTime: state => state.selectedTime,
     getServices: state => state.services,
+    getProServices: state => state.proServices,
     getServicesByType: state => state.servicesByType,
     getServiceById: state => state.serviceById,
     isFetching: state => state.isFetching,
@@ -494,6 +508,9 @@ export default {
     },
     setServices(state: State, data: any) {
       Vue.set(state, 'services', data);
+    },
+    setProServices(state: State, data: any) {
+      Vue.set(state, 'proServices', data);
     },
     setServicesByType(state: State, data: any) {
       Vue.set(state, 'servicesByType', data);
