@@ -5,7 +5,7 @@
         ref="search"
         v-model="location"
         :placeholder="$t('generic.enter_location')"
-        class="form-control no_border_r pr-4 text-center"
+        class="form-control no_border_r pr-4"
         type="text"
       >
       <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>

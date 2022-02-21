@@ -164,8 +164,8 @@ section {
 
 body {
     background-color: #ffffff;
-    color: #3b444f;
-    font-family: "SofiaProRegular", helvetica, arial, sans-serif !important;
+    color: #444;
+    font-family: "SofiaProRegular", helvetica, arial, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -195,6 +195,7 @@ h6 {
 }
 
 p {
+    font-size: 1rem;
     margin-bottom: 1rem;
     margin-top: 0;
     font-family: SofiaProRegular !important;
@@ -506,7 +507,7 @@ h1,
 
 h2,
 .h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 h3,
@@ -7395,7 +7396,7 @@ fieldset:disabled a.btn {
 .btn-sm,
 .btn-group-sm>.btn {
     padding: 0.625rem 1.125rem;
-    font-size: 0.875rem;
+    font-size: 16px;
     line-height: 1.5;
     border-radius: 0.25rem;
 }
@@ -8702,9 +8703,9 @@ Letter Spacing
 }
 
 .alert-primary {
-    color: #154061;
-    background-color: #d4e5f1;
-    border-color: #c3daec;
+    color: #FFFFFF;
+    background-color: #70d7b7;
+    border-color: #70d7b7;
 }
 
 .alert-primary hr {

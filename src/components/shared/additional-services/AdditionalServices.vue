@@ -1,6 +1,6 @@
 <template>
   <div class="es_additional-services-container">
-    <h4 class="my-4">{{ $t('generic.add') }}</h4>
+    <h3 class="my-4">{{ $t('generic.add') }}</h3>
     <div
       v-for="service in services"
       :key="service.uuid"

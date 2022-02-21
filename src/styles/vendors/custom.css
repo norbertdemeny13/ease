@@ -63,7 +63,7 @@
 .why-us-container .box_how img,
 .companies-container .box_how img {
     width: auto;
-    height: 100px;
+    height: 80px;
 }
 
 .more-details div {
@@ -84,6 +84,11 @@
 .more-details img {
     height: 100%;
     width: 100%;
+}
+
+.more-details p img {
+    width: 10px;
+    height: 20px;
 }
 
 .more-details .reverse-order {
@@ -259,16 +264,10 @@
     }
 }
 
-.es_reserve-service-container {
-    strong {
-        font-weight: 600;
-    }
-}
-
 .es_reserve-service-container .hour-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
 }
 
 .es_reserve-service-container .hour-item {
@@ -334,7 +333,8 @@
 
 .extra-services-container img {
     width: 100%;
-    height: 100%;
+    height: 150px;
+    object-fit: contain;
     margin-bottom: 10px;
 }
 
@@ -445,6 +445,11 @@
     }
 }
 
+.address-search-container .alert {
+    margin-top: 16px;
+    padding: 10px 20px;
+}
+
 @media (min-width: 767px) {
     .more-details .custom-container-info .custom-text {
         width: 80%;
@@ -499,7 +504,12 @@
         flex-direction: row;
     }
     .extra-services-container img {
-        width: 30%;
+        width: 16%;
+        height: 100%;
+        margin-top: 3px;
+        margin-bottom: 0;
+    }
+    .extra-services-container h5 {
         margin-bottom: 0;
     }
     .extra-services-container .custom-text {
@@ -545,13 +555,8 @@
         margin-right: auto;
     }
     .more-details .reverse-order.custom-text {
-        text-align: right;
-        margin-left: auto;
+        text-align: left;
         margin-right: 10%;
-    }
-    .more-details .reverse-order.custom-text a {
-        margin-left: auto;
-        margin-right: 0;
     }
 }
 
@@ -559,40 +564,7 @@
     .more-details .custom-container-info .custom-text h3 {
         font-size: 60px;
     }
-    .extra-services-container img {
-        width: 20%;
-    }
 }
-
-
-/*
-@media (min-width: 1150px) {
-    .more-details img {
-        height: auto;
-        width: 580px;
-    }
-}
-
-@media (min-width: 1366px) {
-    .more-details img {
-        height: auto;
-        width: 700px;
-    }
-}
-
-@media (min-width: 1480px) {
-    .more-details img {
-        height: auto;
-        width: 750px;
-    }
-}
-
-@media (min-width: 1800px) {
-    .more-details img {
-        height: auto;
-        width: 800px;
-    }
-} */
 
 .router-link-exact-active {
     color: #d00078 !important;

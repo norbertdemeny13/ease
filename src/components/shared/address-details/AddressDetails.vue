@@ -1,6 +1,6 @@
 <template>
   <div class="es-payment-container">
-        <h5>{{ $t('generic.address') }}</h5>
+    <h5>{{ $t('generic.address') }}</h5>
     <div v-if="getLocalAddresses.length">
       <div class="row mb-4">
         <div class="col-6">

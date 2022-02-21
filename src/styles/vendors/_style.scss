@@ -2062,14 +2062,6 @@ html * {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-    background: #fff;
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-family: "Poppins", Helvetica, sans-serif;
-    color: #444;
-}
-
 h1,
 h2,
 h3,
@@ -2354,8 +2346,7 @@ header.sticky a.open_close:hover,
 .main-menu>ul>li>a {
     color: #fff;
     padding: 0 8px 10px 8px;
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -2811,11 +2802,11 @@ ul#top_menu li a.login::before {
 
 /*-------- 1.5 Heros/Above the fold  --------*/
 
+/*-------- 1.5 Heros/Above the fold  --------*/
 .hero {
-    background: #fbe1e1 url(../assets/jpg/home-background.jpg) left top no-repeat;
+    background: #fbe1e1 url(../assets/svg/homepage.svg) left top no-repeat;
     background-size: cover;
     background-position: center center;
-    color: #fff;
     height: 620px;
     width: 100%;
     position: relative;
@@ -2828,19 +2819,23 @@ ul#top_menu li a.login::before {
     justify-content: center;
 }
 
-.hero .opacity-mask h1,
-.hero .opacity-mask h3 {
-    color: #fff;
+.hero .opacity-mask h1{
+    color: #000000;
     line-height: 1;
     font-size: 42px;
-    font-size: 2.625rem;
     margin: 0;
     font-weight: 500;
 }
 
+.hero.inner_pages,
+.hero.inner_pages .opacity-mask h1 {
+    color: #FFFFFF;
+}
+
 .hero.pro-hero {
-    background: #fff0f1 url(../assets/jpg/pro-home-background.jpg) right bottom no-repeat;
+    background: #F8FAFC url(../assets/jpg/pro-home-background.jpg) right bottom no-repeat;
     background-size: contain;
+
     .opacity-mask h1,
     .opacity-mask h3,
     .opacity-mask p {
@@ -2851,21 +2846,18 @@ ul#top_menu li a.login::before {
 @media (max-width: 767px) {
     .hero .opacity-mask h1,
     .hero .opacity-mask h3 {
-        font-size: 36px;
-        font-size: 2.25rem;
+        font-size: 28px;
     }
 }
 
 .hero .opacity-mask p {
-    font-size: 28px;
-    font-size: 1.75rem;
+    font-size: 24px;
     font-weight: 300;
 }
 
 @media (max-width: 767px) {
     .hero .opacity-mask p {
         font-size: 21px;
-        font-size: 1.3125rem;
     }
 }
 
@@ -2954,8 +2946,7 @@ ul#top_menu li a.login::before {
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    font-size: 15px;
-    font-size: 0.9375rem;
+    font-size: 16px;
 }
 
 .custom-search-input input.no_border_r {
@@ -2980,6 +2971,20 @@ ul#top_menu li a.login::before {
 
 .custom-search-input input:focus {
     box-shadow: none;
+}
+
+.custom-search-input input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+.custom-search-input input:focus:-moz-placeholder {
+    color: transparent;
+}
+.custom-search-input input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+.custom-search-input input:focus:-ms-input-placeholder {
+    color: transparent;
 }
 
 @media (max-width: 991px) {
@@ -3400,15 +3405,16 @@ ul#top_menu li a.login::before {
     opacity: 1 !important;
     visibility: visible !important;
   }
-
-  #header_menu a {
-    color: #FFFFFF;
-    img {
-        height: 28px;
-        width: auto;
-    }
 }
 
+  #header_menu a {
+      color: #FFFFFF;
+
+      img {
+          height: 28px;
+          width: auto;
+      }
+  }
 
 .dropdown-cart .dropdown-menu .total_drop strong,
 .dropdown.user .dropdown-menu .total_drop strong {
@@ -3551,7 +3557,6 @@ header.black_nav .dropdown.user>a {
     color: #333 !important;
 }
 
-
 /*-------- 1.6 Drop down user logged --------*/
 
 .dropdown.user {
@@ -3562,7 +3567,7 @@ header.black_nav .dropdown.user>a {
 
 .dropdown.user>a {
     float: left;
-    padding: 7px 0 7px 40px !important;
+    padding: 13px 0 7px 40px !important;
     line-height: 1;
     color: #fff;
     font-weight: 500;
@@ -3590,7 +3595,7 @@ header.black_nav .dropdown.user>a {
     overflow: hidden;
     position: absolute;
     left: 0;
-    top: -4px;
+    top: 0;
     display: inline-block;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -3617,27 +3622,18 @@ header.black_nav .dropdown.user>a {
 }
 
 .dropdown.user>a:after {
-    font-family: 'ElegantIcons';
-    content: '\33';
+    font-family: ElegantIcons;
+    content: "3";
     font-size: 18px;
     font-size: 1.125rem;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    transition: all .3s ease-in-out;
     position: relative;
     top: 0;
-    left: 0;
-    bottom: 0;
-    width: 55%;
-    height: 100%;
-    position: fixed;
-    z-index: 999;
-    background-color: #fff;
-    -webkit-transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    -moz-transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    margin: 0;
+    line-height: 1;
+    margin-top: -2px;
+    margin-left: 5px;
+    float: right;
   }
 
   .main-menu.show {
@@ -3653,7 +3649,7 @@ header.black_nav .dropdown.user>a {
     display: block;
     visibility: visible;
   }
-}
+
 @media only screen and (max-width: 480px) {
   .main-menu {
     width: 100%;
@@ -3674,6 +3670,14 @@ ul#top_menu {
     right: 15px;
     float: none;
     margin: -2px 0 0 10px;
+  }
+
+  .dropdown.user>a {
+      padding: 7px 0 7px 40px !important;
+  }
+
+  .dropdown.user>a figure {
+      top: -4px;
   }
 }
 ul#top_menu li {
@@ -3782,43 +3786,6 @@ ul#top_menu li a.login::before {
   content: '\0042';
 }
 
-/*-------- 1.5 Heros/Above the fold  --------*/
-.hero {
-  background: #fbe1e1 url(../assets/svg/homepage.svg) left top no-repeat;
-  background-size: cover;
-  color: #fff;
-  height: 620px;
-  width: 100%;
-  position: relative;
-  margin: 0;
-}
-
-.hero .opacity-mask {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero .opacity-mask h1,
-.hero .opacity-mask h3 {
-  color: #fff;
-  line-height: 1;
-  font-size: 42px;
-  font-size: 2.625rem;
-  margin: 0;
-  font-weight: 600;
-}
-
-.hero.pro-hero {
-  background: #F8FAFC url(../assets/jpg/pro-home-background.jpg) right bottom no-repeat;
-  background-size: contain;
-
-  .opacity-mask h1,
-  .opacity-mask h3,
-  .opacity-mask p {
-    color: #000;
-  }
-}
-
 @media (max-width: 767px) {
     .dropdown.user>a:after {
         display: none;
@@ -3890,9 +3857,7 @@ header.black_nav .dropdown.user a:hover {
         top: 6px;
         right: 10px;
     }
-}
 
-@media (max-width: 991px) {
     .header-in ul#top_menu.drop_user {
         right: 0;
     }
@@ -3984,20 +3949,17 @@ header.black_nav .dropdown.user a:hover {
 
 .main_title.center h2 {
     max-width: inherit;
-    font-size: 34px;
-    font-size: 2.125rem;
+    font-size: 36px;
 }
 
 @media (max-width: 767px) {
     .main_title.center h2 {
         font-size: 28px;
-        font-size: 1.75rem;
     }
 }
 
 .main_title.center p {
-    font-size: 21px;
-    font-size: 1.3125rem;
+    font-size: 24px;
     font-weight: 300;
     max-width: inherit;
 }
@@ -5083,8 +5045,7 @@ a.btn_1,
     color: #fff;
     font-weight: 500;
     text-align: center;
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 16px;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -5273,7 +5234,7 @@ a.btn_1.gradient.nice-select.open::before,
 }
 
 footer {
-    background-color: #f6f1d3;
+    background-color: #70d7b7;
     padding: 65px 0 0 0;
     position: relative;
 }
@@ -5292,6 +5253,10 @@ footer.is-pro {
 footer hr {
     border-color: rgba(0, 0, 0, 0.05);
     margin-top: 5px;
+}
+
+footer .text-secondary {
+    color: #FFFFFF;
 }
 
 @media (max-width: 767px) {
@@ -5343,9 +5308,9 @@ footer .contacts ul li i {
 }
 
 footer h3 {
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 16px;
     margin-bottom: 15px;
+    color: #FFFFFF;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -5397,9 +5362,13 @@ footer .links ul li {
 
 footer .links ul li a {
     position: relative;
-    color: #333;
+    color: #FFFFFF;
     opacity: 1;
     display: inline-block;
+}
+
+footer .links ul li span {
+    color: #FFFFFF;
 }
 
 footer.is-pro .links ul li a {
@@ -5619,7 +5588,7 @@ ul.additional_links li span {
 }
 
 ul.additional_links li a {
-    color: #444;
+    color: #FFFFFF;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -7193,8 +7162,7 @@ a.box_topic.submit h3,
 }
 
 .box_about p {
-    font-size: 15px;
-    font-size: 0.9375rem;
+    font-size: 16px;
     color: #777;
     line-height: 1.6;
 }
@@ -7516,5 +7484,11 @@ ul.plan-features {
 .reservation-list-item {
     h6 {
         width: 200px;
+    }
+}
+
+.promo-code-container {
+    input {
+        width: 47%;
     }
 }

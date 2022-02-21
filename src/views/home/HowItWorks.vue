@@ -18,7 +18,7 @@
                 class="lazy"
               >
             </figure>
-            <h3 class="text-center">{{ $t('views.home.hit_card1_title') }}</h3>
+            <h2 class="text-center">{{ $t('views.home.hit_card1_title') }}</h2>
             <p  class="text-center">{{ $t('views.home.hit_card1_description') }}</p>
           </div>
         </div>
@@ -34,7 +34,7 @@
                 class="lazy"
               >
             </figure>
-            <h3 class="text-center">{{ $t('views.home.hit_card2_title') }}</h3>
+            <h2 class="text-center">{{ $t('views.home.hit_card2_title') }}</h2>
             <p class="text-center">{{ $t('views.home.hit_card2_description') }}</p>
           </div>
         </div>
@@ -50,7 +50,7 @@
                 class="lazy"
               >
             </figure>
-            <h3 class="text-center">{{ $t('views.home.hit_card3_title') }}</h3>
+            <h2 class="text-center">{{ $t('views.home.hit_card3_title') }}</h2>
             <p class="text-center">{{ $t('views.home.hit_card3_description') }}</p>
           </div>
         </div>

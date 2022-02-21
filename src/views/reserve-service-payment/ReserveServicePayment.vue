@@ -5,6 +5,9 @@
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="box_order">
+            <div class="head">
+              <h3>Plata si Adresa</h3>
+            </div>
             <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center main">
               <div class="title d-flex flex-column align-items-center">
                 <figure>
@@ -36,11 +39,14 @@
                   <es-payment-details />
                 </div>
               </div>
-              <div class=" mt-4 mb-4">
-                <div class="main">
-                  <es-subscription-selection @set-active-subscription="setActiveSubscription" />
-                </div>
-              </div>
+            </div>
+          </div>
+          <div class="mt-4 mb-4 box_order">
+            <div class="head">
+              <h3>Abonamente</h3>
+            </div>
+            <div class="main">
+              <es-subscription-selection @set-active-subscription="setActiveSubscription" />
             </div>
           </div>
         </div>
