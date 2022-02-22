@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-favourite-container content">
-    <h4>{{ $t('generic.saved_elites') }}</h4>
+    <h2>{{ $t('generic.saved_elites') }}</h2>
     <div v-if="getEliteFavorites.length" class="row">
       <div
         v-for="(item, i) in getEliteFavorites"

@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-account-container content">
-    <h4>{{ $t('views.pro_dashboard.profile') }}</h4>
+    <h2>{{ $t('views.pro_dashboard.profile') }}</h2>
     <div class="row">
       <div class="col-md-8">
         <div class="d-flex align-items-center">

@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-addresses-container content">
-    <h4>{{ $t('generic.address') }}</h4>
+    <h2>{{ $t('generic.address') }}</h2>
     <div class="row">
       <div class="col-md-8">
         <div
@@ -33,7 +33,7 @@
             </a>
           </div>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="isAddressModalOpen = true"

@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-password-container content">
-    <h4>{{ $t('generic.change_password') }}</h4>
+    <h2>{{ $t('generic.change_password') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
@@ -27,18 +27,18 @@
           <span v-if="oldPassType === 'password'" class="show-password-btn" @click.prevent="oldPassType = 'text'">{{ $t('generic.show') }}</span>
           <span v-if="oldPassType === 'text'" class="show-password-btn" @click.prevent="oldPassType = 'password'">{{ $t('generic.hide') }}</span>
         </div>
-        <div class="d-flex justify-content-end">
-          <div class="d-flex align-items-center mr-4">
-            <a href="" @click.prevent="isForgotPasswordModalOpen = true">
-              {{ $t('generic.forgot_password') }}
-            </a>
-          </div>
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"
           >
             {{ $t('generic.save') }}
           </button>
+          <div class="d-flex btn btn-pill btn-secondary-account align-items-center ml-4 my-4">
+            <a href="" @click.prevent="isForgotPasswordModalOpen = true">
+              {{ $t('generic.forgot_password') }}
+            </a>
+          </div>
         </div>
       </div>
     </div>

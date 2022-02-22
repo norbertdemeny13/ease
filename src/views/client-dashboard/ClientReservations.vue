@@ -1,8 +1,8 @@
 <template>
   <div class="es_client-reservations-container content">
     <div class="row">
-      <div class="col-md-12 col-sm-6">
-        <h4>{{ $t('generic.my_reservations') }}</h4>
+      <div class="col-md-8 col-sm-6">
+        <h2>{{ $t('generic.my_reservations') }}</h2>
         <es-divider />
         <div v-if="isListView">
           <ul id="pricing-tab" class="nav nav-pills pricing-tab mb-4" role="tablist">
@@ -95,7 +95,7 @@
               <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $t('generic.previous') }}</h4>
             </div>
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-start">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click.prevent="$router.push('/servicii')"

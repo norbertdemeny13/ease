@@ -2,7 +2,7 @@
   <div class="es_client-credits-container content">
     <div class="row">
       <div class="col-md-10 col-lg-8 col-xl-6">
-        <h4>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
+        <h2>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h2>
         <es-divider />
         <h6>{{ $t('views.client_dashboard.ease_credit.description') }}</h6>
         <div class="d-flex flex-wrap justify-content-start align-items-center">

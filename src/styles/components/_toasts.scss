@@ -49,24 +49,24 @@
 
 $es-toast-intent: (
   "info": (
-    "accent-color": get-color("primary", 500),
-    "icon-color": get-color("primary", 500),
-    "icon-border-color": get-color("primary", 300),
+    "accent-color": #70d7b7,
+    "icon-color": #70d7b7,
+    "icon-border-color": #70d7b7,
   ),
   "error": (
-    "accent-color": get-color("error", 500),
-    "icon-color": get-color("error", 500),
-    "icon-border-color": get-color("error", 300),
+    "accent-color": #d00078,
+    "icon-color": #d00078,
+    "icon-border-color": #d00078,
   ),
   "success": (
-    "accent-color": get-color("success", 500),
-    "icon-color": get-color("success", 500),
-    "icon-border-color": get-color("success", 300),
+    "accent-color": #70d7b7,
+    "icon-color": #70d7b7,
+    "icon-border-color": #70d7b7,
   ),
   "warning": (
-    "accent-color": get-color("warning", 500),
-    "icon-color": get-color("warning", 500),
-    "icon-border-color": get-color("warning", 300),
+    "accent-color": #d00078,
+    "icon-color": #d00078,
+    "icon-border-color": #d00078,
   ),
 );
 

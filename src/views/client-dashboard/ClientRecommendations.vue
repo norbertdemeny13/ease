@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-recommendations-container content">
-    <h4>{{ $t('generic.recommend') }}</h4>
+    <h2>{{ $t('generic.recommend') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">

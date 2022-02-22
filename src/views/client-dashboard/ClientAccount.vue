@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-account-container content">
-    <h4>{{ $t('generic.account') }}</h4>
+    <h2>{{ $t('generic.account') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
@@ -57,7 +57,7 @@
             </label>
           </div>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave()"

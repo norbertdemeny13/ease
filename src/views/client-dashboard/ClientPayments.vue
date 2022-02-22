@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-payments-container content">
-    <h4>{{ $t('generic.cards') }}</h4>
+    <h2>{{ $t('generic.cards') }}</h2>
     <div class="row">
       <div class="col-md-8">
         <div v-if="getCards.length">
@@ -26,7 +26,7 @@
         <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
           <h4>{{ $t('views.client_dashboard.payment_methods.description') }}</h4>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="addPayment()"

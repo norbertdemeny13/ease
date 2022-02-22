@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-recommendations-container content">
-    <h4>{{ $t('generic.promote') }}</h4>
+    <h2>{{ $t('generic.promote') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">

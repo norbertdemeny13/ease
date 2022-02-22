@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-account-container content">
-    <h4>{{ $t('views.pro_dashboard.profile') }}</h4>
+    <h2>{{ $t('views.pro_dashboard.profile') }}</h2>
     <div class="row">
       <div class="col-md-8">
         <div class="d-flex align-items-center">
@@ -42,211 +42,223 @@
     </div>
     <es-divider />
     <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('generic.first_name') }}</label>
-          <input
-            v-model="user.first_name"
-            type="text"
-            class="form-control"
-            name="name"
-          >
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('generic.display_name') }}</label>
+              <input
+                v-model="user.display_name"
+                type="text"
+                class="form-control"
+                name="displayName"
+              >
+            </div>
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.years_of_experience') }}</label>
+              <es-datepicker
+                :options="{
+                  maxDate: 'today',
+                }"
+              >
+                <input
+                  id="datepicker-default"
+                  v-model="user.started_working_at"
+                  class="datepicker-input"
+                  name="datepicker-default"
+                  type="text"
+                  size="md"
+                  placeholder="Alege o data"
+                >
+              </es-datepicker>
+            </div>
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.spoken_languages') }}</label>
+              <input
+                v-model="user.languages"
+                type="text"
+                class="form-control"
+                name="languages"
+              >
+            </div>
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.bio') }}</label>
+              <textarea
+                v-model="user.bio"
+                class="form-control"
+                :placeholder="
+                  $t('views.pro_dashboard.bio_placeholder')"
+                name="bio"
+              />
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>{{ $t('generic.display_name') }}</label>
-          <input
-            v-model="user.display_name"
-            type="text"
-            class="form-control"
-            name="displayName"
-          >
+        <div v-if="!getUser.heard_from" class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.how_did_you_find_out_about_ease') }}</label>
+              <div class="radio_c_group d-flex flex-column">
+                <label
+                  v-for="option in heardFromUs"
+                  :key="option.value"
+                  class="container_radio"
+                  @click="user.heard_from = option.value"
+                >{{ option.label }}
+                  <input type="radio" value="checkbox" name="type" :checked="option.value === user.heard_from ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>{{ $t('generic.name') }}</label>
-          <input
-            v-model="user.last_name"
-            class="form-control"
-            type="text"
-            name="lastName"
-          >
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label required>{{ $t('views.pro_dashboard.gender') }}</label>
+              <div class="radio_c_group d-flex flex-column">
+                <label
+                  class="container_radio"
+                  @click="user.gender = 'male'"
+                >{{ $t('gender_male') }}
+                  <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'male' ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <div class="radio_c_group d-flex flex-column">
+                <label
+                  class="container_radio"
+                  @click="user.gender = 'female'"
+                >{{ $t('gender_female') }}
+                  <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'female' ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>{{ $t('generic.email_address') }}</label>
-          <input
-            v-model="user.email"
-            class="form-control"
-            disabled
-            type="text"
-            name="email"
-          >
-        </div>
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.years_of_experience') }}</label>
-          <es-datepicker
-            :options="{
-              maxDate: 'today',
-            }"
-          >
-            <input
-              id="datepicker-default"
-              v-model="user.started_working_at"
-              class="datepicker-input"
-              name="datepicker-default"
-              type="text"
-              size="md"
-              placeholder="Alege o data"
-            >
-          </es-datepicker>
-        </div>
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.spoken_languages') }}</label>
-          <input
-            v-model="user.languages"
-            type="text"
-            class="form-control"
-            name="languages"
-          >
-        </div>
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.bio') }}</label>
-          <textarea
-            v-model="user.bio"
-            class="form-control"
-            :placeholder="
-              $t('views.pro_dashboard.bio_placeholder')"
-            name="bio"
-          />
-        </div>
-      </div>
-    </div>
-    <div v-if="!getUser.heard_from" class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.how_did_you_find_out_about_ease') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              v-for="option in heardFromUs"
-              :key="option.value"
-              class="container_radio"
-              @click="user.heard_from = option.value"
-            >{{ option.label }}
-              <input type="radio" value="checkbox" name="type" :checked="option.value === user.heard_from ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label required>{{ $t('views.pro_dashboard.active_city') }}</label>
+              <div class="radio_c_group d-flex flex-column">
+                <label
+                  class="container_radio"
+                  @click="user.working_city_id = 2"
+                >{{ $t('city.bucuresti') }}
+                  <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 2 ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <div class="radio_c_group d-flex flex-column">
+                <label
+                  class="container_radio"
+                  @click="user.working_city_id = 1"
+                >{{ $t('city.cluj_napoca') }}
+                  <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 1 ? 'checked' : ''">
+                  <span class="checkmark" />
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.gender') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.gender = 'male'"
-            >{{ $t('gender_male') }}
-              <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'male' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('generic.first_name') }}</label>
+              <input
+                v-model="user.first_name"
+                type="text"
+                class="form-control"
+                name="name"
+              >
+            </div>
           </div>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.gender = 'female'"
-            >{{ $t('gender_female') }}
-              <input type="radio" value="checkbox" name="gender" :checked="user.gender === 'female' ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('generic.name') }}</label>
+              <input
+                v-model="user.last_name"
+                class="form-control"
+                type="text"
+                name="lastName"
+              >
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('generic.email_address') }}</label>
+              <input
+                v-model="user.email"
+                class="form-control"
+                disabled
+                type="text"
+                name="email"
+              >
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.company_name') }}</label>
+              <input
+                v-model="user.company_name"
+                type="text"
+                class="form-control"
+                name="company_name"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.cif_number') }}</label>
+              <input
+                v-model="user.cif_number"
+                type="text"
+                class="form-control"
+                name="cif_number"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>{{ $t('views.pro_dashboard.registration_number') }}</label>
+              <input
+                v-model="user.registration_number"
+                type="text"
+                class="form-control"
+                name="registration_number"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <div v-if="!getUser.expected_salary" class="form-group">
+              <label required>{{ $t('views.pro_dashboard.how_much_you_hope_to_earn') }}</label>
+              <input
+                id="earning"
+                v-model="user.expected_salary"
+                type="text"
+                required
+                class="form-control"
+                name="earning"
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label required>{{ $t('views.pro_dashboard.active_city') }}</label>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.working_city_id = 2"
-            >{{ $t('city.bucuresti') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 2 ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-          <div class="radio_c_group d-flex flex-column">
-            <label
-              class="container_radio"
-              @click="user.working_city_id = 1"
-            >{{ $t('city.cluj_napoca') }}
-              <input type="radio" value="checkbox" name="active-city" :checked="user.working_city_id === 1 ? 'checked' : ''">
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.company_name') }}</label>
-          <input
-            v-model="user.company_name"
-            type="text"
-            class="form-control"
-            name="company_name"
-          >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.cif_number') }}</label>
-          <input
-            v-model="user.cif_number"
-            type="text"
-            class="form-control"
-            name="cif_number"
-          >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>{{ $t('views.pro_dashboard.registration_number') }}</label>
-          <input
-            v-model="user.registration_number"
-            type="text"
-            class="form-control"
-            name="registration_number"
-          >
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div v-if="!getUser.expected_salary" class="form-group">
-          <label required>{{ $t('views.pro_dashboard.how_much_you_hope_to_earn') }}</label>
-          <input
-            id="earning"
-            v-model="user.expected_salary"
-            type="text"
-            required
-            class="form-control"
-            name="earning"
-          >
-        </div>
-        <div class="d-flex justify-content-end">
-          <button
-            class="btn btn-sm btn-pink btn-pill my-4 px-6"
-            @click.prevent="onSave()"
-          >
-            {{ $t('generic.save') }}
-          </button>
-        </div>
+      <div class="d-flex justify-content-end">
+        <button
+          class="btn btn-sm btn-pink btn-pill my-6 px-6"
+          @click.prevent="onSave()"
+        >
+          {{ $t('generic.save') }}
+        </button>
       </div>
     </div>
   </div>
