@@ -13,10 +13,7 @@
           <div class="text-content mt-4 col-sm-12 col-lg-6">
             <div class="d-flex align-items-start flex-column justify-content-center custom-text">
               <h3 class="text-left">{{ $t('views.pro_home.photo1_title') }}</h3>
-              <p class="my-2 text-left">
-                <img src="@/assets/svg/linie-web.svg" alt="linie">
-                {{ $t('views.pro_home.photo1_text1') }}
-              </p>
+              <p class="my-2 text-left custom-title">{{ $t('views.pro_home.photo1_text1') }}</p>
               <p class="my-2 text-left">
                 <img src="@/assets/svg/linie-web.svg" alt="linie">
                 {{ $t('views.pro_home.photo1_text2') }}
@@ -44,10 +41,7 @@
           <div class="text-content mt-4 pl-3 pr-3 col-sm-12 col-lg-6" >
             <div class="d-flex align-items-start flex-column justify-content-center reverse-order custom-text">
               <h3>{{ $t('views.pro_home.photo2_title') }}</h3>
-              <p class="my-2 text-left">
-                <img src="@/assets/svg/linie-web.svg" alt="linie">
-                {{ $t('views.pro_home.photo2_text1') }}
-              </p>
+              <p class="my-2 text-left custom-title">{{ $t('views.pro_home.photo2_text1') }}</p>
               <p class="my-2" text-left>
                 <img src="@/assets/svg/linie-web.svg" alt="linie">
                 {{ $t('views.pro_home.photo2_text2') }}
@@ -83,10 +77,7 @@
           <div class="text-content mt-4 col-sm-12 col-lg-6">
             <div class="d-flex align-items-start flex-column justify-content-center custom-text">
               <h3 class="text-left">{{ $t('views.pro_home.photo3_title') }}</h3>
-              <p class="my-2 text-left">
-                <img src="@/assets/svg/linie-web.svg" alt="linie">
-                {{ $t('views.pro_home.photo3_text1') }}
-              </p>
+              <p class="my-2 text-left custom-title">{{ $t('views.pro_home.photo3_text1') }}</p>
               <p class="my-2 text-left">
                 <img src="@/assets/svg/linie-web.svg" alt="linie">
                 {{ $t('views.pro_home.photo3_text2') }}

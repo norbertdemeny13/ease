@@ -8,11 +8,11 @@
               <h1 class="mb-4">{{ $t('views.home.title') }}</h1>
               <form>
                 <div class="row no-gutters custom-search-input">
-                  <div class="col-lg-10">
+                  <div class="col-lg-9">
                     <es-address-search :home-page="true" />
                   </div>
-                  <div class="col-lg-2">
-                    <button class="btn_1" type="button" @click="$router.push('/servicii')">{{ $t('generic.reserve') }}</button>
+                  <div class="col-lg-3">
+                    <button class="btn_1 custom-button" type="button" @click="$router.push('/servicii')">{{ $t('generic.reserve') }}</button>
                   </div>
                 </div>
                 <!-- /row -->

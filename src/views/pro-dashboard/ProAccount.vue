@@ -437,7 +437,7 @@
     border-radius: 50%;
     bottom: 20px;
     box-shadow: 0 0 8px 3px #b8b8b8;
-    color: #d00007;
+    color: #d00078;
     display: flex !important;
     height: 30px;
     justify-content: center;

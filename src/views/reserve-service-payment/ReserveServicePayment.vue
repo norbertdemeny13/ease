@@ -12,14 +12,15 @@
               <div class="title d-flex flex-column align-items-center">
                 <figure>
                   <img
-                    src="@/assets/png/succes.png"
+                    src="@/assets/svg/succes.svg"
                     alt=""
+                    width="75px"
                     class="lazy"
                   >
                 </figure>
                 <h3 class="px-10 text-center">{{ $t('reservation_sent_successfully') }}</h3>
               </div>
-              <p class="my-6 px-8">{{ $t('reservation_sent_successfully_text') }} </p>
+              <p class="my-6 px-8 text-center">{{ $t('reservation_sent_successfully_text') }} </p>
               <div class="d-flex justify-content-center">
                 <button
                   class="btn btn-sm btn-pink btn-pill mt-4 px-6"
@@ -56,7 +57,7 @@
             :time="getSelectedTime"
             :is-reservation-confirmed="isReservationConfirmed"
           />
-          <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-center">
+          <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill px-6"
               :disabled="!getCards.length"

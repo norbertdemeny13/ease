@@ -46,7 +46,7 @@
             :time="selectedTime"
             :show-total="false"
           />
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-end">
             <button
               :disabled="!selectedTime"
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"

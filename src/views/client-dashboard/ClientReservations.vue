@@ -34,7 +34,7 @@
             <div v-if="getReservationList.length">
               <div v-for="(item, i) in getReservationList" :key="`${item.id}-${i}`" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
                 <h6 class="m-0">{{ $t(getReservationName(item)) }}</h6>
-                <div class="m-2">{{ item.start_time.substr(0, 10) }}</div>
+                <div class="m-2 custom-profile-reservations">{{ item.start_time.substr(0, 10) }}</div>
                 <div class="d-flex flex-column align-items-center m-2">
                   <div v-if="getReservationJobs(item).slice(0, 2).length > 0" class="d-flex flex-row align-items-center">
                     <figure v-for="job in getReservationJobs(item).slice(0, 2)" :key="job.id" class="mb-0">

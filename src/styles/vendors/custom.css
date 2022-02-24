@@ -10,12 +10,20 @@
     min-height: 350px;
 }
 
+.how-it-works-container .box_how h2 {
+    font-size: 25px;
+}
+
 .why-us-container .box_how {
     min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.why-us-container .box_how h2{
+    font-size: 26px;
 }
 
 .companies-container .ease-for-company {
@@ -103,6 +111,10 @@
     padding: 0;
 }
 
+.more-details .custom-image-padding img{
+    object-fit: cover;
+}
+
 .download-app-container .row {
     width: 100%;
     flex-direction: column;
@@ -148,6 +160,24 @@
 
 .es_dreserve-massage-service-page .owl-next {
     right: 0 !important;
+}
+
+.es_reserve-service-container .custom-service {
+    font-size: 14px;
+}
+
+.es_reserve-service-container .custom-service-info h6{
+    font-weight: 400;
+    font-family: SofiaProRegular !important;
+}
+
+.es_reserve-service-container .custom-service-info h5 {
+    font-size: 16px;
+}
+
+.es_reserve-service-container .box_order .main ul li.total strong {
+    font-weight: 400;
+    font-family: SofiaProMedium!important;
 }
 
 .es_reserve-massage-service-page .owl-next,
@@ -286,8 +316,9 @@
     border-radius: 0.3125rem;
     & .time {
         margin: 0;
-        font-weight: 700;
         font-size: 13px;
+        font-family: SofiaProMedium !important;
+        font-weight: 400;
     }
     & .price {
         color: #7d7d7d;
@@ -342,9 +373,12 @@
     text-align: center;
 }
 
-.extra-services-container:hover,
-.extra-services-container.selected {
+.extra-services-container:hover{
     border: 1px solid #70d7b7;
+}
+
+.extra-services-container.selected {
+    border: 2px solid #70d7b7;
 }
 
 .added-services-container {
@@ -439,6 +473,20 @@
     min-width: 280px;
 }
 
+.more-details .custom-container-info .custom-text p {
+    position: relative;
+    margin-left: 15px;
+}
+
+.more-details .custom-container-info .custom-text .custom-title {
+    margin-left: 0;
+}
+
+.more-details .custom-container-info .custom-text p img {
+    position: absolute;
+    left: 0;
+}
+
 @media (max-width: 560px) {
     .address-search-container .alert {
         width: 80%;
@@ -448,6 +496,30 @@
 .address-search-container .alert {
     margin-top: 16px;
     padding: 10px 20px;
+    font-size: 14px;
+}
+
+.es_services-container .address-search-container {
+    padding: 0 20px;
+}
+
+.es_services-container .address-search-container>.form-group {
+    padding: 0;
+}
+
+.es_services-container .address-search-container .alert{
+    position: relative;
+}
+
+.es_services-container .address-search-container .alert:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #70d7b7;
+    left: 10px;
+    top: -12px;
 }
 
 @media (min-width: 767px) {
@@ -457,7 +529,7 @@
         text-align: center;
     }
     .more-details .custom-container-info .custom-text h3 {
-        font-size: 40px;
+        font-size: 36px;
     }
     .faq-container .large-view {
         display: block;
@@ -500,11 +572,16 @@
         width: 100%;
         margin-bottom: 10px;
     }
+
+    .reserve-from-app-container form .input-group-append .btn_1 {
+        width: 100%;
+    }
+
     .extra-services-container>div {
         flex-direction: row;
     }
     .extra-services-container img {
-        width: 16%;
+        width: 15%;
         height: 100%;
         margin-top: 3px;
         margin-bottom: 0;
@@ -527,7 +604,7 @@
         margin-bottom: 0;
     }
     .es_services-container .address-search-container {
-        width: 40%;
+        width: 67%;
     }
     .address-search-container {
         width: 100%;
@@ -539,7 +616,7 @@
         width: 100%;
     }
     .more-details .custom-container-info .custom-text {
-        max-width: 57%;
+        max-width: 70%;
         margin-left: 10%;
         margin-right: auto;
         text-align: left;
@@ -560,16 +637,15 @@
     }
 }
 
-@media (min-width: 1366px) {
-    .more-details .custom-container-info .custom-text h3 {
-        font-size: 60px;
-    }
-}
-
 .router-link-exact-active {
     color: #d00078 !important;
 }
 
 .es-calendly-modal {
     overflow: hidden;
+}
+@media (min-width: 1410px) {
+    .es_services-container .address-search-container {
+        width: 47%;
+    }
 }

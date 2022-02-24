@@ -2841,6 +2841,11 @@ ul#top_menu li a.login::before {
     .opacity-mask p {
         color: #000;
     }
+
+     .opacity-mask p {
+         font-size: 18px;
+         font-family: SofiaProRegular !important;
+     }
 }
 
 @media (max-width: 767px) {
@@ -3048,13 +3053,19 @@ ul#top_menu li a.login::before {
 .custom-search-input button {
     padding: 0 25px;
     height: 50px;
-    width: 100%;
+    width: auto;
+    float: right;
     margin-right: -1px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     border-radius: 3px;
     font-weight: 600;
+}
+
+.custom-search-input .custom-button {
+    font-size: 18px;
+    font-weight: 400;
 }
 
 @media (max-width: 991px) {
@@ -3680,6 +3691,12 @@ ul#top_menu {
       top: -4px;
   }
 }
+
+@media (min-width: 991px) {
+    .dropdown.user>a figure {
+        top: 3px;
+    }
+}
 ul#top_menu li {
   float: left;
   margin: 0;
@@ -4162,7 +4179,7 @@ header.black_nav .dropdown.user a:hover {
 .owl-carousel .owl-nav button.owl-prev,
 .owl-carousel .owl-nav button.owl-next {
     outline: none;
-    background-color: transparent;
+    background-color: #FFFFFF;
 }
 
 .owl-theme .owl-nav [class*='owl-'] {
@@ -5259,6 +5276,10 @@ footer .text-secondary {
     color: #FFFFFF;
 }
 
+footer .my-3 .text-secondary {
+    font-size: 12px;
+}
+
 @media (max-width: 767px) {
     footer hr {
         border-color: transparent;
@@ -5308,7 +5329,7 @@ footer .contacts ul li i {
 }
 
 footer h3 {
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 15px;
     color: #FFFFFF;
     -moz-transition: all 0.3s ease-in-out;
@@ -5365,10 +5386,12 @@ footer .links ul li a {
     color: #FFFFFF;
     opacity: 1;
     display: inline-block;
+    font-size: 14px;
 }
 
 footer .links ul li span {
     color: #FFFFFF;
+    font-size: 14px;
 }
 
 footer.is-pro .links ul li a {
@@ -7488,8 +7511,12 @@ ul.plan-features {
 }
 
 .promo-code-container {
+    label {
+        font-size: 14px;
+    }
+
     input {
-        width: 47%;
+        width: 53%;
     }
 }
 
@@ -7507,10 +7534,139 @@ ul.plan-features {
 }
 
 .btn-secondary-account {
-    border: 1px solid #d00078;
+    border: 1px solid #000000;
     height: 46px;
 
     &:hover {
         color: #d00078;
+        border-color: #d00078;
+    }
+}
+
+.custom-subscriptions {
+    h5, h6 {
+        font-weight: 400;
+        font-size: 16px;
+        font-family: SofiaProRegular !important;
+    }
+
+    .custom-subscription-total {
+        h5,
+        h6 {
+            font-size: 18px;
+            font-weight: 500;
+            font-family: SofiaProMedium !important;
+        }
+    }
+}
+
+.es_reserve-subscription-container,
+.es_gift-card-summary-page {
+    figure {
+        img {
+            width: 75px;
+        }
+    }
+}
+
+.es_gift-card-summary-page {
+    img {
+        width: 390px;
+    }
+}
+
+.es_additional-services-container {
+    h3 {
+        font-size: 24px;
+    }
+
+    .extra-services-container {
+        p {
+            font-size: 14px;
+        }
+    }
+}
+
+.es-subscription-selection-container {
+    .pricing-card-small {
+        h3 {
+            font-size: 24px;
+        }
+
+        &:hover {
+            h3, h6 {
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+.es_client-account-container,
+.es_client-password-container,
+.es_client-phone-container,
+.es_client-recommendations-container,
+.es_client-addresses-container,
+.es_client-payments-container,
+.es_client-reservations-container,
+.es_client-orders-container,
+.es_client-favourite-container,
+.es_client-subscriptions-container,
+.es_pro-account-container,
+.es_pro-password-container,
+.es_pro-phone-container,
+.es_pro-addresses-container,
+.es_pro-documents-container {
+    > h2,
+    > h3 {
+        font-weight: 400;
+        font-family: SofiaProRegular !important;
+    }
+}
+
+.es_client-payments-container,
+.es_client-reservations-container,
+.es_client-orders-container,
+.es_client-favourite-container,
+.es_client-subscriptions-container {
+    h4 {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: SofiaProRegular !important;
+    }
+}
+
+.custom-profile-reservations {
+    white-space: nowrap;
+}
+
+.document-type {
+    h3 {
+        font-size: 18px;
+        font-weight: 500;
+        font-family: SofiaProMedium !important;
+    }
+}
+
+.custom-gift-container {
+    img {
+        display: flex;
+        margin: 0 auto;
+    }
+
+    div {
+        width: 390px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .es_client-reservations-container {
+        .reservation-list-item {
+            flex-direction: column;
+
+            h6 {
+                text-align: center;
+            }
+        }
     }
 }

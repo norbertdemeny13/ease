@@ -9,10 +9,10 @@
           <div class="row">
             <div class="col-md-12">
               <div class="box_order">
-                <div class="main">
+                <div class="main custom-gift-container">
                   <img :src="getSelectedGiftCard.card_design.absolute_image_url" width="100%">
-                  <div class="d-flex flex-inline justify-content-between mt-4">
-                    <h6>{{ $t('generic.total') }}</h6>
+                  <div class="d-flex flex-inline mt-4">
+                    <h6 class="mr-5 mb-0">{{ $t('generic.total') }}</h6>
                     <h6>{{ getSelectedGiftCard.value }} {{ $t('generic.lei') }}</h6>
                   </div>
                   <div class="d-flex flex-inline mt-4">
@@ -54,7 +54,7 @@
               <div class="title d-flex flex-column align-items-center">
                 <figure>
                   <img
-                    src="@/assets/png/succes.png"
+                    src="@/assets/svg/succes.svg"
                     alt=""
                     class="lazy"
                   >
@@ -74,13 +74,13 @@
                 <es-payment-details />
               </div>
             </div>
-            <div class="d-flex justify-content-center">
-                  <button
-                    class="btn btn-sm btn-pink btn-pill mt-4 mr-4 px-6"
-                    @click.prevent="onPay()"
-                  >
-                    {{ $t('generic.send_order') }}
-                  </button>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                @click.prevent="onPay()"
+              >
+                {{ $t('generic.send_order') }}
+              </button>
             </div>
           </div>
         </div>

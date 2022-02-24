@@ -14,7 +14,7 @@
     <div v-if="getLocationError && !homePage" class="alert alert-danger ml-4" role="alert">
       <span>{{ $t('user_address.outside_of_area') }}</span>
     </div>
-    <div v-else-if="showAlert" class="alert alert-primary ml-4" role="alert">
+    <div v-else-if="showAlert" class="alert alert-primary" role="alert">
       <span>{{ $t('user_address.add.city') }}</span>
     </div>
   </div>

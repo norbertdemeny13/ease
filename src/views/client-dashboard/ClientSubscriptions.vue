@@ -44,7 +44,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <h4>{{ $t('views.client_dashboard.subscriptions.description') }}</h4>
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-start">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click="$router.push('/abonamente')"

@@ -25,7 +25,7 @@
                 {{ $t('views.client_dashboard.ease_credit.apply') }}
               </button>
               <button
-                class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-6"
+                class="btn btn-sm btn-secondary-account btn-pill ml-2 my-4 px-6"
                 @click="$router.push('/client/recomandare')"
               >
                 {{ $t('generic.recommend') }}
@@ -102,6 +102,6 @@
 
 <style type="text/css" scoped>
   input {
-    width: 120px !important;
+    width: 160px !important;
   }
 </style>

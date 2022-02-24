@@ -19,8 +19,8 @@
         :key="`${item.id}${index}`"
         class="clearfix"
       >
-        <span class="">Serviciu {{ index + 1 }}</span>
-        <div class="d-flex justify-content-between align-items-center flex-inline">
+        <span class="custom-service">Serviciu {{ index + 1 }}</span>
+        <div class="d-flex justify-content-between align-items-center flex-inline custom-service-info">
           <h6>{{ $t(item.name) }}</h6>
           <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
         </div>

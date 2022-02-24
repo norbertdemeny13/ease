@@ -4,7 +4,7 @@
       <div class="opacity-mask">
         <div class="container">
           <div class="row pt-6 px-6">
-            <div class="col-md-8">
+            <div class="col-md-7 col-xl-8">
               <div class="text-center text-content mt-4 d-flex align-items-start flex-column justify-content-center">
                 <h1 class="text-left">{{ $t('views.pro_home.page_title') }}</h1>
                 <p class="my-2 text-left">{{ $t('views.pro_home.page_subtitle') }}</p>
