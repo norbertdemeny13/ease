@@ -3,7 +3,7 @@
   <div class="more-details">
     <div class="container-fluid">
       <div class="row">
-        <div class="custom-container-info pb-6 pt-0 mt-0">
+        <div class="custom-container-info custom-home-container pb-6 pt-0 mt-0">
           <div class="d-flex col-sm-12 col-lg-6 custom-image-padding">
             <img
               src="@/assets/jpg/servicii.jpg"

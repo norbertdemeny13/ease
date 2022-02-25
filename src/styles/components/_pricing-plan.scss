@@ -12,7 +12,7 @@
     .nav-link {
         color: #000;
         position: relative;
-        font-size: 28px;
+        font-size: 24px;
         padding: 4px 20px;
         &:first-child {
             margin-right: 10px;
@@ -233,10 +233,11 @@
         padding: 15px 20px;
         font-size: 16px;
         text-align: center;
-        font-weight: bold;
         display: block;
         transition: all 0.4s;
         margin-bottom: 10px;
+        font-weight: 400;
+        font-family: SofiaProMedium !important;
         &:hover {
             color: #fe397a;
         }

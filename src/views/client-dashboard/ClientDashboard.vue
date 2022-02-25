@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-dashboard-container bg_gray content">
-    <div class="container ">
+    <div class="container margin_30_20">
       <div class="row bg-white">
         <div class="col-md-3 border-right mt-4">
           <div v-for="link in getSidebarLinks" :key="link.id" class="p-1 m-1">

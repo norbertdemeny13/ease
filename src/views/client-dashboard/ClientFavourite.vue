@@ -32,13 +32,13 @@
         </div>
       </div>
     </div>
-    <div v-else class="row">
+    <div v-else class="row mt-10">
       <div class="col-md-6">
         <div class="d-flex flex-column">
           <h4>{{ $t('views.client_dashboard.favourite_elite.no_favourite_title') }}</h4>
           <p>{{ $t('views.client_dashboard.favourite_elite.no_favourite_description') }}</p>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
             @click="$router.push('rezervarile-mele')"

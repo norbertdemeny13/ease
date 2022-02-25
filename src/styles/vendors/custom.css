@@ -234,6 +234,10 @@
     position: relative;
 }
 
+.es_services-list-container .title_small {
+    font-weight: 500;
+}
+
 .es_services-list-container.disabled::after,
 .es_subscriptions-list-container.disabled::after,
 {
@@ -476,10 +480,14 @@
 .more-details .custom-container-info .custom-text p {
     position: relative;
     margin-left: 15px;
+    padding-left: 30px;
 }
 
 .more-details .custom-container-info .custom-text .custom-title {
     margin-left: 0;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin-top: 0 !important;
 }
 
 .more-details .custom-container-info .custom-text p img {
@@ -499,19 +507,23 @@
     font-size: 14px;
 }
 
-.es_services-container .address-search-container {
+.es_services-container .address-search-container,
+.es_subscription-details-container .address-search-container {
     padding: 0 20px;
 }
 
-.es_services-container .address-search-container>.form-group {
+.es_services-container .address-search-container>.form-group,
+.es_subscription-details-container .address-search-container>.form-group {
     padding: 0;
 }
 
-.es_services-container .address-search-container .alert{
+.es_services-container .address-search-container .alert,
+.es_subscription-details-container .address-search-container .alert {
     position: relative;
 }
 
-.es_services-container .address-search-container .alert:before {
+.es_services-container .address-search-container .alert:before ,
+.es_subscription-details-container .address-search-container .alert:before {
     position: absolute;
     content: '';
     width: 0;
@@ -524,12 +536,13 @@
 
 @media (min-width: 767px) {
     .more-details .custom-container-info .custom-text {
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
         text-align: center;
     }
     .more-details .custom-container-info .custom-text h3 {
         font-size: 36px;
+        margin-bottom: 0;
     }
     .faq-container .large-view {
         display: block;
@@ -603,7 +616,8 @@
         width: 1%;
         margin-bottom: 0;
     }
-    .es_services-container .address-search-container {
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
         width: 67%;
     }
     .address-search-container {
@@ -616,8 +630,8 @@
         width: 100%;
     }
     .more-details .custom-container-info .custom-text {
-        max-width: 70%;
-        margin-left: 10%;
+        max-width: 100%;
+        margin-left: 5%;
         margin-right: auto;
         text-align: left;
     }
@@ -637,6 +651,13 @@
     }
 }
 
+@media (min-width: 1280px) and (max-width: 1409px) {
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
+        width: 51%;
+    }
+}
+
 .router-link-exact-active {
     color: #d00078 !important;
 }
@@ -645,7 +666,8 @@
     overflow: hidden;
 }
 @media (min-width: 1410px) {
-    .es_services-container .address-search-container {
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
         width: 47%;
     }
 }

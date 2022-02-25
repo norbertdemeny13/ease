@@ -61,8 +61,8 @@
                 </figure>
                 <h3 class="px-10 text-center">{{ $t('generic.order_was_sent') }}</h3>
               </div>
-              <p>Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
-              <p class="my-6 px-8">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Lei.</p>
+              <p class="text-center">Comanda Nr. {{ getSelectedGiftCard.gift_card_id }}</p>
+              <p class="my-6 px-8 text-center">{{ getSelectedGiftCard.name }} va primi in data de {{ getDate }} un email cu un card cadou in valoare de {{ getSelectedGiftCard.value }} Lei.</p>
             </div>
           </div>
           <div v-else>
