@@ -43,7 +43,7 @@
           </div>
         </div>
         <div v-else class="col-lg-6 col-md-6 p-8">
-          <es-address-details />
+          <es-address-details disabled />
           <es-payment-details>
             <div class="d-flex justify-content-center">
               <button

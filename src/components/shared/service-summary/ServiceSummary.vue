@@ -29,7 +29,7 @@
           :key="service.id"
         >
           <p><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
-          <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)) }} Lei</span>
+          <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)/2) }} Lei</span>
           <span v-else>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
         <li v-if="item.isWithAromaterapeutic">

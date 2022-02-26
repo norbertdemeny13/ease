@@ -2,7 +2,7 @@
   <div class="content">
     <div class="container margin_30_20">
       <a class="back-button" href="" @click.prevent="onBack">{{ $t('generic.back') }}</a>
-      <es-address-bar />
+      <es-address-bar @on-address-change="onAddressChange" />
       <services-list-skeleton v-if="isFetching" />
       <div
         v-for="serviceType in getServicesByType"
@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesListSkeleton } from '@/components/features/services-list';
@@ -44,12 +44,12 @@
         isFetching: 'services/isFetching',
       }),
 
-      services(): Record<any, any>[] {
+      services() {
         return this.getServicesByType;
       },
     },
 
-    created(): void {
+    created() {
       const { type } = this.$router.currentRoute.params;
       const { query } = this.$router.currentRoute;
 
@@ -63,8 +63,9 @@
     methods: {
       ...mapActions({
         fetchServicesByType: 'services/fetchServicesByType',
+        setDefaultAddress: 'address/setDefaultAddress',
       }),
-      getToRoute(id: string): string {
+      getToRoute(id) {
         const { query } = this.$router.currentRoute;
         const { path, params } = this.$router.currentRoute;
         const { type } = params;
@@ -72,6 +73,22 @@
         return query?.pro_id
           ? `${isNew ? '/new' : ''}/servicii/${type}/${id}?pro_id=${query.pro_id}`
         : `${isNew ? '/new' : ''}/servicii/${type}/${id}`;
+      },
+      async onAddressChange(address) {
+        const id = address?.id;
+        const cityId = address?.city?.id;
+        const { type } = this.$router.currentRoute.params;
+        const { query } = this.$router.currentRoute;
+
+        if (cityId) {
+          await this.setDefaultAddress({ id, cityId });
+        }
+
+        if (query && query.pro_id) {
+          this.fetchServicesByType({ type, id: query.pro_id });
+        } else {
+          this.fetchServicesByType({ type });
+        }
       },
       onBack() {
         const { query } = this.$router.currentRoute;

@@ -111,7 +111,6 @@
     methods: {
       ...mapActions({
         createReservation: 'services/createReservation',
-        fetchServiceById: 'services/fetchServiceById',
       }),
 
       async onAddAdditionalService() {

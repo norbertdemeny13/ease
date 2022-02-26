@@ -350,7 +350,8 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
-    await store.dispatch('services/fetchServiceById', { type, id });
+    const { pro_id } = query;
+    await store.dispatch('services/fetchServiceById', { type, id, pro_id });
     next();
   }
 

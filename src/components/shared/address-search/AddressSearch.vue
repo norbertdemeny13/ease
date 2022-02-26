@@ -83,6 +83,7 @@
         autocomplete.setFields(['geometry.location', 'formatted_address', 'name', 'address_component']);
         autocomplete.addListener('place_changed', async () => {
           const place = autocomplete.getPlace();
+          this.$emit('on-address-change', place);
           await this.fetchLocation(place);
           await this.fetchServices();
           this.location = place.formatted_address;

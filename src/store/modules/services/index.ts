@@ -375,7 +375,7 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServiceById({ state, rootState, commit }, { type, id, duration, terapeut }) {
+    async fetchServiceById({ state, rootState, commit }, { type, id, pro_id, duration, terapeut }) {
       let city_id: string | null = '';
 
       city_id = state.location
@@ -389,6 +389,7 @@ export default {
           params: {
             city_id,
             duration,
+            pro_id,
             type: terapeut === 'double' ? 'couple_2' : 'couple_1',
           },
         });

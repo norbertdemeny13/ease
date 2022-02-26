@@ -29,6 +29,7 @@
       ...mapGetters({
         getServices: 'services/getServices',
         isFetching: 'services/isFetching',
+        getLocation: 'address/getLocation',
       }),
 
       services() {
@@ -63,18 +64,13 @@
 
     methods: {
       ...mapActions({
+        fetchLocation: 'address/fetchLocation',
         fetchServices: 'services/fetchServices',
         setDefaultAddress: 'address/setDefaultAddress',
       }),
-      onAddressChange(address) {
-        const id = address?.id;
-        const cityId = address?.city?.id;
-
-        if (cityId) {
-          this.setDefaultAddress({ id, cityId });
-        }
-
-        this.fetchServices();
+      async onAddressChange(address) {
+        await this.fetchLocation(address);
+        await this.fetchServices(this.getLocation.city_id);
       },
     },
   });

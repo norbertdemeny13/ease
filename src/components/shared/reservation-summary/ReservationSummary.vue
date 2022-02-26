@@ -27,7 +27,7 @@
         </template>
         <es-divider />
         <li class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subTotal') }}</strong> {{ `${selectedReservation.total} Lei` }}</li>
-        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>Numele abonamentului activ</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
+        <li v-if="parseInt(selectedReservation.subscription_service_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t(selectedReservation.user_subscription.subscription.name) }}</strong> - {{ `${selectedReservation.subscription_service_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong> {{ $t('summary.subscriptionDiscount') }}</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
         <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('generic.gift_card') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>

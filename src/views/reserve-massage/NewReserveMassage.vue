@@ -128,7 +128,7 @@
             label: this.$t('massage.massageDuration'),
             key: 'duration',
             length: durations.length,
-            choices: durations.map(item => ({ label: `${item} min`, value: item })),
+            choices: durations.map(item => ({ label: `${item} min`, value: item, disabled: true, })),
           },
           {
             label: this.$t('generic.therapist_number'),
@@ -289,7 +289,7 @@
 
       isDisabled(key, type) {
         const { terapeut } = this.massageForm;
-        if (key === 'terapeut') {
+        if (key === 'terapeut' || key === 'duration') {
           return 'disabled';
         } else {
           return (key === type && terapeut === 'single') ? 'disabled' : '';

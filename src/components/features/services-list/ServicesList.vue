@@ -10,7 +10,7 @@
             :image-path="getImagePath(item)"
             :key="item.category"
             :service="item"
-            :to="getToRoute(item.name)"
+            :to="getToRoute(item)"
           />
         </div>
         <template v-else>
@@ -18,7 +18,7 @@
             <services-list-item
               :image-path="getImagePath(item)"
               :service="item"
-              :to="getToRoute(item.name)"
+              :to="getToRoute(item)"
             />
          </div>
         </template>
@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapGetters } from 'vuex';
   import { ServicesListItem } from '@/components/features/services-list-item';
@@ -54,7 +54,7 @@
         getAddresses: 'address/getAddresses',
       }),
 
-      showServices(): boolean {
+      showServices() {
         const cityId = sessionStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
         let hasLocation = false;
@@ -75,7 +75,12 @@
     },
 
     methods: {
-      getToRoute(category: string): string {
+      getToRoute(item) {
+        if (item.link_to_service) {
+          return item.link_to_service;
+        }
+
+        const category = item.name;
         const { query } = this.$router.currentRoute;
         let endpoint = '';
         if (category === 'single' || category === 'couple') {
@@ -87,11 +92,10 @@
             ? `/servicii/${category}?pro_id=${query.pro_id}`
           : `/servicii/${category}`;
         }
-
         return endpoint;
       },
 
-      getImagePath(item: any): string {
+      getImagePath(item) {
         const path = item.absolute_image_url || item.image.url;
         return path;
       },

@@ -28,14 +28,14 @@
           <h1>{{ getLocation.formatted_address }}</h1>
           <a href="" @click.prevent="changeAddress = true">{{ $t('generic.change_address') }}</a>
         </div>
-        <es-address-search v-else @on-cancel="changeAddress = false" />
+        <es-address-search v-else @on-cancel="changeAddress = false" @on-address-change="onAddressChange" />
       </div>
     <!-- /row -->
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { AddressSearch } from '@/components/shared/address-search';
@@ -69,18 +69,18 @@
       }),
 
       getSelectedAddress: {
-        get(): number {
+        get() {
           return this.selectedAddress;
         },
-        set(val: number) {
-          const selectedAddress = this.getAddresses.find((address: any) => address.id === val);
+        set(val) {
+          const selectedAddress = this.getAddresses.find(address => address.id === val);
           this.selectedAddress = val;
           this.setReservationAddress(val);
           this.$emit('on-address-change', selectedAddress);
         },
       },
 
-      getLocalAddresses(): { id: string; label: string }[] {
+      getLocalAddresses() {
         /* eslint-disable */
         const { getAddresses } = this;
 
@@ -90,19 +90,14 @@
             street_number,
             city,
             id,
-          }: {
-            street_number: string;
-            street_name: string;
-            id: string;
-            city: any;
-          },
+          }
         ) => {
           const label = `${street_number}, ${street_name}, ${this.$t(city.name)}`;
           return { id, label };
         });
       },
 
-      hasAddress(): boolean {
+      hasAddress() {
         return this.getLocation && !this.changeAddress;
       },
     },
@@ -110,7 +105,7 @@
     async created() {
       if (this.isAuthenticated) {
         await this.fetchAddresses();
-        const mainAddress = this.getAddresses.find(({ main }: { main: boolean}) => main);
+        const mainAddress = this.getAddresses.find(({ main }) => main);
         this.selectedAddress = mainAddress?.id || 0;
       }
     },
@@ -123,7 +118,7 @@
       },
       getAddresses(newVal) {
         if (newVal.length) {
-          const selectedAddressId = newVal.find((item: any) => item.main).id;
+          const selectedAddressId = newVal.find((item) => item.main).id;
           const addressId = this.getReservationAddress
             ? this.getReservationAddress.id
             : selectedAddressId;
@@ -134,7 +129,7 @@
       isAuthenticated(newVal, oldVal) {
         if (newVal && newVal !== oldVal) {
           this.fetchAddresses();
-          const mainAddress = this.getAddresses.find(({ main }: { main: boolean}) => main);
+          const mainAddress = this.getAddresses.find(({ main }) => main);
           this.selectedAddress = mainAddress?.id || 0;
         }
       },
@@ -145,6 +140,9 @@
         fetchAddresses: 'address/fetchAddresses',
         setReservationAddress: 'address/setReservationAddress',
       }),
+      onAddressChange(address) {
+        this.$emit('on-address-change', address);
+      },
     },
   });
 </script>
