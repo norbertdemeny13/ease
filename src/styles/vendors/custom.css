@@ -1,487 +1,673 @@
 /*============================================================================================*/
+
+
 /* Your custom styles below */
+
+
 /*============================================================================================*/
 
 .how-it-works-container .box_how {
-  min-height: 350px;
+    min-height: 350px;
+}
+
+.how-it-works-container .box_how h2 {
+    font-size: 25px;
 }
 
 .why-us-container .box_how {
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.why-us-container .box_how h2{
+    font-size: 26px;
 }
 
 .companies-container .ease-for-company {
-  height: 250px;
-  width: 300px;
+    height: 250px;
+    width: 300px;
 }
 
 .companies-container .box_how {
-  min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .companies-container .box_how figure {
-  margin-left: 0;
+    margin-left: 0;
 }
 
-.companies-container .form-group > i {
-  font-size: 18px;
-  font-size: 1.125rem;
-  position: absolute;
-  left: 12px;
-  top: 10px;
-  color: #ccc;
-  width: 25px;
-  height: 25px;
-  display: block;
-  font-weight: 400 !important;
+.companies-container .form-group>i {
+    font-size: 18px;
+    font-size: 1.125rem;
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    color: #ccc;
+    width: 25px;
+    height: 25px;
+    display: block;
+    font-weight: 400 !important;
 }
 
 .faq-container .large-view {
-  display: none;
+    display: none;
 }
 
 .faq-container .main_title {
-  display: none;
+    display: none;
 }
 
 .faq-container i {
-  font-size: 46px;
+    font-size: 46px;
 }
 
 .why-us-container .box_how img,
 .companies-container .box_how img {
-  width: 45px;
-  height: 45px;
+    width: auto;
+    height: 80px;
 }
 
 .more-details div {
-  display: flex;
-  flex-direction: column;
-
-  & a {
     display: flex;
-    margin-left: 2rem;
-  }
-
-  & .text-content p,
-  & .text-content h3 {
-    padding-left: 2rem;
-  }
+    flex-direction: column;
+    & a {
+        display: flex;
+        margin: 0 auto;
+        /* margin-left: 2rem; */
+    }
+    & .text-content p,
+    & .text-content h3 {
+        width: 100%;
+        padding: 0 15px;
+    }
 }
 
 .more-details img {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.more-details p img {
+    width: 10px;
+    height: 20px;
 }
 
 .more-details .reverse-order {
-  order: -1;
+    order: -1;
+}
+
+.more-details .custom-container-info {
+    margin: 20px 0;
+}
+
+.more-details .custom-image-padding {
+    padding: 0;
+}
+
+.more-details .custom-image-padding img{
+    object-fit: cover;
 }
 
 .download-app-container .row {
-  width: 100%;
-  flex-direction: column;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+}
+
+
+/* added for fold screens */
+
+.download-app-container .row .logo-container h3 {
+    text-align: center;
+}
+
+.download-app-container .row .logo-container div {
+    display: grid;
+}
+
+.download-app-container .row .logo-container div img:last-child {
+    margin-top: 5px;
 }
 
 .es_reserve-massage-service-page {
-  & .form-group > div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  & .form-group > div button{
-    margin: 8px 0;
-  }
+    & .form-group>div {
+        display: flex;
+        flex-direction: column;
+    }
+    & .form-group>div button {
+        margin: 8px 0;
+    }
 }
 
 .es_reserve-massage-service-page .btn-choice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    white-space: nowrap;
 }
 
 .es_reserve-massage-service-page .owl-item.active {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .es_dreserve-massage-service-page .owl-next {
-  right: 0 !important;
+    right: 0 !important;
+}
+
+.es_reserve-service-container .custom-service {
+    font-size: 14px;
+}
+
+.es_reserve-service-container .custom-service-info h6{
+    font-weight: 400;
+    font-family: SofiaProRegular !important;
+}
+
+.es_reserve-service-container .custom-service-info h5 {
+    font-size: 16px;
+}
+
+.es_reserve-service-container .box_order .main ul li.total strong {
+    font-weight: 400;
+    font-family: SofiaProMedium!important;
 }
 
 .es_reserve-massage-service-page .owl-next,
 .es_reserve-massage-service-page .owl-prev,
 .es_reserve-service-container .owl-next,
-.es_reserve-service-container .owl-prev, {
-  background-color: transparent !important;
-  box-shadow: none !important;
-
-  & i {
-    color: #000 !important;
-  }
+.es_reserve-service-container .owl-prev,
+{
+    background-color: transparent !important;
+    box-shadow: none !important;
+    & i {
+        color: #000 !important;
+    }
 }
 
 .reserve-from-app-container {
-  display: none;
+    display: none;
 }
 
 .reserve-from-app-container .mobile-container {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .reserve-from-app-container .input-group-append {
-  min-width: 164px;
+    min-width: 164px;
 }
 
-.address-search-container input {
-  max-width: 350px;
-  width: 80%;
+.address-search-container {
+    width: 100%;
 }
+
+.address-search-container>div {
+    margin-bottom: 0%;
+    width: 100%;
+    padding: 0 20px;
+}
+
+
+/* .address-search-container input {
+    max-width: 350px;
+    width: 80%;
+} */
 
 .es_service-details-page img,
 .es_reserve-massage-service-page img {
-  border-radius: 0.3125rem;
+    border-radius: 0.3125rem;
 }
 
 .es_services-container .es_services-list-item {
-  border: none;
+    border: none;
 }
 
 .es_services-list-container,
 .es_subscriptions-list-container {
-  position: relative;
+    position: relative;
+}
+
+.es_services-list-container .title_small {
+    font-weight: 500;
 }
 
 .es_services-list-container.disabled::after,
-.es_subscriptions-list-container.disabled::after, {
-  background-color: hsla(0,0%,100%,.7);
-  bottom: 0;
-  content: "";
-  left: -50px;
-  position: absolute;
-  right: -50px;
-  top: 0;
-  z-index: 1;
+.es_subscriptions-list-container.disabled::after,
+{
+    background-color: hsla(0, 0%, 100%, .7);
+    bottom: 0;
+    content: "";
+    left: -50px;
+    position: absolute;
+    right: -50px;
+    top: 0;
+    z-index: 1;
 }
 
 .es_services-list-item {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border-radius: 0.3125rem;
-  border: 1px solid #e7eaf3;
-
-  &:hover {
-    cursor: pointer;
-  }
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 0.3125rem;
+    border: 1px solid #e7eaf3;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .es_services-list-item img {
-  border-radius: 0.3125rem;
+    border-radius: 0.3125rem;
 }
 
 .es_reserve-service-container .day-item {
-  width: 40px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .day {
-    font-size: 18px;
-  }
-
-  & .day-string {
-    font-size: 12px;
-    color: #acacac;
-  }
-
-  & span em {
-    width: 80%;
-    height: 4px;
-    background-color: #d00078;
-    display: block;
-    padding: 0 10px;
-  }
-
-  & p {
-    margin: 0;
-  }
-}
-
-.es_reserve-service-container .hour-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.es_reserve-service-container .hour-item {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 70px;
-  min-height: 76px;
-  position: relative;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #e7eaf3;
-  border-radius: 0.3125rem;
-
-  & .time {
-    margin: 0;
-    font-weight: 700;
-    font-size: 13px;
-  }
-
-  & .price {
-    color: #7d7d7d;
-    font-size: 12px;
-    margin: 0;
-  }
-
-  &.selected,
-  &:hover {
-    color: #ffffff;
-    background-color: #70d7b7;
-    cursor: pointer;
-
-    & .price {
-      color: #d7d7d7;
-    }
-  }
-}
-
-.error-message {
-  color: red;
-  text-align: left;
-  margin-top: 8px;
-}
-
-.info-message {
-  color: blue;
-  text-align: left;
-  margin-top: 8px;
-}
-
-.extra-services-container {
-  align-items: center;
-  position: relative;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #e7eaf3;
-  cursor: pointer;
-}
-
-.extra-services-container:hover,
-.extra-services-container.selected {
-  border: 2px solid #70d7b7;
-}
-
-.added-services-container {
-  display: flex;
-  position: relative;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-
-  & > div {
-    border: 1px solid #e7eaf3;
-  }
-
-  & img:hover {
-    cursor: pointer;
-  }
-}
-
-.es_subscription-details-container {
-  & .has-filters {
+    width: 40px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .form-group {
-      text-align: center;
+    justify-content: center;
+    .day {
+        font-size: 18px;
     }
-
-    .choices-container {
-      display: flex;
-      flex-direction: row;
-
-      button {
-        margin-bottom: 8px;
-      }
+    & .day-string {
+        font-size: 12px;
+        color: #acacac;
     }
-  }
+    & span em {
+        width: 80%;
+        height: 4px;
+        background-color: #d00078;
+        display: block;
+        padding: 0 10px;
+    }
+    & p {
+        margin: 0;
+    }
+}
+
+.es_reserve-service-container .hour-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.es_reserve-service-container .hour-item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 70px;
+    min-height: 76px;
+    position: relative;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e7eaf3;
+    border-radius: 0.3125rem;
+    & .time {
+        margin: 0;
+        font-size: 13px;
+        font-family: SofiaProMedium !important;
+        font-weight: 400;
+    }
+    & .price {
+        color: #7d7d7d;
+        font-size: 12px;
+        margin: 0;
+    }
+    &.selected,
+    &:hover {
+        color: #ffffff;
+        background-color: #70d7b7;
+        cursor: pointer;
+        & .price {
+            color: #FFFFFF;
+        }
+    }
+}
+
+.error-message {
+    color: red;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.info-message {
+    color: blue;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.extra-services-container {
+    align-items: center;
+    position: relative;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e7eaf3;
+    cursor: pointer;
+}
+
+.extra-services-container>div {
+    flex-direction: column;
+}
+
+.extra-services-container img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.extra-services-container .custom-text {
+    text-align: center;
+}
+
+.extra-services-container:hover{
+    border: 1px solid #70d7b7;
+}
+
+.extra-services-container.selected {
+    border: 2px solid #70d7b7;
+}
+
+.added-services-container {
+    display: flex;
+    position: relative;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    &>div {
+        border: 1px solid #e7eaf3;
+    }
+    & img:hover {
+        cursor: pointer;
+    }
+}
+
+.es_subscription-details-container {
+    & .has-filters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .form-group {
+            text-align: center;
+        }
+        .choices-container {
+            display: flex;
+            flex-direction: row;
+            button {
+                margin-bottom: 8px;
+            }
+        }
+    }
 }
 
 .back-button {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .show-password-btn {
-  color: #d00078;
-  cursor: pointer;
-  position: absolute;
-  right: 10%;
-  top: 50%;
+    color: #d00078;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 34px;
 }
 
 .delete-btn,
 .upload-btn {
-  color: #d00078;
-  cursor: pointer;
+    color: #d00078;
+    cursor: pointer;
 }
 
 .copy-btn {
-  color: #d00078;
-  cursor: pointer;
-  position: absolute;
-  right: 10%;
+    color: #d00078;
+    cursor: pointer;
+    position: absolute;
+    right: 10%;
 }
 
 .back-button::before {
-  font-family: 'ElegantIcons';
-  content: "\23";
-  position: relative;
-  margin-right: 5px;
-  opacity: 0;
-  top: 2px;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+    font-family: 'ElegantIcons';
+    content: "\23";
+    position: relative;
+    margin-right: 5px;
+    opacity: 0;
+    top: 2px;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .back-button:hover::before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .owl-item:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .filters {
-  margin-left: 0 !important;
-  width: 100% !important;
+    margin-left: 0 !important;
+    width: 100% !important;
 }
 
 .dropdown-menu {
-  left: -90px;
+    left: -90px;
 }
 
 .phone-nr-input {
-  min-width: 280px;
+    min-width: 280px;
+}
+
+.more-details .custom-container-info .custom-text p {
+    position: relative;
+    margin-left: 15px;
+    padding-left: 30px;
+}
+
+.more-details .custom-container-info .custom-text .custom-title {
+    margin-left: 0;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin-top: 0 !important;
+}
+
+.more-details .custom-container-info .custom-text p img {
+    position: absolute;
+    left: 0;
 }
 
 @media (max-width: 560px) {
-  .address-search-container .alert {
-    width: 80%;
-  }
+    .address-search-container .alert {
+        width: 80%;
+    }
+}
+
+.address-search-container .alert {
+    margin-top: 16px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.es_services-container .address-search-container,
+.es_subscription-details-container .address-search-container {
+    padding: 0 20px;
+}
+
+.es_services-container .address-search-container>.form-group,
+.es_subscription-details-container .address-search-container>.form-group {
+    padding: 0;
+}
+
+.es_services-container .address-search-container .alert,
+.es_subscription-details-container .address-search-container .alert {
+    position: relative;
+}
+
+.es_services-container .address-search-container .alert:before ,
+.es_subscription-details-container .address-search-container .alert:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #70d7b7;
+    left: 10px;
+    top: -12px;
 }
 
 @media (min-width: 767px) {
-  .more-details div {
-    flex-direction: row;
-  }
-
-  .faq-container .large-view {
-    display: block;
-  }
-
-  .faq-container .main_title {
-    display: block;
-  }
-
-  .faq-container .mobile-view {
-    display: none;
-  }
-
-  .companies-container .ease-for-company {
-    height: 360px;
-    width: 390px;
-  }
-
-  .more-details .reverse-order {
-    order: 2;
-  }
-
-  .download-app-container .row {
-    flex-direction: row;
-  }
-
-  .reserve-from-app-container {
-    display: block;
-  }
-
-  .es_reserve-massage-service-page {
-    & .form-group > div {
-        display: flex;
+    .more-details .custom-container-info .custom-text {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .more-details .custom-container-info .custom-text h3 {
+        font-size: 36px;
+        margin-bottom: 0;
+    }
+    .faq-container .large-view {
+        display: block;
+    }
+    .faq-container .main_title {
+        display: block;
+    }
+    .faq-container .mobile-view {
+        display: none;
+    }
+    .companies-container .ease-for-company {
+        height: 360px;
+        width: 390px;
+    }
+    .download-app-container .row {
         flex-direction: row;
-      }
-  }
+    }
+    .download-app-container .row .logo-container div {
+        display: inline;
+    }
+    .download-app-container .row .logo-container div img:last-child {
+        margin-top: 0;
+    }
+    .reserve-from-app-container {
+        display: block;
+    }
+    .es_reserve-massage-service-page {
+        & .form-group>div {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+    .reserve-from-app-container .mobile-container {
+        flex-direction: row;
+    }
+    .reserve-from-app-container form .input-group {
+        flex-direction: column;
+    }
+    .reserve-from-app-container form .input-group input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-  .reserve-from-app-container .mobile-container {
-    flex-direction: row;
-  }
+    .reserve-from-app-container form .input-group-append .btn_1 {
+        width: 100%;
+    }
+
+    .extra-services-container>div {
+        flex-direction: row;
+    }
+    .extra-services-container img {
+        width: 15%;
+        height: 100%;
+        margin-top: 3px;
+        margin-bottom: 0;
+    }
+    .extra-services-container h5 {
+        margin-bottom: 0;
+    }
+    .extra-services-container .custom-text {
+        justify-content: center;
+        text-align: left;
+    }
 }
 
 @media (min-width: 1024px) {
-  .more-details img {
-    height: auto;
-    width: 550px;
-  }
+    .reserve-from-app-container form .input-group {
+        flex-direction: row;
+    }
+    .reserve-from-app-container form .input-group input {
+        width: 1%;
+        margin-bottom: 0;
+    }
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
+        width: 67%;
+    }
+    .address-search-container {
+        width: 100%;
+    }
+    .more-details div {
+        flex-direction: row;
+    }
+    .more-details .custom-container-info {
+        width: 100%;
+    }
+    .more-details .custom-container-info .custom-text {
+        max-width: 100%;
+        margin-left: 5%;
+        margin-right: auto;
+        text-align: left;
+    }
+    .more-details .custom-container-info {
+        margin: 0;
+    }
+    .more-details .reverse-order {
+        order: 2;
+    }
+    .more-details div a {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .more-details .reverse-order.custom-text {
+        text-align: left;
+        margin-right: 10%;
+    }
 }
 
-@media (min-width: 1150px) {
-  .more-details img {
-    height: auto;
-    width: 580px;
-  }
-}
-
-@media (min-width: 1366px) {
-  .more-details img {
-    height: auto;
-    width: 700px;
-  }
-}
-
-@media (min-width: 1480px) {
-  .more-details img {
-    height: auto;
-    width: 750px;
-  }
-}
-
-@media (min-width: 1800px) {
-  .more-details img {
-    height: auto;
-    width: 800px;
-  }
+@media (min-width: 1280px) and (max-width: 1409px) {
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
+        width: 51%;
+    }
 }
 
 .router-link-exact-active {
-  color: #d00078 !important;
+    color: #d00078 !important;
 }
 
 .es-calendly-modal {
-  overflow: hidden;
+    overflow: hidden;
+}
+@media (min-width: 1410px) {
+    .es_services-container .address-search-container,
+    .es_subscription-details-container .address-search-container {
+        width: 47%;
+    }
 }

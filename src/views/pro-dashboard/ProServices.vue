@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-password-container content">
-    <h4>{{ $t('views.pro_dashboard.qualifications') }}</h4>
+    <h2>{{ $t('views.pro_dashboard.qualifications') }}</h2>
     <es-cards-container>
       <es-card
         v-for="service in servicesList"
@@ -54,7 +54,7 @@
         </template>
       </es-card>
     </es-cards-container>
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-start">
       <button
         class="btn btn-sm btn-pink btn-pill my-4 px-6"
         @click.prevent="onSave()"

@@ -2,7 +2,7 @@
   <div class="es_client-reservations-container content">
     <div class="row">
       <div class="col-md-8 col-sm-6">
-        <h4>{{ $t('generic.my_reservations') }}</h4>
+        <h2>{{ $t('generic.my_reservations') }}</h2>
         <es-divider />
         <div v-if="isListView">
           <ul id="pricing-tab" class="nav nav-pills pricing-tab mb-4" role="tablist">
@@ -34,7 +34,7 @@
             <div v-if="getReservationList.length">
               <div v-for="(item, i) in getReservationList" :key="`${item.id}-${i}`" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
                 <h6 class="m-0">{{ $t(getReservationName(item)) }}</h6>
-                <div class="m-2">{{ item.start_time.substr(0, 10) }}</div>
+                <div class="m-2 custom-profile-reservations">{{ item.start_time.substr(0, 10) }}</div>
                 <div class="d-flex flex-column align-items-center m-2">
                   <div v-if="getReservationJobs(item).slice(0, 2).length > 0" class="d-flex flex-row align-items-center">
                     <figure v-for="job in getReservationJobs(item).slice(0, 2)" :key="job.id" class="mb-0">
@@ -95,7 +95,7 @@
               <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $t('generic.previous') }}</h4>
             </div>
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-start">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click.prevent="$router.push('/servicii')"
@@ -168,7 +168,7 @@
               <li v-if="parseInt(selectedReservation.subscription_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subscriptionDiscount') }}</strong> - {{ `${selectedReservation.subscription_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
-            <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
+              <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
               <li class="d-flex justify-content-between"><strong>{{ $t('generic.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
             </ul>
             <div v-if="canCancelReservation" class="d-flex justify-content-start">

@@ -22,7 +22,7 @@
         <h2>{{ $t('views.subscriptions.title_2') }}</h2>
       </div>
 
-      <div class="row justify-content-center align-items-center add_bottom_15">
+      <div class="row justify-content-center align-items-center add_bottom_15 custom-subscription-card">
         <div class="col-lg-6">
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo1_title') }}</h3>
@@ -30,7 +30,7 @@
             <img src="@/assets/png/arrow_about.png" alt="" class="arrow_1">
           </div>
         </div>
-        <div class="col-lg-6 text-center d-none d-lg-block">
+        <div class="col-lg-6 text-center ">
           <img
             src="@/assets/svg/subscription_1.svg"
             alt=""
@@ -41,8 +41,8 @@
         </div>
       </div>
       <!-- /row -->
-      <div class="row justify-content-center align-items-center add_bottom_15">
-        <div class="col-lg-6 text-center d-none d-lg-block">
+      <div class="row justify-content-center align-items-center add_bottom_15 custom-subscription-card">
+        <div class="col-lg-6 text-center ">
           <img
             src="@/assets/svg/subscription_2.svg"
             alt=""
@@ -60,14 +60,14 @@
         </div>
       </div>
       <!-- /row -->
-      <div class="row justify-content-center align-items-center">
+      <div class="row justify-content-center align-items-center custom-subscription-card">
         <div class="col-lg-6">
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo3_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo3_body') }}</p>
           </div>
         </div>
-        <div class="col-lg-6 text-center d-none d-lg-block">
+        <div class="col-lg-6 text-center ">
           <img
             src="@/assets/svg/subscription_3.svg"
             alt=""

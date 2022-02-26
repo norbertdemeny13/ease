@@ -1,12 +1,12 @@
 <template>
   <div class="es_client-preferences-container content">
     <div class="row">
-      <div class="col-md-6">
-        <h4>{{ $t('views.client_dashboard.preferences.title') }}</h4>
+      <div class="col-md-12">
+        <h2>{{ $t('views.client_dashboard.preferences.title') }}</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h6>{{ $t('account.preferedPresure') }}</h6>
         <div class="row mt-5">
           <div class="col-md-1">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-md-4">
+      <div class="col-md-7">
         <h6>{{ $t('account.preferedConversation') }}</h6>
         <es-vue-slider
           ref="slider"
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-md-4">
+      <div class="col-md-12 col-lg-8">
         <h6>{{ $t('account.aromaToBeAvoided') }}</h6>
         <div class="form-group">
           <input
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-md-4">
+      <div class="col-md-12 col-lg-8">
         <h6>{{ $t('account.notes') }}</h6>
         <div class="form-group">
           <input
@@ -62,7 +62,7 @@
             placeholder="Ex: stare de sanatate, conditie fizica, alte particularitati"
           >
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="onSave"

@@ -3,35 +3,52 @@
     <div class="container margin_30_40">
       <router-link v-if="!isReservationConfirmed" class="back-button mb-2" :to="getToRoute()">Inapoi</router-link>
       <div class="row mt-4">
-        <div class="col-lg-6 col-md-6 pt-2 p-4 bg_gray">
-          <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center">
-            <div class="title d-flex flex-column align-items-center">
-              <figure>
-                <img
-                  src="@/assets/png/succes.png"
-                  alt=""
-                  class="lazy"
-                >
-              </figure>
-              <h3 class="px-10 text-center">{{ $t('reservation_sent_successfully') }}</h3>
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="box_order">
+            <div class="head">
+              <h3>Plata si Adresa</h3>
             </div>
-            <p class="my-6 px-8">{{ $t('reservation_sent_successfully_text') }} </p>
-            <div class="d-flex justify-content-center">
-              <button
-                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-                @click.prevent="$router.push('/client/rezervarile-mele')"
-              >
-                {{ $t('generic.my_reservations') }}
-              </button>
+            <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center main">
+              <div class="title d-flex flex-column align-items-center">
+                <figure>
+                  <img
+                    src="@/assets/svg/succes.svg"
+                    alt=""
+                    width="75px"
+                    class="lazy"
+                  >
+                </figure>
+                <h3 class="px-10 text-center">{{ $t('reservation_sent_successfully') }}</h3>
+              </div>
+              <p class="my-6 px-8 text-center">{{ $t('reservation_sent_successfully_text') }} </p>
+              <div class="d-flex justify-content-center">
+                <button
+                  class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                  @click.prevent="$router.push('/client/rezervarile-mele')"
+                >
+                  {{ $t('generic.my_reservations') }}
+                </button>
+              </div>
+            </div>
+            <div v-else>
+              <div v-if="!getCards.length" class="alert alert-danger" role="alert">
+                <span>{{ $t('generic.please_add_a_payment_method') }}</span>
+              </div>
+              <div class="">
+                <div class="main">
+                  <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
+                  <es-payment-details />
+                </div>
+              </div>
             </div>
           </div>
-          <div v-else>
-            <div v-if="!getCards.length" class="alert alert-danger" role="alert">
-              <span>{{ $t('generic.please_add_a_payment_method') }}</span>
+          <div class="mt-4 mb-4 box_order">
+            <div class="head">
+              <h3>Abonamente</h3>
             </div>
-            <es-address-details @on-show-address-modal="isAddressModalOpen = true" />
-            <es-payment-details />
-            <es-subscription-selection @set-active-subscription="setActiveSubscription" />
+            <div class="main">
+              <es-subscription-selection @set-active-subscription="setActiveSubscription" />
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
@@ -40,7 +57,7 @@
             :time="getSelectedTime"
             :is-reservation-confirmed="isReservationConfirmed"
           />
-          <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-center">
+          <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill px-6"
               :disabled="!getCards.length"

@@ -4,36 +4,44 @@
     <div class="container margin_30_40">
       <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="row mt-4">
-        <div class="col-lg-6 col-md-6 p-8 bg_gray">
-          <h3>{{ $t('views.subscriptions.details') }}</h3>
-          <div class="main">
-            <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
-              <h5>{{ $t(getSelectedSubscription.label) }}</h5>
-              <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="box_order">
+            <div class="head">
+              <h3>{{ $t('views.subscriptions.details') }}</h3>
             </div>
-            <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">
-              <h6>{{ $t('generic.subtotal') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
+            <div class="main custom-subscriptions">
+              <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
+                <h5>{{ $t(getSelectedSubscription.label) }}</h5>
+                <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
+              </div>
+              <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">
+                <h6>{{ $t('generic.subtotal') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
+              </div>
+              <div class="d-flex justify-content-between align-items-center flex-inline custom-subscription-total">
+                <h6>{{ $t('generic.total') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
+              </div>
+              <div class="mt-4"><small>{{ getTermsAndConditions }}</small></div>
             </div>
-            <div class="d-flex justify-content-between align-items-center flex-inline">
-              <h6>{{ $t('generic.total') }}</h6><h6>{{ getSelectedSubscription.price.price }} Lei</h6>
-            </div>
-            <div class="mt-4"><small>{{ getTermsAndConditions }}</small></div>
           </div>
         </div>
-        <div v-if="isSubscriptionActivated" class="col-lg-6 col-md-6 p-8">
-          <div class="title d-flex flex-column align-items-center">
-            <figure>
-              <img
-                src="@/assets/png/succes.png"
-                alt=""
-                class="lazy"
-              >
-            </figure>
-            <h3 class="px-10 text-center">{{ $t('views.subscriptions.activation_success_title') }}</h3>
+        <div v-if="isSubscriptionActivated" class="col-lg-6 col-md-6">
+          <div class="box_order">
+            <div class="main">
+              <div class="title d-flex flex-column align-items-center">
+                <figure>
+                  <img
+                    src="@/assets/svg/succes.svg"
+                    alt=""
+                    class="lazy"
+                  >
+                </figure>
+                <h3 class="px-10 text-center">{{ $t('views.subscriptions.activation_success_title') }}</h3>
+              </div>
+              <p class="my-6 px-8">{{ $t('views.subscriptions.activation_success_1') }}</p>
+              <p class="px-8">{{ $t('views.subscriptions.activation_success_2') }}</p>
           </div>
-          <p class="my-6 px-8">{{ $t('views.subscriptions.activation_success_1') }}</p>
-          <p class="px-8">{{ $t('views.subscriptions.activation_success_2') }}</p>
-          <div class="d-flex justify-content-center">
+          </div>
+          <div class="d-flex justify-content-end">
             <button
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
               @click.prevent="$router.push('/servicii')"
@@ -42,19 +50,26 @@
             </button>
           </div>
         </div>
-        <div v-else class="col-lg-6 col-md-6 p-8">
-          <es-address-details disabled />
-          <es-payment-details>
-            <div class="d-flex justify-content-center">
-              <button
-                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-                @click.prevent="activateSubscription()"
-                :disabled="!getCards.length"
-              >
-                {{ $t('generic.activate') }}
-              </button>
+        <div v-else class="col-lg-6 col-md-6">
+          <div class="box_order">
+            <div class="head">
+              <h3>Plata si Adresa</h3>
             </div>
-          </es-payment-details>
+            <div class="main">
+              <es-address-details disabled />
+              <es-payment-details>
+              </es-payment-details>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+              <button
+                  class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                  @click.prevent="activateSubscription()"
+                  :disabled="!getCards.length"
+              >
+                  {{ $t('generic.activate') }}
+              </button>
+          </div>
         </div>
       </div>
     </div>

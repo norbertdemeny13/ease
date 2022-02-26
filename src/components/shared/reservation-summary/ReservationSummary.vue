@@ -35,7 +35,7 @@
         <li class="total d-flex justify-content-between"><strong>{{ $t('summary.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
         <es-divider v-if="!isReservationConfirmed" />
         <div v-if="!isReservationConfirmed" class="promo-code-container">
-          <div class="form-group col-md-8">
+          <div class="form-group col-md-12">
             <label>{{ $t('summary.add_promo_code_or_giftcard') }}</label>
             <div class="d-flex align-items-center">
               <input

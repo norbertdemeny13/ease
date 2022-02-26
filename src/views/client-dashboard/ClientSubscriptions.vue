@@ -2,11 +2,11 @@
   <div class="es_client-subscriptions-container content">
     <div class="row">
       <div class="col-md-6">
-        <h4>{{ $t('generic.subscription_details') }}</h4>
+        <h2>{{ $t('generic.subscription_details') }}</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12 col-lg-8">
         <div v-if="hasSubscription">
           <h6 class="mt-4">{{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
@@ -18,18 +18,18 @@
             <li><strong>{{ $t('generic.status') }}</strong>{{ hasActiveSubscription ? 'Activ' : 'Anulat' }}</li>
             <li><strong>{{ $t('generic.price') }}</strong>{{ getActiveSubscription.subscription.price.price }} Ron/{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.year') }}</li>
           </ul>
-          <div v-if="hasActiveSubscription" class="d-flex justify-content-end">
+          <div v-if="hasActiveSubscription" class="d-flex justify-content-start">
             <button
-              class="btn btn-sm btn-pink btn-pill my-4 px-4"
-              @click="onCancel"
-            >
-              {{ $t('generic.cancel_subscription') }}
-            </button>
-            <button
-              class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-4"
+              class="btn btn-sm btn-pink btn-pill mr-2 my-4 px-4"
               @click="onModify"
             >
               {{ $t('generic.change_subscription') }}
+            </button>
+            <button
+              class="btn btn-sm btn-pill btn-secondary-account my-4 px-4"
+              @click="onCancel"
+            >
+              {{ $t('generic.cancel_subscription') }}
             </button>
           </div>
           <button
@@ -44,7 +44,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <h4>{{ $t('views.client_dashboard.subscriptions.description') }}</h4>
           </div>
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-start">
             <button
               class="btn btn-sm btn-pink btn-pill my-4 px-6"
               @click="$router.push('/abonamente')"

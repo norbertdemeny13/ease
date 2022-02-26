@@ -1,6 +1,6 @@
 <template>
   <div class="es_pro-addresses-container content">
-    <h4>{{ $t('generic.address') }}</h4>
+    <h2>{{ $t('generic.address') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
@@ -40,7 +40,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click="onSave"

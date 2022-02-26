@@ -1,12 +1,12 @@
 <template>
   <div class="es_additional-services-container">
-    <h4 class="my-4">{{ $t('generic.add') }}</h4>
+    <h3 class="my-4">{{ $t('generic.add') }}</h3>
     <div
       v-for="service in services"
       :key="service.uuid"
       :class="`extra-services-container row my-4 ml-0 ${ selectedServices.find(item => item.uuid === service.uuid) ? 'selected' : '' }`"
     >
-      <div class="d-flex flex-row p-2 w-100" @click="onServiceSelect(service)">
+      <div class="d-flex p-2 w-100" @click="onServiceSelect(service)">
         <img
           :src="service.absolute_image_url_small"
           :data-src="service.absolute_image_url_small"
@@ -15,8 +15,8 @@
           width="80px"
           height="60px"
         >
-        <div class="d-flex flex-column flex-grow-1 ml-2 px-2">
-          <h5>{{ $t(service.name) }}</h5>
+        <div class="d-flex flex-column flex-grow-1 ml-2 px-2 custom-text">
+          <h5>{{ $t(service.name) }} | {{ service.duration }} min</h5>
           <p v-if="service.description">{{ $t(service.description) }}</p>
           <h6>{{ service.is_four_hands ? $t('generic.from') : '' }} {{ service.price || 49 }} Lei</h6>
         </div>
@@ -75,9 +75,3 @@
     },
   });
 </script>
-
-<style type="text/css">
-  .extra-services-container .img-fluid {
-    max-height: 100px;
-  }
-</style>

@@ -4,9 +4,9 @@
       <div class="opacity-mask">
         <div class="container">
           <div class="row pt-6 px-6">
-            <div class="col-md-8">
+            <div class="col-md-7 col-xl-8">
               <div class="text-center text-content mt-4 d-flex align-items-start flex-column justify-content-center">
-                <h3 class="text-left">{{ $t('views.pro_home.page_title') }}</h3>
+                <h1 class="text-left">{{ $t('views.pro_home.page_title') }}</h1>
                 <p class="my-2 text-left">{{ $t('views.pro_home.page_subtitle') }}</p>
                 <button
                   class="btn btn-pink btn-pill mt-4 px-6"
@@ -28,7 +28,7 @@
     <es-how-it-works />
     <div class="text-center text-content m-4 p-4 d-flex align-items-center flex-column justify-content-center bg_gray">
       <div class="row">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-12 col-lg-8 mx-auto">
           <h3 class="text-center">{{ $t('views.pro_home.footer_message') }}</h3>
           <button
             class="btn btn-pink btn-pill mt-4 px-6"

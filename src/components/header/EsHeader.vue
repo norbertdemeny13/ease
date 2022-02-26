@@ -68,7 +68,25 @@
             <a href="" class="open_close">
               <i class="icon_close" /><span>Menu</span>
             </a>
-            <a href="">EASE</a>
+            <div class="logo-sidebar">
+              <router-link v-if="isPro" to="/easepro/">
+                <img
+                  src="@/assets/svg/pro-logo.svg"
+                  width="90"
+                  height="30"
+                  alt="Ease Pro Logo"
+                  class="my-2"
+                >
+              </router-link>
+              <router-link v-else to="/">
+                <img
+                  src="@/assets/svg/ease-logo_pink.svg"
+                  width="162"
+                  height="45"
+                  alt="Ease Logo"
+                >
+              </router-link>
+            </div>
           </div>
           <ul>
             <li

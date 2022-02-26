@@ -6,7 +6,7 @@
       </a>
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
-        <div class="col-xl-6 col-lg-6 col-md-6 px-6">
+        <div class="col-xl-6 col-lg-6 col-md-12 px-6">
           <div class="row">
             <div class="col-12 owl-carousel massage-owl-carousel owl-theme categories_carousel_in">
               <div v-for="item in services" :key="item.uuid">
@@ -26,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
+        <div class="col-xl-6 col-lg-6 col-md-12 bg_gray">
           <div class="p-5">
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
               <label v-if="!filter.isHidden">{{ filter.label }}</label>
@@ -34,7 +34,7 @@
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`${getFilterClasses(filter)} btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${choice.disabled ? 'disabled' : ''}`"
+                  :class="`btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${choice.disabled ? 'disabled' : ''}`"
                   @click="setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}

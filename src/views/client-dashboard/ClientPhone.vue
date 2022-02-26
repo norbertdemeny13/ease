@@ -1,6 +1,6 @@
 <template>
   <div class="es_client-phone-container content">
-    <h4>{{ $t('generic.phone_nr') }}</h4>
+    <h2>{{ $t('generic.phone_nr') }}</h2>
     <div class="row">
       <div class="col-md-4">
         <div v-if="phone" class="form-group">
@@ -20,7 +20,7 @@
         <div v-else>
           <p>{{ $t('generic.please_add_your_phone_nr') }}</p>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
             @click.prevent="isPhoneValidateModalOpen = true"

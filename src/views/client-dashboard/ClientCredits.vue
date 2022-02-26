@@ -1,8 +1,8 @@
 <template>
   <div class="es_client-credits-container content">
     <div class="row">
-      <div class="col-md-8">
-        <h4>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h4>
+      <div class="col-md-10 col-lg-8 col-xl-6">
+        <h2>{{ $t('views.client_dashboard.ease_credit.ease_credit') }} {{ parseInt(getUser.ease_credit, 10) }} Lei</h2>
         <es-divider />
         <h6>{{ $t('views.client_dashboard.ease_credit.description') }}</h6>
         <div class="d-flex flex-wrap justify-content-start align-items-center">
@@ -25,7 +25,7 @@
                 {{ $t('views.client_dashboard.ease_credit.apply') }}
               </button>
               <button
-                class="btn btn-sm btn-pink btn-pill ml-2 my-4 px-6"
+                class="btn btn-sm btn-secondary-account btn-pill ml-2 my-4 px-6"
                 @click="$router.push('/client/recomandare')"
               >
                 {{ $t('generic.recommend') }}
@@ -102,6 +102,6 @@
 
 <style type="text/css" scoped>
   input {
-    width: 120px !important;
+    width: 160px !important;
   }
 </style>
