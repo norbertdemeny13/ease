@@ -29,8 +29,8 @@
         <div class="col-xl-6 col-lg-6 col-md-6 bg_gray">
           <div class="p-5">
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
-              <label>{{ filter.label }}</label>
-              <div class="my-2 row filters">
+              <label v-if="!filter.isHidden">{{ filter.label }}</label>
+              <div v-if="!filter.isHidden" class="my-2 row filters">
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"

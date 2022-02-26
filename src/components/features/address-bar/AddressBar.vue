@@ -118,7 +118,7 @@
       },
       getAddresses(newVal) {
         if (newVal.length) {
-          const selectedAddressId = newVal.find((item) => item.main).id;
+          const selectedAddressId = newVal.find((item) => item.main)?.id;
           const addressId = this.getReservationAddress
             ? this.getReservationAddress.id
             : selectedAddressId;

@@ -117,8 +117,8 @@
           : '';
       },
       getHour() {
-        const { time } = this.time;
-        return time;
+        const curentTime = this.time && this.time.time;
+        return curentTime;
       },
       getTotal() {
         let total = parseInt(this.time.price, 10);

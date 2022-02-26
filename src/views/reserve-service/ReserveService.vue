@@ -28,6 +28,10 @@
               <p class="time  mb-0">{{ item.time }}</p>
               <p class="price mb-0">{{ item.price }} Lei</p>
             </div>
+            <div v-if="!getHours.length" class="p-2">
+              <img src="@/assets/svg/no-time.svg" width="40" height="40">
+              <p>{{ $t('calendar.elite_unavailable') }}</p>
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6">

@@ -384,14 +384,22 @@ export default {
 
       Vue.set(state, 'isFetching', true);
 
+      let params: any = {
+        city_id,
+        duration,
+      };
+
+      if (pro_id) {
+        params.pro_id = pro_id;
+      }
+
+      if (type) {
+        params.type = terapeut === 'double' ? 'couple_2' : 'couple_1';
+      }
+
       try {
         const { data } = await api.find(`/service/${type}/${id}`, {
-          params: {
-            city_id,
-            duration,
-            pro_id,
-            type: terapeut === 'double' ? 'couple_2' : 'couple_1',
-          },
+          params,
         });
         commit('setServiceById', { ...data, category: type, uuid: id });
       } catch ({ response: reason }) {
