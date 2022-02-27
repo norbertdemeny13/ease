@@ -116,6 +116,7 @@
 
     methods: {
       ...mapActions({
+        fetchLocation: 'address/fetchLocation',
         fetchSubscriptionsByType: 'subscriptions/fetchSubscriptionsByType',
         setDefaultAddress: 'address/setDefaultAddress',
       }),
@@ -166,6 +167,7 @@
         this.$data[key] = value;
       },
       async onAddressChange(address) {
+        await this.fetchLocation(address);
         const { params, query } = this.$router.currentRoute;
         const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
         const id = address?.id;
