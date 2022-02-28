@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <div class="custom-container-info py-6">
+        <div class="custom-container-info custom-home-container py-6">
           <div class="text-content mt-4 pl-3 pr-3 col-sm-12 col-lg-6">
             <div class="d-flex align-items-start flex-column justify-content-center reverse-order custom-text">
               <h3>{{ $t('views.home.md_row2_title') }}</h3>
@@ -33,7 +33,7 @@
             >
           </div>
         </div>
-        <div class="custom-container-info pt-6">
+        <div class="custom-container-info custom-home-container pt-6">
           <div class="d-flex col-sm-12 col-lg-6 custom-image-padding">
             <img
               src="@/assets/jpg/faq.jpg"

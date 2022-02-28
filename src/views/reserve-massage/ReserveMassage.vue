@@ -26,8 +26,8 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 bg_gray">
-          <div class="p-5">
+        <div class="col-xl-6 col-lg-6 col-md-12">
+          <div class="px-5 pb-5">
             <div v-for="filter in massageFilters.slice(0,2)" :key="filter.id" class="form-group">
               <label v-if="!filter.isHidden">{{ filter.label }}</label>
               <div v-if="!filter.isHidden" class="my-2 row filters">
@@ -62,7 +62,7 @@
             <es-additional-services
               :services="getComplementaryServices"
             />
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-end">
               <a
                 class="btn btn-sm btn-pink btn-pill mt-4 px-6"
                 href=""

@@ -34,7 +34,7 @@
 @media (max-width: 991px) {
     .box_how figure {
         float: right;
-        margin: 0 0 0 15px;
+        margin: 0;
     }
 }
 
@@ -42,6 +42,7 @@
     .box_how figure img {
         width: 160px;
         height: auto;
+        margin-bottom: 16px;
     }
 }
 

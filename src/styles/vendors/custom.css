@@ -79,7 +79,7 @@
     flex-direction: column;
     & a {
         display: flex;
-        margin: 0 auto;
+        /* margin: 0 auto; */
         /* margin-left: 2rem; */
     }
     & .text-content p,
@@ -126,14 +126,6 @@
 
 .download-app-container .row .logo-container h3 {
     text-align: center;
-}
-
-.download-app-container .row .logo-container div {
-    display: grid;
-}
-
-.download-app-container .row .logo-container div img:last-child {
-    margin-top: 5px;
 }
 
 .es_reserve-massage-service-page {
@@ -185,7 +177,7 @@
 .es_reserve-service-container .owl-next,
 .es_reserve-service-container .owl-prev,
 {
-    background-color: transparent !important;
+    background-color: #FFFFFF !important;
     box-shadow: none !important;
     & i {
         color: #000 !important;
@@ -362,13 +354,9 @@
     cursor: pointer;
 }
 
-.extra-services-container>div {
-    flex-direction: column;
-}
-
 .extra-services-container img {
     width: 100%;
-    height: 150px;
+    height: 80px;
     object-fit: contain;
     margin-bottom: 10px;
 }
@@ -495,21 +483,10 @@
     left: 0;
 }
 
-@media (max-width: 560px) {
-    .address-search-container .alert {
-        width: 80%;
-    }
-}
-
 .address-search-container .alert {
     margin-top: 16px;
     padding: 10px 20px;
     font-size: 14px;
-}
-
-.es_services-container .address-search-container,
-.es_subscription-details-container .address-search-container {
-    padding: 0 20px;
 }
 
 .es_services-container .address-search-container>.form-group,
@@ -606,6 +583,10 @@
         justify-content: center;
         text-align: left;
     }
+
+    .download-app-container .row .logo-container {
+        margin-left: 20px;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -655,6 +636,11 @@
     .es_services-container .address-search-container,
     .es_subscription-details-container .address-search-container {
         width: 51%;
+    }
+
+    .hero.pro-hero .opacity-mask h1,
+    .hero.pro-hero .opacity-mask p {
+        width: 70%;
     }
 }
 

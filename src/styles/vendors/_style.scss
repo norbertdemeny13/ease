@@ -2249,7 +2249,7 @@ header a.open_close {
     font-size: 2rem;
     display: none;
     width: 25px;
-    height: 25px;
+    height: 30px;
 }
 
 @media (max-width: 991px) {
@@ -2305,7 +2305,7 @@ header.sticky a.open_close:hover,
     }
     #logo img {
         width: auto;
-        height: 28px;
+        height: 30px;
     }
 }
 
@@ -2697,7 +2697,7 @@ ul#top_menu li a.cart_bt,
 ul#top_menu li a.wishlist_bt_top {
     display: block;
     width: 22px;
-    height: 23px;
+    height: 30px;
     position: relative;
     top: 8px;
     -moz-transition: opacity 0.5s ease;
@@ -2858,12 +2858,6 @@ ul#top_menu li a.login::before {
 .hero .opacity-mask p {
     font-size: 24px;
     font-weight: 300;
-}
-
-@media (max-width: 767px) {
-    .hero .opacity-mask p {
-        font-size: 21px;
-    }
 }
 
 .hero .search_trends {
@@ -3072,6 +3066,10 @@ ul#top_menu li a.login::before {
     .custom-search-input button[type='submit'] {
         margin: 15px 0 0 0;
     }
+
+    .custom-search-input .custom-button {
+        width: 100%;
+    }
 }
 
 .search_trends {
@@ -3268,8 +3266,8 @@ ul#top_menu li a.login::before {
 }
 
 .page_header {
-    padding: 20px 0 20px 0;
-    background-color: #f4f4f4;
+    // padding: 20px 0 20px 0;
+    // background-color: #f4f4f4;
 }
 
 @media (max-width: 767px) {
@@ -3971,7 +3969,7 @@ header.black_nav .dropdown.user a:hover {
 
 @media (max-width: 767px) {
     .main_title.center h2 {
-        font-size: 28px;
+        font-size: 20px;
     }
 }
 
@@ -3988,6 +3986,10 @@ header.black_nav .dropdown.user a:hover {
 @media (max-width: 767px) {
     .main_title.version_2 a {
         display: none;
+    }
+
+    .main_title.center p {
+        font-size: 16px;
     }
 }
 
@@ -4073,6 +4075,12 @@ header.black_nav .dropdown.user a:hover {
     display: block;
     width: 100%;
     height: auto;
+}
+
+.owl-carousel .owl-item h3 {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: SofiaProMedium !important;
 }
 
 .owl-carousel .owl-nav.disabled,
@@ -4200,9 +4208,9 @@ header.black_nav .dropdown.user a:hover {
     cursor: default;
 }
 
-.owl-theme .owl-nav.disabled+.owl-dots {
-    margin-top: 30px;
-}
+// .owl-theme .owl-nav.disabled+.owl-dots {
+//     margin-top: 30px;
+// }
 
 .owl-theme .owl-dots {
     text-align: center;
@@ -4301,7 +4309,7 @@ header.black_nav .dropdown.user a:hover {
 }
 
 .owl-theme .owl-nav .owl-prev {
-    left: -24px;
+    left: 24px;
 }
 
 // .owl-theme .owl-nav .owl-prev:hover,
@@ -4310,7 +4318,7 @@ header.black_nav .dropdown.user a:hover {
 // }
 
 .owl-theme .owl-nav .owl-next {
-    right: -24px;
+    right: 24px;
 }
 
 .owl-theme .owl-nav .owl-prev i,
@@ -7419,11 +7427,14 @@ ul.plan-features {
         border: 1px solid #e7eaf3;
         border-radius: 8px;
         margin: 15px;
-        &:nth-child(3) {
-             :first-child {
-                order: 1;
-            }
-             :last-child {
+        img {
+            margin-top: 16px;
+        }
+
+        .col-lg-6 {
+            order: 1;
+
+            &.text-center {
                 order: 0;
             }
         }
@@ -7457,12 +7468,14 @@ ul.plan-features {
         .custom-subscription-card {
             border: 0 none;
             margin: 0;
-            &:nth-child(3) {
-                 :first-child {
-                    order: 0;
-                }
-                 :last-child {
-                    order: 1;
+            img {
+                margin-top: 0x;
+            }
+            .col-lg-6 {
+                order: unset;
+
+                &.text-center {
+                    order: unset;
                 }
             }
             &:nth-child(4) {
@@ -7645,6 +7658,7 @@ ul.plan-features {
     img {
         display: flex;
         margin: 0 auto;
+        width: 100%;
     }
 
     div {
@@ -7692,6 +7706,39 @@ ul.plan-features {
             h6 {
                 text-align: center;
             }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .custom-pro {
+        h3 {
+            font-size: 20px;
+        }
+    }
+
+    .es_reserve-service-container,
+    .es_reserve-subscription-container {
+        .title {
+            h3 {
+                padding: 0 !important;
+            }
+        }
+
+        .text-center {
+            padding: 0 !important;
+        }
+    }
+
+    .es_reserve-subscription-container {
+        .px-8 {
+            padding: 0 !important;
+        }
+    }
+
+    .es_gift-card-summary-page {
+        .px-10, .px-8 {
+            padding: 0 !important;
         }
     }
 }
