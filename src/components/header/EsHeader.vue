@@ -186,7 +186,7 @@
       getInitials(): string {
         const firstNameI = this.getUser.first_name?.split(' ').map((n: any) => n[0]).join('');
         const lastNameI = this.getUser.last_name?.split(' ').map((n: any) => n[0]).join('');
-        return `${firstNameI.toUpperCase()} ${lastNameI.toUpperCase()}`;
+        return `${firstNameI.toUpperCase()}${lastNameI.toUpperCase()}`;
       },
       getNavbarLinks(): any {
         return this.getUserType === 'elite' ? PRO_NAVBAR_LINKS : NAVBAR_LINKS;

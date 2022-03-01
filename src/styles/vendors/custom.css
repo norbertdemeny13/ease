@@ -294,6 +294,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
+    margin: 0 -25px;
 }
 
 .es_reserve-service-container .hour-item {
@@ -587,6 +588,9 @@
     .download-app-container .row .logo-container {
         margin-left: 20px;
     }
+    .es_reserve-service-container .hour-container {
+        margin: 0 ;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -655,5 +659,9 @@
     .es_services-container .address-search-container,
     .es_subscription-details-container .address-search-container {
         width: 47%;
+    }
+
+    .more-details .custom-container-info .custom-text {
+        max-width: 60%;
     }
 }

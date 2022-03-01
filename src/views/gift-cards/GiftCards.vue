@@ -20,7 +20,7 @@
               <div
                 v-for="card in category.gift_card_templates"
                 :key="card.id"
-                class="col-md-3 my-4"
+                class="col-md-3 my-4 transition-3d-hover"
                 @click.prevent="onClick(card)"
               >
                 <img :src="card.absolute_image_url" width="100%" />
