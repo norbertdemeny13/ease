@@ -5,25 +5,21 @@
       <div
         v-for="(item, i) in getEliteFavorites"
         :key="`${item.id}-${i}`"
-        class="col-md-2 d-flex flex-column align-items-center"
+        class="col-md-2 d-flex flex-column align-items-start"
         @click="$router.push(`/pro/${item.id}`)"
       >
-        <figure class="mb-0 d-flex justify-content-center">
+        <figure class="mb-0 d-flex justify-content-start">
           <img
             v-if="item.avatar_path"
             :class="`radius-50 m-1 ${item.located_in_current_users_city ? '' : 'disabled'}`"
             :src="item.avatar_path"
             alt=""
-            width="120px"
-            height="120px"
           >
           <img
             v-else
             :class="`radius-50 m-1 ${item.located_in_current_users_city ? '' : 'disabled'}`"
             src="@/assets/svg/pro-placeholder.svg"
             alt=""
-            width="120px"
-            height="120px"
           >
         </figure>
         <span class="text-center">{{ item.first_name }}</span>
@@ -88,4 +84,16 @@
     background-color: #000;
     opacity: 0.4;
   }
+
+    img {
+    width: 120px;
+    height: 120px;
+  }
+
+@media (max-width: 767px) {
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
 </style>

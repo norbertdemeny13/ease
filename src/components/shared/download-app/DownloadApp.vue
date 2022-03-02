@@ -9,7 +9,7 @@
           width="80"
           height="80"
         >
-        <div class="logo-container d-flex flex-column align-items-center ml-3">
+        <div class="logo-container d-flex flex-column align-items-center">
           <h2>{{ $t('generic.download_app') }}</h2>
           <div>
             <img

@@ -89,6 +89,10 @@
     h6 {
         text-align: right;
         margin-top: 10px;
+
+            @media (max-width: 767px) {
+                text-align: left;
+            }
     }
 }
 
@@ -100,6 +104,10 @@
     margin-bottom: 7px;
     font-weight: bold;
     text-transform: uppercase;
+
+        @media (max-width: 767px) {
+            float: right;
+        }
 
         .badge {
             margin-top: 10px;

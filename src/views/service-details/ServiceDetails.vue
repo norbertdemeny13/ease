@@ -31,7 +31,7 @@
               {{ $t('generic.add_more') }}
             </a>
           </div>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-end">
             <a
               class="btn btn-sm btn-pink btn-pill mt-4 px-6"
               href=""

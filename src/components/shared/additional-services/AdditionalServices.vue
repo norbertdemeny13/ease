@@ -1,10 +1,10 @@
 <template>
-  <div class="es_additional-services-container">
+  <div class="es_additional-services-container container">
     <h3 class="my-4">{{ $t('generic.add') }}</h3>
     <div
       v-for="service in services"
       :key="service.uuid"
-      :class="`extra-services-container row my-4 ml-0 ${ selectedServices.find(item => item.uuid === service.uuid) ? 'selected' : '' }`"
+      :class="`extra-services-container row my-4 ${ selectedServices.find(item => item.uuid === service.uuid) ? 'selected' : '' }`"
     >
       <div class="d-flex p-2 w-100" @click="onServiceSelect(service)">
         <img

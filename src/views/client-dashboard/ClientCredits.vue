@@ -17,7 +17,7 @@
             >
           </div>
           <div class="row">
-            <div class="col">
+            <div class="col d-flex">
               <button
                 class="btn btn-sm btn-pink btn-pill my-4 px-6"
                 @click="onValidate()"

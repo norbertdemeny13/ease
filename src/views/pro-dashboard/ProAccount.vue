@@ -252,7 +252,7 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end ml-3">
         <button
           class="btn btn-sm btn-pink btn-pill my-6 px-6"
           @click.prevent="onSave()"
