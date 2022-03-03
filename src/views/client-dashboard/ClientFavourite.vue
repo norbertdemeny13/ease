@@ -5,7 +5,7 @@
       <div
         v-for="(item, i) in getEliteFavorites"
         :key="`${item.id}-${i}`"
-        class="col-md-2 d-flex flex-column align-items-start"
+        class="col-md-2 d-flex flex-column align-items-start custom-sm-6"
         @click="$router.push(`/pro/${item.id}`)"
       >
         <figure class="mb-0 d-flex justify-content-start">

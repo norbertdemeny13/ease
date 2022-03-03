@@ -14,7 +14,7 @@
             <div class="d-flex align-items-start flex-column justify-content-center custom-text">
               <h3>{{ $t('views.home.md_row1_title') }}</h3>
               <p class="my-2">{{ $t('views.home.md_row1_description') }}</p>
-              <router-link class="btn btn-pink btn-pill gradient mt-4 px-6" to="/servicii">{{ $t('generic.reserve_now') }}</router-link>
+              <router-link class="btn btn-pink btn-pill gradient mt-4 ml-3 px-6" to="/servicii">{{ $t('generic.reserve_now') }}</router-link>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="d-flex align-items-start flex-column justify-content-center reverse-order custom-text">
               <h3>{{ $t('views.home.md_row2_title') }}</h3>
               <p class="my-2">{{ $t('views.home.md_row2_description') }}</p>
-              <router-link class="btn btn-small btn-pink btn-pill gradient mt-4 px-6" to="/abonamente">{{ $t('generic.activate_now') }}</router-link>
+              <router-link class="btn btn-small btn-pink btn-pill gradient mt-4 ml-3 px-6" to="/abonamente">{{ $t('generic.activate_now') }}</router-link>
             </div>
           </div>
           <div class="d-flex reverse-order col-sm-12 col-lg-6 custom-image-padding">
@@ -44,7 +44,7 @@
             <div class="d-flex align-items-start flex-column justify-content-center custom-text">
               <h3>{{ $t('views.home.md_row3_title') }}</h3>
               <p class="my-2">{{ $t('views.home.md_row3_description') }}</p>
-              <router-link class="btn btn-pink btn-pill gradient mt-4 px-6" to="/intrebari-frecvente">{{ $t('generic.learn_more') }}</router-link>
+              <router-link class="btn btn-pink btn-pill gradient mt-4 ml-3 px-6" to="/intrebari-frecvente">{{ $t('generic.learn_more') }}</router-link>
             </div>
           </div>
         </div>

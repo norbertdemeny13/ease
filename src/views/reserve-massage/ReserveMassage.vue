@@ -34,7 +34,7 @@
                 <button
                   v-for="choice in filter.choices"
                   :key="choice.value"
-                  :class="`btn btn-choice btn-small border px-6 mr-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${choice.disabled ? 'disabled' : ''}`"
+                  :class="`btn btn-choice btn-small border px-6 mr-md-4 selection-item ${ choice.value === massageForm[filter.key] ? 'active' : ''} ${choice.disabled ? 'disabled' : ''}`"
                   @click="setValue(filter.key, choice.value)"
                 >
                   {{ choice.label }}

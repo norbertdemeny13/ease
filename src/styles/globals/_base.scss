@@ -9544,6 +9544,16 @@ Letter Spacing
     }
 }
 
+@media (max-width: 768px) {
+    .custom-sm-6 {
+        width: 50%;
+    }
+}
+
+.width-100 {
+    width: 100%
+}
+
 .min-width-130 {
     min-width: 8.125rem;
 }
