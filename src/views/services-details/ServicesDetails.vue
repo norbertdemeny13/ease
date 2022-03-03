@@ -76,12 +76,24 @@
       },
       async onAddressChange(address) {
         const id = address?.id;
-        const cityId = address?.city?.id;
+        const city = address.address_components
+          ? address.address_components.filter(item => item.types.includes('locality'))
+          : address.city;
+
+        let cityId = city.id;
         const { type } = this.$router.currentRoute.params;
         const { query } = this.$router.currentRoute;
 
         if (cityId) {
           await this.setDefaultAddress({ id, cityId });
+        }
+
+        if (!cityId) {
+          cityId = city[0]?.short_name?.toLowerCase().includes('cluj') ? 1 : 2;
+        }
+
+        if (cityId) {
+          sessionStorage.setItem('city_id', cityId || null);
         }
 
         if (query && query.pro_id) {
