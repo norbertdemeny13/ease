@@ -69,8 +69,26 @@
         setDefaultAddress: 'address/setDefaultAddress',
       }),
       async onAddressChange(address) {
-        await this.fetchLocation(address);
-        await this.fetchServices(this.getLocation.city_id);
+        const { query } = this.$router.currentRoute;
+        const city = address.address_components
+          ? address.address_components.filter(item => item.types.includes('locality'))
+          : address.city;
+
+        let cityId = city.id;
+
+        if (!cityId) {
+          cityId = city[0]?.short_name?.toLowerCase().includes('cluj') ? 1 : 2;
+        }
+
+        if (cityId) {
+          sessionStorage.setItem('city_id', cityId || null);
+        }
+
+        if (query && query.pro_id) {
+          this.fetchServices(query.pro_id);
+        } else {
+          this.fetchServices();
+        }
       },
     },
   });

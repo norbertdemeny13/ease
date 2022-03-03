@@ -81,11 +81,10 @@
       initLocationSearch(): void {
         const autocomplete = new (window as any).google.maps.places.Autocomplete(this.$refs.search);
         autocomplete.setFields(['geometry.location', 'formatted_address', 'name', 'address_component']);
-        autocomplete.addListener('place_changed', async () => {
+        autocomplete.addListener('place_changed', () => {
           const place = autocomplete.getPlace();
+          this.fetchLocation(place);
           this.$emit('on-address-change', place);
-          await this.fetchLocation(place);
-          await this.fetchServices();
           this.location = place.formatted_address;
         });
       },
