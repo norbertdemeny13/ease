@@ -241,6 +241,11 @@ const routes: Array<RouteConfig> = [
     name: 'Intrebari frecvente pro',
     component: () => import('@/views/pro-faq').then(({ ProFaq }) => ProFaq),
   },
+  {
+    path: '/admin',
+    name: 'Admin dashboard',
+    component: () => import('@/views/admin-dashboard').then(({ AdminDashboard }) => AdminDashboard),
+  },
 ];
 
 export const router = new VueRouter({
@@ -278,6 +283,11 @@ router.beforeEach(async (to, from, next) => {
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
   const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
 
+  if (to.name === 'Admin dashboard') {
+    next();
+    return;
+  }
+
   if (to.fullPath.includes('register')) {
     const { refferal_code } = to.query;
     if (refferal_code) {
@@ -285,6 +295,8 @@ router.beforeEach(async (to, from, next) => {
     }
     next('/');
   }
+
+  console.log('fasz 2');
 
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');

@@ -13,6 +13,9 @@ import services from './modules/services';
 import session from './modules/session';
 import subscriptions from './modules/subscriptions';
 import phrase from './modules/phrase';
+import app from './modules/app';
+import appConfig from './modules/app-config';
+import verticalMenu from './modules/vertical-menu';
 import { nanoid } from 'nanoid';
 
 const dispatchToast = (

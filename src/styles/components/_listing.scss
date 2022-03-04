@@ -346,7 +346,7 @@ a.btn_filters {
 
 .map_right_listing {
   height: 100%;
-  width: calc(100%-400px);
+  width: calc(100% - 400px);
   margin-left: 400px;
 
   @include tablet {

@@ -8,7 +8,7 @@
         <input @click="login()" type="submit" value="log in">
       </form>
     </div>
-    <div v-if="loggedIn()">
+    <div v-if="loggedIn() && !isAdminView">
       <es-header />
       <main>
         <transition name="app_a-fade" mode="out-in">
@@ -19,6 +19,13 @@
       <es-footer />
       <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
       <portal-target name="modal" multiple />
+    </div>
+    <div v-else>
+      <main>
+        <transition name="app_a-fade" mode="out-in">
+          <router-view :key="$route.fullpath" />
+        </transition>
+      </main>
     </div>
   </div>
 </template>
@@ -49,6 +56,10 @@
       ...mapGetters({
         isAuth: 'session/isAuth',
       }),
+      isAdminView() {
+        console.log(this.$router.currentRoute, 'fasz');
+        return true;
+      },
     },
 
     watch: {
