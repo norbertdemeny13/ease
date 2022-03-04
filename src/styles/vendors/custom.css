@@ -516,9 +516,18 @@
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-bottom-color: #70d7b7;
     left: 10px;
     top: -12px;
+}
+
+
+.es_services-container .address-search-container .alert-primary:before,
+.es_subscription-details-container .address-search-container .alert-primary:before {
+    border-bottom-color: #70d7b7;
+}
+.es_services-container .address-search-container .alert-danger:before,
+.es_subscription-details-container .address-search-container .alert-danger:before {
+    border-bottom-color: #f8dad7;
 }
 
 @media (min-width: 767px) {
