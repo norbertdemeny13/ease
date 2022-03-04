@@ -329,7 +329,11 @@ export default {
         ? `users/elite/${id}/services`
         : services;
       try {
-        const { data } = await api.find(endpoint);
+        const { data } = await api.find(endpoint, {
+          params: {
+            city_id: cityId,
+          },
+        });
         commit('setServices', data);
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
