@@ -256,12 +256,12 @@ const routes: Array<RouteConfig> = [
       },
       {
         path: 'view/:id',
-        name: 'apps-users-view',
+        name: 'admin-elite-view',
         component: () => import('@/views/apps/user/users-view/UsersView.vue'),
       },
       {
         path: 'edit/:id',
-        name: 'apps-users-edit',
+        name: 'admin-elite-edit',
         component: () => import('@/views/apps/user/users-edit/UsersEdit.vue'),
       },
     ],
