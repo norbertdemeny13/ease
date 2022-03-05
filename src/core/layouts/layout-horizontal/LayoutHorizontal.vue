@@ -34,21 +34,6 @@
       >
         <horizontal-nav-menu />
       </div>
-
-      <!-- Vertical Nav Menu -->
-      <vertical-nav-menu
-        :is-vertical-menu-active="isVerticalMenuActive"
-        :toggle-vertical-menu-active="toggleVerticalMenuActive"
-        class="d-block d-xl-none"
-      >
-        <template #header="slotProps">
-          <slot
-            name="vertical-menu-header"
-            v-bind="slotProps"
-          />
-        </template>
-      </vertical-nav-menu>
-    <!-- /Vertical Nav Menu -->
     </div>
 
     <!-- Vertical Nav Menu Overlay -->
@@ -82,16 +67,6 @@
     </transition>
     <!--/ Content -->
     <!--/ CONTENT -->
-
-    <!-- Footer -->
-    <footer
-      class="footer footer-light"
-      :class="[footerTypeClass]"
-    >
-      <slot name="footer">
-        <app-footer />
-      </slot>
-    </footer>
 
     <slot name="customizer" />
   </div>

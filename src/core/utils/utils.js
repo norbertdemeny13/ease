@@ -1,4 +1,5 @@
-import router from '@/router';
+/* eslint-disable */
+import { router } from '@/router';
 // eslint-disable-next-line object-curly-newline
 import { reactive, getCurrentInstance, watch, toRefs } from '@vue/composition-api';
 

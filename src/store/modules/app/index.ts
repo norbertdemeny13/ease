@@ -8,6 +8,7 @@ export interface State extends ModuleState {
   shallShowOverlay: boolean;
 }
 
+/* eslint-disable */
 export default {
   namespaced: true,
   state: {

@@ -7,6 +7,7 @@ export interface State extends ModuleState {
   isVerticalMenuCollapsed: boolean;
 }
 
+/* eslint-disable */
 export default {
   namespaced: true,
   state: {

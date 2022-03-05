@@ -156,18 +156,6 @@
           />
         </b-form-group>
       </div>
-
-      <!-- SECTION: Footer -->
-      <div class="customizer-section">
-        <!-- Footer Type -->
-        <b-form-group label="Footer Type">
-          <b-form-radio-group
-            v-model="footerType"
-            name="footer-type"
-            :options="footerTypes"
-          />
-        </b-form-group>
-      </div>
     </vue-perfect-scrollbar>
   </div>
 </template>

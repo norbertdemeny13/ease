@@ -12,6 +12,8 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
+  admin: USER;
+  userType: string;
   refferalCode: string | null;
 }
 
@@ -19,9 +21,11 @@ export default {
   namespaced: true,
 
   state: () => ({
+    admin: {},
     isAuth: false,
     isFetchingUser: false,
     user: {},
+    userType: '',
     refferalCode: null,
   }) as State,
 
@@ -30,6 +34,9 @@ export default {
       if (pass === 'qazwsx') {
         Vue.set(state, 'isAuth', true);
       }
+    },
+    setUserType({ state }, type) {
+      Vue.set(state, 'userType', type);
     },
     async updateUser({ state, commit }, user) {
       Vue.set(state, 'isFetchingUser', true);
@@ -188,6 +195,19 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
+    async adminLogin({ state, commit }, { credentials }) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.create('admin/sessions', {
+          ...credentials,
+        });
+        commit('setAdmin', data);
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      } finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
     async forgotPassword({ state, commit }, { email, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
@@ -230,6 +250,12 @@ export default {
       sessionStorage.removeItem('city');
       sessionStorage.removeItem('city_id');
       commit('cards/resetCards', [], { root: true });
+    },
+    async adminLogout({ state, rootState, commit }) {
+      commit('setAdmin', null);
+      localStorage.removeItem('adminJwt');
+      localStorage.removeItem('adminAuth');
+      localStorage.removeItem('userType');
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
       let endpoint = type === 'client'
@@ -312,11 +338,12 @@ export default {
   getters: {
     isAuth: state => state.isAuth,
     isFetchingUser: state => state.isFetchingUser,
+    getAdmin: state => state.admin,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
     getRefferalCode: state => state.refferalCode,
     getUserDefaultAddress: state => state.user.default_address,
-    getUserType: state => state.user?.user_type || localStorage.getItem('userType'),
+    getUserType: state => state.userType || state.user?.user_type || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,
 
@@ -330,6 +357,16 @@ export default {
       }
       localStorage.setItem('userType', data?.user_type);
       Vue.set(state, 'user', data);
+    },
+    setAdmin(state: State, data: any) {
+      const refreshToken = data?.refresh_token;
+      const authToken = data?.access_token;
+      if (data && refreshToken) {
+        localStorage.setItem('adminJwt', `Jh${data.refresh_token}`);
+        localStorage.setItem('adminAuth', `Kn${data.access_token}`);
+      }
+      localStorage.setItem('userType', 'admin');
+      Vue.set(state, 'admin', data);
     },
     setStatistics(state: State, data: any) {
       Vue.set(state, 'statistics', data);

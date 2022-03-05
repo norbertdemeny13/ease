@@ -133,7 +133,7 @@
   import VuePerfectScrollbar from 'vue-perfect-scrollbar';
   import useAutoSuggest from '@/core/components/app-auto-suggest/useAutoSuggest';
   import { title } from '@/core/utils/filter';
-  import router from '@/router';
+  import { router } from '@/router';
   import store from '@/store';
   import searchAndBookmarkData from '../search-and-bookmark-data';
 

@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { ActionTree, MutationTree, GetterTree } from 'vuex';
 import { $themeConfig } from '@/utils/theme-config';
 import { ModuleState, RootState } from '@/store/interfaces';
@@ -7,6 +6,7 @@ export interface State extends ModuleState {
   layout: any;
 }
 
+/* eslint-disable */
 export default {
   namespaced: true,
   state: {

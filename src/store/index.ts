@@ -37,6 +37,8 @@ Vue.use(Vuex);
 const options: StoreOptions<RootState> = {
   state: {},
   modules: {
+    app,
+    appConfig,
     address,
     cards,
     common,
@@ -47,6 +49,7 @@ const options: StoreOptions<RootState> = {
     session,
     services,
     subscriptions,
+    verticalMenu,
   },
 };
 

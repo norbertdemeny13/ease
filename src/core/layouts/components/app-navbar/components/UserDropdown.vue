@@ -123,6 +123,7 @@
 
 <script>
   /* eslint-disable */
+  import { mapActions } from 'vuex';
   import {
     BNavItemDropdown, BDropdownItem, BDropdownDivider, BAvatar,
   } from 'bootstrap-vue';
@@ -139,25 +140,34 @@
     },
     data() {
       return {
-        userData: JSON.parse(localStorage.getItem('userData')),
+        userData: {
+          avatar: '/img/1.9cba4a79.png',
+          company: 'Wayne Enterprises',
+          contact: '(829) 537-0057',
+          country: 'USA',
+          currentPlan: 'team',
+          email: 'irena.dubrovna@wayne.com',
+          fullName: 'Selina Kyle',
+          id: 21,
+          role: 'admin',
+          status: 'active',
+          username: 'catwomen1940',
+        },
         avatarText,
       };
     },
     methods: {
+      ...mapActions({
+        adminLogout: 'session/adminLogout',
+      }),
       logout() {
-        // Remove userData from localStorage
-        // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
-        localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName);
-        localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName);
-
-        // Remove userData from localStorage
-        localStorage.removeItem('userData');
+        this.adminLogout();
 
         // Reset ability
-        this.$ability.update(initialAbility);
+        // this.$ability.update(initialAbility);
 
         // Redirect to login page
-        this.$router.push({ name: 'auth-login' });
+        this.$router.push('/admin');
       },
     },
   };

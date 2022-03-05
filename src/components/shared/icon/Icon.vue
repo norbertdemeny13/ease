@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
+  /* eslint-disable */
   import Vue from 'vue';
 
   import { dom, library } from '@fortawesome/fontawesome-svg-core';
@@ -14,7 +15,6 @@
     faCreditCard as farCreditCard,
     /* eslint-disable import/no-extraneous-dependencies */
   } from '@fortawesome/free-regular-svg-icons';
-
   import {
     // Required by Koi
     faCcMastercard as fabCcMastercard,
@@ -25,7 +25,8 @@
     faCcJcb as fabCcJcb,
     /* eslint-disable import/no-extraneous-dependencies */
   } from '@fortawesome/free-brands-svg-icons';
-
+  
+  /* eslint-disable */
   library.add(
     fabCcVisa,
     fabCcMastercard,

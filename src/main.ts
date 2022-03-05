@@ -49,6 +49,29 @@ import App from './App.vue';
 import VueCalendly from 'vue-calendly';
 import Zendesk from '@dansmaculotte/vue-zendesk';
 
+// Admin Dashboard template
+import FeatherIcon from '@/core/components/feather-icon/FeatherIcon.vue'
+
+import { ModalPlugin } from 'bootstrap-vue'
+import VueCompositionAPI from '@vue/composition-api'
+
+// BSV Plugin Registration
+Vue.use(ModalPlugin);
+
+// Composition API
+Vue.use(VueCompositionAPI);
+Vue.component(FeatherIcon.name, FeatherIcon);
+
+// Feather font icon - For form-wizard
+// * Shall remove it if not using font-icons of feather-icons - For form-wizard
+require('@/core/assets/fonts/feather/iconfont.css') // For form-wizard
+
+// import core styles
+require('@/core/scss/core.scss')
+
+// import assets styles
+require('@/assets/scss/style.scss')
+
 Vue.config.productionTip = false;
 
 Vue.use(Zendesk, {

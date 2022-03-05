@@ -55,10 +55,11 @@
     computed: {
       ...mapGetters({
         isAuth: 'session/isAuth',
+        getUserType: 'session/getUserType',
       }),
       isAdminView() {
-        console.log(this.$router.currentRoute, 'fasz');
-        return true;
+        const isAdminView = this.getUserType === 'admin';
+        return isAdminView;
       },
     },
 

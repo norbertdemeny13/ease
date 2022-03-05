@@ -243,8 +243,28 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/admin',
-    name: 'Admin dashboard',
+    name: 'admin-dashboard',
     component: () => import('@/views/admin-dashboard').then(({ AdminDashboard }) => AdminDashboard),
+    children: [
+      // *===============================================---*
+      // *--------- USER ---- ---------------------------------------*
+      // *===============================================---*
+      {
+        path: 'profesionisti',
+        name: 'admin-elite-list',
+        component: () => import('@/views/apps/user/users-list/UsersList.vue'),
+      },
+      {
+        path: 'view/:id',
+        name: 'apps-users-view',
+        component: () => import('@/views/apps/user/users-view/UsersView.vue'),
+      },
+      {
+        path: 'edit/:id',
+        name: 'apps-users-edit',
+        component: () => import('@/views/apps/user/users-edit/UsersEdit.vue'),
+      },
+    ],
   },
 ];
 
@@ -277,15 +297,21 @@ router.beforeEach(async (to, from, next) => {
   const getGiftCard = store.getters['giftCards/getGiftCard'];
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
+  const getAdmin = store.getters['session/getAdmin'];
   const getUserType = store.getters['session/getUserType'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
   const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
 
-  if (to.name === 'Admin dashboard') {
+  if (name?.includes('admin-elite') && !getAdmin?.email) {
+    next('/');
+    return false;
+  }
+
+  if (name?.includes('admin')) {
+    store.dispatch('session/setUserType', 'admin');;
     next();
-    return;
   }
 
   if (to.fullPath.includes('register')) {
@@ -295,8 +321,6 @@ router.beforeEach(async (to, from, next) => {
     }
     next('/');
   }
-
-  console.log('fasz 2');
 
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');

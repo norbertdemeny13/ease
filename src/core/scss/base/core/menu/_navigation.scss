@@ -12,7 +12,7 @@
 
 // Main menu base
 //==============
-.main-menu {
+.admin-dashboard-container .main-menu {
   z-index: 1031;
   position: absolute;
   display: table-cell;
@@ -132,7 +132,7 @@
 }
 
 // Main Navigation
-.navigation {
+.admin-dashboard-container .navigation {
   font-size: 1.1rem;
   font-family: $font-family-monospace;
   font-weight: 400;
@@ -188,13 +188,13 @@
     transition: transform 0.25s, top 0.35s, height 0.35s;
   }
 
-  .main-menu {
+  .admin-dashboard-container .main-menu {
     transform: translate3d(-240px, 0, 0);
     backface-visibility: hidden;
     perspective: 1000;
   }
 
-  .menu-open .main-menu {
+  .admin-dashboard-container .menu-open .main-menu {
     transform: translate3d(0, 0, 0);
   }
 }
