@@ -11,7 +11,7 @@
       <a v-if="location" href="" @click.prevent="location = null"><i class="ml-n4 icon_trash" /></a>
       <a v-if="getLocation && !homePage" href="" class="ml-2" @click.prevent="$emit('on-cancel')">Inapoi</a>
     </div>
-    <div v-if="getLocationError && !homePage" class="alert alert-danger ml-4" role="alert">
+    <div v-if="getLocationError && !homePage" class="alert alert-danger" role="alert">
       <span>{{ $t('user_address.outside_of_area') }}</span>
     </div>
     <div v-else-if="showAlert" class="alert alert-primary" role="alert">

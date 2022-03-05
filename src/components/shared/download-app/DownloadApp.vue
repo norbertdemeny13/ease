@@ -13,14 +13,14 @@
           <h2>{{ $t('generic.download_app') }}</h2>
           <div>
             <img
-              src="@/assets/png/download-google-play-small.png"
+              class="mr-2"
+              src="@/assets/png/download-appstore-small.png"
               alt=""
               width="137"
               height="40"
             >
             <img
-              class="ml-md-2"
-              src="@/assets/png/download-appstore-small.png"
+              src="@/assets/png/download-google-play-small.png"
               alt=""
               width="137"
               height="40"

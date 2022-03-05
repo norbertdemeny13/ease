@@ -18,7 +18,7 @@
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card1_title') }}</h3>
-              <p>{{ $t('views.pro_home.work_with_us_card1_message') }}</p>
+              <p class="text-center">{{ $t('views.pro_home.work_with_us_card1_message') }}</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -33,7 +33,7 @@
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card2_title') }}</h3>
-              <p>{{ $t('views.pro_home.work_with_us_card2_message') }}</p>
+              <p class="text-center">{{ $t('views.pro_home.work_with_us_card2_message') }}</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -48,7 +48,7 @@
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card3_title') }}</h3>
-              <p>{{ $t('views.pro_home.work_with_us_card3_message') }}</p>
+              <p class="text-center">{{ $t('views.pro_home.work_with_us_card3_message') }}</p>
             </div>
           </div>
         </div>
