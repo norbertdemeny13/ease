@@ -37,6 +37,7 @@ export default {
     },
     setUserType({ state }, type) {
       Vue.set(state, 'userType', type);
+      localStorage.setItem('userType', type);
     },
     async updateUser({ state, commit }, user) {
       Vue.set(state, 'isFetchingUser', true);
@@ -121,6 +122,19 @@ export default {
           refresh_token: jwt.slice(2),
         });
         commit('setUser', data);
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
+    async adminJwtLogin({ state, commit }, jwt) {
+      Vue.set(state, 'isFetchingUser', true);
+      try {
+        const { data } = await api.update(`/admin/sessions`, {
+          refresh_token: jwt.slice(2),
+        });
+        commit('setAdmin', data);
       } catch({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       }  finally {
@@ -339,6 +353,7 @@ export default {
     isAuth: state => state.isAuth,
     isFetchingUser: state => state.isFetchingUser,
     getAdmin: state => state.admin,
+    getAdminToken: state => state.admin && state.admin.access_token,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
     getRefferalCode: state => state.refferalCode,

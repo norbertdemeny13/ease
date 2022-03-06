@@ -54,6 +54,7 @@
   /* eslint-disable */
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
+  import { isEqual } from 'lodash-es';
   import ScrollToTop from '@/core/components/scroll-to-top/ScrollToTop.vue';
 
   // This will be populated in `beforeCreate` hook
@@ -150,8 +151,9 @@
     },
 
     watch: {
-      getAdmin(newVal) {
-        if (newVal?.email && newVal?.name) {
+      getAdmin(newVal, oldVal) {
+        const isDifferent = !isEqual(newVal, oldVal);
+        if (isDifferent && newVal?.email && newVal?.name) {
           this.$router.push('/admin/profesionisti').catch(()=>{});;
         }
       },

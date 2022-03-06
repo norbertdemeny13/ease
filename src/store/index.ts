@@ -4,6 +4,7 @@ import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './interfaces';
 import instance from '@/main';
 import address from './modules/address';
+import admin from './modules/admin';
 import cards from './modules/cards';
 import common from './modules/common';
 import elite from './modules/elite';
@@ -40,6 +41,7 @@ const options: StoreOptions<RootState> = {
     app,
     appConfig,
     address,
+    admin,
     cards,
     common,
     elite,

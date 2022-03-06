@@ -252,17 +252,17 @@ const routes: Array<RouteConfig> = [
       {
         path: 'profesionisti',
         name: 'admin-elite-list',
-        component: () => import('@/views/apps/user/users-list/UsersList.vue'),
+        component: () => import('@/views/admin-dashboard/elites/elites-list/EliteList.vue'),
       },
       {
-        path: 'view/:id',
+        path: 'profesionisti/view/:id',
         name: 'admin-elite-view',
-        component: () => import('@/views/apps/user/users-view/UsersView.vue'),
+        component: () => import('@/views/admin-dashboard/elites/elites-view/EliteView.vue'),
       },
       {
-        path: 'edit/:id',
+        path: 'profesionisti/edit/:id',
         name: 'admin-elite-edit',
-        component: () => import('@/views/apps/user/users-edit/UsersEdit.vue'),
+        component: () => import('@/views/admin-dashboard/elites/elites-edit/EliteEdit.vue'),
       },
     ],
   },
@@ -298,20 +298,23 @@ router.beforeEach(async (to, from, next) => {
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
   const getAdmin = store.getters['session/getAdmin'];
+  const getAdminToken = store.getters['session/getAdminToken'];
   const getUserType = store.getters['session/getUserType'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
   const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
+  const adminJwtToken = localStorage.getItem('adminJwt') && !localStorage.getItem('adminJwt')!.includes('undefined');
+  const adminAuthToken = localStorage.getItem('adminAuth') && !localStorage.getItem('adminAuth')!.includes('undefined');
 
   if (name?.includes('admin-elite') && !getAdmin?.email) {
-    next('/');
-    return false;
+    next();
   }
 
   if (name?.includes('admin')) {
-    store.dispatch('session/setUserType', 'admin');;
-    next();
+    store.dispatch('session/setUserType', 'admin');
+  } else {
+    store.dispatch('session/setUserType', '');
   }
 
   if (to.fullPath.includes('register')) {
@@ -331,6 +334,11 @@ router.beforeEach(async (to, from, next) => {
 
   if (!getToken && !authToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
+    isAuthenticated = true;
+  }
+
+  if (!getAdminToken && !adminAuthToken && adminJwtToken) {
+    await store.dispatch('session/adminJwtLogin', localStorage.getItem('jwt'));
     isAuthenticated = true;
   }
 
