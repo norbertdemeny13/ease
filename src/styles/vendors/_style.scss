@@ -4842,6 +4842,33 @@ header.black_nav .dropdown.user a:hover {
     position: absolute;
 }
 
+.wave.is-client-wave {
+    background: url("../assets/svg/wave_f7_common.svg");
+}
+
+.wave.footer.is-client-wave::before, 
+.wave.footer.is-client-wave::after {
+    background: url("../assets/svg/wave_f7_common.svg");
+}
+
+.wave.is-pro-wave {
+    background: url("../assets/svg/wave_f7_common.svg");
+}
+
+.wave.footer.is-pro-wave::before, 
+.wave.footer.is-pro-wave::after {
+    background: url("../assets/svg/wave_d9_common.svg");
+}
+
+.wave.is-common-wave {
+    background: url("../assets/svg/wave_d9_common.svg");
+}
+
+.wave.footer.is-common-wave::before, 
+.wave.footer.is-common-wave::after {
+    background: url("../assets/svg/wave_d9_common.svg");
+}
+
 @keyframes waves {
     0% {
         background-position: 0;

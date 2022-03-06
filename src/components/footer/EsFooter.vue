@@ -1,6 +1,6 @@
 <template>
   <footer :class="`${$router.currentRoute.fullPath.includes('pro') ? 'is-pro' : ''}`">
-    <div class="wave footer" />
+    <div :class="['wave', 'footer', isProWave ? 'is-pro-wave' : '', isClientWave ? 'is-client-wave' : '', isContactWave || isFAQWave ? 'is-common-wave' : '']"/>
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
         <div v-for="item in footerLinks" :key="item.id" class="col-lg-3 col-md-6">
@@ -101,6 +101,10 @@
 
     data: () => ({
       isProPage: false,
+      isProWave: false,
+      isClientWave: false,
+      isContactWave: false,
+      isFAQWave: false,
     }),
 
     computed: {
@@ -116,6 +120,10 @@
     watch: {
       $route(to) {
         this.isProPage = to.fullPath.includes('easepro');
+        this.isProWave = to.fullPath.includes('easepro/');
+        this.isClientWave = to.fullPath.includes('client/');
+        this.isContactWave = to.fullPath.includes('contact');
+        this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
       },
     },
 
