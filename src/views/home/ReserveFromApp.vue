@@ -28,14 +28,14 @@
           </form>
           <div class="my-4 justify-content-start d-flex">
             <img
-              src="@/assets/png/download-google-play-small.png"
+              class="ml-3"
+              src="@/assets/png/download-appstore-small.png"
               alt=""
               width="137"
               height="40"
             >
             <img
-              class="ml-3"
-              src="@/assets/png/download-appstore-small.png"
+              src="@/assets/png/download-google-play-small.png"
               alt=""
               width="137"
               height="40"
