@@ -35,7 +35,6 @@
   export default Vue.extend({
     name: 'es-pro-dashboard',
     data: () => ({
-      isMobile: false,
       clientSize: window.innerWidth,
     }),
     computed: {
