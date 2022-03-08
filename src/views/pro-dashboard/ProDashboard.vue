@@ -55,20 +55,3 @@
     },
   });
 </script>
-
-<style scoped>
-@media screen and (max-width: 767px) {
-  .hidden-xs {
-    display: none !important;
-  }
-}
-
-@media screen and (min-width: 575px) {
-  .d-none {
-    display: none !important;
-  }
-  .show-xs {
-    display: block !important;
-  }
-}
-</style>
