@@ -239,11 +239,13 @@
     font-family: SofiaProSemiBold !important;
 }
 
-.es_services-list-container .owl-theme .owl-nav .owl-prev {
+.es_services-list-container .owl-theme .owl-nav .owl-prev,
+.es_reserve-service-container .owl-theme .owl-nav .owl-prev {
     left: -24px;
 }
 
-.es_services-list-container .owl-theme .owl-nav .owl-next {
+.es_services-list-container .owl-theme .owl-nav .owl-next,
+.es_reserve-service-container .owl-theme .owl-nav .owl-next {
     right: -24px;
 }
 
@@ -698,6 +700,12 @@
 
     .more-details .custom-container-info .custom-text {
         max-width: 75%;
+    }
+}
+
+@media (min-width: 2000px) {
+    .es_client-dashboard-container {
+        height: 65vh;
     }
 }
 

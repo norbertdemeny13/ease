@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <div v-if="isListView" class="col-md-6">
+      <div v-if="isListView" class="col-md-8">
         <div v-if="getGiftCardsHistory.length">
           <div v-for="item in getGiftCardsHistory" :key="item.id" class="reservation-list-item d-flex align-items-center justify-content-between my-2">
             <h6 class="m-0">{{ $t('generic.gift_card') }}</h6>

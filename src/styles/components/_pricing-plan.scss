@@ -89,6 +89,7 @@
     h6 {
         text-align: right;
         margin-top: 10px;
+        font-size: 24px;
 
             @media (max-width: 767px) {
                 text-align: left;
@@ -111,6 +112,10 @@
             .pricing-card:hover & {
                 background: #fff;
                 color: #bb006c;
+            }
+            @media (min-width: 767px) {
+                margin-right: 0;
+                margin-left: auto;
             }
         }
 

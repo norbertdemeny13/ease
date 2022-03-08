@@ -272,7 +272,6 @@
   }
 
   .item-logo {
-    align-items: center;
     background: #f7f7f7;
     border-radius: 50%;
     color: #000000;
@@ -280,6 +279,7 @@
     height: 35px;
     justify-content: center;
     width: 35px;
+    line-height: 34px;
   }
 
   span {

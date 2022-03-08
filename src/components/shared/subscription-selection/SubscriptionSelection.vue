@@ -24,7 +24,7 @@
         <div class="d-flex flex-column">
           <div class="pricing-card-small mb-4" v-for="subscription in getSubscriptions" :key="subscription.id">
             <div class="card-body" @click.prevent="onSubscriptionSelect(subscription)">
-              <h3 class="pricing-plan-title d-flex align-items-center"><span class="badge badge-pill offer-badge mr-auto">{{ subscription.discount }} %</span></h3>
+              <h3 class="pricing-plan-title d-flex align-items-center"><span class="badge badge-pill offer-badge">{{ subscription.discount }} %</span></h3>
               <div class="d-flex justify-content-between flex-column mt-4 mb-2 width-100">
                 <div>
                   <h3>{{ $t(subscription.name) }}</h3>
