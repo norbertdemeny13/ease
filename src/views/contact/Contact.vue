@@ -10,7 +10,6 @@
           <div class="col-lg-3">
             <div class="box-contacts">
               <i class="icon_headphones" />
-              <!-- &#xe027 &#xe027 &#xe00a &#xe0ef -->
               <h2>{{ $t('views.contact.clients') }}</h2>
               <span><i class="icon_phone mr-2" />{{ $t('views.contact.clients_phone') }}</span><br>
               <span><i class="icon_mail mr-2" />{{ $t('views.contact.clients_email') }}</span>

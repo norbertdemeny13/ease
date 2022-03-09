@@ -1,6 +1,6 @@
 <template>
   <footer :class="`${$router.currentRoute.fullPath.includes('pro') ? 'is-pro' : ''}`">
-    <div :class="['wave', 'footer', isProWave ? 'is-pro-wave' : '', isClientWave ? 'is-client-wave' : '', isContactWave || isFAQWave ? 'is-common-wave' : '']"/>
+    <div class="wave footer" :class="getFooterClasses"/>
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
         <div v-for="item in footerLinks" :key="item.id" class="col-lg-3 col-md-6">
@@ -114,6 +114,13 @@
           : FOOTER_LINKS;
         return links
           .map(item => ({ ...item, id: nanoid() }));
+      },
+      getFooterClasses() {
+        return {
+          'is-pro-wave': this.isProWave,
+          'is-client-wave': this.isClientWave,
+          'is-common-wave': this.isContactWave || this.isFAQWave,
+        };
       },
     },
 
