@@ -12,7 +12,7 @@
         <!-- User Avatar & Action Buttons -->
         <div class="d-flex justify-content-start">
           <b-avatar
-            :src="userData.avatar"
+            :src="userData.avatar.url"
             :text="avatarText(userData.fullName)"
             :variant="`light-${resolveUserRoleVariant(userData.role)}`"
             size="104px"
@@ -27,16 +27,10 @@
             </div>
             <div class="d-flex flex-wrap">
               <b-button
-                :to="{ name: 'apps-users-edit', params: { id: userData.id } }"
+                :to="{ name: 'admin-elite-edit', params: { id: userData.id } }"
                 variant="primary"
               >
                 Edit
-              </b-button>
-              <b-button
-                variant="outline-danger"
-                class="ml-1"
-              >
-                Delete
               </b-button>
             </div>
           </div>
@@ -50,15 +44,15 @@
               rounded
             >
               <feather-icon
-                icon="DollarSignIcon"
+                icon="StarIcon"
                 size="18"
               />
             </b-avatar>
             <div class="ml-1">
               <h5 class="mb-0">
-                23.3k
+                {{ userData.rating }}
               </h5>
-              <small>Monthly Sales</small>
+              <small>Rating</small>
             </div>
           </div>
 
@@ -74,9 +68,9 @@
             </b-avatar>
             <div class="ml-1">
               <h5 class="mb-0">
-                $99.87k
+                {{ userData.jobs_count }}
               </h5>
-              <small>Annual Profit</small>
+              <small>Joburi</small>
             </div>
           </div>
         </div>
@@ -94,10 +88,10 @@
                 icon="UserIcon"
                 class="mr-75"
               />
-              <span class="font-weight-bold">Username</span>
+              <span class="font-weight-bold">Id</span>
             </th>
             <td class="pb-50">
-              {{ userData.username }}
+              {{ userData.id }}
             </td>
           </tr>
           <tr>
@@ -118,34 +112,22 @@
                 icon="StarIcon"
                 class="mr-75"
               />
-              <span class="font-weight-bold">Role</span>
+              <span class="font-weight-bold">City</span>
             </th>
             <td class="pb-50 text-capitalize">
-              {{ userData.role }}
+              {{ userData.working_city_name }}
             </td>
           </tr>
           <tr>
             <th class="pb-50">
               <feather-icon
-                icon="FlagIcon"
-                class="mr-75"
-              />
-              <span class="font-weight-bold">Country</span>
-            </th>
-            <td class="pb-50">
-              {{ userData.country }}
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <feather-icon
                 icon="PhoneIcon"
                 class="mr-75"
               />
-              <span class="font-weight-bold">Contact</span>
+              <span class="font-weight-bold">Phone</span>
             </th>
-            <td>
-              {{ userData.contact }}
+            <td class="pb-50">
+              {{ userData.phone_number }}
             </td>
           </tr>
         </table>

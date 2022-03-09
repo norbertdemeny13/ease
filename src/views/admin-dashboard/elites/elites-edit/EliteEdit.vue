@@ -1,11 +1,11 @@
 <!-- eslint-disable -->
 <template>
-  <component :is="userData === undefined ? 'div' : 'b-card'">
+  <component :is="getSelectedElite === undefined ? 'div' : 'b-card'">
 
     <!-- Alert: No item found -->
     <b-alert
       variant="danger"
-      :show="userData === undefined"
+      :show="getSelectedElite === undefined"
     >
       <h4 class="alert-heading">
         Error fetching user data
@@ -23,7 +23,7 @@
     </b-alert>
 
     <b-tabs
-      v-if="userData"
+      v-if="getSelectedElite"
       pills
     >
 
@@ -38,7 +38,7 @@
           <span class="d-none d-sm-inline">Account</span>
         </template>
         <user-edit-tab-account
-          :user-data="userData"
+          :user-data="getSelectedElite"
           class="mt-2 pt-75"
         />
       </b-tab>
@@ -74,6 +74,7 @@
 
 <script>
   /* eslint-disable */
+  import { mapActions, mapGetters } from 'vuex';
   import {
     BTab, BTabs, BCard, BAlert, BLink,
   } from 'bootstrap-vue'
@@ -97,24 +98,22 @@
       UserEditTabInformation,
       UserEditTabSocial,
     },
-    setup() {
-      const userData = {
-        avatar:  '/img/1.9cba4a79.png',
-        company: 'Wayne Enterprises',
-        contact: '(829) 537-0057',
-        country: 'USA',
-        currentPlan: 'team',
-        email: 'irena.dubrovna@wayne.com',
-        fullName: 'Selina Kyle',
-        id: 21,
-        role: 'admin',
-        status: 'active',
-        username: 'catwomen1940',
-      };
 
-      return {
-        userData,
-      }
+    computed: {
+      ...mapGetters({
+        getSelectedElite: 'admin/getSelectedElite',
+      }),
+    },
+
+    created() {
+      const eliteId = this.$router.currentRoute.params.id;
+      this.fetchElites(eliteId);
+    },
+
+    methods: {
+      ...mapActions({
+        fetchElites: 'admin/fetchElite',
+      }),
     },
   }
 </script>

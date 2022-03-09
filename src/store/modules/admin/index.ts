@@ -9,6 +9,7 @@ import { store } from '@/store';
 export interface State extends ModuleState {
   isFetching: boolean;
   elites: [];
+  selectedElite: {};
 }
 
 export default {
@@ -17,6 +18,7 @@ export default {
   state: () => ({
     isFetching: false,
     elites: [],
+    selectedElite: {},
   }) as State,
 
   actions: {
@@ -29,11 +31,21 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchElite({ state }, id) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/admin/elites/${id}`);
+        Vue.set(state, 'selectedElite', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
   } as ActionTree<State, RootState>,
 
   getters: {
     isFetching: state => state.isFetching,
     getElites: state => state.elites,
+    getSelectedElite: state => state.selectedElite,
   } as GetterTree<State, RootState>,
 
   mutations: {} as MutationTree<State>,

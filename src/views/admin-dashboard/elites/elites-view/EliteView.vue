@@ -5,7 +5,7 @@
     <!-- Alert: No item found -->
     <b-alert
       variant="danger"
-      :show="userData === undefined"
+      :show="getSelectedElite === undefined"
     >
       <h4 class="alert-heading">
         Error fetching user data
@@ -22,7 +22,7 @@
       </div>
     </b-alert>
 
-    <template v-if="userData">
+    <template v-if="getSelectedElite">
       <!-- First Row -->
       <b-row>
         <b-col
@@ -31,7 +31,7 @@
           lg="8"
           md="7"
         >
-          <user-view-user-info-card :user-data="userData" />
+          <user-view-user-info-card :user-data="getSelectedElite" />
         </b-col>
         <b-col
           cols="12"
@@ -39,7 +39,7 @@
           xl="3"
           lg="4"
         >
-          <user-view-user-plan-card />
+          <user-view-user-plan-card :user-data="getSelectedElite" />
         </b-col>
       </b-row>
 
@@ -48,17 +48,20 @@
           cols="12"
           lg="6"
         >
-          <user-view-user-timeline-card />
+          <es-elite-services
+            :user-data="getSelectedElite"
+            disabled
+          />
         </b-col>
         <b-col
           cols="12"
           lg="6"
         >
-          <user-view-user-permissions-card />
+          <es-elite-documents :user-data="getSelectedElite" />
         </b-col>
       </b-row>
 
-      <invoice-list />
+      <reviews :reviews="getSelectedElite.reviews" />
     </template>
 
   </div>
@@ -66,18 +69,21 @@
 
 <script>
   /* eslint-disable */
-  import { store } from '@/store'
-  import { router } from '@/router'
-  import { ref, onUnmounted } from '@vue/composition-api'
+  import { mapActions, mapGetters } from 'vuex';
+  import { store } from '@/store';
+  import { router } from '@/router';
+  import { ref, onUnmounted } from '@vue/composition-api';
   import {
     BRow, BCol, BAlert, BLink,
-  } from 'bootstrap-vue'
-  import InvoiceList from '@/views/apps/invoice/invoice-list/InvoiceList.vue'
-  import userStoreModule from '../eliteStoreModule'
-  import UserViewUserInfoCard from './EliteViewUserInfoCard.vue'
-  import UserViewUserPlanCard from './EliteViewUserPlanCard.vue'
-  import UserViewUserTimelineCard from './EliteViewUserTimelineCard.vue'
-  import UserViewUserPermissionsCard from './EliteViewUserPermissionsCard.vue'
+  } from 'bootstrap-vue';
+  import Reviews from './Reviews';
+  import EliteServices from './EliteServices';
+  import EliteDocuments from './EliteDocuments';
+  import userStoreModule from '../eliteStoreModule';
+  import UserViewUserInfoCard from './EliteViewUserInfoCard.vue';
+  import UserViewUserPlanCard from './EliteViewUserPlanCard.vue';
+  import UserViewUserTimelineCard from './EliteViewUserTimelineCard.vue';
+  import UserViewUserPermissionsCard from './EliteViewUserPermissionsCard.vue';
 
   export default {
     components: {
@@ -85,51 +91,32 @@
       BCol,
       BAlert,
       BLink,
+      'reviews': Reviews,
 
       // Local Components
+      'es-elite-services': EliteServices,
+      'es-elite-documents': EliteDocuments,
       UserViewUserInfoCard,
       UserViewUserPlanCard,
       UserViewUserTimelineCard,
       UserViewUserPermissionsCard,
-
-      InvoiceList,
     },
-    setup() {
-      const userData = {
-        avatar:  '/img/1.9cba4a79.png',
-        company: 'Wayne Enterprises',
-        contact: '(829) 537-0057',
-        country: 'USA',
-        currentPlan: 'team',
-        email: 'irena.dubrovna@wayne.com',
-        fullName: 'Selina Kyle',
-        id: 21,
-        role: 'admin',
-        status: 'active',
-        username: 'catwomen1940',
-      };
 
-      const USER_APP_STORE_MODULE_NAME = 'app-user'
+    computed: {
+      ...mapGetters({
+        getSelectedElite: 'admin/getSelectedElite',
+      }),
+    },
 
-      // Register module
-      if (!store.hasModule(USER_APP_STORE_MODULE_NAME)) store.registerModule(USER_APP_STORE_MODULE_NAME, userStoreModule)
+    created() {
+      const eliteId = this.$router.currentRoute.params.id;
+      this.fetchElites(eliteId);
+    },
 
-      // UnRegister on leave
-      onUnmounted(() => {
-        if (store.hasModule(USER_APP_STORE_MODULE_NAME)) store.unregisterModule(USER_APP_STORE_MODULE_NAME)
-      })
-
-      store.dispatch('app-user/fetchUser', { id: router.currentRoute.params.id })
-        .then(response => { userData.value = response.data })
-        .catch(error => {
-          if (error.response.status === 404) {
-            userData.value = undefined
-          }
-        })
-
-      return {
-        userData,
-      }
+    methods: {
+      ...mapActions({
+        fetchElites: 'admin/fetchElite',
+      }),
     },
   }
 </script>

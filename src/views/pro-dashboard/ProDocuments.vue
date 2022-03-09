@@ -7,7 +7,13 @@
           <h3>{{ $t('views.pro_dashboard.qualification_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
           <div v-if="documents.certificate_of_calification.length" class="documents-container">
-            <p v-for="(file, i) in documents.certificate_of_calification" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+            <p v-for="(file, i) in documents.certificate_of_calification" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)">
+              <feather-icon
+                icon="TrashIcon"
+                size="16"
+                class="mr-0 mr-sm-50"
+              />
+            </span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -34,7 +40,12 @@
           <h3>{{ $t('views.pro_dashboard.identity_card') }}</h3>
           <p>{{ $t('views.pro_dashboard.identity_card_info') }}</p>
           <div v-if="documents.id_card.length" class="documents-container">
-            <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('id_card', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+            <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('id_card', i)">
+              <feather-icon
+                icon="TrashIcon"
+                size="16"
+                class="mr-0 mr-sm-50"
+              /></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -61,7 +72,12 @@
           <h3>{{ $t('views.pro_dashboard.register_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
           <div v-if="documents.certificate_of_registration.length" class="documents-container">
-            <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+            <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)">
+              <feather-icon
+                icon="TrashIcon"
+                size="16"
+                class="mr-0 mr-sm-50"
+              /></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -88,7 +104,12 @@
           <h3>{{ $t('views.pro_dashboard.professional_liability_insurance') }}</h3>
           <p>{{ $t('views.pro_dashboard.professional_liability_insurance_info') }}</p>
           <div v-if="documents.practice_insurance.length" class="documents-container">
-            <p v-for="(file, i) in documents.practice_insurance" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+            <p v-for="(file, i) in documents.practice_insurance" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)">
+             <feather-icon
+                icon="TrashIcon"
+                size="16"
+                class="mr-0 mr-sm-50"
+              /></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -115,7 +136,7 @@
           <h3>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
           <div v-if="documents.criminal_record.length" class="documents-container">
-            <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+            <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"><img src="/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -288,6 +309,7 @@
     },
 
     created() {
+      this.documents = { ...this.getUser };
       this.user = { ...this.getUser };
     },
 

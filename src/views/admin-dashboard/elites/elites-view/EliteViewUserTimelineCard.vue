@@ -1,5 +1,5 @@
 <template>
-  <b-card title="User Timeline">
+  <b-card title="Documente">
     <app-timeline>
 
       <!-- 12 INVOICES HAVE BEEN PAID -->
@@ -55,6 +55,12 @@
   import AppTimelineItem from '@/core/components/app-timeline/AppTimelineItem.vue'
 
   export default {
+    props: {
+      userData: {
+        type: Object,
+        required: true,
+      },
+    },
     components: {
       BCard,
       BImg,

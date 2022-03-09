@@ -7,7 +7,7 @@
       <template #aside>
         <b-avatar
           ref="previewEl"
-          :src="userData.avatar"
+          :src="userData.avatar.url"
           :text="avatarText(userData.fullName)"
           :variant="`light-${resolveUserRoleVariant(userData.role)}`"
           size="90px"
