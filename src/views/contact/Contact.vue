@@ -28,8 +28,7 @@
           </div>
           <div class="col-lg-3">
             <div class="box-contacts">
-              <!-- &#xe00a; -->
-              <i class=""/>
+              <i class="line-icon line-education-science-09" />
               <h2>{{ $t('views.contact.marketing') }}</h2>
               <span><i class="icon_mail mr-2" />{{ $t('views.contact.marketing_email') }}</span>
             </div>
