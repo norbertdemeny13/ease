@@ -11,8 +11,7 @@
           <h6 class="mt-4">{{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
             <div v-if="hasActiveSubscription">
-              <li>{{ $t('views.client_dashboard.subscriptions.next_bill') }}</li>
-              <li><strong>{{ getActiveSubscription.active_from.substr(0, 10) }}</strong></li>
+              <li><strong>{{ $t('views.client_dashboard.subscriptions.next_bill') }} </strong>{{ getActiveSubscription.active_from.substr(0, 10) }}</li>
             </div>
             <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.anual') }}</li>
             <li><strong>{{ $t('generic.status') }}</strong>{{ hasActiveSubscription ? 'Activ' : 'Anulat' }}</li>

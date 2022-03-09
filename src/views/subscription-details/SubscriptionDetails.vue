@@ -8,7 +8,7 @@
       <es-address-bar :disabled="disabledAddress" @on-address-change="onAddressChange" />
       <!-- /row -->
       <es-pricing-plan-card-skeleton v-if="isFetching" :times="fetchedSubscription ? 1 : 2" />
-      <div v-else :class="`row es_subscriptions-list-container mt-4 ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
+      <div v-else :class="`row es_subscriptions-list-container mt-8 ${showSubscriptions ? '' : 'disabled'} ${fetchedSubscription ? 'has-filters' : ''}`">
         <div v-if="fetchedSubscription" class="form-group col-md-4">
           <h3>{{ $t(getFilter.title) }}</h3>
           <label>{{ $t(getFilter.description) }}</label>

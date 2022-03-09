@@ -18,7 +18,6 @@
               </div>
               <a href="" class="mr-2" @click.prevent.stop="onRemove(card)">
                 <i class="icon_trash_alt" />
-                {{ $t('generic.delete') }}
               </a>
             </div>
           </div>
@@ -166,9 +165,12 @@
     padding: 16px;
   }
 
-  .client-payment-card-item.active,
   .client-payment-card-item:hover {
-    border: 1px solid #d00078;
+    border: 1px solid #70d7b7;
+  }
+
+    .client-payment-card-item.active {
+    border: 2px solid #70d7b7;
   }
 
   .icon_check_alt {

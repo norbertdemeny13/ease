@@ -189,12 +189,15 @@
     padding: 8px;
   }
 
-  .client-address-item.active,
   .client-address-item:hover {
-    border: 1px solid #d00078;
+    border: 1px solid #70d7b7;
     cursor: pointer;
   }
 
+  .client-address-item.active {
+    border: 2px solid #70d7b7;
+    cursor: pointer;
+  }
   .address {
     max-width: 60%;
   }

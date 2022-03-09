@@ -239,6 +239,16 @@
     font-family: SofiaProSemiBold !important;
 }
 
+.es_services-list-container .owl-theme .owl-nav .owl-prev,
+.es_reserve-service-container .owl-theme .owl-nav .owl-prev {
+    left: -24px;
+}
+
+.es_services-list-container .owl-theme .owl-nav .owl-next,
+.es_reserve-service-container .owl-theme .owl-nav .owl-next {
+    right: -24px;
+}
+
 .es_services-list-container.disabled::after,
 .es_subscriptions-list-container.disabled::after,
 {
@@ -372,7 +382,11 @@
 }
 
 .extra-services-container .custom-text {
-    text-align: center;
+    text-align: left;
+}
+
+.extra-services-container .custom-text h5{
+    font-size: 14px;
 }
 
 .extra-services-container:hover{
@@ -603,6 +617,11 @@
         text-align: left;
     }
 
+    .extra-services-container .custom-text h5 {
+        font-size: 20px;
+    }
+
+
     .download-app-container .row .logo-container {
         margin-left: 20px;
     }
@@ -679,6 +698,18 @@
         width: 47%;
     }
 
+    .more-details .custom-container-info .custom-text {
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 2000px) {
+    .es_client-dashboard-container {
+        height: 65vh;
+    }
+}
+
+@media (min-width: 2560px) {
     .more-details .custom-container-info .custom-text {
         max-width: 60%;
     }

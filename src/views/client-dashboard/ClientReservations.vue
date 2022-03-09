@@ -134,31 +134,31 @@
                   </figure>
                   <a class="ml-2" href="" @click.prevent="">{{ getEliteName(job.elite) }}</a>
                 </div>
-                <span class="ml-2">{{ getStatus(selectedReservation.status) }}</span>
               </li>
             </ul>
             <h6>{{ $t('lbl_reservation_details') }}</h6>
             <ul class="summary_list">
               <li><strong>{{ $t('bookings.details.number') }}</strong> {{ selectedReservation.reservation_id }}</li>
               <li><strong>{{ $t('bookings.details.bookingDate') }}</strong> {{ getCreatedReservationDate }}</li>
+              <li><strong>Status rezervare</strong> {{ getStatus(selectedReservation.status) }}</li>
               <li><strong>{{ $t('views.client_dashboard.my_reservations.address') }}</strong> {{ getAddress }}</li>
               <li><strong>{{ $t('bookings.details.telephone') }}</strong> {{ selectedReservation.user.phone_number }}</li>
             </ul>
             <h6>{{ $t('reservation_summary') }}</h6>
-            <ul class="summary_list col-md-6">
+            <ul class="summary_list col-md-8">
               <li class="my-4"><strong>{{ $t('views.client_dashboard.my_reservations.for_the_date_of') }}</strong> {{ getReservationDate }}</li>
-              <li v-if="isCoupleMassage" class="d-flex justify-content-between">
+              <li v-if="isCoupleMassage" class="d-flex justify-content-between custom-name">
                 <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
               </li>
               <template v-for="(service, i) in reservationServices">
-                <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
-                <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
+                <li v-if="reservationServices.length > 1" :key="i" class="custom-service">Serviciu {{ i + 1 }}</li>
+                <li :key="`${service.id}-summary`" class="d-flex justify-content-between custom-name">
                   <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
                 </li>
-                <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
+                <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between custom-name ml-4">
                   <strong>{{ complementaryService.count ? `${complementaryService.count} x` : '' }} {{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
                 </li>
-                <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-4">
+                <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between custom-name ml-4">
                   <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
                 </li>
               </template>
@@ -169,11 +169,11 @@
               <li v-if="parseInt(selectedReservation.promo_code_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.promo_code') }}</strong> - {{ `${selectedReservation.promo_code_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.gift_card_discount, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.gift_card_discount} Lei` }}</li>
               <li v-if="parseInt(selectedReservation.ease_credit_used, 10) > 0" class="d-flex justify-content-between"><strong>{{ $t('summary.easeCredit') }}</strong> - {{ `${selectedReservation.ease_credit_used} Lei` }}</li>
-              <li class="d-flex justify-content-between"><strong>{{ $t('generic.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
+              <li class="d-flex justify-content-between custom-total"><strong>{{ $t('generic.total') }}</strong> {{ `${selectedReservation.to_pay} Lei` }}</li>
             </ul>
             <div v-if="canCancelReservation" class="d-flex justify-content-start">
               <button
-                class="btn btn-sm btn-pink btn-pill my-4 px-6"
+                class="btn btn-sm my-4 px-0 custom-cancel"
                 @click.prevent="isConfirmModalOpen = true"
               >
                 {{ $t('lbl_cancel_reservation') }}

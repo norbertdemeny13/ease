@@ -3620,6 +3620,10 @@ header.black_nav .dropdown.user>a {
     color: #333 !important;
 }
 
+header.black_nav ul#top_menu li>a:hover {
+    color: #d00078 !important;
+}
+
 /*-------- 1.6 Drop down user logged --------*/
 
 .dropdown.user {
@@ -5671,6 +5675,10 @@ ul.additional_links {
     color: #ffffff;
 }
 
+.is-pro ul.additional_links li a:hover{
+    color: #d00078;
+}
+
 @media (max-width: 991px) {
     ul.additional_links {
         float: none;
@@ -6893,6 +6901,10 @@ a#forgot {
     font-size: 0.8125rem;
 }
 
+a#forgot:hover{
+    color: #d00078;
+}
+
 #forgot_pw {
     background-color: #fff;
     position: absolute;
@@ -7594,6 +7606,7 @@ ul.plan-features {
 .reservation-list-item {
     h6 {
         width: 200px;
+        font-size: 20px;
     }
 }
 
@@ -7675,6 +7688,12 @@ ul.plan-features {
     }
 }
 
+.es_service-details-page {
+    .extra-services-container {
+        margin-right: 0;
+    }
+}
+
 .es-subscription-selection-container {
     .pricing-card-small {
         h3 {
@@ -7720,6 +7739,12 @@ ul.plan-features {
         font-size: 18px;
         font-weight: 400;
         font-family: SofiaProRegular !important;
+    }
+}
+
+.es_client-subscriptions-container {
+    h6 {
+        font-size: 20px;
     }
 }
 
@@ -7777,6 +7802,24 @@ ul.plan-features {
     .bg-white {
         border-radius: 10px;
         box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+    }
+}
+
+.es_client-dashboard-container {
+    .es_client-reservations-container {
+        .custom-service {
+            font-size: 12px;
+        }
+
+        .custom-total {
+            font-size: 20px;
+        }
+
+        .custom-cancel {
+            &:hover {
+                color: #d00078;
+            }
+        }
     }
 }
 
