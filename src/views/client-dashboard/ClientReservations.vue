@@ -40,7 +40,7 @@
                     <figure v-for="job in getReservationJobs(item).slice(0, 2)" :key="job.id" class="mb-0">
                       <img
                         v-if="job.avatar"
-                        class="radius-50 m-1"
+                        class="radius-50 m-1 c-pointer"
                         :src="job.avatar"
                         alt=""
                         width="40px"
@@ -49,7 +49,7 @@
                       >
                       <img
                         v-else
-                        class="radius-50 m-1"
+                        class="radius-50 m-1 c-pointer"
                         src="@/assets/svg/pro-placeholder.svg"
                         alt=""
                         width="40px"

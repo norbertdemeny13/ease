@@ -85,9 +85,13 @@
     opacity: 0.4;
   }
 
-    img {
+  img {
     width: 120px;
     height: 120px;
+  }
+
+  img:hover {
+    cursor: pointer;
   }
 
 @media (max-width: 767px) {
