@@ -20,7 +20,14 @@
             </div>
             <div class="d-flex justify-content-end">
               <a
-                class="btn btn-sm btn-pink btn-pill mt-4 px-6"
+                class="btn btn-sm btn-pill my-4 px-4 text-pink"
+                href=""
+                @click.prevent="onCancel()"
+              >
+                {{ $t('bookings.details.cancel.free.button1') }}
+              </a>
+              <a
+                class="btn btn-sm btn-pink btn-pill mr-2 my-4 px-4"
                 href=""
                 @click.prevent="onConfirm()"
               >
@@ -63,3 +70,9 @@
     },
   });
 </script>
+
+<style scoped>
+#es-modal-dialog {
+  max-width: 500px;
+}
+</style>
