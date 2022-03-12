@@ -19,6 +19,15 @@
           />
         </div>
       </div>
+      <es-banner-as-footer-mobile
+        :fitness="this.$router.currentRoute.params.type === 'fitness'"
+        :nails="this.$router.currentRoute.params.type === 'nails'"
+        :eyelashes="this.$router.currentRoute.params.type === 'eyelashes'"
+        :eyebrows="this.$router.currentRoute.params.type === 'eyebrows'"
+        :men-nails="this.$router.currentRoute.params.type === 'men_nails'"
+        :men-hair="this.$router.currentRoute.params.type === 'men_hair'"
+        :men-hair-removal="this.$router.currentRoute.params.type === 'men_hair_removal'"
+      />
     </div>
   </div>
 </template>
@@ -28,6 +37,7 @@
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesListSkeleton } from '@/components/features/services-list';
   import { ServicesListItem } from '@/components/features/services-list-item';
+  import { EsBannersAsFooterMobile } from '@/components/shared/banners-as-footer-mobile';
 
   export default Vue.extend({
     name: 'es-services-details',
@@ -35,6 +45,7 @@
     components: {
       'services-list-item': ServicesListItem,
       'services-list-skeleton': ServicesListSkeleton,
+      'es-banner-as-footer-mobile': EsBannersAsFooterMobile,
     },
 
     computed: {
