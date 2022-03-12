@@ -221,6 +221,10 @@
         }
       },
       async onAddFavourite() {
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
         await this.addEliteFavourite({ id: this.getElite.id });
         await this.fetchEliteFavorites();
       },
