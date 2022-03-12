@@ -5,7 +5,7 @@
       <div class="row">
         <div v-for="item in footerLinks" :key="item.id" class="col-lg-3 col-md-6">
           <h3 :data-target="`#${item.id}`">{{ item.category }}</h3>
-          <div :id="item.id" class="collapse dont-collapse-sm links">
+          <div :id="item.id" class="collapse dont-collapse-sm links" :key="item.id">
             <ul>
               <li v-for="link in item.list" :key="link.label">
                 <a
