@@ -10,31 +10,6 @@
 
   export default Vue.extend({
     name: 'es-banners-as-footer-mobile',
-
-    props: {
-      fitness: {
-        type: Boolean,
-      },
-      nails: {
-        type: Boolean,
-      },
-      eyelashes: {
-        type: Boolean,
-      },
-      eyebrows: {
-        type: Boolean,
-      },
-      menNails: {
-        type: Boolean,
-      },
-      menHair: {
-        type: Boolean,
-      },
-      menHairRemoval: {
-        type: Boolean,
-      },
-    },
-
     data: () => ({
       /* eslint-disable */
       images: [

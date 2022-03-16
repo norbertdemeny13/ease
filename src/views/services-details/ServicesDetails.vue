@@ -19,15 +19,7 @@
           />
         </div>
       </div>
-      <es-banner-as-footer-mobile
-        :fitness="this.$router.currentRoute.params.type === 'fitness'"
-        :nails="this.$router.currentRoute.params.type === 'nails'"
-        :eyelashes="this.$router.currentRoute.params.type === 'eyelashes'"
-        :eyebrows="this.$router.currentRoute.params.type === 'eyebrows'"
-        :men-nails="this.$router.currentRoute.params.type === 'men_nails'"
-        :men-hair="this.$router.currentRoute.params.type === 'men_hair'"
-        :men-hair-removal="this.$router.currentRoute.params.type === 'men_hair_removal'"
-      />
+      <es-banner-as-footer-mobile />
     </div>
   </div>
 </template>
