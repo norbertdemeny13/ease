@@ -56,6 +56,10 @@
                   {{ $t('generic.reserve') }}
                 </button>
               </div>
+              <div class="bio-elite">
+                <h2>{{ $t('practician.bio') }}</h2>
+                <p>{{ getElite.bio }}</p>
+              </div>
             </div>
           </div>
           <div class="row my-2">
@@ -217,6 +221,10 @@
         }
       },
       async onAddFavourite() {
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
         await this.addEliteFavourite({ id: this.getElite.id });
         await this.fetchEliteFavorites();
       },
