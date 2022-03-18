@@ -136,17 +136,17 @@
                 </div>
               </li>
             </ul>
-            <h6>{{ $t('lbl_reservation_details') }}</h6>
+            <h6 class="rezervation-title">{{ $t('lbl_reservation_details') }}</h6>
             <ul class="summary_list">
               <li><strong>{{ $t('bookings.details.number') }}</strong> {{ selectedReservation.reservation_id }}</li>
+              <li><strong>{{ $t('views.client_dashboard.my_reservations.for_the_date_of') }}</strong> {{ getReservationDate }}</li>
               <li><strong>{{ $t('bookings.details.bookingDate') }}</strong> {{ getCreatedReservationDate }}</li>
               <li><strong>Status rezervare</strong> {{ getStatus(selectedReservation.status) }}</li>
               <li><strong>{{ $t('views.client_dashboard.my_reservations.address') }}</strong> {{ getAddress }}</li>
               <li><strong>{{ $t('bookings.details.telephone') }}</strong> {{ selectedReservation.user.phone_number }}</li>
             </ul>
-            <h6>{{ $t('reservation_summary') }}</h6>
+            <h6 class="rezervation-title">{{ $t('reservation_summary') }}</h6>
             <ul class="summary_list col-md-8">
-              <li class="my-4"><strong>{{ $t('views.client_dashboard.my_reservations.for_the_date_of') }}</strong> {{ getReservationDate }}</li>
               <li v-if="isCoupleMassage" class="d-flex justify-content-between custom-name">
                 <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
               </li>

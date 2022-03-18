@@ -1,11 +1,12 @@
+/* eslint-disable vue/html-indent */
 <template>
   <div class="es_elite-details-container bg_gray content">
+    <a class="back-button pl-10" href="" @click.prevent="onBack()">
+      {{ $t('generic.back') }}
+    </a>
     <div class="container margin_30_20">
-      <div class="row bg-white p-4">
-        <div class="col-md-6">
-          <a class="back-button" href="" @click.prevent="onBack()">
-            {{ $t('generic.back') }}
-          </a>
+      <div class="row details-container p-4 mb-3">
+        <div class="col-md-12 bg-white mb-3">
           <div class="row mt-2">
             <div class="col-md-3">
               <figure class="mb-0">
@@ -27,7 +28,7 @@
                 >
               </figure>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
               <div class="favourite-container">
                 <h3 class="mr-3 mb-0">{{ getEliteName }}</h3>
                 <i
@@ -56,15 +57,15 @@
                   {{ $t('generic.reserve') }}
                 </button>
               </div>
-              <div class="bio-elite">
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="row d-flex justify-content-between">
+              <div class="bio-elite col-sm-12 col-md-12 mb-6">
                 <h2>{{ $t('practician.bio') }}</h2>
                 <p>{{ getElite.bio }}</p>
               </div>
-            </div>
-          </div>
-          <div class="row my-2">
-            <div class="col-md-12 d-flex justify-content-between">
-              <div class="d-flex experience">
+              <div class="d-flex experience col-sm-12 col-md-4">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/experience.svg"
@@ -77,7 +78,7 @@
                   <p>16 ani</p>
                 </div>
               </div>
-              <div class="d-flex language">
+              <div class="d-flex language col-sm-12 col-md-4">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/language.svg"
@@ -90,7 +91,7 @@
                   <p>Romana, Franceza</p>
                 </div>
               </div>
-              <div class="d-flex certificate">
+              <div class="d-flex certificate col-sm-12 col-md-4">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/certificate.svg"
@@ -105,6 +106,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-12 bg-white">
           <div v-if="getReviews.length" class="row">
             <div class="col-md-12">
               <h6>{{ $t('views.pro_details.reviews') }}</h6>

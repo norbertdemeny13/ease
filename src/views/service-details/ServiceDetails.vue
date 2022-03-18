@@ -6,7 +6,7 @@
       </a>
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
-        <div class="col-xl-6 col-lg-6 col-md-6">
+        <div class="col-xl-6 col-lg-6 col-md-6 image-container">
           <img :src="service.absolute_image_url_large" width="100%" height="auto">
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6">

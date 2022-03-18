@@ -5,6 +5,7 @@
         <div id="logo">
           <router-link v-if="isPro" to="/easepro/">
             <img
+              id="pro-logo"
               src="@/assets/svg/pro-logo.svg"
               width="90"
               height="30"
@@ -71,6 +72,7 @@
             <div class="logo-sidebar">
               <router-link v-if="isPro" to="/easepro/">
                 <img
+                  id="pro-logo"
                   src="@/assets/svg/pro-logo.svg"
                   width="90"
                   height="30"

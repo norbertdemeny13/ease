@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content es_services-list-container">
     <div class="container margin_30_20">
       <a class="back-button" href="" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <es-address-bar @on-address-change="onAddressChange" />
