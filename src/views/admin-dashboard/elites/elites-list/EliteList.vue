@@ -11,12 +11,14 @@
 
     <!-- Filters -->
     <users-list-filters
-      :city-filter.sync="cityFilter"
-      :service-filter.sync="serviceFilter"
-      :status-filter.sync="statusFilter"
+      :city-filter.sync="dataMeta.city_id"
+      :service-filter.sync="dataMeta.service"
+      :status-filter.sync="dataMeta.status"
       :city-options="cityOptions"
       :service-options="serviceOptions"
       :status-options="statusOptions"
+      :services="getProServices"
+      :service-ids="serviceIds"
     />
 
     <!-- Table Container Card -->
@@ -24,32 +26,6 @@
       no-body
       class="mb-0"
     >
-
-      <div class="m-2">
-
-        <!-- Table Top -->
-        <b-row>
-
-          <!-- Per Page -->
-          <b-col
-            cols="12"
-            md="6"
-            class="d-flex align-items-center justify-content-start mb-1 mb-md-0"
-          >
-            <label>Show</label>
-            <v-select
-              v-model="perPage"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-              :options="perPageOptions"
-              :clearable="false"
-              class="per-page-selector d-inline-block mx-50"
-            />
-            <label>entries</label>
-          </b-col>
-        </b-row>
-
-      </div>
-
       <b-table
         ref="refUserListTable"
         class="position-relative"
@@ -69,7 +45,7 @@
             <template #aside>
               <b-avatar
                 size="32"
-                :src="data.item.avatar"
+                :src="data.item.avatar.url"
                 :text="avatarText(data.item.fullName)"
                 :variant="`light-${resolveUserRoleVariant(data.item.role)}`"
                 :to="{ name: 'admin-elite-view', params: { id: data.item.id } }"
@@ -137,7 +113,7 @@
             sm="6"
             class="d-flex align-items-center justify-content-center justify-content-sm-start"
           >
-            <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.of }} entries</span>
+            <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.count }} entries</span>
           </b-col>
           <!-- Pagination -->
           <b-col
@@ -147,9 +123,9 @@
           >
 
             <b-pagination
-              v-model="currentPage"
-              :total-rows="totalUsers"
-              :per-page="perPage"
+              v-model="dataMeta.page"
+              :total-rows="dataMeta.count"
+              :per-page="dataMeta.items"
               first-number
               last-number
               class="mb-0 mt-1 mt-sm-0"
@@ -182,11 +158,26 @@
   /* eslint-disable */
   import { mapActions, mapGetters } from 'vuex';
   import {
-    BCard, BRow, BCol, BFormInput, BButton, BTable, BMedia, BAvatar, BLink,
-    BBadge, BDropdown, BDropdownItem, BPagination,
+    BCard,
+    BRow,
+    BCol,
+    BFormInput,
+    BButton,
+    BTable,
+    BMedia,
+    BAvatar,
+    BLink,
+    BBadge,
+    BDropdown,
+    BDropdownItem,
+    BPagination,
+    BDropdownDivider,
+    BDropdownForm,
+    BDropdownGroup,
   } from 'bootstrap-vue';
   import vSelect from 'vue-select';
   import { store } from '@/store';
+  import { isEqual } from 'lodash-es';
   import { ref, onUnmounted } from '@vue/composition-api';
   import { avatarText } from '@/core/utils/filter';
   import UsersListFilters from './ElitesListFilters.vue';
@@ -215,21 +206,81 @@
 
       vSelect,
     },
+
+    data: () => ({
+      dataMeta: {
+        items: 10,
+        page: 1,
+        city_id: null,
+        status: null,
+        service: null,
+      },
+      serviceIds: [],
+    }),
+
     created() {
-      this.fetchElites();
+      this.fetchElites(this.dataMeta);
+      this.fetchProServices();
     },
     computed: {
       ...mapGetters({
         getElites: 'admin/getElites',
+        getProServices: 'services/getProServices',
       }),
       elites() {
-        return this.getElites.map(elite => ({ ...elite, working_city_name: this.$t(elite.working_city_name), }));
+        const elites = this.getElites.items || [];
+        const meta = this.getElites.pagy;
+        return elites.map(elite => ({ ...elite, working_city_name: this.$t(elite.working_city_name), }));
+      },
+      newDataModel() {
+        return Object.assign({}, this.dataMeta);
+      },
+      newServiceId() {
+        return [...this.serviceIds];
+      },
+    },
+    watch: {
+      getElites(newVal) {
+        if (newVal.pagy) {
+          this.setMeta(newVal.pagy);
+        }
+      },
+      newDataModel: {
+        handler(newVal, oldVal) {
+          if (!isEqual(newVal, oldVal)) {
+            this.refetchData();
+          }
+        },
+        deep: true,
+        immediate: false,
+      },
+      newServiceId(newVal, oldVal) {
+        if (newVal.length !== oldVal.length) {
+          this.refetchData();
+        }
       },
     },
     methods: {
       ...mapActions({
         fetchElites: 'admin/fetchElites',
+        fetchProServices: 'services/fetchProServices',
       }),
+      setMeta(meta) {
+        this.dataMeta = { 
+          ...this.dataMeta,
+          items: meta.items,
+          page: meta.pages,
+          count: meta.count,
+          items: meta.items,
+          from: meta.from,
+          to: meta.to,
+          page: meta.page,
+        };
+      },
+      refetchData() {
+        const { dataMeta, serviceIds } = this;
+        this.fetchElites({ ...dataMeta, serviceIds });
+      },
     },
     setup() {
       const USER_APP_STORE_MODULE_NAME = 'app-user'
@@ -245,7 +296,7 @@
       const isAddNewUserSidebarActive = ref(false)
 
       const cityOptions = [
-        { label: 'Clujn Napoca', value: '1' },
+        { label: 'Cluj Napoca', value: '1' },
         { label: 'Bucuresti', value: '2' },
       ]
 
@@ -259,22 +310,19 @@
       const statusOptions = [
         { label: 'Pending', value: 'pending' },
         { label: 'Active', value: 'active' },
-        { label: 'Inactive', value: 'inactive' },
+        { label: 'Paused', value: 'paused' },
+        { label: 'Blocked', value: 'blocked' },
       ]
 
       const {
         fetchUsers,
         tableColumns,
         perPage,
-        currentPage,
-        totalUsers,
-        dataMeta,
         perPageOptions,
         searchQuery,
         sortBy,
         isSortDirDesc,
         refUserListTable,
-        refetchData,
 
         // UI
         resolveUserRoleVariant,
@@ -284,7 +332,6 @@
         // Extra Filters
         cityFilter,
         serviceFilter,
-        statusFilter,
       } = useUsersList()
 
       return {
@@ -295,15 +342,11 @@
         fetchUsers,
         tableColumns,
         perPage,
-        currentPage,
-        totalUsers,
-        dataMeta,
         perPageOptions,
         searchQuery,
         sortBy,
         isSortDirDesc,
         refUserListTable,
-        refetchData,
 
         // Filter
         avatarText,
@@ -320,7 +363,6 @@
         // Extra Filters
         cityFilter,
         serviceFilter,
-        statusFilter,
       }
     },
   }

@@ -4,19 +4,29 @@
       <div class="document-type d-flex flex-column">
         <h3>{{ $t('views.pro_dashboard.qualification_certificate') }}</h3>
         <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
-        <div v-if="userData.certificate_of_calification.length" class="documents-container">
+        <div v-if="userData.certificate_of_calification && userData.certificate_of_calification.length" class="documents-container">
           <p v-for="(file, i) in userData.certificate_of_calification" :key="file.id" class="info text-secondary"><a :href="file.url" target="_blank" download>{{ file.filename }}</a><span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)"></span></p>
         </div>
       </div>
       <div class="d-flex mt-2">
         <es-custom-checkbox :checked="userData.certificate_of_calification_confirmed" />
       </div>
+      <div class="media d-flex flex-column">
+        <h6 class="font-weight-bolder mr-auto mb-0">
+          Accept
+        </h6>
+        <b-form-checkbox
+          v-model="isCertificateOfCalificationAccepted"
+          class="custom-control-success"
+          switch
+        />
+      </div>
     </div>
     <div class="d-flex justify-content-between mt-2">
       <div class="document-type d-flex flex-column">
         <h3>{{ $t('views.pro_dashboard.identity_card') }}</h3>
         <p>{{ $t('views.pro_dashboard.identity_card_info') }}</p>
-        <div v-if="userData.id_card.length" class="documents-container">
+        <div v-if="userData.id_card && userData.id_card.length" class="documents-container">
           <p v-for="(file, i) in userData.id_card" :key="file.id" class="info text-secondary"><a :href="file.url" target="_blank" download>{{ file.filename }}</a><span class="delete-btn ml-4" @click="onRemove('id_card', i)"></span></p>
         </div>
       </div>
@@ -28,7 +38,7 @@
       <div class="document-type d-flex flex-column">
         <h3>{{ $t('views.pro_dashboard.register_certificate') }}</h3>
         <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
-        <div v-if="userData.certificate_of_registration.length" class="documents-container">
+        <div v-if="userData.certificate_of_registration && userData.certificate_of_registration.length" class="documents-container">
           <p v-for="(file, i) in userData.certificate_of_registration" :key="file.id" class="info text-secondary"><a :href="file.url" target="_blank" download>{{ file.filename }}</a><span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)"></span></p>
         </div>
       </div>
@@ -40,7 +50,7 @@
       <div class="document-type d-flex flex-column">
         <h3>{{ $t('views.pro_dashboard.professional_liability_insurance') }}</h3>
         <p>{{ $t('views.pro_dashboard.professional_liability_insurance_info') }}</p>
-        <div v-if="userData.practice_insurance.length" class="documents-container">
+        <div v-if="userData.practice_insurance && userData.practice_insurance.length" class="documents-container">
           <p v-for="(file, i) in userData.practice_insurance" :key="file.id" class="info text-secondary"><a :href="file.url" target="_blank" download>{{ file.filename }}</a><span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)"></span></p>
         </div>
       </div>
@@ -52,7 +62,7 @@
       <div class="document-type d-flex flex-column">
         <h3>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h3>
         <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
-        <div v-if="userData.criminal_record.length" class="documents-container">
+        <div v-if="userData.criminal_record && userData.criminal_record.length" class="documents-container">
           <p v-for="(file, i) in userData.criminal_record" :key="file.id" class="info text-secondary"><a :href="file.url" target="_blank" download>{{ file.filename }}</a><span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"></span></p>
         </div>
       </div>
@@ -118,7 +128,7 @@
   /* eslint-disable */
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { BCard, BRow, BCol } from 'bootstrap-vue';
+  import { BCard, BRow, BCol, BFormCheckbox, } from 'bootstrap-vue';
   import { isEqual } from 'lodash-es';
   import { CustomCheckbox } from '@/components/shared/custom-checkbox';
   import { Divider } from '@/components/shared/divider';
@@ -132,6 +142,7 @@
       BCard,
       BCol,
       BRow,
+      BFormCheckbox,
       'es-custom-checkbox': CustomCheckbox,
       'es-divider': Divider,
       'es-calendly-modal': CalendlyModal,
@@ -152,6 +163,7 @@
     data: () => ({
       isCalendlyModalOpen: false,
       isTermsAndConditionsModalOpen: false,
+      isCertificateOfCalificationAccepted: false,
       user: {
         accord_accepted: false,
       },
@@ -169,6 +181,7 @@
 
     created() {
       this.user = { ...this.userData };
+      this.isCertificateOfCalificationAccepted = this.userData.certificate_of_calification_confirmed === 'accepted' ? true : false;
     },
 
     methods: {

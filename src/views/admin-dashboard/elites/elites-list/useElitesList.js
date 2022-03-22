@@ -25,6 +25,7 @@ export default function useUsersList() {
     },
     { key: 'status', sortable: true },
   ]
+
   const perPage = ref(10)
   const totalUsers = ref(0)
   const currentPage = ref(1)
@@ -98,7 +99,9 @@ export default function useUsersList() {
   const resolveUserStatusVariant = status => {
     if (status === 'pending') return 'warning'
     if (status === 'active') return 'success'
-    if (status === 'inactive') return 'secondary'
+    if (status === 'accepted') return 'success'
+    if (status === 'paused') return 'secondary'
+    if (status === 'blocked') return 'danger'
     return 'primary'
   }
 

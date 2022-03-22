@@ -24,8 +24,19 @@ export default {
   actions: {
     async fetchElites({ state }, params) {
       Vue.set(state, 'isFetching', true);
+      let qs = Object.keys(params)
+        .filter(key => params[key])
+        .filter(key => key !== 'serviceIds')
+        .map(key => `${key}=${params[key]}`)
+        .join('&');
+      if (params?.serviceIds?.length) {
+        params.serviceIds.forEach((item: number) => {
+          qs += `&service_id[]=${item}`;
+        });
+      }
+
       try {
-        const { data } = await api.find('/admin/elites');
+        const { data } = await api.find(`/admin/elites?${qs}`);
         Vue.set(state, 'elites', data);
       } finally {
         Vue.set(state, 'isFetching', false);
@@ -36,6 +47,15 @@ export default {
       try {
         const { data } = await api.find(`/admin/elites/${id}`);
         Vue.set(state, 'selectedElite', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
+    async removeEliteReview({ state }, { eliteId, reviewId }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/admin/elites/${eliteId}/delete_review/${reviewId}`);
+        // Vue.set(state, 'selectedElite', data);
       } finally {
         Vue.set(state, 'isFetching', false);
       }

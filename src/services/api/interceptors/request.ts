@@ -8,7 +8,9 @@ export default (request: AxiosRequestConfig) => {
   request.baseURL = 'https://ease-be.herokuapp.com/api/v1';
   const authToken = localStorage.getItem('auth') && localStorage.getItem('auth')!.slice(2);
   const adminAuthToken = localStorage.getItem('adminAuth') && localStorage.getItem('adminAuth')!.slice(2);
-  const token = store.getters['session/getToken'] || authToken || adminAuthToken;
+  const userType = localStorage.getItem('userType');
+  const atoken = userType === 'admin' ? adminAuthToken : authToken;
+  const token = store.getters['session/getToken'] || atoken;
 
   if (token) {
     request.headers = {

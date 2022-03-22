@@ -325,7 +325,7 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
-  if (!getToken && authToken) {
+  if (!getToken && authToken && !to.fullPath.includes('admin')) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;
   }

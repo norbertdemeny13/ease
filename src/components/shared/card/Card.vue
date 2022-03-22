@@ -11,7 +11,7 @@
       </h5>
     </div>
 
-    <div :id="id" class="collapse" role="tabpanel" data-parent="#accordion_services">
+    <div :id="id" :class="`collapse ${title === 'massage_category_title' ? 'show' : ''}`" role="tabpanel" data-parent="#accordion_services">
       <div class="card-body row">
         <slot />
       </div>

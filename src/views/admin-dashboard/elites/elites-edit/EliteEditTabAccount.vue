@@ -15,7 +15,7 @@
         />
       </template>
       <h4 class="mb-1">
-        {{ userData.fullName }}
+        {{ userData.full_name }}
       </h4>
       <div class="d-flex flex-wrap">
         <b-button
@@ -57,12 +57,12 @@
           md="4"
         >
           <b-form-group
-            label="Username"
-            label-for="username"
+            label="Nume complet"
+            label-for="full_name"
           >
             <b-form-input
-              id="username"
-              v-model="userData.username"
+              id="full_name"
+              v-model="userData.full_name"
             />
           </b-form-group>
         </b-col>
@@ -73,12 +73,12 @@
           md="4"
         >
           <b-form-group
-            label="Name"
-            label-for="full-name"
+            label="Nume afisat"
+            label-for="display-name"
           >
             <b-form-input
-              id="full-name"
-              v-model="userData.fullName"
+              id="display-name"
+              v-model="userData.display_name"
             />
           </b-form-group>
         </b-col>
@@ -146,63 +146,18 @@
           md="4"
         >
           <b-form-group
-            label="Company"
+            label="Nume companie"
             label-for="company"
           >
             <b-form-input
               id="company"
-              v-model="userData.company"
+              v-model="userData.company_name"
             />
           </b-form-group>
         </b-col>
 
       </b-row>
     </b-form>
-
-    <!-- PERMISSION TABLE -->
-    <b-card
-      no-body
-      class="border mt-1"
-    >
-      <b-card-header class="p-1">
-        <b-card-title class="font-medium-2">
-          <feather-icon
-            icon="LockIcon"
-            size="18"
-          />
-          <span class="align-middle ml-50">Permission</span>
-        </b-card-title>
-      </b-card-header>
-      <b-table
-        striped
-        responsive
-        class="mb-0"
-        :items="permissionsData"
-      >
-        <template #cell(module)="data">
-          {{ data.value }}
-        </template>
-        <template #cell()="data">
-          <b-form-checkbox :checked="data.value" />
-        </template>
-      </b-table>
-    </b-card>
-
-    <!-- Action Buttons -->
-    <b-button
-      variant="primary"
-      class="mb-1 mb-sm-0 mr-0 mr-sm-1"
-      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
-    >
-      Save Changes
-    </b-button>
-    <b-button
-      variant="outline-secondary"
-      type="reset"
-      :block="$store.getters['app/currentBreakPoint'] === 'xs'"
-    >
-      Reset
-    </b-button>
   </div>
 </template>
 
@@ -244,14 +199,15 @@
       const { resolveUserRoleVariant } = useUsersList()
 
       const cityOptions = [
-        { label: 'Admin', value: 'admin' },
-        { label: 'Author', value: 'author' },
+        { label: 'Cluj Napoca', value: '1' },
+        { label: 'Bucuresti', value: '2' },
       ]
 
       const statusOptions = [
         { label: 'Pending', value: 'pending' },
         { label: 'Active', value: 'active' },
-        { label: 'Inactive', value: 'inactive' },
+        { label: 'Paused', value: 'paused' },
+        { label: 'Blocked', value: 'blocked' },
       ]
 
       const permissionsData = [

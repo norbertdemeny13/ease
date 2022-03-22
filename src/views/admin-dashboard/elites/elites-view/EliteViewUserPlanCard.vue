@@ -4,21 +4,21 @@
     class="border-primary"
   >
     <b-card-header class="d-flex justify-content-between align-items-center pt-75 pb-25">
-      <h5 class="mb-0">
+      <h4 class="mb-0">
         Companie
-      </h5>
+      </h4>
     </b-card-header>
 
     <b-card-body>
       <ul class="list-unstyled my-1">
         <li>
-          <span class="align-middle">{{ userData.company_name }}</span>
+          <h5 class="mb-0">Nume: <span class="align-middle">{{ userData.company_name }}</span></h5>
         </li>
         <li class="my-25">
-          <span class="align-middle">10 GB storage</span>
+          <h5 class="mb-0">CIF: <span class="align-middle">{{ userData.cif_number }}</span></h5>
         </li>
         <li>
-          <span class="align-middle">Basic Support</span>
+          <h5 class="mb-0">Registration Nr.: <span class="align-middle">{{ userData.registration_number }}</span></h5>
         </li>
       </ul>
     </b-card-body>

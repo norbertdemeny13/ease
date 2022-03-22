@@ -72,7 +72,7 @@
       <!-- Column: Actions -->
       <template #cell(actions)="data">
 
-        <div class="text-nowrap">
+        <div class="text-nowrap" @click="deleteReview(data.item.id)">
           <feather-icon
             :id="`review-row-${data.item.id}-delete-icon`"
             icon="TrashIcon"
@@ -96,7 +96,7 @@
           sm="6"
           class="d-flex align-items-center justify-content-center justify-content-sm-start"
         >
-          <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.of }} entries</span>
+          <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.to }} entries</span>
         </b-col>
         <!-- Pagination -->
         <b-col
@@ -139,6 +139,7 @@
 
 <script>
   /* eslint-disable */
+  import { mapActions } from 'vuex';
   import {
     BCard, BRow, BCol, BFormInput, BButton, BTable, BMedia, BAvatar, BLink,
     BBadge, BDropdown, BDropdownItem, BPagination, BTooltip,
@@ -181,7 +182,6 @@
       ]
 
       const {
-        fetchInvoices,
         tableColumns,
         perPage,
         currentPage,
@@ -199,10 +199,9 @@
 
         resolveInvoiceStatusVariantAndIcon,
         resolveClientAvatarVariant,
-      } = reviewsList()
+      } = reviewsList();
 
       return {
-        fetchInvoices,
         tableColumns,
         perPage,
         currentPage,
@@ -224,6 +223,15 @@
         resolveInvoiceStatusVariantAndIcon,
         resolveClientAvatarVariant,
       }
+    },
+    methods: {
+      ...mapActions({
+        removeEliteReview: 'admin/removeEliteReview',
+      }),
+      deleteReview(id) {
+        const eliteId = this.$router.currentRoute.params.id;
+        this.removeEliteReview({ eliteId, reviewId: id  });
+      },
     },
   }
 </script>

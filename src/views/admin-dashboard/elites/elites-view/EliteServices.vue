@@ -55,16 +55,6 @@
         </es-card>
       </es-cards-container>
     </b-row>
-    <b-row v-if="!disabled">
-      <div class="d-flex justify-content-start">
-        <button
-          class="btn btn-sm btn-pink btn-pill my-2 px-2"
-          @click.prevent="onSave()"
-        >
-          {{ $t('generic.save') }}
-        </button>
-      </div>
-    </b-row>
   </b-card>
 </template>
 
