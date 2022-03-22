@@ -11,7 +11,6 @@
             <div class="box-contacts">
               <i class="icon_headphones" />
               <h2>{{ $t('views.contact.clients') }}</h2>
-              <!-- <span><i class="icon_phone mr-2" />{{ $t('views.contact.clients_phone') }}</span><br> -->
               <span><i class="icon_mail mr-2" />{{ $t('views.contact.clients_email') }}</span>
               <span class="d-block"><i class="icon_chat mr-2" />{{ $t('views.contact.live_chat') }}</span>
             </div>
@@ -20,7 +19,6 @@
             <div class="box-contacts">
               <i class="icon_briefcase" />
               <h2>{{ $t('views.contact.pros') }}</h2>
-              <!-- <span><i class="icon_phone mr-2" />{{ $t('views.contact.pros_phone') }}</span><br> -->
               <span><i class="icon_mail mr-2" />{{ $t('views.contact.pros_email') }}</span>
               <span class="d-block"><i class="icon_chat mr-2" />{{ $t('views.contact.live_chat') }}</span>
             </div>
