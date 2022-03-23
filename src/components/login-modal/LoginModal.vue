@@ -28,7 +28,7 @@
             <div v-if="isSignIn" class="sign-in-wrapper">
               <div class="form-group">
                 <label>{{ $t('generic.email') }}</label>
-                <input type="email" class="form-control" name="email" id="email" v-model="form.email">
+                <input type="email" class="form-control" name="email" id="email" v-model="form.email" :placeholder="$t('auth.emailPlaceholder')">
               </div>
               <div class="form-group">
                   <label>{{ $t('generic.password') }}</label>
@@ -37,6 +37,7 @@
                     class="form-control"
                     name="password"
                     id="password"
+                    :placeholder="$t('auth.passwordPlaceholder')"
                     v-model="form.password"
                   >
                   <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}
@@ -71,15 +72,15 @@
               <div>
                 <div class="form-group">
                   <label>{{ $t('generic.email') }}</label>
-                  <input type="email" required class="form-control" name="email" id="email" v-model="form.email">
+                  <input type="email" required class="form-control" name="email" id="email" v-model="form.email" :placeholder="$t('auth.emailPlaceholder')">
                 </div>
                 <div class="form-group">
                   <label>{{ $t('generic.first_name') }}</label>
-                  <input type="email" class="form-control" name="firstName" id="firstName" v-model="form.first_name">
+                  <input type="email" class="form-control" name="firstName" id="firstName" v-model="form.first_name" :placeholder="$t('auth.firstNamePlaceholder')">
                 </div>
                 <div class="form-group">
                   <label>{{ $t('generic.last_name') }}</label>
-                  <input type="email" class="form-control" name="lastName" id="lastName" v-model="form.last_name">
+                  <input type="email" class="form-control" name="lastName" id="lastName" v-model="form.last_name" :placeholder="$t('auth.lastNamePlaceholder')">
                 </div>
                 <div class="form-group">
                   <label>{{ $t('generic.password') }}</label>
@@ -88,6 +89,7 @@
                     class="form-control"
                     name="password"
                     id="password"
+                    :placeholder="$t('auth.passwordPlaceholder')"
                     v-model="form.password"
                   >
                     <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}</span>
@@ -139,11 +141,11 @@
               <div id="forgot_pw">
                 <div class="form-group">
                   <label>{{ $t('generic.please_confirm_your_email') }}</label>
-                  <input type="email" class="form-control" name="email_forgot" id="email_forgot">
+                  <input type="email" class="form-control" name="email_forgot" id="email_forgot" :placeholder="$t('auth.emailPlaceholder')">
                   <i class="icon_mail_alt" />
                 </div>
                 <p>{{ $t('reset_password_email_sent') }}</p>
-                <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+                <div class="text-center"><input type="submit" value="Reset Password" class="btn_1" :placeholder="$t('auth.passwordPlaceholder')"></div>
               </div>
             </div>
           </form>

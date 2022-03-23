@@ -89,7 +89,7 @@
     h6 {
         text-align: right;
         margin-top: 10px;
-        font-size: 24px;
+        font-size: 20px;
 
             @media (max-width: 767px) {
                 text-align: left;
@@ -98,6 +98,7 @@
 }
 
 .pricing-plan {
+    position: relative;
 
   &-title {
     font-size: 16px;
@@ -116,6 +117,13 @@
             @media (min-width: 767px) {
                 margin-right: 0;
                 margin-left: auto;
+            }
+        }
+
+        .offer-badge {
+            &:hover {
+                color: #FFFFFF;
+                background: #d00078;
             }
         }
 

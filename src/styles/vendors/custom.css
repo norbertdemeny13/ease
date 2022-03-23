@@ -514,7 +514,8 @@
 }
 
 .es_services-container .address-search-container>.form-group,
-.es_subscription-details-container .address-search-container>.form-group {
+.es_subscription-details-container .address-search-container>.form-group,
+.es_services-list-container .address-search-container > div {
     padding: 0;
 }
 
@@ -639,6 +640,7 @@
         margin-bottom: 0;
     }
     .es_services-container .address-search-container,
+    .es_services-list-container .address-search-container,
     .es_subscription-details-container .address-search-container {
         width: 67%;
     }
@@ -675,6 +677,7 @@
 
 @media (min-width: 1280px) and (max-width: 1409px) {
     .es_services-container .address-search-container,
+    .es_services-list-container .address-search-container,
     .es_subscription-details-container .address-search-container {
         width: 51%;
     }
@@ -687,6 +690,7 @@
 
 .router-link-exact-active {
     color: #d00078 !important;
+    font-weight: 500;
 }
 
 .es-calendly-modal {
@@ -694,8 +698,9 @@
 }
 @media (min-width: 1410px) {
     .es_services-container .address-search-container,
+    .es_services-list-container .address-search-container,
     .es_subscription-details-container .address-search-container {
-        width: 47%;
+        width: 48%;
     }
 
     .more-details .custom-container-info .custom-text {

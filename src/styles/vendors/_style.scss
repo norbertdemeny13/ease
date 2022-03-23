@@ -2222,7 +2222,7 @@ header {
     top: 0;
     width: 100%;
     padding: 15px 0;
-    z-index: 99999;
+    z-index: 1499;
     border-bottom: 1px solid rgba(255, 255, 255, 0);
     font-family: SofiaProMedium;
 }
@@ -2292,10 +2292,10 @@ header.header-in ul#top_menu li a {
 header a.open_close {
     position: absolute;
     left: 10px;
-    top: 5px;
+    top: 15px;
     z-index: 999;
     color: #fff;
-    font-size: 32px;
+    font-size: 34px;
     font-size: 2rem;
     display: none;
     width: 25px;
@@ -2355,7 +2355,11 @@ header.sticky a.open_close:hover,
     }
     #logo img {
         width: auto;
-        height: 32px;
+        height: 40px;
+    }
+
+    #logo #pro-logo{
+        height: 24px;
     }
 }
 
@@ -7601,6 +7605,10 @@ ul.plan-features {
             margin-bottom: 10px;
         }
     }
+
+    .rezervation-title {
+        font-family: SofiaProMedium !important;
+    }
 }
 
 .reservation-list-item {
@@ -7691,6 +7699,10 @@ ul.plan-features {
 .es_service-details-page {
     .extra-services-container {
         margin-right: 0;
+    }
+
+    .image-container {
+        margin-bottom: 20px;
     }
 }
 
@@ -7823,6 +7835,35 @@ ul.plan-features {
     }
 }
 
+.es_elite-details-container {
+    .bg-white {
+        padding: 40px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+    }
+
+    .btn {
+        box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+    }
+}
+
+@media (min-width: 1200px) {
+    .es_elite-details-container {
+        .details-container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        .bg-white {
+            padding: 32px 72px;
+        }
+
+        .certificate,
+        .language {
+            justify-content: center;
+        }
+    }
+}
 @media (max-width: 991px) {
     .es_client-reservations-container {
         .reservation-list-item {
@@ -7839,6 +7880,13 @@ ul.plan-features {
     .custom-pro {
         h3 {
             font-size: 20px;
+        }
+    }
+
+    .es_reserve-service-container {
+        .pricing-plan-title {
+            position: absolute;
+            right: 60px;
         }
     }
 

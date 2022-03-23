@@ -186,7 +186,7 @@
               v-if="!getUser.interview_done"
               href=""
               onclick="Calendly.initPopupWidget({url: 'https://calendly.com/easeapp/interviu?hide_gdpr_banner=1&primary_color=d00078'});return false;"
-              :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!isInterviewPossible ? 'disabled' : ''}`"
+              :class="`btn btn-sm btn-pink btn-pill px-6 documents-button ${!isInterviewPossible ? 'disabled' : ''}`"
             >{{ $t('views.pro_dashboard.interview_button') }}</a>
           </div>
           <div class="d-flex">
@@ -208,7 +208,7 @@
               <a
                 href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o"
                 target="_blank"
-                :class="`btn btn-sm btn-pink btn-pill px-6 ml-2 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
+                :class="`btn btn-sm btn-pink btn-pill px-6 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
               >
                 {{ $t('views.pro_dashboard.bank_account_button') }}
               </a>
