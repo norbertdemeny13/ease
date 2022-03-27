@@ -6,7 +6,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.qualification_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
-          <div v-if="documents.certificate_of_calification.length" class="documents-container">
+          <div v-if="documents.certificate_of_calification && documents.certificate_of_calification.length" class="documents-container">
             <p v-for="(file, i) in documents.certificate_of_calification" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)">
               <feather-icon
                 icon="TrashIcon"
@@ -39,7 +39,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.identity_card') }}</h3>
           <p>{{ $t('views.pro_dashboard.identity_card_info') }}</p>
-          <div v-if="documents.id_card.length" class="documents-container">
+          <div v-if="documents.id_card && documents.id_card.length" class="documents-container">
             <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('id_card', i)">
               <feather-icon
                 icon="TrashIcon"
@@ -71,7 +71,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.register_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
-          <div v-if="documents.certificate_of_registration.length" class="documents-container">
+          <div v-if="documents.certificate_of_registration && documents.certificate_of_registration.length" class="documents-container">
             <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)">
               <feather-icon
                 icon="TrashIcon"
@@ -103,7 +103,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.professional_liability_insurance') }}</h3>
           <p>{{ $t('views.pro_dashboard.professional_liability_insurance_info') }}</p>
-          <div v-if="documents.practice_insurance.length" class="documents-container">
+          <div v-if="documents.practice_insurance && documents.practice_insurance.length" class="documents-container">
             <p v-for="(file, i) in documents.practice_insurance" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)">
              <feather-icon
                 icon="TrashIcon"
@@ -135,7 +135,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
-          <div v-if="documents.criminal_record.length" class="documents-container">
+          <div v-if="documents.criminal_record && documents.criminal_record.length" class="documents-container">
             <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"><img src="/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.equipment_photos') }}</h3>
           <p>{{ $t('views.pro_dashboard.equipment_photos_info') }}</p>
-          <div v-if="documents.equipment_photos.length" class="documents-container">
+          <div v-if="documents.equipment_photos && documents.equipment_photos.length" class="documents-container">
             <p v-for="(file, i) in documents.equipment_photos" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('equipment_photos', i)"><img src="/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
