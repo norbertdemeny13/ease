@@ -57,7 +57,7 @@
           cols="12"
           lg="6"
         >
-          <es-elite-documents :user-data="getSelectedElite" />
+          <es-elite-documents :user-data="getSelectedElite" disabled />
         </b-col>
       </b-row>
 

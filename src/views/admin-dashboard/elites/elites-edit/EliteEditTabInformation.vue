@@ -27,12 +27,21 @@
             label="Birth Date"
             label-for="birth-date"
           >
-            <flat-pickr
-              v-model="userDataInfo.dob"
-              class="form-control"
-              :config="{ dateFormat: 'Y-m-d'}"
-              placeholder="YYYY-MM-DD"
-            />
+            <es-datepicker
+              :options="{
+                maxDate: 'today',
+              }"
+            >
+              <input
+                id="datepicker-default"
+                v-model="userData.started_working_at"
+                class="datepicker-input"
+                name="datepicker-default"
+                type="text"
+                size="md"
+                placeholder="Alege o data"
+              >
+            </es-datepicker>
           </b-form-group>
         </b-col>
 
@@ -80,12 +89,10 @@
             label="Language"
             label-for="language"
           >
-            <v-select
-              v-model="userDataInfo.language"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-              :options="languageOptions"
-              :clearable="false"
-              input-id="language"
+            <b-form-input
+              id="email"
+              v-model="userData.languages"
+              type="email"
             />
           </b-form-group>
         </b-col>
@@ -103,7 +110,7 @@
           >
             <b-form-radio-group
               id="gender"
-              v-model="userDataInfo.gender"
+              v-model="userData.gender"
               :options="genderOptions"
               value="male"
             />
@@ -156,7 +163,7 @@
           >
             <b-form-input
               id="address-line-1"
-              v-model="userDataInfo.addressLine1"
+              v-model="userData.address"
             />
           </b-form-group>
         </b-col>
@@ -173,8 +180,8 @@
           >
             <b-form-input
               id="address-line-2"
-              v-model="userDataInfo.addressLine2"
-              placeholder="Los Santos"
+              v-model="userData.working_city_name"
+              placeholder="Alege un oras"
             />
           </b-form-group>
         </b-col>
@@ -191,7 +198,7 @@
           >
             <b-form-input
               id="postcode"
-              v-model="userDataInfo.postcode"
+              v-model="userData.postal_code"
               type="number"
               placeholder="597626"
             />
@@ -258,6 +265,7 @@
             variant="primary"
             class="mb-1 mb-sm-0 mr-0 mr-sm-1"
             :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+            @click="$emit('on-save')"
           >
             Save Changes
           </b-button>
@@ -278,13 +286,20 @@
   import {
     BRow, BCol, BForm, BFormGroup, BFormInput, BFormRadioGroup, BFormCheckboxGroup, BButton,
   } from 'bootstrap-vue'
-  import flatPickr from 'vue-flatpickr-component'
+  import { Datepicker } from '@/components/shared/datepicker';
   import { ref } from '@vue/composition-api'
   import vSelect from 'vue-select'
 
   export default {
     components: {
-      BRow, BCol, BForm, BFormGroup, flatPickr, BFormInput, vSelect, BFormRadioGroup, BFormCheckboxGroup, BButton,
+      BRow, BCol, BForm, BFormGroup, BFormInput, vSelect, BFormRadioGroup, BFormCheckboxGroup, BButton,
+      'es-datepicker': Datepicker,
+    },
+    props: {
+      userData: {
+        type: Object,
+        required: true,
+      },
     },
     setup() {
       const userDataInfo = ref({
@@ -330,5 +345,5 @@
 </script>
 
 <style lang="scss">
-@import '@/core/scss/vue/libs/vue-flatpicker.scss';
+
 </style>

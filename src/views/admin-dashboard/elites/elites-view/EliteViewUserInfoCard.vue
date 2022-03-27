@@ -12,7 +12,7 @@
         <!-- User Avatar & Action Buttons -->
         <div class="d-flex justify-content-start">
           <b-avatar
-            :src="userData.avatar.url"
+            :src="getImageSource"
             :text="avatarText(userData.fullName)"
             :variant="`light-${resolveUserRoleVariant(userData.role)}`"
             size="104px"
@@ -152,6 +152,11 @@
       userData: {
         type: Object,
         required: true,
+      },
+    },
+    computed: {
+      getImageSource() {
+        return this.userData?.avatar?.url;
       },
     },
     setup() {

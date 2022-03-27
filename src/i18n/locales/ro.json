@@ -1778,6 +1778,8 @@
   "views.pro_dashboard.interview_button": "Programează interviu",
   "views.pro_dashboard.interview_info": "Funcția pentru programarea interviului se activează după ce am verificat certificatul de calificare si cartea de identitate.",
   "views.pro_dashboard.my_stripe_account": "Detalii plati",
+  "views.pro_dashboard.equipment_photos": "Poze echipament",
+  "views.pro_dashboard.equipment_photos_info": "Poze cu echipamentul care urmeaza sa fie folosit pentru prestarea serviciului",
   "views.pro_dashboard.professional_liability_insurance": "Asigurare de raspundere profesionala",
   "views.pro_dashboard.professional_liability_insurance_info": "Poza dupa asigurarea de raspundere profesionala. Daca inca nu o aveti va ajutam sa o obtineti.",
   "views.pro_dashboard.profile": "Profil",

@@ -34,6 +34,7 @@
           variant="primary"
           class="mb-1 mb-sm-0 mr-0 mr-sm-1"
           :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+          @click="$emit('on-save')"
         >
           Save Changes
         </b-button>

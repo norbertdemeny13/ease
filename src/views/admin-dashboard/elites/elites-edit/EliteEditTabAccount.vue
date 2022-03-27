@@ -7,7 +7,7 @@
       <template #aside>
         <b-avatar
           ref="previewEl"
-          :src="userData.avatar.url"
+          :src="getImageSource"
           :text="avatarText(userData.fullName)"
           :variant="`light-${resolveUserRoleVariant(userData.role)}`"
           size="90px"
@@ -20,7 +20,7 @@
       <div class="d-flex flex-wrap">
         <b-button
           variant="primary"
-          @click="$refs.refInputEl.click()"
+          @click="$emit('on-save')"
         >
           <input
             ref="refInputEl"
@@ -28,7 +28,7 @@
             class="d-none"
             @input="inputImageRenderer"
           >
-          <span class="d-none d-sm-inline">Update</span>
+          <span class="d-none d-sm-inline">Save</span>
           <feather-icon
             icon="EditIcon"
             class="d-inline d-sm-none"
@@ -195,6 +195,11 @@
         required: true,
       },
     },
+    computed: {
+      getImageSource() {
+        return this.userData?.avatar?.url;
+      },
+    },
     setup(props) {
       const { resolveUserRoleVariant } = useUsersList()
 
@@ -210,51 +215,13 @@
         { label: 'Blocked', value: 'blocked' },
       ]
 
-      const permissionsData = [
-        {
-          module: 'Admin',
-          read: true,
-          write: false,
-          create: false,
-          delete: false,
-        },
-        {
-          module: 'Staff',
-          read: false,
-          write: true,
-          create: false,
-          delete: false,
-        },
-        {
-          module: 'Author',
-          read: true,
-          write: false,
-          create: true,
-          delete: false,
-        },
-        {
-          module: 'Contributor',
-          read: false,
-          write: false,
-          create: false,
-          delete: false,
-        },
-        {
-          module: 'User',
-          read: false,
-          write: false,
-          create: false,
-          delete: true,
-        },
-      ]
-
       // ? Demo Purpose => Update image on click of update
       const refInputEl = ref(null)
       const previewEl = ref(null)
 
       const { inputImageRenderer } = useInputImageRenderer(refInputEl, base64 => {
         // eslint-disable-next-line no-param-reassign
-        props.userData.avatar = base64
+        props.userData.avatar.url = base64
       })
 
       return {
@@ -262,7 +229,6 @@
         avatarText,
         cityOptions,
         statusOptions,
-        permissionsData,
 
         //  ? Demo - Update Image on click of update button
         refInputEl,

@@ -41,6 +41,7 @@
           <user-edit-tab-account
             :user-data="elite"
             class="mt-2 pt-75"
+            @on-save="onSave"
           />
         </b-tab>
 
@@ -54,7 +55,7 @@
             />
             <span class="d-none d-sm-inline">Information</span>
           </template>
-          <user-edit-tab-information class="mt-2 pt-75" />
+          <user-edit-tab-information class="mt-2 pt-75" :user-data="elite" @on-save="onSave" />
         </b-tab>
 
         <!-- Tab: Social -->
@@ -67,7 +68,7 @@
             />
             <span class="d-none d-sm-inline">Social</span>
           </template>
-          <user-edit-tab-social class="mt-2 pt-75" />
+          <user-edit-tab-social class="mt-2 pt-75" @on-save="onSave" />
         </b-tab>
       </b-tabs>
     </component>
@@ -85,7 +86,7 @@
         cols="6"
         lg="6"
       >
-        <es-elite-documents :user-data="elite" />
+        <es-elite-documents :user-data="elite" @on-update-elite="onUpdateElite" />
       </b-col>
     </b-row>
   </div>
@@ -156,6 +157,12 @@
       ...mapActions({
         fetchElites: 'admin/fetchElite',
       }),
+      onUpdateElite(elite) {
+        console.log(elite, 'elite');
+      },
+      onSave() {
+        console.log('on-save', this.elite, this.getSelectedElite);
+      },
     },
   }
 </script>

@@ -51,10 +51,23 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async updateElite({ state }, { elite }) {
+      Vue.set(state, 'isFetching', true);
+      const { id } = elite;
+      try {
+        const { data } = await api.update(`/admin/elites/${id}`, {
+          ...state.selectedElite,
+          ...elite,
+        });
+        Vue.set(state, 'selectedElite', data);
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async removeEliteReview({ state }, { eliteId, reviewId }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find(`/admin/elites/${eliteId}/delete_review/${reviewId}`);
+        const { data } = await api.destroy(`/admin/elites/${eliteId}/delete_review/${reviewId}`);
         // Vue.set(state, 'selectedElite', data);
       } finally {
         Vue.set(state, 'isFetching', false);
