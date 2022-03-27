@@ -6,14 +6,8 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.qualification_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
-          <div v-if="documents.certificate_of_calification && documents.certificate_of_calification.length" class="documents-container">
-            <p v-for="(file, i) in documents.certificate_of_calification" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)">
-              <feather-icon
-                icon="TrashIcon"
-                size="16"
-                class="mr-0 mr-sm-50"
-              />
-            </span></p>
+          <div v-if="documents.certificate_of_calification.length" class="documents-container">
+            <p v-for="(file, i) in documents.certificate_of_calification" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_calification', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -39,13 +33,8 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.identity_card') }}</h3>
           <p>{{ $t('views.pro_dashboard.identity_card_info') }}</p>
-          <div v-if="documents.id_card && documents.id_card.length" class="documents-container">
-            <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('id_card', i)">
-              <feather-icon
-                icon="TrashIcon"
-                size="16"
-                class="mr-0 mr-sm-50"
-              /></span></p>
+          <div v-if="documents.id_card.length" class="documents-container">
+            <p v-for="(file, i) in documents.id_card" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('id_card', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -71,13 +60,8 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.register_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
-          <div v-if="documents.certificate_of_registration && documents.certificate_of_registration.length" class="documents-container">
-            <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)">
-              <feather-icon
-                icon="TrashIcon"
-                size="16"
-                class="mr-0 mr-sm-50"
-              /></span></p>
+          <div v-if="documents.certificate_of_registration.length" class="documents-container">
+            <p v-for="(file, i) in documents.certificate_of_registration" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('certificate_of_registration', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -103,13 +87,8 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.professional_liability_insurance') }}</h3>
           <p>{{ $t('views.pro_dashboard.professional_liability_insurance_info') }}</p>
-          <div v-if="documents.practice_insurance && documents.practice_insurance.length" class="documents-container">
-            <p v-for="(file, i) in documents.practice_insurance" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)">
-             <feather-icon
-                icon="TrashIcon"
-                size="16"
-                class="mr-0 mr-sm-50"
-              /></span></p>
+          <div v-if="documents.practice_insurance.length" class="documents-container">
+            <p v-for="(file, i) in documents.practice_insurance" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('practice_insurance', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -135,8 +114,8 @@
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
-          <div v-if="documents.criminal_record && documents.criminal_record.length" class="documents-container">
-            <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"><img src="/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+          <div v-if="documents.criminal_record.length" class="documents-container">
+            <p v-for="(file, i) in documents.criminal_record" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('criminal_record', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
           </div>
         </div>
         <div class="d-flex mt-2">
@@ -154,33 +133,6 @@
             </file-selector>
           </div>
           <es-custom-checkbox :checked="getUser.criminal_record_confirmed" />
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
-        <div class="document-type d-flex flex-column">
-          <h3>{{ $t('views.pro_dashboard.equipment_photos') }}</h3>
-          <p>{{ $t('views.pro_dashboard.equipment_photos_info') }}</p>
-          <div v-if="documents.equipment_photos && documents.equipment_photos.length" class="documents-container">
-            <p v-for="(file, i) in documents.equipment_photos" :key="file.id" class="info text-secondary">{{ file.filename }}<span class="delete-btn ml-4" @click="onRemove('equipment_photos', i)"><img src="/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
-          </div>
-        </div>
-        <div class="d-flex mt-2">
-          <div class="upload-button mr-4 ml-4">
-            <file-selector
-              id="equipment_photos"
-              ref="equipment_photos"
-              class="documernts-input"
-              accept-extensions=".png,.jpeg,.jpg,.pdf"
-              :multiple="true"
-              :max-file-size="5 * 1024 * 1024"
-              @changed="handleFilesChanged($event, 'equipment_photos')"
-            >
-              <span class="upload-btn">{{ $t('views.pro_dashboard.upload') }}</span>
-            </file-selector>
-          </div>
-          <es-custom-checkbox :checked="getUser.equipment_photos_confirmed" />
         </div>
       </div>
     </div>
@@ -296,17 +248,14 @@
   import { Divider } from '@/components/shared/divider';
   import { CalendlyModal } from '@/components/shared/calendly-modal';
   import { TermsAndConditionsModal } from '@/components/shared/terms-and-conditions-modal';
-
   export default Vue.extend({
     name: 'es-pro-documents',
-
     components: {
       'es-custom-checkbox': CustomCheckbox,
       'es-divider': Divider,
       'es-calendly-modal': CalendlyModal,
       'es-terms-and-conditions-modal': TermsAndConditionsModal
     },
-
     data: () => ({
       documents: {  
         certificate_of_registration: '',
@@ -321,7 +270,6 @@
         accord_accepted: false,
       },
     }),
-
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
@@ -334,12 +282,9 @@
         return certificate_of_calification_confirmed === 'accepted' && id_card_confirmed === 'accepted';
       },
     },
-
     created() {
-      this.documents = { ...this.getUser };
       this.user = { ...this.getUser };
     },
-
     methods: {
       ...mapActions({
         uploadDocuments: 'elite/uploadDocuments',
@@ -392,16 +337,13 @@
     position: absolute !important;
     visibility: hidden;
   }
-
   .documents-button {
     width: 225px;
     white-space: nowrap;
   }
-
   .logo {
     height: 19px;
   }
-
   h3.es-toast__title {
     font-size: 26px;
     line-height: 28px;
