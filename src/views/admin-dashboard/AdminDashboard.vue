@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
   <div
-    id="app"
+    id="admin-app"
     class="admin-dashboard-container h-100"
     :class="[skinClasses]"
   >

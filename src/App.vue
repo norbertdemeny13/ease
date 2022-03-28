@@ -15,7 +15,6 @@
           <router-view :key="$route.fullpath" />
         </transition>
       </main>
-      <es-toasts />
       <es-footer />
       <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
       <portal-target name="modal" multiple />
@@ -27,6 +26,7 @@
         </transition>
       </main>
     </div>
+    <es-toasts />
   </div>
 </template>
 
@@ -58,8 +58,9 @@
         getUserType: 'session/getUserType',
       }),
       isAdminView() {
-        const isAdminView = this.getUserType === 'admin';
-        return isAdminView;
+        const isAdminView = this.$router.currentRoute.fullPath.includes('admin');
+        const isAdminType = this.getUserType === 'admin';
+        return isAdminView && isAdminType;
       },
     },
 

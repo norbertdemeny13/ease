@@ -137,6 +137,33 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-md-6 d-flex justify-content-between mt-4">
+        <div class="document-type d-flex flex-column">
+          <h3>{{ $t('views.pro_dashboard.equipment_photos') }}</h3>
+          <p>{{ $t('views.pro_dashboard.equipment_photos_info') }}</p>
+          <div v-if="documents.equipment_photos.length" class="documents-container">
+            <p v-for="(file, i) in documents.equipment_photos" :key="file.id" class="info text-secondary">{{ file.name }}<span class="delete-btn ml-4" @click="onRemove('equipment_photos', i)"><img src="@/assets/icons/trash-can.svg" class="lazy" width="20px" height="20px"></span></p>
+          </div>
+        </div>
+        <div class="d-flex mt-2">
+          <div class="upload-button mr-4 ml-4">
+            <file-selector
+              id="equipment_photos"
+              ref="equipment_photos"
+              class="documernts-input"
+              accept-extensions=".png,.jpeg,.jpg,.pdf"
+              :multiple="true"
+              :max-file-size="5 * 1024 * 1024"
+              @changed="handleFilesChanged($event, 'equipment_photos')"
+            >
+              <span class="upload-btn">{{ $t('views.pro_dashboard.upload') }}</span>
+            </file-selector>
+          </div>
+          <es-custom-checkbox :checked="getUser.equipment_photos_confirmed" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
         <div class="d-flex justify-content-start">
           <button
@@ -263,6 +290,7 @@
         criminal_record: '',
         id_card: '',
         practice_insurance: '',
+        equipment_photos: '',
       },
       isCalendlyModalOpen: false,
       isTermsAndConditionsModalOpen: false,
@@ -315,6 +343,7 @@
           criminal_record: '',
           id_card: '',
           practice_insurance: '',
+          equipment_photos: '',
         };
         this.$toasts.toast({
           id: 'update-toast',

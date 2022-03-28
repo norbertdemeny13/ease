@@ -313,8 +313,6 @@ router.beforeEach(async (to, from, next) => {
 
   if (name?.includes('admin')) {
     store.dispatch('session/setUserType', 'admin');
-  } else {
-    store.dispatch('session/setUserType', '');
   }
 
   if (to.fullPath.includes('register')) {

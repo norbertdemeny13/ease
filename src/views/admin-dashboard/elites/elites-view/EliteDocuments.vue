@@ -286,8 +286,11 @@
       userData(newVal) {
         this.user = { ...newVal };
       },
-      user(newVal) {
-        console.log(newVal, 'fasz');
+      user: {
+        handler(newVal) {
+          this.$emit('on-update-elite', newVal);
+        },
+        deep: true,
       },
     },
 

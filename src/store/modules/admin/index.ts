@@ -56,8 +56,10 @@ export default {
       const { id } = elite;
       try {
         const { data } = await api.update(`/admin/elites/${id}`, {
-          ...state.selectedElite,
-          ...elite,
+          elite: {
+            ...state.selectedElite,
+            ...elite,
+          },
         });
         Vue.set(state, 'selectedElite', data);
       } finally {

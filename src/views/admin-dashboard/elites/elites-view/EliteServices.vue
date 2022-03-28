@@ -29,7 +29,7 @@
                   <div v-if="getClass(serviceItem.id) === 'pending' && !disabled" class="checkboxes">
                     <label class="container_check accepted" @click.prevent="onApproveService(serviceItem)">
                       Accept
-                      <input type="checkbox" :checked="user.approvedItems.includes(serviceItem.id) ? 'checked' : ''">
+                      <input type="checkbox" :checked="user.accepted_service_ids.includes(serviceItem.id) ? 'checked' : ''">
                       <span class="checkmark" />
                     </label>
                   </div>
@@ -51,7 +51,7 @@
                     <div v-if="getClass(serviceItem.id) === 'pending' && !disabled" class="checkboxes">
                       <label class="container_check accepted" @click.prevent="onApproveService(serviceItem)">
                         Accept
-                        <input type="checkbox" :checked="user.approvedItems.includes(serviceItem.id) ? 'checked' : ''">
+                        <input type="checkbox" :checked="user.accepted_service_ids.includes(serviceItem.id) ? 'checked' : ''">
                         <span class="checkmark" />
                       </label>
                     </div>
@@ -77,7 +77,7 @@
                   <div v-if="getClass(serviceItem.id) === 'pending' && !disabled" class="checkboxes">
                     <label class="container_check accepted" @click.prevent="onApproveService(serviceItem)">
                       Accept
-                      <input type="checkbox" :checked="user.approvedItems.includes(serviceItem.id) ? 'checked' : ''">
+                      <input type="checkbox" :checked="user.accepted_service_ids.includes(serviceItem.id) ? 'checked' : ''">
                       <span class="checkmark" />
                     </label>
                   </div>
@@ -127,7 +127,7 @@
       services: [],
       user: {
         service_ids: [],
-        approvedItems: [],
+        accepted_service_ids: [],
       },
     }),
 
@@ -144,6 +144,15 @@
             id: item.category,
           }));
         return filteredServices;
+      },
+    },
+
+    watch: {
+      user: {
+        handler(newVal) {
+          this.$emit('on-update-elite', newVal);
+        },
+        deep: true,
       },
     },
 
@@ -164,9 +173,6 @@
         return filteredServices;
       },
 
-      onSave() {
-        this.updateElite(this.$data);
-      },
       onAddService(item) {
         if (this.disabled) {
           return;
@@ -184,11 +190,11 @@
           return;
         }
 
-        const index = this.user.approvedItems.indexOf(item.id);
+        const index = this.user.accepted_service_ids.indexOf(item.id);
         if (index > -1) {
-          this.user.approvedItems.splice(index, 1);
+          this.user.accepted_service_ids.splice(index, 1);
         } else {
-          this.user.approvedItems.push(item.id);
+          this.user.accepted_service_ids.push(item.id);
         }
       },
       updateServices() {

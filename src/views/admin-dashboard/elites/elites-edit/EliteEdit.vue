@@ -42,6 +42,7 @@
             :user-data="elite"
             class="mt-2 pt-75"
             @on-save="onSave"
+            @on-update-profile-picture="onUpdateProfilePicture"
           />
         </b-tab>
 
@@ -55,7 +56,7 @@
             />
             <span class="d-none d-sm-inline">Information</span>
           </template>
-          <user-edit-tab-information class="mt-2 pt-75" :user-data="elite" @on-save="onSave" />
+          <user-edit-tab-information class="mt-2 pt-75" :user-data="getSelectedElite" @on-save="onSave" />
         </b-tab>
 
         <!-- Tab: Social -->
@@ -79,14 +80,18 @@
         lg="6"
       >
         <es-elite-services
-          :user-data="elite"
+          :user-data="getSelectedElite"
+          @on-update-elite="onUpdateElite"
         />
       </b-col>
       <b-col
         cols="6"
         lg="6"
       >
-        <es-elite-documents :user-data="elite" @on-update-elite="onUpdateElite" />
+        <es-elite-documents
+          :user-data="getSelectedElite"
+          @on-update-elite="onUpdateElite"
+        />
       </b-col>
     </b-row>
   </div>
@@ -156,12 +161,24 @@
     methods: {
       ...mapActions({
         fetchElites: 'admin/fetchElite',
+        updateElite: 'admin/updateElite',
       }),
       onUpdateElite(elite) {
-        console.log(elite, 'elite');
+        this.elite = { ...this.elite, ...elite };
       },
-      onSave() {
-        console.log('on-save', this.elite, this.getSelectedElite);
+      onUpdateProfilePicture(avatar) {
+        this.elite.avatar = avatar;
+      },
+      async onSave() {
+        this.$toasts.toast({
+          id: 'update-toast',
+          title: this.$t('toast.success_title'),
+          message: this.$t('toast.account_update'),
+          intent: 'success',
+        });
+        await this.updateElite(this.$data);
+        const eliteId = this.$router.currentRoute.params.id;
+        await this.fetchElites(eliteId);
       },
     },
   }

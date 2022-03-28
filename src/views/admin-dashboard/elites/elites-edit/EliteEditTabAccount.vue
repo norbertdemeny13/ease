@@ -5,14 +5,21 @@
     <!-- Media -->
     <b-media class="mb-2">
       <template #aside>
-        <b-avatar
-          ref="previewEl"
-          :src="getImageSource"
-          :text="avatarText(userData.fullName)"
-          :variant="`light-${resolveUserRoleVariant(userData.role)}`"
-          size="90px"
-          rounded
-        />
+        <div class="profile-pic-container">
+          <figure>
+            <img v-if="image" :src="image" alt="Profile Pic">
+            <img v-else-if="getImageSource" :src="getImageSource" alt="Profile Pic">
+            <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+            <input
+              id="profile-picture"
+              ref="profile-picture"
+              class="change-profile-picture"
+              type="file"
+              @change="handleFileUpload()"
+            >
+            <i class="icon_camera" @click.prevent="$refs['profile-picture'].click()" />
+          </figure>
+        </div>
       </template>
       <h4 class="mb-1">
         {{ userData.full_name }}
@@ -195,9 +202,33 @@
         required: true,
       },
     },
+    data: () => ({
+      image: '',
+      profilePicture: {},
+    }),
     computed: {
       getImageSource() {
         return this.userData?.avatar?.url;
+      },
+    },
+    watch: {
+      profilePicture(newVal) {
+        this.$emit('on-update-profile-picture', newVal);
+      },
+    },
+    methods: {
+      handleFileUpload() {
+        this.profilePicture = this.$refs['profile-picture'].files[0];
+        this.createImage(this.profilePicture);
+      },
+      createImage(file) {
+        var image = new Image();
+        var reader = new FileReader();
+
+        reader.onload = (e) => {
+          this.image = e.target.result;
+        };
+        reader.readAsDataURL(file);
       },
     },
     setup(props) {
@@ -241,4 +272,43 @@
 
 <style lang="scss">
 @import '@/core/scss/vue/libs/vue-select.scss';
+#profile-picture {
+  position: absolute;
+  visibility: hidden;
+}
+  .profile-pic-container {
+    align-items: center;
+    border-color: #ffffff;
+    border-radius: 50%;
+    border-style: solid;
+    box-shadow: 0 0 8px 3px #b8b8b8;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    position: relative;
+    width: 140px;
+  }
+
+  .profile-pic-container img,
+  .profile-pic-container figure {
+    border-radius: 50%;
+    height: 140px;
+    margin: 0;
+    width: 140px;
+  }
+
+  .profile-pic-container i {
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    bottom: 20px;
+    box-shadow: 0 0 8px 3px #b8b8b8;
+    color: #d00078;
+    display: flex !important;
+    height: 30px;
+    justify-content: center;
+    position: absolute;
+    right: -7px;
+    width: 30px;
+  }
 </style>
