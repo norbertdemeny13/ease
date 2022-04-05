@@ -23,7 +23,7 @@
                 class="btn btn-sm btn-pill mr-2 my-4 px-4"
                 @click.prevent="onConfirm()"
               >
-                {{ cta }}
+                {{ $t('subscription.cancel.yes') }}
               </a>
               <a
                 class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
