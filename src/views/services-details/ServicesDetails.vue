@@ -19,7 +19,7 @@
           />
         </div>
       </div>
-      <es-banner-as-footer-mobile />
+      <es-banner-as-footer-mobile :mobileBanners="this.banners"/>
     </div>
   </div>
 </template>
@@ -49,6 +49,10 @@
 
       services() {
         return this.getServicesByType;
+      },
+
+      banners() {
+        return this.getServicesByType[0];
       },
     },
 

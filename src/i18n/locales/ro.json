@@ -1365,6 +1365,7 @@
   "subscription.cancel.button": "Anuleaza",
   "subscription.cancel.error": "Abonamentul nu a putut fi anulat",
   "subscription.cancel.no": "Nu, mentine",
+  "subscription.cancel.no1": "Nu, mentin",
   "subscription.cancel.title": "Esti sigur ca doresti sa anulezi abonamentul?",
   "subscription.cancel.yes": "Da, anuleaza",
   "subscription.cancelled.body": "Serviciile de pe contul tau nu expira si le poti rezerva oricand",
