@@ -187,9 +187,9 @@
     },
 
     data: () => ({
-      userType: 'client',
+      userType: '',
       showPassword: false,
-      passwordType: 'password',
+      passwordType: '',
       form: {
         email: '',
         first_name: '',
