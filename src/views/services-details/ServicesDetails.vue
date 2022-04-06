@@ -52,7 +52,8 @@
       },
 
       banners() {
-        return this.getServicesByType[0];
+        let banners;
+        return banners = this.getServicesByType[0]?.banners || [];
       },
     },
 
@@ -65,6 +66,7 @@
       } else {
         this.fetchServicesByType({ type });
       }
+      
     },
 
     methods: {

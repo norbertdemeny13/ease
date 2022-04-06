@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
     <div class="banners-mobile d-lg-none d-md-none d-sm-none">
-      <img v-for="(image, index) in mobileBanners.banners" :src="image" alt="mobile banners" :key="index"/>
+      <img v-for="(image, index) in mobileBanners" :src="image" alt="mobile banners" :key="index"/>
     </div>
 </template>
 
@@ -13,8 +13,8 @@
     
     props: {
       mobileBanners: {
-        default: Object,
-        type: Object,
+        default: Array,
+        type: Array,
       }
     },
   });
