@@ -10,12 +10,12 @@
 
   export default Vue.extend({
     name: 'es-banners-as-footer-mobile',
-    
+
     props: {
       mobileBanners: {
         default: Array,
         type: Array,
-      }
+      },
     },
   });
 </script>
