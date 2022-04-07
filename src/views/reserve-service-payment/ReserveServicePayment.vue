@@ -5,7 +5,7 @@
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="box_order">
-            <div class="head">
+            <div class="head" v-show="!isReservationConfirmed">
               <h3>Plata si Adresa</h3>
             </div>
             <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center main">

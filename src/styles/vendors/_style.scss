@@ -2340,6 +2340,7 @@ header.sticky a.open_close:hover,
 
 #logo {
   float: left;
+  z-index: 0;
 }
 
 @media (max-width: 991px) {

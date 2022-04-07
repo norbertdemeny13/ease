@@ -121,12 +121,12 @@
     data: () => ({
       amountList: [50, 100, 150, 250, 500],
       form: {
-        name: 'John Doe',
-        email: 'batman@robin.com',
-        from_name: 'John Doe',
-        from_email: 'john.doe@gmail.com',
+        name: '',
+        email: '',
+        from_name: '',
+        from_email: '',
         value: 100,
-        message: 'Happy Birthday!',
+        message: '',
         send_at: '',
         card_design_id: null,
       },
