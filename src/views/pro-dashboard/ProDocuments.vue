@@ -227,7 +227,7 @@
         </div>
       </div>
       <div v-if="!getUser.stripe_account_created && getUser.status === 'pending'" class="row">
-        <div class="col-md-6 d-flex justify-content-between">
+        <div class="col-md-6 d-flex justify-content-between stripe-account">
           <div class="document-type d-flex flex-column">
             <h3>{{ $t('views.pro_dashboard.bank_account') }}</h3>
             <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>

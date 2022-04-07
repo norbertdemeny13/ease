@@ -15,20 +15,20 @@
                   :class="`radius-50 m-1 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
                   :src="getElite.avatar_path"
                   alt=""
-                  width="120px"
-                  height="120px"
+                  width="150px"
+                  height="150px"
                 >
                 <img
                   v-else
                   :class="`radius-50 m-1 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
                   src="@/assets/svg/pro-placeholder.svg"
                   alt=""
-                  width="120px"
-                  height="120px"
+                  width="150px"
+                  height="150px"
                 >
               </figure>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 info-container">
               <div class="favourite-container">
                 <h3 class="mr-3 mb-0">{{ getEliteName }}</h3>
                 <i
@@ -48,7 +48,7 @@
               <div class="d-flex align-items-center">
                 <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span>
               </div>
-              {{ getElite.last_booking }}
+              <p>{{ getElite.last_booking }}</p>
               <div class="d-flex justify-content-start">
                 <button
                   :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
@@ -61,7 +61,7 @@
           </div>
           <div class="my-2">
             <div class="row d-flex justify-content-between">
-              <div class="bio-elite col-sm-12 col-md-12 mb-6">
+              <div class="bio-elite col-sm-12 col-md-12 mb-2">
                 <h2>{{ $t('practician.bio') }}</h2>
                 <p>{{ getElite.bio }}</p>
               </div>
@@ -70,7 +70,7 @@
                   <img
                     src="@/assets/svg/experience.svg"
                     alt=""
-                    width="30px"
+                    width="20px"
                   >
                 </figure>
                 <div class="ml-2">
@@ -83,7 +83,7 @@
                   <img
                     src="@/assets/svg/language.svg"
                     alt=""
-                    width="30px"
+                    width="20px"
                   >
                 </figure>
                 <div class="ml-2">
@@ -96,7 +96,7 @@
                   <img
                     src="@/assets/svg/certificate.svg"
                     alt=""
-                    width="30px"
+                    width="20px"
                   >
                 </figure>
                 <div class="ml-2">
@@ -107,18 +107,20 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 bg-white">
+        <div class="col-md-12 bg-white ratings">
           <div v-if="getReviews.length" class="row">
             <div class="col-md-12">
-              <h6>{{ $t('views.pro_details.reviews') }}</h6>
-              <p>Rating {{ getElite.rating }} din 5 ({{ getReviews.length }})</p>
+              <div class="header-info">
+                <h6>{{ $t('views.pro_details.reviews') }}</h6>
+                <p>Rating {{ getElite.rating }} din 5 ({{ getReviews.length }})</p>
+              </div>
               <div class="es_reviews-container">
                 <div v-for="review in getReviews" :key="review.id" class="es_reviews-container__item">
                   <div class="item-header">
                     <div class="item-logo">{{ getInitials(review.reviewer_name) }}</div>
                     <div class="item-info ml-2">
-                      <p class="mb-0">{{ review.reviewer_name }}</p>
-                      <p class="mb-0">{{ getFormattedDate(review.created_at) }}</p>
+                      <p class="user-name mb-0">{{ review.reviewer_name }}</p>
+                      <p class="rate-message mb-0">{{ getFormattedDate(review.created_at) }}</p>
                     </div>
                   </div>
                   <div class="start-rating d-flex align-items-center">
@@ -129,9 +131,7 @@
                       :star-size="20"
                       :increment="0.5"
                     />
-                    {{ ` (${review.rating})` }}
                   </div>
-                  <p class="mt-2">{{ review.review }}</p>
                 </div>
               </div>
             </div>
