@@ -2,7 +2,7 @@
   <div class="es_pro-documents-container content">
     <h2>{{ $t('views.pro_dashboard.documents') }}</h2>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.qualification_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.qualification_certificate_photo') }}</p>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.identity_card') }}</h3>
           <p>{{ $t('views.pro_dashboard.identity_card_info') }}</p>
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.register_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.register_certificate_info') }}</p>
@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.professional_liability_insurance') }}</h3>
           <p>{{ $t('views.pro_dashboard.professional_liability_insurance_info') }}</p>
@@ -110,7 +110,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.criminal_record_certificate') }}</h3>
           <p>{{ $t('views.pro_dashboard.criminal_record_certificate_info') }}</p>
@@ -137,7 +137,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex justify-content-between mt-4">
+      <div class="col-md-8 col-lg-6 d-flex justify-content-between mt-4">
         <div class="document-type d-flex flex-column">
           <h3>{{ $t('views.pro_dashboard.equipment_photos') }}</h3>
           <p>{{ $t('views.pro_dashboard.equipment_photos_info') }}</p>
@@ -164,7 +164,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8 col-lg-6">
         <div class="d-flex justify-content-start">
           <button
             class="btn btn-sm btn-pink btn-pill my-4 px-6"
@@ -177,12 +177,12 @@
     </div>
     <div v-if="getUser.status === 'pending'">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8 col-lg-6">
           <es-divider />
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-between">
+        <div class="col-md-8 col-lg-6 d-flex justify-content-between">
           <div class="document-type d-flex flex-column">
             <h3>{{ $t('views.pro_dashboard.accept_terms_and_conditions') }}</h3>
             <p>{{ $t('views.pro_dashboard.accept_terms_and_conditions_info') }}</p>
@@ -200,12 +200,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8 col-lg-6">
           <es-divider />
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-between">
+        <div class="col-md-8 col-lg-6 d-flex justify-content-between">
           <div class="document-type d-flex flex-column">
             <h3>{{ $t('views.pro_dashboard.interview') }}</h3>
             <p>{{ $t('views.pro_dashboard.interview_info') }}</p>
@@ -222,12 +222,12 @@
         </div>
       </div>
       <div v-if="!getUser.stripe_account_created && getUser.status === 'pending'" class="row">
-        <div class="col-md-6">
+        <div class="col-md-8 col-lg-6">
           <es-divider />
         </div>
       </div>
       <div v-if="!getUser.stripe_account_created && getUser.status === 'pending'" class="row">
-        <div class="col-md-6 d-flex justify-content-between stripe-account">
+        <div class="col-md-8 col-lg-6 d-flex justify-content-between stripe-account">
           <div class="document-type d-flex flex-column">
             <h3>{{ $t('views.pro_dashboard.bank_account') }}</h3>
             <p>{{ $t('views.pro_dashboard.bank_account_info') }}</p>
