@@ -189,7 +189,7 @@
     data: () => ({
       userType: '',
       showPassword: false,
-      passwordType: '',
+      passwordType: 'password',
       form: {
         email: '',
         first_name: '',
