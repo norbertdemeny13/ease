@@ -12,7 +12,7 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
-  refferalCode: string | null;
+  referralCode: string | null;
 }
 
 export default {
@@ -22,7 +22,7 @@ export default {
     isAuth: false,
     isFetchingUser: false,
     user: {},
-    refferalCode: null,
+    referralCode: null,
   }) as State,
 
   actions: {
@@ -30,6 +30,9 @@ export default {
       if (pass === 'qazwsx') {
         Vue.set(state, 'isAuth', true);
       }
+    },
+    setReferralCode({ state }, code) {
+      Vue.set(state, 'referralCode', code);
     },
     async updateUser({ state, commit }, user) {
       Vue.set(state, 'isFetchingUser', true);
@@ -200,7 +203,7 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async resetPassword({ state, commit }, { password, token, type }) {
+    async resetPassword({ state, dispatch, commit }, { password, token, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create(`/${type}/reset_password`, {
@@ -240,7 +243,7 @@ export default {
         ? {
             user: {
               ...credentials,
-              referral_code: state.refferalCode,
+              referral_code: state.referralCode,
             },
           }
         : {
@@ -264,7 +267,7 @@ export default {
         commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
-        Vue.set(state, 'refferalCode', null);
+        Vue.set(state, 'referralCode', null);
       }
     },
     async requestValidationCode({ state, commit }, phone_number) {
@@ -314,7 +317,7 @@ export default {
     isFetchingUser: state => state.isFetchingUser,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
-    getRefferalCode: state => state.refferalCode,
+    getReferralCode: state => state.referralCode,
     getUserDefaultAddress: state => state.user.default_address,
     getUserType: state => state.user?.user_type || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
@@ -333,9 +336,6 @@ export default {
     },
     setStatistics(state: State, data: any) {
       Vue.set(state, 'statistics', data);
-    },
-    setRefferalCode(state: State, code: any) {
-      Vue.set(state, 'refferalCode', code);
     },
   } as MutationTree<State>,
 };

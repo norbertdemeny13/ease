@@ -206,6 +206,11 @@
     },
 
     watch: {
+      isLoginModalOpen(newVal) {
+        if (!newVal) {
+          this.userType = 'client';
+        }
+      },
       $route(to) {
         this.isPro = this.$router.currentRoute.path.includes('easepro');
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';

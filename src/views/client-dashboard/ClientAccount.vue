@@ -26,7 +26,6 @@
           <input
             v-model="user.email"
             class="form-control"
-            disabled
             type="text"
             name="email"
           >

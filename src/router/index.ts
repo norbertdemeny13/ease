@@ -286,17 +286,21 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
+  if (query.referral_code) {
+    await store.dispatch('session/setReferralCode', query.referral_code);
+  }
+
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;
   }
 
-  const getUser = store.getters['session/getUser'];
-
   if (!getToken && !authToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
     isAuthenticated = true;
   }
+
+  const getUser = store.getters['session/getUser'];
 
   if ((getToken || isAuthenticated) && name === 'Home' && getUser.user_type === 'user') {
     next('/servicii');

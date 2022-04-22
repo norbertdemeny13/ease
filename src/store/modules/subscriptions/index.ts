@@ -147,7 +147,7 @@ export default {
   } as ActionTree<State, RootState>,
 
   getters: {
-    isFetching: state => state.isFetching,
+    getIsFetching: state => state.isFetching,
     getActivatedStatus: state => state.activated,
     getErrors: state => state.errors,
     getActiveSubscription: state => state.activeSubscription,
