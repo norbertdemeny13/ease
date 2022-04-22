@@ -67,7 +67,7 @@
         const isClient = this.$router.currentRoute.fullPath.includes('user');
         if (this.password === this.confirmPassword) {
           this.resetPassword({
-            password: this.newPassword,
+            password: this.confirmPassword,
             token: this.token,
             type: isClient ? 'user' : 'elite',
           });
