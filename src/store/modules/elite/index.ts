@@ -39,6 +39,10 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async removeElite({ state, commit }) {
+      Vue.set(state, 'elite', {});
+    },
+
     async registerEliteStripe({ state, commit }, code) {
       Vue.set(state, 'isFetching', true);
       try {

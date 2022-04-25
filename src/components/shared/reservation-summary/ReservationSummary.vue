@@ -4,6 +4,21 @@
       <h3>{{ $t('lbl_reservation_summary') }}</h3>
     </div>
     <div class="main">
+      <div v-if="getReservationDetails.target_elite_id" class="d-flex justify-content-between align-items-center custom-sm-6">
+        <h6>Profesionist</h6>
+        <div class="d-flex align-items-center">
+          <div class="profile-pic-container">
+            <figure>
+              <img v-if="getElite.avatar_path" :src="getElite.avatar_path" alt="Profile Pic" class="radius-50">
+              <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+            </figure>
+          </div>
+          <div class="d-flex align-getElites-center flex-column ml-2">
+            <span class="text-center">{{ getElite.display_name }}</span>
+            <div class="ml-2"><i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span></div>
+          </div>
+        </div>
+      </div>
       <ul>
         <li>{{ $t('generic.date') }}<span>{{ getDate }}</span></li>
         <li>{{ $t('generic.hour') }}<span>{{ getHour }}</span></li>
@@ -18,12 +33,14 @@
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
             <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
-          <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-4">
+          <li v-if="isCoupleMassage || isSingleMassage" :key="`${i}info`" class="ml-2">{{ `Terapeut ${$t(service.genre)}` }}</li>
+          <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-2">
             <strong>{{ complementaryService.count ? `${complementaryService.count} x` : '' }} {{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
           </li>
-          <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-4">
+          <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-2">
             <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
           </li>
+          <li v-else :key="`${i}-classic`" class="ml-2"><strong>{{ $t('classic') }}</strong></li>
         </template>
         <es-divider />
         <li class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subTotal') }}</strong> {{ `${selectedReservation.total} Lei` }}</li>
@@ -84,6 +101,11 @@
         default: false,
         type: Boolean,
       },
+
+      eliteId: {
+        required: true,
+        type: Number || null,
+      },
     },
 
     data: () => ({
@@ -94,6 +116,7 @@
 
     computed: {
       ...mapGetters({
+        getElite: 'elite/getElite',
         getReservationDetails: 'services/getReservationDetails',
       }),
       getDate() {
@@ -107,7 +130,10 @@
         return time;
       },
       isCoupleMassage() {
-        return this.selectedReservation.reservation_service_type.includes('CoupleMassageReservation');
+        return this.selectedReservation.reservation_service_type === 'CoupleMassageReservation';
+      },
+      isSingleMassage() {
+        return this.selectedReservation.reservation_service_type === 'MassageReservation';
       },
       reservationServices() {
         const reservationType = this.selectedReservation.reservation_service_type;
@@ -126,10 +152,14 @@
         } else if (reservationType === 'CoupleMassageReservation') {
           const therapeuticFormPriceOne = new Number(reservationService.massage_one.therapeutic_form.price || 0);
           const therapeuticFormPriceTwo = new Number(reservationService.massage_two.therapeutic_form.price || 0);
+          console.log(therapeuticFormPriceTwo, therapeuticFormPriceOne, 'price');
+          console.log(reservationService.massage_one.therapeutic_form, 'fasz');
+          console.log(reservationService.massage_two.therapeutic_form, 'fasz');
           const massageOne = {
             name: reservationService.massage_one.service.name,
             price: reservationService.massage_one.price,
             id: reservationService.massage_one.id,
+            genre: reservationService.massage_one.elite_gender,
             complementaryServices: reservationService.massage_one.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
             therapeuticForm:therapeuticFormPriceOne > 0
@@ -145,6 +175,7 @@
             id: reservationService.massage_two.id,
             complementaryServices: reservationService.massage_two.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
+            genre: reservationService.massage_two.elite_gender,
             therapeuticForm: therapeuticFormPriceTwo > 0 
               ? {
                   name: reservationService.massage_two.therapeutic_form.name,
@@ -158,6 +189,7 @@
             name: reservationService.service.name,
             price: reservationService.price,
             id: reservationService.id,
+            genre: reservationService.elite_gender,
             complementaryServices: reservationService.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
             therapeuticForm: reservationService.therapeutic_form,
@@ -177,6 +209,10 @@
 
     created() {
       this.selectedReservation = this.getReservationDetails;
+
+      if (this.eliteId) {
+        this.fetchElite({ id: this.eliteId });
+      }
     },
 
     watch: {
@@ -190,12 +226,13 @@
     methods: {
       ...mapActions({
         activatePromo: 'services/activatePromo',
+        fetchElite: 'elite/fetchElite',
       }),
     },
   });
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
   ul.summary_list {
     list-style: none;
     margin: 15px 0 25px 0;
@@ -217,5 +254,15 @@
       display: block;
       width: auto;
     }
+  }
+
+  i.icon_star {
+    color: #fad055;
+    font-size: 1.3rem;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
   }
 </style>

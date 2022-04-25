@@ -16,6 +16,7 @@
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesList, ServicesListSkeleton } from '@/components/features/services-list';
+  import { isEqual } from 'lodash-es';
 
   export default Vue.extend({
     name: 'es-services',
@@ -45,6 +46,20 @@
           }, 0);
         }
       },
+      $route: {
+        handler(newVal, oldVal) {
+          const { query } = newVal;
+          if (!isEqual(newVal, oldVal)) {
+            if (query && query.pro_id) {
+              this.fetchServices(query.pro_id);
+            } else {
+              this.fetchServices();
+            }
+          }
+        },
+        deep: true,
+      },
+
     },
 
     created() {

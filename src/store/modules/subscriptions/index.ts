@@ -122,7 +122,9 @@ export default {
         });
         commit('setAllSubscriptions', data);
       } catch ({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        if (!reason.status as unknown as number === 401) {
+          commit('common/setErrors', reason, { root: true });
+        }
       } finally {
         Vue.set(state, 'isFetching', false);
       }

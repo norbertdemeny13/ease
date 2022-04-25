@@ -27,16 +27,13 @@
 
 <script>
   import Vue from 'vue';
+  import { isEqual } from 'lodash-es';
 
   export default Vue.extend({
     name: 'es-additional-services',
 
     props: {
       services: {
-        type: Array,
-        default: null,
-      },
-      selectedComplementaryServices: {
         type: Array,
         default: null,
       },
@@ -52,6 +49,16 @@
         .filter(item => item.selectedCount > 0)
         .map(({ uuid, is_four_hands, id }) => ({ uuid, is_four_hands, id }) );
       this.selectedServices = selectedAdditionalServices;
+    },
+
+    watch: {
+      services(newVal, oldVal) {
+        if (!isEqual(newVal, oldVal)) {
+          this.selectedServices = this.services
+            .filter(item => item.selectedCount > 0)
+            .map(({ uuid, is_four_hands, id }) => ({ uuid, is_four_hands, id }) );
+        }
+      },
     },
 
     methods: {

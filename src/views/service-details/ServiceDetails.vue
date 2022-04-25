@@ -1,9 +1,24 @@
 <template>
   <div class="content">
     <div class="es_service-details-page container margin_30_20">
-      <a class="back-button" href="" @click.prevent="onBack">
-        {{ $t('generic.back') }}
-      </a>
+      <div class="d-flex justify-content-between">
+        <a class="back-button" href="" @click.prevent="onBack">
+          {{ $t('generic.back') }}
+        </a>
+        <div v-if="$router.currentRoute.query.pro_id" class="d-flex align-items-center">
+          <div class="profile-pic-container">
+            <figure>
+              <img v-if="getElite.avatar_path" :src="getElite.avatar_path" alt="Profile Pic" class="radius-50">
+              <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+            </figure>
+          </div>
+          <div class="d-flex align-getElites-center flex-column ml-2">
+            <span>Rezervi cu</span>
+            <span class="text-center">{{ getElite.display_name }}</span>
+            <div class="ml-2"><i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span></div>
+          </div>
+        </div>
+      </div>
       <es-service-details-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6 image-container">
@@ -65,6 +80,7 @@
 
     computed: {
       ...mapGetters({
+        getElite: 'elite/getElite',
         getReservationServices: 'services/getReservationServices',
         getReservationDetails: 'services/getReservationDetails',
         getServiceById: 'services/getServiceById',
@@ -97,6 +113,12 @@
     async created() {
       const { type } = this.$router.currentRoute.params;
       const serviceType = type === 'fitness' ? type : 'beauty';
+      const { query } = this.$router.currentRoute;
+
+      if (query && query.pro_id) {
+        this.fetchElite({ id: query.pro_id });
+      }
+
       const selectedService = {
         ...this.getServiceById,
         serviceType,
@@ -110,11 +132,18 @@
 
     methods: {
       ...mapActions({
+        fetchElite: 'elite/fetchElite',
         createReservation: 'services/createReservation',
       }),
 
       async onAddAdditionalService() {
-        const paramType = this.$router.currentRoute.params.type;
+        let paramType = this.$router.currentRoute.params.type;
+        const proId = this.$router.currentRoute.query.pro_id;
+
+        if (proId) {
+          paramType += `?pro_id=${proId}`;
+        }
+
         if (this.isAuthenticated) {
           // show phone modal if address is not set
           if (!this.getUser.phone_number_confirmed) {
@@ -128,7 +157,7 @@
             return;
           }
 
-          await this.$store.dispatch('services/createReservation');
+          await this.$store.dispatch('services/createReservation', proId);
           await this.$router.push(`/new/servicii/${paramType}`);
         } else {
           this.$root.$emit('on-show-login');
@@ -195,3 +224,15 @@
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  i.icon_star {
+    color: #fad055;
+    font-size: 1.3rem;
+  }
+
+  .profile-pic-container img {
+    width: 60px;
+    height: 60px;
+  }
+</style>

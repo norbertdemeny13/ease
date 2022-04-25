@@ -320,11 +320,16 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchServices({ state, commit }, id) {
+    async fetchServices({ state, dispatch, commit }, id) {
       const cityId = sessionStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services?city_id=${cityId}` : '/services';
 
       Vue.set(state, 'isFetching', true);
+
+      if (!id) {
+        dispatch('elite/removeElite', {}, { root: true });
+      }
+
       const endpoint = id
         ? `users/elite/${id}/services`
         : services;
@@ -366,6 +371,7 @@ export default {
       Vue.set(state, 'isFetching', true);
       const cityId = sessionStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services/${type}?city_id=${cityId}` : `/services/${type}`;
+      console.log(cityId, 'fasz');
       const endpoint = id
         ? `users/elite/${id}/services/${type}`
         : services;

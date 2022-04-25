@@ -286,6 +286,14 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
+  if ((to.name === 'Home' || to.name === 'ProHome') && getUserType === 'elite') {
+    next('/easepro/cont');
+  }
+
+  if (getUserType === 'elite' && to.fullPath.includes('/client/')) {
+    next('/easepro/');
+  }
+
   if (query.referral_code) {
     await store.dispatch('session/setReferralCode', query.referral_code);
   }
@@ -315,7 +323,10 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (path.includes('/rezerva/plata') && !getSelectedServices.length) {
-    next(`/servicii/${params.type}/${params.id}`);
+    const endpoint = params.type === 'single' || params.type === 'couple' 
+      ? `/servicii/masaj?type=${params.type}`
+      : `/servicii/${params.type}/${params.id}`;
+    next(endpoint);
   }
 
   if (path.includes('/servicii/') && hasLocation === 'null') {

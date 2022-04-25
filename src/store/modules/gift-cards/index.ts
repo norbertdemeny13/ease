@@ -127,7 +127,10 @@ export default {
         const { data } = await api.find('/users/virtual_gift_cards');
         Vue.set(state, 'giftCards', data);
       } catch ({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+         // eslint-disable-next-line
+        if (!reason.status as unknown as number === 401) {
+          commit('common/setErrors', reason, { root: true });
+        }
       } finally {
         Vue.set(state, 'isFetching', false);
       }

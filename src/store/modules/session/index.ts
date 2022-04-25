@@ -130,7 +130,9 @@ export default {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
       } catch({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        if (!reason.status as unknown as number === 401) {
+          commit('common/setErrors', reason, { root: true });
+        }
       }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }

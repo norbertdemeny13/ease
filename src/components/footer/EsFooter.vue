@@ -1,11 +1,11 @@
 <template>
   <footer :class="`${$router.currentRoute.fullPath.includes('pro') ? 'is-pro' : ''}`">
-    <div class="wave footer" :class="getFooterClasses"/>
+    <div :class="getFooterClasses" />
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
         <div v-for="item in footerLinks" :key="item.id" class="col-lg-3 col-md-6">
           <h3 :data-target="`#${item.id}`">{{ item.category }}</h3>
-          <div :id="item.id" class="collapse dont-collapse-sm links" :key="item.id">
+          <div :id="item.id" :key="item.id" class="collapse dont-collapse-sm links">
             <ul>
               <li v-for="link in item.list" :key="link.label">
                 <a
@@ -120,6 +120,7 @@
           'is-pro-wave': this.isProWave,
           'is-client-wave': this.isClientWave,
           'is-common-wave': this.isContactWave || this.isFAQWave,
+          'wave footer': true,
         };
       },
     },
@@ -128,10 +129,18 @@
       $route(to) {
         this.isProPage = to.fullPath.includes('easepro');
         this.isProWave = to.fullPath.includes('easepro/');
-        this.isClientWave = to.fullPath.includes('client/');
+        this.isClientWave = to.fullPath.includes('client/') || to.fullPath.includes('pro/');
         this.isContactWave = to.fullPath.includes('contact');
         this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
       },
+    },
+
+    created() {
+      this.isProPage = this.$router.currentRoute.fullPath.includes('easepro');
+      this.isProWave = this.$router.currentRoute.fullPath.includes('easepro/');
+      this.isClientWave = this.$router.currentRoute.fullPath.includes('client/') || this.$router.currentRoute.fullPath.includes('pro/');
+      this.isContactWave = this.$router.currentRoute.fullPath.includes('contact');
+      this.isFAQWave = this.$router.currentRoute.fullPath.includes('intrebari-frecvente');
     },
 
     methods: {
