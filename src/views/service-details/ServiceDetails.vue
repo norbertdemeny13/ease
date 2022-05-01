@@ -145,6 +145,17 @@
         }
 
         if (this.isAuthenticated) {
+          if (this.getUser.user_type === 'elite') {
+            this.$toasts.toast({
+              id: 'warning-toast',
+              intent: 'warning',
+              message: this.$t('toast.login_as_client'),
+              title: this.$t('toast.warning_title'),
+            });
+
+            return;
+          }
+
           // show phone modal if address is not set
           if (!this.getUser.phone_number_confirmed) {
             this.$root.$emit('on-show-validate-phone-modal');
@@ -185,7 +196,7 @@
         const serviceType = type === 'fitness' ? type : 'beauty';
 
         if (this.isAuthenticated) {
-          if (this.getUser.userType === 'elite') {
+          if (this.getUser.user_type === 'elite') {
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',

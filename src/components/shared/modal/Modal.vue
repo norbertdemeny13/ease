@@ -61,6 +61,16 @@
       ariaHidden: true,
     }), // data
 
+    created() {
+      const body = document.querySelector('body');
+      body.style.overflow = 'hidden';
+    },
+
+    beforeDestroy() {
+      const body = document.querySelector('body');
+      body.style.overflow = 'auto';
+    },
+
     computed: {
       headerId() {
         return `${this.id}-header`;

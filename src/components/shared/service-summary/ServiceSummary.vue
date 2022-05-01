@@ -44,10 +44,12 @@
           </div>
           <h5 v-if="getCategoryType() !== 'couple'" class="d-flex align-self-start">{{ getServicePrice(item) }} Lei</h5>
         </div>
-        <li v-if="item.isWithAromaterapeutic" class="ml-2">
-          <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
-        </li>
-        <li v-else class="ml-2"> <span>{{ $t('classic') }}</span><span /></li>
+        <div v-if="item.serviceType !== 'beauty'">
+          <li v-if="item.isWithAromaterapeutic" class="ml-2">
+            <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
+          </li>
+          <li v-else class="ml-2"> <span>{{ $t('classic') }}</span><span /></li>
+        </div>
         <li
           v-for="service in item.services"
           :key="service.id"
@@ -132,6 +134,7 @@
               massageForm: item.massageForm,
               isWithAromaterapeutic,
               terapeuticForm,
+              serviceType: item.serviceType,
             };
           });
       },

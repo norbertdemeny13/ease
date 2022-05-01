@@ -60,16 +60,16 @@
     },
     methods: {
       loggedIn() {
-        return localStorage.getItem('loggedInVerify') === 'true';
+        return sessionStorage.getItem('loggedInVerify') === 'true';
       },
 
       login() {
         if (this.username === 'admin' && this.password === 'Password1!') {
-          localStorage.setItem('loggedInVerify', 'true');
+          sessionStorage.setItem('loggedInVerify', 'true');
         } else {
           /* eslint-disable */
           alert('Incorrect username or password!');
-          localStorage.setItem('loggedInVerify', 'false');
+          sessionStorage.setItem('loggedInVerify', 'false');
         }
       },
     },

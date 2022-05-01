@@ -31,19 +31,21 @@
             <div class="col-md-8 info-container">
               <div class="favourite-container">
                 <h3 class="mr-3 mb-0">{{ getEliteName }}</h3>
-                <i
-                  v-if="getIsFavourite"
-                  class="icon_heart"
-                  @click="isFavourite ? onRemoveFavourite() : onAddFavourite()"
-                  @mouseover="onHover = true"
-                  @mouseleave="onHover = false"
-                />
-                <i
-                  v-else
-                  class="icon_heart_alt"
-                  @mouseover="onHover = true"
-                  @mouseleave="onHover = false"
-                />
+                <div v-if="getUserType !== 'elite'" >
+                  <i
+                    v-if="getIsFavourite"
+                    class="icon_heart"
+                    @click="isFavourite ? onRemoveFavourite() : onAddFavourite()"
+                    @mouseover="onHover = true"
+                    @mouseleave="onHover = false"
+                  />
+                  <i
+                    v-else
+                    class="icon_heart_alt"
+                    @mouseover="onHover = true"
+                    @mouseleave="onHover = false"
+                  />
+                </div>
               </div>
               <div class="d-flex align-items-center">
                 <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span>
@@ -51,7 +53,7 @@
               <p>{{ getElite.last_booking }}</p>
               <div class="d-flex justify-content-start">
                 <button
-                  :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'}`"
+                  :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'} ${getUserType === 'elite' ? 'disabled' : '' }`"
                   @click.prevent="onReserve"
                 >
                   {{ $t('generic.reserve') }}
@@ -65,7 +67,7 @@
                 <h2>{{ $t('practician.bio') }}</h2>
                 <p>{{ getElite.bio }}</p>
               </div>
-              <div class="d-flex experience col-sm-12 col-md-4">
+              <div class="d-flex experience col-sm-12 col-md-3">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/experience.svg"
@@ -75,10 +77,10 @@
                 </figure>
                 <div class="ml-2">
                   <h6 class="mb-0">{{ $t('views.pro_details.experience') }}</h6>
-                  <p>16 ani</p>
+                  <p>{{ getElite.years_experience }} {{ getElite.years_experience > 1 ? 'ani' : 'an' }}</p>
                 </div>
               </div>
-              <div class="d-flex language col-sm-12 col-md-4">
+              <div class="d-flex language col-sm-12 col-md-3">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/language.svg"
@@ -88,10 +90,10 @@
                 </figure>
                 <div class="ml-2">
                   <h6 class="mb-0">{{ $t('views.pro_details.spoken_languages') }}</h6>
-                  <p>Romana, Franceza</p>
+                  <p>{{ getElite.languages || '-' }}</p>
                 </div>
               </div>
-              <div class="d-flex certificate col-sm-12 col-md-4">
+              <div class="d-flex certificate col-sm-12 col-md-6">
                 <figure class="mb-0">
                   <img
                     src="@/assets/svg/certificate.svg"
@@ -101,7 +103,7 @@
                 </figure>
                 <div class="ml-2">
                   <h6 class="mb-0">{{ $t('views.pro_details.certified') }}</h6>
-                  <p>{{ $t('views.pro_details.certified_100') }}</p>
+                  <p>{{ getElite.certificates || '-' }}</p>
                 </div>
               </div>
             </div>
@@ -157,6 +159,7 @@
 
     computed: {
       ...mapGetters({
+        getUserType: 'session/getUserType',
         getElite: 'elite/getElite',
         getEliteFavorites: 'elite/getEliteFavorites',
         getEliteReviews: 'elite/getEliteReviews',
@@ -164,7 +167,9 @@
       getEliteName() {
         const firstName = this.getElite?.first_name;
         const lastName = this.getElite?.last_name;
-        return firstName ? `${firstName} ${lastName?.substr(0, 1)}.` : '';
+        const fullName = firstName ? `${firstName} ${lastName?.substr(0, 1)}.` : '';
+        const displayName = this.getElite?.display_name;
+        return displayName || fullName;
       },
       getIsFavourite() {
         return this.isFavourite

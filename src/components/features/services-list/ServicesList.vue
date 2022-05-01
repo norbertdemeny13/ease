@@ -4,7 +4,16 @@
     <div v-if="service.items.length" v-for="service in services" :key="service.category" class="row mt-4">
       <div v-if="service.category !== 'promotions'" class="col-12"><h2 class="title_small">{{ $t(service.category) }}</h2></div>
       <div v-if="service.description && service.category !== 'promotions'" class="col-12"><p class="text-secondary">{{ $t(service.description) }}</p></div>
-        <div v-if="service.items.length > 4" class="col-12 owl-carousel owl-theme categories_carousel_in">
+        <div v-if="windowWidth < 500 && service.items.length > 1" class="col-12 owl-carousel owl-theme categories_carousel_in">
+          <services-list-item
+            v-for="item in service.items"
+            :image-path="getImagePath(item)"
+            :key="item.category"
+            :service="item"
+            :to="getToRoute(item)"
+          />
+        </div>
+        <div v-else-if="service.items.length > 3" class="col-12 owl-carousel owl-theme categories_carousel_in">
           <services-list-item
             v-for="item in service.items"
             :image-path="getImagePath(item)"
@@ -46,6 +55,10 @@
       },
     },
 
+    data: () => ({
+      windowWidth: window.innerWidth,
+    }),
+
     computed: {
       ...mapGetters({
         getLocation: 'address/getLocation',
@@ -74,7 +87,20 @@
       },
     },
 
+    mounted() {
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize);
+      });
+    },
+
+    beforeDestroy() {
+      window.removeEventListener('resize', this.onResize);
+    },
+
     methods: {
+      onResize() {
+        this.windowWidth = window.innerWidth;
+      },
       getToRoute(item) {
         if (item.link_to_service) {
           return item.link_to_service;

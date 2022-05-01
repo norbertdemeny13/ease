@@ -37,10 +37,12 @@
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-2">
             <strong>{{ complementaryService.count ? `${complementaryService.count} x` : '' }} {{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
           </li>
-          <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-2">
-            <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
-          </li>
-          <li v-else :key="`${i}-classic`" class="ml-2"><strong>{{ $t('classic') }}</strong></li>
+          <div v-if="!selectedReservation.reservation_service_type.includes('Beauty')" :key="`${i}-condition`">
+            <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-2">
+              <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
+            </li>
+            <li v-else :key="`${i}-classic`" class="ml-2"><strong>{{ $t('classic') }}</strong></li>
+          </div>
         </template>
         <es-divider />
         <li class="d-flex justify-content-between"><strong>{{ $t('bookings.details.subTotal') }}</strong> {{ `${selectedReservation.total} Lei` }}</li>
@@ -145,6 +147,7 @@
             name: item.service.name,
             price: item.price,
             id: item.id,
+            serviceType: item.serviceType,
             complementaryServices: item.complementary_services
               .map(complementaryItem => ({ name: complementaryItem.complementary_service.name, price: complementaryItem.price, id: complementaryItem.id, count: complementaryItem.count })),
           }));
@@ -152,9 +155,6 @@
         } else if (reservationType === 'CoupleMassageReservation') {
           const therapeuticFormPriceOne = new Number(reservationService.massage_one.therapeutic_form.price || 0);
           const therapeuticFormPriceTwo = new Number(reservationService.massage_two.therapeutic_form.price || 0);
-          console.log(therapeuticFormPriceTwo, therapeuticFormPriceOne, 'price');
-          console.log(reservationService.massage_one.therapeutic_form, 'fasz');
-          console.log(reservationService.massage_two.therapeutic_form, 'fasz');
           const massageOne = {
             name: reservationService.massage_one.service.name,
             price: reservationService.massage_one.price,

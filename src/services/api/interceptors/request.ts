@@ -6,7 +6,7 @@ import { store } from '@/store';
 export default (request: AxiosRequestConfig) => {
   /* eslint-disable no-param-reassign */
   request.baseURL = 'https://ease-be.herokuapp.com/api/v1';
-  const authToken = localStorage.getItem('auth') && localStorage.getItem('auth')!.slice(2);
+  const authToken = sessionStorage.getItem('auth') && sessionStorage.getItem('auth')!.slice(2);
   const token = store.getters['session/getToken'] || authToken;
 
   if (token) {

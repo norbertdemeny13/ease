@@ -1,6 +1,6 @@
 <template>
   <div class="page_header">
-    <div class="container-fluid d-flex justify-content-between">
+    <div :class="`container-fluid ${$router.currentRoute.query.pro_id ? 'd-flex justify-content-between' : ''}`">
       <es-skeleton-item v-if="isFetching" heigth="18px" width="200px" />
       <div v-else-if="isAuthenticated && getAddresses.length" class="row">
         <div class="my-2 mr-4 form-group">

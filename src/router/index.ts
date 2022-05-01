@@ -275,8 +275,8 @@ router.beforeEach(async (to, from, next) => {
   const getUserType = store.getters['session/getUserType'];
   const hasLocation = getLocation || sessionStorage.getItem('city_id');
   const isNew = path.includes('new');
-  const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
-  const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
+  const jwtToken = sessionStorage.getItem('jwt') && !sessionStorage.getItem('jwt')!.includes('undefined');
+  const authToken = sessionStorage.getItem('auth') && !sessionStorage.getItem('auth')!.includes('undefined');
 
   if (to.fullPath.includes('register')) {
     const { refferal_code } = to.query;
@@ -304,17 +304,17 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (!getToken && !authToken && jwtToken) {
-    await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
+    await store.dispatch('session/jwtLogin', sessionStorage.getItem('jwt'));
     isAuthenticated = true;
   }
 
   const getUser = store.getters['session/getUser'];
 
-  if ((getToken || isAuthenticated) && name === 'Home' && getUser.user_type === 'user') {
+  if ((getToken || isAuthenticated) && name === 'Home' && getUserType === 'user') {
     next('/servicii');
   }
 
-  if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.user_type === 'elite') {
+  if ((getToken || isAuthenticated) && name === 'ProHome' && getUserType === 'elite') {
     next('/easepro/cont');
   }
 

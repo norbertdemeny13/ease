@@ -22,7 +22,7 @@
             alt=""
           >
         </figure>
-        <span class="text-center">{{ item.first_name }}</span>
+        <span class="text-center">{{ item.display_name }}</span>
         <div class="d-flex align-items-center">
           <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(item.rating) > 0 ? item.rating : '0.0' }}</span>
         </div>

@@ -331,7 +331,7 @@
         }
 
         if (this.isAuthenticated) {
-          if (this.getUser.userType === 'elite') {
+          if (this.getUser.user_type === 'elite') {
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',

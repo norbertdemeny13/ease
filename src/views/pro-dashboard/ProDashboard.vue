@@ -2,13 +2,19 @@
   <div class="es_pro-dashboard-container bg_gray content">
     <div class="container margin_30_20">
       <div class="row bg-white">
+        <div v-if="getUser.status === 'pending' && !getUser.interview_done" class="col-12 alert alert-danger" role="alert">
+          <span>{{ $t('views.pro_dashboard.interview_not_done_info') }}</span>
+        </div>
+        <div v-if="getUser.status === 'pending' && getUser.interview_done" class="col-12 alert alert-danger" role="alert">
+          <span>{{ $t('views.pro_dashboard.interview_done_info') }}</span>
+        </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" class="p-1 m-1" v-show="index < 4">
+          <div v-for="(link, index) in getSidebarLinks" :key="link.id" v-show="index < 4" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" class="p-1 m-1" v-show="index + 3 >= getSidebarLinks.length">
+          <div v-for="(link, index) in getSidebarLinks" :key="link.id" v-show="index + 3 >= getSidebarLinks.length" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>
@@ -28,6 +34,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
+  import { mapGetters } from 'vuex';
   import { PRO_SIDEBAR_LINKS } from '@/constants/sidebar-links';
   import { Link } from '@/interfaces/Link';
   import { nanoid } from 'nanoid';
@@ -38,6 +45,9 @@
       clientSize: window.innerWidth,
     }),
     computed: {
+      ...mapGetters({
+        getUser: 'session/getUser',
+      }),
       getSidebarLinks(): Link[] {
         return PRO_SIDEBAR_LINKS.map((item: Link) => ({ ...item, id: nanoid() }));
       },

@@ -84,7 +84,7 @@
     data() {
       return {
         pressureLevel: 1,
-        talkingLevel: 0,
+        talkingLevel: 1,
         notes: null,
         avoidedScents: null,
         massageOptions: {
@@ -99,13 +99,13 @@
         conversationOptions: {
           dotSize: 25,
           height: 10,
-          min: 0,
-          max: 2,
+          min: 1,
+          max: 3,
           interval: 1,
           clickable: true,
           duration: 0.5,
           tooltipFormatter: (value) => {
-            const options = ['account.quietPlease', 'account.someTalkingIsFine', 'account.talkWithMe'];
+            const options = ['', 'account.quietPlease', 'account.someTalkingIsFine', 'account.talkWithMe'];
             return this.$t(options[value]);
           },
         },
@@ -120,9 +120,20 @@
     created() {
       const servicePreferences = this.getUser.service_preference;
       if (servicePreferences) {
+        if (servicePreferences.talking_level.includes('.silent')) {
+          this.talkingLevel = 1;
+        }
+
+        if (servicePreferences.talking_level.includes('.little')) {
+          this.talkingLevel = 2;
+        }
+
+        if (servicePreferences.talking_level.includes('.talk')) {
+          this.talkingLevel = 3;
+        }
+
         this.notes = servicePreferences.notes;
         this.avoidedScents = servicePreferences.avoided_scents;
-        this.talkingLevel = 1 || servicePreferences.talking_level;
         this.pressureLevel = servicePreferences.pressure_level;
       }
     },
@@ -132,10 +143,20 @@
         savePreferences: 'session/savePreferences',
       }),
       onSave() {
+        let talkingLevel = 'talking_level.silent';
+
+        if (this.talkingLevel === 2) {
+          talkingLevel = 'talking_level.little';
+        }
+
+        if (this.talkingLevel === 3) {
+          talkingLevel = 'talking_level.talk';
+        }
+
         /* eslint-disable */
         this.savePreferences({
           pressure_level: this.pressureLevel,
-          talking_level: this.talkingLevel,
+          talking_level: talkingLevel,
           notes: this.notes,
           avoided_scents: this.avoidedScents,
         });
