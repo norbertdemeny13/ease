@@ -363,10 +363,10 @@
       },
 
       getEliteName(elite) {
-        const firstName = this.elite?.first_name;
-        const lastName = this.elite?.last_name;
+        const firstName = elite?.first_name;
+        const lastName = elite?.last_name;
         const fullName = firstName ? `${firstName} ${lastName?.substr(0, 1)}.` : '';
-        const displayName = this.getElite?.display_name;
+        const displayName = elite?.display_name;
         return displayName || fullName;
       },
 
