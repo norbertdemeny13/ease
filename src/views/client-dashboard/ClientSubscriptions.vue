@@ -61,7 +61,7 @@
       :user-id="getActiveSubscription.id"
       :active-subscription="getActiveSubscription"
     />
-    <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" @on-confirm="onContinue()">
+    <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" reverse @on-confirm="onContinue()">
       <template slot="title">{{ $t('generic.cancel_subscription') }}</template>
       <template slot="message">
         <p>{{ $t('subscription.cancel.title') }}</p>
