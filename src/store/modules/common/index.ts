@@ -63,9 +63,9 @@ export default {
 
       if (status === 401) {
         const { errors } = reason?.data;
-        const jwtToken = sessionStorage.getItem('jwt') && !sessionStorage.getItem('jwt')!.includes('undefined');
+        const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
         if (errors === 'access_token_expired' && jwtToken) {
-          store.dispatch('session/jwtLogin', sessionStorage.getItem('jwt'));
+          store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
           return;
         }
       }

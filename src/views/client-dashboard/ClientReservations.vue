@@ -363,9 +363,11 @@
       },
 
       getEliteName(elite) {
-        const first_name = elite?.first_name;
-        const last_name = elite?.last_name;
-        return first_name ? `${first_name} ${last_name?.substr(0,1)}.` : '';
+        const firstName = this.elite?.first_name;
+        const lastName = this.elite?.last_name;
+        const fullName = firstName ? `${firstName} ${lastName?.substr(0, 1)}.` : '';
+        const displayName = this.getElite?.display_name;
+        return displayName || fullName;
       },
 
       getReservationJobs(item) {

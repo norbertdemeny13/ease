@@ -321,7 +321,7 @@ export default {
       }
     },
     async fetchServices({ state, dispatch, commit }, id) {
-      const cityId = sessionStorage.getItem('city_id');
+      const cityId = localStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services?city_id=${cityId}` : '/services';
 
       Vue.set(state, 'isFetching', true);
@@ -369,7 +369,7 @@ export default {
     },
     async fetchServicesByType({ state, commit, dispatch }, { type, id }) {
       Vue.set(state, 'isFetching', true);
-      const cityId = sessionStorage.getItem('city_id');
+      const cityId = localStorage.getItem('city_id');
       const services = cityId && !cityId.includes('null') ? `/services/${type}?city_id=${cityId}` : `/services/${type}`;
 
       const endpoint = id
@@ -390,7 +390,7 @@ export default {
 
       city_id = state.location
         ? state.location.city_id
-        : sessionStorage.getItem('city_id');
+        : localStorage.getItem('city_id');
 
       Vue.set(state, 'isFetching', true);
 

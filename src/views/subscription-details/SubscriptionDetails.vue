@@ -79,7 +79,7 @@
       }),
 
       showSubscriptions() {
-        const cityId = sessionStorage.getItem('city_id');
+        const cityId = localStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
 
         const location = this.getLocation

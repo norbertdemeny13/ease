@@ -273,10 +273,10 @@ router.beforeEach(async (to, from, next) => {
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
   const getUserType = store.getters['session/getUserType'];
-  const hasLocation = getLocation || sessionStorage.getItem('city_id');
+  const hasLocation = getLocation || localStorage.getItem('city_id');
   const isNew = path.includes('new');
-  const jwtToken = sessionStorage.getItem('jwt') && !sessionStorage.getItem('jwt')!.includes('undefined');
-  const authToken = sessionStorage.getItem('auth') && !sessionStorage.getItem('auth')!.includes('undefined');
+  const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
+  const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
 
   if (to.fullPath.includes('register')) {
     const { refferal_code } = to.query;
@@ -304,7 +304,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (!getToken && !authToken && jwtToken) {
-    await store.dispatch('session/jwtLogin', sessionStorage.getItem('jwt'));
+    await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
     isAuthenticated = true;
   }
 

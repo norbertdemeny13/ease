@@ -101,7 +101,7 @@
         }
 
         if (cityId) {
-          sessionStorage.setItem('city_id', cityId || null);
+          localStorage.setItem('city_id', cityId || null);
         }
 
         if (query && query.pro_id) {

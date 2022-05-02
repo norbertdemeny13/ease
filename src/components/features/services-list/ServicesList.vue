@@ -68,7 +68,7 @@
       }),
 
       showServices() {
-        const cityId = sessionStorage.getItem('city_id');
+        const cityId = localStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
         let hasLocation = false;
 

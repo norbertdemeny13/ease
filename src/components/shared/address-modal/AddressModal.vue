@@ -163,7 +163,7 @@
         if (newVal) {
           const reservationAddressId = this.getReservationAddress
             ? this.getReservationAddress.city.id
-            : sessionStorage.getItem('city_id');
+            : localStorage.getItem('city_id');
           const newAddressId = newVal.city_id;
           this.isDifferentCity = reservationAddressId != newAddressId;
         }

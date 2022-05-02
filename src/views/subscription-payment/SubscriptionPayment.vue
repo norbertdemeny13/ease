@@ -174,7 +174,7 @@
       },
 
       getAddress(): string {
-        return sessionStorage.getItem('address') as string;
+        return localStorage.getItem('address') as string;
       },
       onBack(): void {
         if (this.getActivePayment) {

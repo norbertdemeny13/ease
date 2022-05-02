@@ -111,8 +111,8 @@ export default {
     },
     async jwtLogin({ state, commit }, jwt) {
       Vue.set(state, 'isFetchingUser', true);
-      const refreshToken = sessionStorage.getItem('refreshToken');
-      const userType = sessionStorage.getItem('userType');
+      const refreshToken = localStorage.getItem('refreshToken');
+      const userType = localStorage.getItem('userType');
       try {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: jwt.slice(2),
@@ -126,8 +126,8 @@ export default {
     },
     async refreshToken({ state, commit }) {
       Vue.set(state, 'isFetchingUser', true);
-      const userType = sessionStorage.getItem('userType');
-      const refreshToken = sessionStorage.getItem('refreshToken');
+      const userType = localStorage.getItem('userType');
+      const refreshToken = localStorage.getItem('refreshToken');
       try {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: refreshToken!.slice(2),
@@ -141,7 +141,7 @@ export default {
     },
     async getUser({ state, commit, dispatch }) {
       Vue.set(state, 'isFetchingUser', true);
-      const userType = sessionStorage.getItem('userType');
+      const userType = localStorage.getItem('userType');
 
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
@@ -178,7 +178,7 @@ export default {
       }
     },
     async authLogin({ state, commit }) {
-      const type = sessionStorage.getItem('userType');
+      const type = localStorage.getItem('userType');
       const endpoint = type === 'client'
         ? '/users/sessions'
         : '/elites/sessions';
@@ -247,12 +247,12 @@ export default {
     },
     async logout({ state, rootState, commit }) {
       commit('setUser', null);
-      sessionStorage.removeItem('jwt');
-      sessionStorage.removeItem('auth');
-      sessionStorage.removeItem('userType');
-      sessionStorage.removeItem('address');
-      sessionStorage.removeItem('city');
-      sessionStorage.removeItem('city_id');
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('auth');
+      localStorage.removeItem('userType');
+      localStorage.removeItem('address');
+      localStorage.removeItem('city');
+      localStorage.removeItem('city_id');
       commit('cards/resetCards', [], { root: true });
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
@@ -279,8 +279,8 @@ export default {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create(endpoint, payload);
-        sessionStorage.setItem('jwt', `Jh${data.refresh_token}`);
-        sessionStorage.setItem('auth', `Kn${data.access_token}`);
+        localStorage.setItem('jwt', `Jh${data.refresh_token}`);
+        localStorage.setItem('auth', `Kn${data.access_token}`);
         dispatch('cards/resetCards', {}, { root: true });
         dispatch('subscriptions/resetSelectedSubscription', {}, { root: true });
         dispatch('login', { credentials, type });
@@ -340,7 +340,7 @@ export default {
     getUser: state => state.user,
     getReferralCode: state => state.referralCode,
     getUserDefaultAddress: state => state.user.default_address,
-    getUserType: state => state.user?.user_type || sessionStorage.getItem('userType'),
+    getUserType: state => state.user?.user_type || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
   } as GetterTree<State, RootState>,
 
@@ -349,10 +349,10 @@ export default {
       const refreshToken = data?.refresh_token;
       const authToken = data?.access_token;
       if (data && refreshToken) {
-        sessionStorage.setItem('jwt', `Jh${data.refresh_token}`);
-        sessionStorage.setItem('auth', `Kn${data.access_token}`);
+        localStorage.setItem('jwt', `Jh${data.refresh_token}`);
+        localStorage.setItem('auth', `Kn${data.access_token}`);
       }
-      sessionStorage.setItem('userType', data?.user_type);
+      localStorage.setItem('userType', data?.user_type);
       Vue.set(state, 'user', data);
     },
     setStatistics(state: State, data: any) {
