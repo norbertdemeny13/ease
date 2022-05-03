@@ -177,6 +177,7 @@
       isResetPasswordModalOpen: false,
       modalType: 'login',
       userType: 'client',
+      modalWasShown: false,
     }),
 
     computed: {
@@ -248,6 +249,16 @@
       this.$root.$on('on-show-validate-phone-modal', () => {
         this.isValidatePhoneModalOpen = true;
       });
+    },
+
+    updated() {
+      const { query } = this.$router.currentRoute;
+
+      if (query.referral_code && !this.modalWasShown) {
+        this.modalWasShown = true;
+        this.modalType = 'register';
+        this.isLoginModalOpen = true;
+      }
     },
 
     methods: {
