@@ -155,6 +155,22 @@
     margin-left: 40px;
 }
 
+/* mobile owl carousel arrows customized */
+@media (max-width: 767px) {
+    .es_reserve-massage-service-page .owl-item.active {
+        margin-left: 0;
+    }
+
+    .es_reserve-massage-service-page .owl-theme .owl-nav .owl-next {
+        right: -6px;
+    }
+    
+    .es_reserve-massage-service-page .owl-theme .owl-nav .owl-prev {
+        left: -10px;
+    }
+}
+/* end of mobile owl carousel arrows customized */
+
 .es_dreserve-massage-service-page .owl-next {
     right: 0 !important;
 }
