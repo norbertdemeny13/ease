@@ -203,7 +203,8 @@ export default {
         });
         commit('setUser', data);
         if (!router.currentRoute.fullPath.includes('easepro/cont') && data.user_type === 'elite') {
-          const path = router.currentRoute.fullPath.includes('easepro') ? '/easepro/cont' : 'easepro/cont';
+          const replaceUrl = router.currentRoute.fullPath.includes('easepro') || router.currentRoute.fullPath.includes('pro/');
+          const path = replaceUrl ? '/easepro/cont' : 'easepro/cont';
           router.push(path);
         }
       } catch({ response: reason }) {
