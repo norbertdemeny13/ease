@@ -375,7 +375,7 @@
     height: 19px;
   }
   h3.es-toast__title {
-    font-size: 26px;
-    line-height: 28px;
+    font-size: 19px;
+    line-height: 25px;
   }
 </style>
