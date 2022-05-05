@@ -89,9 +89,22 @@
   import { mapActions, mapGetters } from 'vuex';
   /* eslint-disable */
   import { PricingPlan } from '@/components/shared/pricing-plan';
+  import ogImage from '@/assets/jpg/fb-thumb-abonamente.jpg';
 
   export default Vue.extend({
     name: 'es-subscriptions',
+
+    /* eslint-disable */
+    metaInfo: {
+      title: 'Activeaza un abonament Ease si economisesti pana la 25%',
+      titleTemplate: null,
+      description: 'Beneficiaza de pana la 25% discount la toate serviciile Ease, plus te bucuri de prioritate la preluarea rezervarii tale de catre profesionisti la orele de varf.',
+      meta: [
+        { name: 'og:title', content: 'Activeaza un abonament Ease si economisesti pana la 25%' },
+        { name: 'og:description', content: 'Beneficiaza de pana la 25% discount la toate serviciile Ease, plus te bucuri de prioritate la preluarea rezervarii tale de catre profesionisti la orele de varf.' },
+        { name: 'og:image', content: ogImage },
+      ],
+    },
 
     components: {
       'es-pricing-plan': PricingPlan,
