@@ -1,13 +1,8 @@
 <template>
   <div class="custom-checkbox">
-    <label class="label" @click.prevent>
-      <input class="label__checkbox" type="checkbox" :checked="getCheckState">
-      <span class="label__text">
-        <span :class="`label__check ${isPending ? 'pending': ''} `">
-          <i class="fa fa-check icon" />
-        </span>
-      </span>
-    </label>
+    <img v-if="getCheckState && !isPending" src="@/assets/svg/success.svg" width="30" height="30" />
+    <img v-else-if="getCheckState && isPending" src="@/assets/svg/pending.svg" width="30" height="30" />
+    <img v-else src="@/assets/svg/incomplete.svg" width="30" height="30" />
   </div>
 </template>
 

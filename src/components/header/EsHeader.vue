@@ -177,6 +177,7 @@
       isResetPasswordModalOpen: false,
       modalType: 'login',
       userType: 'client',
+      modalWasShown: false,
     }),
 
     computed: {
@@ -206,6 +207,11 @@
     },
 
     watch: {
+      isLoginModalOpen(newVal) {
+        if (!newVal) {
+          this.userType = 'client';
+        }
+      },
       $route(to) {
         this.isPro = this.$router.currentRoute.path.includes('easepro');
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
@@ -243,6 +249,16 @@
       this.$root.$on('on-show-validate-phone-modal', () => {
         this.isValidatePhoneModalOpen = true;
       });
+    },
+
+    updated() {
+      const { query } = this.$router.currentRoute;
+
+      if (query.referral_code && !this.modalWasShown) {
+        this.modalWasShown = true;
+        this.modalType = 'register';
+        this.isLoginModalOpen = true;
+      }
     },
 
     methods: {

@@ -78,7 +78,7 @@
         fetchUser: 'session/getUser',
       }),
       onCopy(): void {
-        const fullLink = `${this.$router.currentRoute.fullPath}?referral_code=${this.code}`;
+        const fullLink = `https://ease.ro?referral_code=${this.code}`;
         copyToClipboard(fullLink);
         (this as any).$toasts.toast({
           id: nanoid(),

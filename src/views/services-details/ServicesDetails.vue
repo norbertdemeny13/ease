@@ -16,10 +16,11 @@
             :image-path="service.absolute_image_url_large"
             :service="service"
             :to="getToRoute(service.uuid)"
+            :is-details-view="true"
           />
         </div>
       </div>
-      <es-banner-as-footer-mobile :mobileBanners="this.banners"/>
+      <es-banner-as-footer-mobile :mobile-banners="banners" />
     </div>
   </div>
 </template>
@@ -100,7 +101,7 @@
         }
 
         if (cityId) {
-          sessionStorage.setItem('city_id', cityId || null);
+          localStorage.setItem('city_id', cityId || null);
         }
 
         if (query && query.pro_id) {

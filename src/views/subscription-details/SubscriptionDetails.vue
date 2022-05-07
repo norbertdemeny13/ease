@@ -72,14 +72,14 @@
       ...mapGetters({
         getSubscriptions: 'subscriptions/getSubscriptions',
         isAuthenticated: 'session/isAuthenticated',
-        isFetching: 'subscriptions/isFetching',
+        isFetching: 'subscriptions/getIsFetching',
         getLocation: 'address/getLocation',
         getLocationError: 'address/getLocationError',
         getUser: 'session/getUser',
       }),
 
       showSubscriptions() {
-        const cityId = sessionStorage.getItem('city_id');
+        const cityId = localStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
 
         const location = this.getLocation
@@ -100,6 +100,7 @@
           .map((subscription) => ({
             ...subscription,
             label: `${this.$t(subscription.name)} ${subscription.uses > 1 ? subscription.uses : ''}`.trim(),
+            name: subscription.type === 'BeautySubscription' ? subscription.primary_service_name : subscription.name,
           }));
       },
     },

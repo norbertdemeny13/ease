@@ -5,7 +5,7 @@
       <div class="row mt-4">
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="box_order">
-            <div class="head" v-show="!isReservationConfirmed">
+            <div v-show="!isReservationConfirmed" class="head">
               <h3>Plata si Adresa</h3>
             </div>
             <div v-if="isReservationConfirmed" class="d-flex flex-column align-items-center main">
@@ -56,6 +56,7 @@
             :date="getSelectedDate"
             :time="getSelectedTime"
             :is-reservation-confirmed="isReservationConfirmed"
+            :elite-id="getReservationDetails.target_elite_id"
           />
           <div v-if="!isReservationConfirmed" class="d-flex my-4 justify-content-end">
             <button
@@ -147,7 +148,7 @@
 
       getToRoute() {
         const { id, type } = this.$router.currentRoute.params;
-        return this.isMassageView ? `/servicii/masaj?type=${type}` : `/servicii/${type}/${id}/rezerva`;
+        return `/servicii/${type}/${id}/rezerva`;
       },
 
       async onPay() {

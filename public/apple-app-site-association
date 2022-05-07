@@ -4,7 +4,7 @@
         "details": [{
             "appID": "928NJTW278.com.ease.ease-app",
             "paths": [
-                "/reset-password/*",
+                "/user/reset-password/*",
                 "/pro/*"
             ]
         }]

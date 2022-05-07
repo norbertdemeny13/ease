@@ -8,12 +8,12 @@
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div v-if="hasSubscription">
-          <h6 class="mt-4">{{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 class="mt-4">Servicii: {{ $t(getActiveSubscription.subscription.name) }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
             <div v-if="hasActiveSubscription">
               <li><strong>{{ $t('views.client_dashboard.subscriptions.next_bill') }} </strong>{{ getActiveSubscription.active_from.substr(0, 10) }}</li>
             </div>
-            <li><strong>{{ $t('generic.subscription') }}</strong>{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.anual') }}</li>
+            <li><strong>{{ $t('generic.subscription') }}</strong>{{ $t(getActiveSubscription.subscription.primary_service_name) }}</li>
             <li><strong>{{ $t('generic.status') }}</strong>{{ hasActiveSubscription ? 'Activ' : 'Anulat' }}</li>
             <li><strong>{{ $t('generic.price') }}</strong>{{ getActiveSubscription.subscription.price.price }} Ron/{{ getActiveSubscription.subscription.monthly ? $t('generic.monthly') : $t('generic.year') }}</li>
           </ul>
@@ -61,7 +61,7 @@
       :user-id="getActiveSubscription.id"
       :active-subscription="getActiveSubscription"
     />
-    <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" @on-confirm="onContinue()">
+    <es-confirm-modal v-model="isCancelSubscriptionModalOpen" cta="Da, Anuleaza" reverse @on-confirm="onContinue()">
       <template slot="title">{{ $t('generic.cancel_subscription') }}</template>
       <template slot="message">
         <p>{{ $t('subscription.cancel.title') }}</p>

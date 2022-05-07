@@ -45,7 +45,7 @@
       }),
       showAlert(): boolean {
         const { location, homePage } = this;
-        const cityId = sessionStorage.getItem('city_id');
+        const cityId = localStorage.getItem('city_id');
         const addressFromStorage = cityId === 'null' ? null : cityId;
 
         const savedLocation = location || addressFromStorage;
@@ -66,9 +66,9 @@
     },
 
     created() {
-      const savedLocation = sessionStorage.getItem('address') === 'null'
+      const savedLocation = localStorage.getItem('address') === 'null'
         ? null
-        : sessionStorage.getItem('address');
+        : localStorage.getItem('address');
 
       this.location = this.getLocation ? this.getLocation.formatted_address : savedLocation;
     },

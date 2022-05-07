@@ -45,6 +45,7 @@
             :date="selectedDate"
             :time="selectedTime"
             :show-total="false"
+            :elite-id="getReservationDetails.target_elite_id"
           />
           <div class="d-flex justify-content-end">
             <button
@@ -101,7 +102,12 @@
       getToRoute() {
         const { id, type } = this.$router.currentRoute.params;
         const isMassageView = type === 'single' || type === 'couple';
-        return isMassageView ? `/servicii/masaj?type=${type}` : `/servicii/${type}/${id}`;
+        const targetEliteId = this.getReservationDetails.target_elite_id;
+        let endpoint = isMassageView ? `/servicii/masaj?type=${type}` : `/servicii/${type}/${id}`;
+        if (targetEliteId) {
+          endpoint += isMassageView ? `&pro_id=${targetEliteId}` : `?pro_id=${targetEliteId}`;
+        }
+        return endpoint;
       },
     },
 

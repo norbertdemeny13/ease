@@ -5,6 +5,21 @@
     </div>
     <!-- /head -->
     <div class="main">
+      <div v-if="eliteId" class="d-flex justify-content-between align-items-center custom-sm-6">
+        <h6>Profesionist</h6>
+        <div class="d-flex align-items-center">
+          <div class="profile-pic-container">
+            <figure>
+              <img v-if="getElite.avatar_path" :src="getElite.avatar_path" alt="Profile Pic" class="radius-50">
+              <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+            </figure>
+          </div>
+          <div class="d-flex align-getElites-center flex-column ml-2">
+            <span class="text-center">{{ getElite.display_name }}</span>
+            <div class="ml-2"><i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span></div>
+          </div>
+        </div>
+      </div>
       <ul>
         <li>{{ $t('generic.date') }}<span>{{ getDate }}</span></li>
         <li>{{ $t('generic.hour') }}<span>{{ getHour }}</span></li>
@@ -21,19 +36,27 @@
       >
         <span class="custom-service">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline custom-service-info">
-          <h6>{{ $t(item.name) }}</h6>
-          <h5 v-if="getCategoryType() !== 'couple'">{{ getServicePrice(item) }} Lei</h5>
+          <div>
+            <h6>{{ $t(item.name) }}</h6>
+            <div v-if="getCategoryType() === 'couple' || getCategoryType() === 'single'" class="ml-2">
+              <span>{{ `Terapeut ${$t(item.massageForm.genre)}` }}</span>
+            </div>
+          </div>
+          <h5 v-if="getCategoryType() !== 'couple'" class="d-flex align-self-start">{{ getServicePrice(item) }} Lei</h5>
+        </div>
+        <div v-if="item.serviceType !== 'beauty'">
+          <li v-if="item.isWithAromaterapeutic" class="ml-2">
+            <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
+          </li>
+          <li v-else class="ml-2"> <span>{{ $t('classic') }}</span><span /></li>
         </div>
         <li
           v-for="service in item.services"
           :key="service.id"
         >
-          <p><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
+          <p class="ml-2"><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
           <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)/2) }} Lei</span>
           <span v-else>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
-        </li>
-        <li v-if="item.isWithAromaterapeutic">
-          <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
         </li>
       </ul>
 
@@ -50,7 +73,7 @@
 <script>
   import Vue from 'vue';
   import { getZonedDate, getHourPrice } from '@/utils/date-helpers';
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default Vue.extend({
     name: 'es-service-summary',
@@ -74,6 +97,11 @@
         type: Object,
         default: null,
       },
+
+      eliteId: {
+        required: true,
+        type: Number || null,
+      },
     },
 
     data: () => ({
@@ -82,6 +110,7 @@
 
     computed: {
       ...mapGetters({
+        getElite: 'elite/getElite',
         getSelectedServices: 'services/getSelectedServices',
       }),
 
@@ -102,8 +131,10 @@
               uuid: item.tempServiceId,
               prices: item.price,
               massageType: item.massageType,
+              massageForm: item.massageForm,
               isWithAromaterapeutic,
               terapeuticForm,
+              serviceType: item.serviceType,
             };
           });
       },
@@ -135,7 +166,16 @@
       },
     },
 
+    created() {
+      if (this.eliteId) {
+        this.fetchElite({ id: this.eliteId });
+      }
+    },
+
     methods: {
+      ...mapActions({
+        fetchElite: 'elite/fetchElite',
+      }),
       removeService(item, service) {
         const itemId = item.uuid;
         const itemType = item?.massageType;
@@ -220,3 +260,15 @@
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  i.icon_star {
+    color: #fad055;
+    font-size: 1.3rem;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+</style>

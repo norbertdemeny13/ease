@@ -11,7 +11,7 @@
             </div>
             <div class="main custom-subscriptions">
               <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
-                <h5>{{ $t(getSelectedSubscription.label) }}</h5>
+                <h5>{{ $t(getSelectedSubscription.primary_service_name) }}</h5>
                 <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
               </div>
               <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">
@@ -63,11 +63,12 @@
           </div>
           <div class="d-flex justify-content-end">
               <button
-                  class="btn btn-sm btn-pink btn-pill mt-4 px-6"
-                  @click.prevent="activateSubscription()"
-                  :disabled="!getCards.length"
+                class="activate-button btn btn-sm btn-pink btn-pill mt-4 px-6"
+                @click.prevent="activateSubscription()"
+                :disabled="!getCards.length"
               >
-                  {{ $t('generic.activate') }}
+                <span v-if="isFetching" class="loading"><i class="icon_loading" /></span>
+                {{ $t('generic.activate') }}
               </button>
           </div>
         </div>
@@ -95,6 +96,7 @@
       selectedCard: null,
       isSubscriptionActivated: false,
       polling: 0,
+      loading: false,
     }),
 
     computed: {
@@ -103,7 +105,7 @@
         getActivatedStatus: 'subscriptions/getActivatedStatus',
         getSelectedSubscription: 'subscriptions/getSelectedSubscription',
         getCards: 'cards/getCards',
-        isFetching: 'cards/isFetching',
+        isFetching: 'subscriptions/getIsFetching',
         getActivePayment: 'services/getActivePayment',
       }),
       getTermsAndConditions(): string {
@@ -172,7 +174,7 @@
       },
 
       getAddress(): string {
-        return sessionStorage.getItem('address') as string;
+        return localStorage.getItem('address') as string;
       },
       onBack(): void {
         if (this.getActivePayment) {
@@ -184,3 +186,29 @@
     },
   });
 </script>
+
+<style>
+  .activate-button {
+    position: relative;
+  }
+
+  .loading {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 8%;
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+</style>

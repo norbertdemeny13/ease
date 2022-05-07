@@ -66,7 +66,7 @@
         copyToClipboard(this.code);
         (this as any).$toasts.toast({
           id: nanoid(),
-          message: this.$t('toast.referral_link_copied'),
+          message: this.$t('toast.profile_link_copied'),
           title: this.$t('toast.success_title'),
           intent: 'success',
         });

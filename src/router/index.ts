@@ -275,7 +275,7 @@ router.beforeEach(async (to, from, next) => {
   const getLocation = store.getters['address/getLocation'];
   const getToken = store.getters['session/getToken'];
   const getUserType = store.getters['session/getUserType'];
-  const hasLocation = getLocation || sessionStorage.getItem('city_id');
+  const hasLocation = getLocation || localStorage.getItem('city_id');
   const isNew = path.includes('new');
   const jwtToken = localStorage.getItem('jwt') && !localStorage.getItem('jwt')!.includes('undefined');
   const authToken = localStorage.getItem('auth') && !localStorage.getItem('auth')!.includes('undefined');
@@ -288,23 +288,35 @@ router.beforeEach(async (to, from, next) => {
     next('/');
   }
 
+  if ((to.name === 'Home' || to.name === 'ProHome') && getUserType === 'elite') {
+    next('/easepro/cont');
+  }
+
+  if (getUserType === 'elite' && to.fullPath.includes('/client/')) {
+    next('/easepro/');
+  }
+
+  if (query.referral_code) {
+    await store.dispatch('session/setReferralCode', query.referral_code);
+  }
+
   if (!getToken && authToken) {
     await store.dispatch('session/getUser');
     isAuthenticated = true;
   }
-
-  const getUser = store.getters['session/getUser'];
 
   if (!getToken && !authToken && jwtToken) {
     await store.dispatch('session/jwtLogin', localStorage.getItem('jwt'));
     isAuthenticated = true;
   }
 
-  if ((getToken || isAuthenticated) && name === 'Home' && getUser.user_type === 'user') {
+  const getUser = store.getters['session/getUser'];
+
+  if ((getToken || isAuthenticated) && name === 'Home' && getUserType === 'user') {
     next('/servicii');
   }
 
-  if ((getToken || isAuthenticated) && name === 'ProHome' && getUser.user_type === 'elite') {
+  if ((getToken || isAuthenticated) && name === 'ProHome' && getUserType === 'elite') {
     next('/easepro/cont');
   }
 
@@ -313,7 +325,10 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (path.includes('/rezerva/plata') && !getSelectedServices.length) {
-    next(`/servicii/${params.type}/${params.id}`);
+    const endpoint = params.type === 'single' || params.type === 'couple' 
+      ? `/servicii/masaj?type=${params.type}`
+      : `/servicii/${params.type}/${params.id}`;
+    next(endpoint);
   }
 
   if (path.includes('/servicii/') && hasLocation === 'null') {

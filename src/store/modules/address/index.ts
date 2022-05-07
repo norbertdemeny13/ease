@@ -71,7 +71,7 @@ export default {
     async setReservationAddress({ state, commit }, addressId) {
       const selectedAddress = state.addresses.find(address => address.id === addressId);
       if (selectedAddress) {
-        sessionStorage.setItem('city_id', selectedAddress.city.id);
+        localStorage.setItem('city_id', selectedAddress.city.id);
       }
       Vue.set(state, 'selectedReservationAddress', selectedAddress);
     },
@@ -95,7 +95,7 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         await api.create(`/users/addresses/${id}/set_default`);
-        sessionStorage.setItem('city_id', cityId);
+        localStorage.setItem('city_id', cityId);
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {
@@ -127,7 +127,7 @@ export default {
     },
     async fetchLocationById({ state, commit }) {
       Vue.set(state, 'isFetching', true);
-      const id = sessionStorage.getItem('city_id');
+      const id = localStorage.getItem('city_id');
       try {
         const { data } = await api.find(`/users/addresses/${id}`);
         commit('setLocationById', data);
@@ -155,10 +155,10 @@ export default {
       const selectedCity = location?.address_components
         .filter(item => item.types.includes('locality'));
       if (selectedCity) {
-        sessionStorage.setItem('city', selectedCity[0].short_name);
+        localStorage.setItem('city', selectedCity[0].short_name);
       }
-      sessionStorage.setItem('address', (location as any)?.formatted_address || null);
-      sessionStorage.setItem('city_id', (location as any)?.city_id || null);
+      localStorage.setItem('address', (location as any)?.formatted_address || null);
+      localStorage.setItem('city_id', (location as any)?.city_id || null);
     },
     setLocationById(state: State, location: Location) {
       Vue.set(state, 'locationById', location);

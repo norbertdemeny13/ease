@@ -4,6 +4,7 @@ import { ActionTree, MutationTree, GetterTree } from 'vuex';
 import { ModuleState, RootState } from '@/store/interfaces';
 import { USER } from '@/interfaces/User';
 import { api } from '@/services/api';
+import { router } from '@/router';
 import instance from '@/main';
 import { nanoid } from 'nanoid';
 
@@ -34,11 +35,19 @@ export default {
         const { data } = await api.find(`/users/elite/${id}`);
         Vue.set(state, 'elite', data);
       } catch ({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        if (reason.status == 404) {
+          await router.push('/servicii');
+        } else {
+          commit('common/setErrors', reason, { root: true });
+        }
       } finally {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async removeElite({ state, commit }) {
+      Vue.set(state, 'elite', {});
+    },
+
     async registerEliteStripe({ state, commit }, code) {
       Vue.set(state, 'isFetching', true);
       try {

@@ -227,7 +227,7 @@
     },
 
     created() {
-      this.userType = this.$router.currentRoute.path.includes('pro') ? 'elite' : 'client';
+      this.userType = this.$router.currentRoute.path.includes('easepro') ? 'elite' : 'client';
       this.isSignIn = this.modalType !== 'register';
       this.userType = this.type;
     },

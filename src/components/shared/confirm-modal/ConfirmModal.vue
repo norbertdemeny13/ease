@@ -19,18 +19,34 @@
               <slot name="message" />
             </div>
             <div class="d-flex justify-content-end">
-              <a
-                class="btn btn-sm btn-pill mr-2 my-4 px-4"
-                @click.prevent="onConfirm()"
-              >
-                {{ $t('subscription.cancel.yes') }}
-              </a>
-              <a
-                class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
-                @click.prevent="onCancel()"
-              >
-                {{ $t('subscription.cancel.no1') }}
-              </a>
+              <div v-if="reverse">
+                <a
+                  class="btn btn-sm btn-pill mr-2 my-4 px-4"
+                  @click.prevent="onConfirm()"
+                >
+                  {{ $t('subscription.cancel.yes') }}
+                </a>
+                <a
+                  class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
+                  @click.prevent="onCancel()"
+                >
+                  {{ $t('subscription.cancel.no1') }}
+                </a>
+              </div>
+              <div v-else>
+                <a
+                  class="btn btn-sm btn-pill mr-2 my-4 px-4"
+                  @click.prevent="onCancel()"
+                >
+                  {{ $t('generic.cancel_cta') }}
+                </a>
+                <a
+                  class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
+                  @click.prevent="onConfirm()"
+                >
+                  {{ $t('generic.confirm_cta') }}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -53,6 +69,10 @@
       cta: {
         default: 'Confirma',
         type: String,
+      },
+      reverse: {
+        default: false,
+        type: Boolean,
       },
     },
 

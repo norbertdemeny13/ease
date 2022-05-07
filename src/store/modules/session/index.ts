@@ -12,7 +12,7 @@ export interface State extends ModuleState {
   isAuth: boolean;
   isFetchingUser: boolean;
   user: USER;
-  refferalCode: string | null;
+  referralCode: string | null;
 }
 
 export default {
@@ -22,7 +22,7 @@ export default {
     isAuth: false,
     isFetchingUser: false,
     user: {},
-    refferalCode: null,
+    referralCode: null,
   }) as State,
 
   actions: {
@@ -30,6 +30,9 @@ export default {
       if (pass === 'qazwsx') {
         Vue.set(state, 'isAuth', true);
       }
+    },
+    setReferralCode({ state }, code) {
+      Vue.set(state, 'referralCode', code);
     },
     async updateUser({ state, commit }, user) {
       Vue.set(state, 'isFetchingUser', true);
@@ -108,6 +111,7 @@ export default {
     },
     async jwtLogin({ state, commit }, jwt) {
       Vue.set(state, 'isFetchingUser', true);
+      const refreshToken = localStorage.getItem('refreshToken');
       const userType = localStorage.getItem('userType');
       try {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
@@ -120,14 +124,34 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
+    async refreshToken({ state, commit }) {
+      Vue.set(state, 'isFetchingUser', true);
+      const userType = localStorage.getItem('userType');
+      const refreshToken = localStorage.getItem('refreshToken');
+      try {
+        const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
+          refresh_token: refreshToken!.slice(2),
+        });
+        commit('setUser', data);
+      } catch({ response: reason }) {
+        commit('common/setErrors', reason, { root: true });
+      }  finally {
+        Vue.set(state, 'isFetchingUser', false);
+      }
+    },
     async getUser({ state, commit, dispatch }) {
       Vue.set(state, 'isFetchingUser', true);
       const userType = localStorage.getItem('userType');
+
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
       } catch({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        if (!reason.status as unknown as number === 401) {
+          commit('common/setErrors', reason, { root: true });
+        } else {
+          dispatch('jwtLogin');
+        }
       }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -179,7 +203,8 @@ export default {
         });
         commit('setUser', data);
         if (!router.currentRoute.fullPath.includes('easepro/cont') && data.user_type === 'elite') {
-          const path = router.currentRoute.fullPath.includes('easepro') ? '/easepro/cont' : 'easepro/cont';
+          const replaceUrl = router.currentRoute.fullPath.includes('easepro') || router.currentRoute.fullPath.includes('pro/');
+          const path = replaceUrl ? '/easepro/cont' : 'easepro/cont';
           router.push(path);
         }
       } catch({ response: reason }) {
@@ -200,7 +225,7 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async resetPassword({ state, commit }, { password, token, type }) {
+    async resetPassword({ state, dispatch, commit }, { password, token, type }) {
       Vue.set(state, 'isFetchingUser', true);
       try {
         const { data } = await api.create(`/${type}/reset_password`, {
@@ -226,9 +251,9 @@ export default {
       localStorage.removeItem('jwt');
       localStorage.removeItem('auth');
       localStorage.removeItem('userType');
-      sessionStorage.removeItem('address');
-      sessionStorage.removeItem('city');
-      sessionStorage.removeItem('city_id');
+      localStorage.removeItem('address');
+      localStorage.removeItem('city');
+      localStorage.removeItem('city_id');
       commit('cards/resetCards', [], { root: true });
     },
     async signUp({ state, commit, dispatch }, { credentials, subscribe_to_marketing_emails_list, type }) {
@@ -240,7 +265,7 @@ export default {
         ? {
             user: {
               ...credentials,
-              referral_code: state.refferalCode,
+              referral_code: state.referralCode,
             },
           }
         : {
@@ -264,7 +289,7 @@ export default {
         commit('common/setErrors', reason, { root: true });
       } finally {
         Vue.set(state, 'isFetchingUser', false);
-        Vue.set(state, 'refferalCode', null);
+        Vue.set(state, 'referralCode', null);
       }
     },
     async requestValidationCode({ state, commit }, phone_number) {
@@ -314,7 +339,7 @@ export default {
     isFetchingUser: state => state.isFetchingUser,
     getToken: state => state.user && state.user.access_token,
     getUser: state => state.user,
-    getRefferalCode: state => state.refferalCode,
+    getReferralCode: state => state.referralCode,
     getUserDefaultAddress: state => state.user.default_address,
     getUserType: state => state.user?.user_type || localStorage.getItem('userType'),
     isAuthenticated: ({ user }) => user && (user as any)?.id,
@@ -333,9 +358,6 @@ export default {
     },
     setStatistics(state: State, data: any) {
       Vue.set(state, 'statistics', data);
-    },
-    setRefferalCode(state: State, code: any) {
-      Vue.set(state, 'refferalCode', code);
     },
   } as MutationTree<State>,
 };

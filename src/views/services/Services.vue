@@ -17,6 +17,7 @@
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesList, ServicesListSkeleton } from '@/components/features/services-list';
   import ogImage from '@/assets/jpg/lucreaza_cu_noi.jpg';
+  import { isEqual } from 'lodash-es';
 
   export default Vue.extend({
     name: 'es-services',
@@ -57,6 +58,20 @@
           }, 0);
         }
       },
+      $route: {
+        handler(newVal, oldVal) {
+          const { query } = newVal;
+          if (!isEqual(newVal, oldVal)) {
+            if (query && query.pro_id) {
+              this.fetchServices(query.pro_id);
+            } else {
+              this.fetchServices();
+            }
+          }
+        },
+        deep: true,
+      },
+
     },
 
     created() {
@@ -94,7 +109,7 @@
         }
 
         if (cityId) {
-          sessionStorage.setItem('city_id', cityId || null);
+          localStorage.setItem('city_id', cityId || null);
         }
 
         if (cityId && id) {

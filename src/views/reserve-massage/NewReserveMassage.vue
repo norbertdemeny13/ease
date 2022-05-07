@@ -1,9 +1,24 @@
 <template>
   <div class="content">
     <div class="es_reserve-massage-service-page container margin_30_20">
-      <a href="" class="back-button" @click.prevent="onBack()">
-        {{ $t('generic.back') }}
-      </a>
+      <div class="d-flex justify-content-between">
+        <a href="" class="back-button" @click.prevent="onBack()">
+          {{ $t('generic.back') }}
+        </a>
+        <div v-if="$router.currentRoute.query.pro_id" class="d-flex align-items-center">
+          <div class="profile-pic-container">
+            <figure>
+              <img v-if="getElite.avatar_path" :src="getElite.avatar_path" alt="Profile Pic" class="radius-50">
+              <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+            </figure>
+          </div>
+          <div class="d-flex align-getElites-center flex-column ml-2">
+            <span>Rezervi cu</span>
+            <span class="text-center">{{ getElite.display_name }}</span>
+            <div class="ml-2"><i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span></div>
+          </div>
+        </div>
+      </div>
       <es-reserve-massage-skeleton v-if="isFetching" />
       <div v-else class="row my-4">
         <div class="col-xl-6 col-lg-6 col-md-6 px-6">
@@ -111,6 +126,7 @@
 
     computed: {
       ...mapGetters({
+        getElite: 'elite/getElite',
         getServicesByType: 'services/getServicesByType',
         getServiceById: 'services/getServiceById',
         getSelectedServices: 'services/getSelectedServices',
@@ -268,6 +284,7 @@
       this.massageForm.type = type;
 
       if (query && query.pro_id) {
+        this.fetchElite({ id: query.pro_id });
         this.fetchServicesByType({ type, id: query.pro_id });
       } else {
         this.fetchServicesByType({ type });
@@ -276,6 +293,7 @@
 
     methods: {
       ...mapActions({
+        fetchElite: 'elite/fetchElite',
         fetchServicesByType: 'services/fetchServicesByType',
         fetchServiceById: 'services/fetchServiceById',
       }),
@@ -317,7 +335,7 @@
         }
 
         if (this.isAuthenticated) {
-          if (this.getUser.userType === 'elite') {
+          if (this.getUser.user_type === 'elite') {
             this.$toasts.toast({
               id: 'warning-toast',
               intent: 'warning',
@@ -354,3 +372,15 @@
     },
   });
 </script>
+
+<style type="text/css" scoped>
+  i.icon_star {
+    color: #fad055;
+    font-size: 1.3rem;
+  }
+
+  .profile-pic-container img {
+    width: 60px;
+    height: 60px;
+  }
+</style>
