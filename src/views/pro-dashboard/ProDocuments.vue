@@ -345,12 +345,6 @@
           practice_insurance: '',
           equipment_photos: '',
         };
-        this.$toasts.toast({
-          id: 'update-toast',
-          title: this.$t('toast.account_update'),
-          message: this.$t('toast.pro_uploaded_document'),
-          intent: 'success',
-        });
       },
       async onAccept() {
         this.user.accord_accepted = true;
@@ -374,7 +368,7 @@
     height: 19px;
   }
   h3.es-toast__title {
-    font-size: 26px;
-    line-height: 28px;
+    font-size: 19px;
+    line-height: 25px;
   }
 </style>

@@ -2857,6 +2857,10 @@ ul#top_menu li a.login::before {
   width: 100%;
   position: relative;
   margin: 0;
+
+  @media (max-width: 414px) {
+    height: 650px;
+  }
 }
 
 .hero .opacity-mask {
@@ -2896,6 +2900,32 @@ ul#top_menu li a.login::before {
   .opacity-mask p {
     font-size: 18px;
     font-family: SofiaProRegular !important;
+  }
+}
+
+.hero {
+  // dont show the waves on mobile -> hero section
+  .wave {
+    @media (max-width: 414px) {
+      display: none;
+    }
+  }
+}
+
+.pro-hero-mobile {
+  display: none;
+
+  @media (max-width: 414px) {
+    display: block;
+    margin: 20px 0 30px 0;
+    width: 100%;
+  }
+}
+
+.pro-hero-mobile-padding {
+  @media (max-width: 414px) {
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
   }
 }
 

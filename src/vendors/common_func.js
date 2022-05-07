@@ -236,8 +236,14 @@
         0: {
           items: 1
         },
-        560: {
-          items: 1
+
+        320: {
+          items: 1,
+          margin: 0,
+          singleItem: true,
+          stagePadding: 0,
+          navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+          nav: true,
         },
         768: {
           items: 1

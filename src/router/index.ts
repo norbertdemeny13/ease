@@ -2,8 +2,10 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import { store } from '@/store';
+import Meta from 'vue-meta';
 
 Vue.use(VueRouter);
+Vue.use(Meta);
 
 const routes: Array<RouteConfig> = [
   {
