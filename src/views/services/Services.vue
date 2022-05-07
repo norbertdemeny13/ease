@@ -16,7 +16,6 @@
   import Vue from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { ServicesList, ServicesListSkeleton } from '@/components/features/services-list';
-  import ogImage from '@/assets/jpg/lucreaza_cu_noi.jpg';
   import { isEqual } from 'lodash-es';
 
   export default Vue.extend({
@@ -29,12 +28,12 @@
     /* eslint-disable */
     metaInfo: {
       title: 'Obtine o experienta ca la salon in siguranta casei tale',
-      titleTemplate: null,
+      titleTemplate: '',
       description: 'Descopera serviciile Ease si bucura-te de o experienta personalizata, preturi transparente, fara sa irosesti timp in trafic sau in sali de asteptare.',
       meta: [
         { name: 'og:title', content: 'Obtine o experienta ca la salon in siguranta casei tale' },
         { name: 'og:description', content: 'Descopera serviciile Ease si bucura-te de o experienta personalizata, preturi transparente, fara sa irosesti timp in trafic sau in sali de asteptare.' },
-        { name: 'og:image', content: ogImage },
+        { name: 'og:image', content: require('@/assets/jpg/lucreaza_cu_noi.jpg') },
       ],
     },
 
