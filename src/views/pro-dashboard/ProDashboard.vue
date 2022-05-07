@@ -9,12 +9,12 @@
           <span>{{ $t('views.pro_dashboard.interview_done_info') }}</span>
         </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" v-show="index < 4" class="p-1 m-1">
+          <div v-for="(link, index) in getSidebarLinks" v-show="index < 4" :key="link.id" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" v-show="index + 3 >= getSidebarLinks.length" class="p-1 m-1">
+          <div v-for="(link, index) in getSidebarLinks" v-show="index + 3 >= getSidebarLinks.length" :key="link.id" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>

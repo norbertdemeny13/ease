@@ -84,25 +84,23 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   /* eslint-disable */
   import { PricingPlan } from '@/components/shared/pricing-plan';
-  import ogImage from '@/assets/jpg/fb-thumb-abonamente.jpg';
 
   export default Vue.extend({
     name: 'es-subscriptions',
 
-    /* eslint-disable */
     metaInfo: {
       title: 'Activeaza un abonament Ease si economisesti pana la 25%',
-      titleTemplate: null,
+      titleTemplate: '',
       description: 'Beneficiaza de pana la 25% discount la toate serviciile Ease, plus te bucuri de prioritate la preluarea rezervarii tale de catre profesionisti la orele de varf.',
       meta: [
         { name: 'og:title', content: 'Activeaza un abonament Ease si economisesti pana la 25%' },
         { name: 'og:description', content: 'Beneficiaza de pana la 25% discount la toate serviciile Ease, plus te bucuri de prioritate la preluarea rezervarii tale de catre profesionisti la orele de varf.' },
-        { name: 'og:image', content: ogImage },
+        { name: 'og:image', content: require('@/assets/jpg/fb-thumb-abonamente.jpg'), },
       ],
     },
 
@@ -119,9 +117,9 @@
       ...mapGetters({
         getAllSubscriptions: 'subscriptions/getAllSubscriptions'
       }),
-      getSubscriptionsInformation(): any {
+      getSubscriptionsInformation() {
         return this.getAllSubscriptions
-          .map((subscription: any) => ({
+          .map((subscription) => ({
             ...subscription,
             subscriptionList: subscription.data,
           }));
@@ -133,14 +131,14 @@
     },
 
     mounted() {
-      (window as any).initEase();
+      window.initEase();
     },
 
     methods: {
       ...mapActions({
         fetchSubscriptions: 'subscriptions/fetchSubscriptions',
       }),
-      scrollToElement(): void {
+      scrollToElement() {
         const el = this.$el.getElementsByClassName('pricing-plan-container')[0];
 
         if (el) {

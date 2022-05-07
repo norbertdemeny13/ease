@@ -61,16 +61,6 @@
       ariaHidden: true,
     }), // data
 
-    created() {
-      const body = document.querySelector('body');
-      body.style.overflow = 'hidden';
-    },
-
-    beforeDestroy() {
-      const body = document.querySelector('body');
-      body.style.overflow = 'auto';
-    },
-
     computed: {
       headerId() {
         return `${this.id}-header`;
@@ -80,6 +70,16 @@
         return `${this.id}-body`;
       },
     }, // computed
+
+    beforeDestroy() {
+      const body = document.querySelector('body');
+      body.style.overflow = 'auto';
+    },
+
+    created() {
+      const body = document.querySelector('body');
+      body.style.overflow = 'hidden';
+    },
 
     mounted() {
       this.ariaHidden = false;

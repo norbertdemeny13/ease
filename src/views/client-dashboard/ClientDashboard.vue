@@ -3,12 +3,12 @@
     <div class="container margin_30_20">
       <div class="row bg-white">
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" class="p-1 m-1" v-show="index < 6">
+          <div v-for="(link, index) in getSidebarLinks" v-show="index < 6" :key="link.id" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
-          <div v-for="(link, index) in getSidebarLinks" :key="link.id" class="p-1 m-1" v-show="index + 6 >= getSidebarLinks.length">
+          <div v-for="(link, index) in getSidebarLinks" v-show="index + 6 >= getSidebarLinks.length" :key="link.id" class="p-1 m-1">
             <router-link :to="link.to">{{ link.label }}</router-link>
           </div>
         </div>

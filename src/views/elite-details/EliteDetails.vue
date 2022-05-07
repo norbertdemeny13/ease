@@ -31,7 +31,7 @@
             <div class="col-md-8 info-container">
               <div class="favourite-container">
                 <h3 class="mr-3 mb-0">{{ getEliteName }}</h3>
-                <div v-if="getUserType !== 'elite'" >
+                <div v-if="getUserType !== 'elite'">
                   <i
                     v-if="getIsFavourite"
                     class="icon_heart"
