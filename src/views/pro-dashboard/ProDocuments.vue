@@ -345,6 +345,12 @@
           practice_insurance: '',
           equipment_photos: '',
         };
+        this.$toasts.toast({
+          id: 'update-toast',
+          title: this.$t('toast.account_update'),
+          message: this.$t('toast.pro_uploaded_document'),
+          intent: 'success',
+        });
       },
       async onAccept() {
         this.user.accord_accepted = true;
