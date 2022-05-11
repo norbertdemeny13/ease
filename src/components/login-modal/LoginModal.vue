@@ -62,7 +62,7 @@
                   <input @click.prevent="onSubmit()" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
                   {{ $t('generic.no_account_yet') }}
 
-                  <a @click.prevent="isSignIn = false" href="">
+                  <a @click.prevent="isSignIn = false" href="" class="text-pink">
                     {{ $t('generic.sign_up') }}
 
                   </a>

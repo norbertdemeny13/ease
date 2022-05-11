@@ -6,7 +6,7 @@
         <div class="custom-container-info custom-home-container pb-6 pt-0 mt-0">
           <div class="d-flex col-sm-12 col-lg-6 custom-image-padding">
             <img
-              src="@/assets/jpg/servicii.jpg"
+              src="@/assets/jpg/homepage-1.jpg"
               alt="Servicii"
             >
           </div>
@@ -28,7 +28,7 @@
           </div>
           <div class="d-flex reverse-order col-sm-12 col-lg-6 custom-image-padding">
             <img
-              src="@/assets/jpg/abonamente.jpg"
+              src="@/assets/jpg/homepage-2.jpg"
               alt="Abonamente"
             >
           </div>
@@ -36,7 +36,7 @@
         <div class="custom-container-info custom-home-container pt-6">
           <div class="d-flex col-sm-12 col-lg-6 custom-image-padding">
             <img
-              src="@/assets/jpg/faq.jpg"
+              src="@/assets/jpg/homepage-3.jpg"
               alt="Faq"
             >
           </div>

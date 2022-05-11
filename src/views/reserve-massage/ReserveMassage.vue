@@ -72,7 +72,7 @@
             </div>
             <div v-if="massageForm.form === 'aromaterapeutic'" class="d-flex flex-column align-items-center">
               <h6>{{ $t('generic.add_aromatherapeutic_oil') }}</h6>
-              <a href="#modal-dialog" class="modal_dialog" @click.prevent>{{ $t('generic.learn_more') }}</a>
+              <a href="#modal-dialog" class="modal_dialog text-pink" @click.prevent>{{ $t('generic.learn_more') }}</a>
             </div>
             <es-additional-services
               :services="getComplementaryServices"

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="custom-container-info pb-6 pt-0">
           <div class="d-flex col-sm-12 col-lg-5 custom-image-padding">
-            <img src="@/assets/jpg/servicii.jpg" alt="Servicii" />
+            <img src="@/assets/jpg/ln1.jpg" alt="Servicii" />
           </div>
           <div class="text-content mt-4 col-sm-12 col-lg-7">
             <div
@@ -59,21 +59,17 @@
                 <img src="@/assets/svg/linie-web.svg" alt="linie" />
                 {{ $t("views.pro_home.photo2_text4") }}
               </p>
-              <p class="my-2 text-left">
-                <img src="@/assets/svg/linie-web.svg" alt="linie" />
-                {{ $t("views.pro_home.photo2_text2") }}
-              </p>
             </div>
           </div>
           <div
             class="d-flex reverse-order col-sm-12 col-lg-5 custom-image-padding"
           >
-            <img src="@/assets/jpg/abonamente.jpg" alt="Abonamente" />
+            <img src="@/assets/jpg/ln2.jpg" alt="Abonamente" />
           </div>
         </div>
         <div class="custom-container-info py-6">
           <div class="d-flex col-sm-12 col-lg-5 custom-image-padding">
-            <img src="@/assets/jpg/faq.jpg" alt="Faq" />
+            <img src="@/assets/jpg/ln3.jpg" alt="Faq" />
           </div>
           <div class="text-content mt-4 col-sm-12 col-lg-7">
             <div
