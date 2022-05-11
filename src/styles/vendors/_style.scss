@@ -2850,7 +2850,7 @@ ul#top_menu li a.login::before {
 
 /*-------- 1.5 Heros/Above the fold  --------*/
 .hero {
-  background: #fbe1e1 url(../assets/svg/homepage.svg) left top no-repeat;
+  background: #fbe1e1 url(../assets/svg/homepage-hero.svg) left top no-repeat;
   background-size: cover;
   background-position: center center;
   height: 620px;
@@ -2862,6 +2862,20 @@ ul#top_menu li a.login::before {
     height: 650px;
   }
 }
+
+  .hero.inner_pages {
+    background: #fbe1e1 url(../assets/jpg/abonamente-page.jpg) left top no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 620px;
+    width: 100%;
+    position: relative;
+    margin: 0;
+  
+    @media (max-width: 414px) {
+      height: 650px;
+    }
+  }
 
 .hero .opacity-mask {
   display: flex;
@@ -7869,6 +7883,12 @@ ul.plan-features {
       margin-bottom: 0;
     }
   }
+
+  .experience,
+  .language {
+    margin-bottom: 20px;
+  }
+
   .es_reviews-container__item {
     margin-bottom: 35px;
     .user-name {
@@ -7886,6 +7906,10 @@ ul.plan-features {
       font-size: 18px;
     }
   }
+  .back-button {
+    position: relative;
+    top: 20px;
+  }
 }
 
 .stripe-account {
@@ -7900,8 +7924,7 @@ ul.plan-features {
       padding-top: 0;
     }
     .back-button {
-      position: relative;
-      top: 10px;
+      padding-left: 72px;
     }
     .details-container {
       width: 70%;
@@ -7914,6 +7937,10 @@ ul.plan-features {
     .certificate,
     .language {
       justify-content: center;
+    }
+    .experience,
+    .language {
+      margin-bottom: 0;
     }
     .info-container {
       padding-left: 40px;
@@ -7942,7 +7969,7 @@ ul.plan-features {
   .es_reserve-service-container {
     .pricing-plan-title {
       position: absolute;
-      right: 60px;
+      right: 10px;
     }
   }
 

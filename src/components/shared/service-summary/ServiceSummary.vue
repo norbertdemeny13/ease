@@ -44,7 +44,7 @@
           </div>
           <h5 v-if="getCategoryType() !== 'couple'" class="d-flex align-self-start">{{ getServicePrice(item) }} Lei</h5>
         </div>
-        <div v-if="item.serviceType !== 'beauty'">
+        <div v-if="item.serviceType !== 'beauty'" class="service-type">
           <li v-if="item.isWithAromaterapeutic" class="ml-2">
             <span>{{ $t('aroma_therapy') }}</span><span>{{ item.terapeuticForm.price }}</span>
           </li>

@@ -188,6 +188,12 @@
     font-size: 16px;
 }
 
+.es_reserve-service-container .custom-service-info span,
+.es_reserve-service-container .custom-service-info span,
+.es_reserve-service-container .service-type {
+    font-size: 14px;
+}
+
 .es_reserve-service-container .box_order .main ul li.total strong {
     font-weight: 400;
     font-family: SofiaProMedium!important;
@@ -402,7 +408,7 @@
 }
 
 .extra-services-container .custom-text h5{
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .extra-services-container:hover{
@@ -559,6 +565,10 @@
 .es_services-container .address-search-container .alert-danger:before,
 .es_subscription-details-container .address-search-container .alert-danger:before {
     border-bottom-color: #f8dad7;
+}
+
+.text-pink {
+    color: #d00078;
 }
 
 @media (min-width: 767px) {

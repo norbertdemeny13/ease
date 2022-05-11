@@ -33,7 +33,7 @@
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
             <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
-          <li v-if="isCoupleMassage || isSingleMassage" :key="`${i}info`" class="ml-2">{{ `Terapeut ${$t(service.genre)}` }}</li>
+          <li v-if="isCoupleMassage || isSingleMassage" :key="`${i}info`" class="ml-2 service-type">{{ `Terapeut ${$t(service.genre)}` }}</li>
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-2">
             <strong>{{ complementaryService.count ? `${complementaryService.count} x` : '' }} {{ $t(complementaryService.name) }}</strong> <span>{{ `${complementaryService.price} Lei` }}</span>
           </li>
@@ -41,7 +41,7 @@
             <li v-if="service.therapeuticForm && parseInt(service.therapeuticForm.price, 10) > 0" :key="service.therapeuticForm.id" class="d-flex justify-content-between ml-2">
               <strong>{{ $t('aroma_therapy') }}</strong> <span>{{ `${service.therapeuticForm.price} Lei` }}</span>
             </li>
-            <li v-else :key="`${i}-classic`" class="ml-2"><strong>{{ $t('classic') }}</strong></li>
+            <li v-else :key="`${i}-classic`" class="ml-2 service-type"><strong>{{ $t('classic') }}</strong></li>
           </div>
         </template>
         <es-divider />

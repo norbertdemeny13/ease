@@ -1,7 +1,7 @@
 /* eslint-disable vue/html-indent */
 <template>
   <div class="es_elite-details-container bg_gray content">
-    <a class="back-button pl-10" href="" @click.prevent="onBack()">
+    <a class="back-button" href="" @click.prevent="onBack()">
       {{ $t('generic.back') }}
     </a>
     <div class="container margin_30_20">
