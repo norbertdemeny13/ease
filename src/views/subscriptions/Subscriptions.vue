@@ -27,7 +27,6 @@
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo1_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo1_body') }}</p>
-            <img src="@/assets/png/arrow_about.png" alt="" class="arrow_1">
           </div>
         </div>
         <div class="col-lg-6 text-center ">
@@ -55,7 +54,6 @@
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo2_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo2_body') }}</p>
-            <img src="@/assets/png/arrow_about.png" alt="" class="arrow_2">
           </div>
         </div>
       </div>

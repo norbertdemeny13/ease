@@ -34,7 +34,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="!getHours.length" class="p-2">
+            <div v-if="!getHours.length" class="p-2 text-center">
               <img src="@/assets/svg/no-time.svg" width="40" height="40">
               <p>{{ $t('calendar.elite_unavailable') }}</p>
             </div>
