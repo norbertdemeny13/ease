@@ -2860,11 +2860,12 @@ ul#top_menu li a.login::before {
 
   @media (max-width: 414px) {
     height: 650px;
+    background-position: right 62% bottom 0;
   }
 }
 
   .hero.inner_pages {
-    background: #fbe1e1 url(../assets/jpg/abonamente-page.jpg) left top no-repeat;
+    background: #fbe1e1 url(../assets/jpg/abonamente-page2.jpeg) left top no-repeat;
     background-size: cover;
     background-position: center center;
     height: 620px;
@@ -6898,7 +6899,7 @@ img.mfp-img {
   #es-modal-dialog {
     .forgot-password-modal-wrapper {
       .form-group > i {
-        top: 50%;
+        top: 64%;
       }
     }
   }
