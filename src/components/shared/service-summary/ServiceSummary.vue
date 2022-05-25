@@ -37,7 +37,7 @@
         <span class="custom-service">Serviciu {{ index + 1 }}</span>
         <div class="d-flex justify-content-between align-items-center flex-inline custom-service-info">
           <div>
-            <h6>{{ $t(item.name) }}</h6>
+            <h6>{{ $t(item.name) }} {{ getCategoryType() === 'single' ? `${item.massageForm.duration} min` : '' }}</h6>
             <div v-if="getCategoryType() === 'couple' || getCategoryType() === 'single'" class="ml-2">
               <span>{{ `Terapeut ${$t(item.massageForm.genre)}` }}</span>
             </div>
@@ -99,7 +99,7 @@
       },
 
       eliteId: {
-        required: true,
+        default: null,
         type: Number || null,
       },
     },

@@ -31,7 +31,7 @@
         <template v-for="(service, i) in reservationServices">
           <li v-if="reservationServices.length > 1" :key="i">Serviciu {{ i + 1 }}</li>
           <li :key="`${service.id}-summary`" class="d-flex justify-content-between">
-            <strong>{{ $t(service.name) }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
+            <strong>{{ $t(service.name) }} {{ isSingleMassage ? `${service.duration} min` : '' }}</strong><span v-if="!isCoupleMassage">{{ `${service.price} Lei` }}</span>
           </li>
           <li v-if="isCoupleMassage || isSingleMassage" :key="`${i}info`" class="ml-2 service-type">{{ `Terapeut ${$t(service.genre)}` }}</li>
           <li v-for="complementaryService in service.complementaryServices" :key="`${complementaryService.id}-${service.id}`" class="d-flex justify-content-between ml-2">
@@ -105,7 +105,7 @@
       },
 
       eliteId: {
-        required: true,
+        default: null,
         type: Number || null,
       },
     },
@@ -190,6 +190,7 @@
             price: reservationService.price,
             id: reservationService.id,
             genre: reservationService.elite_gender,
+            duration: reservationService.service.duration,
             complementaryServices: reservationService.complementary_massages
               .map(item => ({ name: item.name, price: item.price, id: item.id })),
             therapeuticForm: reservationService.therapeutic_form,

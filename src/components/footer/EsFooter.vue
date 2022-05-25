@@ -1,5 +1,5 @@
 <template>
-  <footer :class="`${$router.currentRoute.fullPath.includes('pro') ? 'is-pro' : ''}`">
+  <footer :class="`${$router.currentRoute.fullPath.includes('easepro') ? 'is-pro' : ''}`">
     <div :class="getFooterClasses" />
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
