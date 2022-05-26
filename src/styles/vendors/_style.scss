@@ -2860,7 +2860,7 @@ ul#top_menu li a.login::before {
 
   @media (max-width: 414px) {
     height: 650px;
-    background-position: right 62% bottom 0;
+    background-position: right 68% bottom 0;
   }
 }
 
@@ -2915,15 +2915,6 @@ ul#top_menu li a.login::before {
   .opacity-mask p {
     font-size: 18px;
     font-family: SofiaProRegular !important;
-  }
-}
-
-.hero {
-  // dont show the waves on mobile -> hero section
-  .wave {
-    @media (max-width: 414px) {
-      display: none;
-    }
   }
 }
 
