@@ -3,6 +3,10 @@
 import Vue from 'vue';
 import Portal from 'portal-vue';
 
+// Metadata library
+import VueMeta from 'vue-meta'
+Vue.use(VueMeta)
+
 // Application styles
 import '@/styles/main.scss';
 
