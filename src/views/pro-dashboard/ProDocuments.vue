@@ -314,7 +314,11 @@
     created() {
       this.user = { ...this.getUser };
       if (this.getStartPoll && !this.getUser.stripe_account_created) {
-        this.polling = setInterval(this.fetchElite({ id: this.getUser.id }), 5000);
+        const { id } = this.getUser;
+        const { fetchElite } = this;
+        this.polling = setInterval(function() {
+          fetchElite({ id });
+        }, 3000);
       }
     },
     watch: {
@@ -323,6 +327,9 @@
           clearInterval(this.polling);
         }
       },
+    },
+    destroyed() {
+      clearInterval(this.polling);
     },
     methods: {
       ...mapActions({

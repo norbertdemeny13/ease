@@ -24,13 +24,13 @@
                   class="btn btn-sm btn-pill mr-2 my-4 px-4"
                   @click.prevent="onConfirm()"
                 >
-                  {{ $t('subscription.cancel.yes') }}
+                  {{ confirmCta }}
                 </a>
                 <a
                   class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
                   @click.prevent="onCancel()"
                 >
-                  {{ $t('subscription.cancel.no1') }}
+                  {{ cancelCta }}
                 </a>
               </div>
               <div v-else>
@@ -38,13 +38,13 @@
                   class="btn btn-sm btn-pill mr-2 my-4 px-4"
                   @click.prevent="onCancel()"
                 >
-                  {{ $t('generic.cancel_cta') }}
+                  {{ cancelCta }}
                 </a>
                 <a
                   class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
                   @click.prevent="onConfirm()"
                 >
-                  {{ $t('generic.confirm_cta') }}
+                  {{ confirmCta }}
                 </a>
               </div>
             </div>
@@ -66,8 +66,12 @@
         required: true,
         type: Boolean,
       },
-      cta: {
-        default: 'Confirma',
+      cancelCta: {
+        default: 'Nu, anuleaza',
+        type: String,
+      },
+      confirmCta: {
+        default: 'Da, seteaza',
         type: String,
       },
       reverse: {

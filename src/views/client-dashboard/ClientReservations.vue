@@ -183,14 +183,26 @@
         </div>
       </div>
     </div>
-    <es-confirm-modal v-if="isPaidCancelation" v-model="isConfirmModalOpen" cta="Anuleaza contracost" @on-confirm="onContinue()">
+    <es-confirm-modal
+      v-if="isPaidCancelation"
+      v-model="isConfirmModalOpen"
+      :cancel-cta="$t('bookings.details.cancel.100.button1')"
+      :confirm-cta="$t('bookings.details.cancel.100.button2')"
+      @on-confirm="onContinue()"
+    >
       <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
       <template slot="message">
         <p>{{ getCancelationText }}</p>
         <p>{{ $t('generic.this') }} <a href="tbd" target="_blank">{{ $t('generic.cancel_policy') }}</a> {{ $t('generic.cancel_policy_description') }}</p>
       </template>
     </es-confirm-modal>
-    <es-confirm-modal v-else v-model="isConfirmModalOpen" cta="Da, anuleaza gratuit" @on-confirm="onContinue()">
+    <es-confirm-modal
+      v-else
+      v-model="isConfirmModalOpen"
+      :cancel-cta="$t('bookings.details.cancel.free.button1')"
+      :confirm-cta="$t('bookings.details.cancel.free.button2')"
+      @on-confirm="onContinue()"
+    >
       <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
       <template slot="message">
         <p>{{ $t('bookings.details.cancel.free.title') }}</p>

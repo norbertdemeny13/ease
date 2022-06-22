@@ -205,7 +205,7 @@
   "bookings.details.cancel.100.body": "Pentru anularea rezervarii in acest moment suma platita nu se mai ramburseaza",
   "bookings.details.cancel.100.bottom": "Aceasta politica de anulare este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte posibile rezervari.",
   "bookings.details.cancel.100.button1": "Nu anulez",
-  "bookings.details.cancel.100.button2": "Anuleaza contra cost",
+  "bookings.details.cancel.100.button2": "Da, Anuleaza contra cost",
   "bookings.details.cancel.20.body": "Pentru anularea rezervarii in acest moment se va retine o taxa de 20% din valoarea rezervarii",
   "bookings.details.cancel.20.bottom": "Aceasta politica de anulare este in vigoare pentru a compensa profesionistii pentru rezervarea timpului si renuntarea la alte posibile rezervari.",
   "bookings.details.cancel.20.button1": "Nu anulez",
