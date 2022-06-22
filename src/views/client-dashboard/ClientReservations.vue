@@ -1,7 +1,7 @@
 <template>
   <div class="es_client-reservations-container content">
     <div class="row">
-      <div class="col-md-8 col-sm-6">
+      <div class="col-md-10 col-sm-12">
         <h2>{{ $t('generic.my_reservations') }}</h2>
         <es-divider v-if="getReservationList.length" />
         <div v-if="isListView">
@@ -84,7 +84,7 @@
                 <div class="ml-2">
                   <span>{{ getStatus(item.status) }}</span>
                 </div>
-                <div class="my-4">
+                <div class="my-4 text-center">
                   <a class="pricing-plan-link" href="" @click.prevent="onSelect(item)">
                     {{ $t('generic.view_details') }}
                   </a>
@@ -112,7 +112,7 @@
             <ul class="summary_list">
               <li class="d-flex align-items-center">
                 <div v-for="job in getReservationJobs(selectedReservation)" :key="job.id" class="d-flex flex-column align-items-center">
-                  <figure class="mb-0">
+                  <figure class="mb-0 text-center">
                     <img
                       v-if="job.avatar"
                       class="radius-50 m-1"
@@ -124,7 +124,7 @@
                     >
                     <img
                       v-else
-                      class="radius-50 m-1"
+                      class="radius-50 m-1 text-center"
                       src="@/assets/svg/pro-placeholder.svg"
                       alt=""
                       width="40px"
