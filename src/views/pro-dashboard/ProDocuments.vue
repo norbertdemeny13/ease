@@ -315,9 +315,9 @@
       this.user = { ...this.getUser };
       if (this.getStartPoll && !this.getUser.stripe_account_created) {
         const { id } = this.getUser;
-        const { fetchElite } = this;
+        const { fetchUser } = this;
         this.polling = setInterval(function() {
-          fetchElite({ id });
+          fetchUser();
         }, 3000);
       }
     },
@@ -335,7 +335,7 @@
       ...mapActions({
         uploadDocuments: 'elite/uploadDocuments',
         updateElite: 'session/updateElite',
-        fetchElite: 'elite/fetchElite',
+        fetchUser: 'session/getUser',
       }),
       handleFilesChanged(files, type) {
         this.$data.documents[type] = [...this.$data.documents[type], ...files];

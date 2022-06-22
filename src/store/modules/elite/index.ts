@@ -43,9 +43,6 @@ export default {
           commit('common/setErrors', reason, { root: true });
         }
       } finally {
-        if (state.elite.stripe_account_created) {
-          Vue.set(state, 'startPoll', false);
-        }
         Vue.set(state, 'isFetching', false);
       }
     },

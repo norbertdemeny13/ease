@@ -139,13 +139,15 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async getUser({ state, commit, dispatch }) {
+    async getUser({ state, rootState, commit, dispatch }) {
       Vue.set(state, 'isFetchingUser', true);
       const userType = localStorage.getItem('userType');
-
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
+        if (data.stripe_account_created) {
+          (rootState as any).elite.startPoll = false;
+        }
       } catch({ response: reason }) {
         if (!reason.status as unknown as number === 401) {
           commit('common/setErrors', reason, { root: true });
