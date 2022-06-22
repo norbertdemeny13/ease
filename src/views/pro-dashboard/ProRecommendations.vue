@@ -58,8 +58,8 @@
       }),
     },
     created() {
-      const { id } = this.getUser;
-      this.code = `https://ease.ro/pro/${id}`;
+      const eliteId = this.getUser.elite_id;
+      this.code = `https://ease.ro/pro/${eliteId}`;
     },
     methods: {
       onCopy(): void {

@@ -208,7 +208,7 @@
 
     watch: {
       isLoginModalOpen(newVal) {
-        if (!newVal) {
+        if (!newVal && !this.isForgotPasswordModalOpen) {
           this.userType = 'client';
         }
       },

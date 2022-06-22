@@ -330,7 +330,13 @@
       if (query && query.code && !stripe_account_created) {
         this.registerEliteStripe(query.code);
       }
+
       this.user = { ...this.getUser };
+
+      if (!this.user.started_working_at) {
+        this.user.started_working_at = getUtcToZonedTime(new Date()).toDateString();
+      }
+
     },
 
     watch: {

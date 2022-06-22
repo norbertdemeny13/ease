@@ -234,7 +234,6 @@
             <div class="row">
               <a
                 href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IDbPymgaaHlsJq1g3xI16XaVjnxHBl5o"
-                target="_blank"
                 :class="`btn btn-sm btn-pink btn-pill px-6 documents-button ${!getUser.interview_done ? 'disabled' : ''}`"
               >
                 {{ $t('views.pro_dashboard.bank_account_button') }}
@@ -292,6 +291,7 @@
         practice_insurance: '',
         equipment_photos: '',
       },
+      polling: null,
       isCalendlyModalOpen: false,
       isTermsAndConditionsModalOpen: false,
       user: {
@@ -301,6 +301,7 @@
     computed: {
       ...mapGetters({
         getUser: 'session/getUser',
+        getStartPoll: 'elite/getStartPoll',
       }),
       isInterviewPossible() {
         const {
@@ -312,11 +313,22 @@
     },
     created() {
       this.user = { ...this.getUser };
+      if (this.getStartPoll && !this.getUser.stripe_account_created) {
+        this.polling = setInterval(this.fetchElite(this.getUser.id), 5000);
+      }
+    },
+    watch: {
+      getStartPoll(newVal) {
+        if (!newVal) {
+          clearInterval(this.polling);
+        }
+      },
     },
     methods: {
       ...mapActions({
         uploadDocuments: 'elite/uploadDocuments',
         updateElite: 'session/updateElite',
+        fetchElite: 'elite/fetchElite',
       }),
       handleFilesChanged(files, type) {
         this.$data.documents[type] = [...this.$data.documents[type], ...files];

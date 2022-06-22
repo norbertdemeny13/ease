@@ -274,8 +274,8 @@
       },
 
       onForgotPassword() {
-        this.$emit('show-forgot-password-modal', true);
         this.$emit('is-open', false);
+        this.$emit('show-forgot-password-modal', true);
       },
     },
   });

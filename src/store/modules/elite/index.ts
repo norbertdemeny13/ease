@@ -15,6 +15,7 @@ export interface State extends ModuleState {
   eliteReviews: [];
   statistics: any;
   stripeSSO: any;
+  startPoll: boolean;
 }
 
 export default {
@@ -26,6 +27,7 @@ export default {
     eliteFavorites: [],
     eliteReviews: [],
     stripeSSO: null,
+    startPoll: false,
   }) as State,
 
   actions: {
@@ -41,6 +43,9 @@ export default {
           commit('common/setErrors', reason, { root: true });
         }
       } finally {
+        if (state.elite.stripe_account_created) {
+          Vue.set(state, 'startPoll', false);
+        }
         Vue.set(state, 'isFetching', false);
       }
     },
@@ -55,6 +60,7 @@ export default {
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {
+        Vue.set(state, 'startPoll', true);
         Vue.set(state, 'isFetching', false);
       }
     },
@@ -149,6 +155,7 @@ export default {
     getElite: state => state.elite,
     getEliteReviews: state => state.eliteReviews,
     getEliteFavorites: state => state.eliteFavorites,
+    getStartPoll: state => state.startPoll,
   } as GetterTree<State, RootState>,
 
   mutations: {

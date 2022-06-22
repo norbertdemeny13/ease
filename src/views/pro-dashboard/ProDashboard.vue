@@ -49,7 +49,10 @@
         getUser: 'session/getUser',
       }),
       getSidebarLinks(): Link[] {
-        return PRO_SIDEBAR_LINKS.map((item: Link) => ({ ...item, id: nanoid() }));
+        const isPending = this.getUser.status === 'pending';
+        return PRO_SIDEBAR_LINKS
+          .map((item: Link) => ({ ...item, id: nanoid() }))
+          .filter((item: Link) => (item.to === 'promoveaza' ? !isPending : true));
       },
     },
     created() {
