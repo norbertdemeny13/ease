@@ -314,7 +314,7 @@
     created() {
       this.user = { ...this.getUser };
       if (this.getStartPoll && !this.getUser.stripe_account_created) {
-        this.polling = setInterval(this.fetchElite(this.getUser.id), 5000);
+        this.polling = setInterval(this.fetchElite({ id: this.getUser.id }), 5000);
       }
     },
     watch: {
