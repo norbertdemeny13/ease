@@ -97,6 +97,10 @@
       await this.fetchActiveSubscriptions();
     },
 
+    destroyed() {
+      this.setServiceCategory('');
+    },
+
     methods: {
       ...mapActions({
         fetchActiveSubscriptions: 'subscriptions/fetchActiveSubscriptions',

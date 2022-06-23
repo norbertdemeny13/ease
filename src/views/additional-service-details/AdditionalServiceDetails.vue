@@ -103,8 +103,12 @@
     methods: {
       async onContinue() {
         const { service } = this;
+        const { type } = this.$router.currentRoute.params;
+        const serviceType = type === 'fitness' ? type : 'beauty';
+
         const selectedService = {
           ...this.service,
+          serviceType,
           tempServiceId: nanoid(),
         };
 

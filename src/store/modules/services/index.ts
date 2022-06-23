@@ -192,6 +192,7 @@ export default {
     },
 
     async createExtraServiceReservation({ state, dispatch, commit }) {
+      console.log(state.serviceCategory, 'fasz');
       if (state.serviceCategory === 'massages') {
         return;
       }

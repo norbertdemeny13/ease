@@ -119,7 +119,7 @@
           const { category, uuid } = service;
           endpoint = `/servicii/${category}/${uuid}`;
         } else {
-          endpoint = '/servicii/';
+          endpoint = '/servicii';
         }
 
         if (query && query.pro_id) {

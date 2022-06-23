@@ -95,36 +95,52 @@
                     <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}</span>
                     <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}</span>
                 </div>
-                <div v-if="userType === 'elite'">
-                  <div class="form-group radio_c_group">
-                    <div class="checkboxes float-left">
-                      <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">{{ $t('generic.terms_and_conditions_agreement') }}
-                        <input type="checkbox" :checked="terms_and_conditions ? 'checked': ''">
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                    <div class="checkboxes float-left">
-                      <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
-                        <input type="checkbox" :checked="subscribe_to_marketing_emails_list ? 'checked': ''">
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                    <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2 custom-marketing">
-                      <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
-                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
-                        <span class="checkmark"></span>
-                      </label>
-                      <label @click.prevent="form.beauty_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.beauty') }}
-                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
-                        <span class="checkmark"></span>
-                      </label>
-                      <label @click.prevent="form.fitness_marketing = !form.fitness_marketing" class="container_check">{{ $t('generic.fitness') }}
-                        <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
+
+                <label>{{ $t('generic.are') }}</label>
+                <div class="form-group radio_c_group ml-1 mb-0">
+                  <label @click="form.gender = 'female'" class="container_radio">{{ $t('generic.female') }}
+                    <input type="radio" value="checkbox" name="gender" :checked="`${form.gender  === 'female' ? 'checked' : ''}`">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label @click="form.gender = 'male'" class="container_radio">{{ $t('generic.male') }}
+
+                    <input type="radio" value="checkbox" name="gender" :checked="`${form.gender !== 'female' ? 'checked' : ''}`">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+
+                <div v-if="userType === 'elite'" class="form-group radio_c_group ml-1">
+                  <div class="checkboxes float-left">
+                    <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">{{ $t('generic.terms_and_conditions_agreement') }}
+                      <input type="checkbox" :checked="terms_and_conditions ? 'checked': ''">
+                      <span class="checkmark"></span>
+                    </label>
                   </div>
                 </div>
+
+                <div class="form-group radio_c_group ml-1">
+                  <div class="checkboxes float-left">
+                    <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
+                      <input type="checkbox" :checked="subscribe_to_marketing_emails_list ? 'checked': ''">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2 custom-marketing">
+                    <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
+                      <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
+                      <span class="checkmark"></span>
+                    </label>
+                    <label @click.prevent="form.beauty_marketing = !form.beauty_marketing" class="container_check">{{ $t('generic.beauty') }}
+                      <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.beauty_marketing ? 'checked' : ''}`">
+                      <span class="checkmark"></span>
+                    </label>
+                    <label @click.prevent="form.fitness_marketing = !form.fitness_marketing" class="container_check">{{ $t('generic.fitness') }}
+                      <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.fitness_marketing ? 'checked' : ''}`">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+
                 <div class="clearfix add_bottom_15">
                   <div class="text-center">
                     <input @click.prevent="onSubmit()" type="submit" value="Inregistreaza-te" class="btn_1 full-width mb_5">
@@ -199,6 +215,7 @@
         massage_marketing: true,
         beauty_marketing: true,
         fitness_marketing: true,
+        gender: 'female',
       },
       subscribe_to_marketing_emails_list: false,
       terms_and_conditions: false,
