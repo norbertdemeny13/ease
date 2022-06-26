@@ -4,7 +4,7 @@
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
         <div v-for="item in footerLinks" :key="item.id" class="col-lg-3 col-md-6">
-          <h3 :data-target="`#${item.id}`">{{ item.category }}</h3>
+          <h3 :data-target="`#${item.id}`">{{ $t(item.category) }}</h3>
           <div :id="item.id" :key="item.id" class="collapse dont-collapse-sm links">
             <ul>
               <li v-for="link in item.list" :key="link.label">
@@ -13,15 +13,15 @@
                   href=""
                   @click="onClick($event)"
                 >
-                  {{ link.label }}
+                  {{ $t(link.label) }}
                 </a>
                 <router-link
                   v-else-if="link.to"
                   :to="link.to"
                 >
-                  {{ link.label }}
+                  {{ $t(link.label) }}
                 </router-link>
-                <span v-else>{{ link.label }}</span>
+                <span v-else>{{ $t(link.label) }}</span>
               </li>
             </ul>
           </div>
@@ -30,6 +30,16 @@
       <!-- /row-->
       <div class="row my-3">
         <div class="col-lg-6 d-flex flex-row">
+          <ul class="footer-selector clearfix">
+            <li>
+              <div class="styled-select lang-selector">
+                <select @change="onLanguageChange">
+                  <option value="ro" :selected="selectedLanguage === 'ro'">{{ $t('generic.ro') }}</option>
+                  <option value="en" :selected="selectedLanguage === 'en'">{{ $t('generic.en') }} </option>
+                </select>
+              </div>
+            </li>
+          </ul>
           <figure>
             <img
               src="@/assets/icons/apple-music-ease.svg"
@@ -105,6 +115,7 @@
       isClientWave: false,
       isContactWave: false,
       isFAQWave: false,
+      selectedLanguage: 'ro',
     }),
 
     computed: {
@@ -141,12 +152,24 @@
       this.isClientWave = this.$router.currentRoute.fullPath.includes('client/') || this.$router.currentRoute.fullPath.includes('pro/');
       this.isContactWave = this.$router.currentRoute.fullPath.includes('contact');
       this.isFAQWave = this.$router.currentRoute.fullPath.includes('intrebari-frecvente');
+      const lang = localStorage.getItem('lang');
+
+      if (lang !== this.$root.$i18n.locale) {
+        this.$root.$i18n.locale = lang;
+      }
+
+      this.selectedLanguage = this.$root.$i18n.locale;
     },
 
     methods: {
       onClick(event: any): void {
         event.preventDefault();
         this.$root.$emit('on-show-elite-register');
+      },
+      async onLanguageChange($event) {
+        const lang = $event.target.value || 'ro';
+        this.$root.$i18n.locale = lang;
+        localStorage.setItem('lang', lang);
       },
     },
   });

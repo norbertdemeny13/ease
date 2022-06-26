@@ -10,7 +10,7 @@
           <div v-for="c in faq" :key="c.category" class="col-lg-4 col-md-6">
             <a class="box_topic" href="" @click.prevent="setCategory(c.category)">
               <span><i :class="c.icon" /></span>
-              <h3>{{ c.title }}</h3>
+              <h3>{{ $t(c.title) }}</h3>
             </a>
           </div>
         </div>
@@ -21,7 +21,7 @@
         <div v-for="c in faq" :key="c.category" class="col-lg-4 col-md-6">
           <a class="box_topic" href="" @click.prevent="setCategory(c.category)">
             <span><i :class="c.icon" /></span>
-            <h3>{{ c.title }}</h3>
+            <h3>{{ $t(c.title) }}</h3>
           </a>
           <es-faq-list v-if="selectedCategory === c.category" :list="getFaqListByCategory(c.category)" />
         </div>

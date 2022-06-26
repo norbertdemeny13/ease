@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
       <div class="main_title center">
-        <h3>{{ list.title }}</h3>
+        <h3>{{ $t(list.title) }}</h3>
       </div>
 
       <div id="accordion_group" role="tablist" class="add_bottom_15 accordion">
@@ -14,13 +14,13 @@
                 :href="`#${item.category}`"
                 aria-expanded="true"
                 class="toggle"
-              ><i class="indicator icon_plus" />{{ item.question }}</a>
+              ><i class="indicator icon_plus" />{{ $t(item.question) }}</a>
             </h5>
           </div>
 
           <div :id="item.category" class="collapse" role="tabpanel" data-parent="#accordion_group">
             <div class="card-body">
-              <p v-html="item.answer" />
+              <p v-html="$t(item.answer)" />
             </div>
           </div>
         </div>

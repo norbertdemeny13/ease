@@ -96,20 +96,22 @@
                     <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}</span>
                 </div>
 
-                <label>{{ $t('generic.are') }}</label>
-                <div class="form-group radio_c_group ml-1 mb-0">
-                  <label @click="form.gender = 'female'" class="container_radio">{{ $t('generic.female') }}
-                    <input type="radio" value="checkbox" name="gender" :checked="`${form.gender  === 'female' ? 'checked' : ''}`">
-                    <span class="checkmark"></span>
-                  </label>
-                  <label @click="form.gender = 'male'" class="container_radio">{{ $t('generic.male') }}
+                <div v-if="userType !== 'elite'">
+                  <label>{{ $t('generic.are') }}</label>
+                  <div class="form-group radio_c_group ml-1 mb-0">
+                    <label @click="form.gender = 'female'" class="container_radio">{{ $t('generic.female') }}
+                      <input type="radio" value="checkbox" name="gender" :checked="`${form.gender  === 'female' ? 'checked' : ''}`">
+                      <span class="checkmark"></span>
+                    </label>
+                    <label @click="form.gender = 'male'" class="container_radio">{{ $t('generic.male') }}
 
-                    <input type="radio" value="checkbox" name="gender" :checked="`${form.gender !== 'female' ? 'checked' : ''}`">
-                    <span class="checkmark"></span>
-                  </label>
+                      <input type="radio" value="checkbox" name="gender" :checked="`${form.gender !== 'female' ? 'checked' : ''}`">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
                 </div>
 
-                <div v-if="userType === 'elite'" class="form-group radio_c_group ml-1">
+                <div class="form-group radio_c_group ml-1">
                   <div class="checkboxes float-left">
                     <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">{{ $t('generic.terms_and_conditions_agreement') }}
                       <input type="checkbox" :checked="terms_and_conditions ? 'checked': ''">
@@ -125,7 +127,7 @@
                       <span class="checkmark"></span>
                     </label>
                   </div>
-                  <div v-if="subscribe_to_marketing_emails_list" class="ml-4 mt-2 custom-marketing">
+                  <div v-if="subscribe_to_marketing_emails_list && userType === 'elite'" class="ml-4 mt-2 custom-marketing">
                     <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
                       <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
                       <span class="checkmark"></span>
@@ -256,7 +258,7 @@
       }),
 
       async onSubmit() {
-        if (this.userType === 'elite' && !this.terms_and_conditions && !this.isSignIn) {
+        if (!this.terms_and_conditions && !this.isSignIn) {
           (this as any).$toasts.toast({
             id: 'warning-toast',
             intent: 'warning',

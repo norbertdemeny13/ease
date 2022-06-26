@@ -1,8 +1,6 @@
-import { i18n } from '@/i18n';
-
 export const MASSAGE_FILTERS_SINGLE = [
   {
-    label: i18n.t('massage.massageDuration'),
+    label: 'massage.massageDuration',
     key: 'duration',
     choices: [
       {
@@ -20,33 +18,33 @@ export const MASSAGE_FILTERS_SINGLE = [
     ],
   },
   {
-    label: i18n.t('massage.gender'),
+    label: 'massage.gender',
     key: 'genre',
     choices: [
       {
-        label: i18n.t('massage.genderF'),
+        label: 'massage.genderF',
         value: 'feminin',
       },
       {
-        label: i18n.t('massage.genderAny'),
+        label: 'massage.genderAny',
         value: 'oricare',
       },
       {
-        label: i18n.t('massage.genderM'),
+        label: 'massage.genderM',
         value: 'masculin',
       },
     ],
   },
   {
-    label: i18n.t('massage.form'),
+    label: 'massage.form',
     key: 'form',
     choices: [
       {
-        label: i18n.t('form.classic'),
+        label: 'form.classic',
         value: 'classic',
       },
       {
-        label: i18n.t('form.aromatherapeutic'),
+        label: 'form.aromatherapeutic',
         value: 'aromaterapeutic',
       },
     ],
@@ -55,39 +53,39 @@ export const MASSAGE_FILTERS_SINGLE = [
 
 export const MASSAGE_FILTERS_COUPLE = [
   {
-    label: i18n.t('generic.therapist_number'),
+    label: 'generic.therapist_number',
     key: 'terapeut',
     choices: [
       {
-        label: i18n.t('generic.one_therapist'),
+        label: 'generic.one_therapist',
         value: 'single',
       },
       {
-        label: i18n.t('generic.two_therapists'),
+        label: 'generic.two_therapists',
         value: 'double',
       },
     ],
   },
   {
-    label: i18n.t('massage.gender'),
+    label: 'massage.gender',
     key: 'genre',
     choices: [
       {
-        label: i18n.t('massage.genderF'),
+        label: 'massage.genderF',
         value: 'feminin',
       },
       {
-        label: i18n.t('massage.genderAny'),
+        label: 'massage.genderAny',
         value: 'oricare',
       },
       {
-        label: i18n.t('massage.genderM'),
+        label: 'massage.genderM',
         value: 'masculin',
       },
     ],
   },
   {
-    label: i18n.t('massage.massageDuration'),
+    label: 'massage.massageDuration',
     key: 'duration',
     choices: [
       {
