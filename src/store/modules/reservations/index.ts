@@ -8,7 +8,7 @@ export interface State extends ModuleState {
   isFetching: boolean;
   activeReservations: [];
   canceledReservation: null;
-  pastReservations: [];
+  pastReservations: any;
   upcomingReservations: [];
   reservation: any;
 }
@@ -19,7 +19,10 @@ export default {
   state: () => ({
     activeReservations: [],
     isFetching: false,
-    pastReservations: [],
+    pastReservations: {
+      items: [],
+      pagy: {},
+    },
     upcomingReservations: [],
     canceledReservation: null,
     reservation: null,
@@ -48,11 +51,19 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-    async fetchPastReservations({ state, commit }) {
+
+    async fetchPastReservations({ state, commit }, params) {
       Vue.set(state, 'isFetching', true);
+      let qs = Object.keys(params)
+        .filter(key => params[key])
+        .map(key => `${key}=${params[key]}`)
+        .join('&');
+
       try {
-        const { data } = await api.find('/users/reservations/past');
-        Vue.set(state, 'pastReservations', data);
+        const { data } = await api.find(`/users/reservations/past?${qs}`);
+        const combinedArray = state.pastReservations.items.concat(data.items);
+        const newData = { ...data, items: combinedArray };
+        Vue.set(state, 'pastReservations', newData);
       } catch ({ response: reason }) {
         commit('common/setErrors', reason, { root: true });
       } finally {

@@ -11,7 +11,10 @@
             </div>
             <div class="main custom-subscriptions">
               <div class="d-flex justify-content-between pb-2 align-items-center flex-inline">
-                <h5>{{ $t(getSelectedSubscription.primary_service_name) }}</h5>
+                <h5>
+                  {{ getSelectedSubscription.category === 'beauty' ? $t(getSelectedSubscription.primary_service_name) : $t(getSelectedSubscription.name) }}
+                  <span v-if="getSelectedSubscription.category === 'massage'">{{ getSelectedSubscription.duration ? `${getSelectedSubscription.duration} min` : '' }}</span>
+                </h5>
                 <h6>{{ getSelectedSubscription.price.price }} Lei / {{ getSelectedSubscription.monthly ? 'Luna' : 'An' }}</h6>
               </div>
               <div class="d-flex border-top pt-4 justify-content-between align-items-center flex-inline">

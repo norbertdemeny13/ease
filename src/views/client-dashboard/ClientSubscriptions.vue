@@ -8,7 +8,10 @@
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div v-if="hasSubscription">
-          <h6 class="mt-4">Servicii: {{ $t(getActiveSubscription.subscription.primary_service_name) }} {{ getActiveSubscription.subscription.duration ? `${getActiveSubscription.subscription.duration} min` : '' }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 class="mt-4">
+            {{ $t('generic.califications') }}: {{ getActiveSubscription.subscription.category === 'beauty' ? $t(getActiveSubscription.subscription.primary_service_name) : $t(getActiveSubscription.subscription.name) }}
+            <span v-if="getActiveSubscription.category === 'massage'">{{ getActiveSubscription.subscription.duration ? `${getActiveSubscription.subscription.duration} min` : '' }}</span>
+          </h6>
           <ul class="summary_list">
             <div v-if="hasActiveSubscription">
               <li><strong>{{ $t('views.client_dashboard.subscriptions.next_bill') }} </strong>{{ getActiveSubscription.state === 'active' ? getActiveSubscription.active_until.substr(0, 10) : getActiveSubscription.active_from.substr(0, 10) }}</li>

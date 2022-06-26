@@ -90,6 +90,13 @@
                   </a>
                 </div>
               </div>
+              <div v-if="canAddMore" class="d-flex align-items-center justify-content-center">
+                <div class="my-4 text-center">
+                  <a class="pricing-plan-link" href="" @click.prevent="onAddMore">
+                    {{ $t('generic.load_more') }}
+                  </a>
+                </div>
+              </div>
             </div>
             <div v-else class="d-flex align-items-center justify-content-between my-2 mx-4">
               <h4>{{ $t('views.client_dashboard.my_reservations.description') }} {{ selectedType === 'upcoming' ? $t('generic.future') : $t('generic.previous') }}</h4>
@@ -225,6 +232,13 @@
       isConfirmModalOpen: false,
       selectedType: 'upcoming',
       selectedReservation: null,
+      dataMeta: {
+        items: 10,
+        page: 1,
+        city_id: null,
+        status: null,
+        service: null,
+      },
     }),
 
     computed: {
@@ -235,6 +249,11 @@
         getReservation: 'reservations/getReservation',
         getCanceledReservation: 'reservations/getCanceledReservation',
       }),
+      canAddMore() {
+        const { last } = this.getPastReservations.pagy;
+        const { page } = this.dataMeta;
+        return page < last && this.selectedType !== 'upcoming';
+      },
       canCancelReservation() {
         const statuses = [
           'waiting_confirmation',
@@ -264,7 +283,7 @@
         return [...this.getActiveReservations, ...this.getUpcomingReservations];
       },
       getReservationList() {
-        return this.selectedType === 'upcoming' ? this.getUpcomingAndActiveReservations : this.getPastReservations;
+        return this.selectedType === 'upcoming' ? this.getUpcomingAndActiveReservations : this.getPastReservations.items;
       },
       getCreatedReservationDate() {
         return getZonedDateTime(this.selectedReservation.created_at);
@@ -339,7 +358,7 @@
     created() {
       this.fetchActiveReservations();
       this.fetchUpcomingReservations();
-      this.fetchPastReservations();
+      this.fetchPastReservations(this.dataMeta);
     },
 
     watch: {
@@ -356,6 +375,10 @@
           });
         }
       },
+    },
+
+    beforeDestroy() {
+      this.dataMeta.page = 1;
     },
 
     methods: {
@@ -433,6 +456,15 @@
           name = item.reservation_service.service.name;
         }
         return name;
+      },
+
+      onAddMore() {
+        const { last } = this.getPastReservations.pagy;
+        this.dataMeta.page += 1;
+
+        if (this.dataMeta.page <= last) {
+          this.fetchPastReservations({ ...this.dataMeta });
+        }
       },
 
       async onContinue() {
