@@ -126,7 +126,7 @@
         from_name: '',
         from_email: '',
         value: 100,
-        message: '',
+        message: 'Sper sa te bucuri de cardul cadou Ease',
         send_at: '',
         card_design_id: null,
       },

@@ -101,7 +101,7 @@
   </footer>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { nanoid } from 'nanoid';
   import { FOOTER_LINKS, PRO_FOOTER_LINKS } from '@/constants/footer-links';
@@ -162,7 +162,7 @@
     },
 
     methods: {
-      onClick(event: any): void {
+      onClick(event) {
         event.preventDefault();
         this.$root.$emit('on-show-elite-register');
       },
