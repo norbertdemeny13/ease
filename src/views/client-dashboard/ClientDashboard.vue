@@ -4,18 +4,18 @@
       <div class="row bg-white">
         <div v-show="clientSize < 767" class="col-6 mt-4">
           <div v-for="(link, index) in getSidebarLinks" v-show="index < 6" :key="link.id" class="p-1 m-1">
-            <router-link :to="link.to">{{ link.label }}</router-link>
+            <router-link :to="link.to">{{ $t(link.label) }}</router-link>
           </div>
         </div>
         <div v-show="clientSize < 767" class="col-6 mt-4">
           <div v-for="(link, index) in getSidebarLinks" v-show="index + 6 >= getSidebarLinks.length" :key="link.id" class="p-1 m-1">
-            <router-link :to="link.to">{{ link.label }}</router-link>
+            <router-link :to="link.to">{{ $t(link.label) }}</router-link>
           </div>
         </div>
         <hr v-show="clientSize < 767" class="w-100">
         <div v-show="clientSize > 767" class="col-md-3 border-right mt-4">
           <div v-for="link in getSidebarLinks" :key="link.id" class="p-1 m-1">
-            <router-link :to="link.to">{{ link.label }}</router-link>
+            <router-link :to="link.to">{{ $t(link.label) }}</router-link>
           </div>
         </div>
         <div class="col-md-9 mt-4">

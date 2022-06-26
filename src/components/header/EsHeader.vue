@@ -45,7 +45,7 @@
                       @click.prevent="onNavLinkClick(link.to)"
                     >
                       <a href="">
-                        {{ link.label }}
+                        {{ $t(link.label) }}
                       </a>
                     </li>
                     <li>
@@ -99,7 +99,7 @@
               <router-link
                 :to="link.to"
               >
-                {{ link.label }}
+                {{ $t(link.label) }}
               </router-link>
             </li>
           </ul>
