@@ -5802,6 +5802,10 @@ ul.additional_links li a:hover {
   outline: none;
 }
 
+.styled-select select option {
+  color: #000;
+}
+
 .styled-select select:focus {
   color: #fff;
   outline: none;
