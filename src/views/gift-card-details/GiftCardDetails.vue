@@ -118,19 +118,21 @@
       'es-datepicker': Datepicker,
     },
 
-    data: () => ({
-      amountList: [50, 100, 150, 250, 500],
-      form: {
-        name: '',
-        email: '',
-        from_name: '',
-        from_email: '',
-        value: 100,
-        message: $t('gift_card_message'),
-        send_at: '',
-        card_design_id: null,
-      },
-    }),
+    data() {
+      return {
+        amountList: [50, 100, 150, 250, 500],
+        form: {
+          name: '',
+          email: '',
+          from_name: '',
+          from_email: '',
+          value: 100,
+          message: this.$t('gift_card_message').toString(),
+          send_at: '',
+          card_design_id: null,
+        },
+      };
+    },
 
     computed: {
       ...mapGetters({
