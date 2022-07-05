@@ -52,6 +52,13 @@ export default {
       }
     },
 
+    resetPastReservations({ state }) {
+      Vue.set(state, 'pastReservations', {
+        items: [],
+        pagy: {},
+      });
+    },
+
     async fetchPastReservations({ state, commit }, params) {
       Vue.set(state, 'isFetching', true);
       let qs = Object.keys(params)

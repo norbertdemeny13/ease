@@ -379,11 +379,13 @@
 
     beforeDestroy() {
       this.dataMeta.page = 1;
+      this.resetPastReservations();
     },
 
     methods: {
       ...mapActions({
         fetchUpcomingReservations: 'reservations/fetchUpcomingReservations',
+        resetPastReservations: 'reservations/resetPastReservations',
         fetchPastReservations: 'reservations/fetchPastReservations',
         fetchActiveReservations: 'reservations/fetchActiveReservations',
         showReservation: 'reservations/showReservation',
