@@ -43,12 +43,7 @@
             </div>
           </div>
           <div class="mt-4 mb-4 box_order">
-            <div class="head">
-              <h3>Abonamente</h3>
-            </div>
-            <div class="main">
-              <es-subscription-selection @set-active-subscription="setActiveSubscription" />
-            </div>
+            <es-subscription-selection @set-active-subscription="setActiveSubscription" />
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
