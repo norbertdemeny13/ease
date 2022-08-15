@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <div class="mt-4 mb-4 box_order">
+          <div v-show="!isReservationConfirmed" class="mt-4 mb-4 box_order">
             <es-subscription-selection @set-active-subscription="setActiveSubscription" />
           </div>
         </div>

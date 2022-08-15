@@ -82,7 +82,6 @@ export default {
       Vue.set(state, 'isFetching', true);
       try {
         const { data } = await api.find('/users/user_subscriptions');
-        console.log(data, 'fasz');
         if (data) {
           commit('setActiveSubscription', data);
           commit('setActiveSubscriptions', data);

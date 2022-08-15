@@ -62,7 +62,7 @@
 
       <ul class="clearfix">
         <li v-if="activeSubscription">Discount Ab. {{ activeSubscription.subscription.discount }}%<span>{{ getDiscount }} Lei</span></li>
-        <li>{{ $t('bookings.details.subTotal') }}<span>{{ getTotal }} Lei</span></li>
+        <li>{{ $t('bookings.details.subTotal') }}<span>{{ time.price }} Lei</span></li>
         <li v-if="showTotal" class="total">{{ $t('bookings.details.totalCharged') }}<span>{{ getTotal - getDiscount }} Lei</span></li>
       </ul>
     </div>

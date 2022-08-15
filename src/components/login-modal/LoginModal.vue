@@ -122,12 +122,12 @@
 
                 <div class="form-group radio_c_group ml-1">
                   <div class="checkboxes float-left">
-                    <label class="container_check" @click.prevent="subscribe_to_marketing_emails_list = !subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
-                      <input type="checkbox" :checked="subscribe_to_marketing_emails_list ? 'checked': ''">
+                    <label class="container_check" @click.prevent="form.subscribe_to_marketing_emails_list = !form.subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
+                      <input type="checkbox" :checked="form.subscribe_to_marketing_emails_list ? 'checked': ''">
                       <span class="checkmark"></span>
                     </label>
                   </div>
-                  <div v-if="subscribe_to_marketing_emails_list && userType === 'elite'" class="ml-4 mt-2 custom-marketing">
+                  <div v-if="form.subscribe_to_marketing_emails_list && userType === 'elite'" class="ml-4 mt-2 custom-marketing">
                     <label @click.prevent="form.massage_marketing = !form.massage_marketing" class="container_check">{{ $t('generic.massage') }}
                       <input type="checkbox" value="checkbox" name="user-type" :checked="`${form.massage_marketing ? 'checked' : ''}`">
                       <span class="checkmark"></span>
@@ -218,8 +218,8 @@
         beauty_marketing: true,
         fitness_marketing: true,
         gender: 'female',
+        subscribe_to_marketing_emails_list: false,
       },
-      subscribe_to_marketing_emails_list: false,
       terms_and_conditions: false,
       isSignIn: true,
     }),
@@ -270,7 +270,7 @@
         }
 
         const { name } = this.$router.currentRoute;
-        const { form, userType, subscribe_to_marketing_emails_list } = this;
+        const { form, userType } = this;
 
         if (this.isSignIn) {
           await this.login({
@@ -283,7 +283,6 @@
         } else {
           await this.signUp({
             credentials: form,
-            subscribe_to_marketing_emails_list,
             type: userType,
           });
           if (name === 'Home' && userType !== 'elite') {
