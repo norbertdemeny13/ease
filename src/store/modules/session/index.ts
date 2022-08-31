@@ -7,6 +7,7 @@ import { api } from '@/services/api';
 import instance from '@/main';
 import { nanoid } from 'nanoid';
 import { router } from '@/router';
+import { getUtcToZonedTime, getDifferenceInMinutes } from '@/utils/date-helpers';
 
 export interface State extends ModuleState {
   isAuth: boolean;
@@ -109,10 +110,19 @@ export default {
         Vue.set(state, 'isFetchingUser', false);
       }
     },
-    async jwtLogin({ state, commit }, jwt) {
+    async jwtLogin({ dispatch, state, commit }, jwt) {
       Vue.set(state, 'isFetchingUser', true);
-      const refreshToken = localStorage.getItem('refreshToken');
+      const refreshToken = localStorage.getItem('jwt');
       const userType = localStorage.getItem('userType');
+
+      const isTokenExpired = localStorage.getItem('expire_at') !== 'undefined'
+        ? getUtcToZonedTime(localStorage.getItem('expire_at'))
+        : null;
+
+      if (isTokenExpired && getDifferenceInMinutes(isTokenExpired) < 60) {
+        dispatch('refreshToken');
+      }
+
       try {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: jwt.slice(2),
@@ -126,8 +136,9 @@ export default {
     },
     async refreshToken({ state, commit }) {
       Vue.set(state, 'isFetchingUser', true);
+      const refreshToken = localStorage.getItem('jwt');
       const userType = localStorage.getItem('userType');
-      const refreshToken = localStorage.getItem('refreshToken');
+
       try {
         const { data } = await api.update(`/${userType === 'elite' ? 'elites' : 'users'}/sessions`, {
           refresh_token: refreshToken!.slice(2),
@@ -142,6 +153,14 @@ export default {
     async getUser({ state, rootState, commit, dispatch }) {
       Vue.set(state, 'isFetchingUser', true);
       const userType = localStorage.getItem('userType');
+      const isTokenExpired = localStorage.getItem('expire_at') !== 'undefined'
+        ? getUtcToZonedTime(localStorage.getItem('expire_at'))
+        : null;
+
+      if (isTokenExpired && getDifferenceInMinutes(isTokenExpired) < 60) {
+        dispatch('refreshToken');
+        return;
+      }
       try {
         const { data } = await api.find(`/${userType === 'elite' ? 'elite' : 'user'}`);
         commit('setUser', data);
@@ -351,6 +370,12 @@ export default {
     setUser(state: State, data: any) {
       const refreshToken = data?.refresh_token;
       const authToken = data?.access_token;
+      const expireAt = data?.expire_at;
+
+      if (data && expireAt) {
+        localStorage.setItem('expire_at', expireAt);
+      }
+
       if (data && refreshToken) {
         localStorage.setItem('jwt', `Jh${data.refresh_token}`);
         localStorage.setItem('auth', `Kn${data.access_token}`);
