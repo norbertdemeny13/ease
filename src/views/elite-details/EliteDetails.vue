@@ -58,6 +58,14 @@
               >
                 <p>{{ $t('pro_status_is_blocked_or_paused') }}</p>
               </div>
+              <div
+                v-else-if="!getElite.located_in_current_users_city"
+                role="alert"
+                class="alert alert-danger"
+              >
+                <p>{{ $t('toast.wrong_service_address') }}</p>
+              </div>
+              <div v-else></div>
               <div class="d-flex justify-content-start">
                 <button
                   :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'} ${getUserType === 'elite' ? 'disabled' : '' }`"
