@@ -35,7 +35,12 @@
         </div>
       </div>
     </div>
-    <es-confirm-modal v-model="isConfirmModalOpen" @on-confirm="onContinue()">
+    <es-confirm-modal
+      v-model="isConfirmModalOpen"
+      :confirm-cta="isActiveSubscription && selectedCard.primary ? '' : $t('cards.delete')"
+      :cancel-cta="isActiveSubscription ? $t('form.button') : ''"
+      @on-confirm="onContinue()"
+    >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">
         <span v-html="getConfirmationModalMessage" />
@@ -67,7 +72,14 @@
     }),
 
     computed: {
-      ...mapGetters({ getCards: 'cards/getCards' }),
+      ...mapGetters({
+        getActiveSubscription: 'subscriptions/getActiveSubscription',
+        getCards: 'cards/getCards',
+      }),
+
+      isActiveSubscription(): boolean {
+        return this.getActiveSubscription?.state === 'active';
+      },
 
       getConfirmationModalTitle(): string {
         return this.modalTitle;
@@ -83,12 +95,12 @@
         if (!newVal) {
           this.fetchCards();
           if (this.method === 'remove' && this.getCards.length > 0) {
-            (this as any).$toasts.toast({
-              id: 'remove-card',
-              title: this.$t('toast.success_title'),
-              message: this.$t('toast.remove_card'),
-              intent: 'success',
-            });
+            // (this as any).$toasts.toast({
+            //   id: 'remove-card',
+            //   title: this.$t('toast.success_title'),
+            //   message: this.$t('toast.remove_card'),
+            //   intent: 'success',
+            // });
           }
         }
       },
@@ -101,6 +113,7 @@
 
     created() {
       this.fetchCards();
+      this.fetchActiveSubscriptions();
     },
 
     methods: {
@@ -109,6 +122,7 @@
         setDefaultCard: 'cards/setDefaultCard',
         removeCard: 'cards/removeCard',
         addCard: 'cards/addCard',
+        fetchActiveSubscriptions: 'subscriptions/fetchActiveSubscriptions',
       }),
 
       getCardInfo(card: any): string {
@@ -136,7 +150,9 @@
         this.method = 'remove';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
-        this.modalMessage = `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
+        this.modalMessage = this.isActiveSubscription && card.primary
+          ? `${this.$t('user.subscriptions_active').toString()}`
+          : `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
         this.isConfirmModalOpen = true;
       },
 

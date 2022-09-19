@@ -51,6 +51,13 @@
                 <i class="icon_star" /><span class="mt-1 ml-2">{{ Number(getElite.rating) > 0 ? getElite.rating : '0.0' }}</span>
               </div>
               <p>{{ getElite.last_booking }}</p>
+              <div
+                v-if="getElite.status === 'paused' || getElite.status === 'blocked'"
+                role="alert"
+                class="alert alert-danger"
+              >
+                <p>{{ $t('pro_status_is_blocked_or_paused') }}</p>
+              </div>
               <div class="d-flex justify-content-start">
                 <button
                   :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'} ${getUserType === 'elite' ? 'disabled' : '' }`"
@@ -163,6 +170,7 @@
         getElite: 'elite/getElite',
         getEliteFavorites: 'elite/getEliteFavorites',
         getEliteReviews: 'elite/getEliteReviews',
+        isAuthenticated: 'session/isAuthenticated',
       }),
       getEliteName() {
         const firstName = this.getElite?.first_name;
@@ -282,5 +290,9 @@
   img.disabled {
     background-color: #000;
     opacity: 0.4;
+  }
+
+  .unavailable {
+    background: #e2e2e2;
   }
 </style>

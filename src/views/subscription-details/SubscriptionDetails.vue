@@ -173,12 +173,26 @@
         }
 
         const { params, query } = this.$router.currentRoute;
-        const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
         const id = address?.id;
-        const cityId = address?.city?.id;
+        const city = address.address_components
+          ? address.address_components.filter(item => item.types.includes('locality'))
+          : address.city;
+
+        let cityId = city.id;
+
+        if (!cityId) {
+          cityId = city[0]?.short_name?.toLowerCase().includes('cluj') ? 1 : 2;
+        }
+
+        const period = query.tip === 'monthly' ? '?monthly=true' : '?monthly=false';
+
         const endpoint = period ? `${this.serviceType}${period}` : this.serviceType;
 
         if (cityId) {
+          localStorage.setItem('city_id', cityId || null);
+        }
+
+        if (cityId && id) {
           await this.setDefaultAddress({ id, cityId });
         }
 

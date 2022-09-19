@@ -97,8 +97,8 @@
     watch: {
       getUser(newVal) {
         if (newVal.phone_number) {
-          this.$emit('show-phone-confirmation-modal', true);
           this.$emit('is-open', false);
+          this.$emit('show-phone-confirmation-modal', true);
         }
       },
     },
@@ -113,7 +113,8 @@
       },
 
       async requestPhoneNumberValidationCode() {
-        await this.requestValidationCode(this.formattedPhoneNumber);
+        const phone = this.formattedPhoneNumber || this.getUser.phone_number;
+        await this.requestValidationCode(phone);
       },
     },
   });

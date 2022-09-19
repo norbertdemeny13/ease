@@ -129,7 +129,7 @@ export default {
         });
         commit('setUser', data);
       } catch({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        // commit('common/setErrors', reason, { root: true });
       }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }
@@ -145,7 +145,7 @@ export default {
         });
         commit('setUser', data);
       } catch({ response: reason }) {
-        commit('common/setErrors', reason, { root: true });
+        // commit('common/setErrors', reason, { root: true });
       }  finally {
         Vue.set(state, 'isFetchingUser', false);
       }

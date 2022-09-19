@@ -54,14 +54,19 @@
       v-model="isAddressModalOpen"
       :is-massage-view="false"
     />
-    <es-confirm-modal v-model="isConfirmModalOpen" @on-confirm="onContinue()">
+    <es-confirm-modal
+      v-model="isConfirmModalOpen"
+      :confirm-cta="$t('address.delete')"
+      @on-confirm="onContinue()"
+    >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">{{ getConfirmationModalMessage }}</template>
     </es-confirm-modal>
 
     <es-confirm-modal
       v-model="isAlertModalOpen"
-      cta="Ok"
+      :confirm-cta="$t('address.confirm')"
+      cancel-cta=""
       @on-confirm="isAlertModalOpen = false"
     >
       <template slot="title">{{ $t('delete.default.address.title') }}</template>
