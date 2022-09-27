@@ -220,6 +220,69 @@
     });
   };
 
+  window.promoCarousel = function() {
+    $('.owl-carousel.promo-carousel').owlCarousel({
+      items: 3,
+      loop: true,
+      stagePadding: 20,
+      margin: 30,
+      dots: false,
+      lazyLoad: true,
+      mouseDrag: false,
+      navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+      nav: false,
+      center:true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        560: {
+          items: 2,
+        },
+        768: {
+          items: 2,
+        },
+        850: {
+          items: 2,
+        },
+        1230: {
+          items: 3,
+          nav: true
+        }
+      },
+    });
+  };
+
+  window.serviceCarousel = function() {
+    $('.owl-carousel.service-carousel').owlCarousel({
+      items: 4,
+      loop: false,
+      stagePadding: 20,
+      margin: 30,
+      dots: false,
+      lazyLoad: true,
+      mouseDrag: false,
+      navText: ["<i class='arrow_left'></i>","<i class='arrow_right'></i>"],
+      nav: false,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        560: {
+          items: 3,
+        },
+        768: {
+          items: 3,
+        },
+        1230: {
+          items: 4,
+          nav: true
+        }
+      },
+    });
+  };
+
+
   window.initMassageCarousel = function(cb) {
     $('.owl-carousel').owlCarousel({
       items: 1,

@@ -4,7 +4,7 @@
     <div v-if="service.items.length" v-for="service in services" :key="service.category" class="row mt-4">
       <div v-if="service.category !== 'promotions'" class="col-12"><h2 class="title_small">{{ $t(service.category) }}</h2></div>
       <div v-if="service.description && service.category !== 'promotions'" class="col-12"><p class="text-secondary">{{ $t(service.description) }}</p></div>
-        <div v-if="windowWidth < 500 && service.items.length > 1" class="col-12 owl-carousel owl-theme categories_carousel_in">
+        <div v-if="windowWidth < 500 && service.items.length > 1" class="col-12 owl-carousel service-carousel owl-theme categories_carousel_in">
           <services-list-item
             v-for="item in service.items"
             :image-path="getImagePath(item)"
@@ -13,7 +13,7 @@
             :to="getToRoute(item)"
           />
         </div>
-        <div v-else-if="service.items.length > 3" class="col-12 owl-carousel owl-theme categories_carousel_in">
+        <div v-else-if="service.category === 'promotions'" class="col-12 owl-carousel promo-carousel owl-theme categories_carousel_in">
           <services-list-item
             v-for="item in service.items"
             :image-path="getImagePath(item)"
@@ -22,7 +22,16 @@
             :to="getToRoute(item)"
           />
         </div>
-        <template v-else>
+        <div v-else class="col-12 owl-carousel service-carousel owl-theme categories_carousel_in">
+          <services-list-item
+            v-for="item in service.items"
+            :image-path="getImagePath(item)"
+            :key="item.category"
+            :service="item"
+            :to="getToRoute(item)"
+          />
+        </div>
+        <!-- <template v-else>
           <div v-for="item in service.items" :key="item.category" class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
             <services-list-item
               :image-path="getImagePath(item)"
@@ -30,7 +39,7 @@
               :to="getToRoute(item)"
             />
          </div>
-        </template>
+        </template> -->
       <!-- /strip grid -->
     </div>
   </div>
@@ -88,6 +97,8 @@
     },
 
     mounted() {
+      window.promoCarousel();
+      window.serviceCarousel();
       this.$nextTick(() => {
         window.addEventListener('resize', this.onResize);
       });
