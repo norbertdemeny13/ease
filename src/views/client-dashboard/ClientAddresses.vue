@@ -57,6 +57,7 @@
     <es-confirm-modal
       v-model="isConfirmModalOpen"
       :confirm-cta="getConfirmationCta"
+      has-confirm-cta
       @on-confirm="onContinue()"
     >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
