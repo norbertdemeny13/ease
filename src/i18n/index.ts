@@ -20,6 +20,7 @@ const i18n = new VueI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || 'ro',
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'ro',
   messages: loadLocaleMessages(),
+  silentTranslationWarn: true,
 });
 
 export { i18n };
