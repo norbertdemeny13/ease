@@ -195,6 +195,7 @@
       v-model="isConfirmModalOpen"
       :cancel-cta="$t('bookings.details.cancel.100.button1')"
       :confirm-cta="$t('bookings.details.cancel.100.button2')"
+      has-confirm-cta
       @on-confirm="onContinue()"
     >
       <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
@@ -208,6 +209,7 @@
       v-model="isConfirmModalOpen"
       :cancel-cta="$t('bookings.details.cancel.free.button1')"
       :confirm-cta="$t('bookings.details.cancel.free.button2')"
+      has-confirm-cta
       @on-confirm="onContinue()"
     >
       <template slot="title">{{ $t('views.client_dashboard.my_reservations.cancel_reservation_title') }}</template>
@@ -426,7 +428,7 @@
           payment_ongoing: this.$t('payment_ongoing'),
           incomplete: this.$t('incomplete'),
           waiting_confirmation: this.$t('waiting_confirmation'),
-          confirmed: this.$t('confirmed'),
+          confirmed: this.$t('bookings.state.confirmed'),
           on_the_way: this.$t('on_the_way'),
           arrived: this.$t('arrived'),
           completed: this.$t('completed'),

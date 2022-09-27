@@ -8,9 +8,9 @@
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div v-if="hasSubscription">
-          <h6 class="mt-4" v-if="getActiveSubscription.subscription.category === 'beauty'">{{ `${$t('generic.services')}` }} {{ `${$t(getActiveSubscription.subscription.primary_service_name)}` }} ({{ getActiveSubscription.uses_left }})</h6>
-          <h6 class="mt-4" v-else-if="getActiveSubscription.subscription.category === 'fitness'">{{ `${$t('generic.serviceFitness')}` }} ({{ getActiveSubscription.uses_left }})</h6>
-          <h6 class="mt-4" v-else>{{ `${$t('generic.serviceMassage')}` }} {{ `${getActiveSubscription.subscription.duration} min` }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 v-if="getActiveSubscription.subscription.category === 'beauty'" class="mt-4">{{ `${$t('generic.services')}` }} {{ `${$t(getActiveSubscription.subscription.primary_service_name)}` }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 v-else-if="getActiveSubscription.subscription.category === 'fitness'" class="mt-4">{{ `${$t('generic.serviceFitness')}` }} ({{ getActiveSubscription.uses_left }})</h6>
+          <h6 v-else class="mt-4">{{ `${$t('generic.serviceMassage')}` }} {{ `${getActiveSubscription.subscription.duration} min` }} ({{ getActiveSubscription.uses_left }})</h6>
           <ul class="summary_list">
             <div v-if="hasActiveSubscription">
               <li><strong>{{ $t('views.client_dashboard.subscriptions.next_bill') }} </strong>{{ getActiveSubscription.state === 'active' ? getActiveSubscription.active_until.substr(0, 10) : getActiveSubscription.active_from.substr(0, 10) }}</li>
@@ -67,6 +67,7 @@
       v-model="isCancelSubscriptionModalOpen"
       :cancel-cta="$t('subscription.cancel.no1')"
       :confirm-cta="$t('subscription.cancel.yes')"
+      has-confirm-cta
       reverse
       @on-confirm="onContinue()"
     >

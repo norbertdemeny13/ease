@@ -56,7 +56,7 @@
     />
     <es-confirm-modal
       v-model="isConfirmModalOpen"
-      :confirm-cta="$t('address.delete')"
+      :confirm-cta="getConfirmationCta"
       @on-confirm="onContinue()"
     >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
@@ -66,6 +66,7 @@
     <es-confirm-modal
       v-model="isAlertModalOpen"
       :confirm-cta="$t('address.confirm')"
+      has-confirm-cta
       cancel-cta=""
       @on-confirm="isAlertModalOpen = false"
     >
@@ -109,6 +110,10 @@
 
       getConfirmationModalMessage(): string {
         return this.modalMessage;
+      },
+
+      getConfirmationCta(): string {
+        return this.method === 'select' ? this.$t('generic.confirm_cta').toString() : this.$t('address.delete').toString();
       },
     },
 

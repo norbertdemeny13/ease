@@ -21,7 +21,7 @@
             <div class="d-flex justify-content-end">
               <div v-if="reverse">
                 <a
-                  v-if="confirmCta"
+                  v-if="hasConfirmCta"
                   class="btn btn-sm btn-pill mr-2 my-4 px-4"
                   @click.prevent="onConfirm()"
                 >
@@ -36,14 +36,13 @@
               </div>
               <div v-else>
                 <a
-                  v-if="cancelCta"
                   class="btn btn-sm btn-pill mr-2 my-4 px-4"
                   @click.prevent="onCancel()"
                 >
                   {{ cancelCta }}
                 </a>
                 <a
-                  v-if="confirmCta"
+                  v-if="hasConfirmCta"
                   class="btn btn-sm btn-pink btn-pill text-white my-4 px-4"
                   @click.prevent="onConfirm()"
                 >
@@ -76,6 +75,10 @@
       confirmCta: {
         default: 'Da, seteaza',
         type: String,
+      },
+      hasConfirmCta: {
+        required: true,
+        type: Boolean,
       },
       reverse: {
         default: false,

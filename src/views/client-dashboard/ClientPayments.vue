@@ -37,8 +37,9 @@
     </div>
     <es-confirm-modal
       v-model="isConfirmModalOpen"
-      :confirm-cta="isActiveSubscription && selectedCard.primary ? '' : $t('cards.delete')"
-      :cancel-cta="isActiveSubscription ? $t('form.button') : ''"
+      :confirm-cta="getConfirmationCta"
+      :cancel-cta="getCancelCta"
+      :has-confirm-cta="!!getConfirmationCta"
       @on-confirm="onContinue()"
     >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
@@ -50,7 +51,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import Vue from 'vue';
   import { mapActions, mapGetters } from 'vuex';
   import { CreditCardModal } from '@/components/shared/credit-card-modal';
@@ -77,16 +78,26 @@
         getCards: 'cards/getCards',
       }),
 
-      isActiveSubscription(): boolean {
+      isActiveSubscription() {
         return this.getActiveSubscription?.state === 'active';
       },
 
-      getConfirmationModalTitle(): string {
+      getConfirmationModalTitle() {
         return this.modalTitle;
       },
 
-      getConfirmationModalMessage(): string {
+      getConfirmationModalMessage() {
         return this.modalMessage;
+      },
+
+      getConfirmationCta() {
+        const removeCta = this.isActiveSubscription && this.selectedCard?.primary ? null : this.$t('cards.delete');
+        return this.method === 'select' ? this.$t('generic.confirm_cta') : removeCta;
+      },
+
+      getCancelCta() {
+        const removeCta = this.isActiveSubscription ? this.$t('form.button') : '';
+        return this.method === 'select' ? this.$t('generic.cancel_cta') : removeCta;
       },
     },
 
@@ -125,7 +136,7 @@
         fetchActiveSubscriptions: 'subscriptions/fetchActiveSubscriptions',
       }),
 
-      getCardInfo(card: any): string {
+      getCardInfo(card) {
         return `&#128179; ${card.brand && card.brand.toUpperCase()} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
       },
 
@@ -134,7 +145,7 @@
         this.isCreditCardModalOpen = true;
       },
 
-      onSelect(card: any): void {
+      onSelect(card) {
         if (card.main) {
           return;
         }
@@ -146,7 +157,7 @@
         this.isConfirmModalOpen = true;
       },
 
-      onRemove(card: any): void {
+      onRemove(card) {
         this.method = 'remove';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
