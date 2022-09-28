@@ -27,6 +27,8 @@
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo1_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo1_body') }}</p>
+            <p>{{ $t('views.subscriptions.photo1_body2') }}</p>
+            <p>{{ $t('views.subscriptions.photo1_body3') }}</p>
           </div>
         </div>
         <div class="col-lg-6 text-center ">
@@ -54,6 +56,7 @@
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo2_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo2_body') }}</p>
+            <p>{{ $t('views.subscriptions.photo2_body2') }}</p>
           </div>
         </div>
       </div>
@@ -63,6 +66,7 @@
           <div class="box_about">
             <h3>{{ $t('views.subscriptions.photo3_title') }}</h3>
             <p>{{ $t('views.subscriptions.photo3_body') }}</p>
+            <p>{{ $t('views.subscriptions.photo3_body2') }}</p>
           </div>
         </div>
         <div class="col-lg-6 text-center ">
