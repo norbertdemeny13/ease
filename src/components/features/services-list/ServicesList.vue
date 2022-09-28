@@ -31,15 +31,6 @@
             :to="getToRoute(item)"
           />
         </div>
-        <!-- <template v-else>
-          <div v-for="item in service.items" :key="item.category" class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-            <services-list-item
-              :image-path="getImagePath(item)"
-              :service="item"
-              :to="getToRoute(item)"
-            />
-         </div>
-        </template> -->
       <!-- /strip grid -->
     </div>
   </div>
