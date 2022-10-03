@@ -149,6 +149,8 @@
                       :increment="0.5"
                     />
                   </div>
+                  <p class="mb-1 mt-2">{{ review.review }}</p>
+                  <p class="rate-message mt-1">{{ review.service }}</p>
                 </div>
               </div>
             </div>

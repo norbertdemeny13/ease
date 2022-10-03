@@ -8,7 +8,7 @@
             <figure>
               <img v-if="image" :src="image" alt="Profile Pic">
               <img v-else-if="getUser.avatar && getUser.avatar.url" :src="getUser.avatar.url" alt="Profile Pic">
-              <img v-else src="@/assets/png/avatar-profesionist.png" alt="Profile Pic">
+              <img v-else src="@/assets/png/avatar-profesionist.svg" alt="Profile Picture">
               <input
                 id="profile-picture"
                 ref="profile-picture"
