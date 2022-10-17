@@ -223,7 +223,7 @@
   window.promoCarousel = function() {
     $('.owl-carousel.promo-carousel').owlCarousel({
       items: 3,
-      loop: true,
+      loop: false,
       stagePadding: 20,
       margin: 30,
       dots: false,
