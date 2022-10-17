@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content bg-gray">
     <div class="es_reserve-massage-service-page container margin_30_20">
       <div class="d-flex justify-content-between">
         <a href="" class="back-button" @click.prevent="onBack()">
@@ -382,5 +382,9 @@
   .profile-pic-container img {
     width: 60px;
     height: 60px;
+  }
+
+  .bg-gray {
+    background-color: #F7F7F7;
   }
 </style>

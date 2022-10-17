@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es_reserve-subscription-container">
+  <div class="es_reserve-subscription-container bg_gray">
     <div class="container margin_30_40">
       <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="row mt-4">

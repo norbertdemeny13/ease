@@ -109,12 +109,20 @@
   export default Vue.extend({
     name: 'es-footer',
 
+    props: {
+      currentRoute: {
+        default: '',
+        type: String,
+      },
+    },
+
     data: () => ({
       isProPage: false,
       isProWave: false,
       isClientWave: false,
       isContactWave: false,
       isFAQWave: false,
+      isGiftCard: false,
       selectedLanguage: 'ro',
     }),
 
@@ -129,7 +137,7 @@
       getFooterClasses() {
         return {
           'is-pro-wave': this.isProWave,
-          'is-client-wave': this.isClientWave,
+          'is-client-wave': this.isClientWave || this.isServices || this.isGiftCard,
           'is-common-wave': this.isContactWave || this.isFAQWave,
           'wave footer': true,
         };
@@ -138,20 +146,33 @@
 
     watch: {
       $route(to) {
+        const getServiceTypeId = to.fullPath.split('nails/')[1];
+        const getGiftsId = to.fullPath.split('carduri-cadou/')[1];
         this.isProPage = to.fullPath.includes('easepro');
         this.isProWave = to.fullPath.includes('easepro/');
-        this.isClientWave = to.fullPath.includes('client/') || to.fullPath.includes('pro/');
+        this.isClientWave = to.fullPath.includes('client/') || 
+          to.fullPath.includes('pro/') || 
+          to.fullPath.includes('/servicii/masaj') || 
+          to.fullPath.includes(`servicii/nails/${getServiceTypeId}`) || 
+          to.fullPath.includes('abonamente/massage?tip=monthly') || 
+          to.fullPath.includes('abonamente/rezerva');
         this.isContactWave = to.fullPath.includes('contact');
         this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
+        this.isServices = to.fullPath.includes('servicii/masaj/') || to.fullPath.includes('servicii/couple/');
+        this.isGiftCard = this.$router.currentRoute.fullPath.includes(`/carduri-cadou/${getGiftsId}`) 
+          || to.fullPath.includes(`carduri-cadou/${getGiftsId}/plata`);;
       },
     },
 
     created() {
       this.isProPage = this.$router.currentRoute.fullPath.includes('easepro');
       this.isProWave = this.$router.currentRoute.fullPath.includes('easepro/');
-      this.isClientWave = this.$router.currentRoute.fullPath.includes('client/') || this.$router.currentRoute.fullPath.includes('pro/');
+      this.isClientWave = this.$router.currentRoute.fullPath.includes('client/')
+        || this.$router.currentRoute.fullPath.includes('pro/')
+        || this.$router.currentRoute.fullPath.includes('abonamente/rezerva');
       this.isContactWave = this.$router.currentRoute.fullPath.includes('contact');
       this.isFAQWave = this.$router.currentRoute.fullPath.includes('intrebari-frecvente');
+
       const lang = localStorage.getItem('lang');
 
       if (lang !== this.$root.$i18n.locale) {

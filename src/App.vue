@@ -16,7 +16,7 @@
         </transition>
       </main>
       <es-toasts />
-      <es-footer />
+      <es-footer :current-route="this.$router.currentRoute.params.id"/>
       <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
       <portal-target name="modal" multiple />
     </div>
@@ -58,6 +58,7 @@
         }
       },
     },
+    
     methods: {
       loggedIn() {
         return localStorage.getItem('loggedInVerify') === 'true';
