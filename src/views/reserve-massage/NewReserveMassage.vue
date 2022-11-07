@@ -383,8 +383,4 @@
     width: 60px;
     height: 60px;
   }
-
-  .bg-gray {
-    background-color: #F7F7F7;
-  }
 </style>
