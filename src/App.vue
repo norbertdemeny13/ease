@@ -16,7 +16,7 @@
         </transition>
       </main>
       <es-toasts />
-      <es-footer :current-route="this.$router.currentRoute.params.id"/>
+      <es-footer />
       <es-auth-modal v-if="isModalOpen" :is-open="isModalOpen" />
       <portal-target name="modal" multiple />
     </div>

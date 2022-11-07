@@ -105,16 +105,10 @@
   import Vue from 'vue';
   import { nanoid } from 'nanoid';
   import { FOOTER_LINKS, PRO_FOOTER_LINKS } from '@/constants/footer-links';
+  import { acceptedLinksWithIdForClientWave, acceptedLinksForClientWave } from './footer-utils';
 
   export default Vue.extend({
     name: 'es-footer',
-
-    props: {
-      currentRoute: {
-        default: '',
-        type: String,
-      },
-    },
 
     data: () => ({
       isProPage: false,
@@ -137,7 +131,7 @@
       getFooterClasses() {
         return {
           'is-pro-wave': this.isProWave,
-          'is-client-wave': this.isClientWave || this.isServices || this.isGiftCard,
+          'is-client-wave': this.isClientWave,
           'is-common-wave': this.isContactWave || this.isFAQWave,
           'wave footer': true,
         };
@@ -146,21 +140,13 @@
 
     watch: {
       $route(to) {
-        const getServiceTypeId = to.fullPath.split('nails/')[1];
-        const getGiftsId = to.fullPath.split('carduri-cadou/')[1];
+        const getUrlParamsId = to.params?.id;
         this.isProPage = to.fullPath.includes('easepro');
         this.isProWave = to.fullPath.includes('easepro/');
-        this.isClientWave = to.fullPath.includes('client/') || 
-          to.fullPath.includes('pro/') || 
-          to.fullPath.includes('/servicii/masaj') || 
-          to.fullPath.includes(`servicii/nails/${getServiceTypeId}`) || 
-          to.fullPath.includes('abonamente/massage?tip=monthly') || 
-          to.fullPath.includes('abonamente/rezerva');
+        this.isClientWave = acceptedLinksForClientWave.includes(to.fullPath)
+          || acceptedLinksWithIdForClientWave(getUrlParamsId).includes(to.fullPath);
         this.isContactWave = to.fullPath.includes('contact');
         this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
-        this.isServices = to.fullPath.includes('servicii/masaj/') || to.fullPath.includes('servicii/couple/');
-        this.isGiftCard = this.$router.currentRoute.fullPath.includes(`/carduri-cadou/${getGiftsId}`) 
-          || to.fullPath.includes(`carduri-cadou/${getGiftsId}/plata`);;
       },
     },
 
