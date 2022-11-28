@@ -105,6 +105,7 @@
   import Vue from 'vue';
   import { nanoid } from 'nanoid';
   import { FOOTER_LINKS, PRO_FOOTER_LINKS } from '@/constants/footer-links';
+  import { acceptedLinksWithIdForClientWave, acceptedLinksForClientWave } from './footer-utils';
 
   export default Vue.extend({
     name: 'es-footer',
@@ -115,6 +116,7 @@
       isClientWave: false,
       isContactWave: false,
       isFAQWave: false,
+      isGiftCard: false,
       selectedLanguage: 'ro',
     }),
 
@@ -138,9 +140,11 @@
 
     watch: {
       $route(to) {
+        const getUrlParamsId = to.params?.id;
         this.isProPage = to.fullPath.includes('easepro');
         this.isProWave = to.fullPath.includes('easepro/');
-        this.isClientWave = to.fullPath.includes('client/') || to.fullPath.includes('pro/');
+        this.isClientWave = acceptedLinksForClientWave.includes(to.fullPath)
+          || acceptedLinksWithIdForClientWave(getUrlParamsId).includes(to.fullPath);
         this.isContactWave = to.fullPath.includes('contact');
         this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
       },
@@ -149,9 +153,12 @@
     created() {
       this.isProPage = this.$router.currentRoute.fullPath.includes('easepro');
       this.isProWave = this.$router.currentRoute.fullPath.includes('easepro/');
-      this.isClientWave = this.$router.currentRoute.fullPath.includes('client/') || this.$router.currentRoute.fullPath.includes('pro/');
+      this.isClientWave = this.$router.currentRoute.fullPath.includes('client/')
+        || this.$router.currentRoute.fullPath.includes('pro/')
+        || this.$router.currentRoute.fullPath.includes('abonamente/rezerva');
       this.isContactWave = this.$router.currentRoute.fullPath.includes('contact');
       this.isFAQWave = this.$router.currentRoute.fullPath.includes('intrebari-frecvente');
+
       const lang = localStorage.getItem('lang');
 
       if (lang !== this.$root.$i18n.locale) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content bg_gray">
     <div class="es_service-details-page container margin_30_20">
       <div class="d-flex justify-content-between">
         <a class="back-button" href="" @click.prevent="onBack">

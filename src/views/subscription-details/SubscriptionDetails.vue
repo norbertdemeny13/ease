@@ -1,5 +1,5 @@
 <template>
-  <div class="es_subscription-details-container">
+  <div class="es_subscription-details-container bg_gray">
     <div class="container margin_30_20">
       <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="main_title center">
