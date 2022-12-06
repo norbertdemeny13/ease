@@ -1,6 +1,5 @@
 <template>
   <footer :class="`${$router.currentRoute.fullPath.includes('easepro') ? 'is-pro' : ''}`">
-    {{ isClientWave }}
     <div :class="getFooterClasses" />
     <div class="container margin_60_40 fix_mobile">
       <div class="row">
