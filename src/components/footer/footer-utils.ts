@@ -1,4 +1,5 @@
 export const acceptedLinksWithIdForClientWave = (routeParamId: String) => {
+  console.log(`/user/reset-password?token=${routeParamId}`);
   return [
     `/servicii/single/${routeParamId}/rezerva`,
     `/servicii/single/${routeParamId}/rezerva/plata`,
@@ -25,6 +26,8 @@ export const acceptedLinksWithIdForClientWave = (routeParamId: String) => {
     `/servicii/men_hair/${routeParamId}/rezerva`,
     `/servicii/men_hair/${routeParamId}/rezerva/plata`,
     `/servicii/fitness/${routeParamId}`,
+    `/pro/${routeParamId}`,
+    `/user/reset-password?token=${routeParamId}`,
     ]
   }
 
@@ -33,6 +36,8 @@ export const acceptedLinksWithIdForClientWave = (routeParamId: String) => {
     '/servicii/masaj?type=single',
     '/servicii/masaj?type=couple',
     '/new/servicii/masaj?type=couple',
-    'abonamente/massage?tip=monthly', 
-    'abonamente/rezerva'
+    '/abonamente/massage?tip=monthly', 
+    '/abonamente/rezerva',
+    '/client/cont',
+    '/contact'
   ];
