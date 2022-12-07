@@ -58,7 +58,7 @@
         }
       },
     },
-    
+
     methods: {
       loggedIn() {
         return localStorage.getItem('loggedInVerify') === 'true';

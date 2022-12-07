@@ -1,5 +1,4 @@
 export const acceptedLinksWithIdForClientWave = (routeParamId: String) => {
-  console.log(`/user/reset-password?token=${routeParamId}`);
   return [
     `/servicii/single/${routeParamId}/rezerva`,
     `/servicii/single/${routeParamId}/rezerva/plata`,

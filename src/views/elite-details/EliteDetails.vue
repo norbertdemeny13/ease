@@ -65,7 +65,7 @@
               >
                 <p>{{ $t('toast.wrong_service_address') }}</p>
               </div>
-              <div v-else></div>
+              <div v-else />
               <div class="d-flex justify-content-start">
                 <button
                   :class="`btn btn-sm btn-pink btn-pill my-4 px-6 ${getElite.located_in_current_users_city ? '' : 'disabled'} ${getUserType === 'elite' ? 'disabled' : '' }`"
@@ -235,6 +235,11 @@
         return getZonedDate(date);
       },
       onReserve() {
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
+
         if (this.getElite.located_in_current_users_city) {
           this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
         } else {

@@ -606,6 +606,8 @@
   "generic.send_order": "Trimite comanda",
   "generic.sent": "Trimis",
   "generic.services": "Servicii",
+  "generic.serviceFitness": "Servicii Fitness",
+  "generic.serviceMassage": "Servicii Masaj",
   "generic.session": "sedinta",
   "generic.set_primary_address": "ca si adresa principala?",
   "generic.set_primary_card": "ca si card principal?",
