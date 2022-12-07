@@ -607,6 +607,8 @@
   "generic.send_order": "Send the order",
   "generic.sent": "Sent",
   "generic.services": "Services ",
+  "generic.serviceFitness": "Fitness Services",
+  "generic.serviceMassage": "Massage Services",
   "generic.session": "session ",
   "generic.set_primary_address": "as the primary address?",
   "generic.set_primary_card": "as the primary card?",

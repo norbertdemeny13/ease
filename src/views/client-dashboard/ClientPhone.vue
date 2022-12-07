@@ -33,13 +33,11 @@
     <es-phone-validate-modal
       v-if="isPhoneValidateModalOpen"
       v-model="isPhoneValidateModalOpen"
-      :is-open="isPhoneValidateModalOpen"
       @show-phone-confirmation-modal="isPhoneConfirmationModalOpen = true"
     />
     <es-phone-confirmation-modal
       v-if="isPhoneConfirmationModalOpen"
       v-model="isPhoneConfirmationModalOpen"
-      :is-open="isPhoneConfirmationModalOpen"
     />
   </div>
 </template>

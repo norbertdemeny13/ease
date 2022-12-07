@@ -217,7 +217,8 @@
         this.isHomePage = to.name === 'Home' || to.name === 'ProHome';
       },
       getUser(newVal) {
-        if (this.isAuthenticated && !newVal?.phone_number_confirmed) {
+        const { currentRoute } = this.$router;
+        if (this.isAuthenticated && !newVal?.phone_number_confirmed && !currentRoute.path.includes('telefon')) {
           this.isValidatePhoneModalOpen = true;
         }
       },

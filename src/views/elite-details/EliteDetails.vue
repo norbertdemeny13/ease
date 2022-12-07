@@ -235,6 +235,11 @@
         return getZonedDate(date);
       },
       onReserve() {
+        if (!this.isAuthenticated) {
+          this.$root.$emit('on-show-login');
+          return;
+        }
+
         if (this.getElite.located_in_current_users_city) {
           this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
         } else {
