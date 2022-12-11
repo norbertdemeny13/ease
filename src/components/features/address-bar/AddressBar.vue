@@ -119,10 +119,6 @@
     async created() {
       const { query } = this.$router.currentRoute;
 
-      if (query && query.pro_id) {
-        this.fetchElite({ id: query.pro_id });
-      }
-
       if (this.isAuthenticated) {
         await this.fetchAddresses();
         const mainAddress = this.getAddresses.find(({ main }) => main);
@@ -159,7 +155,6 @@
       ...mapActions({
         fetchAddresses: 'address/fetchAddresses',
         setReservationAddress: 'address/setReservationAddress',
-        fetchElite: 'elite/fetchElite',
         removeElite: 'elite/removeElite',
       }),
       onAddressChange(address) {

@@ -282,8 +282,7 @@
 
       if (query && query.pro_id) {
         this.isTargetedReservation = true;
-        this.fetchElite({ id: query.pro_id });
-        this.fetchServicesByType({ type, id: query.pro_id });
+        this.fetchServicesByType({ type, id: this.getElite.id });
       } else {
         this.fetchServicesByType({ type });
       }
@@ -321,7 +320,7 @@
           genre,
         } = this.massageForm;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.pro_id;
+        const eliteId = this.getElite.id;
         const { massageType } = this;
         const { uuid } = this.selectedService;
 

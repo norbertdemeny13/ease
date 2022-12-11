@@ -202,21 +202,21 @@
       },
       isFavourite() {
         const { id } = this.$router.currentRoute.params;
-        const elite = this.getEliteFavorites.find(item => item.id === parseInt(id, 10));
+        const elite = this.getEliteFavorites.find(item => item.elite_id === id);
         return !!elite;
       },
     },
 
-    created() {
+    async created() {
       const { id } = this.$router.currentRoute.params;
-      this.fetchElite({ id });
+      await this.fetchEliteById({ id });
       this.fetchEliteFavorites();
-      this.fetchEliteReviews({ id });
+      this.fetchEliteReviews({ id: this.getElite.id });
     },
 
     methods: {
       ...mapActions({
-        fetchElite: 'elite/fetchElite',
+        fetchEliteById: 'elite/fetchEliteById',
         fetchEliteFavorites: 'elite/fetchEliteFavorites',
         fetchEliteReviews: 'elite/fetchEliteReviews',
         addEliteFavourite: 'elite/addEliteFavourite',
@@ -241,7 +241,7 @@
         }
 
         if (this.getElite.located_in_current_users_city) {
-          this.$router.push(`/servicii?pro_id=${this.getElite.id}`);
+          this.$router.push(`/servicii?pro_id=${this.getElite.elite_id}`);
         } else {
           this.$toasts.toast({
             id: 'login-toast',

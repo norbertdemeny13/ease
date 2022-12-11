@@ -49,7 +49,7 @@ export default {
     async fetchEliteById({ state, commit }, { id }) {
       Vue.set(state, 'isFetching', true);
       try {
-        const { data } = await api.find(`/users/elite/${id}`);
+        const { data } = await api.find(`/users/elite/elite_id/${id}`);
         Vue.set(state, 'elite', data);
       } catch ({ response: reason }) {
         if (reason.status == 404) {

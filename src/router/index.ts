@@ -268,6 +268,7 @@ router.beforeEach(async (to, from, next) => {
 
   const { params, path, query, name } = to;
   const { type, id } = params;
+  const { pro_id } = query;
   const isAuth = store.getters['session/isAuth'];
   const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
   const getSelectedServices = store.getters['services/getSelectedServices'];
@@ -286,6 +287,10 @@ router.beforeEach(async (to, from, next) => {
       await store.commit('session/setRefferalCode', refferal_code);
     }
     next('/');
+  }
+
+  if (pro_id) {
+    await store.dispatch('elite/fetchEliteById', { id: pro_id }) ;
   }
 
   if ((to.name === 'Home' || to.name === 'ProHome') && getUserType === 'elite') {
@@ -367,7 +372,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
-    const { pro_id } = query;
+    const pro_id = store.getters['elite/getElite'].pro_id;
     await store.dispatch('services/fetchServiceById', { type, id, pro_id });
     next();
   }

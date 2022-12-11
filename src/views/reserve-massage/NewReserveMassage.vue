@@ -284,8 +284,7 @@
       this.massageForm.type = type;
 
       if (query && query.pro_id) {
-        this.fetchElite({ id: query.pro_id });
-        this.fetchServicesByType({ type, id: query.pro_id });
+        this.fetchServicesByType({ type, id: this.getElite.id });
       } else {
         this.fetchServicesByType({ type });
       }
@@ -293,7 +292,6 @@
 
     methods: {
       ...mapActions({
-        fetchElite: 'elite/fetchElite',
         fetchServicesByType: 'services/fetchServicesByType',
         fetchServiceById: 'services/fetchServiceById',
       }),
@@ -327,7 +325,7 @@
         const { massageType } = this;
         const { uuid } = this.selectedService;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.pro_id;
+        const eliteId = this.getElite.id;
 
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');

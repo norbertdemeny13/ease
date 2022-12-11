@@ -6,7 +6,7 @@
         v-for="(item, i) in getEliteFavorites"
         :key="`${item.id}-${i}`"
         class="col-md-2 d-flex flex-column align-items-center custom-sm-6"
-        @click="$router.push(`/pro/${item.id}`)"
+        @click="$router.push(`/pro/${item.elite_id}`)"
       >
         <figure class="mb-0 d-flex justify-content-start">
           <img

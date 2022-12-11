@@ -152,7 +152,7 @@
         return curentTime;
       },
       getTotal() {
-        let total = parseInt(this.time.price, 10);
+        let total = parseInt(this.time?.price, 10);
         const { category } = this.getSelectedServices[0];
         const isMassage = category === 'single' || category === 'couple';
         this.getSelectedServices.forEach((item) => {

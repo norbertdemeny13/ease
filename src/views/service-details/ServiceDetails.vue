@@ -115,10 +115,6 @@
       const serviceType = type === 'fitness' ? type : 'beauty';
       const { query } = this.$router.currentRoute;
 
-      if (query && query.pro_id) {
-        this.fetchElite({ id: query.pro_id });
-      }
-
       const selectedService = {
         ...this.getServiceById,
         serviceType,
@@ -168,7 +164,7 @@
             return;
           }
 
-          await this.$store.dispatch('services/createReservation', proId);
+          await this.$store.dispatch('services/createReservation', this.getElite.id);
           await this.$router.push(`/new/servicii/${paramType}`);
         } else {
           this.$root.$emit('on-show-login');
@@ -178,7 +174,7 @@
       onBack() {
         const { query } = this.$router.currentRoute;
         let endpoint = query?.pro_id
-          ? `/servicii/${this.$router.currentRoute.params.type}?pro_id=${query.pro_id}`
+          ? `/servicii/${this.$router.currentRoute.params.type}?pro_id=${this.getElite.pro_id}`
           : `/servicii/${this.$router.currentRoute.params.type}`;
         this.$router.push(endpoint);
         this.$store.commit('services/removeSelectedServices');
@@ -191,7 +187,7 @@
 
       async onContinue() {
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.pro_id;
+        const eliteId = this.getElite.id;
         const { id, type } = this.$router.currentRoute.params;
         const serviceType = type === 'fitness' ? type : 'beauty';
 
