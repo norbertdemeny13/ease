@@ -222,6 +222,11 @@
           }, 300);
         }
       },
+      selectedService(newVal) {
+        if (newVal.name.includes('reflexo')) {
+          this.massageForm.duration = 60;
+        }
+      },
       getReservationDetails(newVal) {
         if (newVal.reservation_service.massage_two) {
           const { type } = this.massageForm;
@@ -294,6 +299,7 @@
       ...mapActions({
         fetchServicesByType: 'services/fetchServicesByType',
         fetchServiceById: 'services/fetchServiceById',
+        updateMasageFormDuration: 'services/updateMasageFormDuration',
       }),
       setValue(key, value) {
         this.massageForm[key] = value;
@@ -364,7 +370,8 @@
           massageForm: this.massageForm,
           prices: this.getServiceById.prices,
         };
-        this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
+        await this.updateMasageFormDuration(this.massageForm.duration);
+        await this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         await this.$store.dispatch('services/createMassageReservation', eliteId);
       },
     },

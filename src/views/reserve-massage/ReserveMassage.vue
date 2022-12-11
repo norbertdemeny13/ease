@@ -364,6 +364,17 @@
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         this.$store.commit('services/setMassageInfo', { terapeut, duration, genre });
 
+        const isReflexoMassage = this.selectedService.name.includes('reflexo');
+
+        if (isReflexoMassage) {
+          this.$toasts.toast({
+            id: 'warning-toast',
+            intent: 'warning',
+            message: this.$t('massage.reflexoAlertDescription'),
+            title: this.$t('toast.warning_title'),
+          });
+        }
+
         if (massageType === 'single') {
           await this.$store.dispatch('services/createMassageReservation', eliteId);
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
