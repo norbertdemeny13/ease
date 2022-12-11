@@ -196,7 +196,7 @@
     border: 1px solid #70d7b7;
   }
 
-    .client-payment-card-item.active {
+  .client-payment-card-item.active {
     border: 2px solid #70d7b7;
   }
 

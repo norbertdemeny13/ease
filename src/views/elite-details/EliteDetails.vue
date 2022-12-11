@@ -303,7 +303,7 @@
   }
 
   img.disabled {
-    background-color: #000;
+    background-color: #000000;
     opacity: 0.4;
   }
 

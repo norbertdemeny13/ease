@@ -1,8 +1,8 @@
 <template>
   <div class="custom-checkbox">
-    <img v-if="getCheckState && !isPending" src="@/assets/svg/success.svg" width="30" height="30" />
-    <img v-else-if="getCheckState && isPending" src="@/assets/svg/pending.svg" width="30" height="30" />
-    <img v-else src="@/assets/svg/incomplete.svg" width="30" height="30" />
+    <img v-if="getCheckState && !isPending" src="@/assets/svg/success.svg" width="30" height="30">
+    <img v-else-if="getCheckState && isPending" src="@/assets/svg/pending.svg" width="30" height="30">
+    <img v-else src="@/assets/svg/incomplete.svg" width="30" height="30">
   </div>
 </template>
 

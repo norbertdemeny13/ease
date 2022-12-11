@@ -75,29 +75,29 @@
 </script>
 
 <style type="text/css" scoped>
-  i.icon_star {
-    color: #fad055;
-    font-size: 1.3rem;
-  }
+i.icon_star {
+  color: #fad055;
+  font-size: 1.3rem;
+}
 
-  img.disabled {
-    background-color: #000;
-    opacity: 0.4;
-  }
+img.disabled {
+  background-color: #000000;
+  opacity: 0.4;
+}
 
-  img {
-    width: 120px;
-    height: 120px;
-  }
+img {
+  height: 120px;
+  width: 120px;
+}
 
-  img:hover {
-    cursor: pointer;
-  }
+img:hover {
+  cursor: pointer;
+}
 
 @media (max-width: 767px) {
   img {
-    width: 100px;
     height: 100px;
+    width: 100px;
   }
 }
 </style>
