@@ -414,7 +414,7 @@
           elite: job.elite,
           avatar: job.elite?.avatar_path,
           id: job.id,
-          eliteId: job.elite?.id,
+          eliteId: job.elite?.elite_id,
         }));
         return jobs;
       },
