@@ -141,10 +141,11 @@
     watch: {
       $route(to) {
         const getUrlParamsId = to.params?.id || to.query?.token;
+        const proId = to.query?.pro_id;
         this.isProPage = to.fullPath.includes('easepro');
         this.isProWave = to.fullPath.includes('easepro/');
         this.isClientWave = acceptedLinksForClientWave.includes(to.fullPath)
-          || acceptedLinksWithIdForClientWave(getUrlParamsId).includes(to.fullPath);
+          || acceptedLinksWithIdForClientWave(getUrlParamsId, proId).includes(to.fullPath);
         this.isFAQWave = to.fullPath.includes('intrebari-frecvente');
       },
     },

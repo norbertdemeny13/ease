@@ -1,4 +1,4 @@
-export const acceptedLinksWithIdForClientWave = (routeParamId: string) => ([
+export const acceptedLinksWithIdForClientWave = (routeParamId: string, proId: string) => ([
   `/servicii/single/${routeParamId}/rezerva`,
   `/servicii/single/${routeParamId}/rezerva/plata`,
   `/servicii/couple/${routeParamId}/rezerva`,
@@ -24,8 +24,14 @@ export const acceptedLinksWithIdForClientWave = (routeParamId: string) => ([
   `/servicii/men_hair/${routeParamId}/rezerva`,
   `/servicii/men_hair/${routeParamId}/rezerva/plata`,
   `/servicii/fitness/${routeParamId}`,
+  `/servicii/fitness/${routeParamId}/rezerva`,
+  `/servicii/fitness/${routeParamId}/rezerva/plata`,
   `/pro/${routeParamId}`,
   `/user/reset-password?token=${routeParamId}`,
+  `/servicii/hair/${routeParamId}`,
+  `/servicii/hair/${routeParamId}?pro_id=${proId}`,
+  `/servicii/masaj?type=single&pro_id=${proId}`,
+  `/servicii/fitness/${routeParamId}?pro_id=${proId}`,
 ]);
 
 export const acceptedLinksForClientWave = [
@@ -36,5 +42,16 @@ export const acceptedLinksForClientWave = [
   '/abonamente/massage?tip=monthly',
   '/abonamente/rezerva',
   '/client/cont',
+  '/client/parola',
+  '/client/telefon',
+  '/client/recomandare',
+  '/client/adrese',
+  '/client/metode-de-plata',
+  '/client/rezervarile-mele',
+  '/client/comenzile-mele',
+  '/client/profesionisti-salvati',
+  '/client/abonamente',
+  '/client/credit-ease',
+  '/client/preferinte',
   '/contact',
 ];
