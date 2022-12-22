@@ -1,14 +1,7 @@
 <!-- eslint-disable -->
 <template>
   <div>
-    <div class="login-form" v-if="!loggedIn()">
-      <form>
-        <input v-model="username" placeholder="username">
-        <input v-model="password" placeholder="password" type="password">
-        <input @click="login()" type="submit" value="log in">
-      </form>
-    </div>
-    <div v-if="loggedIn()">
+    <div>
       <es-header />
       <main>
         <transition name="app_a-fade" mode="out-in">
@@ -55,21 +48,6 @@
       isAuth(newVal, oldVal) {
         if (newVal && !oldVal) {
           this.isModalOpen = false;
-        }
-      },
-    },
-    methods: {
-      loggedIn() {
-        return localStorage.getItem('loggedInVerify') === 'true';
-      },
-
-      login() {
-        if (this.username === 'admin' && this.password === 'Password1!') {
-          localStorage.setItem('loggedInVerify', 'true');
-        } else {
-          /* eslint-disable */
-          alert('Incorrect username or password!');
-          localStorage.setItem('loggedInVerify', 'false');
         }
       },
     },
