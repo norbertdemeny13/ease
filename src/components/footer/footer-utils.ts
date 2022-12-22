@@ -6,6 +6,7 @@ export const acceptedLinksWithIdForClientWave = (routeParamId: string, proId: st
   `/servicii/nails/${routeParamId}`,
   `/servicii/nails/${routeParamId}/rezerva`,
   `/servicii/nails/${routeParamId}/rezerva/plata`,
+  `/servicii/nails/${routeParamId}?pro_id=${proId}`,
   `/servicii/eyelashes/${routeParamId}`,
   `/servicii/eyelashes/${routeParamId}/rezerva`,
   `/servicii/eyelashes/${routeParamId}/rezerva/plata`,
@@ -31,6 +32,8 @@ export const acceptedLinksWithIdForClientWave = (routeParamId: string, proId: st
   `/servicii/hair/${routeParamId}`,
   `/servicii/hair/${routeParamId}?pro_id=${proId}`,
   `/servicii/masaj?type=single&pro_id=${proId}`,
+  `/servicii/masaj?type=couple&pro_id=${proId}`,
+  `/new/servicii/masaj?type=couple&pro_id=${proId}`,
   `/servicii/fitness/${routeParamId}?pro_id=${proId}`,
 ]);
 
