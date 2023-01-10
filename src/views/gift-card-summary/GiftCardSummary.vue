@@ -47,6 +47,16 @@
             <small>{{ $t('views.giftcards.giftcard_summary_info', { ammount: getSelectedGiftCard.value, email: getSelectedGiftCard.email, date: getDate, total: getSelectedGiftCard.value }) }}</small><br>
             <small>{{ $t('views.giftcards.giftcard_summary_info2') }}</small>
           </div>
+          <ul class="additional_links">
+            <li>
+              <router-link
+                class="router-link-exact-active"
+                :to="'/termeni-si-conditii-program-de-recomandare-ease'"
+              >
+                {{ $t('gift_cards_terms_title') }}
+              </router-link>
+            </li>
+          </ul>
         </div>
         <div class="col-lg-6 col-md-6 pt-2 p-4">
           <div v-if="isPaymentConfirmed" class="d-flex flex-column align-items-center box_order">

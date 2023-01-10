@@ -2,7 +2,7 @@
   <div class="es_client-recommendations-container content">
     <h2>{{ $t('generic.recommend') }}</h2>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div class="form-group">
           <label>{{ $t('views.client_dashboard.recommend.title_description') }}</label>
           <div class="d-flex align-items-center">
@@ -37,6 +37,16 @@
             >
           </figure>
         </div>
+        <ul class="additional_links">
+          <li>
+            <router-link
+              class="router-link-exact-active"
+              :to="'/termeni-si-conditii-program-de-recomandare-ease'"
+            >
+              {{ $t('referral_terms_title') }}
+            </router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -90,3 +100,9 @@
     },
   });
 </script>
+
+<style scoped>
+.router-link-exact-active {
+  font-size: 13px;
+}
+</style>

@@ -57,4 +57,8 @@ export const acceptedLinksForClientWave = [
   '/client/credit-ease',
   '/client/preferinte',
   '/contact',
+  '/politica-de-confidentialitate',
+  '/termeni-si-conditii',
+  '/termeni-si-conditii-carduri-cadou-ease',
+  '/termeni-si-conditii-program-de-recomandare-ease',
 ];

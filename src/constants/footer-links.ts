@@ -93,6 +93,28 @@ export const PRO_FOOTER_LINKS = [
   },
 ];
 
+export const POLICY_FOOTER_LINK = [
+  {
+    label: 'privacy_policy_title',
+    to: '/politica-de-confidentialitate',
+  },
+  {
+    label: 'terms_and_conditions_title',
+    to: '/termeni-si-conditii',
+  },
+];
+
+export const PRO_POLICY_FOOTER_LINK = [
+  {
+    label: 'privacy_policy_title',
+    to: '/easepro/politica-de-confidentialitate',
+  },
+  {
+    label: 'terms_and_conditions_title',
+    to: '/easepro/termeni-si-conditii',
+  },
+];
+
 export const FOOTER_ICONS = [
   { name: 'apple-music-ease' },
   { name: 'facebook-ease' },
