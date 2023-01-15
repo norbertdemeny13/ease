@@ -12,6 +12,8 @@
             <button type="button" class="mfp-close" @click.prevent="$emit('is-open', false)" />
           </div>
           <div class="terms-and-conditions-container">
+            <h2>{{ $t('platform_access_agreement_title') }}</h2>
+            <p>{{ $t('platform_access_agreement_body') }}</p>
             <div class="row text-center">
               <div class="col">
                 <button class="btn btn-sm btn-pink" @click="$emit('on-accept')">
@@ -53,3 +55,11 @@
     data: () => ({}),
   });
 </script>
+
+<style scoped>
+#es-modal-dialog {
+  height: 550px;
+  max-width: 600px;
+  overflow: scroll;
+}
+</style>

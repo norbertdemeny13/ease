@@ -81,13 +81,12 @@
       <div class="row">
         <div class="ml-3">
           <ul class="additional_links">
-            <li>
-              <a href="#">{{ $t('generic.privacy_policy') }}
-              </a>
-            </li>
-            <li>
-              <a href="#">{{ $t('generic.terms_and_conditions') }}
-              </a>
+            <li v-for="link in getCommonFooterLinks" :key="link.label">
+              <router-link
+                :to="link.to"
+              >
+                {{ $t(link.label) }}
+              </router-link>
             </li>
           </ul>
         </div>
@@ -104,7 +103,12 @@
 <script>
   import Vue from 'vue';
   import { nanoid } from 'nanoid';
-  import { FOOTER_LINKS, PRO_FOOTER_LINKS } from '@/constants/footer-links';
+  import {
+    FOOTER_LINKS,
+    PRO_FOOTER_LINKS,
+    PRO_POLICY_FOOTER_LINK,
+    POLICY_FOOTER_LINK,
+  } from '@/constants/footer-links';
   import { acceptedLinksWithIdForClientWave, acceptedLinksForClientWave } from './footer-utils';
 
   export default Vue.extend({
@@ -128,6 +132,14 @@
         return links
           .map(item => ({ ...item, id: nanoid() }));
       },
+
+      getCommonFooterLinks() {
+        const links = this.isProPage
+          ? PRO_POLICY_FOOTER_LINK
+          : POLICY_FOOTER_LINK;
+        return links;
+      },
+
       getFooterClasses() {
         return {
           'is-pro-wave': this.isProWave,

@@ -32,6 +32,36 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/contact').then(({ Contact }) => Contact),
   },
   {
+    path: '/politica-de-confidentialitate',
+    name: 'Privacy And Policy',
+    component: () => import('@/views/privacy-and-policy').then(({ PrivacyAndPolicy }) => PrivacyAndPolicy),
+  },
+  {
+    path: '/easepro/politica-de-confidentialitate',
+    name: 'Privacy And Policy',
+    component: () => import('@/views/privacy-and-policy').then(({ PrivacyAndPolicy }) => PrivacyAndPolicy),
+  },
+  {
+    path: '/termeni-si-conditii',
+    name: 'Terms And Conditions',
+    component: () => import('@/views/terms-and-conditions').then(({ TermsAndConditions }) => TermsAndConditions),
+  },
+  {
+    path: '/easepro/termeni-si-conditii',
+    name: 'Terms And Conditions',
+    component: () => import('@/views/terms-and-conditions').then(({ TermsAndConditions }) => TermsAndConditions),
+  },
+  {
+    path: '/termeni-si-conditii-carduri-cadou-ease',
+    name: 'Terms And Conditions Ease Gifts',
+    component: () => import('@/views/terms-and-conditions-ease-gifts').then(({ TermsAndConditionsEaseGifts }) => TermsAndConditionsEaseGifts),
+  },
+  {
+    path: '/termeni-si-conditii-program-de-recomandare-ease',
+    name: 'Terms And Conditions Referrals',
+    component: () => import('@/views/terms-and-conditions-referrals').then(({ TermsAndConditionsReferrals }) => TermsAndConditionsReferrals),
+  },
+  {
     path: '/client',
     component: () => import('@/views/client-dashboard').then(({ ClientDashboard }) => ClientDashboard),
     children: [
