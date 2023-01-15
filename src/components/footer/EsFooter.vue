@@ -81,7 +81,7 @@
       <div class="row">
         <div class="ml-3">
           <ul class="additional_links">
-            <li v-for="link in commonFooterLinks" :key="link.label">
+            <li v-for="link in getCommonFooterLinks" :key="link.label">
               <router-link
                 :to="link.to"
               >
@@ -133,7 +133,7 @@
           .map(item => ({ ...item, id: nanoid() }));
       },
 
-      commonFooterLinks() {
+      getCommonFooterLinks() {
         const links = this.isProPage
           ? PRO_POLICY_FOOTER_LINK
           : POLICY_FOOTER_LINK;
