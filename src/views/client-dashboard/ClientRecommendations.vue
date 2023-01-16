@@ -16,6 +16,16 @@
             >
             <span class="copy-btn" @click.prevent="onCopy">{{ $t('generic.copy') }}</span>
           </div>
+          <ul class="additional_links float-none">
+          <li>
+            <router-link
+              class="router-link-exact-active"
+              :to="'/termeni-si-conditii-program-de-recomandare-ease'"
+            >
+              {{ $t('referral_terms_title') }}
+            </router-link>
+          </li>
+        </ul>
         </div>
         <div class="d-flex flex-row">
           <figure>
@@ -37,16 +47,6 @@
             >
           </figure>
         </div>
-        <ul class="additional_links">
-          <li>
-            <router-link
-              class="router-link-exact-active"
-              :to="'/termeni-si-conditii-program-de-recomandare-ease'"
-            >
-              {{ $t('referral_terms_title') }}
-            </router-link>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -104,5 +104,9 @@
 <style scoped>
 .router-link-exact-active {
   font-size: 13px;
+}
+
+.additional-links {
+  padding: 10px 0 0 0;
 }
 </style>
