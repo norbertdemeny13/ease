@@ -47,7 +47,7 @@
             <small>{{ $t('views.giftcards.giftcard_summary_info', { ammount: getSelectedGiftCard.value, email: getSelectedGiftCard.email, date: getDate, total: getSelectedGiftCard.value }) }}</small><br>
             <small>{{ $t('views.giftcards.giftcard_summary_info2') }}</small>
           </div>
-          <ul class="additional_links">
+          <ul class="additional_links float-none">
             <li>
               <router-link
                 class="router-link-exact-active"
@@ -157,3 +157,4 @@
     },
   });
 </script>
+
