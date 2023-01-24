@@ -74,7 +74,11 @@
         <span v-html="getConfirmationModalMessage" />
       </template>
     </es-confirm-modal>
-    <es-credit-card-modal v-if="isCreditCardModalOpen" v-model="isCreditCardModalOpen" />
+    <es-credit-card-modal
+      v-if="isCreditCardModalOpen"
+      v-model="isCreditCardModalOpen"
+      @on-cancel="isCreditCardModalOpen = false"
+    />
   </div>
 </template>
 
