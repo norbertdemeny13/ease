@@ -10,7 +10,34 @@
             :class="`${card.primary ? 'active' : ''} client-payment-card-item`"
             @click.prevent="onSelect(card)"
           >
-            <div class="card-number" v-html="getCardInfo(card)" />
+            <div class="d-flex align-items-center">
+              <img
+                v-if="['mastercard', 'MasterCard'].includes(card.brand)"
+                src="@/assets/svg/mastercard.svg"
+                alt="mastercard"
+                width="30"
+                height="30"
+                class="lazy ml-n1 mr-1"
+              >
+              <img
+                v-else-if="['visa', 'Visa'].includes(card.brand)"
+                src="@/assets/svg/visa.svg"
+                alt="visa"
+                width="30"
+                height="30"
+                class="lazy ml-n1 mr-1"
+              >
+              <img
+                v-else-if="['amex', 'American Express'].includes(card.brand)"
+                src="@/assets/svg/amex.svg"
+                alt="amex"
+                width="30"
+                height="30"
+                class="lazy ml-n1 mr-1"
+              >
+              <span v-else class="mr-1">&#128179;</span>
+              <div class="card-number" v-html="getCardInfo(card)" />
+            </div>
             <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
               <div v-if="card.primary">
                 <span class="icon_check_alt" />
@@ -137,7 +164,7 @@
       }),
 
       getCardInfo(card) {
-        return `&#128179; ${card.brand && card.brand.toUpperCase()} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
+        return `${card.brand && card.brand.toUpperCase()} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
       },
 
       addPayment() {
