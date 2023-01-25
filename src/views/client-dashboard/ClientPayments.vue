@@ -53,7 +53,34 @@
     >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">
-        <span v-html="getConfirmationModalMessage" />
+        <div v-if="method === 'select'">
+          <span class="mr-1">{{ $t('generic.set_question') }}</span>
+          <img
+            :src="getImagePath(selectedCard.brand)"
+            :alt="selectedCard.brand"
+            width="30"
+            height="30"
+            class="lazy mr-1"
+          >
+          <span class="mr-1">{{ selectedCard && getCardInfo(selectedCard) }}</span>
+          <span>{{ $t('generic.set_primary_card') }}</span>
+        </div>
+        <template v-if="method === 'remove'">
+          <div v-if="selectedCard.primary && isActiveSubscription">
+            {{ $t('user.subscriptions_active') }}
+          </div>
+          <div v-else>
+            <span class="mr-1">{{ $t('generic.cards_delete') }}</span>
+            <img
+              :src="getImagePath(selectedCard.brand)"
+              :alt="selectedCard.brand"
+              width="30"
+              height="30"
+              class="lazy mr-1"
+            >
+            <span>{{ selectedCard && getCardInfo(selectedCard) }}?</span>
+          </div>
+        </template>
       </template>
     </es-confirm-modal>
     <es-credit-card-modal
@@ -81,7 +108,6 @@
       isCreditCardModalOpen: false,
       selectedCard: null,
       modalTitle: '',
-      modalMessage: '',
       method: '',
     }),
 
@@ -97,10 +123,6 @@
 
       getConfirmationModalTitle() {
         return this.modalTitle;
-      },
-
-      getConfirmationModalMessage() {
-        return this.modalMessage;
       },
 
       getConfirmationCta() {
@@ -186,7 +208,6 @@
         this.method = 'select';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.change_default_card_title').toString();
-        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getCardInfo(card)} ${this.$t('generic.set_primary_card').toString()}`;
         this.isConfirmModalOpen = true;
       },
 
@@ -194,9 +215,6 @@
         this.method = 'remove';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
-        this.modalMessage = this.isActiveSubscription && card.primary
-          ? `${this.$t('user.subscriptions_active').toString()}`
-          : `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
         this.isConfirmModalOpen = true;
       },
 
