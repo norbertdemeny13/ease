@@ -12,30 +12,12 @@
           >
             <div class="d-flex align-items-center">
               <img
-                v-if="['mastercard'].includes(card.brand.toLowerCase())"
-                src="@/assets/svg/mastercard.svg"
-                alt="mastercard"
+                :src="getImagePath(card.brand)"
+                :alt="card.brand"
                 width="30"
                 height="30"
                 class="lazy ml-n1 mr-1"
               >
-              <img
-                v-else-if="['visa'].includes(card.brand.toLowerCase())"
-                src="@/assets/svg/visa.svg"
-                alt="visa"
-                width="30"
-                height="30"
-                class="lazy ml-n1 mr-1"
-              >
-              <img
-                v-else-if="['amex', 'American Express'].includes(card.brand)"
-                src="@/assets/svg/amex.svg"
-                alt="amex"
-                width="30"
-                height="30"
-                class="lazy ml-n1 mr-1"
-              >
-              <span v-else class="mr-1">&#128179;</span>
               <div class="card-number" v-html="getCardInfo(card)" />
             </div>
             <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
@@ -168,7 +150,27 @@
       }),
 
       getCardInfo(card) {
-        return `${card.brand && card.brand.toUpperCase()} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
+        const brand = ['amex', 'American Express'].includes(card.brand) ? 'AMEX' : card.brand.toUpperCase();
+
+        return `${brand} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
+      },
+
+      getImagePath(brand) {
+        const path = require.context('@/assets/svg');
+        let svg;
+
+        switch (brand) {
+          case 'visa':
+          case 'Visa':
+          case 'mastercard':
+          case 'MasterCard':
+            svg = brand.toLowerCase();
+            break;
+          default:
+            svg = 'amex';
+        }
+
+        return path(`./${svg}.svg`);
       },
 
       addPayment() {
