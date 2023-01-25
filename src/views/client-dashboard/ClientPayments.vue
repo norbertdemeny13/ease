@@ -201,7 +201,7 @@
       },
 
       onSelect(card) {
-        if (card.main) {
+        if (card.primary) {
           return;
         }
 
