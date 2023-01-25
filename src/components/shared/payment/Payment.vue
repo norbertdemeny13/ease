@@ -21,13 +21,12 @@
           />
         </div>
         <!--End row -->
-        <div class="payment-actions">
-          <a href="" @click.prevent="onAddCard">
+        <div class="d-flex align-items-center">
+          <button class="btn btn-sm btn-pink btn-pill my-2 mr-4" @click.prevent="onAddCard">
             {{ $t('generic.save') }}
-          </a>
-          <a href="" class="ml-4" @click.prevent="$emit('on-cancel')">
+          </button>
+          <a href="" @click.prevent="$emit('on-cancel')">
             {{ $t('generic.back') }}
-
           </a>
         </div>
       </div>
@@ -175,13 +174,12 @@
 </script>
 
 <style type="text/css">
+  .es-payment-container .head h3 {
+    color: #222;
+  }
+
   .es-payment-container .main {
     min-height: 150px;
     position: relative;
-  }
-
-  .es-payment-container .main .payment-actions {
-    bottom: 16px;
-    position: absolute;
   }
 </style>
