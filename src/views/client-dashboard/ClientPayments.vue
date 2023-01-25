@@ -12,7 +12,7 @@
           >
             <div class="d-flex align-items-center">
               <img
-                v-if="['mastercard', 'MasterCard'].includes(card.brand)"
+                v-if="['mastercard'].includes(card.brand.toLowerCase())"
                 src="@/assets/svg/mastercard.svg"
                 alt="mastercard"
                 width="30"
@@ -20,7 +20,7 @@
                 class="lazy ml-n1 mr-1"
               >
               <img
-                v-else-if="['visa', 'Visa'].includes(card.brand)"
+                v-else-if="['visa'].includes(card.brand.toLowerCase())"
                 src="@/assets/svg/visa.svg"
                 alt="visa"
                 width="30"
