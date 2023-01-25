@@ -179,19 +179,8 @@
 
       getImagePath(brand) {
         const path = require.context('@/assets/svg');
-        let svg;
-
-        switch (brand) {
-          case 'visa':
-          case 'Visa':
-          case 'mastercard':
-          case 'MasterCard':
-            svg = brand.toLowerCase();
-            break;
-          default:
-            svg = 'amex';
-        }
-
+        const localBrand = brand.toLowerCase();
+        const svg = ['visa', 'mastercard'].includes(localBrand) ? localBrand : 'amex';
         return path(`./${svg}.svg`);
       },
 
