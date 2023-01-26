@@ -15,7 +15,7 @@
                     :key="card.id"
                     :value="card.id"
                   >
-                    {{ card.brand.toUpperCase() }} **** {{ card.last4 }}
+                    {{ getCardBrand(card.brand) }} **** {{ card.last4 }}
                   </option>
                 </select>
               </div>
@@ -143,6 +143,10 @@
           this.addCard();
         }
         this.showAddPayment = true;
+      },
+
+      getCardBrand(brand: any) {
+        return ['amex', 'American Express'].includes(brand) ? 'AMEX' : brand.toUpperCase();
       },
     },
   });
