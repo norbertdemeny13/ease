@@ -15,7 +15,7 @@
                     :key="card.id"
                     :value="card.id"
                   >
-                    &#128179 &#10240 {{ card.brand.toUpperCase() }} **** {{ card.last4 }}
+                    {{ card.brand.toUpperCase() }} **** {{ card.last4 }}
                   </option>
                 </select>
               </div>
