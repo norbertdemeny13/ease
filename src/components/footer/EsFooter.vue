@@ -40,42 +40,17 @@
               </div>
             </li>
           </ul>
-          <figure>
-            <img
-              src="@/assets/icons/apple-music-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
-          <figure>
-            <img
-              src="@/assets/icons/facebook-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
-          <figure>
-            <img
-              src="@/assets/icons/insta-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
-          <figure>
-            <img
-              src="@/assets/icons/youtube-ease.svg"
-              alt=""
-              width="35"
-              height="35"
-              class="lazy mx-2"
-            >
-          </figure>
+          <template v-for="icon in socialIcons">
+            <a :key="icon.name" :href="icon.href" target="_blank" class="radius-50 mx-2">
+              <img
+                :src="getIconPath(icon.name)"
+                :alt="icon.name"
+                width="35"
+                height="35"
+                class="lazy"
+              >
+            </a>
+          </template>
         </div>
       </div>
       <div class="row">
@@ -108,6 +83,7 @@
     PRO_FOOTER_LINKS,
     PRO_POLICY_FOOTER_LINK,
     POLICY_FOOTER_LINK,
+    FOOTER_SOCIAL_ICONS,
   } from '@/constants/footer-links';
   import { acceptedLinksWithIdForClientWave, acceptedLinksForClientWave } from './footer-utils';
 
@@ -177,6 +153,7 @@
       }
 
       this.selectedLanguage = this.$root.$i18n.locale;
+      this.socialIcons = FOOTER_SOCIAL_ICONS;
     },
 
     methods: {
@@ -188,6 +165,11 @@
         const lang = $event.target.value || 'ro';
         this.$root.$i18n.locale = lang;
         localStorage.setItem('lang', lang);
+      },
+      getIconPath(name) {
+        const path = require.context('@/assets/svg');
+
+        return path(`./social-${name}.svg`);
       },
     },
   });
