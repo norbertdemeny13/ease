@@ -21,13 +21,13 @@
           />
         </div>
         <!--End row -->
-        <div class="d-flex align-items-center">
-          <button class="btn btn-sm btn-pink btn-pill my-2 mr-4" @click.prevent="onAddCard">
-            {{ $t('generic.save') }}
-          </button>
+        <div class="d-flex align-items-center justify-content-end">
           <a href="" @click.prevent="$emit('on-cancel')">
             {{ $t('generic.back') }}
           </a>
+          <button class="btn btn-sm btn-pink btn-pill my-2 ml-4" @click.prevent="onAddCard">
+            {{ $t('generic.save') }}
+          </button>
         </div>
       </div>
     </div>
