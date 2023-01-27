@@ -59,7 +59,7 @@
                 </div>
                 </div>
                 <div class="text-center">
-                  <input @click.prevent="onSubmit()" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
+                  <input @click.prevent="onSubmit()" type="submit" :value="$t('lbl_login')" class="btn_1 full-width mb_5">
                   {{ $t('generic.no_account_yet') }}
 
                   <a @click.prevent="isSignIn = false" href="" class="text-pink">
@@ -145,7 +145,7 @@
 
                 <div class="clearfix add_bottom_15">
                   <div class="text-center">
-                    <input @click.prevent="onSubmit()" type="submit" value="Inregistreaza-te" class="btn_1 full-width mb_5">
+                    <input @click.prevent="onSubmit()" type="submit" :value="$t('generic.sign_up')" class="btn_1 full-width mb_5">
                     {{ $t('generic.already_have_an_account') }}
                     <a
                       href=""
