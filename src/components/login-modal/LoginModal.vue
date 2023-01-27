@@ -277,9 +277,6 @@
             credentials: form,
             type: userType,
           });
-          if (name === 'Home' && userType !== 'elite') {
-            this.$router.push('/servicii');
-          }
         } else {
           await this.signUp({
             credentials: form,
