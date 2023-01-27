@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-md-10 col-sm-12">
         <h2>{{ $t('generic.my_reservations') }}</h2>
-        <es-divider v-if="getReservationList.length" />
         <div v-if="isListView">
           <ul id="pricing-tab" class="nav nav-pills pricing-tab mb-4" role="tablist">
             <li class="nav-item" @click="selectedType = 'past'">
