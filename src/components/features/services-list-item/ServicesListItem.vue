@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div @click="$router.push(to)" class="es_services-list-item transition-3d-hover my-2">
+  <div @click="goToCategory()" class="es_services-list-item transition-3d-hover my-2">
     <figure>
       <img :src="imagePath" :data-src="imagePath" class="img-fluid lazy" alt="">
       <span v-if="service.discount" class="ribbon off">{{ service.discount }}% off</span>
@@ -39,6 +39,14 @@
       isDetailsView: {
         type: Boolean,
         default: false,
+      },
+    },
+
+    methods: {
+      goToCategory() {
+        if (!this.to) return;
+
+        this.$router.push(this.to);
       },
     },
   });

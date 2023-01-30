@@ -110,8 +110,11 @@
 
         const category = item.name;
         const { query } = this.$router.currentRoute;
-        let endpoint = '';
-        if (category === 'single' || category === 'couple') {
+        let endpoint;
+
+        if (!category) {
+          endpoint = '';
+        } else if (category === 'single' || category === 'couple') {
           endpoint = query?.pro_id
             ? `/servicii/masaj?type=${category}&pro_id=${query.pro_id}`
           : `/servicii/masaj?type=${category}`;
