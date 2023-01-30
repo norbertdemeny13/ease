@@ -47,7 +47,6 @@
                 :alt="icon.name"
                 width="35"
                 height="35"
-                class="lazy"
               >
             </a>
           </template>
