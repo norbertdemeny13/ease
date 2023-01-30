@@ -17,7 +17,7 @@
               class="mt-4"
               :is-fetching="isFetching"
               @on-add-card="$emit('is-open', false)"
-              @on-cancel="showAddPayment = false"
+              @on-cancel="$emit('on-cancel')"
               :is-authenticated="true"
             />
           </div>
