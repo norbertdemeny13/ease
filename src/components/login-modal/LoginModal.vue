@@ -168,7 +168,7 @@
   /* eslint-disable */
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { nanoid } from 'nanoid';
+  import { startCase } from 'lodash-es';
 
   export default Vue.extend({
     name: 'es-login-modal',
@@ -267,8 +267,14 @@
             type: userType,
           });
         } else {
+          const formData = {
+            ...form,
+            first_name: startCase(form.first_name.toLowerCase()),
+            last_name: startCase(form.last_name.toLowerCase()),
+          }
+
           await this.signUp({
-            credentials: form,
+            credentials: formData,
             type: userType,
           });
           if (name === 'Home' && userType !== 'elite') {
