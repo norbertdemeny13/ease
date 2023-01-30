@@ -29,7 +29,7 @@
       </div>
       <!-- /row-->
       <div class="row my-3">
-        <div class="col-lg-6 d-flex flex-row">
+        <div class="col-lg-6 d-flex flex-row align-items-center">
           <ul class="footer-selector clearfix">
             <li>
               <div class="styled-select lang-selector">
@@ -48,6 +48,22 @@
                 width="35"
                 height="35"
                 class="lazy"
+              >
+            </a>
+          </template>
+        </div>
+        <div class="col-lg-6 legal">
+          <template v-for="icon in legalIcons">
+            <a
+              :key="icon.name"
+              :href="icon.href"
+              target="_blank"
+              class="mr-2"
+              rel="noopener noreferrer nofollow"
+            >
+              <img
+                :src="icon.src"
+                :alt="icon.name"
               >
             </a>
           </template>
@@ -84,6 +100,7 @@
     PRO_POLICY_FOOTER_LINK,
     POLICY_FOOTER_LINK,
     FOOTER_SOCIAL_ICONS,
+    FOOTER_LEGAL_ICONS,
   } from '@/constants/footer-links';
   import { acceptedLinksWithIdForClientWave, acceptedLinksForClientWave } from './footer-utils';
 
@@ -154,6 +171,7 @@
 
       this.selectedLanguage = this.$root.$i18n.locale;
       this.socialIcons = FOOTER_SOCIAL_ICONS;
+      this.legalIcons = FOOTER_LEGAL_ICONS;
     },
 
     methods: {
@@ -174,3 +192,23 @@
     },
   });
 </script>
+
+<style lang="scss">
+  .legal {
+    margin-top: 24px;
+
+    a img {
+      width: 160px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .legal {
+      margin-top: 0;
+
+      a img {
+        width: 180px;
+      }
+    }
+  }
+</style>
