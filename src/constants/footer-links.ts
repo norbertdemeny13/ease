@@ -122,3 +122,22 @@ export const FOOTER_ICONS = [
   { name: 'insta-ease' },
   { name: 'youtube-ease' },
 ];
+
+export const FOOTER_SOCIAL_ICONS = [
+  {
+    name: 'spotify',
+    href: 'https://open.spotify.com/user/313yxgs3rzvzrl7lqv3etgublohy',
+  },
+  {
+    name: 'facebook',
+    href: 'https://www.facebook.com/easeromania',
+  },
+  {
+    name: 'instagram',
+    href: 'https://www.instagram.com/ease.ro/',
+  },
+  {
+    name: 'youtube',
+    href: 'https://www.youtube.com/@easeromania',
+  },
+];
