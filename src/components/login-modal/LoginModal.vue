@@ -169,7 +169,6 @@
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
   import { startCase } from 'lodash-es';
-  import { nanoid } from 'nanoid';
 
   export default Vue.extend({
     name: 'es-login-modal',
