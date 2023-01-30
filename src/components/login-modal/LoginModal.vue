@@ -168,6 +168,7 @@
   /* eslint-disable */
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
+  import { startCase } from 'lodash-es';
   import { nanoid } from 'nanoid';
 
   export default Vue.extend({
@@ -267,8 +268,14 @@
             type: userType,
           });
         } else {
+          const formData = {
+            ...form,
+            first_name: startCase(form.first_name.toLowerCase()),
+            last_name: startCase(form.last_name.toLowerCase()),
+          }
+
           await this.signUp({
-            credentials: form,
+            credentials: formData,
             type: userType,
           });
           if (name === 'Home' && userType !== 'elite') {
