@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="why-us-container bg_gray">
+  <div class="why-us-container">
     <div class="container margin_30_40">
       <div class="main_title center">
         <h2>{{ $t('views.home.we_title') }}</h2>
