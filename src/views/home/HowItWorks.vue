@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="how-it-works-container bg_gray">
+  <div class="how-it-works-container">
     <div class="container py-6">
       <div class="main_title center">
         <h2>{{ $t('generic.how_it_works') }}</h2>
