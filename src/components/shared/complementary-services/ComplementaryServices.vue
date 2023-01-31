@@ -4,7 +4,7 @@
     <div
       v-for="service in services"
       :key="service.id"
-      class="extra-services-container row my-4 ml-0"
+      :class="`extra-services-container row my-4 ml-0 ${ service.selectedCount > 0 ? 'selected' : '' }`"
     >
       <div class="d-flex flex-row p-2 w-100">
         <img
