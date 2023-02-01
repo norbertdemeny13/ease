@@ -14,7 +14,6 @@
                   alt=""
                   width="35"
                   height="35"
-                  class="lazy"
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card1_title') }}</h3>
@@ -29,7 +28,6 @@
                   alt=""
                   width="35"
                   height="35"
-                  class="lazy"
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card2_title') }}</h3>
@@ -44,7 +42,6 @@
                   alt=""
                   width="35"
                   height="35"
-                  class="lazy"
                 >
               </figure>
               <h3 class="my-3">{{ $t('views.pro_home.work_with_us_card3_title') }}</h3>
