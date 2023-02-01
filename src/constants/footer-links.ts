@@ -141,3 +141,16 @@ export const FOOTER_SOCIAL_ICONS = [
     href: 'https://www.youtube.com/@easeromania',
   },
 ];
+
+export const FOOTER_LEGAL_ICONS= [
+  {
+    name: 'sal',
+    src: 'https://cdn.shopify.com/s/files/1/0637/5024/2529/files/anpc-sal.png?v=1665676114',
+    href: 'https://anpc.ro/ce-este-sal/',
+  },
+  {
+    name: 'sol',
+    src: 'https://cdn.shopify.com/s/files/1/0637/5024/2529/files/anpc-sol.png?v=1665676114',
+    href: 'https://ec.europa.eu/consumers/odr',
+  },
+];
