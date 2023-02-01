@@ -2940,8 +2940,15 @@ ul#top_menu li a.login::before {
   .hero .opacity-mask h3 {
     font-size: 28px;
   }
+}
+
+@media (max-width: 414px) {
   .hero.pro-hero {
     background: none;
+  }
+
+  .wave.hero {
+    display: none;
   }
 }
 
