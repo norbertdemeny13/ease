@@ -54,7 +54,7 @@
                 </div>
                 </div>
                 <div class="text-center">
-                  <input @click.prevent="onSubmit()" type="submit" :value="$t('lbl_login')" class="btn_1 full-width mb_5">
+                  <input @click.prevent="onSubmit()" type="submit" :value="$t('lbl_login')" class="btn_1 full-width my-2">
                   {{ $t('generic.no_account_yet') }}
                   <a @click.prevent="isSignIn = false" href="" class="text-pink">
                     {{ $t('generic.sign_up') }}
@@ -134,7 +134,16 @@
                 </div>
                 <div class="clearfix add_bottom_15">
                   <div class="text-center">
-                    <input @click.prevent="onSubmit()" type="submit" :value="$t('generic.sign_up')" class="btn_1 full-width mb_5">
+                    <button @click.prevent="onSubmit()" type="submit" class="position-relative btn_1 full-width my-2">
+                      <span
+                        v-if="isFetchingUser"
+                        class="position-absolute loading"
+                        :style="loadingStyle"
+                      >
+                        <i class="icon_loading" />
+                      </span>
+                      {{ $t('generic.sign_up') }}
+                    </button>
                     {{ $t('generic.already_have_an_account') }}
                     <a
                       href=""
@@ -218,6 +227,13 @@
         getUser: 'session/getUser',
         isFetchingUser: 'session/isFetchingUser',
       }),
+      loadingStyle() {
+        const lang = localStorage.getItem('lang');
+
+        return ({
+          left: lang === 'en' ? '32%' : '24%',
+         });
+      },
     },
 
     watch: {
@@ -290,3 +306,24 @@
     },
   });
 </script>
+
+<style>
+  .loading {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    height: 22px;
+    width: 22px;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
