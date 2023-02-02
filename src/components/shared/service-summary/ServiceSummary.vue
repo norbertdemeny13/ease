@@ -55,7 +55,7 @@
           :key="service.id"
         >
           <p class="ml-2"><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
-          <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)/2) }} Lei</span>
+          <span v-if="service.isFourHands">{{ service.price }} Lei</span>
           <span v-else>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
       </ul>
