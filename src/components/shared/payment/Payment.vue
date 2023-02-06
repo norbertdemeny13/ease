@@ -130,7 +130,7 @@
               (this as any).$toasts.toast({
                 title: this.$t('toast.error_title'),
                 id: 'card',
-                message: result.error.message,
+                message: this.$t('expired_card'),
                 intent: 'error',
               });
             } else {
@@ -156,7 +156,7 @@
               (this as any).$toasts.toast({
                 title: this.$t('toast.error_title'),
                 id: 'card',
-                message: result.error.message,
+                message: this.$t('payment_failed'),
                 intent: 'error',
               });
             } else {
