@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="why-us-container bg_gray">
+  <div class="why-us-container">
     <div class="container margin_30_40">
       <div class="main_title center">
         <h2>{{ $t('views.home.we_title') }}</h2>
@@ -11,10 +11,9 @@
             <figure>
               <img
                 src="@/assets/icons/paper.svg"
-                alt=""
+                alt="paper"
                 width="35"
                 height="35"
-                class="lazy"
               >
             </figure>
             <h2 class="my-3 text-center">{{ $t('views.home.we_card1_title') }}</h2>
@@ -26,10 +25,9 @@
             <figure>
               <img
                 src="@/assets/icons/user.svg"
-                alt=""
+                alt="user"
                 width="35"
                 height="35"
-                class="lazy"
               >
             </figure>
             <h2 class="my-3 text-center">{{ $t('views.home.we_card2_title') }}</h2>
@@ -41,10 +39,9 @@
             <figure>
               <img
                 src="@/assets/icons/clock.svg"
-                alt=""
+                alt="clock"
                 width="35"
                 height="35"
-                class="lazy"
               >
             </figure>
             <h2 class="my-3 text-center">{{ $t('views.home.we_card3_title') }}</h2>

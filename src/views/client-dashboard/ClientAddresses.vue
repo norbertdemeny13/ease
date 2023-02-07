@@ -209,6 +209,7 @@
     border: 2px solid #70d7b7;
     cursor: pointer;
   }
+
   .address {
     max-width: 60%;
   }

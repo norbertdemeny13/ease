@@ -93,10 +93,64 @@ export const PRO_FOOTER_LINKS = [
   },
 ];
 
+export const POLICY_FOOTER_LINK = [
+  {
+    label: 'privacy_policy_title',
+    to: '/politica-de-confidentialitate',
+  },
+  {
+    label: 'terms_and_conditions_title',
+    to: '/termeni-si-conditii',
+  },
+];
+
+export const PRO_POLICY_FOOTER_LINK = [
+  {
+    label: 'privacy_policy_title',
+    to: '/easepro/politica-de-confidentialitate',
+  },
+  {
+    label: 'terms_and_conditions_title',
+    to: '/easepro/termeni-si-conditii',
+  },
+];
+
 export const FOOTER_ICONS = [
   { name: 'apple-music-ease' },
   { name: 'facebook-ease' },
   { name: 'pinterest-ease' },
   { name: 'insta-ease' },
   { name: 'youtube-ease' },
+];
+
+export const FOOTER_SOCIAL_ICONS = [
+  {
+    name: 'spotify',
+    href: 'https://open.spotify.com/user/313yxgs3rzvzrl7lqv3etgublohy',
+  },
+  {
+    name: 'facebook',
+    href: 'https://www.facebook.com/easeromania',
+  },
+  {
+    name: 'instagram',
+    href: 'https://www.instagram.com/ease.ro/',
+  },
+  {
+    name: 'youtube',
+    href: 'https://www.youtube.com/@easeromania',
+  },
+];
+
+export const FOOTER_LEGAL_ICONS= [
+  {
+    name: 'sal',
+    src: 'https://cdn.shopify.com/s/files/1/0637/5024/2529/files/anpc-sal.png?v=1665676114',
+    href: 'https://anpc.ro/ce-este-sal/',
+  },
+  {
+    name: 'sol',
+    src: 'https://cdn.shopify.com/s/files/1/0637/5024/2529/files/anpc-sol.png?v=1665676114',
+    href: 'https://ec.europa.eu/consumers/odr',
+  },
 ];

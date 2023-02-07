@@ -27,7 +27,7 @@
     <es-work-with-us />
     <es-more-details />
     <es-how-it-works />
-    <div class="text-center text-content m-4 p-4 d-flex align-items-center flex-column justify-content-center bg_gray custom-pro">
+    <div class="text-center text-content m-4 p-4 d-flex align-items-center flex-column justify-content-center custom-pro">
       <div class="row">
         <div class="col-md-12 col-lg-8 mx-auto">
           <h3 class="text-center">{{ $t('views.pro_home.footer_message') }}</h3>

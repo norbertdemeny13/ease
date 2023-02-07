@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content bg_gray">
     <div class="es_reserve-massage-service-page container margin_30_20">
       <div class="d-flex justify-content-between">
         <a href="" class="back-button" @click.prevent="onBack()">
@@ -282,8 +282,7 @@
 
       if (query && query.pro_id) {
         this.isTargetedReservation = true;
-        this.fetchElite({ id: query.pro_id });
-        this.fetchServicesByType({ type, id: query.pro_id });
+        this.fetchServicesByType({ type, id: this.getElite.id });
       } else {
         this.fetchServicesByType({ type });
       }
@@ -321,7 +320,7 @@
           genre,
         } = this.massageForm;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.pro_id;
+        const eliteId = this.getElite.id;
         const { massageType } = this;
         const { uuid } = this.selectedService;
 
@@ -365,6 +364,17 @@
         this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         this.$store.commit('services/setMassageInfo', { terapeut, duration, genre });
 
+        const isReflexoMassage = this.selectedService.name.includes('reflexo');
+
+        if (isReflexoMassage) {
+          this.$toasts.toast({
+            id: 'warning-toast',
+            intent: 'warning',
+            message: this.$t('massage.reflexoAlertDescription'),
+            title: this.$t('toast.warning_title'),
+          });
+        }
+
         if (massageType === 'single') {
           await this.$store.dispatch('services/createMassageReservation', eliteId);
           await this.$router.push(`/servicii/${type}/${uuid}/rezerva`);
@@ -398,7 +408,7 @@
   }
 
   .profile-pic-container img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 </style>

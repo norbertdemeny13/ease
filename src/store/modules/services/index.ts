@@ -190,7 +190,6 @@ export default {
         commit('common/setErrors', reason, { root: true });
       } finally {};
     },
-
     async createExtraServiceReservation({ state, dispatch, commit }) {
       if (state.serviceCategory === 'massages') {
         return;
@@ -202,7 +201,6 @@ export default {
       await complementaryServices.forEach(item => dispatch('addExtraServiceReservation', { id: mainServiceId, service: item }));
       Vue.set(state, 'isFetching', false);
     },
-
     async getReservationCalendar({ state, commit }) {
       const reservationId = state.reservationDetails!.id;
       const selectedDate = state.selectedDate?.date;
@@ -225,7 +223,6 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-
     async addServiceReservationDate({ state, commit }) {
       const mainServiceId = state.reservationDetails!.id;
       const selectedDate = state.selectedDate?.date;
@@ -256,7 +253,6 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-
     async addExtraServiceReservation({ state, commit }, { id, service }) {
       const complementaries = service.complementary_services
         ? service.complementary_services
@@ -279,7 +275,6 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
-
     async removeExtraServiceReservation({ state, commit }, { id }) {
       const reservationId = state.reservationDetails!.id;
       const serviceId = state.reservationDetails!.reservation_service.beauty_service_reservations.find(({ service }) => service.id === id)!.id;
@@ -441,6 +436,9 @@ export default {
     },
     setSelectedDate({ state }, date) {
       Vue.set(state, 'selectedDate', date);
+    },
+    updateMasageFormDuration({ state }, duration) {
+      state.selectedServices[0].massageForm.duration = duration;
     },
   } as ActionTree<State, RootState>,
 

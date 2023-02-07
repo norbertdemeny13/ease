@@ -92,14 +92,6 @@
       },
     },
 
-    created() {
-      const { query } = this.$router.currentRoute;
-
-      if (query && query.pro_id) {
-        this.fetchElite({ id: query.pro_id });
-      }
-    },
-
     methods: {
       async onContinue() {
         const { service } = this;
@@ -127,7 +119,7 @@
   }
 
   .profile-pic-container img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 </style>

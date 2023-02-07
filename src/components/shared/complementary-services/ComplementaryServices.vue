@@ -4,7 +4,7 @@
     <div
       v-for="service in services"
       :key="service.id"
-      class="extra-services-container row my-4 ml-0"
+      :class="`extra-services-container row my-4 ml-0 ${ service.selectedCount > 0 ? 'selected' : '' }`"
     >
       <div class="d-flex flex-row p-2 w-100">
         <img
@@ -18,7 +18,7 @@
         <div class="d-flex flex-column flex-grow-1 ml-2 px-2">
           <h5>{{ $t(service.complementary_service.name) }}</h5>
           <div class="d-flex justify-content-between">
-            <p class="m-0">{{ service.complementary_service.price }} Lei {{ $router.currentRoute.params.type === 'nails' ? '/ unghie' : '' }}</p>
+            <p class="m-0">{{ service.complementary_service.price }} Lei {{ $router.currentRoute.params.type === 'nails' ? `/ ${$t('nails_complementary_nail')}` : '' }}</p>
             <div class="form-group">
               <select
                 v-model="service.selectedCount"

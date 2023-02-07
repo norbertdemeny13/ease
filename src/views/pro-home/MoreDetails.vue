@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="more-details bg_gray">
+  <div class="more-details">
     <div class="container-fluid">
       <div class="row">
         <div class="custom-container-info pb-6 pt-0">

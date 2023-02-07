@@ -10,7 +10,16 @@
             :class="`${card.primary ? 'active' : ''} client-payment-card-item`"
             @click.prevent="onSelect(card)"
           >
-            <div class="card-number" v-html="getCardInfo(card)" />
+            <div class="d-flex align-items-center">
+              <img
+                :src="getImagePath(card.brand)"
+                :alt="card.brand"
+                width="30"
+                height="30"
+                class="lazy ml-n1 mr-1"
+              >
+              <div class="card-number" v-html="getCardInfo(card)" />
+            </div>
             <div :class="`d-flex flex-row align-items-center justify-content-${card.primary ? 'between' : 'end'} mt-2`">
               <div v-if="card.primary">
                 <span class="icon_check_alt" />
@@ -44,10 +53,41 @@
     >
       <template slot="title">{{ getConfirmationModalTitle }}</template>
       <template slot="message">
-        <span v-html="getConfirmationModalMessage" />
+        <div v-if="method === 'select'">
+          <span class="mr-1">{{ $t('generic.set_question') }}</span>
+          <img
+            :src="getImagePath(selectedCard.brand)"
+            :alt="selectedCard.brand"
+            width="30"
+            height="30"
+            class="lazy mr-1"
+          >
+          <span class="mr-1">{{ selectedCard && getCardInfo(selectedCard) }}</span>
+          <span>{{ $t('generic.set_primary_card') }}</span>
+        </div>
+        <template v-if="method === 'remove'">
+          <div v-if="selectedCard.primary && isActiveSubscription">
+            {{ $t('user.subscriptions_active') }}
+          </div>
+          <div v-else>
+            <span class="mr-1">{{ $t('generic.cards_delete') }}</span>
+            <img
+              :src="getImagePath(selectedCard.brand)"
+              :alt="selectedCard.brand"
+              width="30"
+              height="30"
+              class="lazy mr-1"
+            >
+            <span>{{ selectedCard && getCardInfo(selectedCard) }}?</span>
+          </div>
+        </template>
       </template>
     </es-confirm-modal>
-    <es-credit-card-modal v-if="isCreditCardModalOpen" v-model="isCreditCardModalOpen" />
+    <es-credit-card-modal
+      v-if="isCreditCardModalOpen"
+      v-model="isCreditCardModalOpen"
+      @on-cancel="isCreditCardModalOpen = false"
+    />
   </div>
 </template>
 
@@ -68,7 +108,6 @@
       isCreditCardModalOpen: false,
       selectedCard: null,
       modalTitle: '',
-      modalMessage: '',
       method: '',
     }),
 
@@ -84,10 +123,6 @@
 
       getConfirmationModalTitle() {
         return this.modalTitle;
-      },
-
-      getConfirmationModalMessage() {
-        return this.modalMessage;
       },
 
       getConfirmationCta() {
@@ -137,7 +172,16 @@
       }),
 
       getCardInfo(card) {
-        return `&#128179; ${card.brand && card.brand.toUpperCase()} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
+        const brand = ['amex', 'American Express'].includes(card.brand) ? 'AMEX' : card.brand.toUpperCase();
+
+        return `${brand} **** ${card.last4} (exp: ${card.exp_month}/${card.exp_year})`;
+      },
+
+      getImagePath(brand) {
+        const path = require.context('@/assets/svg');
+        const localBrand = brand.toLowerCase();
+        const svg = ['visa', 'mastercard'].includes(localBrand) ? localBrand : 'amex';
+        return path(`./${svg}.svg`);
       },
 
       addPayment() {
@@ -146,14 +190,13 @@
       },
 
       onSelect(card) {
-        if (card.main) {
+        if (card.primary) {
           return;
         }
 
         this.method = 'select';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.change_default_card_title').toString();
-        this.modalMessage = `${this.$t('generic.set_question').toString()} ${this.getCardInfo(card)} ${this.$t('generic.set_primary_card').toString()}`;
         this.isConfirmModalOpen = true;
       },
 
@@ -161,9 +204,6 @@
         this.method = 'remove';
         this.selectedCard = card;
         this.modalTitle = this.$t('views.client_dashboard.payment_methods.delete_card').toString();
-        this.modalMessage = this.isActiveSubscription && card.primary
-          ? `${this.$t('user.subscriptions_active').toString()}`
-          : `${this.$t('generic.cards_delete').toString()} ${this.getCardInfo(card)}?`;
         this.isConfirmModalOpen = true;
       },
 
@@ -196,7 +236,7 @@
     border: 1px solid #70d7b7;
   }
 
-    .client-payment-card-item.active {
+  .client-payment-card-item.active {
     border: 2px solid #70d7b7;
   }
 

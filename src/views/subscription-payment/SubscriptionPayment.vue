@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="es_reserve-subscription-container">
+  <div class="es_reserve-subscription-container bg_gray">
     <div class="container margin_30_40">
       <a href="" class="back-button mb-2" @click.prevent="onBack">{{ $t('generic.back') }}</a>
       <div class="row mt-4">
@@ -196,22 +196,23 @@
   }
 
   .loading {
-    animation-name: spin;
     animation-duration: 2000ms;
     animation-iteration-count: infinite;
+    animation-name: spin;
     animation-timing-function: linear;
-    width: 22px;
     height: 22px;
-    position: absolute;
     left: 8%;
+    position: absolute;
+    width: 22px;
   }
 
   @keyframes spin {
     from {
-      transform:rotate(0deg);
+      transform: rotate(0deg);
     }
+
     to {
-      transform:rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 </style>

@@ -46,6 +46,21 @@ export default {
         Vue.set(state, 'isFetching', false);
       }
     },
+    async fetchEliteById({ state, commit }, { id }) {
+      Vue.set(state, 'isFetching', true);
+      try {
+        const { data } = await api.find(`/users/elite/elite_id/${id}`);
+        Vue.set(state, 'elite', data);
+      } catch ({ response: reason }) {
+        if (reason.status == 404) {
+          await router.push('/servicii');
+        } else {
+          commit('common/setErrors', reason, { root: true });
+        }
+      } finally {
+        Vue.set(state, 'isFetching', false);
+      }
+    },
     async removeElite({ state, commit }) {
       Vue.set(state, 'elite', {});
     },

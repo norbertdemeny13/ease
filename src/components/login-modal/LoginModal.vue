@@ -19,7 +19,6 @@
               <span class="checkmark"></span>
             </label>
             <label @click="userType = 'elite'" class="container_radio">{{ $t('generic.pro') }}
-
               <input type="radio" value="checkbox" name="user-type" :checked="`${userType !== 'client' ? 'checked' : ''}`">
               <span class="checkmark"></span>
             </label>
@@ -40,31 +39,25 @@
                     :placeholder="$t('auth.passwordPlaceholder')"
                     v-model="form.password"
                   >
-                  <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}
-</span>
-                  <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}
-</span>
+                  <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}</span>
+                  <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}</span>
               </div>
               <div class="clearfix add_bottom_15">
                 <div class="checkboxes float-left">
                   <label class="container_check">{{ $t('generic.remember_me') }}
-
                     <input type="checkbox">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="float-right">
-                  <a id="forgot" href="" @click.prevent="onForgotPassword">{{ $t('generic.forgot_password_question') }}
-</a>
+                  <a id="forgot" href="" @click.prevent="onForgotPassword">{{ $t('generic.forgot_password_question') }}</a>
                 </div>
                 </div>
                 <div class="text-center">
-                  <input @click.prevent="onSubmit()" type="submit" value="Logheaza-te" class="btn_1 full-width mb_5">
+                  <input @click.prevent="onSubmit()" type="submit" :value="$t('lbl_login')" class="btn_1 full-width my-2">
                   {{ $t('generic.no_account_yet') }}
-
                   <a @click.prevent="isSignIn = false" href="" class="text-pink">
                     {{ $t('generic.sign_up') }}
-
                   </a>
                 </div>
             </div>
@@ -95,7 +88,6 @@
                     <span v-if="passwordType === 'password'" class="show-password-btn" @click.prevent="passwordType = 'text'">{{ $t('generic.password_show') }}</span>
                     <span v-if="passwordType === 'text'" class="show-password-btn" @click.prevent="passwordType = 'password'">{{ $t('generic.password_hide') }}</span>
                 </div>
-
                 <div v-if="userType !== 'elite'">
                   <label>{{ $t('generic.are') }}</label>
                   <div class="form-group radio_c_group ml-1 mb-0">
@@ -110,7 +102,6 @@
                     </label>
                   </div>
                 </div>
-
                 <div class="form-group radio_c_group ml-1">
                   <div class="checkboxes float-left">
                     <label class="container_check" @click.prevent="terms_and_conditions = !terms_and_conditions">{{ $t('generic.terms_and_conditions_agreement') }}
@@ -119,7 +110,6 @@
                     </label>
                   </div>
                 </div>
-
                 <div class="form-group radio_c_group ml-1">
                   <div class="checkboxes float-left">
                     <label class="container_check" @click.prevent="form.subscribe_to_marketing_emails_list = !form.subscribe_to_marketing_emails_list">{{ $t('generic.subscribe_to_marketing') }}
@@ -142,10 +132,18 @@
                     </label>
                   </div>
                 </div>
-
                 <div class="clearfix add_bottom_15">
                   <div class="text-center">
-                    <input @click.prevent="onSubmit()" type="submit" value="Inregistreaza-te" class="btn_1 full-width mb_5">
+                    <button @click.prevent="onSubmit()" type="submit" class="position-relative btn_1 full-width my-2">
+                      <span
+                        v-if="isFetchingUser"
+                        class="position-absolute loading"
+                        :style="loadingStyle"
+                      >
+                        <i class="icon_loading" />
+                      </span>
+                      {{ $t('generic.sign_up') }}
+                    </button>
                     {{ $t('generic.already_have_an_account') }}
                     <a
                       href=""
@@ -179,7 +177,7 @@
   /* eslint-disable */
   import Vue, { PropType } from 'vue';
   import { mapGetters, mapActions } from 'vuex';
-  import { nanoid } from 'nanoid';
+  import { startCase } from 'lodash-es';
 
   export default Vue.extend({
     name: 'es-login-modal',
@@ -229,6 +227,13 @@
         getUser: 'session/getUser',
         isFetchingUser: 'session/isFetchingUser',
       }),
+      loadingStyle() {
+        const lang = localStorage.getItem('lang');
+
+        return ({
+          left: lang === 'en' ? '32%' : '24%',
+         });
+      },
     },
 
     watch: {
@@ -277,12 +282,15 @@
             credentials: form,
             type: userType,
           });
-          if (name === 'Home' && userType !== 'elite') {
-            this.$router.push('/servicii');
-          }
         } else {
+          const formData = {
+            ...form,
+            first_name: startCase(form.first_name.toLowerCase()),
+            last_name: startCase(form.last_name.toLowerCase()),
+          }
+
           await this.signUp({
-            credentials: form,
+            credentials: formData,
             type: userType,
           });
           if (name === 'Home' && userType !== 'elite') {
@@ -298,3 +306,24 @@
     },
   });
 </script>
+
+<style>
+  .loading {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    height: 22px;
+    width: 22px;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

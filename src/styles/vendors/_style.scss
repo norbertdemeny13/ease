@@ -2940,8 +2940,15 @@ ul#top_menu li a.login::before {
   .hero .opacity-mask h3 {
     font-size: 28px;
   }
+}
+
+@media (max-width: 414px) {
   .hero.pro-hero {
     background: none;
+  }
+
+  .wave.hero {
+    display: none;
   }
 }
 
@@ -2990,7 +2997,7 @@ ul#top_menu li a.login::before {
 
 .hero.inner_pages {
   height: 620px;
-  background-position: center center;
+  background-position: top;
   background-repeat: no-repeat;
   background-color: #ededed;
   -webkit-background-size: cover;
@@ -5024,7 +5031,7 @@ header.black_nav .dropdown.user a:hover {
 }
 
 .bg_gray {
-  background-color: #f9fafb;
+  background-color: #f7f7f7;
 }
 
 .bg_gray.pattern {
@@ -5148,10 +5155,6 @@ header.black_nav .dropdown.user a:hover {
 
 .add_top_30 {
   margin-top: 30px;
-}
-
-.mb_5 {
-  margin-bottom: 5px;
 }
 
 @media (max-width: 767px) {
@@ -5679,7 +5682,6 @@ ul.footer-selector li {
 
 @media (max-width: 575px) {
   ul.footer-selector li:last-child {
-    padding-top: 10px;
     clear: both;
     float: none;
     display: block !important;
@@ -5755,7 +5757,7 @@ ul.additional_links li a:hover {
   border: none;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #999;
+  border: 1px solid #fff;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;

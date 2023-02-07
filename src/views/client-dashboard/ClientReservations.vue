@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-md-10 col-sm-12">
         <h2>{{ $t('generic.my_reservations') }}</h2>
-        <es-divider v-if="getReservationList.length" />
         <div v-if="isListView">
           <ul id="pricing-tab" class="nav nav-pills pricing-tab mb-4" role="tablist">
             <li class="nav-item" @click="selectedType = 'past'">
@@ -414,7 +413,7 @@
           elite: job.elite,
           avatar: job.elite?.avatar_path,
           id: job.id,
-          eliteId: job.elite?.id,
+          eliteId: job.elite?.elite_id,
         }));
         return jobs;
       },

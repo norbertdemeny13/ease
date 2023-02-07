@@ -227,6 +227,8 @@ export default {
           const replaceUrl = router.currentRoute.fullPath.includes('easepro') || router.currentRoute.fullPath.includes('pro/');
           const path = replaceUrl ? '/easepro/cont' : 'easepro/cont';
           router.push(path);
+        } else if (router.currentRoute.name === 'Home' && data.user_type !== 'elite') {
+          router.push('/servicii');
         }
       } catch({ response: reason }) {
         commit('common/setErrors', reason, { root: true });

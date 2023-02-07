@@ -385,13 +385,16 @@
     position: absolute !important;
     visibility: hidden;
   }
+
   .documents-button {
-    width: 225px;
     white-space: nowrap;
+    width: 225px;
   }
+
   .logo {
     height: 19px;
   }
+
   h3.es-toast__title {
     font-size: 19px;
     line-height: 25px;

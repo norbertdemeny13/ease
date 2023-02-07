@@ -25,7 +25,7 @@
       </ul>
       <ul>
         <li v-if="isCoupleMassage" class="d-flex justify-content-between">
-          <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${selectedReservation.reservation_service.price} Lei` }}</span>
+          <strong>{{ $t('generic.couple_massage') }} {{ selectedReservation.reservation_service.massage_one.service.duration }} min</strong><span>{{ `${time.price} Lei` }}</span>
         </li>
 
         <template v-for="(service, i) in reservationServices">
@@ -263,7 +263,7 @@
   }
 
   img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 </style>

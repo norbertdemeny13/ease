@@ -55,7 +55,7 @@
           :key="service.id"
         >
           <p class="ml-2"><span>{{ service.selectedCount }} x {{ $t(service.name) }}</span></p>
-          <span v-if="service.isFourHands">{{ service.selectedCount * (service.price === '0' ? hourPrice : getServicePrice(item)/2) }} Lei</span>
+          <span v-if="service.isFourHands">{{ service.price }} Lei</span>
           <span v-else>{{ service.selectedCount * (service.price === '0' ? hourPrice : service.price) }} Lei</span>
         </li>
       </ul>
@@ -152,7 +152,7 @@
         return curentTime;
       },
       getTotal() {
-        let total = parseInt(this.time.price, 10);
+        let total = parseInt(this.time?.price, 10);
         const { category } = this.getSelectedServices[0];
         const isMassage = category === 'single' || category === 'couple';
         this.getSelectedServices.forEach((item) => {
@@ -268,7 +268,7 @@
   }
 
   img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 </style>

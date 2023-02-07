@@ -19,7 +19,7 @@
                 id="email"
                 v-model="email"
                 type="text"
-                class="pl-6 form-control"
+                class="form-control"
                 name="email"
               >
               <i class="icon_mail_alt" />

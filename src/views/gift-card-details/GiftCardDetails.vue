@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content bg_gray">
     <div class="es_gift-card-details-page container margin_30_20">
       <a class="back-button" href="" @click.prevent="$router.push('/carduri-cadou')">
         {{ $t('generic.back') }}

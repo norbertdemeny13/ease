@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content bg-gray">
     <div class="es_reserve-massage-service-page container margin_30_20">
       <div class="d-flex justify-content-between">
         <a href="" class="back-button" @click.prevent="onBack()">
@@ -222,6 +222,11 @@
           }, 300);
         }
       },
+      selectedService(newVal) {
+        if (newVal.name.includes('reflexo')) {
+          this.massageForm.duration = 60;
+        }
+      },
       getReservationDetails(newVal) {
         if (newVal.reservation_service.massage_two) {
           const { type } = this.massageForm;
@@ -284,8 +289,7 @@
       this.massageForm.type = type;
 
       if (query && query.pro_id) {
-        this.fetchElite({ id: query.pro_id });
-        this.fetchServicesByType({ type, id: query.pro_id });
+        this.fetchServicesByType({ type, id: this.getElite.id });
       } else {
         this.fetchServicesByType({ type });
       }
@@ -293,9 +297,9 @@
 
     methods: {
       ...mapActions({
-        fetchElite: 'elite/fetchElite',
         fetchServicesByType: 'services/fetchServicesByType',
         fetchServiceById: 'services/fetchServiceById',
+        updateMasageFormDuration: 'services/updateMasageFormDuration',
       }),
       setValue(key, value) {
         this.massageForm[key] = value;
@@ -327,7 +331,7 @@
         const { massageType } = this;
         const { uuid } = this.selectedService;
         const { query } = this.$router.currentRoute;
-        const eliteId = query?.pro_id;
+        const eliteId = this.getElite.id;
 
         if (!this.isAuthenticated) {
           this.$root.$emit('on-show-login');
@@ -366,7 +370,8 @@
           massageForm: this.massageForm,
           prices: this.getServiceById.prices,
         };
-        this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
+        await this.updateMasageFormDuration(this.massageForm.duration);
+        await this.$store.commit('services/setSelectedMassageService', { service: selectedService, type: massageType });
         await this.$store.dispatch('services/createMassageReservation', eliteId);
       },
     },
@@ -380,7 +385,7 @@
   }
 
   .profile-pic-container img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 </style>

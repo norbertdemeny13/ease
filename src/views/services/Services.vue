@@ -39,6 +39,7 @@
 
     computed: {
       ...mapGetters({
+        getElite: 'elite/getElite',
         getServices: 'services/getServices',
         isFetching: 'services/isFetching',
         getLocation: 'address/getLocation',
@@ -62,7 +63,7 @@
           const { query } = newVal;
           if (!isEqual(newVal, oldVal)) {
             if (query && query.pro_id) {
-              this.fetchServices(query.pro_id);
+              this.fetchServices(this.getElite.id);
             } else {
               this.fetchServices();
             }
@@ -77,7 +78,7 @@
       const { query } = this.$router.currentRoute;
 
       if (query && query.pro_id) {
-        this.fetchServices(query.pro_id);
+        this.fetchServices(this.getElite.id);
       } else {
         this.fetchServices();
       }
@@ -116,7 +117,7 @@
         }
 
         if (query && query.pro_id) {
-          this.fetchServices(query.pro_id);
+          this.fetchServices(this.getElite.id);
         } else {
           this.fetchServices();
         }

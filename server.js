@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const express = require('express');
 const path = require('path');
 const history = require('connect-history-api-fallback');
@@ -17,7 +19,7 @@ app.get('/', (req, res) => {
   res.render(path.join(`${__dirname}/dist/index.html`));
 });
 
-var server = app.listen(process.env.PORT || 9090, () => {
+const server = app.listen(process.env.PORT || 9090, () => {
   const { port } = server.address();
   console.log('App now running on port', port);
 });

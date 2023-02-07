@@ -32,6 +32,36 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/contact').then(({ Contact }) => Contact),
   },
   {
+    path: '/politica-de-confidentialitate',
+    name: 'Privacy And Policy',
+    component: () => import('@/views/privacy-and-policy').then(({ PrivacyAndPolicy }) => PrivacyAndPolicy),
+  },
+  {
+    path: '/easepro/politica-de-confidentialitate',
+    name: 'Privacy And Policy',
+    component: () => import('@/views/privacy-and-policy').then(({ PrivacyAndPolicy }) => PrivacyAndPolicy),
+  },
+  {
+    path: '/termeni-si-conditii',
+    name: 'Terms And Conditions',
+    component: () => import('@/views/terms-and-conditions').then(({ TermsAndConditions }) => TermsAndConditions),
+  },
+  {
+    path: '/easepro/termeni-si-conditii',
+    name: 'Terms And Conditions',
+    component: () => import('@/views/terms-and-conditions').then(({ TermsAndConditions }) => TermsAndConditions),
+  },
+  {
+    path: '/termeni-si-conditii-carduri-cadou-ease',
+    name: 'Terms And Conditions Ease Gifts',
+    component: () => import('@/views/terms-and-conditions-ease-gifts').then(({ TermsAndConditionsEaseGifts }) => TermsAndConditionsEaseGifts),
+  },
+  {
+    path: '/termeni-si-conditii-program-de-recomandare-ease',
+    name: 'Terms And Conditions Referrals',
+    component: () => import('@/views/terms-and-conditions-referrals').then(({ TermsAndConditionsReferrals }) => TermsAndConditionsReferrals),
+  },
+  {
     path: '/client',
     component: () => import('@/views/client-dashboard').then(({ ClientDashboard }) => ClientDashboard),
     children: [
@@ -268,6 +298,7 @@ router.beforeEach(async (to, from, next) => {
 
   const { params, path, query, name } = to;
   const { type, id } = params;
+  const { pro_id } = query;
   const isAuth = store.getters['session/isAuth'];
   const getSelectedSubscription = store.getters['subscriptions/getSelectedSubscription'];
   const getSelectedServices = store.getters['services/getSelectedServices'];
@@ -286,6 +317,10 @@ router.beforeEach(async (to, from, next) => {
       await store.commit('session/setRefferalCode', refferal_code);
     }
     next('/');
+  }
+
+  if (pro_id) {
+    await store.dispatch('elite/fetchEliteById', { id: pro_id }) ;
   }
 
   if ((to.name === 'Home' || to.name === 'ProHome') && getUserType === 'elite') {
@@ -367,7 +402,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.name === 'Detalii Serviciu' || to.name === 'Detalii Serviciu Aditional') {
-    const { pro_id } = query;
+    const pro_id = store.getters['elite/getElite'].pro_id;
     await store.dispatch('services/fetchServiceById', { type, id, pro_id });
     next();
   }

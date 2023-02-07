@@ -1,5 +1,5 @@
 <template>
-  <div class="es_reserve-service-container">
+  <div class="es_reserve-service-container bg_gray">
     <div class="container margin_30_40">
       <router-link v-if="!isReservationConfirmed" class="back-button mb-2" :to="getToRoute()">Inapoi</router-link>
       <div class="row mt-4">
