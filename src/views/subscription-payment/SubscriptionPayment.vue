@@ -60,8 +60,7 @@
             </div>
             <div class="main">
               <es-address-details disabled />
-              <es-payment-details>
-              </es-payment-details>
+              <es-payment-details />
             </div>
           </div>
           <div class="d-flex justify-content-end">

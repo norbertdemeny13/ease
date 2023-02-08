@@ -11,7 +11,7 @@
               <div class="custom_select submit">
                 <select name="credit-card" id="credit-card" class="form-control wide" v-model="getSelectedCard">
                   <option
-                    v-for="card in getCards"
+                    v-for="card in getFilteredCards"
                     :key="card.id"
                     :value="card.id"
                   >
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <a href="" class="mt-4" @click.prevent="addPayment()">
+      <a v-if="isAddPaymentVisible" href="" class="mt-4" @click.prevent="addPayment()">
         <i class="icon_plus" />
         {{ $t('generic.add_new_payment_method') }}
       </a>
@@ -73,7 +73,7 @@
 
       getLocalCards(): any {
         return this.isAuthenticated
-          ? this.getCards
+          ? this.getFilteredCards
           : this.getStripeCards;
       },
 
@@ -85,6 +85,21 @@
           const card: any = this.getLocalCards.find((item: any) => item.id === newVal);
           this.setSelectedCard(card);
         },
+      },
+
+      isSubscriptionRoute(): boolean {
+        return this.$router.currentRoute.name === 'Rezerva Abonamente';
+      },
+
+      isAddPaymentVisible(): boolean {
+        return !this.isSubscriptionRoute
+          || (this.isSubscriptionRoute && !this.getLocalCards.length);
+      },
+
+      getFilteredCards(): any {
+        return this.isSubscriptionRoute
+          ? this.getCards.filter((card: any) => card.primary === true)
+          : this.getCards;
       },
     },
 
